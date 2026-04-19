@@ -1,0 +1,29 @@
+ESTUDO DE CASO: SISTEMA DE PLAYLIST (G-STREAM PLAYER)
+------------------------------------------------------------------------------
+DOMÍNIO: Entretenimento / Software de Streaming
+ATIVIDADE: Extra 35
+CONCEITO NOVO: Lista Duplamente Encadeada (Doubly Linked List)
+
+1. O CENÁRIO
+Um player de música moderno precisa permitir que o usuário pule para a "Próxima 
+Música" ou volte para a "Música Anterior". Usar uma lista simples seria 
+ineficiente, pois para voltar uma música teríamos que percorrer a lista inteira 
+desde o começo até achar o nó anterior.
+
+2. A NECESSIDADE TÉCNICA
+Na LISTA DUPLAMENTE ENCADEADA, dobramos o controle sobre a memória:
+- O Nó Duplo: Contém o dado e DOIS ponteiros ('proximo' e 'anterior').
+- Navegação Bidirecional: Podemos caminhar do início para o fim e do fim para 
+  o início com a mesma facilidade.
+- Ponteiro de Cauda (Tail): Além da cabeça (Head), manteremos um ponteiro para 
+  o último elemento, permitindo inserções rápidas no final da playlist.
+
+3. REQUISITOS DO SISTEMA
+- Classe 'MusicaNode': 
+    * Atributos: titulo, artista, proximo, anterior.
+- Classe 'Playlist':
+    * Métodos 'adicionarMusica()': Insere sempre no final (cauda).
+    * Métodos 'avancar()' e 'retroceder()': Simulam a navegação do usuário.
+    * Método 'exibirReverso()': Prova que a lista consegue voltar.
+    * Destrutor: Limpeza rigorosa da memória.
+------------------------------------------------------------------------------

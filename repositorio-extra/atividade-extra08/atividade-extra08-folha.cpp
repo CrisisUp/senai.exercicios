@@ -113,7 +113,7 @@ int main()
 
 bool ehFinalDeSemana(int dia, int mes, int ano) 
 {
-    tm data = {0};
+    tm data = {};
     data.tm_mday = dia;
     data.tm_mon = mes;
     data.tm_year = ano;

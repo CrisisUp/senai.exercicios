@@ -1,0 +1,28 @@
+DESAFIO INTEGRADOR: SISTEMA BANCÁRIO "G-BANK" v1.0
+------------------------------------------------------------------------------
+DOMÍNIO: Finanças / Segurança de Dados
+ATIVIDADE: Extra 20 (DESAFIO DE CICLO POO)
+CONCEITOS INTEGRADOS: Classes, Encapsulamento, Sobrecarga, Static, Exceções e Arquivos.
+
+1. O CENÁRIO
+O banco digital "G-Bank" precisa de um núcleo de processamento robusto. A 
+segurança é a prioridade: o saldo dos clientes não pode ser alterado 
+diretamente, e todas as movimentações devem ser validadas.
+
+2. A NECESSIDADE TÉCNICA
+Este projeto consolida os 3 pilares de POO vistos até aqui:
+- ENCAPSULAMENTO: Proteção total do saldo e do histórico.
+- SOBRECARGA: Abertura de contas simples (apenas nome) ou premium (com depósito inicial).
+- STATIC: O banco precisa saber, em tempo real, o valor total sob sua custódia 
+  (soma do saldo de todos os clientes) e o número total de contas ativas.
+
+3. REQUISITOS DO SISTEMA
+- Classe 'ContaBancaria'.
+- Atributos privados: numeroConta, titular, saldoCentavos.
+- Atributos estáticos: reservaTotalBanco, contadorContas.
+- Funcionalidades:
+    * Depositar e Sacar (com tratamento de exceções para valores negativos ou insuficientes).
+    * Transferir (um objeto interagindo com outro objeto).
+    * Persistência: Salvar o extrato final em arquivo .txt.
+    * Interface colorida para distinguir operações de débito (vermelho) e crédito (verde).
+------------------------------------------------------------------------------

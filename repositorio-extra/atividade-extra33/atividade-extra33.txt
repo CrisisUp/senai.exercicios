@@ -1,0 +1,29 @@
+DESAFIO LENDÁRIO: NÚCLEO DE INTELIGÊNCIA BANCÁRIA (G-CENTRAL SOC)
+------------------------------------------------------------------------------
+DOMÍNIO: Segurança Nacional / Fintech de Alta Disponibilidade
+ATIVIDADE: Extra 33 (O ÁPICE DO APRENDIZADO)
+PADRÕES INTEGRADOS: Singleton, Observer, Factory, Templates, STL, Exceções.
+
+1. O CENÁRIO
+O Banco Central (BACEN) opera o G-CENTRAL, um sistema de monitoramento de risco 
+que analisa cada transferência bilionária no país. O sistema deve ser imune a 
+erros de entrada, alertar a diretoria em tempo real e mobilizar agentes de 
+resposta cibernética instantaneamente.
+
+2. A MISSÃO TÉCNICA (A Trindade Lendária)
+Este projeto é a consolidação final da sua maestria em C++. Você deve unir:
+- SINGLETON (O Escudo): Um validador único que blinda o teclado contra 
+  ataques de buffer e entradas inválidas.
+- OBSERVER (A Vigilância): Uma central de alarmes que notifica múltiplos 
+  monitores (App, Painel, Sirene) quando uma ameaça é detectada.
+- FACTORY (A Resposta): Uma fábrica de agentes que despacha o profissional 
+  correto (Cyber-Policial ou Auditor) dependendo do tipo de fraude.
+
+3. REQUISITOS DO SISTEMA
+- Validação: Nenhuma entrada de dados pode "quebrar" o programa (use o Singleton).
+- Monitoramento:
+    * Se uma transação vier de um país em "Blacklist" (use std::map), o 
+      sistema deve disparar o Alerta (Observer).
+    * Se o valor for > 1 milhão, o sistema deve convocar um Agente (Factory).
+- Persistência: Gravar o histórico de ameaças neutralizadas em 'relatorio_soc.txt'.
+------------------------------------------------------------------------------

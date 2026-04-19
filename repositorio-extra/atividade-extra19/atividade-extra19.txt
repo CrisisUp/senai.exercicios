@@ -1,0 +1,33 @@
+ESTUDO DE CASO: MONITORAMENTO ESTRUTURAL DE EDIFÍCIOS (SMART BUILDING)
+------------------------------------------------------------------------------
+DOMÍNIO: Engenharia Civil / IoT
+ATIVIDADE: Extra 19
+CONCEITO NOVO: Membros Estáticos (Atributos e Métodos static)
+
+1. O CENÁRIO
+Em um edifício moderno, centenas de sensores de pressão são instalados nos 
+pilares de sustentação. Cada sensor é um objeto independente, mas todos 
+precisam saber duas coisas globais:
+- Quantos sensores estão ativos no momento no prédio todo?
+- Qual é o limite de carga crítica definido pela engenharia para o edifício?
+
+2. A NECESSIDADE TÉCNICA
+Até agora, cada objeto tinha sua própria cópia de dados. Se tivéssemos 500 
+objetos 'Sensor', e o limite de carga mudasse, teríamos que atualizar 500 
+variáveis.
+O modificador STATIC resolve isso:
+- Atributo Estático: Uma variável que pertence à CLASSE e não ao objeto. 
+  Existe apenas uma instância dela na memória, compartilhada por todos.
+- Método Estático: Uma função que pode ser chamada sem criar um objeto 
+  (ex: para verificar o status global do sistema).
+
+3. REQUISITOS DO SISTEMA
+- Classe 'SensorPressao'.
+- Atributos privados: idSensor (int), pressaoAtual (double).
+- Atributos ESTÁTICOS: totalSensores (contador) e alertaCritico (bool).
+- Métodos:
+    * Construtor: Deve incrementar o contador global toda vez que um sensor "nascer".
+    * setLeitura: Atualiza a pressão e, se ultrapassar um limite, ativa o alerta 
+      estático global para todos os sensores.
+    * Método Estático 'isSistemaEmAlerta': Retorna se o prédio corre risco.
+------------------------------------------------------------------------------

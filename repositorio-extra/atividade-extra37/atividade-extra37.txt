@@ -1,0 +1,32 @@
+DESAFIO SUPREMO: G-HEALTH - SISTEMA HOSPITALAR INTEGRADO v1.0
+------------------------------------------------------------------------------
+DOMÍNIO: Medicina / Gestão de Fluxo / Engenharia de Software
+ATIVIDADE: Extra 37 (DESAFIO INTEGRADO - MAESTRIA LENDÁRIA)
+CONCEITOS INTEGRADOS: Fila Manual, Lista Manual, Stack Manual, Singleton, 
+                      Templates, Validação Robusta, Persistência e Exceções.
+
+1. O CENÁRIO
+O hospital "G-Health" precisa de um sistema que gerencie três pilares críticos:
+- TRIAGEM (Fila FIFO): Pacientes chegam e aguardam atendimento.
+- PRONTUÁRIO (Lista Encadeada): Cada paciente possui um histórico de consultas 
+  que cresce dinamicamente.
+- AUDITORIA (Pilha LIFO): Cada ação do médico (prescrever, diagnosticar) deve 
+  ser logada para segurança jurídica.
+
+2. A MISSÃO TÉCNICA (A Fusão Final)
+Você deve construir este sistema do ZERO, sem usar std::vector, std::queue ou 
+std::stack. Você gerenciará a memória RAM manualmente.
+- SINGLETON: O 'ScannerSeguro' deve blindar todas as entradas.
+- QUEUE MANUAL: Para gerenciar a fila de espera da recepção.
+- LINKED LIST MANUAL: Cada objeto 'Paciente' terá sua própria lista encadeada 
+  de 'Diagnósticos'.
+- STACK MANUAL: Para o log de ações da sessão atual.
+- PERSISTÊNCIA: Ao final, o sistema salva o prontuário completo de um paciente 
+  em 'prontuario_paciente.txt'.
+
+3. REQUISITOS DE ROBUSTEZ
+- Validação: Nenhuma letra em campo numérico deve travar o sistema.
+- Sanitização: Limpeza de buffer em cada transição de menu.
+- Gestão de Memória: O sistema deve ter "Vazamento Zero" (Zero Memory Leak), 
+  limpando todos os nós ao sair.
+------------------------------------------------------------------------------

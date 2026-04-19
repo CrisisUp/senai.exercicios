@@ -1,0 +1,30 @@
+ESTUDO DE CASO: CENTRO DE MONITORAMENTO CLIMÁTICO (METEO-SENS)
+------------------------------------------------------------------------------
+DOMÍNIO: Meteorologia / Cidades Inteligentes
+ATIVIDADE: Extra 32
+CONCEITO NOVO: Design Pattern: Observer (Comunicação entre Objetos)
+
+1. O CENÁRIO
+Uma Estação Meteorológica central coleta dados de Temperatura e Umidade. 
+Existem vários dispositivos que precisam desses dados: um 'Display de LCD' 
+na praça, um 'Aplicativo de Celular' e um 'Sistema de Irrigação'. 
+
+2. A NECESSIDADE TÉCNICA
+Até agora, se um objeto quisesse saber algo de outro, ele tinha que pedir. 
+O PADRÃO OBSERVER inverte isso (Push, não Pull):
+- Subject (Assunto): É a Estação. Ela mantém uma lista de "interessados".
+- Observers (Observadores): São os dispositivos. Eles se "inscrevem" na estação.
+- Notificação: Sempre que a temperatura muda, a estação percorre sua lista 
+  e avisa a todos automaticamente: "Ei, mudou! Aqui estão os novos dados".
+
+Isso cria um sistema DESACOPLADO: a estação não precisa saber o que é um 
+celular ou um LCD, ela apenas sabe que eles são "Observadores".
+
+3. REQUISITOS DO SISTEMA
+- Interface 'IObservador' (Classe Abstrata): Método 'atualizar(temp)'.
+- Classe 'EstacaoClimatica' (Subject):
+    * Lista de ponteiros para IObservador.
+    * Métodos 'adicionarObservador' e 'notificar'.
+- Classes Concretas: 'DisplayTV' e 'AppCelular'.
+- Simulação: Alterar a temperatura e ver todos os displays atualizando sozinhos.
+------------------------------------------------------------------------------

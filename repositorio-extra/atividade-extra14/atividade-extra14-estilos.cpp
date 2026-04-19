@@ -283,3 +283,38 @@ void salvarRelatorio(stack<Emprestimo> s) {
     rel.close();
     cout << Cor::VERDE << "[SISTEMA]: Relatório gerado com sucesso." << Cor::RESET << endl;
 }
+
+/* 
+    ===============================================================
+    RESUMO TEÓRICO: ESTILIZAÇÃO E INTERFACE (ANSI)
+    ===============================================================
+
+    1. ANSI ESCAPE CODES:
+       - Sequências de caracteres que começam com '\033[' (ESC) e 
+         comandam o terminal para mudar a cor do texto, fundo ou 
+         estilo (negrito, sublinhado). Isso permite criar interfaces 
+         profissionais mesmo em modo texto (CLI).
+
+    2. ORGANIZAÇÃO EM NAMESPACES:
+       - O uso de namespace Cor { ... } evita que as constantes de 
+         estilo se misturem com outras variáveis do programa, além 
+         de facilitar o acesso via Cor::VERDE.
+
+    3. FEEDBACK VISUAL E UX:
+       - Cores não são apenas estética; elas guiam o usuário:
+         * VERMELHO: Erros críticos ou estoque esgotado.
+         * VERDE: Sucesso em operações.
+         * AMARELO: Avisos que não interrompem o fluxo.
+         * CIANO/AZUL: Informações neutras e títulos.
+
+    4. PADRONIZAÇÃO DE BANNER:
+       - Centralizar títulos e usar molduras coloridas ajuda a 
+         delimitar as diferentes seções da aplicação.
+
+    ===============================================================
+    ASSUNTOS CORRELATOS (Para pesquisa):
+    - TUI (Terminal User Interface): Bibliotecas como ncurses.
+    - Bibliotecas Cross-platform para cores: 'rlutil' ou 'fmtlib'.
+    - UX Design para CLIs: Como criar ferramentas amigáveis.
+    ===============================================================
+*/

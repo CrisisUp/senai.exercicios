@@ -1,0 +1,33 @@
+ESTUDO DE CASO: SISTEMA DE RASTREIO DE ENCOMENDAS (LOGÍSTICA 4.0)
+------------------------------------------------------------------------------
+DOMÍNIO: Logística / E-commerce
+ATIVIDADE: Extra 18
+CONCEITO NOVO: Sobrecarga de Construtores e Lista de Inicialização
+
+1. O CENÁRIO
+Em um centro de distribuição automatizado, as encomendas chegam de duas formas:
+- Via Esteira Automática: Onde o scanner já lê o Código de Rastreio, o Peso 
+  e o Destino simultaneamente.
+- Via Cadastro Manual: Onde apenas o Código de Rastreio é gerado inicialmente, 
+  e o peso será aferido posteriormente na balança.
+
+2. A NECESSIDADE TÉCNICA
+Até agora (Atividade 17), aprendemos a criar um Construtor Único. Porém, na 
+vida real, um objeto pode precisar ser iniciado de diferentes maneiras.
+A SOBRECARGA DE CONSTRUTORES permite definir múltiplas formas de "nascer" um 
+objeto na memória.
+
+Além disso, usaremos a LISTA DE INICIALIZAÇÃO (aquela sintaxe após os dois 
+pontos ':'), que é a forma mais performática e profissional de atribuir valores 
+iniciais aos atributos de uma classe em C++.
+
+3. REQUISITOS DO SISTEMA
+- Classe 'PacoteLogistico'.
+- Atributos privados: codigoRastreio (string), peso (double), destino (string).
+- Construtor 1 (Completo): Recebe todos os dados (Rastreio, Peso, Destino).
+- Construtor 2 (Parcial): Recebe apenas o Código de Rastreio (Peso inicia em 0.0 
+  e Destino como "A DEFINIR").
+- Métodos Públicos:
+    * Setters para Peso e Destino (com validação de peso > 0).
+    * Método 'exibirEtiqueta': Imprime os dados formatados com cores ANSI.
+------------------------------------------------------------------------------

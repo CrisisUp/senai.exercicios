@@ -1,0 +1,30 @@
+ESTUDO DE CASO: TERMINAL DE ACESSO DE ALTA SEGURANÇA (CYBER-GUARD)
+------------------------------------------------------------------------------
+DOMÍNIO: Segurança Cibernética / Defesa de Dados
+ATIVIDADE: Extra 31
+CONCEITO NOVO: Validação de Dados Robusta e Padrão Singleton
+
+1. O CENÁRIO
+Um terminal de acesso militar precisa receber o 'Nível de Autorização' (int) 
+e a 'Chave de Acesso' (double). Se um invasor digitar uma letra para travar 
+o sistema (Ataque de negação de serviço via buffer), o software deve detectar, 
+limpar o erro e exigir a entrada correta.
+
+2. A NECESSIDADE TÉCNICA
+O comando 'cin' do C++ é frágil. Se ele espera um 'int' e recebe um 'A', o 
+fluxo de entrada entra em estado de falha e o programa entra em loop infinito. 
+Precisamos de um "Escudo de Entrada".
+
+O PADRÃO SINGLETON será usado aqui para criar a classe 'Validador'. 
+- Singleton: Garante que o sistema tenha apenas UMA instância do validador 
+  gerenciando o teclado, evitando conflitos de buffer.
+
+3. REQUISITOS DO SISTEMA
+- Classe 'Validador' (Singleton):
+    * Método Template 'lerDado(mensagem)': Exibe a mensagem e só retorna 
+      quando o usuário digitar o tipo correto.
+    * Método 'validarIntervalo(valor, min, max)': Garante que o número esteja 
+      dentro do esperado.
+- Simulação: O sistema pede dados críticos e reage a entradas propositalmente 
+  erradas do usuário.
+------------------------------------------------------------------------------

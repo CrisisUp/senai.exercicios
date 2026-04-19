@@ -1,0 +1,29 @@
+ESTUDO DE CASO: PILOTAGEM DE DRONE EM TEMPO REAL (G-PILOT)
+------------------------------------------------------------------------------
+DOMÍNIO: Robótica / Sistemas de Inspeção / Jogos
+ATIVIDADE: Extra 45
+CONCEITO NOVO: Input Não-Bloqueante (Raw Mode Terminal e fcntl)
+
+1. O CENÁRIO
+Um drone de inspeção industrial está dentro de uma tubulação perigosa. O piloto 
+precisa desviar de obstáculos rapidamente. Se o software usar 'std::cin', o 
+drone ficará parado esperando o piloto digitar 'W' e apertar 'Enter'. Nesse 
+tempo, o drone bateria na parede.
+
+2. A NECESSIDADE TÉCNICA (Quebrando a barreira do Enter)
+Por padrão, o terminal trabalha em "Cooked Mode": ele guarda o que você digita 
+em um buffer e só entrega ao programa quando você aperta Enter.
+Para um jogo Senior, precisamos do RAW MODE:
+- Termios.h: Uma biblioteca do sistema (Unix/macOS) que permite desligar o 
+  "Echo" (não mostrar a tecla digitada) e o "Canonical Mode" (não esperar Enter).
+- Fcntl.h: Permite configurar o teclado como "Non-Blocking". Se não houver 
+  tecla pressionada, o programa continua rodando em vez de ficar parado.
+
+3. REQUISITOS DO SISTEMA
+- Classe 'InputManager':
+    * Construtor: Ativa o Raw Mode no terminal.
+    * Destrutor: Restaura o terminal ao estado normal (MUITO IMPORTANTE!).
+    * Método 'getTecla()': Retorna a tecla pressionada ou 0 se nenhuma.
+- Simulação: O "Drone" (um caractere na tela) deve responder instantaneamente 
+  às teclas WASD enquanto o relógio do sistema continua correndo.
+------------------------------------------------------------------------------

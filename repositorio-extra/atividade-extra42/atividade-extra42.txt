@@ -1,0 +1,24 @@
+DESAFIO DE UNIFICAÇÃO: G-RESPONSE - EMERGENCY MANAGEMENT SYSTEM
+------------------------------------------------------------------------------
+DOMÍNIO: Gestão de Crises / Cidades Inteligentes / Saúde Integrada
+ATIVIDADE: Extra 42 (O SISTEMA DE SISTEMAS)
+CONCEITO NOVO: Integração de Módulos Complexos e UX de Painel de Controle
+
+1. O CENÁRIO
+A prefeitura de G-City unificou o Centro de Comando Urbano com o Hospital 
+G-Health. Agora, quando ocorre uma emergência, o sistema calcula a rota de 
+resgate e já prepara a recepção hospitalar antes mesmo da ambulância chegar.
+
+2. A MISSÃO TÉCNICA (Sinfonia de Algoritmos)
+Este projeto funde as melhores práticas de todas as atividades anteriores:
+- LOGÍSTICA (Dijkstra): Otimização de trajeto urbano.
+- TRIAGEM (Fila FIFO Manual): Gestão da chegada dos resgatados.
+- HISTÓRICO (Lista Encadeada Manual): Prontuário médico detalhado.
+- PADRÕES (Singleton/Observer): Validação de sensores e alertas de bairro.
+- PERSISTÊNCIA: Relatório final unificado 'missao_resgate.txt'.
+
+3. REQUISITOS DE ELITE
+- UX Avançada: Interface que simula um painel de despacho (Dispatch Center).
+- Resiliência: O sistema deve sobreviver a entradas inválidas em qualquer etapa.
+- Memória: Gestão manual de todos os nós de pacientes e logs.
+------------------------------------------------------------------------------

@@ -1,0 +1,26 @@
+ESTUDO DE CASO: RASTREAMENTO DE CONTÁGIO (EPIDEMIC-GRAPH)
+------------------------------------------------------------------------------
+DOMÍNIO: Epidemiologia / Saúde Coletiva / Matemática Computacional
+ATIVIDADE: Extra 38
+CONCEITO NOVO: Grafos - Vértices, Arestas e Matriz de Adjacência
+
+1. O CENÁRIO
+Um vírus altamente contagioso foi detectado. Para conter o avanço, a vigilância 
+sanitária precisa mapear quem teve contato com quem. Se a Pessoa A encontrou a 
+Pessoa B, e a Pessoa B encontrou a Pessoa C, o vírus pode viajar pela rede.
+
+2. A NECESSIDADE TÉCNICA (O que é um Grafo?)
+Uma lista simples não resolve, pois uma pessoa pode encontrar várias outras de 
+forma não linear. O GRAFO é a solução:
+- Vértices (Nodes): São as pessoas.
+- Arestas (Edges): Representam o contato físico entre elas.
+- Matriz de Adjacência: Um tabuleiro 2D onde marcamos '1' se houver contato 
+  entre a linha (Pessoa X) e a coluna (Pessoa Y), e '0' caso contrário.
+
+3. REQUISITOS DO SISTEMA
+- Classe 'MapaContagio':
+    * Atributo: Matriz 2D de inteiros (alocação dinâmica ou estática).
+    * Método 'registrarContato(p1, p2)': Marca a aresta no grafo.
+    * Método 'exibirMatriz()': Mostra o desenho das conexões.
+    * Método 'quemEncontrou(pessoa)': Lista os contatos diretos daquela pessoa.
+------------------------------------------------------------------------------

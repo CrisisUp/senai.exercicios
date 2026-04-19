@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     './repositorio-extra/atividade-extra47/atividade-extra47-invaders'
+relocations:     []
+...

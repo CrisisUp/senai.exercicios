@@ -1,0 +1,34 @@
+ESTUDO DE CASO: SISTEMA DE GESTÃO DE CONTAINERS (LOGÍSTICA 4.0)
+------------------------------------------------------------------------------
+DOMÍNIO: Logística / Transporte Marítimo e Aéreo
+ATIVIDADE: Extra 27
+CONCEITO NOVO: Class Templates (Templates de Classe)
+
+1. O CENÁRIO
+Uma transportadora internacional lida com diferentes tipos de unidades de carga. 
+Alguns containers levam apenas 'Cargas Líquidas' (medidas em double), outros 
+levam 'Lotes de Peças' (medidos em int), e alguns levam 'Objetos Complexos' 
+(como máquinas descritas por structs).
+
+2. A NECESSIDADE TÉCNICA
+Até agora, se quiséssemos uma classe 'Container', teríamos que fixar o tipo 
+de dado que ela guarda. Para cada novo tipo de carga, precisaríamos criar uma 
+nova classe (ContainerInt, ContainerDouble, etc).
+
+O TEMPLATE DE CLASSE permite criar um "Container Genérico". Você define a 
+estrutura da classe uma única vez e, na hora de criar o objeto, diz ao C++ 
+o que ele vai carregar.
+- Sintaxe: template <class T> class Container { T carga; ... };
+- Aplicação: É assim que o 'std::vector<T>' e o 'std::stack<T>' funcionam.
+
+3. REQUISITOS DO SISTEMA
+- Criar a Class Template 'UnidadeDeCarga<T>'.
+- Atributos: T conteudo, string idCarga, double peso.
+- Métodos:
+    * setCarga(): Para inserir o conteúdo genérico.
+    * exibirManifesto(): Mostra os dados da carga de forma organizada.
+- Demonstrar o uso da mesma classe para:
+    * Uma carga de sensores (int).
+    * Uma carga de combustível (double).
+    * Uma carga de dados de texto (string).
+------------------------------------------------------------------------------

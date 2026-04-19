@@ -1,0 +1,33 @@
+ESTUDO DE CASO: GATEWAY DE PAGAMENTOS MULTI-MODAL (CHECKOUT)
+------------------------------------------------------------------------------
+DOMÍNIO: E-commerce / Fintech
+ATIVIDADE: Extra 23
+CONCEITO NOVO: Classes Abstratas e Métodos Virtuais Puros
+
+1. O CENÁRIO
+Um site de vendas aceita Cartão de Crédito, PIX e Boleto. O sistema de checkout 
+possui uma função principal que recebe um "Método de Pagamento" e executa a 
+cobrança. 
+
+2. A NECESSIDADE TÉCNICA
+Até agora (Atividade 22), podíamos criar um objeto da classe mãe. Mas pense: 
+faz sentido existir um objeto do tipo "Pagamento" puro? Não. Todo pagamento 
+DEVE ser de algum tipo específico.
+A CLASSE ABSTRATA resolve isso:
+- Método Virtual Puro: Usamos a sintaxe '= 0'. Isso diz: "Eu não sei como 
+  processar isso aqui, mas obrigo minhas filhas a saberem".
+- Abstração: Uma classe com pelo menos um método virtual puro não pode ser 
+  instanciada (você não pode dar 'new Pagamento()'). Ela serve apenas como 
+  um CONTRATO (Interface).
+
+3. REQUISITOS DO SISTEMA
+- Classe Abstrata 'MetodoPagamento':
+    * Atributo protegido: valor.
+    * Método virtual puro 'processarPagamento() = 0'.
+    * Método comum 'exibirRecibo()'.
+- Classe 'PagamentoPix' (Filha):
+    * Implementa o processamento gerando um código copia-e-cola.
+- Classe 'PagamentoCartao' (Filha):
+    * Implementa o processamento validando o número do cartão (simulado).
+- O sistema deve processar uma lista de pagamentos pendentes usando o contrato.
+------------------------------------------------------------------------------

@@ -1,0 +1,29 @@
+ESTUDO DE CASO: CHECKOUT DINÂMICO DE SUPERMERCADO (BUSCA POR SKU)
+------------------------------------------------------------------------------
+DOMÍNIO: Varejo / Automação Comercial
+ATIVIDADE: Extra 28
+CONCEITO NOVO: STL std::map (Dicionários Chave-Valor)
+
+1. O CENÁRIO
+Um supermercado possui milhares de produtos. No momento do checkout, o operador 
+passa o código de barras (SKU) e o sistema precisa retornar o preço e o nome 
+instantaneamente. 
+
+2. A NECESSIDADE TÉCNICA
+Até agora, usamos 'std::vector'. Para achar um produto em um vetor de 10.000 itens, 
+o computador teria que olhar item por item (Busca Linear $O(n)$). Isso é lento.
+
+O STL std::map (Mapa) resolve isso usando uma estrutura de Árvore Binária:
+- Chave-Valor: Você associa uma CHAVE única (o código de barras) a um VALOR 
+  (o preço ou objeto produto).
+- Performance: A busca é logarítmica $O(log n)$, o que significa que encontrar 
+  um item entre 1 milhão leva apenas cerca de 20 "olhadas".
+
+3. REQUISITOS DO SISTEMA
+- Usar 'std::map<string, double>' para mapear Código de Barras -> Preço.
+- Criar um catálogo inicial (Banco de Dados em memória).
+- Implementar uma função de consulta rápida:
+    * Se o código existir, mostra o preço.
+    * Se não existir, lança uma exceção informando "Produto Não Cadastrado".
+- Interface interativa para simular o leitor de código de barras.
+------------------------------------------------------------------------------

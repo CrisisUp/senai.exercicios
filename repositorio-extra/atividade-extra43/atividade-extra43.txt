@@ -1,0 +1,25 @@
+ESTUDO DE CASO: MANUTENÇÃO NO SISTEMA DE TRÁFEGO (DEBUG MISSION)
+------------------------------------------------------------------------------
+DOMÍNIO: Engenharia de Software / Qualidade (QA)
+ATIVIDADE: Extra 43
+CONCEITO NOVO: Técnicas de Debugging e Análise de Falhas (Bug Hunting)
+
+1. O CENÁRIO
+Um engenheiro júnior tentou atualizar o sistema de controle de semáforos da 
+G-City, mas o código começou a apresentar comportamentos estranhos: a memória 
+do servidor está subindo sem parar e os tempos de rota estão sendo calculados 
+de forma errada em alguns bairros.
+
+2. A MISSÃO TÉCNICA (O Código Corrompido)
+Eu vou gerar o código para você. Ele compila com 'make', mas contém 3 falhas 
+clássicas que um Engenheiro de Elite deve saber identificar:
+- BUG 1 (Lógico): Um erro de "Off-by-one" (o loop para antes ou depois do que deveria).
+- BUG 2 (Memória): Um 'Memory Leak'. Um objeto é criado com 'new' mas o 
+  engenheiro esqueceu o 'delete'.
+- BUG 3 (Segurança): Uma falha na validação Singleton que permite ao usuário 
+  "sujar" o buffer.
+
+3. SEU OBJETIVO
+Você deve ler o código da Atividade 43, encontrar as linhas erradas e corrigi-las. 
+Só assim o sistema voltará à operação normal.
+------------------------------------------------------------------------------

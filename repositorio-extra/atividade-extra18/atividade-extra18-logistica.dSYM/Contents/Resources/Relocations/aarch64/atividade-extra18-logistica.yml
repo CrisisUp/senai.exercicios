@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     './repositorio-extra/atividade-extra18/atividade-extra18-logistica'
+relocations:     []
+...

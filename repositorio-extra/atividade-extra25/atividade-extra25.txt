@@ -1,0 +1,30 @@
+DESAFIO DE REFATORAÇÃO: MODERNIZAÇÃO DE SISTEMA LEGADO (INVENTÁRIO)
+------------------------------------------------------------------------------
+DOMÍNIO: Gestão Industrial / Software de Almoxarifado
+ATIVIDADE: Extra 25 (DESAFIO DE MAESTRIA)
+OBJETIVO: Transformar a Atividade 01 (Procedural) em POO Avançada.
+
+1. O CENÁRIO (A Crise do Legado)
+O sistema original (Atividade 01) foi escrito usando variáveis soltas e arrays 
+simples. O problema é que qualquer pessoa podia alterar a quantidade em estoque 
+para valores negativos, não havia tratamento de erros se o usuário digitasse 
+letras, e não tínhamos uma visão global do valor total do armazém.
+
+2. A MISSÃO TÉCNICA
+Você deve refatorar o conceito da Atividade 01 aplicando a "Trindade da Robustez":
+- ENCAPSULAMENTO: A quantidade de produtos deve ser protegida.
+- TRATAMENTO DE EXCEÇÕES: O sistema não pode travar se houver entrada inválida.
+- MEMBROS ESTÁTICOS: O armazém deve saber, globalmente, o valor total investido 
+  em todos os produtos somados, sem precisar de cálculos externos.
+
+3. REQUISITOS DA MODERNIZAÇÃO
+- Classe 'ProdutoIndustrial':
+    * Atributos privados: nome, preco, quantidade.
+    * Atributos estáticos: valorTotalPatrimonial, totalItensCadastrados.
+    * Construtor com Lista de Inicialização.
+- Lógica de Negócio:
+    * Métodos para entrada e saída de estoque com validação (impedir estoque < 0).
+    * Interface colorida ANSI.
+- Persistência:
+    * Salvar o inventário consolidado em 'inventario_modernizado.txt'.
+------------------------------------------------------------------------------

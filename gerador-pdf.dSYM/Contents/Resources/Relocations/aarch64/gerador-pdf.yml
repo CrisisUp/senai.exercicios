@@ -1,5 +1,5 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     gerador-pdf
+binary-path:     './gerador-pdf'
 relocations:     []
 ...

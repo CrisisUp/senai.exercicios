@@ -1,0 +1,33 @@
+ESTUDO DE CASO: SISTEMA DE MONITORAMENTO DE SINAIS VITAIS (UTI)
+------------------------------------------------------------------------------
+DOMÍNIO: Medicina / Engenharia Biomédica
+ATIVIDADE: Extra 17
+CONCEITO NOVO: Classes e Encapsulamento (private/public)
+
+1. O CENÁRIO
+Em uma Unidade de Terapia Intensiva (UTI), os monitores cardíacos coletam dados
+ininterruptamente. Um erro na entrada de dados ou uma alteração acidental em uma
+variável (ex: definir a frequência cardíaca como um valor negativo) pode levar
+a diagnósticos fatais e acionamento indevido de alarmes.
+
+2. A NECESSIDADE TÉCNICA
+Até agora, usamos 'structs'. Em uma struct, todos os dados são públicos; qualquer 
+parte do programa pode alterar o valor da temperatura de um paciente para 500°C 
+sem que o sistema perceba o erro.
+
+Para resolver isso, introduziremos as CLASSES. Diferente das structs, as classes 
+permitem o ENCAPSULAMENTO:
+- Membros Privados (private): Os dados (BPM, Temperatura) ficam escondidos.
+- Métodos Públicos (public): Funções especiais (Getters e Setters) que validam 
+  os dados antes de permitir a alteração.
+
+3. REQUISITOS DO SISTEMA
+- Criar uma classe 'PacienteMonitorado'.
+- Atributos privados: frequenciaCardiaca (bpm), temperatura e oxigenacao.
+- Métodos públicos:
+    * Setters: Devem validar se o BPM está entre 0 e 250, Temperatura entre 30 
+    e 45, e Oxigenação entre 0 e 100%. Caso receba um valor inválido, o sistema 
+    deve ignorar e manter o valor anterior (ou lançar uma exceção).
+    * Getters: Para leitura segura dos dados.
+    * Gerar Alerta: Um método que analisa se os sinais estão fora do normal.
+------------------------------------------------------------------------------

@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     './repositorio-extra/atividade-extra43/atividade-extra43-debugging'
+relocations:     []
+...

@@ -1,0 +1,29 @@
+DESAFIO SUPREMO: G-CITY - SMART CITY CENTRAL HUB v1.0
+------------------------------------------------------------------------------
+DOMÍNIO: Gestão Urbana / Defesa Civil / Smart Cities
+ATIVIDADE: Extra 41 (DESAFIO INTEGRADOR DE REDES)
+CONCEITOS INTEGRADOS: Dijkstra, BFS, Singleton, Observer, Factory, STL, 
+                      Templates, Validação Robusta e Persistência.
+
+1. O CENÁRIO
+A cidade inteligente "G-City" precisa de um sistema central de crise. O HUB deve:
+- Detectar a propagação de uma doença entre bairros (BFS).
+- Calcular rotas de ambulância em tempo real considerando tráfego (Dijkstra).
+- Notificar as autoridades de cada bairro sobre o nível de risco (Observer).
+- Validar todas as entradas de dados de sensores (Singleton).
+
+2. A MISSÃO TÉCNICA (A Grande Fusão)
+Este projeto é a síntese de redes e conexões:
+- SINGLETON: O 'ValidadorUrbano' blinda o teclado.
+- GRAFO VALORIZADO: Representa o mapa da cidade (Bairros e Tempos de Viagem).
+- ALGORITMO BFS: Usado para "Ondas de Alerta". Se o Bairro A está em quarentena, 
+  o BFS avisa os vizinhos (Observer).
+- ALGORITMO DIJKSTRA: Usado para o "Despacho de Resgate". Encontra o hospital 
+  mais próximo ou a rota mais rápida para o atendimento.
+- PERSISTÊNCIA: Salvar o log de eventos da cidade em 'relatorio_urbano.txt'.
+
+3. REQUISITOS DE MATURIDADE
+- Interface amigável e colorida ANSI.
+- Gestão de memória manual e via containers STL (uso misto).
+- Tratamento de exceções para bairros inexistentes ou caminhos bloqueados.
+------------------------------------------------------------------------------

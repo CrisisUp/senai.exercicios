@@ -1,0 +1,3 @@
+Ciclo: 1 | População: 4
+Ciclo: 2 | População: 4
+Ciclo: 3 | População: 4

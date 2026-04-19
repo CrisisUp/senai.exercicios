@@ -1,0 +1,31 @@
+ESTUDO DE CASO: OTIMIZAÇÃO DE RESGATE (G-RESCUE ROUTER)
+------------------------------------------------------------------------------
+DOMÍNIO: Logística de Emergência / Cidades Inteligentes
+ATIVIDADE: Extra 40
+CONCEITO NOVO: Algoritmo de Dijkstra (Caminho Mais Curto)
+
+1. O CENÁRIO
+Em uma cidade, uma ambulância precisa sair do Hospital Central e chegar a um 
+acidente no menor tempo possível. Cada rua tem um "custo" (tempo em minutos), 
+que depende da distância e do tráfego.
+
+2. A NECESSIDADE TÉCNICA (O que é Dijkstra?)
+O BFS (Atividade 39) encontra o caminho com menos conexões, mas não leva em 
+conta o "peso" (tempo) de cada conexão. 
+O ALGORITMO DE DIJKSTRA resolve isso:
+- Grafo Valorizado: Cada aresta tem um valor (peso).
+- Lógica Gulosa (Greedy): O algoritmo sempre escolhe o nó mais próximo ainda 
+  não visitado e atualiza as distâncias dos seus vizinhos.
+- Relaxamento de Arestas: Se encontrarmos um caminho mais curto para um nó 
+  através de uma nova rota, atualizamos o registro.
+
+3. REQUISITOS DO SISTEMA
+- Classe 'CalculadorRotas':
+    * Matriz de Adjacência Valorizada (onde o valor é o tempo em minutos).
+    * Método 'calcularMenorTempo(origem, destino)'.
+- Algoritmo:
+    * Vetor 'distancias' (iniciado com infinito).
+    * Vetor 'visitados' (bool).
+    * Loop para encontrar o caminho ótimo.
+- Simulação: Definir 5 pontos da cidade e encontrar a rota mais rápida.
+------------------------------------------------------------------------------

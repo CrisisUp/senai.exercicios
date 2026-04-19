@@ -1,0 +1,27 @@
+ESTUDO DE CASO: O NÚCLEO DO MOTOR (GAME LOOP KERNEL)
+------------------------------------------------------------------------------
+DOMÍNIO: Desenvolvimento de Jogos / Simulação em Tempo Real
+ATIVIDADE: Extra 44
+CONCEITO NOVO: Game Loop e Delta Time (Biblioteca <chrono>)
+
+1. O CENÁRIO
+Um jogo de Arcade não pode parar para esperar o usuário. Ele deve atualizar 
+a posição dos objetos (balas, inimigos, herói) dezenas de vezes por segundo, 
+independentemente se uma tecla foi pressionada ou não.
+
+2. A NECESSIDADE TÉCNICA (O fim do programa linear)
+Programas comuns seguem o fluxo: Entrada -> Processamento -> Saída -> Fim.
+Um JOGO segue o fluxo infinito:
+- Processar Input (Teclado/Mouse).
+- Atualizar Lógica (Física, Colisões, Pontos).
+- Renderizar (Desenhar na tela).
+- Calcular o DELTA TIME: É a diferença de tempo entre o quadro atual e o 
+  quadro anterior. Usamos esse valor para que um personagem ande 5 metros por 
+  segundo, não importa se o computador está rodando a 30 FPS ou 300 FPS.
+
+3. REQUISITOS DO SISTEMA
+- Usar a biblioteca <chrono> para alta precisão (microssegundos).
+- Criar uma classe 'Engine' que gerencia o loop principal.
+- Simular um objeto se movendo na tela com velocidade baseada em tempo.
+- Interface ANSI para mostrar o FPS (Frames Per Second) em tempo real.
+------------------------------------------------------------------------------

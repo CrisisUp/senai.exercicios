@@ -1,0 +1,30 @@
+ESTUDO DE CASO: MAPEAMENTO DE TERRENO (G-TERRAIN MAPPER)
+------------------------------------------------------------------------------
+DOMÍNIO: Geoprocessamento / Planejamento de Jogos / Exploração
+ATIVIDADE: Extra 46
+CONCEITO NOVO: Renderização por Grade (Screen Buffer) e Matrizes Genéricas
+
+1. O CENÁRIO
+Um robô explorador precisa mapear uma área de 20x20 metros em busca de minerais. 
+O sistema deve representar o terreno: '.' para solo vazio, '#' para rochas e 
+'X' para o robô. Precisamos de uma forma de "desenhar" esse mapa no terminal 
+a cada frame.
+
+2. A NECESSIDADE TÉCNICA (O Plano Cartesiano)
+Jogos Senior não usam 'cout' aleatórios. Eles usam um 'Screen Buffer' (Buffer 
+de Tela):
+- Matriz Dinâmica: Uma matriz 'largura x altura' que representa cada pixel 
+  (ou caractere) da tela.
+- Double Buffering (Conceitual): Primeiro você "pinta" tudo na matriz na 
+  memória, e depois imprime a matriz inteira de uma vez na tela. Isso evita 
+  o efeito de "flicker" (tremido).
+- Coordenadas (x, y): A base para sistemas de colisão que veremos a seguir.
+
+3. REQUISITOS DO SISTEMA
+- Classe Template 'GradeTerreno<T>':
+    * Matriz 2D dinâmica de tipo T.
+    * Método 'limpar()': Preenche a grade com um caractere padrão.
+    * Método 'setPixel(x, y, valor)': Coloca um objeto em uma coordenada.
+    * Método 'renderizar()': Imprime a grade com molduras ANSI.
+- Simulação: Gerar um mapa com obstáculos fixos e um "robô" móvel.
+------------------------------------------------------------------------------

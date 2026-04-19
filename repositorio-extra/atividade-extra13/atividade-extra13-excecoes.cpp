@@ -15,7 +15,6 @@
 #include <vector>
 #include <string>
 #include <stack>
-#include <queue>
 #include <fstream>
 #include <ctime>
 #include <iomanip>
@@ -266,3 +265,37 @@ void salvarRelatorio(stack<Emprestimo> s) {
     rel.close();
     cout << "[SISTEMA]: Relatório final gerado na pasta Atividade 13." << endl;
 }
+
+/* 
+    ===============================================================
+    RESUMO TEÓRICO: HIERARQUIA DE EXCEÇÕES E FLUXO SEGURO
+    ===============================================================
+
+    1. HIERARQUIA DE CLASSES DE ERRO:
+       - Ao herdar de std::exception, criamos uma árvore de erros 
+         organizada. Um catch(const exception& e) na main captura 
+         qualquer erro, mas catch(const ErroEntrada& e) permite 
+         tratar um erro específico de digitação sem parar tudo.
+
+    2. SOBRECARGA DE what():
+       - O método virtual const char* what() é o padrão do C++ para 
+         retornar a descrição do erro. Isso torna nossa classe 
+         compatível com qualquer sistema que use exceções padrão.
+
+    3. PROTEÇÃO DE INPUT STREAM (cin):
+       - O uso de cin.clear() e cin.ignore() é crucial. Sem isso, 
+         se o usuário digitar uma letra em um campo numérico, o 
+         buffer de entrada "entope", gerando um loop infinito.
+
+    4. LANÇAMENTO ESTRATÉGICO (throw):
+       - Lançamos exceções apenas para casos "excepcionais" 
+         (arquivos ausentes, estoque esgotado). Isso separa a lógica 
+         de sucesso da lógica de erro, limpando o código principal.
+
+    ===============================================================
+    ASSUNTOS CORRELATOS (Para pesquisa):
+    - Assertions (assert.h): Para checagens em tempo de desenvolvimento.
+    - Noexcept: Especificador que garante que uma função não lança erro.
+    - Logging: Gravação de erros em arquivos de log para auditoria.
+    ===============================================================
+*/

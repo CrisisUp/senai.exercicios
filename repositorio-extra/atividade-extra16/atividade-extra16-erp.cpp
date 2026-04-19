@@ -106,6 +106,7 @@ public:
 
     void carregarDados() {
         ifstream arq("repositorio-extra/atividade-extra16/produtos.txt");
+        if (!arq.is_open()) arq.open("produtos.txt");
         if (!arq.is_open()) throw ErroERP("Dados do estoque não encontrados.");
         
         string linha;
@@ -274,6 +275,7 @@ public:
 
     void gerarRelatorioFinal() {
         ofstream arq("repositorio-extra/atividade-extra16/DRE_SESSAO.txt");
+        if (!arq.is_open()) arq.open("DRE_SESSAO.txt");
         arq << "===============================================" << endl;
         arq << "      DEMONSTRATIVO DE RESULTADOS (DRE)        " << endl;
         arq << "===============================================" << endl;
@@ -303,3 +305,40 @@ int main() {
     }
     return 0;
 }
+
+/* 
+    ===============================================================
+    RESUMO TEÓRICO: INTEGRAÇÃO E LÓGICA DE ERP (v4.0)
+    ===============================================================
+
+    1. INTEGRAÇÃO DE ESTRUTURAS STL:
+       - Este projeto é o ápice da lógica procedural. Combinamos 
+         vector (armazenamento persistente), queue (fila de clientes 
+         por ordem de chegada) e stack (logs de auditoria onde o 
+         evento mais recente é visto primeiro).
+
+    2. LÓGICA DE NEGÓCIO (DRE Financeiro):
+       - O software simula a vida real de uma empresa: despesas fixas, 
+         margem de lucro, fluxo de caixa e relatórios de auditoria 
+         (DRE - Demonstrativo de Resultados). Isso mostra que 
+         programação é, antes de tudo, tradução de regras de negócio.
+
+    3. SEGURANÇA BANCÁRIA COM LONG LONG:
+       - Para grandes volumes financeiros (como um ERP), usamos 
+         long long para os centavos. Isso garante que o sistema não 
+         sofra "overflow" (estouro de capacidade) ao lidar com 
+         milhões de reais em centavos.
+
+    4. PERSISTÊNCIA E LOGGING:
+       - A geração automática de arquivos de log garante a 
+         rastreabilidade (auditoria), permitindo saber exatamente 
+         quem comprou, o quê e quando.
+
+    ===============================================================
+    ASSUNTOS CORRELATOS (Para pesquisa):
+    - Banco de Dados Relacionais: O próximo passo para o estoque.
+    - Princípio da Responsabilidade Única (SOLID): Como organizar 
+      melhor as funções.
+    - Sistemas de Mensageria: Filas de processamento em larga escala.
+    ===============================================================
+*/

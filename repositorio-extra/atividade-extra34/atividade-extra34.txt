@@ -1,0 +1,30 @@
+ESTUDO DE CASO: BUFFER DE TELEMETRIA ESPACIAL (VOYAGER CORE)
+------------------------------------------------------------------------------
+DOMÍNIO: Aeroespacial / Sistemas Embarcados
+ATIVIDADE: Extra 34
+CONCEITO NOVO: Estruturas Dinâmicas: Lista Encadeada Simples (Linked List)
+
+1. O CENÁRIO
+Uma sonda espacial capta "Pacotes de Telemetria" enquanto orbita um planeta. 
+Como a memória é limitada e os pacotes chegam em tempos imprevisíveis, não 
+podemos usar um array fixo (que desperdiça espaço) nem um vector (que pode 
+causar picos de processamento ao realocar). Precisamos de uma estrutura 
+que cresça "nó por nó".
+
+2. A NECESSIDADE TÉCNICA
+Até agora, a STL cuidava da memória para nós. Na LISTA ENCADEADA MANUAL, 
+nós somos os arquitetos da memória:
+- O Nó (Node): Uma struct/classe que guarda o dado e um PONTEIRO para o 
+  próximo nó.
+- Alocação Dinâmica: Usaremos 'new' para cada novo pacote e, o mais importante, 
+  devemos usar 'delete' manualmente para evitar que o computador do satélite 
+  fique sem RAM (Memory Leak).
+
+3. REQUISITOS DO SISTEMA
+- Classe 'TelemetriaNode': 
+    * Atributos: idPacote (int), dado (string), proximo (ponteiro para outro nó).
+- Classe 'BufferEspacial':
+    * Método 'inserirNoInicio()': Adiciona um novo pacote.
+    * Método 'exibirTudo()': Percorre a lista via ponteiros (while p != nullptr).
+    * Destrutor: Deve percorrer a lista inteira deletando os nós um por um.
+------------------------------------------------------------------------------

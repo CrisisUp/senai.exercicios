@@ -1,0 +1,32 @@
+DESAFIO INTEGRADOR: SIMULADOR DE ECOSSISTEMA "BIO-CPP" v1.0
+------------------------------------------------------------------------------
+DOMÍNIO: Biologia Computacional / Vida Artificial
+ATIVIDADE: Extra 24 (GRANDE DESAFIO DE CICLO)
+CONCEITO INTEGRADO: Herança, Polimorfismo, Classes Abstratas, Static, Exceções.
+
+1. O CENÁRIO
+Precisamos simular um ambiente fechado (uma reserva natural) contendo diferentes 
+formas de vida: Plantas, Herbívoros e Carnívoros. O ecossistema evolui em 
+"ciclos". Em cada ciclo, a energia flui e a vida interage.
+
+2. A NECESSIDADE TÉCNICA
+Este projeto é o ápice da POO. Usaremos a abstração para definir o que é ser vivo:
+- CLASSE ABSTRATA 'SerVivo': Define o "contrato" de existência (comer, crescer).
+- HERANÇA: 'Planta', 'Herbivoro' e 'Carnivoro' herdam de SerVivo.
+- POLIMORFISMO: O simulador percorre uma lista de Seres Vivos. Se for uma Planta, 
+  ela faz fotossíntese; se for um animal, ele procura comida.
+- STATIC: Controlamos a "Temperatura Global" e o "Contador de População" via 
+  membros estáticos compartilhados por todos.
+- EXCEÇÕES: Lançamos eventos como 'ExtincaoEspecie' ou 'FomeCritica'.
+
+3. REQUISITOS DO SISTEMA
+- Classe Abstrata 'SerVivo' (Método virtual puro: 'agir()').
+- Classes Concretas:
+    * 'Planta': Ganha energia automaticamente a cada ciclo.
+    * 'Animal' (Abstrata): Adiciona atributos de fome.
+    * 'Herbivoro' e 'Carnivoro': Implementam a lógica de alimentação.
+- Lógica de Ecossistema:
+    * Um 'vector' de ponteiros SerVivo* controla a vida.
+    * Persistência: Gravar o histórico de população em 'log_ecossistema.txt'.
+    * Cores ANSI: Verde (Plantas), Amarelo (Herbívoros), Vermelho (Carnívoros).
+------------------------------------------------------------------------------

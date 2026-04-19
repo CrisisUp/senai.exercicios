@@ -1,0 +1,31 @@
+ESTUDO DE CASO: LOGÍSTICA DE PÁTIO DE AEROPORTO (G-WING LOGISTICS)
+------------------------------------------------------------------------------
+DOMÍNIO: Logística Aeroportuária / Transportes
+ATIVIDADE: Extra 36
+CONCEITO NOVO: Pilha (Stack) vs Fila (Queue) Manuais
+
+1. O CENÁRIO
+No pátio de um aeroporto, dois processos ocorrem simultaneamente:
+- Carregamento de Bagagens: As malas são empilhadas uma sobre a outra no 
+  compartimento do avião. A última mala colocada será a primeira a ser 
+  retirada (LIFO).
+- Fila de Decolagem: Os aviões entram na pista de táxi. O primeiro avião que 
+  chegar deve ser o primeiro a decolar (FIFO).
+
+2. A NECESSIDADE TÉCNICA
+Até agora, usamos 'std::stack' e 'std::queue'. Na implementação MANUAL:
+- Pilha (Stack): Usa um ponteiro 'topo'. Inserir (Push) e Remover (Pop) 
+  ocorrem sempre no mesmo lugar.
+- Fila (Queue): Usa dois ponteiros ('inicio' e 'fim'). Inserir ocorre no 
+  fim, e remover ocorre no início.
+- Ambas usarão a estrutura básica de 'Nó' para gerenciar a memória.
+
+3. REQUISITOS DO SISTEMA
+- Classe 'StackManual': 
+    * Atributos: topo (ponteiro).
+    * Métodos: pushMaleta(), popMaleta().
+- Classe 'QueueManual':
+    * Atributos: inicio, fim (ponteiros).
+    * Métodos: entrarNaFila(), decolarProximo().
+- Simulação: O usuário gerencia o carregamento de malas e a decolagem de aviões.
+------------------------------------------------------------------------------

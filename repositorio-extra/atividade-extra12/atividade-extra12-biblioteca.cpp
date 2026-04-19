@@ -269,3 +269,39 @@ void salvarRelatorio(stack<Emprestimo> s) {
     rel.close();
     cout << "[SISTEMA]: Relatório gerado com segurança." << endl;
 }
+
+/* 
+    ===============================================================
+    RESUMO TEÓRICO: PERSISTÊNCIA E RESILIÊNCIA (v1.2)
+    ===============================================================
+
+    1. MANIPULAÇÃO DE ARQUIVOS (fstream):
+       - ifstream: Fluxo de entrada (leitura). Essencial para carregar 
+         catálogos e bancos de dados externos.
+       - ofstream: Fluxo de saída (escrita). Garante que os dados 
+         sobrevivam após o desligamento do programa (Persistência).
+
+    2. TRATAMENTO DE EXCEÇÕES (try, catch, throw):
+       - Em vez de deixar o programa travar ao não encontrar um 
+         arquivo ou receber uma letra onde deveria ser um número, 
+         "lançamos" (throw) um erro que é "capturado" (catch) sem 
+         interromper o fluxo do sistema.
+
+    3. ESTRUTURAS DE DADOS STL (stack & queue):
+       - Queue (Fila): Primeiro a entrar, primeiro a ser atendido 
+         (FIFO - First-In, First-Out). Ideal para filas de leitores.
+       - Stack (Pilha): Último a entrar, primeiro a sair (LIFO). 
+         Perfeito para a função "Desfazer" (Undo).
+
+    4. HERANÇA DE EXCEÇÕES:
+       - Criamos nossas próprias classes de erro herdando de 
+         std::exception. Isso permite mensagens personalizadas e 
+         profissionais para o usuário.
+
+    ===============================================================
+    ASSUNTOS CORRELATOS (Para pesquisa):
+    - Serialização de Dados: Formatos CSV, JSON e XML.
+    - Ponteiros Inteligentes (Smart Pointers): Para gestão de memória.
+    - Bibliotecas Externas para Banco de Dados: SQLite e SQL.
+    ===============================================================
+*/

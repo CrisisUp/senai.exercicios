@@ -247,3 +247,39 @@ void carregarCatalogo(vector<Livro> &catalogo) {
     }
     cout << Cor::VERDE << "[SISTEMA]: Catálogo Financeiro carregado." << Cor::RESET << endl;
 }
+
+/* 
+    ===============================================================
+    RESUMO TEÓRICO: INTEGRIDADE FINANCEIRA E CONVERSÕES
+    ===============================================================
+
+    1. O PERIGO DO PONTO FLUTUANTE (float/double):
+       - Em sistemas financeiros, NUNCA usamos float para cálculos 
+         acumulativos. Devido à forma como os computadores lidam 
+         com binários, 0.1 + 0.2 pode resultar em 0.30000000004. 
+         Em um banco, isso geraria furos de caixa.
+       - Solução: Usar INTEIROS para representar a menor unidade 
+         (centavos) e dividir apenas na hora de exibir.
+
+    2. CASTING DE TIPOS (static_cast):
+       - C++ é uma linguagem "fortemente tipada". O static_cast 
+         permite converter um tipo em outro (ex: int para double) 
+         de forma explícita e segura, evitando avisos do compilador.
+
+    3. MANIPULAÇÃO DE STRINGS (stringstream):
+       - A biblioteca <sstream> permite tratar uma string como se 
+         fosse um fluxo (como o cout). Isso é excelente para criar 
+         formatadores complexos de moeda e relatórios.
+
+    4. NORMALIZAÇÃO DE DADOS (std::replace):
+       - Um software robusto deve entender que diferentes culturas 
+         usam ponto ou vírgula como separador decimal. Substituir 
+         caracteres antes do processamento garante a resiliência.
+
+    ===============================================================
+    ASSUNTOS CORRELATOS (Para pesquisa):
+    - Aritmética de Ponto Fixo (Fixed-point arithmetic).
+    - Bibliotecas de Precisão Arbitrária (ex: GMP ou Boost).
+    - Normas Internacionais de Software Financeiro (SOX, etc).
+    ===============================================================
+*/
