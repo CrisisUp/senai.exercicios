@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>atividade1-vetores.cpp</title>
+<style type="text/css">
+/* highlight theme: Base16 Monokai */
+body.hl	{ background-color:#272822; }
+pre.hl	{ color:#f8f8f2; background-color:#272822; font-size:12pt; font-family:'Courier New',monospace; white-space: pre-wrap; }
+.hl.num { color:#fd971f; }
+.hl.esc { color:#a1efe4; }
+.hl.sng { color:#a6e22e; }
+.hl.pps { color:#a1efe4; }
+.hl.slc { color:#75715e; font-style:italic; }
+.hl.com { color:#75715e; font-style:italic; }
+.hl.ppc { color:#cc6633; }
+.hl.opt { color:#f8f8f2; }
+.hl.ipl { color:#fd971f; }
+.hl.lin { color:#a59f85; user-select: none;-webkit-user-select: none; }
+.hl.hvr { cursor:help; }
+.hl.erm { color:#ff0000; font-weight:bold; border:solid 1px red; margin-left: 3em; }
+.hl.err { color:#ff0000; font-weight:bold; }
+.hl.kwa { color:#ae81ff; font-weight:bold; }
+.hl.kwb { color:#66d9ef; font-weight:bold; }
+.hl.kwc { color:#f92672; font-weight:bold; }
+.hl.kwd { color:#f4bf75; font-weight:bold; }
+.hl.kwe { color:#cc6633; font-weight:bold; }
+.hl.kwf { color:#fd971f; font-weight:bold; }
+</style>
+</head>
+<body class="hl">
+<pre class="hl"><span class="hl lin">    1 </span><span class="hl com">/**</span>
+<span class="hl lin">    2 </span><span class="hl com"> * &#64;file atividade1-vetores.cpp</span>
+<span class="hl lin">    3 </span><span class="hl com"> * &#64;brief Sistema de Análise e Controle de Estoque.</span>
+<span class="hl lin">    4 </span><span class="hl com"> * </span>
+<span class="hl lin">    5 </span><span class="hl com"> * Este programa realiza a gestão básica de estoque, verificando se a </span>
+<span class="hl lin">    6 </span><span class="hl com"> * quantidade atual atende ao mínimo necessário. Caso falte produto, </span>
+<span class="hl lin">    7 </span><span class="hl com"> * o sistema calcula a reposição necessária e o custo total.</span>
+<span class="hl lin">    8 </span><span class="hl com"> * </span>
+<span class="hl lin">    9 </span><span class="hl com"> * &#64;author SENAI - Cristiano Batista Pessoa</span>
+<span class="hl lin">   10 </span><span class="hl com"> * &#64;date 15/04/2026</span>
+<span class="hl lin">   11 </span><span class="hl com"> */</span>
+<span class="hl lin">   12 </span>
+<span class="hl lin">   13 </span><span class="hl ppc">#include &lt;iostream&gt;</span> <span class="hl slc">// Permite a entrada e saída de dados (cin, cout, endl)</span>
+<span class="hl lin">   14 </span><span class="hl ppc"></span><span class="hl ppc">#include &lt;iomanip&gt;</span>  <span class="hl slc">// Necessário para formatação de moeda e alinhamento</span>
+<span class="hl lin">   15 </span><span class="hl ppc"></span>
+<span class="hl lin">   16 </span><span class="hl kwa">using namespace</span> std<span class="hl opt">;</span> <span class="hl slc">// Define o uso do escopo padrão para evitar o prefixo </span>
+<span class="hl lin">   17 </span>                     <span class="hl slc">// &#39;std::&#39; antes de comandos como cout e cin.</span>
+<span class="hl lin">   18 </span>
+<span class="hl lin">   19 </span><span class="hl kwb">int</span> <span class="hl kwd">main</span><span class="hl opt">()</span>
+<span class="hl lin">   20 </span><span class="hl opt">{</span>
+<span class="hl lin">   21 </span>    <span class="hl slc">// Configuração para exibir valores monetários com 2 casas decimais</span>
+<span class="hl lin">   22 </span>    cout <span class="hl opt">&lt;&lt;</span> fixed <span class="hl opt">&lt;&lt;</span> <span class="hl kwd">setprecision</span><span class="hl opt">(</span><span class="hl num">2</span><span class="hl opt">);</span>
+<span class="hl lin">   23 </span>
+<span class="hl lin">   24 </span>    <span class="hl slc">// Variáveis do sistema</span>
+<span class="hl lin">   25 </span>    <span class="hl kwb">int</span> estoqueAtual<span class="hl opt">,</span> quantidadeMinima<span class="hl opt">,</span> quantidadeReposicao<span class="hl opt">;</span>
+<span class="hl lin">   26 </span>    <span class="hl kwb">double</span> precoUnitario<span class="hl opt">,</span> custoTotal<span class="hl opt">;</span>
+<span class="hl lin">   27 </span>
+<span class="hl lin">   28 </span>    <span class="hl slc">// --- 1. Entrada de Dados ---</span>
+<span class="hl lin">   29 </span>    cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;===============================================&quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   30 </span>    cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;       SISTEMA DE ANÁLISE DE ESTOQUE           &quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   31 </span>    cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;===============================================&quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   32 </span>
+<span class="hl lin">   33 </span>    cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;Digite a quantidade atual em estoque: &quot;</span><span class="hl opt">;</span>
+<span class="hl lin">   34 </span>    cin <span class="hl opt">&gt;&gt;</span> estoqueAtual<span class="hl opt">;</span>
+<span class="hl lin">   35 </span>
+<span class="hl lin">   36 </span>    cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;Digite a quantidade mínima ideal: &quot;</span><span class="hl opt">;</span>
+<span class="hl lin">   37 </span>    cin <span class="hl opt">&gt;&gt;</span> quantidadeMinima<span class="hl opt">;</span>
+<span class="hl lin">   38 </span>
+<span class="hl lin">   39 </span>    cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;Digite o preço unitário do produto (R$): &quot;</span><span class="hl opt">;</span>
+<span class="hl lin">   40 </span>    cin <span class="hl opt">&gt;&gt;</span> precoUnitario<span class="hl opt">;</span>
+<span class="hl lin">   41 </span>
+<span class="hl lin">   42 </span>    <span class="hl slc">// --- 2. Processamento e Verificação ---</span>
+<span class="hl lin">   43 </span>    cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;</span><span class="hl esc">\n</span>          <span class="hl sng">--- RESULTADO DA ANÁLISE ---&quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   44 </span>
+<span class="hl lin">   45 </span>    <span class="hl kwa">if</span> <span class="hl opt">(</span>estoqueAtual <span class="hl opt">&lt;</span> quantidadeMinima<span class="hl opt">)</span>
+<span class="hl lin">   46 </span>    <span class="hl opt">{</span>
+<span class="hl lin">   47 </span>        <span class="hl slc">// Cálculo de reposição</span>
+<span class="hl lin">   48 </span>        quantidadeReposicao <span class="hl opt">=</span> quantidadeMinima <span class="hl opt">-</span> estoqueAtual<span class="hl opt">;</span>
+<span class="hl lin">   49 </span>        custoTotal <span class="hl opt">=</span> quantidadeReposicao <span class="hl opt">*</span> precoUnitario<span class="hl opt">;</span>
+<span class="hl lin">   50 </span>
+<span class="hl lin">   51 </span>        <span class="hl slc">// --- 3. Exibição (Necessário Repor) ---</span>
+<span class="hl lin">   52 </span>        cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;        STATUS: [ REPOSIÇÃO NECESSÁRIA ]&quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   53 </span>        cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;-----------------------------------------------&quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   54 </span>        cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;Quantidade em falta: &quot;</span> <span class="hl opt">&lt;&lt;</span> quantidadeReposicao <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot; unidades.&quot;</span> 
+<span class="hl lin">   55 </span>        <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   56 </span>        cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;Custo da reposição : R$ &quot;</span> <span class="hl opt">&lt;&lt;</span> custoTotal <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   57 </span>    <span class="hl opt">}</span>
+<span class="hl lin">   58 </span>    <span class="hl kwa">else</span>
+<span class="hl lin">   59 </span>    <span class="hl opt">{</span>
+<span class="hl lin">   60 </span>        <span class="hl slc">// --- 3. Exibição (Estoque OK) ---</span>
+<span class="hl lin">   61 </span>        cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;         STATUS: [ ESTOQUE SUFICIENTE ]&quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   62 </span>        cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;-----------------------------------------------&quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   63 </span>        cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;Nenhuma ação de compra é necessária no momento.&quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   64 </span>    <span class="hl opt">}</span>
+<span class="hl lin">   65 </span>
+<span class="hl lin">   66 </span>    cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;===============================================&quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   67 </span>
+<span class="hl lin">   68 </span>    <span class="hl slc">// --- 4. Finalização do Programa ---</span>
+<span class="hl lin">   69 </span>    cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;</span><span class="hl esc">\n</span><span class="hl sng">Pressione Enter para finalizar...&quot;</span><span class="hl opt">;</span>
+<span class="hl lin">   70 </span>    cin<span class="hl opt">.</span><span class="hl kwd">ignore</span><span class="hl opt">();</span> <span class="hl slc">// Limpa o buffer do teclado</span>
+<span class="hl lin">   71 </span>    cin<span class="hl opt">.</span><span class="hl kwd">get</span><span class="hl opt">();</span>    <span class="hl slc">// Aguarda o usuário pressionar Enter</span>
+<span class="hl lin">   72 </span>
+<span class="hl lin">   73 </span>    <span class="hl kwa">return</span> <span class="hl num">0</span><span class="hl opt">;</span>
+<span class="hl lin">   74 </span><span class="hl opt">}</span>
+<span class="hl lin">   75 </span>
+<span class="hl lin">   76 </span><span class="hl com">/* </span>
+<span class="hl lin">   77 </span><span class="hl com">    ============================================================================</span>
+<span class="hl lin">   78 </span><span class="hl com">    RESUMO TEÓRICO PARA EXAME FINAL (C++ FUNDAMENTOS)</span>
+<span class="hl lin">   79 </span><span class="hl com">    ============================================================================</span>
+<span class="hl lin">   80 </span><span class="hl com"></span>
+<span class="hl lin">   81 </span><span class="hl com">    1. BIBLIOTECAS (INCLUDES):</span>
+<span class="hl lin">   82 </span><span class="hl com">       - &lt;iostream&gt;: Biblioteca padrão para Fluxos de Entrada e Saída.</span>
+<span class="hl lin">   83 </span><span class="hl com">       - &lt;iomanip&gt;: &quot;Input/Output Manipulation&quot;. Usada para formatar como </span>
+<span class="hl lin">   84 </span><span class="hl com">         os dados aparecem (casas decimais, alinhamento).</span>
+<span class="hl lin">   85 </span><span class="hl com"></span>
+<span class="hl lin">   86 </span><span class="hl com">    2. NAMESPACE:</span>
+<span class="hl lin">   87 </span><span class="hl com">       - &#39;using namespace std;&#39;: Evita a necessidade de escrever &#39;std::&#39; </span>
+<span class="hl lin">   88 </span><span class="hl com">         antes de cada comando (cout, cin, endl).</span>
+<span class="hl lin">   89 </span><span class="hl com"></span>
+<span class="hl lin">   90 </span><span class="hl com">    3. VARIÁVEIS E TIPOS DE DADOS:</span>
+<span class="hl lin">   91 </span><span class="hl com">       - int: Números inteiros (ex: quantidade de estoque).</span>
+<span class="hl lin">   92 </span><span class="hl com">       - double: Números de precisão dupla (decimais). Ideal para cálculos </span>
+<span class="hl lin">   93 </span><span class="hl com">         financeiros por ser mais preciso que o &#39;float&#39;.</span>
+<span class="hl lin">   94 </span><span class="hl com"></span>
+<span class="hl lin">   95 </span><span class="hl com">    4. FORMATAÇÃO DE SAÍDA (iomanip):</span>
+<span class="hl lin">   96 </span><span class="hl com">       - &#39;fixed&#39;: Trava o ponto decimal em uma posição fixa.</span>
+<span class="hl lin">   97 </span><span class="hl com">       - &#39;setprecision(n)&#39;: Define quantas casas decimais aparecerão.</span>
+<span class="hl lin">   98 </span><span class="hl com"></span>
+<span class="hl lin">   99 </span><span class="hl com">    5. ESTRUTURA CONDICIONAL (if-else):</span>
+<span class="hl lin">  100 </span><span class="hl com">       - if (condição): Executa um bloco de código se a condição for VERDADEIRA.</span>
+<span class="hl lin">  101 </span><span class="hl com">       - else: Executa um bloco alternativo se a condição for FALSA.</span>
+<span class="hl lin">  102 </span><span class="hl com"></span>
+<span class="hl lin">  103 </span><span class="hl com">    6. OPERADORES ARITMÉTICOS:</span>
+<span class="hl lin">  104 </span><span class="hl com">       - Subtração (-): Usada para calcular a falta (mínimo - atual).</span>
+<span class="hl lin">  105 </span><span class="hl com">       - Multiplicação (*): Usada para calcular o custo total </span>
+<span class="hl lin">  106 </span><span class="hl com">       (quantidade * preço).</span>
+<span class="hl lin">  107 </span><span class="hl com"></span>
+<span class="hl lin">  108 </span><span class="hl com">    7. MANIPULAÇÃO DE BUFFER:</span>
+<span class="hl lin">  109 </span><span class="hl com">       - cin.ignore(): Limpa caracteres residuais do teclado (como o &#39;Enter&#39; </span>
+<span class="hl lin">  110 </span><span class="hl com">         de comandos anteriores) para evitar que o programa feche sozinho.</span>
+<span class="hl lin">  111 </span><span class="hl com">       - cin.get(): Pausa a execução e aguarda uma interação do usuário.</span>
+<span class="hl lin">  112 </span><span class="hl com"></span>
+<span class="hl lin">  113 </span><span class="hl com">    ============================================================================</span>
+<span class="hl lin">  114 </span><span class="hl com">    TÓPICOS COMPLEMENTARES PARA O EXAME (NÃO USADOS NESTE CÓDIGO)</span>
+<span class="hl lin">  115 </span><span class="hl com">    ============================================================================</span>
+<span class="hl lin">  116 </span><span class="hl com"></span>
+<span class="hl lin">  117 </span><span class="hl com">    A. OUTROS TIPOS DE DADOS:</span>
+<span class="hl lin">  118 </span><span class="hl com">       - float: Decimal de precisão simples (ocupa menos memória que o double).</span>
+<span class="hl lin">  119 </span><span class="hl com">       - char: Armazena um único caractere (ex: &#39;A&#39;, &#39;S&#39;, &#39;N&#39;). Usa aspas </span>
+<span class="hl lin">  120 </span><span class="hl com">       simples.</span>
+<span class="hl lin">  121 </span><span class="hl com">       - string: Armazena textos (ex: &quot;Cristiano&quot;). Usa aspas duplas.</span>
+<span class="hl lin">  122 </span><span class="hl com">       - bool: Valores lógicos (true ou false).</span>
+<span class="hl lin">  123 </span><span class="hl com"></span>
+<span class="hl lin">  124 </span><span class="hl com">    B. OPERADORES LÓGICOS (PARA CONDIÇÕES COMPLEXAS):</span>
+<span class="hl lin">  125 </span><span class="hl com">       - &amp;&amp; (E): Verdadeiro apenas se AMBAS as condições forem reais.</span>
+<span class="hl lin">  126 </span><span class="hl com">       - || (OU): Verdadeiro se PELO MENOS UMA condição for real.</span>
+<span class="hl lin">  127 </span><span class="hl com">       - ! (NÃO): Inverte o valor da condição (se era true, vira false).</span>
+<span class="hl lin">  128 </span><span class="hl com"></span>
+<span class="hl lin">  129 </span><span class="hl com">    C. SWITCH-CASE (ALTERNATIVA AO IF-ELSE):</span>
+<span class="hl lin">  130 </span><span class="hl com">       - Usado para testar uma única variável contra vários valores fixos </span>
+<span class="hl lin">  131 </span><span class="hl com">         (ex: menu de opções 1, 2, 3). É mais rápido que vários if-else.</span>
+<span class="hl lin">  132 </span><span class="hl com"></span>
+<span class="hl lin">  133 </span><span class="hl com">    D. OPERADOR TERNÁRIO:</span>
+<span class="hl lin">  134 </span><span class="hl com">       - Uma forma curta de fazer um if-else em uma linha:</span>
+<span class="hl lin">  135 </span><span class="hl com">         (condição) ? valor_se_verdadeiro : valor_se_falso;</span>
+<span class="hl lin">  136 </span><span class="hl com">    ============================================================================</span>
+<span class="hl lin">  137 </span><span class="hl com">*/</span>
+<span class="hl lin">  138 </span>
+</pre>
+</body>
+</html>
+<!--HTML generated by highlight 4.19, http://andre-simon.de/-->
