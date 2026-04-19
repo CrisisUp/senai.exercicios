@@ -1,0 +1,40 @@
+===============================================================
+       ATIVIDADE 9: SISTEMA DE LOGÍSTICA (MATRIZES E STRINGS)
+===============================================================
+
+CONCEITO NOVO: MATRIZES E MÉTODOS DE STRING
+Você aprenderá a organizar dados em tabelas (linhas e colunas) e a 
+realizar buscas complexas dentro de textos.
+
+CONTEXTO:
+Um centro de distribuição precisa localizar ferramentas em um 
+galpão de 3 corredores por 3 níveis de prateleiras.
+
+REQUISITOS:
+1.  MAPA DE ESTOQUE:
+    - Criar uma matriz de Strings: `string armazem[3][3]`.
+2.  CADASTRO:
+    - Usar um `for` aninhado para preencher a matriz.
+    - Ex: corredor 0, prateleira 0 -> "Martelo".
+3.  SISTEMA DE BUSCA:
+    - Solicitar o nome de um produto para localizar.
+    - Percorrer a matriz comparando as Strings.
+4.  MANIPULAÇÃO DE TEXTO:
+    - Exibir o tamanho do nome do produto usando `item.length()`.
+    - Informar se o local está "Vazio" caso a string seja "".
+
+===============================================================
+DICA TEÓRICA PARA O EXAME:
+- Matriz: Imagine um campo de batalha ou uma planilha Excel.
+- Acesso: `matriz[linha][coluna]` sempre começando do zero.
+- Loops Aninhados: 
+  for(int i=0; i<3; i++) {       // Percorre Linhas
+      for(int j=0; j<3; j++) {   // Percorre Colunas
+          cout << matriz[i][j];
+      }
+  }
+
+- String Methods:
+  - `s.length()`: Retorna o número de letras.
+  - `s.empty()`: Verifica se a string está vazia.
+===============================================================

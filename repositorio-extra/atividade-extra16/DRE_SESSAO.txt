@@ -1,0 +1,14 @@
+===============================================
+      DEMONSTRATIVO DE RESULTADOS (DRE)        
+===============================================
+Saldo em Caixa Final: R$ 5055.00
+Operações na Sessão: 7
+
+HISTÓRICO DETALHADO:
+[02:20:12] Venda: Processador Intel i9 : R$ 3125.00
+[02:19:48] Compra: Placa de Video RTX 4070 (x1) : -R$ 5500.00
+[02:18:24] Venda: Placa de Video RTX 4070 : R$ 6600.00
+[02:18:05] Pagamento: Gastos Fixos (Aluguel/Luz/Salários) : -R$ 1200.00
+[02:17:44] Pagamento: Gastos Fixos (Aluguel/Luz/Salários) : -R$ 1200.00
+[02:17:38] Venda: Memoria RAM 16GB : R$ 630.00
+[02:17:09] Compra: Placa Mae Z790 (x2) : -R$ 2400.00

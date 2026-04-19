@@ -1,0 +1,41 @@
+===============================================================
+       ATIVIDADE 7: SISTEMA DE PONTO ELETRÔNICO (TIME)
+===============================================================
+
+CONCEITO NOVO: BIBLIOTECA <ctime>
+Você aprenderá a interagir com o relógio interno do computador para 
+registrar eventos em tempo real.
+
+CONTEXTO:
+Uma empresa precisa registrar a entrada dos funcionários. O programa 
+deve capturar o nome do funcionário e, automaticamente, salvar a 
+data e a hora exata da batida de ponto.
+
+REQUISITOS DO PROGRAMA:
+1.  USAR A BIBLIOTECA `<ctime>`:
+    - Aprender a usar `time_t` (para guardar o tempo bruto).
+    - Aprender a usar `localtime()` (para converter o tempo para o 
+      nosso fuso horário local).
+
+2.  ESTRUTURA DE DADOS:
+    - Criar uma `struct RegistroPonto` que contenha o nome do 
+      funcionário e campos para data/hora.
+
+3.  PROCESSAMENTO:
+    - O usuário digita o nome do funcionário.
+    - O programa captura o tempo do sistema no instante exato.
+    - O programa exibe um comprovante formatado: 
+      "Funcionário: [NOME] | Data: DD/MM/AAAA | Horário: HH:MM:SS"
+
+===============================================================
+DICA TEÓRICA PARA O EXAME:
+- time_t: Tipo que armazena o tempo total em segundos.
+- struct tm: Estrutura que divide o tempo em membros úteis:
+    - tm_mday: Dia do mês (1-31)
+    - tm_mon: Mês (0-11) -> IMPORTANTE: Somar +1 para o real.
+    - tm_year: Anos desde 1900 -> IMPORTANTE: Somar +1900.
+    - tm_hour, tm_min, tm_sec: Horas, minutos e segundos.
+
+A sintaxe `->` é usada para acessar membros de um PONTEIRO de 
+struct (aprenderemos mais sobre ponteiros em breve!).
+===============================================================

@@ -1,0 +1,36 @@
+=====================================================
+       DESAFIO 15: DINHEIRO, TIPOS E SEGURANÇA
+=====================================================
+
+1. O PERIGO DO FLOAT (DINHEIRO):
+Nunca use 'float' ou 'double' para guardar valores monetários
+em sistemas bancários ou comerciais! Computadores guardam 
+decimais em formato binário (Ponto Flutuante IEEE 754), o 
+que causa pequenos erros de arredondamento. 
+Ex: 10.0 - 9.1 pode resultar em 0.8999999999 em vez de 0.9.
+
+- SOLUÇÃO: Guarde dinheiro em Cêntimos Inteiros (int ou long).
+R$ 1,50 deve ser guardado internamente como 150 centavos.
+
+2. CONVERSÕES SEGUROS (CASTING):
+O C++ tem ferramentas específicas para converter tipos:
+- static_cast<tipo>(variavel) -> O jeito seguro de converter.
+Ex: converter um int em double apenas para exibição visual.
+- stoi() / to_string() -> Converter entre texto e número.
+
+3. SEGURANÇA DE DADOS (DATA INTEGRITY):
+Sistemas que lidam com dinheiro precisam ser "à prova de balas":
+- VALIDAÇÃO: Se o usuário digitar "2,50" ou "2.50", o sistema
+deve ser inteligente o suficiente para processar ambos.
+- OVERFLOW: O que acontece se o valor for maior que o que o
+tipo 'int' suporta? Usamos 'long long' para garantir que 
+bilionários possam usar o sistema sem erros!
+
+4. OBJETIVOS DA ATIVIDADE:
+- Implementar taxa de aluguel por livro (em centavos).
+- Criar um formatador de moeda (Inteiro -> String R$).
+- Desenvolver um sistema de pagamento com validação de texto.
+- Integrar com as Exceções da Atividade 13 e Cores da 14.
+
+"No código de um banco, um centavo perdido é um erro fatal."
+=====================================================

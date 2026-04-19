@@ -1,0 +1,39 @@
+===============================================================
+       DESAFIO 12: SISTEMA INTEGRADO DE GESTÃO BIBLIOTECÁRIA
+===============================================================
+
+ESTE É O SEU DESAFIO DE FIM DE FASE!
+Objetivo: Unir Queues, Stacks, Files, Time, Structs e Matrizes.
+
+CONTEXTO:
+O sistema deve gerenciar o fluxo de uma biblioteca desde a abertura 
+até o fechamento, salvando tudo o que aconteceu no dia.
+
+REQUISITOS DO SISTEMA:
+1.  CATÁLOGO (Vetor de Structs):
+    - O programa deve ler um arquivo `catalogo.txt` contendo os 
+      livros disponíveis (Título e Autor).
+
+2.  FILA DE ESPERA (Queue):
+    - Gerenciar a fila de leitores no balcão de atendimento.
+
+3.  REGISTRO DE EMPRÉSTIMO (Struct + Time):
+    - Ao atender um leitor, capturar a Data/Hora atual.
+    - Calcular a data de devolução (Data Atual + 7 dias).
+
+4.  HISTÓRICO DE SESSÃO (Stack):
+    - Cada empréstimo realizado deve ser "empilhado".
+    - O bibliotecário pode "cancelar" o último empréstimo (Pop).
+
+5.  PERSISTÊNCIA FINAL (Files):
+    - Ao encerrar o programa, salvar o arquivo `relatorio_dia.txt` 
+      contendo todos os empréstimos que restaram na Pilha.
+
+===============================================================
+DESAFIO TÉCNICO (O CÉREBRO):
+Como calcular "Data + 7 dias"?
+Dica: 
+time_t tempo = time(0);
+tempo += (7 * 24 * 60 * 60); // Soma os segundos de uma semana
+tm *dataDevolucao = localtime(&tempo);
+===============================================================

@@ -1,0 +1,41 @@
+===============================================================
+       ATIVIDADE 6: SISTEMA DE INVENTÁRIO (STRUCTS)
+===============================================================
+
+CONCEITO NOVO: STRUCTS (ESTRUTURAS DE DADOS)
+Até agora, você usava variáveis soltas. Agora, você aprenderá a 
+criar um "pacote" que agrupa informações diferentes!
+
+CONTEXTO:
+Uma loja de ferramentas agrícolas precisa cadastrar seus produtos. 
+Cada produto possui um Nome, um Código (ID) e um Preço.
+
+REQUISITOS DO PROGRAMA:
+1.  DEFINIR UMA `struct Produto`:
+    - Deve conter: string nome, int id, double preco.
+
+2.  CRIAR UMA FUNÇÃO `exibirProduto(Produto p)`:
+    - Esta função deve receber a estrutura completa e imprimir 
+      os dados formatados.
+
+3.  NA FUNÇÃO MAIN:
+    - Criar duas variáveis do tipo `Produto`.
+    - Solicitar que o usuário digite os dados desses produtos.
+    - Chamar a função de exibição para mostrar o inventário final.
+
+DIFICULDADE EXTRA:
+- Use o que aprendeu na Atividade 05 (Funções) para manter a 
+  main limpa.
+
+===============================================================
+DICA TEÓRICA PARA O EXAME:
+Uma struct é definida fora da main:
+struct Pessoa {
+    string nome;
+    int idade;
+};
+
+Para acessar um campo da struct, usamos o PONTO (.):
+Pessoa p1;
+p1.nome = "Cristiano";
+===============================================================

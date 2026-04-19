@@ -1,0 +1,38 @@
+=====================================================
+       DESAFIO 14: INTERFACE VISUAL NO TERMINAL
+=====================================================
+
+1. O PROBLEMA:
+As interfaces de texto (CLI) podem parecer monótonas e 
+difíceis de ler quando todas as informações têm a 
+mesma cor cinza. Em sistemas profissionais, usamos 
+Cores e Estilos para destacar o que é importante.
+
+- VERMELHO: Denota Erro ou Perigo (Ex: Exceção).
+- VERDE: Denota Sucesso ou Ação concluída.
+- AMARELO: Denota Aviso ou Atenção.
+- AZUL/MAGENTA: Denota Destaque ou Menu Principal.
+
+2. AS SEQUÊNCIAS DE ESCAPE ANSI:
+O terminal interpreta sequências especiais de caracteres
+que não são impressas, mas que mudam o comportamento do 
+cursor e a cor do texto. O formato padrão é:
+\033[CÓDIGOm
+
+- \033[31m  -> Muda para Vermelho.
+- \033[32m  -> Muda para Verde.
+- \033[33m  -> Muda para Amarelo.
+- \033[0m   -> RESET (Reseta a cor para o padrão).
+
+IMPORTANTE: Se você esquecer o RESET, o terminal inteiro
+ficará colorido para sempre, mesmo após o programa fechar!
+
+3. OBJETIVOS DA ATIVIDADE:
+- Criar um 'Namespace de Cores' no C++ (Organização).
+- Aplicar feedback visual nas Exceções (Atividade 13).
+- Desenhar um Banner atraente para o topo do programa.
+- Facilitar a leitura do catálogo com cores de status.
+
+"Uma interface limpa é boa. Uma interface intuitiva 
+é excelente."
+=====================================================

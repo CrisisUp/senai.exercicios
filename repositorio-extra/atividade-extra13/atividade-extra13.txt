@@ -1,0 +1,36 @@
+=====================================================
+       DESAFIO 13: A ARTE DA RESILIÊNCIA (EXCEÇÕES)
+=====================================================
+
+1. O PROBLEMA:
+Até agora, nossos programas assumiam que o usuário sempre
+digitaria o que pedimos e que os arquivos sempre estariam lá.
+Mas na vida real:
+- O usuário digita "abc" quando pedimos um número.
+- O arquivo de banco de dados some ou está corrompido.
+- O estoque acaba no meio de uma operação.
+
+Um programa "frágil" simplesmente trava (crash). Um programa
+"robusto" percebe o erro, avisa o usuário e continua rodando.
+
+2. O CONCEITO DE EXCEÇÃO (Exception Handling):
+Em C++, usamos três palavras-chave para lidar com crises:
+- TRY (Tentar): Envolvemos o código perigoso em um bloco try.
+- THROW (Lançar): Se algo der errado, "lançamos" um erro.
+- CATCH (Capturar): Pegamos o erro lançado e decidimos o que fazer.
+
+3. OBJETIVOS DA ATIVIDADE:
+- Criar classes de erro customizadas (Herança de std::exception).
+- Implementar um "Filtro de Entrada" para o teclado (cin).
+- Garantir que o sistema não feche sozinho após um erro de digitação.
+- Validar a integridade do catálogo e do estoque antes de processar.
+
+4. DESAFIO EXTRA:
+Tente rodar o programa e digitar uma letra no menu. 
+Observe como o 'cin' trava e como o nosso novo código 
+consegue "limpar a sujeira" e pedir a opção novamente 
+sem entrar em loop infinito.
+
+"Um bom programador escreve código que funciona. 
+Um mestre escreve código que não quebra."
+=====================================================

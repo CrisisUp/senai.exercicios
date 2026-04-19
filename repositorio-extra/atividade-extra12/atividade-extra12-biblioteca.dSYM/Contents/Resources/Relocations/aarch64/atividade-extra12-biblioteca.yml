@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     'repositorio-extra/atividade-extra12/atividade-extra12-biblioteca'
+relocations:     []
+...
