@@ -57,17 +57,13 @@ int main()
     ===============================================================
 
     1. RENDERIZAÇÃO PANGO (paps):
-       - O 'paps' usa a biblioteca Pango para desenhar o texto. Ela é 
-         a mesma usada no Linux e no Android para renderizar letras 
-         com perfeição absoluta.
+       - O 'paps' usa a biblioteca Pango para desenhar o texto. Ela é a mesma usada no Linux e no Android para renderizar letras com perfeição absoluta.
 
     2. O SÍMBOLO PIPE ( | ) REVISITADO:
        - O pipe conecta o 'desenhista' (paps) com o 'encadernador' 
          (ps2pdf), criando um PDF sem erros de estrutura.
 
     3. COMPATIBILIDADE macOS:
-       - Esta versão ignora o sistema de impressão do Mac (que às vezes 
-         falha com HTML complexo) e usa ferramentas diretas de baixo 
-         nível, tornando o gerador inquebrável.
+       - Esta versão ignora o sistema de impressão do Mac (que às vezes falha com HTML complexo) e usa ferramentas diretas de baixo nível, tornando o gerador inquebrável.
     ===============================================================
 */
