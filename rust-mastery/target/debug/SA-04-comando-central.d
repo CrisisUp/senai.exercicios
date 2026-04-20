@@ -1,0 +1,1 @@
+/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/SA-04-comando-central: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/exercicios/SA-04-comando-central/src/main.rs

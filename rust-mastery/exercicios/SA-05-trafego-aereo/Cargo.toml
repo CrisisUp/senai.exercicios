@@ -1,0 +1,6 @@
+[package]
+name = "SA-05-trafego-aereo"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
