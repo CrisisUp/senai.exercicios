@@ -1,154 +1,173 @@
-use r2d2::Pool;
 /**
  * @file main.rs
- * @brief SA-10: O Monumento Total (Orquestração Multilinguagem).
- *
- * Integração Final: C++ (FFI), Rust (Async/Pool/Serde) e SQL (Analytics).
- *
- * @author SENAI - Master of Systems
- * @date 21/04/2026
+ * @brief SA-10: SkyCargo OS (v2.2 - Interface de Comando Interativa).
  */
-use r2d2_sqlite::SqliteConnectionManager;
-use rusqlite::params;
-use serde::{Deserialize, Serialize};
+mod db;
+mod hardware;
+
+use anyhow::Result;
+use db::SkyRepo;
+use std::io::{self, Write};
 use std::sync::Arc;
 use std::time::Duration;
 use tokio;
 
-// -----------------------------------------------------------------------------
-// 1. MÓDULO DE HARDWARE (FFI - C++)
-// -----------------------------------------------------------------------------
-unsafe extern "C" {
-    fn iniciar_motores_cpp(potencia: i32) -> i32;
+/// Helper para ler entrada do terminal de forma limpa.
+fn prompt(mensagem: &str) -> String {
+    print!("{}", mensagem);
+    io::stdout().flush().unwrap();
+    let mut entrada = String::new();
+    io::stdin()
+        .read_line(&mut entrada)
+        .expect("Falha ao ler entrada");
+    entrada.trim().to_string()
 }
 
-// -----------------------------------------------------------------------------
-// 2. MÓDULO DE DADOS (SERDE & SQL)
-// -----------------------------------------------------------------------------
-#[derive(Serialize, Deserialize, Debug)]
-struct TelemetriaFinal {
-    bateria: u32,
-    distancia: f64,
-}
+/// Loop principal de interação com o usuário.
+async fn menu_principal(repo: Arc<SkyRepo>) -> Result<()> {
+    loop {
+        println!("\n\x1b[35m--- MENU DE COMANDO SKYCARGO ---\x1b[0m");
+        println!("[1] Listar Frota");
+        println!("[2] Cadastrar Novo Drone");
+        println!("[3] Atualizar Região");
+        println!("[4] Remover Drone");
+        println!("[5] INICIAR MISSÕES (Simultâneo)");
+        println!("[6] Ver Dashboard de Performance");
+        println!("[0] Sair do Sistema");
 
-type SqlPool = Pool<SqliteConnectionManager>;
+        let opcao = prompt("\nEscolha uma opção: ");
 
-async fn inicializar_banco(pool: &SqlPool) -> Result<(), Box<dyn std::error::Error>> {
-    let conn = pool.get()?;
-    conn.execute_batch(
-        "
-        CREATE TABLE IF NOT EXISTS frota_final (
-            id INTEGER PRIMARY KEY,
-            serial TEXT UNIQUE,
-            regiao TEXT
-        );
-        CREATE TABLE IF NOT EXISTS operacoes_final (
-            id INTEGER PRIMARY KEY,
-            drone_serial TEXT,
-            telemetria_json TEXT,
-            data_hora TEXT DEFAULT CURRENT_TIMESTAMP
-        );
-    ",
-    )?;
-
-    // Populando drones iniciais
-    conn.execute("INSERT OR IGNORE INTO frota_final (serial, regiao) VALUES ('SN-ALPHA', 'Americas'), ('SN-BETA', 'Europa')", [])?;
+        match opcao.as_str() {
+            "1" => {
+                if let Ok(frota) = repo.listar_frota() {
+                    println!("\n\x1b[32m--- FROTA ATUAL ---\x1b[0m");
+                    if frota.is_empty() {
+                        println!("A frota está vazia.");
+                    } else {
+                        for d in frota {
+                            println!(
+                                "ID: {:<3} | Serial: {:<10} | Região: {}",
+                                d.id.unwrap(),
+                                d.serial,
+                                d.regiao
+                            );
+                        }
+                    }
+                }
+            }
+            "2" => {
+                let serial = prompt("Serial do Drone: ");
+                let regiao = prompt("Região de Operação: ");
+                if let Err(e) = repo.cadastrar_drone(&serial, &regiao) {
+                    eprintln!("\n\x1b[41m[ERRO DE CADASTRO]:\x1b[0m {}", e);
+                } else {
+                    println!("\x1b[32m[OK]: Drone cadastrado com sucesso.\x1b[0m");
+                }
+            }
+            "3" => {
+                let serial = prompt("Serial do Drone para mover: ");
+                let nova_regiao = prompt("Nova Região: ");
+                if let Err(e) = repo.atualizar_regiao(&serial, &nova_regiao) {
+                    eprintln!("\n\x1b[41m[ERRO]:\x1b[0m {}", e);
+                } else {
+                    println!("\x1b[32m[OK]: Região atualizada.\x1b[0m");
+                }
+            }
+            "4" => {
+                let serial = prompt("Serial do Drone para remover: ");
+                if let Err(e) = repo.remover_drone(&serial) {
+                    eprintln!("\n\x1b[41m[ERRO]:\x1b[0m {}", e);
+                } else {
+                    println!("\x1b[31m[AVISO]: Drone removido do sistema.\x1b[0m");
+                }
+            }
+            "5" => {
+                println!("\x1b[33m[SISTEMA]: Preparando decolagem simultânea...\x1b[0m");
+                if let Ok(frota) = repo.listar_frota() {
+                    if frota.is_empty() {
+                        println!("\x1b[31mErro: NENHUM drone cadastrado!\x1b[0m");
+                    } else {
+                        let mut handles = vec![];
+                        for drone in frota {
+                            let r = Arc::clone(&repo);
+                            let s = drone.serial.clone();
+                            handles.push(tokio::spawn(executar_missao(s, r)));
+                        }
+                        for h in handles {
+                            let _ = h.await; // Aguarda sem encerrar o menu em caso de erro individual
+                        }
+                    }
+                }
+            }
+            "6" => {
+                if let Err(e) = exibir_dashboard(&repo) {
+                    eprintln!("\x1b[41m[ERRO ANALÍTICO]:\x1b[0m {}", e);
+                }
+            }
+            "0" => {
+                println!("Encerrando sistemas...");
+                break;
+            }
+            _ => println!("\x1b[31mOpção inválida!\x1b[0m"),
+        }
+    }
     Ok(())
 }
 
-// -----------------------------------------------------------------------------
-// 3. O CORAÇÃO DO SISTEMA: MISSÃO ASSÍNCRONA
-// -----------------------------------------------------------------------------
-async fn executar_missao(serial: String, pool: Arc<SqlPool>) {
-    println!(
-        "\n\x1b[33m[CENTRAL]:\x1b[0m Iniciando sequência para o drone {}...",
-        serial
-    );
+/// Orquestração de uma missão individual.
+async fn executar_missao(serial: String, repo: Arc<SkyRepo>) -> Result<()> {
+    println!("\x1b[33m[MISSÃO]:\x1b[0m Iniciando drone {}...", serial);
 
-    // PASSO A: Chamar Hardware (C++)
-    let hardware_ok = unsafe { iniciar_motores_cpp(75) };
-    if hardware_ok == 0 {
-        println!(
-            "\x1b[31m[FALHA]:\x1b[0m Hardware do drone {} rejeitou ignição.",
-            serial
-        );
-        return;
-    }
+    // Hardware Check (FFI C++)
+    hardware::iniciar_ignicao(75).map_err(|e| anyhow::anyhow!(e))?;
 
-    // PASSO B: Simular Voo (Async)
-    println!(
-        "\x1b[32m[DECOLAGEM]:\x1b[0m Drone {} está em missão...",
-        serial
-    );
-    tokio::time::sleep(Duration::from_secs(1)).await;
+    // Simulação de tempo de voo
+    tokio::time::sleep(Duration::from_secs(2)).await;
 
-    // PASSO C: Gerar Telemetria (JSON)
-    let dados = TelemetriaFinal {
-        bateria: 85,
-        distancia: 150.5,
+    let telemetria = db::Telemetria {
+        bateria: rand::random::<u32>() % 100,
+        distancia: 50.0 + (rand::random::<f64>() * 100.0),
     };
-    let json_payload = serde_json::to_string(&dados).unwrap();
 
-    // PASSO D: Persistir no Data Warehouse (Pool + Blocking)
-    let pool_clone = Arc::clone(&pool);
-    let serial_db = serial.clone(); // Clona para o banco
-    let _ = tokio::task::spawn_blocking(move || {
-        let conn = pool_clone.get().expect("Erro no pool");
-        conn.execute(
-            "INSERT INTO operacoes_final (drone_serial, telemetria_json) VALUES (?, ?)",
-            params![serial_db, json_payload],
-        )
-    })
-    .await;
+    let repo_clone = Arc::clone(&repo);
+    let s = serial.clone();
+    tokio::task::spawn_blocking(move || repo_clone.registrar_missao(&s, telemetria)).await??;
 
     println!(
-        "\x1b[36m[STATUS]:\x1b[0m Drone {} finalizou missão e reportou dados.",
+        "\x1b[36m[FINALIZADO]:\x1b[0m Drone {} reportou dados com sucesso.",
         serial
     );
+    Ok(())
+}
+
+/// Exibição de relatórios analíticos.
+fn exibir_dashboard(repo: &SkyRepo) -> Result<()> {
+    println!("\n\x1b[35m[INTELIGÊNCIA]:\x1b[0m Dashboard de Performance Global\n");
+    let dados = repo.gerar_dashboard()?;
+    if dados.is_empty() {
+        println!("Nenhum dado de missão disponível.");
+    } else {
+        println!("{:<10} | {:<10} | {:<5}", "DRONE", "KM TOTAL", "RANK");
+        println!("-----------------------------------------");
+        for (serial, km, rank) in dados {
+            println!("{:<10} | {:<10.1} | #{}", serial, km, rank);
+        }
+    }
+    Ok(())
 }
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+async fn main() -> Result<()> {
     println!("===============================================");
-    println!("     SKYCARGO OS v1.0 - O MONUMENTO TOTAL      ");
+    println!("     SKYCARGO OS v2.2 - TERMINAL INTERATIVO    ");
     println!("===============================================");
 
-    // Configuração do Ambiente
-    let manager = SqliteConnectionManager::file("skycargo_final.db");
-    let pool = Arc::new(Pool::new(manager)?);
-    inicializar_banco(&pool).await?;
+    let repo = Arc::new(SkyRepo::new("skycargo_final.db")?);
+    repo.inicializar()?;
 
-    // Disparando missões simultâneas para drones diferentes
-    let missao1 = executar_missao(String::from("SN-ALPHA"), Arc::clone(&pool));
-    let missao2 = executar_missao(String::from("SN-BETA"), Arc::clone(&pool));
+    // Inicia o Loop do Menu
+    menu_principal(repo).await?;
 
-    tokio::join!(missao1, missao2);
-
-    // CONSULTA ANALÍTICA DE ENCERRAMENTO (WINDOW FUNCTIONS)
-    println!("\n\x1b[35m[INTELIGÊNCIA]:\x1b[0m Gerando Dashboard de Elite Final...\n");
-
-    let conn = pool.get()?;
-    let mut stmt = conn.prepare(
-        "
-        SELECT drone_serial, 
-               json_extract(telemetria_json, '$.distancia') as km,
-               RANK() OVER(ORDER BY json_extract(telemetria_json, '$.distancia') DESC) as rank
-        FROM operacoes_final
-    ",
-    )?;
-
-    let mut rows = stmt.query([])?;
-    println!("{:<10} | {:<10} | {:<5}", "DRONE", "KM", "RANK");
-    println!("----------------------------------");
-    while let Some(row) = rows.next()? {
-        let serial: String = row.get(0)?;
-        let km: f64 = row.get(1)?;
-        let rank: i32 = row.get(2)?;
-        println!("{:<10} | {:<10.1} | #{}", serial, km, rank);
-    }
-
-    println!("\n===============================================");
-    println!("     MISSÃO CUMPRIDA. SISTEMA ÍNTEGRO.         ");
-    println!("===============================================");
+    println!("\nSistemas desligados com segurança.");
     Ok(())
 }
