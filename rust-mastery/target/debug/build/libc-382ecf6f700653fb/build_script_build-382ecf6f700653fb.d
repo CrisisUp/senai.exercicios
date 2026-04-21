@@ -1,0 +1,5 @@
+/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/build/libc-382ecf6f700653fb/build_script_build-382ecf6f700653fb.d: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.185/build.rs
+
+/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/build/libc-382ecf6f700653fb/build_script_build-382ecf6f700653fb: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.185/build.rs
+
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.185/build.rs:

@@ -25,6 +25,17 @@ members = [
     "exercicios/18-lista-ligada",
     "exercicios/19-sobrecarga-operadores",
     "exercicios/20-type-states-drone",
-    "exercicios/SA-06-fabrica-automata",
+    "integracao-rust-sql/21-integracao-sql",
+    "integracao-rust-sql/22-relatorios-complexos-sql",
+    "integracao-rust-sql/23-transacoes-blindadas",
+    "integracao-rust-sql/24-telemetria-json-sql",
+    "integracao-rust-sql/25-pool-conexoes-multithread",
+    "integracao-rust-sql/26-migracoes-automaticas",
+    "integracao-rust-sql/27-async-sql-tokio",
+    "integracao-rust-sql/SA-09-hub-operacoes-globais",
+    "integracao-rust-sql/SA-10-monumento-total",
+    "integracao-rust-sql/28-crud-completo-frota",
+    "integracao-rust-sql/29-fts-log-manager",
+    "integracao-rust-sql/30-auditoria-forense",
 ]
 resolver = "2"

@@ -1,0 +1,7 @@
+[package]
+name = "crud_completo"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rusqlite = "0.33.0"

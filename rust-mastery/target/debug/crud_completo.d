@@ -1,0 +1,1 @@
+/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/crud_completo: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/integracao-rust-sql/28-crud-completo-frota/src/main.rs
