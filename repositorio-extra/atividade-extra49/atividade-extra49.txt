@@ -1,0 +1,16 @@
+# 📘 Atividade Extra 49: Arquitetura Modular (Calculadora de Engenharia)
+
+## 🎯 Estudo de Caso
+A empresa "Engenharia Precisão S.A." percebeu que seu código de cálculos estruturais estava se tornando um arquivo gigantesco e impossível de manter. Eles precisam migrar para uma **Arquitetura Modular** onde a lógica de cálculo (o "Motor") seja separada da interface de usuário (o "Console").
+
+## 🛠️ Necessidade Técnica
+Até agora, usamos apenas um arquivo `.cpp`. No Nível 11 (Arquiteto), isso não é mais aceitável. Precisamos separar a **Declaração** (Interface/Contrato) no arquivo `.h` da **Implementação** (Lógica) no arquivo `.cpp`. Isso permite:
+1. Reuso de código em múltiplos projetos.
+2. Compilação separada (mais rápida em projetos grandes).
+3. Melhor organização lógica.
+
+## 📋 Requisitos
+1. Criar `Calculadora.h` com a definição da classe/funções.
+2. Criar `Calculadora.cpp` com a implementação.
+3. Criar `atividade-extra49-modular.cpp` com a função `main`.
+4. O programa deve calcular Áreas e Volumes de formas geométricas complexas.

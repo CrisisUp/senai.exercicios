@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade01.dir/repositorio/atividade01/atividade1-vetores.cpp.o" -o atividade01

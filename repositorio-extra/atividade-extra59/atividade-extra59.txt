@@ -1,0 +1,16 @@
+# 📘 Atividade Extra 59: Ponteiros Inteligentes (Rastreamento de Recursos Críticos)
+
+## 🎯 Estudo de Caso
+A transportadora "LogiSpeed" opera um sistema de telemetria em tempo real. Cada caminhão possui um `MóduloGPS` alocado dinamicamente. O desafio é que este módulo é acessado por diferentes partes do sistema (Logística, Manutenção, Faturamento). Se usarmos ponteiros crus (Atividade 57), é muito fácil esquecer de deletar o módulo ou tentar acessá-lo depois de deletado. Precisamos de uma forma de automatizar a segurança de memória sem comprometer a performance.
+
+## 🛠️ Necessidade Técnica
+No **Nível 31 (Engenheiro de Elite)**, aprendemos que o C++ moderno (C++11 em diante) praticamente aboliu o uso de `new` e `delete` manuais no código de alto nível, substituindo-os por **Ponteiros Inteligentes (Smart Pointers)** da biblioteca `<memory>`.
+*   **`std::unique_ptr` (Propriedade Única):** Garante que apenas um dono possua o recurso. Quando o ponteiro sai de escopo, o recurso é deletado automaticamente.
+*   **`std::shared_ptr` (Propriedade Compartilhada):** Permite que múltiplos donos compartilhem o mesmo recurso. O objeto só é deletado quando o último dono para de usá-lo (contagem de referência).
+*   **Segurança (Safety):** Elimina 99% dos erros de *Memory Leak* e *Dangling Pointers* (ponteiros que apontam para memória já deletada).
+
+## 📋 Requisitos (Arquitetura Modular)
+1. Criar a classe `ModuloGPS` com logs em seu construtor e destrutor para provar a automação.
+2. Demonstrar o uso de `std::unique_ptr` para recursos exclusivos de um caminhão.
+3. Demonstrar o uso de `std::shared_ptr` para recursos que precisam ser vistos por múltiplos sistemas ao mesmo tempo.
+4. Criar `SmartResource.h`, `SmartResource.cpp` e `atividade-extra59-smart.cpp`.

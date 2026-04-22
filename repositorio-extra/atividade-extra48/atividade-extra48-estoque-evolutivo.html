@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>repositorio-extra/atividade-extra48/atividade-extra48-estoque-evolutivo.cpp</title>
+<style type="text/css">
+/* highlight theme: Base16 Monokai */
+body.hl	{ background-color:#272822; }
+pre.hl	{ color:#f8f8f2; background-color:#272822; font-size:14pt; font-family:'Courier New',monospace; white-space: pre-wrap; }
+.hl.num { color:#fd971f; }
+.hl.esc { color:#a1efe4; }
+.hl.sng { color:#a6e22e; }
+.hl.pps { color:#a1efe4; }
+.hl.slc { color:#75715e; font-style:italic; }
+.hl.com { color:#75715e; font-style:italic; }
+.hl.ppc { color:#cc6633; }
+.hl.opt { color:#f8f8f2; }
+.hl.ipl { color:#fd971f; }
+.hl.lin { color:#a59f85; user-select: none;-webkit-user-select: none; }
+.hl.hvr { cursor:help; }
+.hl.erm { color:#ff0000; font-weight:bold; border:solid 1px red; margin-left: 3em; }
+.hl.err { color:#ff0000; font-weight:bold; }
+.hl.kwa { color:#ae81ff; font-weight:bold; }
+.hl.kwb { color:#66d9ef; font-weight:bold; }
+.hl.kwc { color:#f92672; font-weight:bold; }
+.hl.kwd { color:#f4bf75; font-weight:bold; }
+.hl.kwe { color:#cc6633; font-weight:bold; }
+.hl.kwf { color:#fd971f; font-weight:bold; }
+</style>
+</head>
+<body class="hl">
+<pre class="hl"><span class="hl lin">    1 </span><span class="hl com">/**</span>
+<span class="hl lin">    2 </span><span class="hl com"> * &#64;file atividade-extra48-estoque-evolutivo.cpp</span>
+<span class="hl lin">    3 </span><span class="hl com"> * &#64;brief DESAFIO DE REFATORAÇÃO: Sistema de Suprimentos Industrial.</span>
+<span class="hl lin">    4 </span><span class="hl com"> * </span>
+<span class="hl lin">    5 </span><span class="hl com"> * Evolução da Atividade 01 utilizando as técnicas de Engenharia:</span>
+<span class="hl lin">    6 </span><span class="hl com"> * 1. POO com Encapsulamento de Atributos (Private).</span>
+<span class="hl lin">    7 </span><span class="hl com"> * 2. Gestão de Memória Moderna (std::unique_ptr e make_unique).</span>
+<span class="hl lin">    8 </span><span class="hl com"> * 3. Validação Ativa via Suite de Testes Unitários.</span>
+<span class="hl lin">    9 </span><span class="hl com"> * 4. Containers STL (std::vector) para múltiplos itens.</span>
+<span class="hl lin">   10 </span><span class="hl com"> * </span>
+<span class="hl lin">   11 </span><span class="hl com"> * &#64;author SENAI - Cristiano Batista Pessoa</span>
+<span class="hl lin">   12 </span><span class="hl com"> * &#64;date 20/04/2026</span>
+<span class="hl lin">   13 </span><span class="hl com"> */</span>
+<span class="hl lin">   14 </span>
+<span class="hl lin">   15 </span><span class="hl ppc">#include &lt;iostream&gt;</span>
+<span class="hl lin">   16 </span><span class="hl ppc">#include &lt;string&gt;</span>
+<span class="hl lin">   17 </span><span class="hl ppc">#include &lt;vector&gt;</span>
+<span class="hl lin">   18 </span><span class="hl ppc">#include &lt;iomanip&gt;</span>
+<span class="hl lin">   19 </span><span class="hl ppc">#include &lt;memory&gt;</span>   <span class="hl slc">// Para unique_ptr (C++ Moderno)</span>
+<span class="hl lin">   20 </span><span class="hl ppc"></span><span class="hl ppc">#include &lt;algorithm&gt;</span>
+<span class="hl lin">   21 </span>
+<span class="hl lin">   22 </span><span class="hl kwa">using namespace</span> std<span class="hl opt">;</span>
+<span class="hl lin">   23 </span>
+<span class="hl lin">   24 </span><span class="hl slc">// --- 1. NAMESPACE DE INTERFACE (Cores ANSI) ---</span>
+<span class="hl lin">   25 </span>
+<span class="hl lin">   26 </span><span class="hl kwa">namespace</span> UI <span class="hl opt">{</span>
+<span class="hl lin">   27 </span>    <span class="hl kwb">const</span> string RESET    <span class="hl opt">=</span> <span class="hl sng">&quot;</span><span class="hl esc">\033</span><span class="hl sng">[0m&quot;</span><span class="hl opt">;</span>
+<span class="hl lin">   28 </span>    <span class="hl kwb">const</span> string VERDE    <span class="hl opt">=</span> <span class="hl sng">&quot;</span><span class="hl esc">\033</span><span class="hl sng">[32m&quot;</span><span class="hl opt">;</span>
+<span class="hl lin">   29 </span>    <span class="hl kwb">const</span> string VERMELHO <span class="hl opt">=</span> <span class="hl sng">&quot;</span><span class="hl esc">\033</span><span class="hl sng">[31m&quot;</span><span class="hl opt">;</span>
+<span class="hl lin">   30 </span>    <span class="hl kwb">const</span> string AMARELO  <span class="hl opt">=</span> <span class="hl sng">&quot;</span><span class="hl esc">\033</span><span class="hl sng">[33m&quot;</span><span class="hl opt">;</span>
+<span class="hl lin">   31 </span>    <span class="hl kwb">const</span> string CIANO    <span class="hl opt">=</span> <span class="hl sng">&quot;</span><span class="hl esc">\033</span><span class="hl sng">[36m&quot;</span><span class="hl opt">;</span>
+<span class="hl lin">   32 </span>    <span class="hl kwb">const</span> string NEGRITO  <span class="hl opt">=</span> <span class="hl sng">&quot;</span><span class="hl esc">\033</span><span class="hl sng">[1m&quot;</span><span class="hl opt">;</span>
+<span class="hl lin">   33 </span>
+<span class="hl lin">   34 </span>    <span class="hl kwb">void</span> <span class="hl kwd">cabecalho</span><span class="hl opt">() {</span>
+<span class="hl lin">   35 </span>        cout <span class="hl opt">&lt;&lt;</span> CIANO <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;===============================================&quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   36 </span>        cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;      G-STOCK: SISTEMA DE GESTÃO INDUSTRIAL    &quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   37 </span>        cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;          (Evolução da Atividade 01)           &quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   38 </span>        cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;===============================================&quot;</span> <span class="hl opt">&lt;&lt;</span> RESET <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   39 </span>    <span class="hl opt">}</span>
+<span class="hl lin">   40 </span><span class="hl opt">}</span>
+<span class="hl lin">   41 </span>
+<span class="hl lin">   42 </span><span class="hl slc">// --- 2. MODELO DE NEGÓCIO: CLASSE PRODUTO ---</span>
+<span class="hl lin">   43 </span>
+<span class="hl lin">   44 </span><span class="hl kwd">class</span> Produto <span class="hl opt">{</span>
+<span class="hl lin">   45 </span><span class="hl kwd">private</span><span class="hl opt">:</span>
+<span class="hl lin">   46 </span>    string nome<span class="hl opt">;</span>
+<span class="hl lin">   47 </span>    <span class="hl kwb">int</span> atual<span class="hl opt">;</span>
+<span class="hl lin">   48 </span>    <span class="hl kwb">int</span> minimo<span class="hl opt">;</span>
+<span class="hl lin">   49 </span>    <span class="hl kwb">double</span> preco<span class="hl opt">;</span>
+<span class="hl lin">   50 </span>
+<span class="hl lin">   51 </span><span class="hl kwd">public</span><span class="hl opt">:</span>
+<span class="hl lin">   52 </span>    <span class="hl kwd">Produto</span><span class="hl opt">(</span>string n<span class="hl opt">,</span> <span class="hl kwb">int</span> a<span class="hl opt">,</span> <span class="hl kwb">int</span> m<span class="hl opt">,</span> <span class="hl kwb">double</span> p<span class="hl opt">)</span> 
+<span class="hl lin">   53 </span>        <span class="hl opt">:</span> <span class="hl kwd">nome</span><span class="hl opt">(</span>n<span class="hl opt">),</span> <span class="hl kwd">atual</span><span class="hl opt">(</span>a<span class="hl opt">),</span> <span class="hl kwd">minimo</span><span class="hl opt">(</span>m<span class="hl opt">),</span> <span class="hl kwd">preco</span><span class="hl opt">(</span>p<span class="hl opt">) {}</span>
+<span class="hl lin">   54 </span>
+<span class="hl lin">   55 </span>    <span class="hl slc">// Getters e Lógica de Negócio (Encapsulamento)</span>
+<span class="hl lin">   56 </span>    string <span class="hl kwd">getNome</span><span class="hl opt">()</span> <span class="hl kwb">const</span> <span class="hl opt">{</span> <span class="hl kwa">return</span> nome<span class="hl opt">; }</span>
+<span class="hl lin">   57 </span>    <span class="hl kwb">bool</span> <span class="hl kwd">precisaRepor</span><span class="hl opt">()</span> <span class="hl kwb">const</span> <span class="hl opt">{</span> <span class="hl kwa">return</span> atual <span class="hl opt">&lt;</span> minimo<span class="hl opt">; }</span>
+<span class="hl lin">   58 </span>    <span class="hl kwb">int</span> <span class="hl kwd">getFalta</span><span class="hl opt">()</span> <span class="hl kwb">const</span> <span class="hl opt">{</span> <span class="hl kwa">return</span> <span class="hl opt">(</span><span class="hl kwd">precisaRepor</span><span class="hl opt">()) ? (</span>minimo <span class="hl opt">-</span> atual<span class="hl opt">) :</span> <span class="hl num">0</span><span class="hl opt">; }</span>
+<span class="hl lin">   59 </span>    <span class="hl kwb">double</span> <span class="hl kwd">getCustoReposicao</span><span class="hl opt">()</span> <span class="hl kwb">const</span> <span class="hl opt">{</span> <span class="hl kwa">return</span> <span class="hl kwd">getFalta</span><span class="hl opt">() *</span> preco<span class="hl opt">; }</span>
+<span class="hl lin">   60 </span>    
+<span class="hl lin">   61 </span>    <span class="hl kwb">void</span> <span class="hl kwd">exibirStatus</span><span class="hl opt">()</span> <span class="hl kwb">const</span> <span class="hl opt">{</span>
+<span class="hl lin">   62 </span>        cout <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>NEGRITO <span class="hl opt">&lt;&lt;</span> left <span class="hl opt">&lt;&lt;</span> <span class="hl kwd">setw</span><span class="hl opt">(</span><span class="hl num">15</span><span class="hl opt">) &lt;&lt;</span> nome <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>RESET<span class="hl opt">;</span>
+<span class="hl lin">   63 </span>        cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot; | &quot;</span> <span class="hl opt">&lt;&lt;</span> <span class="hl kwd">setw</span><span class="hl opt">(</span><span class="hl num">5</span><span class="hl opt">) &lt;&lt;</span> atual <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot; / &quot;</span> <span class="hl opt">&lt;&lt;</span> <span class="hl kwd">setw</span><span class="hl opt">(</span><span class="hl num">5</span><span class="hl opt">) &lt;&lt;</span> minimo<span class="hl opt">;</span>
+<span class="hl lin">   64 </span>        <span class="hl kwa">if</span> <span class="hl opt">(</span><span class="hl kwd">precisaRepor</span><span class="hl opt">()) {</span>
+<span class="hl lin">   65 </span>            cout <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>VERMELHO <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot; | FALTA: &quot;</span> <span class="hl opt">&lt;&lt;</span> <span class="hl kwd">setw</span><span class="hl opt">(</span><span class="hl num">4</span><span class="hl opt">) &lt;&lt;</span> <span class="hl kwd">getFalta</span><span class="hl opt">()</span> 
+<span class="hl lin">   66 </span>                 <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot; | CUSTO: R$ &quot;</span> <span class="hl opt">&lt;&lt;</span> fixed <span class="hl opt">&lt;&lt;</span> <span class="hl kwd">setprecision</span><span class="hl opt">(</span><span class="hl num">2</span><span class="hl opt">) &lt;&lt;</span> <span class="hl kwd">getCustoReposicao</span><span class="hl opt">() &lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>RESET <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   67 </span>        <span class="hl opt">}</span> <span class="hl kwa">else</span> <span class="hl opt">{</span>
+<span class="hl lin">   68 </span>            cout <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>VERDE <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot; | ESTOQUE SUFICIENTE&quot;</span> <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>RESET <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   69 </span>        <span class="hl opt">}</span>
+<span class="hl lin">   70 </span>    <span class="hl opt">}</span>
+<span class="hl lin">   71 </span><span class="hl opt">};</span>
+<span class="hl lin">   72 </span>
+<span class="hl lin">   73 </span><span class="hl slc">// --- 3. LABORATORIO DE TESTES (VALIDAÇÃO ATIVA) ---</span>
+<span class="hl lin">   74 </span>
+<span class="hl lin">   75 </span><span class="hl kwd">class</span> SuiteDeTestes <span class="hl opt">{</span>
+<span class="hl lin">   76 </span><span class="hl kwd">public</span><span class="hl opt">:</span>
+<span class="hl lin">   77 </span>    <span class="hl kwb">static void</span> <span class="hl kwd">executar</span><span class="hl opt">() {</span>
+<span class="hl lin">   78 </span>        <span class="hl kwb">int</span> falhas <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span>
+<span class="hl lin">   79 </span>        cout <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>AMARELO <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;</span><span class="hl esc">\n</span><span class="hl sng">--- TESTANDO LOGICA DE REPOSICAO ---&quot;</span> <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>RESET <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   80 </span>
+<span class="hl lin">   81 </span>        <span class="hl slc">// Caso 1: Estoque abaixo do mínimo</span>
+<span class="hl lin">   82 </span>        Produto <span class="hl kwd">p1</span><span class="hl opt">(</span><span class="hl sng">&quot;Teste1&quot;</span><span class="hl opt">,</span> <span class="hl num">5</span><span class="hl opt">,</span> <span class="hl num">10</span><span class="hl opt">,</span> <span class="hl num">2.0</span><span class="hl opt">);</span>
+<span class="hl lin">   83 </span>        <span class="hl kwa">if</span> <span class="hl opt">(</span>p1<span class="hl opt">.</span><span class="hl kwd">getFalta</span><span class="hl opt">() !=</span> <span class="hl num">5</span> <span class="hl opt">||</span> p1<span class="hl opt">.</span><span class="hl kwd">getCustoReposicao</span><span class="hl opt">() !=</span> <span class="hl num">10.0</span><span class="hl opt">) {</span>
+<span class="hl lin">   84 </span>            cout <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>VERMELHO <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;[FALHA]: Cálculo de reposição incorreto para p1.&quot;</span> <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>RESET <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   85 </span>            falhas<span class="hl opt">++;</span>
+<span class="hl lin">   86 </span>        <span class="hl opt">}</span> <span class="hl kwa">else</span> <span class="hl opt">{</span>
+<span class="hl lin">   87 </span>            cout <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>VERDE <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;[OK]: Cálculo de falta e custo validado.&quot;</span> <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>RESET <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   88 </span>        <span class="hl opt">}</span>
+<span class="hl lin">   89 </span>
+<span class="hl lin">   90 </span>        <span class="hl slc">// Caso 2: Estoque exatamente no mínimo</span>
+<span class="hl lin">   91 </span>        Produto <span class="hl kwd">p2</span><span class="hl opt">(</span><span class="hl sng">&quot;Teste2&quot;</span><span class="hl opt">,</span> <span class="hl num">10</span><span class="hl opt">,</span> <span class="hl num">10</span><span class="hl opt">,</span> <span class="hl num">2.0</span><span class="hl opt">);</span>
+<span class="hl lin">   92 </span>        <span class="hl kwa">if</span> <span class="hl opt">(</span>p2<span class="hl opt">.</span><span class="hl kwd">precisaRepor</span><span class="hl opt">()) {</span>
+<span class="hl lin">   93 </span>            cout <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>VERMELHO <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;[FALHA]: Produto no limite não deve repor.&quot;</span> <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>RESET <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   94 </span>            falhas<span class="hl opt">++;</span>
+<span class="hl lin">   95 </span>        <span class="hl opt">}</span> <span class="hl kwa">else</span> <span class="hl opt">{</span>
+<span class="hl lin">   96 </span>            cout <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>VERDE <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;[OK]: Limite de estoque validado.&quot;</span> <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>RESET <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">   97 </span>        <span class="hl opt">}</span>
+<span class="hl lin">   98 </span>
+<span class="hl lin">   99 </span>        cout <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>AMARELO <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;-----------------------------------------------&quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">  100 </span>        <span class="hl kwa">if</span> <span class="hl opt">(</span>falhas <span class="hl opt">==</span> <span class="hl num">0</span><span class="hl opt">)</span> 
+<span class="hl lin">  101 </span>            cout <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>VERDE <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;RESULTADO: MOTOR DE ESTOQUE 100% CONFIAVEL.</span><span class="hl esc">\n</span><span class="hl sng">&quot;</span> <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>RESET <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">  102 </span>        <span class="hl kwa">else</span>
+<span class="hl lin">  103 </span>            <span class="hl kwd">exit</span><span class="hl opt">(</span><span class="hl num">1</span><span class="hl opt">);</span> <span class="hl slc">// Aborta se a lógica estiver errada (Rigor de Engenharia)</span>
+<span class="hl lin">  104 </span>    <span class="hl opt">}</span>
+<span class="hl lin">  105 </span><span class="hl opt">};</span>
+<span class="hl lin">  106 </span>
+<span class="hl lin">  107 </span><span class="hl slc">// --- 4. FUNÇÃO PRINCIPAL ---</span>
+<span class="hl lin">  108 </span>
+<span class="hl lin">  109 </span><span class="hl kwb">int</span> <span class="hl kwd">main</span><span class="hl opt">()</span>
+<span class="hl lin">  110 </span><span class="hl opt">{</span>
+<span class="hl lin">  111 </span>    <span class="hl kwe">UI</span><span class="hl opt">::</span><span class="hl kwd">cabecalho</span><span class="hl opt">();</span>
+<span class="hl lin">  112 </span>
+<span class="hl lin">  113 </span>    <span class="hl slc">// EXIGÊNCIA DE ENGENHARIA: Validar antes de rodar</span>
+<span class="hl lin">  114 </span>    <span class="hl kwe">SuiteDeTestes</span><span class="hl opt">::</span><span class="hl kwd">executar</span><span class="hl opt">();</span>
+<span class="hl lin">  115 </span>
+<span class="hl lin">  116 </span>    <span class="hl slc">// Gestão Moderna com Smart Pointers e Coleções STL</span>
+<span class="hl lin">  117 </span>    vector<span class="hl opt">&lt;</span>unique_ptr<span class="hl opt">&lt;</span>Produto<span class="hl opt">&gt;&gt;</span> estoque<span class="hl opt">;</span>
+<span class="hl lin">  118 </span>
+<span class="hl lin">  119 </span>    <span class="hl slc">// Cadastro de produtos (Simulando uma carga de banco de dados/arquivo)</span>
+<span class="hl lin">  120 </span>    estoque<span class="hl opt">.</span><span class="hl kwd">push_back</span><span class="hl opt">(</span>make_unique<span class="hl opt">&lt;</span>Produto<span class="hl opt">&gt;(</span><span class="hl sng">&quot;Monitor LED&quot;</span><span class="hl opt">,</span> <span class="hl num">12</span><span class="hl opt">,</span> <span class="hl num">15</span><span class="hl opt">,</span> <span class="hl num">450.00</span><span class="hl opt">));</span>
+<span class="hl lin">  121 </span>    estoque<span class="hl opt">.</span><span class="hl kwd">push_back</span><span class="hl opt">(</span>make_unique<span class="hl opt">&lt;</span>Produto<span class="hl opt">&gt;(</span><span class="hl sng">&quot;Teclado Mec&quot;</span><span class="hl opt">,</span> <span class="hl num">45</span><span class="hl opt">,</span> <span class="hl num">20</span><span class="hl opt">,</span> <span class="hl num">180.00</span><span class="hl opt">));</span>
+<span class="hl lin">  122 </span>    estoque<span class="hl opt">.</span><span class="hl kwd">push_back</span><span class="hl opt">(</span>make_unique<span class="hl opt">&lt;</span>Produto<span class="hl opt">&gt;(</span><span class="hl sng">&quot;Mouse Laser&quot;</span><span class="hl opt">,</span> <span class="hl num">8</span><span class="hl opt">,</span> <span class="hl num">25</span><span class="hl opt">,</span> <span class="hl num">90.00</span><span class="hl opt">));</span>
+<span class="hl lin">  123 </span>
+<span class="hl lin">  124 </span>    cout <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>NEGRITO <span class="hl opt">&lt;&lt;</span> left <span class="hl opt">&lt;&lt;</span> <span class="hl kwd">setw</span><span class="hl opt">(</span><span class="hl num">15</span><span class="hl opt">) &lt;&lt;</span> <span class="hl sng">&quot;PRODUTO&quot;</span> <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot; | ESTOQUE / MIN | STATUS&quot;</span> <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>RESET <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">  125 </span>    cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;-----------------------------------------------&quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">  126 </span>
+<span class="hl lin">  127 </span>    <span class="hl kwb">double</span> custoTotalGeral <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span>
+<span class="hl lin">  128 </span>
+<span class="hl lin">  129 </span>    <span class="hl kwa">for</span> <span class="hl opt">(</span><span class="hl kwb">const</span> <span class="hl kwd">auto</span><span class="hl opt">&amp;</span> item <span class="hl opt">:</span> estoque<span class="hl opt">) {</span>
+<span class="hl lin">  130 </span>        item<span class="hl opt">-&gt;</span><span class="hl kwd">exibirStatus</span><span class="hl opt">();</span>
+<span class="hl lin">  131 </span>        custoTotalGeral <span class="hl opt">+=</span> item<span class="hl opt">-&gt;</span><span class="hl kwd">getCustoReposicao</span><span class="hl opt">();</span>
+<span class="hl lin">  132 </span>    <span class="hl opt">}</span>
+<span class="hl lin">  133 </span>
+<span class="hl lin">  134 </span>    cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;-----------------------------------------------&quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">  135 </span>    cout <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>CIANO <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;INVESTIMENTO TOTAL NECESSARIO: R$ &quot;</span> 
+<span class="hl lin">  136 </span>         <span class="hl opt">&lt;&lt;</span> fixed <span class="hl opt">&lt;&lt;</span> <span class="hl kwd">setprecision</span><span class="hl opt">(</span><span class="hl num">2</span><span class="hl opt">) &lt;&lt;</span> custoTotalGeral <span class="hl opt">&lt;&lt;</span> <span class="hl kwe">UI</span><span class="hl opt">::</span>RESET <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">  137 </span>    cout <span class="hl opt">&lt;&lt;</span> <span class="hl sng">&quot;===============================================&quot;</span> <span class="hl opt">&lt;&lt;</span> endl<span class="hl opt">;</span>
+<span class="hl lin">  138 </span>
+<span class="hl lin">  139 </span>    <span class="hl slc">// Nota: Nenhum &#39;delete&#39; manual é necessário. </span>
+<span class="hl lin">  140 </span>    <span class="hl slc">// O unique_ptr limpa a memória automaticamente ao sair do escopo.</span>
+<span class="hl lin">  141 </span>
+<span class="hl lin">  142 </span>    <span class="hl kwa">return</span> <span class="hl num">0</span><span class="hl opt">;</span>
+<span class="hl lin">  143 </span><span class="hl opt">}</span>
+<span class="hl lin">  144 </span>
+<span class="hl lin">  145 </span><span class="hl com">/* </span>
+<span class="hl lin">  146 </span><span class="hl com">    ===============================================================</span>
+<span class="hl lin">  147 </span><span class="hl com">    RESUMO TEÓRICO: O CICLO DE EVOLUÇÃO (REFATORAÇÃO)</span>
+<span class="hl lin">  148 </span><span class="hl com">    ===============================================================</span>
+<span class="hl lin">  149 </span><span class="hl com"></span>
+<span class="hl lin">  150 </span><span class="hl com">    1. POR QUE REFATORAR?</span>
+<span class="hl lin">  151 </span><span class="hl com">       - Refatorar não é apenas &quot;mudar o nome da variável&quot;. É elevar o </span>
+<span class="hl lin">  152 </span><span class="hl com">         código para novos padrões de segurança. A Atividade 01 era </span>
+<span class="hl lin">  153 </span><span class="hl com">         funcional, mas esta Atividade 48 é INDUSTRIAL.</span>
+<span class="hl lin">  154 </span><span class="hl com"></span>
+<span class="hl lin">  155 </span><span class="hl com">    2. SMART POINTERS NO ESTOQUE:</span>
+<span class="hl lin">  156 </span><span class="hl com">       - Ao usar std::unique_ptr, eliminamos o risco de o sistema </span>
+<span class="hl lin">  157 </span><span class="hl com">         perder um produto da memória e causar um crash. O </span>
+<span class="hl lin">  158 </span><span class="hl com">         gerenciamento agora é determinístico e automático.</span>
+<span class="hl lin">  159 </span><span class="hl com"></span>
+<span class="hl lin">  160 </span><span class="hl com">    3. O PODER DOS TESTES UNITÁRIOS:</span>
+<span class="hl lin">  161 </span><span class="hl com">       - No primeiro dia (Ativ. 01), você testava digitando valores. </span>
+<span class="hl lin">  162 </span><span class="hl com">         Agora, o SuiteDeTestes faz isso em milissegundos, provando </span>
+<span class="hl lin">  163 </span><span class="hl com">         que o código está certo matematicamente.</span>
+<span class="hl lin">  164 </span><span class="hl com"></span>
+<span class="hl lin">  165 </span><span class="hl com">    4. ENCAPSULAMENTO (SEGURANÇA):</span>
+<span class="hl lin">  166 </span><span class="hl com">       - Ao tornar os atributos privados, impedimos que uma parte </span>
+<span class="hl lin">  167 </span><span class="hl com">         acidental do código altere o preço de um produto sem passar </span>
+<span class="hl lin">  168 </span><span class="hl com">         pela lógica de negócio.</span>
+<span class="hl lin">  169 </span><span class="hl com"></span>
+<span class="hl lin">  170 </span><span class="hl com">    ===============================================================</span>
+<span class="hl lin">  171 </span><span class="hl com">    ASSUNTOS CORRELATOS:</span>
+<span class="hl lin">  172 </span><span class="hl com">    - Serialização JSON: Como salvar este estoque em arquivos modernos.</span>
+<span class="hl lin">  173 </span><span class="hl com">    - Padrão de Projeto Factory: Para criar produtos de diferentes tipos.</span>
+<span class="hl lin">  174 </span><span class="hl com">    - Injeção de Dependência: Como testar o sistema com dados falsos.</span>
+<span class="hl lin">  175 </span><span class="hl com">    ===============================================================</span>
+<span class="hl lin">  176 </span><span class="hl com">*/</span>
+</pre>
+</body>
+</html>
+<!--HTML generated by highlight 4.19, http://andre-simon.de/-->

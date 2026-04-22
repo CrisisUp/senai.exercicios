@@ -1,0 +1,17 @@
+# 📘 Atividade Extra 56: Programação Genérica e Templates (Armazém Inteligente)
+
+## 🎯 Estudo de Caso
+A transportadora "LogiSpeed" está crescendo e agora precisa armazenar diferentes tipos de itens em seu estoque: desde `PecaMecanica` até `ProdutoQuimico`. Antigamente, eles criavam uma classe diferente para cada tipo de caixa de armazenamento. O novo desafio é criar uma **Caixa Genérica** que possa armazenar QUALQUER tipo de dado, mantendo a segurança de tipos (Type Safety) e evitando a duplicação de código.
+
+## 🛠️ Necessidade Técnica
+Entramos agora no **Nível 31 (Engenheiro de Elite)**, onde exploramos **Templates**.
+*   **Templates (Genéricos):** Permitem criar classes e funções que trabalham com "tipos coringa" (`T`). O compilador gera o código específico para cada tipo no momento em que você o utiliza.
+*   **Reuso Extremo:** Um único código de `Caixa<T>` serve para armazenar inteiros, strings ou objetos complexos.
+*   **Desempenho:** Diferente de linguagens que usam "Object" (como Java antigo), C++ gera código otimizado para cada tipo específico em tempo de compilação.
+
+## 📋 Requisitos (Arquitetura Modular)
+1. Criar a classe template `Armazem<T>` para gerenciar um estoque genérico.
+2. Implementar métodos para `adicionarItem()`, `removerUltimo()` e `exibirEstoque()`.
+3. Criar structs simples `Peca` e `Pacote` para testar o armazém com tipos diferentes.
+4. Demonstrar o uso de templates com tipos primitivos (`int`, `string`) e tipos definidos pelo usuário.
+5. Criar `Armazem.h` e `atividade-extra56-templates.cpp`.

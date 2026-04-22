@@ -1,0 +1,15 @@
+# 📘 Atividade Extra 51: Composição de Classes (Motor Industrial)
+
+## 🎯 Estudo de Caso
+A fábrica "SmartMatrix" precisa agora de um sistema para monitorar seus **Motores Industriais**. Um motor não é apenas um sensor, mas um sistema composto por múltiplos sensores (Pressão e Temperatura). Se qualquer um desses sensores detectar uma anomalia, o motor inteiro deve ser desligado por segurança.
+
+## 🛠️ Necessidade Técnica
+Em vez de colocar toda a lógica de sensores dentro da classe `Motor`, usamos a **Composição (Relationship "Has-A")**. 
+*   **Composição:** Uma classe complexa é construída usando instâncias de outras classes menores como seus atributos.
+*   **Vantagem:** O código do Sensor (criado na Atividade 50) pode ser **reutilizado** sem modificações. Isso ensina o aluno que objetos bem projetados são como peças de LEGO.
+
+## 📋 Requisitos (Arquitetura Modular)
+1. Reutilizar a lógica de `Sensor` (Atividade 50) dentro do namespace `IoT`.
+2. Criar a classe `MotorIndustrial` que contém (compõe) um `SensorPressao`.
+3. Implementar um método `verificarSaude()` no Motor que analisa as leituras do seu sensor interno.
+4. Criar `Motor.h`, `Motor.cpp` e `atividade-extra51-motor.cpp`.

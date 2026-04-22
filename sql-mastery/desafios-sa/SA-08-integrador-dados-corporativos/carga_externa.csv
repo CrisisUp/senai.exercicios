@@ -1,0 +1,6 @@
+serial,categoria,mes,lucro
+SN-X10,Resgate,Jan,5000.0
+SN-X10,Resgate,Fev,5500.0
+SN-B22,Carga,Jan,12000.0
+SN-B22,Carga,Fev,11000.0
+SN-X10,Resgate,Jan,6000.0 -- CONFLITO: Valor atualizado para o mesmo drone/mês

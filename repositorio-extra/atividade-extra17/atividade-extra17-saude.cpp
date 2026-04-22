@@ -2,106 +2,27 @@
  * @file atividade-extra17-saude.cpp
  * @brief Monitoramento de UTI: Introdução a Classes e Encapsulamento.
  * 
- * Este programa demonstra a transição de 'struct' para 'class',
- * utilizando membros privados (private) para proteger a integridade
- * de dados médicos críticos através de métodos de validação (setters).
+ * Versão Refatorada: Arquitetura Modular (Nível 11+).
+ * Demonstra a transição de 'struct' para 'class' de forma profissional.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 22/04/2026
  */
 
 #include <iostream>
-#include <string>
 #include <iomanip>
+#include "MonitorSaude.h"
 
 using namespace std;
 
-// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
-
-namespace UI {
-    const string RESET    = "\033[0m";
-    const string VERMELHO = "\033[31m";
-    const string VERDE    = "\033[32m";
-    const string AMARELO  = "\033[33m";
-    const string CIANO    = "\033[36m";
-}
-
-// --- 2. DEFINIÇÃO DA CLASSE (O NOVO CONCEITO) ---
-
-class PacienteMonitorado {
-private:
-    // Atributos privados: Ninguém fora da classe pode alterá-los diretamente.
-    string nome;
-    int bpm;
-    double temperatura;
-    int oxigenacao;
-
-public:
-    // Construtor: Inicializa o paciente com valores seguros
-    PacienteMonitorado(string n) : nome(n), bpm(70), temperatura(36.5), oxigenacao(98) {}
-
-    // --- MÉTODOS DE ACESSO (SETTERS COM VALIDAÇÃO) ---
-
-    bool setBPM(int valor) {
-        if (valor > 0 && valor < 250) {
-            bpm = valor;
-            return true;
-        }
-        return false; // Rejeitado se for absurdo
-    }
-
-    bool setTemperatura(double valor) {
-        if (valor >= 30.0 && valor <= 45.0) {
-            temperatura = valor;
-            return true;
-        }
-        return false;
-    }
-
-    bool setOxigenacao(int valor) {
-        if (valor >= 0 && valor <= 100) {
-            oxigenacao = valor;
-            return true;
-        }
-        return false;
-    }
-
-    // --- MÉTODOS DE LEITURA (GETTERS) ---
-    string getNome() const { return nome; }
-    int getBPM() const { return bpm; }
-    double getTemperatura() const { return temperatura; }
-    int getOxigenacao() const { return oxigenacao; }
-
-    // --- LÓGICA DE NEGÓCIO: MONITORAMENTO ---
-    void analisarEstado() {
-        cout << "\n-----------------------------------------------" << endl;
-        cout << "RELATÓRIO DE MONITORAMENTO: " << UI::CIANO << nome << UI::RESET << endl;
-        cout << "Frequência Cardíaca: " << bpm << " BPM ";
-        if (bpm > 100 || bpm < 50) cout << UI::VERMELHO << "[ALERTA]" << UI::RESET;
-        else cout << UI::VERDE << "[NORMAL]" << UI::RESET;
-
-        cout << "\nTemperatura        : " << temperatura << " °C ";
-        if (temperatura > 37.5) cout << UI::VERMELHO << "[FEBRE]" << UI::RESET;
-        else cout << UI::VERDE << "[NORMAL]" << UI::RESET;
-
-        cout << "\nOxigenação         : " << oxigenacao << " % ";
-        if (oxigenacao < 94) cout << UI::VERMELHO << "[CRÍTICO]" << UI::RESET;
-        else cout << UI::VERDE << "[NORMAL]" << UI::RESET;
-        cout << "\n-----------------------------------------------" << endl;
-    }
-};
-
-// --- 3. FUNÇÃO PRINCIPAL ---
-
 int main()
 {
-    cout << fixed << setprecision(1);
-
     cout << UI::CIANO << "===============================================" << endl;
     cout << "     SISTEMA DE MONITORAMENTO DE UTI v1.0      " << endl;
+    cout << "      (Arquitetura Modular Refatorada)         " << endl;
     cout << "===============================================" << UI::RESET << endl;
 
-    // Criando um objeto (instância) da classe
+    // Criando um objeto (instância) da classe modular
     PacienteMonitorado p1("João da Silva");
 
     int entradaBPM, entradaOxy;
@@ -126,7 +47,7 @@ int main()
         cout << UI::AMARELO << "AVISO: Valor de Oxigenação inválido ignorado." << UI::RESET << endl;
     }
 
-    // Análise segura dos dados encapsulados
+    // Análise segura dos dados encapsulados no módulo
     p1.analisarEstado();
 
     return 0;
@@ -134,35 +55,29 @@ int main()
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: INTRODUÇÃO À ORIENTAÇÃO A OBJETOS (POO)
+    RESUMO TEÓRICO: ENCAPSULAMENTO E ARQUITETURA MODULAR
     ===============================================================
 
-    1. O QUE É UMA CLASSE (class):
-       - É o "molde" ou "planta baixa" de um objeto. Enquanto a 
-         struct foca em AGRUPAR dados, a classe foca em PROTEGER 
-         dados e em como eles se comportam.
+    1. O PODER DO ENCAPSULAMENTO (Private/Public):
+       - Ao mover a classe para um módulo separado, reforçamos o 
+         conceito de "Caixa Preta". O programador da main não precisa 
+         saber como a validação é feita; ele apenas confia na interface 
+         pública do MonitorSaude.h.
 
-    2. ENCAPSULAMENTO (O pilar da segurança):
-       - private: Atributos que ninguém "de fora" pode tocar. 
-         Garante que a saúde do paciente não seja alterada por 
-         erros de outras partes do sistema.
-       - public: A interface do objeto. São as funções que 
-         permitem interagir com os dados de forma controlada.
+    2. PROTEÇÃO DE DADOS CRÍTICOS:
+       - Em sistemas médicos ou financeiros, o encapsulamento é 
+         vital. Impedir o acesso direto a variáveis como 'oxigenacao' 
+         evita que valores fatais sejam inseridos acidentalmente.
 
-    3. SETTERS (Validadores):
-       - Funções como 'setBPM' agem como "seguranças na porta". 
-         Elas recebem o dado, verificam se faz sentido (ex: BPM > 0) 
-         e só então gravam na memória privada.
-
-    4. CONSTRUTOR:
-       - É a função PacienteMonitorado(string n). Ela garante que, 
-         no momento em que o paciente é "criado", ele já comece 
-         com valores vitais seguros, evitando lixo de memória.
+    3. MANUTENABILIDADE:
+       - Se a regra de febre mudar (ex: de 37.5 para 37.8), alteramos 
+         apenas o MonitorSaude.cpp, e todas as partes do sistema que 
+         usam o monitor serão atualizadas instantaneamente.
 
     ===============================================================
     ASSUNTOS CORRELATOS (Para pesquisa):
-    - Abstração: Representar apenas o essencial para o domínio.
-    - Ocultamento de Dados (Information Hiding).
-    - Métodos Const (getters que não alteram o objeto).
+    - Information Hiding: A base da engenharia de software robusta.
+    - Princípio da Abstração: Esconder detalhes complexos.
+    - Getters/Setters: Por que não usar apenas variáveis públicas?
     ===============================================================
 */

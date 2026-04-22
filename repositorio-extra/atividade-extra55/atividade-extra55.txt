@@ -1,0 +1,17 @@
+# 📘 Atividade Extra 55: Classes Abstratas e Interfaces (Gateway de Pagamentos)
+
+## 🎯 Estudo de Caso
+A loja online "TechBuy" está expandindo suas formas de pagamento. Eles precisam de um sistema de "Gateway" que aceite Cartão de Crédito, Pix e Boleto. No entanto, um "Pagamento" genérico não existe na vida real; o que existe são formas específicas de pagar. O sistema deve garantir que nenhum desenvolvedor tente criar um objeto do tipo "Pagamento" genérico e que todo novo método de pagamento obrigatoriamente implemente a função `autorizar()`.
+
+## 🛠️ Necessidade Técnica
+Para modelar comportamentos que **devem** existir mas não têm uma implementação genérica, usamos **Classes Abstratas**.
+*   **Métodos Virtuais Puros (`virtual ... = 0;`):** Transformam a classe em uma interface. A classe base não fornece implementação, forçando as classes filhas a fazê-lo.
+*   **Impossibilidade de Instalação:** Não é possível dar `new Pagamento()`. Isso garante a integridade da arquitetura do sistema.
+*   **Polimorfismo de Interface:** Podemos tratar qualquer forma de pagamento através de um ponteiro da classe abstrata, chamando métodos que sabemos que estarão lá.
+
+## 📋 Requisitos (Arquitetura Modular)
+1. Criar a classe abstrata `MetodoPagamento` com o método virtual puro `virtual void processar(double valor) = 0`.
+2. Criar a classe `CartaoCredito` que implementa o processamento via operadora.
+3. Criar a classe `Pix` que gera um QR Code (simulado).
+4. Demonstrar que a classe base garante o contrato entre diferentes módulos.
+5. Criar `Pagamento.h`, `Pagamento.cpp` e `atividade-extra55-pagamentos.cpp`.

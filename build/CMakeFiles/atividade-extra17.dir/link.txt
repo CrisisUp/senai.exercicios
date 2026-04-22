@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra17.dir/repositorio-extra/atividade-extra17/MonitorSaude.cpp.o" "CMakeFiles/atividade-extra17.dir/repositorio-extra/atividade-extra17/atividade-extra17-saude.cpp.o" -o atividade-extra17

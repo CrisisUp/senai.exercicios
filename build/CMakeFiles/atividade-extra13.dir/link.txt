@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra13.dir/repositorio-extra/atividade-extra13/GestorBiblioteca.cpp.o" "CMakeFiles/atividade-extra13.dir/repositorio-extra/atividade-extra13/atividade-extra13-excecoes.cpp.o" -o atividade-extra13

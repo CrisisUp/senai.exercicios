@@ -1,0 +1,15 @@
+# 📘 Atividade Extra 50: Namespaces e Organização Modular (IoT Industrial)
+
+## 🎯 Estudo de Caso
+A fábrica "SmartMatrix" está instalando centenas de sensores de pressão e temperatura em sua linha de produção. Como o software está crescendo muito, eles precisam de uma forma de organizar o código para evitar que nomes de funções como `validar()` ou `processar()` entrem em conflito com outras partes do sistema (como o sistema financeiro).
+
+## 🛠️ Necessidade Técnica
+Em projetos de grande escala (Arquitetura Modular), usamos **Namespaces** (`namespace`) para criar "espaços de nomes" isolados. 
+*   **Namespaces:** Como se fossem "pastas virtuais" dentro do código para organizar classes e funções.
+*   **Encapsulamento Avançado:** Uso de métodos privados para auxiliar o processamento interno de um módulo sem expô-lo ao usuário final.
+
+## 📋 Requisitos (Arquitetura Modular Obrigatória)
+1. Criar `Monitoramento.h` dentro do namespace `IoT`.
+2. Criar `Monitoramento.cpp` com a implementação da lógica de sensores.
+3. Criar `atividade-extra50-iot.cpp` para simular as leituras.
+4. O sistema deve validar se a pressão está em níveis seguros (entre 0 e 100 psi) antes de permitir a leitura.

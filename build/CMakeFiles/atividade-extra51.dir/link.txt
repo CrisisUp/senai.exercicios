@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra51.dir/repositorio-extra/atividade-extra51/Motor.cpp.o" "CMakeFiles/atividade-extra51.dir/repositorio-extra/atividade-extra51/atividade-extra51-motor.cpp.o" "CMakeFiles/atividade-extra51.dir/repositorio-extra/atividade-extra50/Monitoramento.cpp.o" -o atividade-extra51

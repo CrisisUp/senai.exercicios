@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     './repositorio-extra/atividade-extra48/atividade-extra48-estoque-evolutivo'
+relocations:     []
+...

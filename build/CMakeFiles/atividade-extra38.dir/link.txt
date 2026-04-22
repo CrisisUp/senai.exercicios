@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra38.dir/repositorio-extra/atividade-extra38/atividade-extra38-grafos.cpp.o" -o atividade-extra38

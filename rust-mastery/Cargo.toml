@@ -37,5 +37,8 @@ members = [
     "integracao-rust-sql/28-crud-completo-frota",
     "integracao-rust-sql/29-fts-log-manager",
     "integracao-rust-sql/30-auditoria-forense",
+    "integracao-rust-sql/31-gestor-frota-async-repo",
+    "integracao-rust-sql/32-relacionamento-muitos-para-muitos",
+    "integracao-rust-sql/33-auditoria-certificacoes",
 ]
 resolver = "2"

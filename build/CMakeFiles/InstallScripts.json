@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/cmake_install.cmake",
+		"/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/repositorio-extra/Evolucao-Legado/cmake_install.cmake",
+		"/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/repositorio-extra/Evolucao-Legado/Atividade-01-Refatorada/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

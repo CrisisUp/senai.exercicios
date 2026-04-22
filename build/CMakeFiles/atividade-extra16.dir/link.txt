@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra16.dir/repositorio-extra/atividade-extra16/MotorERP.cpp.o" "CMakeFiles/atividade-extra16.dir/repositorio-extra/atividade-extra16/atividade-extra16-erp.cpp.o" -o atividade-extra16

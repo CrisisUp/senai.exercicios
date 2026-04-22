@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra11.dir/repositorio-extra/atividade-extra11/GerenciadorAtendimento.cpp.o" "CMakeFiles/atividade-extra11.dir/repositorio-extra/atividade-extra11/atividade-extra11-atendimento.cpp.o" -o atividade-extra11

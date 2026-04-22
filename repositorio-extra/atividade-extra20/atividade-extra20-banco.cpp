@@ -132,16 +132,89 @@ public:
             arq.close();
         }
     }
+
+    // Reset para os testes (Apenas para fins pedagógicos)
+    static void resetBanco() {
+        totalContas = 0;
+        reservaTotalBanco = 0;
+    }
+
+    double getSaldoReal() const {
+        return static_cast<double>(saldoCentavos) / 100.0;
+    }
 };
 
 int ContaBancaria::totalContas = 0;
 long long ContaBancaria::reservaTotalBanco = 0;
 
-// --- 4. FUNÇÃO PRINCIPAL INTERATIVA ---
+// --- 4. LABORATORIO DE TESTES (O Diferencial do Engenheiro) ---
+
+class SuiteDeTestes {
+private:
+    static int testesPassados;
+    static int totalTestes;
+
+    static void afirmar(bool condicao, string descricao) {
+        totalTestes++;
+        if (condicao) {
+            testesPassados++;
+            cout << UI::VERDE << "[PASSOU] " << UI::RESET << descricao << endl;
+        } else {
+            cout << UI::VERMELHO << "[FALHOU] " << UI::RESET << descricao << endl;
+        }
+    }
+
+public:
+    static void executar() {
+        cout << UI::AMARELO << "\n--- INICIANDO DIAGNÓSTICO DO MOTOR BANCÁRIO ---" << UI::RESET << endl;
+        ContaBancaria::resetBanco();
+
+        // Teste 1: Depósito Básico
+        ContaBancaria t1(1, "Teste1", 100.00);
+        t1.depositar(50.00);
+        afirmar(t1.getSaldoReal() == 150.00, "Depósito de R$ 50 deve somar ao saldo inicial de R$ 100.");
+
+        // Teste 2: Saque Válido
+        t1.sacar(30.00);
+        afirmar(t1.getSaldoReal() == 120.00, "Saque de R$ 30 deve subtrair do saldo.");
+
+        // Teste 3: Proteção contra Saldo Insuficiente
+        bool erroCapturado = false;
+        try { t1.sacar(500.00); } catch(...) { erroCapturado = true; }
+        afirmar(erroCapturado, "O sistema deve impedir saques maiores que o saldo disponível.");
+
+        // Teste 4: Integridade do PIX (Transferência)
+        ContaBancaria t2(2, "Teste2", 0.00);
+        t1.transferirPara(t2, 20.00);
+        afirmar(t1.getSaldoReal() == 100.00 && t2.getSaldoReal() == 20.00, 
+               "PIX deve debitar da origem e creditar no destino simultaneamente.");
+
+        // Teste 5: Reserva Global do Banco
+        afirmar(ContaBancaria::getReservaTotal() == 120.00, "A reserva do banco deve ser a soma de todos os saldos.");
+
+        cout << UI::AMARELO << "-----------------------------------------------" << endl;
+        cout << "RESULTADO: " << testesPassados << "/" << totalTestes << " TESTES OK." << endl;
+        if (testesPassados == totalTestes) 
+            cout << UI::VERDE << "MOTOR BANCÁRIO VALIDADO COM SUCESSO!" << UI::RESET << endl;
+        else
+            cout << UI::VERMELHO << "ALERTA: FALHA CRÍTICA NO MOTOR BANCÁRIO!" << UI::RESET << endl;
+        cout << "-----------------------------------------------\n" << endl;
+        
+        // Limpa para a execução real
+        ContaBancaria::resetBanco();
+    }
+};
+int SuiteDeTestes::testesPassados = 0;
+int SuiteDeTestes::totalTestes = 0;
+
+// --- 5. FUNÇÃO PRINCIPAL INTERATIVA ---
 
 int main()
 {
     UI::cabecalho();
+
+    // EXECUTANDO VALIDAÇÃO ATIVA ANTES DO MENU
+    SuiteDeTestes::executar();
 
     // Setup de Contas para o Aluno
     ContaBancaria c1(1001, "Cristiano Pessoa", 1000.00);

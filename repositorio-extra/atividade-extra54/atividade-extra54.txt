@@ -1,0 +1,20 @@
+# 📘 Atividade Extra 54: Polimorfismo e Sobrescrita (Gestão Imobiliária)
+
+## 🎯 Estudo de Caso
+A imobiliária "HouseLogic" precisa de um sistema para calcular o valor total mensal de seus imóveis. Diferentes tipos de imóveis possuem regras de cobrança distintas:
+- **Apartamento:** Valor base + Taxa de Condomínio.
+- **Casa:** Valor base + Taxa de Manutenção de Jardim.
+Embora todos os imóveis tenham um "valor base", o cálculo final é diferente para cada categoria.
+
+## 🛠️ Necessidade Técnica
+Para resolver isso, usamos o **Polimorfismo (Polymorphism)** e a **Sobrescrita de Métodos (Method Overriding)**.
+*   **Métodos Virtuais (`virtual`):** Permitem que a classe base declare um comportamento que as classes filhas podem (ou devem) redefinir.
+*   **Palavra-chave `override` (C++11):** Garante ao compilador que estamos realmente substituindo um método da classe base, evitando erros de digitação.
+*   **Encapsulamento:** As classes filhas agora gerenciam suas próprias regras de cálculo sem que a classe base precise saber os detalhes de cada uma.
+
+## 📋 Requisitos (Arquitetura Modular)
+1. Criar a classe base `Imovel` com um método `virtual double calcularTotal()`.
+2. Criar a classe derivada `Apartamento` que sobrescreve o cálculo adicionando o condomínio.
+3. Criar a classe derivada `Casa` que sobrescreve o cálculo adicionando a manutenção.
+4. Demonstrar a chamada polimórfica (onde o objeto decide qual comportamento executar em tempo de execução).
+5. Criar `Imovel.h`, `Imovel.cpp` e `atividade-extra54-imoveis.cpp`.

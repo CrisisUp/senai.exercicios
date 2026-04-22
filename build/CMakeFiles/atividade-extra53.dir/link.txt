@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra53.dir/repositorio-extra/atividade-extra53/Frota.cpp.o" "CMakeFiles/atividade-extra53.dir/repositorio-extra/atividade-extra53/atividade-extra53-frota.cpp.o" -o atividade-extra53

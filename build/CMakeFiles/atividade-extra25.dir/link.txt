@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra25.dir/repositorio-extra/atividade-extra25/atividade-extra25-refatoracao.cpp.o" -o atividade-extra25

@@ -1,0 +1,23 @@
+# 🏭 DESAFIO INTEGRADOR: Refatoração da Refinaria Evolutiva (SA-4)
+
+## 🎯 Estudo de Caso: Modernizando o Legado
+O sistema de controle da "Refinaria Norte-Sul" (SA-3) foi um sucesso, mas agora eles estão expandindo. Eles precisam monitorar não apenas combustíveis líquidos (`litros`), mas também gases pressurizados (`kg`) e resíduos tóxicos que exigem monitoramento em tempo real por múltiplos sistemas. O código anterior (SA-3), embora modular, era limitado a um único tipo de dado e usava ponteiros simples. 
+
+**O Desafio:** Refatorar a base de código da SA-3 para a arquitetura de **Engenharia de Elite (Nível 31)**.
+
+## 🛠️ Necessidade Técnica
+Este desafio integra os conceitos das Atividades 56 a 59:
+1.  **Templates (Genéricos):** Transformar a classe `Tanque` em `Tanque<T>`, permitindo medir em `double`, `int` ou até mesmo em objetos de medição customizados.
+2.  **Smart Pointers (Segurança):** Substituir qualquer alocação manual por `std::unique_ptr` para sensores exclusivos e `std::shared_ptr` para dados que são lidos por vários departamentos.
+3.  **Especialização de Templates:** Criar uma regra de segurança específica para o tipo `Gás`, que deve ter uma margem de segurança maior que líquidos.
+4.  **Gestão de Recursos (RAII):** Garantir que, ao fechar a central de controle, todos os tanques e sensores sejam destruídos automaticamente, sem vazamentos de memória.
+
+## 📋 Requisitos Funcionais
+1. Implementar a classe template `TanqueEvolutivo<T>` dentro do namespace `EngenhariaElite`.
+2. Usar `std::vector<std::shared_ptr<TanqueEvolutivo<T>>>` para gerenciar a fazenda de tanques da refinaria.
+3. Sobregar operadores para comparar a eficiência entre tanques de tipos diferentes (se compatíveis).
+4. Gerar um relatório final detalhado que mostre a destruição automática de cada recurso ao encerrar o programa.
+
+## 🏗️ Estrutura de Arquivos Obrigatória
+- `TanqueEvolutivo.h`: Classe template (interface e implementação).
+- `SA-4-Refinaria-Evolutiva.cpp`: O simulador de nova geração.

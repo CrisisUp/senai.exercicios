@@ -1,56 +1,71 @@
 /**
  * @file gerador-html.cpp
- * @brief Utilitário para gerar material de estudo COLORIDO (v9.0).
+ * @brief Utilitário para gerar material de estudo COLORIDO (v10.0 - Portable).
  * 
- * Corrige problemas de acentuação (UTF-8) para garantir que os 
- * comentários em português apareçam corretamente no navegador.
+ * Versão Portátil: Remove caminhos absolutos e valida a instalação
+ * das ferramentas de terceiros antes de executar.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 18/04/2026
+ * @date 20/04/2026
  */
 
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <cstdio>
 
 using namespace std;
+
+/**
+ * @brief Verifica se um comando está disponível no sistema.
+ * @param comando Nome do executável (ex: "highlight")
+ * @return true se estiver no PATH, false caso contrário.
+ */
+bool comandoDisponivel(string comando) {
+    string check = "command -v " + comando + " > /dev/null 2>&1";
+    return (system(check.c_str()) == 0);
+}
 
 int main() 
 {
     string nomeArquivo;
 
     cout << "===============================================" << endl;
-    cout << "    GERADOR DE MATERIAL DE ESTUDO (HTML UTF-8) " << endl;
+    cout << "    GERADOR DE MATERIAL (HTML PORTÁTIL v10)    " << endl;
     cout << "===============================================" << endl;
+
+    // 1. Validação de Dependências
+    if (!comandoDisponivel("highlight")) {
+        cout << "\033[31m[ERRO CRÍTICO]: A ferramenta 'highlight' não foi encontrada!\033[0m" << endl;
+        cout << "Instalação sugerida:" << endl;
+        cout << " - macOS: brew install highlight" << endl;
+        cout << " - Linux: sudo apt install highlight" << endl;
+        cout << "===============================================" << endl;
+        return 1;
+    }
 
     cout << "Digite o nome do arquivo (sem o .cpp): ";
     cin >> nomeArquivo;
 
     /* 
-       O COMANDO HIGHLIGHT (MODO CORREÇÃO DE ACENTOS):
-       -I: Inclui o CSS (as cores) dentro do próprio arquivo
-       --encoding=utf-8: GARANTE LEITURA CORRETA DE ACENTOS
+       Uso de comando relativo: O sistema buscará no PATH automaticamente.
+       Isso torna o código compatível com qualquer instalação padrão.
     */
-   
-    // Comando dividido para respeitar o limite de 80 caracteres
-    string comando = "/opt/homebrew/bin/highlight -O html -I "
+    string comando = "highlight -O html -I "
                      "--encoding=utf-8 --font-size=14 --line-numbers "
                      "--style=base16/monokai -i " + nomeArquivo + ".cpp "
                      "-o " + nomeArquivo + ".html 2>/dev/null";
 
-    cout << "\nColorindo o código e corrigindo acentuação..." << endl;
+    cout << "\nColorindo o código com UTF-8..." << endl;
 
     int resultado = system(comando.c_str());
 
     if (resultado == 0) {
         cout << "-----------------------------------------------" << endl;
-        cout << "SUCESSO: Arquivo '" << nomeArquivo << ".html' "
-             << "criado com UTF-8!" << endl;
-        cout << "Os acentos e a pontuação devem aparecer "
-             << "corretamente." << endl;
+        cout << "\033[32mSUCESSO:\033[0m Arquivo '" << nomeArquivo << ".html' criado!" << endl;
         cout << "-----------------------------------------------" << endl;
     } else {
-        cout << "ERRO: O arquivo .cpp não foi encontrado." << endl;
+        cout << "\033[31mERRO:\033[0m O arquivo '" << nomeArquivo << ".cpp' não existe." << endl;
     }
 
     cout << "===============================================" << endl;
@@ -60,21 +75,23 @@ int main()
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: CODIFICAÇÃO DE CARACTERES (UTF-8)
+    RESUMO TEÓRICO: PORTABILIDADE E DEPENDÊNCIAS
     ===============================================================
 
-    1. O QUE É UTF-8?
-       - É o padrão mundial de codificação de texto. Permite que 
-         caracteres especiais (á, é, í, õ, ç) sejam representados 
-         corretamente em qualquer computador.
+    1. CAMINHOS ABSOLUTOS VS. RELATIVOS:
+       - Caminhos fixos (/opt/...) quebram o código em outros PCs. 
+         Ao usar apenas 'highlight', deixamos o Sistema Operacional 
+         resolver onde o programa está instalado através do PATH.
 
-    2. POR QUE O PROBLEMA OCORRE?
-       - Se o programa não avisar que usa UTF-8, o navegador pode 
-         tentar ler em outro padrão, resultando em símbolos 
-         estranhos.
+    2. VALIDAÇÃO DE AMBIENTE (Pre-flight Check):
+       - Programas profissionais verificam se suas dependências estão 
+         prontas antes de começar o trabalho pesado. Isso evita que 
+         o programa "quebre no meio" de forma silenciosa.
 
-    3. FLAGS DE CODIFICAÇÃO:
-       - O parâmetro '--encoding=utf-8' no highlight força o 
-         sistema a respeitar a acentuação do código fonte.
+    3. VARIÁVEIS DE AMBIENTE (PATH):
+       - O PATH é uma lista de pastas que o sistema consulta quando 
+         você digita um comando. Entender como o sistema localiza 
+         binários é fundamental para DevOps e Engenharia de Software.
+
     ===============================================================
 */

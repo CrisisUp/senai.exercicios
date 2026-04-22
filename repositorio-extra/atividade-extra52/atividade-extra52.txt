@@ -1,0 +1,16 @@
+# 📘 Atividade Extra 52: Sobrecarga de Operadores (Comparação de Precisão)
+
+## 🎯 Estudo de Caso
+A "SmartMatrix" precisa agora comparar as leituras de diferentes sensores para identificar qual motor está operando com maior eficiência. Além disso, eles precisam somar leituras para calcular a carga total em uma tubulação. Em vez de usar métodos longos como `sensor1.compararCom(sensor2)`, eles querem usar a sintaxe natural do C++ (`sensor1 > sensor2`).
+
+## 🛠️ Necessidade Técnica
+A **Sobrecarga de Operadores (Operator Overloading)** permite que as classes que criamos respondam a operadores padrão como `+`, `-`, `==`, `<`, `>`.
+*   **Sintaxe Natural:** O código fica muito mais legível e próximo da linguagem matemática.
+*   **Padronização:** Permite que nossos objetos sejam usados em algoritmos da STL (como `std::sort`) que dependem de operadores de comparação.
+
+## 📋 Requisitos (Arquitetura Modular)
+1. Criar a classe `Medicao` que armazena um valor e a unidade (ex: "psi", "C").
+2. Sobregar o operador `+` para somar duas medições (se forem da mesma unidade).
+3. Sobregar o operador `<` para comparar qual medição é menor.
+4. Sobregar o operador `==` para verificar igualdade de precisão.
+5. Criar `Medicao.h`, `Medicao.cpp` e `atividade-extra52-operadores.cpp`.

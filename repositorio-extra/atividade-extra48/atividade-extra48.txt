@@ -1,0 +1,29 @@
+DESAFIO DE REFATORAÇÃO: ESTOQUE EVOLUTIVO (ENGINEERING UPGRADE)
+------------------------------------------------------------------------------
+DOMÍNIO: Gestão de Suprimentos / Refatoração de Legado
+ATIVIDADE: Extra 48 (CICLO DE EVOLUÇÃO 31+)
+CONCEITOS INTEGRADOS: Smart Pointers (unique_ptr), Encapsulamento, 
+                      Testes Unitários e Gestão de Coleções STL.
+
+1. O CENÁRIO (Legado vs. Moderno)
+Lá na Atividade 01, criamos um sistema de estoque que funcionava com variáveis 
+soltas e lógica simples. A empresa cresceu e aquele código "procedural" não 
+suporta mais a complexidade atual. Você foi contratado para transformar aquele 
+código amador em um sistema de classe industrial.
+
+2. A MISSÃO TÉCNICA
+Você deve reconstruir o sistema de análise de estoque aplicando:
+- ENCAPSULAMENTO TOTAL: Nenhuma variável de preço ou quantidade pode ser 
+  acessada diretamente (use getters/setters e métodos de negócio).
+- GESTÃO MODERNA: Use um std::vector de std::unique_ptr<Produto> para gerenciar 
+  vários itens simultaneamente, garantindo zero memory leaks.
+- VALIDAÇÃO ATIVA: O sistema deve possuir uma Suite de Testes que prova, via 
+  código, que o cálculo de reposição e o custo total estão corretos.
+
+3. REQUISITOS OBRIGATÓRIOS
+- Classe 'Produto': Atributos privados e método 'precisaRepor()'.
+- Classe 'Estoque': Motor que processa a lista de produtos.
+- Suite de Testes: Deve validar pelo menos 3 cenários de estoque antes de abrir 
+  o sistema para o usuário.
+- Memória: PROIBIDO o uso de 'delete' manual (Use RAII).
+------------------------------------------------------------------------------

@@ -1,0 +1,31 @@
+# 🚀 DESAFIO DE EVOLUÇÃO: Do Legado ao Moderno (Nível 31+)
+
+## 🎯 Estudo de Caso: Modernização do Sistema de Estoque (v1.0 -> v3.0)
+
+O código original da **Atividade 01** foi escrito por um estagiário usando lógica procedural em arquivo único. Agora que você é um **Engenheiro de Elite**, sua missão é refatorar este sistema para que ele possa ser integrado ao ecossistema **SkyCargo OS**.
+
+## 🛠️ Necessidade Técnica (O Salto de Qualidade)
+
+O sistema atual tem falhas críticas para uma operação industrial:
+1. **Falta de Validação:** Aceita preços negativos ou estoque negativo.
+2. **Arquitetura Monolítica:** Não pode ser usado em outros sistemas.
+3. **Persistência Volátil:** Os dados somem ao fechar o programa.
+4. **Interface Pobre:** Não há logs ou tratamento de erros profissional.
+
+## 📋 Requisitos da Refatoração (Obrigatórios)
+
+1. **Modularização (POO):** Criar uma classe `Produto` e um `GestorEstoque` em arquivos `.h` e `.cpp` separados.
+2. **Código Blindado (Exceções):** Implementar `try-catch` para impedir entradas inválidas (ex: lançar `std::invalid_argument` para preços < 0).
+3. **Persistência (SQL):** Salvar o status final do estoque em um banco SQLite (`estoque_moderno.db`).
+4. **C++ Moderno:** Usar Smart Pointers (`std::unique_ptr`) para gerenciar o ciclo de vida dos objetos de negócio.
+5. **Integração Industrial:** O sistema deve gerar um log JSON simples (simulado) com o resultado da análise.
+
+## 🏗️ Estrutura de Arquivos Esperada
+
+- `Produto.h / .cpp`: Atributos e validação.
+- `GestorEstoque.h / .cpp`: Lógica de reposição e persistência.
+- `main_refatorado.cpp`: Ponto de entrada utilizando C++ moderno.
+- `CMakeLists.txt`: Configuração modular local.
+
+---
+*Este desafio marca sua transição de um programador que "faz funcionar" para um engenheiro que "constrói para durar".*

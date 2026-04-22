@@ -2,198 +2,19 @@
  * @file atividade-extra12-biblioteca.cpp
  * @brief DESAFIO DE FASE: Sistema Integrado de Gestão Bibliotecária.
  * 
- * Versão 1.2: Implementação de Tratamento de Exceções e Robustez.
+ * Versão Refatorada: Agora utilizando Arquitetura Modular (.h e .cpp)
+ * seguindo as normas do Nível 11+ do SENAI C++.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 24/04/2026
  */
 
 #include <iostream>
-#include <vector>
 #include <string>
-#include <stack>
-#include <queue>
-#include <fstream>
-#include <ctime>
 #include <iomanip>
-#include <exception>
+#include "GestorBiblioteca.h"
 
 using namespace std;
-
-// --- 1. CLASSES DE EXCEÇÃO CUSTOMIZADAS ---
-
-class ErroBiblioteca : public exception {
-protected:
-    string mensagem;
-public:
-    ErroBiblioteca(string msg) : mensagem(msg) {}
-    virtual const char* what() const throw() {
-        return mensagem.c_str();
-    }
-};
-
-class ErroArquivo : public ErroBiblioteca {
-public:
-    ErroArquivo(string arquivo) : ErroBiblioteca("[ERRO CRÍTICO]: Arquivo '" + arquivo + "' não encontrado ou ilegível.") {}
-};
-
-class ErroEntrada : public ErroBiblioteca {
-public:
-    ErroEntrada() : ErroBiblioteca("[AVISO]: Entrada inválida. Digite apenas números.") {}
-};
-
-class ErroEstoque : public ErroBiblioteca {
-public:
-    ErroEstoque(string titulo) : ErroBiblioteca("[ESTOQUE]: O livro '" + titulo + "' não está disponível.") {}
-};
-
-// --- 2. ESTRUTURAS DE DADOS ---
-
-struct Livro {
-    string titulo;
-    string autor;
-    int estoque;
-    int id;
-};
-
-struct Emprestimo {
-    string leitor;
-    Livro livro;
-    string dataEmp;
-    string dataDev;
-    int indexCatalogo;
-};
-
-// --- 3. PROTÓTIPOS DAS FUNÇÕES ---
-
-void exibirBanner();
-void carregarCatalogo(vector<Livro> &catalogo);
-string formatarData(time_t t);
-void salvarRelatorio(stack<Emprestimo> s);
-int lerInteiro(string prompt);
-
-// --- 4. FUNÇÃO PRINCIPAL ---
-
-int main()
-{
-    vector<Livro> catalogo;
-    queue<string> filaLeitores;
-    stack<Emprestimo> historico;
-    int opcao = 0;
-
-    exibirBanner();
-
-    try {
-        carregarCatalogo(catalogo);
-
-        if (catalogo.empty()) {
-            throw ErroBiblioteca("O catálogo está vazio. Impossível iniciar sistema.");
-        }
-
-        do {
-            cout << "\n--- PAINEL DE CONTROLE ---" << endl;
-            cout << "Leitores na Fila: " << filaLeitores.size() << " | ";
-            cout << "Empréstimos na Sessão: " << historico.size() << endl;
-            cout << "[1] Adicionar Leitor à Fila" << endl;
-            cout << "[2] Atender Próximo Leitor (Empréstimo)" << endl;
-            cout << "[3] Cancelar Último Empréstimo (DESFAZER)" << endl;
-            cout << "[4] Salvar e Encerrar Expediente" << endl;
-            
-            try {
-                opcao = lerInteiro("Escolha: ");
-
-                if (opcao == 1) {
-                    string nome;
-                    cout << "Nome do Leitor: ";
-                    getline(cin >> ws, nome);
-                    filaLeitores.push(nome);
-                    cout << "[OK]: " << nome << " entrou na fila." << endl;
-                }
-                else if (opcao == 2) {
-                    if (filaLeitores.empty()) {
-                        cout << "[AVISO]: Fila de atendimento vazia." << endl;
-                    } else {
-                        string leitorAtual = filaLeitores.front();
-                        
-                        cout << "\n--- LIVROS DISPONÍVEIS ---" << endl;
-                        cout << left << setw(4) << "ID" << setw(30) << "TÍTULO" << "ESTOQUE" << endl;
-                        cout << "--------------------------------------------------------" << endl;
-                        for (int i = 0; i < (int)catalogo.size(); i++) {
-                            cout << left << "[" << i << "] " 
-                                 << setw(30) << (catalogo[i].titulo.length() > 28 ? catalogo[i].titulo.substr(0, 25) + "..." : catalogo[i].titulo)
-                                 << (catalogo[i].estoque > 0 ? to_string(catalogo[i].estoque) : "ESGOTADO") << endl;
-                        }
-                        
-                        int index = lerInteiro("\nEscolha o índice do livro para " + leitorAtual + " (ou -1 para cancelar): ");
-
-                        if (index == -1) {
-                            cout << "[AVISO]: Atendimento cancelado." << endl;
-                        } else if (index >= 0 && index < (int)catalogo.size()) {
-                            if (catalogo[index].estoque <= 0) {
-                                throw ErroEstoque(catalogo[index].titulo);
-                            }
-
-                            filaLeitores.pop(); 
-                            
-                            Emprestimo emp;
-                            emp.leitor = leitorAtual;
-                            emp.livro = catalogo[index];
-                            emp.indexCatalogo = index;
-
-                            time_t agora = time(0);
-                            time_t dev = agora + (7 * 24 * 60 * 60); 
-                            
-                            emp.dataEmp = formatarData(agora);
-                            emp.dataDev = formatarData(dev);
-
-                            catalogo[index].estoque--;
-                            historico.push(emp);
-                            
-                            cout << "[SUCESSO]: Empréstimo de '" << emp.livro.titulo << "' registrado!" << endl;
-                        } else {
-                            throw ErroBiblioteca("Índice de livro inexistente.");
-                        }
-                    }
-                }
-                else if (opcao == 3) {
-                    if (historico.empty()) {
-                        throw ErroBiblioteca("Nenhum empréstimo para desfazer.");
-                    }
-                    Emprestimo ultimo = historico.top();
-                    catalogo[ultimo.indexCatalogo].estoque++;
-                    cout << "[DESFEITO]: Livro '" << ultimo.livro.titulo << "' voltou ao estoque." << endl;
-                    historico.pop();
-                }
-                else if (opcao != 4) {
-                    cout << "[AVISO]: Opção inválida." << endl;
-                }
-
-            } catch (const ErroBiblioteca& e) {
-                // Captura erros específicos da biblioteca sem encerrar o programa
-                cout << e.what() << endl;
-            }
-
-        } while (opcao != 4);
-
-        salvarRelatorio(historico);
-
-    } catch (const exception& e) {
-        // Captura erros fatais e encerra com segurança
-        cerr << "\nFATAL: " << e.what() << endl;
-        return 1;
-    }
-
-    return 0;
-}
-
-// --- 5. IMPLEMENTAÇÃO DAS FUNÇÕES ---
-
-void exibirBanner() {
-    cout << "===============================================" << endl;
-    cout << "      GESTÃO BIBLIOTECÁRIA INTEGRADA v1.2      " << endl;
-    cout << "      (Módulo de Segurança e Exceções)         " << endl;
-    cout << "===============================================" << endl;
-}
 
 /**
  * @brief Lê um inteiro do teclado com proteção contra caracteres.
@@ -209,99 +30,109 @@ int lerInteiro(string prompt) {
     return valor;
 }
 
-void carregarCatalogo(vector<Livro> &catalogo) 
+int main()
 {
-    ifstream arquivo("repositorio-extra/atividade-extra12/catalogo.txt");
-    if (!arquivo.is_open()) {
-        arquivo.open("catalogo.txt");
-    }
+    GestorBiblioteca gestor;
+    int opcao = 0;
 
-    if (!arquivo.is_open()) {
-        throw ErroArquivo("catalogo.txt");
-    }
+    GestorBiblioteca::exibirBanner();
 
-    string linha;
-    while (getline(arquivo, linha)) {
-        try {
-            size_t pos1 = linha.find(';');
-            size_t pos2 = linha.find(';', pos1 + 1);
+    try {
+        gestor.carregarCatalogo("repositorio-extra/atividade-extra12/catalogo.txt");
 
-            if (pos1 != string::npos && pos2 != string::npos) {
-                Livro l;
-                l.titulo = linha.substr(0, pos1);
-                l.autor = linha.substr(pos1 + 1, pos2 - pos1 - 1);
-                l.estoque = stoi(linha.substr(pos2 + 1));
-                l.id = catalogo.size();
-                catalogo.push_back(l);
-            }
-        } catch (...) {
-            // Se uma linha estiver corrompida, ignora e pula para a próxima
-            continue;
+        if (gestor.getCatalogo().empty()) {
+            throw ErroBiblioteca("O catálogo está vazio. Impossível iniciar sistema.");
         }
+
+        do {
+            cout << "\n--- PAINEL DE CONTROLE ---" << endl;
+            cout << "Leitores na Fila: " << gestor.totalFila() << " | ";
+            cout << "Empréstimos na Sessão: " << gestor.totalHistorico() << endl;
+            cout << "[1] Adicionar Leitor à Fila" << endl;
+            cout << "[2] Atender Próximo Leitor (Empréstimo)" << endl;
+            cout << "[3] Cancelar Último Empréstimo (DESFAZER)" << endl;
+            cout << "[4] Salvar e Encerrar Expediente" << endl;
+            
+            try {
+                opcao = lerInteiro("Escolha: ");
+
+                if (opcao == 1) {
+                    string nome;
+                    cout << "Nome do Leitor: ";
+                    getline(cin >> ws, nome);
+                    gestor.adicionarLeitor(nome);
+                }
+                else if (opcao == 2) {
+                    if (gestor.filaVazia()) {
+                        cout << "[AVISO]: Fila de atendimento vazia." << endl;
+                    } else {
+                        string leitorAtual = gestor.getProximoLeitor();
+                        
+                        cout << "\n--- LIVROS DISPONÍVEIS ---" << endl;
+                        cout << left << setw(4) << "ID" << setw(30) << "TÍTULO" << "ESTOQUE" << endl;
+                        cout << "--------------------------------------------------------" << endl;
+                        const auto& catalogo = gestor.getCatalogo();
+                        for (int i = 0; i < (int)catalogo.size(); i++) {
+                            cout << left << "[" << i << "] " 
+                                 << setw(30) << (catalogo[i].titulo.length() > 28 ? catalogo[i].titulo.substr(0, 25) + "..." : catalogo[i].titulo)
+                                 << (catalogo[i].estoque > 0 ? to_string(catalogo[i].estoque) : "ESGOTADO") << endl;
+                        }
+                        
+                        int index = lerInteiro("\nEscolha o índice do livro para " + leitorAtual + " (ou -1 para cancelar): ");
+
+                        if (index == -1) {
+                            cout << "[AVISO]: Atendimento cancelado." << endl;
+                        } else {
+                            gestor.realizarEmprestimo(index);
+                        }
+                    }
+                }
+                else if (opcao == 3) {
+                    gestor.desfazerEmprestimo();
+                }
+                else if (opcao != 4) {
+                    cout << "[AVISO]: Opção inválida." << endl;
+                }
+
+            } catch (const ErroBiblioteca& e) {
+                cout << e.what() << endl;
+            }
+
+        } while (opcao != 4);
+
+        gestor.salvarRelatorio("repositorio-extra/atividade-extra12/relatorio_dia.txt");
+
+    } catch (const exception& e) {
+        cerr << "\nFATAL: " << e.what() << endl;
+        return 1;
     }
-    arquivo.close();
-    cout << "[SISTEMA]: " << catalogo.size() << " títulos carregados." << endl;
-}
 
-string formatarData(time_t t) {
-    char buffer[20];
-    struct tm * timeinfo = localtime(&t);
-    strftime(buffer, sizeof(buffer), "%d/%m/%Y", timeinfo);
-    return string(buffer);
-}
-
-void salvarRelatorio(stack<Emprestimo> s) {
-    ofstream rel("repositorio-extra/atividade-extra12/relatorio_dia.txt", ios::trunc);
-    if (!rel.is_open()) rel.open("relatorio_dia.txt", ios::trunc);
-
-    if (!rel.is_open()) {
-        throw ErroArquivo("relatorio_dia.txt");
-    }
-
-    rel << "--- RELATÓRIO DE SESSÃO ---\n";
-    rel << "Data: " << formatarData(time(0)) << "\n\n";
-    
-    while (!s.empty()) {
-        Emprestimo e = s.top();
-        rel << "Leitor: " << e.leitor << " | Livro: " << e.livro.titulo << "\n";
-        s.pop();
-    }
-    rel.close();
-    cout << "[SISTEMA]: Relatório gerado com segurança." << endl;
+    return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: PERSISTÊNCIA E RESILIÊNCIA (v1.2)
+    RESUMO TEÓRICO: ARQUITETURA MODULAR E PERSISTÊNCIA
     ===============================================================
 
-    1. MANIPULAÇÃO DE ARQUIVOS (fstream):
-       - ifstream: Fluxo de entrada (leitura). Essencial para carregar 
-         catálogos e bancos de dados externos.
-       - ofstream: Fluxo de saída (escrita). Garante que os dados 
-         sobrevivam após o desligamento do programa (Persistência).
+    1. SEPARAÇÃO DE INTERFACE E IMPLEMENTAÇÃO:
+       - A lógica de gerenciamento da biblioteca foi movida para a 
+         classe GestorBiblioteca, separando a interface do usuário 
+         (main) do processamento de dados.
 
-    2. TRATAMENTO DE EXCEÇÕES (try, catch, throw):
-       - Em vez de deixar o programa travar ao não encontrar um 
-         arquivo ou receber uma letra onde deveria ser um número, 
-         "lançamos" (throw) um erro que é "capturado" (catch) sem 
-         interromper o fluxo do sistema.
+    2. MANIPULAÇÃO DE ARQUIVOS (fstream):
+       - O sistema carrega o catálogo e salva relatórios em arquivos 
+         externos, garantindo que os dados não sejam perdidos.
 
-    3. ESTRUTURAS DE DADOS STL (stack & queue):
-       - Queue (Fila): Primeiro a entrar, primeiro a ser atendido 
-         (FIFO - First-In, First-Out). Ideal para filas de leitores.
-       - Stack (Pilha): Último a entrar, primeiro a sair (LIFO). 
-         Perfeito para a função "Desfazer" (Undo).
-
-    4. HERANÇA DE EXCEÇÕES:
-       - Criamos nossas próprias classes de erro herdando de 
-         std::exception. Isso permite mensagens personalizadas e 
-         profissionais para o usuário.
+    3. TRATAMENTO DE EXCEÇÕES:
+       - O uso de blocos try-catch e classes de exceção customizadas 
+         permite que o sistema lide com erros de forma graciosa.
 
     ===============================================================
-    ASSUNTOS CORRELATOS (Para pesquisa):
-    - Serialização de Dados: Formatos CSV, JSON e XML.
-    - Ponteiros Inteligentes (Smart Pointers): Para gestão de memória.
-    - Bibliotecas Externas para Banco de Dados: SQLite e SQL.
+    ASSUNTOS CORRELATOS
+    ===============================================================
+    - Encapsulamento: Atributos privados protegem o estado da classe.
+    - STL Containers: vector, queue e stack organizam os dados.
+    - Doxygen: Documentação técnica integrada ao código.
     ===============================================================
 */

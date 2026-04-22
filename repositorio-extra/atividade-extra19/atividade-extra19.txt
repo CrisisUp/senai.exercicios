@@ -1,33 +1,20 @@
-ESTUDO DE CASO: MONITORAMENTO ESTRUTURAL DE EDIFÍCIOS (SMART BUILDING)
-------------------------------------------------------------------------------
-DOMÍNIO: Engenharia Civil / IoT
-ATIVIDADE: Extra 19
-CONCEITO NOVO: Membros Estáticos (Atributos e Métodos static)
+# 📘 Atividade Extra 19: Gestão de Inventário de Alta Performance
 
-1. O CENÁRIO
-Em um edifício moderno, centenas de sensores de pressão são instalados nos 
-pilares de sustentação. Cada sensor é um objeto independente, mas todos 
-precisam saber duas coisas globais:
-- Quantos sensores estão ativos no momento no prédio todo?
-- Qual é o limite de carga crítica definido pela engenharia para o edifício?
+## 🏢 Estudo de Caso: "Eletrônica Tech-Flow"
+A Tech-Flow é uma distribuidora de componentes eletrônicos que lida com milhares de itens. O sistema antigo usava vetores de tamanho fixo (arrays), o que causava travamentos quando o estoque crescia ou desperdício de memória quando estava vazio.
 
-2. A NECESSIDADE TÉCNICA
-Até agora, cada objeto tinha sua própria cópia de dados. Se tivéssemos 500 
-objetos 'Sensor', e o limite de carga mudasse, teríamos que atualizar 500 
-variáveis.
-O modificador STATIC resolve isso:
-- Atributo Estático: Uma variável que pertence à CLASSE e não ao objeto. 
-  Existe apenas uma instância dela na memória, compartilhada por todos.
-- Método Estático: Uma função que pode ser chamada sem criar um objeto 
-  (ex: para verificar o status global do sistema).
+## 🛠️ Necessidade Técnica
+Para sistemas modernos, não podemos prever o número exato de itens. Precisamos de **Coleções Dinâmicas** que cresçam conforme a necessidade. Além disso, a busca manual em listas desordenadas é lenta; precisamos de **Algoritmos de Ordenação** eficientes.
 
-3. REQUISITOS DO SISTEMA
-- Classe 'SensorPressao'.
-- Atributos privados: idSensor (int), pressaoAtual (double).
-- Atributos ESTÁTICOS: totalSensores (contador) e alertaCritico (bool).
-- Métodos:
-    * Construtor: Deve incrementar o contador global toda vez que um sensor "nascer".
-    * setLeitura: Atualiza a pressão e, se ultrapassar um limite, ativa o alerta 
-      estático global para todos os sensores.
-    * Método Estático 'isSistemaEmAlerta': Retorna se o prédio corre risco.
-------------------------------------------------------------------------------
+## 🎯 Requisitos da Aplicação
+1.  **Classe Produto:** Deve conter SKU (código), Nome, Quantidade e Preço.
+2.  **Uso de std::vector:** Armazenar os produtos sem limite fixo de tamanho.
+3.  **Adição Dinâmica:** Permitir que o usuário adicione quantos produtos desejar.
+4.  **Ordenação Profissional:** O sistema deve oferecer a opção de ordenar o estoque por PREÇO ou por NOME (A-Z) usando `std::sort`.
+5.  **Interface ANSI:** Feedback visual para itens com estoque baixo (quantidade < 5).
+
+## 🚀 Novos Conceitos C++
+-   `std::vector`: O container mais importante do C++.
+-   `push_back()`: Inserção dinâmica no final da lista.
+-   `std::sort`: Algoritmo QuickSort/Introsort altamente otimizado.
+-   **Funções Lambda (`[](){}`):** Passar critérios de ordenação de forma elegante e concisa.

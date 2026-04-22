@@ -1,0 +1,100 @@
+# ==============================================================================
+# 🌍 GUIA UNIVERSAL DE BLINDAGEM (WINDOWS / MAC / LINUX)
+# ==============================================================================
+# Este arquivo é uma referência completa de Engenharia de Software.
+# Ele protege o repositório contra "sujeira" de qualquer sistema operacional.
+# ==============================================================================
+
+# --- [ 1. BANCOS DE DADOS (CROSS-PLATFORM) ] ---
+# Motivo: Evita versionar dados brutos que mudam a cada teste.
+*.db              # Bancos de dados SQLite/SQL
+*.db-journal      # Arquivo temporário de transação (Journal)
+*.db-wal          # Write-Ahead Log do SQLite
+*.sqlite          # Extensão comum de banco portátil
+*.sqlite3         # Extensão específica da versão 3
+
+# --- [ 2. AMBIENTE DE COMPILAÇÃO C++ (CMAKE/MAKE) ] ---
+# Motivo: Arquivos gerados durante a tradução do código para a máquina.
+# Eles variam dependendo se você está no Windows (MinGW/MSVC) ou Linux/Mac (GCC/Clang).
+build/            # Pasta padrão onde o CMake gera o projeto
+bin/              # Opcional: Onde os executáveis finais são colocados
+obj/              # Arquivos de objeto intermediários (.o ou .obj)
+CMakeFiles/       # Pastas internas de controle do CMake
+CMakeCache.txt    # Cache de caminhos (nunca compartilhe, pois contém caminhos da SUA máquina)
+cmake_install.cmake
+Makefile          # O script de compilação gerado pelo CMake
+*.cmake           # Arquivos auxiliares do CMake
+!CMakeLists.txt   # EXCEÇÃO: O arquivo de configuração principal DEVE ser versionado
+!LegacyExercises.cmake # EXCEÇÃO: Nosso script de legado também deve ser guardado
+
+# --- [ 3. ARTEFATOS DE COMPILAÇÃO (BINÁRIOS POR S.O.) ] ---
+# Motivo: Bloqueia o "produto final" da compilação, que não roda em máquinas diferentes.
+# [Linux/Mac]
+*.o               # Arquivos objeto (Linux/Mac)
+*.out             # Executável padrão Unix
+*.so              # Bibliotecas compartilhadas (Linux)
+*.dylib           # Bibliotecas dinâmicas (macOS)
+*.dSYM/           # Metadados de Debug do macOS (Pastas grandes)
+# [Windows]
+*.obj             # Arquivos objeto (Windows)
+*.exe             # Executáveis Windows
+*.dll             # Dynamic Link Libraries (Windows)
+*.lib             # Bibliotecas estáticas (Windows)
+*.exp             # Export files (Windows)
+*.pdb             # Program Database (Debug do Windows - muito pesado)
+
+# --- [ 4. PROJETO ESPECÍFICO (SENAI) ] ---
+# Motivo: Regras personalizadas para o nosso fluxo de atividades.
+gerador-html      # Nosso executável de automação
+gerador-pdf       # Nosso executável de automação
+repositorio/**/atividade*        # Bloqueia executáveis de exercícios
+repositorio-extra/**/atividade*  # Bloqueia executáveis extras
+SA-*                             # Bloqueia executáveis de desafios (SA)
+
+# --- [ 5. ECOSSISTEMA RUST (CARGO) ] ---
+# Motivo: O Rust baixa e compila tudo dentro da pasta 'target'.
+target/           # Todo o cache de compilação do Rust fica aqui
+**/*.rs.bk        # Backups criados pelo 'rustfmt' ou 'clippy'
+Cargo.lock.bak    # Backup do arquivo de trava de versões
+
+# --- [ 6. ARQUIVOS DE SISTEMA OPERACIONAL (OS SPECIFIC) ] ---
+# [macOS]
+.DS_Store         # Indexação visual de pastas do Finder
+.AppleDouble      # Metadados de arquivos Apple
+.LSOverride       # Configurações de visualização locais
+._*               # Arquivos de metadados invisíveis
+# [Windows]
+Thumbs.db         # Cache de miniaturas de imagens
+ehthumbs.db       # Cache de miniaturas do Windows Media Center
+Desktop.ini       # Configurações de exibição de pasta no Windows
+$RECYCLE.BIN/     # Conteúdo da lixeira se você deletar via terminal
+# [Linux]
+*~                # Arquivos temporários criados por muitos editores Linux
+.fuse_hidden*     # Arquivos ocultos do sistema de arquivos FUSE
+.directory        # Configurações de pasta do KDE
+.Trash/           # Pasta de lixeira do Linux
+
+# --- [ 7. IDEs E EDITORES DE CÓDIGO ] ---
+# [VS Code]
+.vscode/          # Configurações de Workspace (opcional, mas recomendado ignorar)
+# [Visual Studio (Windows)]
+.vs/              # Configurações internas do Visual Studio
+*.user            # Preferências de usuário
+*.suo             # Opções de usuário da Solution
+# [JetBrains - CLion / RustRover]
+.idea/            # Configurações de projeto da JetBrains
+*.iws             # Workspace de projetos JetBrains
+# [Outros Editores]
+*.swp             # Arquivo de Swap do Vim (evita travamento de edição)
+*.swo             # Arquivo de Swap secundário do Vim
+*.sublime-project # Projeto do Sublime Text
+*.sublime-workspace
+
+# --- [ 8. LOGS E DADOS TEMPORÁRIOS ] ---
+# Motivo: Arquivos que registram o comportamento do programa durante o desenvolvimento.
+*.log             # Logs genéricos
+log_*.txt         # Nossos logs de segurança
+relatorio_*.txt   # Nossos relatórios de saída
+DRE_SESSAO.txt    # Saída do Motor ERP
+pacientes.txt     # Dados de teste de Saúde
+catalogo.txt      # Dados de teste de Biblioteca
