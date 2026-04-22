@@ -1,0 +1,62 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SkyCargo Gateway: Secure HTTP API for Drone Telemetry'
+
+# @file api-setup.yaml
+# @brief Template IaC para provisionamento de Endpoints e Integrações.
+# 
+# Atividade 07 - Cloud Interface (Nível Arquiteto).
+# 
+# @author SENAI - Cristiano Batista Pessoa
+# @date 22/04/2026
+
+Parameters:
+  TargetLambdaArn:
+    Type: String
+    Description: ARN do Lambda processador (Atividade 06).
+
+Resources:
+  # 1. A API HTTP (MODERNA E RÁPIDA)
+  PublicApi:
+    Type: AWS::ApiGatewayV2::Api
+    Properties:
+      Name: SkyCargo-Public-API-IaC
+      ProtocolType: HTTP
+
+  # 2. INTEGRAÇÃO COM LAMBDA
+  ApiIntegration:
+    Type: AWS::ApiGatewayV2::Integration
+    Properties:
+      ApiId: !Ref PublicApi
+      IntegrationType: AWS_PROXY
+      IntegrationUri: !Ref TargetLambdaArn
+      PayloadFormatVersion: '2.0'
+
+  # 3. ROTA DE TELEMETRIA
+  ApiRoute:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: !Ref PublicApi
+      RouteKey: 'POST /telemetria'
+      Target: !Sub 'integrations/${ApiIntegration}'
+
+  # 4. PERMISSÃO DE ACESSO (GATEWAY -> LAMBDA)
+  LambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref TargetLambdaArn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${PublicApi}/*'
+
+  # 5. DEPLOYMENT STAGE
+  ApiStage:
+    Type: AWS::ApiGatewayV2::Stage
+    Properties:
+      ApiId: !Ref PublicApi
+      StageName: '$default'
+      AutoDeploy: true
+
+Outputs:
+  ApiEndpoint:
+    Description: URL Base para envio de telemetria.
+    Value: !GetAtt PublicApi.ApiEndpoint

@@ -1,12 +1,19 @@
 /**
  * @file atividade-extra21-agro.cpp
- * @brief Gestão de Maquinário: Introdução à Herança e Membros Protegidos.
+ * @brief Gestão de Maquinário: Herança Profissional e Membros Protegidos.
  * 
- * Este programa demonstra como reaproveitar código criando uma classe base
- * (MaquinaAgricola) e uma classe especializada (Trator).
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Demonstra o reuso de código via hierarquia de classes e proteção de estado.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Inheritance Layout)
+ * - Objeto Trator: Alocado na STACK. Seu layout contém primeiro os membros da 
+ *   classe mãe (id, marca, combustivel) seguidos pelos membros da filha (capacidade).
+ * - Cadeia de Construtores: A memória é reservada para o objeto total, mas o 
+ *   construtor da mãe é executado PRIMEIRO para garantir a base sólida.
+ * - Strings (id, marca): Ponteiros na STACK, dados reais na HEAP.
  */
 
 #include <iostream>
@@ -15,92 +22,131 @@
 
 using namespace std;
 
-// --- 1. NAMESPACE DE INTERFACE ---
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
 
 namespace UI {
     const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
+    const string VERMELHO = "\033[31m";
     const string VERDE    = "\033[32m";
     const string AMARELO  = "\033[33m";
     const string AZUL     = "\033[34m";
     const string CIANO    = "\033[36m";
+    const string BRANCO   = "\033[37m";
+
+    inline void limparTela() { cout << "\033[2J\033[1;1H"; }
 }
 
 // --- 2. CLASSE BASE (MÃE) ---
 
+/**
+ * @class MaquinaAgricola
+ * @brief Define a abstração básica para qualquer maquinário da fazenda.
+ */
 class MaquinaAgricola {
 protected:
-    // Protected: Filhas acessam, o mundo externo não.
+    // Protected: Permite que as classes filhas acessem, mas mantém o encapsulamento externo.
     string id;
     string marca;
-    double combustivel; // Porcentagem 0-100
+    double combustivel; // Nível em %
 
 public:
-    MaquinaAgricola(string _id, string _marca) 
-        : id(_id), marca(_marca), combustivel(50.0) {} // Inicia com meio tanque
+    /**
+     * @brief Construtor da Base com Lista de Inicialização (Performance).
+     */
+    MaquinaAgricola(const string& _id, const string& _marca) 
+        : id(_id), marca(_marca), combustivel(50.0) {}
 
+    /**
+     * @brief Abastece a máquina até o limite de segurança.
+     */
     void abastecer() {
         combustivel = 100.0;
-        cout << UI::VERDE << "[SISTEMA]: Máquina " << id << " totalmente abastecida." << UI::RESET << endl;
+        cout << UI::VERDE << "[SISTEMA]: Máquina " << UI::NEGRITO << id << UI::RESET 
+             << UI::VERDE << " totalmente abastecida (BioDiesel 100%)." << UI::RESET << endl;
     }
 
     void exibirBase() const {
-        cout << "ID: " << id << " | Marca: " << marca 
-             << " | Tanque: " << combustivel << "%" << endl;
+        cout << UI::BRANCO << "ID      : " << UI::RESET << UI::CIANO << id << UI::RESET << endl;
+        cout << UI::BRANCO << "MARCA   : " << UI::RESET << marca << endl;
+        cout << UI::BRANCO << "TANQUE  : " << UI::RESET;
+        if (combustivel < 20.0) cout << UI::VERMELHO << UI::NEGRITO;
+        else cout << UI::VERDE;
+        cout << combustivel << "%" << UI::RESET << endl;
     }
 };
 
 // --- 3. CLASSE DERIVADA (FILHA) ---
 
-// Sintaxe de Herança: class NomeFilha : public NomeMae
+/**
+ * @class Trator
+ * @brief Especialização de MaquinaAgricola para operações de tração pesada.
+ */
 class Trator : public MaquinaAgricola {
 private:
-    double capacidadeReboque; // Atributo exclusivo do Trator
+    double capacidadeReboque; // Em toneladas
 
 public:
-    // O construtor da filha deve chamar o construtor da mãe
-    Trator(string _id, string _marca, double _cap) 
+    /**
+     * @brief Construtor do Trator: Delega a criação da base para a mãe.
+     */
+    Trator(const string& _id, const string& _marca, double _cap) 
         : MaquinaAgricola(_id, _marca), capacidadeReboque(_cap) {}
 
+    /**
+     * @brief Operação específica da subclasse.
+     */
     void ararTerra() {
-        if (combustivel >= 10.0) {
-            combustivel -= 10.0; // Acessando membro 'protected' da mãe
-            cout << UI::AMARELO << "[TRATOR]: Operação de aragem concluída (-10% diesel)." << UI::RESET << endl;
+        if (combustivel >= 15.0) {
+            combustivel -= 15.0; // Acesso direto ao membro protected da mãe
+            cout << UI::AMARELO << UI::NEGRITO << "[OPERACIONAL]: Aragem concluída com sucesso (-15% combustível)." << UI::RESET << endl;
         } else {
-            cout << "\033[31m[ALERTA]: Combustível insuficiente para arar!\033[0m" << endl;
+            cout << UI::VERMELHO << UI::NEGRITO << "[ALERTA CRÍTICO]: Nível de combustível insuficiente para operação pesada!" << UI::RESET << endl;
         }
     }
 
-    void exibirTrator() const {
-        cout << "\n--- STATUS DO TRATOR ---" << endl;
-        exibirBase(); // Chamando método da mãe
-        cout << "Capacidade de Reboque: " << capacidadeReboque << " toneladas" << endl;
-        cout << "------------------------" << endl;
+    /**
+     * @brief Exibição estendida (Base + Especialização).
+     */
+    void exibirStatus() const {
+        cout << "\n" << UI::NEGRITO << "--- TELEMETRIA DO MAQUINÁRIO ---" << UI::RESET << endl;
+        exibirBase(); // Reuso de método da mãe
+        cout << UI::BRANCO << "REBOQUE : " << UI::RESET << capacidadeReboque << " Toneladas" << endl;
+        cout << UI::NEGRITO << "--------------------------------" << UI::RESET << endl;
     }
 };
 
-// --- 4. FUNÇÃO PRINCIPAL ---
+// --- 4. EXECUÇÃO PRINCIPAL ---
 
 int main()
 {
+    UI::limparTela();
     cout << fixed << setprecision(1);
 
-    cout << UI::CIANO << "===============================================" << endl;
-    cout << "      SISTEMA DE GESTÃO AGROTECH v1.0          " << endl;
+    cout << UI::VERDE << UI::NEGRITO << "===============================================" << endl;
+    cout << "      SISTEMA DE GESTÃO AGROTECH v2.0          " << endl;
+    cout << "       (Elite Inheritance Module)              " << endl;
     cout << "===============================================" << UI::RESET << endl;
 
-    // Criando um objeto da classe filha
-    Trator meuTrator("T-900", "John Deere", 15.5);
+    // Instanciação na STACK
+    Trator johnDeere("T-900", "John Deere", 18.5);
 
     int opt = 0;
     do {
-        meuTrator.exibirTrator();
-        cout << "[1] Arar Terra | [2] Abastecer | [3] Sair" << endl;
-        cout << "Escolha: ";
-        cin >> opt;
+        johnDeere.exibirStatus();
+        cout << UI::BRANCO << "\nMENU DE COMANDO:" << UI::RESET << endl;
+        cout << "[1] Arar Terra (Trabalho)" << endl;
+        cout << "[2] Reabastecer Máquina" << endl;
+        cout << "[3] Finalizar Turno" << endl;
+        cout << UI::CIANO << "Escolha: " << UI::RESET;
+        
+        if (!(cin >> opt)) break;
 
         switch (opt) {
-            case 1: meuTrator.ararTerra(); break;
-            case 2: meuTrator.abastecer(); break;
+            case 1: johnDeere.ararTerra(); break;
+            case 2: johnDeere.abastecer(); break;
+            case 3: cout << UI::AMARELO << "Encerrando sistemas de bordo..." << UI::RESET << endl; break;
+            default: cout << UI::VERMELHO << "Comando desconhecido." << UI::RESET << endl;
         }
     } while (opt != 3);
 
@@ -109,35 +155,36 @@ int main()
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: HERANÇA (INHERITANCE)
+    RESUMO TEÓRICO: HERANÇA E REUSO ARQUITETURAL
     ===============================================================
 
-    1. O CONCEITO "É UM" (IS-A):
-       - A herança modela relações onde uma classe filha é uma 
-         especialização da mãe. Ex: Um Trator É UMA Máquina Agrícola.
+    1. O PILAR DA HERANÇA:
+       - Permite que classes compartilhem atributos e comportamentos. 
+         No Agrotech, 'MaquinaAgricola' define o contrato básico de 
+         existência (id, marca, abastecer), enquanto 'Trator' define 
+         a utilidade específica.
 
-    2. MEMBROS PROTEGIDOS (protected):
-       - É o meio termo entre private e public. Atributos protected 
-         podem ser lidos e alterados diretamente pelas classes 
-         filhas, mas continuam invisíveis para o código fora da 
-         hierarquia.
+    2. O MODIFICADOR 'PROTECTED':
+       - É a chave para a herança saudável. Ele mantém os dados 
+         escondidos do resto do sistema (como o private), mas abre 
+         uma "porta de confiança" para que as classes filhas possam 
+         manipular o estado interno da mãe sem intermediários.
 
-    3. REUTILIZAÇÃO DE CÓDIGO:
-       - O método abastecer() foi escrito apenas na MaquinaAgricola, 
-         mas o objeto Trator pode usá-lo livremente. Isso evita 
-         duplicação e bugs.
+    3. LISTA DE INICIALIZAÇÃO NA HERANÇA:
+       - Note que o construtor do Trator chama explicitamente 
+         'MaquinaAgricola(_id, _marca)'. Isso é OBRIGATÓRIO, pois a 
+         parte mãe do objeto deve ser validada e criada antes que a 
+         parte filha receba seus dados extras.
 
-    4. CONSTRUTORES NA HERANÇA:
-       - A classe filha não herda o construtor da mãe. Ela deve 
-         chamar explicitamente o construtor da mãe em sua lista de 
-         inicialização para garantir que a parte "mãe" do objeto 
-         seja criada corretamente.
+    4. PERFORMANCE (FANTASMA DO CPU):
+       - Strings são passadas por 'const string&' para evitar que 
+         o C++ faça cópias desnecessárias na transição entre os 
+         construtores da filha e da mãe.
 
     ===============================================================
-    ASSUNTOS CORRELATOS (Para pesquisa):
-    - Herança Múltipla (C++ permite, mas exige cuidado).
-    - Sobrescrita de Métodos (Overriding).
-    - Composição vs Herança (Princípio de Design).
-    - Tipos de Herança (public, protected, private inheritance).
+    ASSUNTOS CORRELATOS:
+    - Sobrescrita (Overriding) vs Sobrecarga (Overloading).
+    - Polimorfismo Dinâmico (Funções Virtuais).
+    - Herança de Interface vs Herança de Implementação.
     ===============================================================
 */

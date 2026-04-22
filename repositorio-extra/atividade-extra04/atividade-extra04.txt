@@ -39,7 +39,17 @@ REQUISITOS DO PROGRAMA:
 DICAS PARA O SUCESSO:
 - Para o "Menor Valor", inicialize sua variável com um valor 
   muito alto (ex: 999.0) ou com o primeiro item do vetor.
-- Use 'float' ou 'double' para o consumo e cálculos.
+- Use 'float' or 'double' para o consumo e cálculos.
 - Lembre-se do 'fixed' e 'setprecision(2)' para um visual 
   profissional.
 ===============================================================
+
+===============================================================
+ANÁLISE DE FALHA CRÍTICA (INPUT FAILURE):
+A robustez de um sistema de frota depende da qualidade dos dados. 
+Se um usuário inserir um caractere inválido, o programa pode entrar 
+em loop infinito ou processar zeros indevidamente. 
+SOLUÇÃO: Sempre verifique 'if (cin.fail())' após leituras críticas 
+e limpe o buffer com 'cin.clear()' e 'cin.ignore()'.
+===============================================================
+

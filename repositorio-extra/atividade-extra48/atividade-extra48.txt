@@ -1,29 +1,37 @@
-DESAFIO DE REFATORAÇÃO: ESTOQUE EVOLUTIVO (ENGINEERING UPGRADE)
+DESAFIO DE REFATORAÇÃO: ESTOQUE EVOLUTIVO (ENGINEERING UPGRADE) v2.0
 ------------------------------------------------------------------------------
 DOMÍNIO: Gestão de Suprimentos / Refatoração de Legado
 ATIVIDADE: Extra 48 (CICLO DE EVOLUÇÃO 31+)
-CONCEITOS INTEGRADOS: Smart Pointers (unique_ptr), Encapsulamento, 
-                      Testes Unitários e Gestão de Coleções STL.
+CONCEITO NOVO: Smart Pointers (unique_ptr), Encapsulamento e Testes Unitários.
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 1. O CENÁRIO (Legado vs. Moderno)
 Lá na Atividade 01, criamos um sistema de estoque que funcionava com variáveis 
 soltas e lógica simples. A empresa cresceu e aquele código "procedural" não 
-suporta mais a complexidade atual. Você foi contratado para transformar aquele 
-código amador em um sistema de classe industrial.
+suporta mais a complexidade atual. Você deve transformar aquele código 
+amador em um sistema de classe industrial.
 
 2. A MISSÃO TÉCNICA
-Você deve reconstruir o sistema de análise de estoque aplicando:
-- ENCAPSULAMENTO TOTAL: Nenhuma variável de preço ou quantidade pode ser 
-  acessada diretamente (use getters/setters e métodos de negócio).
-- GESTÃO MODERNA: Use um std::vector de std::unique_ptr<Produto> para gerenciar 
-  vários itens simultaneamente, garantindo zero memory leaks.
-- VALIDAÇÃO ATIVA: O sistema deve possuir uma Suite de Testes que prova, via 
-  código, que o cálculo de reposição e o custo total estão corretos.
+Reconstrução do motor de análise de estoque aplicando a "Blindagem de Elite":
+- ENCAPSULAMENTO TOTAL: Atributos privados com métodos de negócio robustos.
+- GESTÃO RAII: Uso de `std::unique_ptr` para posse única de objetos no Heap.
+- VALIDAÇÃO ATIVA: Suite de Testes Unitários integrada ao ciclo de boot.
+- GUARDIÃO FINANCEIRO: Migração para cálculos de centavos inteiros.
 
-3. REQUISITOS OBRIGATÓRIOS
-- Classe 'Produto': Atributos privados e método 'precisaRepor()'.
-- Classe 'Estoque': Motor que processa a lista de produtos.
-- Suite de Testes: Deve validar pelo menos 3 cenários de estoque antes de abrir 
-  o sistema para o usuário.
-- Memória: PROIBIDO o uso de 'delete' manual (Use RAII).
+3. 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ENGENHARIA DE QUALIDADE)
+- RISCO DE TESTE FALSO-POSITIVO: Se a Suite de Testes não cobrir os limites de 
+  estoque (ex: atual == mínimo), o sistema pode falhar em produção silenciosamente. 
+  Solução: Testar cenários de borda (Edge Cases).
+- RISCO DE VAZAMENTO SILENCIOSO: Embora o unique_ptr evite o vazamento, o uso 
+  incorreto de referências circulares (se houvesse shared_ptr) poderia prender a 
+  RAM. No unique_ptr, o risco é o "Dead Pointer" se a posse for perdida.
+- RISCO DE ARREDONDAMENTO EM ESCALA: Somar o custo de reposição de milhões de 
+  itens usando 'double' geraria discrepâncias de milhares de reais na auditoria 
+  anual.
+
+4. REQUISITOS DO SISTEMA
+- Motor de Suprimentos com Smart Pointers.
+- Suíte de Diagnóstico de Lógica integrada.
+- Implementação de Guardião Financeiro (Centavos).
+- Interface ANSI para telemetria de suprimentos.
 ------------------------------------------------------------------------------

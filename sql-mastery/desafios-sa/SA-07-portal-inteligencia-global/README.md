@@ -21,8 +21,11 @@ Este desafio integra os conhecimentos do Nível 50-60 (Atividades 19 a 22):
 4. Realizar uma query que calcule a média móvel de 3 missões por drone.
 5. Gerar um Pivot que mostre o total de quilômetros por Região (Americas, Europa, Asia) como colunas.
 
-## 🏗️ Estrutura de Arquivos Obrigatória
+## ⚠️ Análise de Falha Crítica (Elite Analytics)
 
-- `README.md`: Requisitos.
-- `queries.sql`: A arquitetura do portal.
-- `INTERACAO_SQLITE.md`: Manual de comando do Arquiteto.
+O Portal de Inteligência Global centraliza dados estratégicos, o que amplia os riscos de falhas estruturais:
+
+1.  **Riscos de Performance de Window Functions:** O uso extensivo de `OVER(PARTITION BY...)` em grandes volumes de dados sem índices adequados nas colunas de partição e ordenação pode causar *full table scans* repetitivos, levando a uma degradação exponencial da performance do dashboard.
+2.  **Corrupção Massiva (Multi-Database):** Ao utilizar `ATTACH DATABASE`, uma falha de energia ou interrupção de transação durante operações que envolvam múltiplos bancos pode levar a estados de inconsistência onde um banco reflete a alteração e o outro não, dificultando a recuperação de desastres.
+3.  **Data Leaks via Cross-Database Join:** A facilidade de unir bancos externos (`ATTACH`) aumenta o risco de vazamento de dados sensíveis de produção para ambientes de relatório se as permissões de arquivo do sistema operacional não forem rigorosamente controladas, permitindo que usuários de analytics acessem tabelas restritas.
+4.  **Inconsistência de Backup:** Backups realizados via simples cópia de arquivo em bancos anexados podem resultar em instantâneos (snapshots) inconsistentes entre si, já que o SQLite não garante atomicidade de backup entre múltiplos arquivos de banco de dados distintos simultaneamente.

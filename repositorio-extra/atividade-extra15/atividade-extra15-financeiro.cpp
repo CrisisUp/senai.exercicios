@@ -25,9 +25,9 @@ int main()
         financeiro.carregarCatalogo();
 
         do {
-            cout << "\n" << Cor::CIANO << Cor::NEGRITO << "--- SISTEMA FINANCEIRO (MODULAR) ---" << Cor::RESET << endl;
-            cout << "Fila: " << Cor::AMARELO << financeiro.getFila().size() << Cor::RESET;
-            cout << " | Caixa do Dia: " << Cor::VERDE << GestorFinanceiro::formatarMoeda(financeiro.getCaixa()) << Cor::RESET << endl;
+            cout << "\n" << UI::CIANO << UI::NEGRITO << "--- SISTEMA FINANCEIRO (MODULAR) ---" << UI::RESET << endl;
+            cout << "Fila: " << UI::AMARELO << financeiro.getFila().size() << UI::RESET;
+            cout << " | Caixa do Dia: " << UI::VERDE << GestorFinanceiro::formatarMoeda(financeiro.getCaixa()) << UI::RESET << endl;
             cout << "[1] Novo Leitor | [2] Atender (Aluguel) | [3] Resumo | [4] Sair" << endl;
             
             try {
@@ -44,16 +44,20 @@ int main()
                     
                     cout << "\n--- CATÁLOGO DE ALUGUEL ---" << endl;
                     cout << left << setw(4) << "ID" << setw(25) << "LIVRO" << "PREÇO/ALUGUEL" << endl;
-                    for (int i = 0; i < (int)financeiro.getCatalogo().size(); i++) {
-                        Livro& l = financeiro.getCatalogo()[i];
+                    
+                    const auto& catalogo = financeiro.getCatalogo();
+                    for (int i = 0; i < (int)catalogo.size(); i++) {
+                        const Livro& l = catalogo[i];
                         cout << "[" << i << "] " << setw(25) << l.titulo 
-                             << Cor::AMARELO << GestorFinanceiro::formatarMoeda(l.precoCentavos) << Cor::RESET 
-                             << (l.estoque > 0 ? "" : Cor::VERMELHO + " (ESGOTADO)" + Cor::RESET) << endl;
+                             << UI::AMARELO << GestorFinanceiro::formatarMoeda(l.precoCentavos) << UI::RESET 
+                             << (l.estoque > 0 ? "" : UI::VERMELHO + " (ESGOTADO)" + UI::RESET) << endl;
                     }
 
                     int idx = GestorFinanceiro::lerInteiro("\nEscolha o Livro (ID): ");
                     
-                    cout << "Total a pagar: " << Cor::VERDE << GestorFinanceiro::formatarMoeda(financeiro.getCatalogo()[idx].precoCentavos) << Cor::RESET << endl;
+                    if (idx < 0 || idx >= (int)catalogo.size()) throw ErroBiblioteca("ID inválido.");
+
+                    cout << "Total a pagar: " << UI::VERDE << GestorFinanceiro::formatarMoeda(catalogo[idx].precoCentavos) << UI::RESET << endl;
                     string valorStr;
                     cout << "Digite o valor recebido (ex: 5.00 ou 5,00): ";
                     cin >> valorStr;
@@ -62,7 +66,7 @@ int main()
                 }
                 else if (opcao == 3) {
                     cout << "\n--- RELATÓRIO DE CAIXA ---" << endl;
-                    cout << "Total Arrecadado: " << Cor::VERDE << GestorFinanceiro::formatarMoeda(financeiro.getCaixa()) << Cor::RESET << endl;
+                    cout << "Total Arrecadado: " << UI::VERDE << GestorFinanceiro::formatarMoeda(financeiro.getCaixa()) << UI::RESET << endl;
                     cout << "Operações Realizadas: " << financeiro.getOperacoesCount() << endl;
                 }
 
@@ -73,7 +77,7 @@ int main()
         } while (opcao != 4);
 
     } catch (const exception& e) {
-        cerr << Cor::VERMELHO << "FALHA CRÍTICA: " << e.what() << Cor::RESET << endl;
+        cerr << UI::VERMELHO << "FALHA CRÍTICA: " << e.what() << UI::RESET << endl;
         return 1;
     }
 

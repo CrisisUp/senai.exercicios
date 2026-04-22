@@ -1,9 +1,9 @@
 /**
  * @file atividade-extra17-saude.cpp
- * @brief Monitoramento de UTI: Introdução a Classes e Encapsulamento.
+ * @brief Monitoramento de UTI: Introdução a Classes e Encapsulamento Profissional.
  * 
- * Versão Refatorada: Arquitetura Modular (Nível 11+).
- * Demonstra a transição de 'struct' para 'class' de forma profissional.
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Demonstra a transição de 'struct' para 'class' com proteção de memória.
  * 
  * @author SENAI - Cristiano Batista Pessoa
  * @date 22/04/2026
@@ -17,67 +17,76 @@ using namespace std;
 
 int main()
 {
-    cout << UI::CIANO << "===============================================" << endl;
-    cout << "     SISTEMA DE MONITORAMENTO DE UTI v1.0      " << endl;
-    cout << "      (Arquitetura Modular Refatorada)         " << endl;
+    UI::limparTela();
+    cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
+    cout << "     SISTEMA DE MONITORAMENTO DE UTI v2.0      " << endl;
+    cout << "       (Elite Engineering Refactored)          " << endl;
     cout << "===============================================" << UI::RESET << endl;
 
-    // Criando um objeto (instância) da classe modular
+    // Instanciação na STACK (Otimizado)
     PacienteMonitorado p1("João da Silva");
 
     int entradaBPM, entradaOxy;
     double entradaTemp;
 
-    // Simulação de entrada de dados do monitor real
-    cout << "Digite o BPM atual do paciente: ";
-    cin >> entradaBPM;
+    // Interface de entrada com validação de fluxo
+    cout << UI::BRANCO << "Digite o BPM atual do paciente: " << UI::RESET;
+    if (!(cin >> entradaBPM)) {
+        cout << UI::VERMELHO << "ERRO: Entrada inválida detectada (Input Failure)." << UI::RESET << endl;
+        return 1;
+    }
     if (!p1.setBPM(entradaBPM)) {
-        cout << UI::AMARELO << "AVISO: Valor de BPM inválido ignorado para segurança." << UI::RESET << endl;
+        cout << UI::AMARELO << "AVISO: Valor de BPM fora da faixa médica segura." << UI::RESET << endl;
     }
 
-    cout << "Digite a Temperatura atual (°C): ";
+    cout << UI::BRANCO << "Digite a Temperatura atual (°C): " << UI::RESET;
     cin >> entradaTemp;
     if (!p1.setTemperatura(entradaTemp)) {
-        cout << UI::AMARELO << "AVISO: Valor de Temperatura inválido ignorado." << UI::RESET << endl;
+        cout << UI::AMARELO << "AVISO: Valor de Temperatura ignorado (Inconsistência)." << UI::RESET << endl;
     }
 
-    cout << "Digite a Oxigenação (%): ";
+    cout << UI::BRANCO << "Digite a Oxigenação (%): " << UI::RESET;
     cin >> entradaOxy;
     if (!p1.setOxigenacao(entradaOxy)) {
-        cout << UI::AMARELO << "AVISO: Valor de Oxigenação inválido ignorado." << UI::RESET << endl;
+        cout << UI::AMARELO << "AVISO: Valor de Oxigenação crítico ou inválido." << UI::RESET << endl;
     }
 
-    // Análise segura dos dados encapsulados no módulo
+    // Processamento do Relatório Clínica (UI encapsulada)
     p1.analisarEstado();
 
+    cout << UI::VERDE << "\nMonitoramento concluído com sucesso." << UI::RESET << endl;
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: ENCAPSULAMENTO E ARQUITETURA MODULAR
+    RESUMO TEÓRICO: ENGENHARIA DE ELITE E ENCAPSULAMENTO
     ===============================================================
 
-    1. O PODER DO ENCAPSULAMENTO (Private/Public):
-       - Ao mover a classe para um módulo separado, reforçamos o 
-         conceito de "Caixa Preta". O programador da main não precisa 
-         saber como a validação é feita; ele apenas confia na interface 
-         pública do MonitorSaude.h.
+    1. ANATOMIA DA MEMÓRIA (STACK vs HEAP):
+       - O objeto 'p1' reside inteiramente na STACK. No entanto, o seu 
+         atributo 'std::string nome' gerencia um ponteiro para a HEAP, 
+         onde o texto real está guardado. Ao usar referências constantes 
+         (const string&), evitamos que o C++ duplique esse texto na HEAP 
+         toda vez que chamamos o construtor ou um Getter.
 
-    2. PROTEÇÃO DE DADOS CRÍTICOS:
-       - Em sistemas médicos ou financeiros, o encapsulamento é 
-         vital. Impedir o acesso direto a variáveis como 'oxigenacao' 
-         evita que valores fatais sejam inseridos acidentalmente.
+    2. ENCAPSULAMENTO COMO BARREIRA DE SEGURANÇA:
+       - Diferente da struct (onde tudo é público), a 'class' protege 
+         seus membros com o modificador 'private'. Isso cria uma 
+         \"Invariante de Classe\": o BPM do paciente NUNCA será 
+         negativo, pois o único caminho para alterá-lo (setBPM) 
+         bloqueia valores ilegais.
 
-    3. MANUTENABILIDADE:
-       - Se a regra de febre mudar (ex: de 37.5 para 37.8), alteramos 
-         apenas o MonitorSaude.cpp, e todas as partes do sistema que 
-         usam o monitor serão atualizadas instantaneamente.
+    3. OTIMIZAÇÃO FANTASMA DO CPU:
+       - O método getNome() retorna 'const string&'. Isso é 
+         fundamental em sistemas de alta performance; se retornássemos 
+         apenas 'string', o C++ criaria uma cópia temporária do nome 
+         a cada leitura, desperdiçando ciclos de CPU.
 
     ===============================================================
-    ASSUNTOS CORRELATOS (Para pesquisa):
-    - Information Hiding: A base da engenharia de software robusta.
-    - Princípio da Abstração: Esconder detalhes complexos.
-    - Getters/Setters: Por que não usar apenas variáveis públicas?
+    ASSUNTOS CORRELATOS:
+    - RAII (Resource Acquisition Is Initialization): O coração do C++.
+    - Rule of Three/Five: Como gerenciar cópias de classes complexas.
+    - Inline Functions: Otimizando pequenos métodos como Getters.
     ===============================================================
 */

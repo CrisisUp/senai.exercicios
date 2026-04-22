@@ -14,32 +14,50 @@
 #include <stack>
 #include <queue>
 #include <exception>
+#include <ctime>
 
-// --- 1. CLASSES DE EXCEÇÃO CUSTOMIZADAS ---
+/**
+ * @section MemoryMap Mapeamento de Memória (Fase 3)
+ * - STACK: Instância de GestorBiblioteca e variáveis locais de tempo.
+ * - HEAP: Atributos dinâmicos como vector<Livro>, queue e stack.
+ */
+
+// --- CONSOLIDAÇÃO UI ---
+namespace UI {
+    const std::string RESET = "\033[0m";
+    const std::string RED   = "\033[31m";
+    const std::string GREEN = "\033[32m";
+    const std::string CYAN  = "\033[36m";
+    const std::string YELLOW = "\033[33m";
+}
+
+// --- 1. CLASSES DE EXCEÇÃO CUSTOMIZADAS (CÓDIGO BLINDADO) ---
 
 class ErroBiblioteca : public std::exception {
 protected:
     std::string mensagem;
 public:
     ErroBiblioteca(std::string msg) : mensagem(msg) {}
-    virtual const char* what() const throw() {
+    const char* what() const noexcept override {
         return mensagem.c_str();
     }
 };
 
 class ErroArquivo : public ErroBiblioteca {
 public:
-    ErroArquivo(std::string arquivo) : ErroBiblioteca("[ERRO CRÍTICO]: Arquivo '" + arquivo + "' não encontrado ou ilegível.") {}
+    ErroArquivo(const std::string& arquivo) 
+        : ErroBiblioteca("ERRO DE ARQUITETURA: Arquivo '" + arquivo + "' corrompido ou inexistente.") {}
 };
 
 class ErroEntrada : public ErroBiblioteca {
 public:
-    ErroEntrada() : ErroBiblioteca("[AVISO]: Entrada inválida. Digite apenas números.") {}
+    ErroEntrada() : ErroBiblioteca("ERRO DE VALIDAÇÃO: Entrada inválida. Esperado dado numérico.") {}
 };
 
 class ErroEstoque : public ErroBiblioteca {
 public:
-    ErroEstoque(std::string titulo) : ErroBiblioteca("[ESTOQUE]: O livro '" + titulo + "' não está disponível.") {}
+    ErroEstoque(const std::string& titulo) 
+        : ErroBiblioteca("ERRO DE NEGÓCIO: O livro '" + titulo + "' está esgotado.") {}
 };
 
 // --- 2. ESTRUTURAS DE DADOS ---
@@ -94,11 +112,11 @@ public:
      */
     void salvarRelatorio(const std::string& caminho);
 
-    // Getters
+    // Getters - FANTASMA DO CPU (const refs e const methods)
     size_t totalFila() const { return filaLeitores.size(); }
     size_t totalHistorico() const { return historico.size(); }
     const std::vector<Livro>& getCatalogo() const { return catalogo; }
-    std::string getProximoLeitor() const { return filaLeitores.empty() ? "" : filaLeitores.front(); }
+    const std::string& getProximoLeitor() const;
     bool filaVazia() const { return filaLeitores.empty(); }
     bool historicoVazio() const { return historico.empty(); }
 

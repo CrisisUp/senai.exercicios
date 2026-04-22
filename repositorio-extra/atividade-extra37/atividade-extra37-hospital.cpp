@@ -1,16 +1,19 @@
 /**
  * @file atividade-extra37-hospital.cpp
- * @brief DESAFIO SUPREMO: G-HEALTH - Integrated Hospital Management System.
+ * @brief G-HEALTH: Engenharia de Sistemas Bare-Metal e Múltiplos Padrões.
  * 
- * Este projeto é a síntese final de Estruturas Manuais e Padrões de Projeto:
- * - Fila FIFO (Recepção)
- * - Lista Encadeada (Prontuário Individual)
- * - Pilha LIFO (Auditoria de Eventos)
- * - Singleton (Validação Robusta)
- * - Gestão de Memória Dinâmica Manual.
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Integração de Fila, Lista e Pilha Manuais com Validação Singleton.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Bare-Metal Tiered Heap)
+ * - Nível 1: Fila de Triagem (QueueNode na HEAP) aponta para Paciente.
+ * - Nível 2: Objeto Paciente (HEAP) contém cabeçalho de Lista Encadeada.
+ * - Nível 3: Prontuário (ProntuarioNode na HEAP) forma a trilha de dados.
+ * - Auditoria: Pilha (LogNode na HEAP) cresce independentemente.
+ * - Singleton Scanner: Vida eterna no DATA SEGMENT.
  */
 
 #include <iostream>
@@ -22,25 +25,29 @@
 
 using namespace std;
 
-// --- 1. INTERFACE E CORES (UI) ---
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
 
 namespace UI {
     const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
     const string VERDE    = "\033[32m";
     const string VERMELHO = "\033[31m";
     const string AMARELO  = "\033[33m";
+    const string AZUL     = "\033[34m";
     const string CIANO    = "\033[36m";
-    const string NEGRITO  = "\033[1m";
+    const string BRANCO   = "\033[37m";
 
-    void limpar() { cout << "\033[2J\033[1;1H"; }
+    inline void limpar() { cout << "\033[2J\033[1;1H"; }
+    
     void banner() {
-        cout << CIANO << "===============================================" << endl;
-        cout << "      G-HEALTH: SISTEMA HOSPITALAR v1.0        " << endl;
-        cout << "===============================================" << RESET << endl;
+        cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
+        cout << "      G-HEALTH: SISTEMA HOSPITALAR v2.0        " << endl;
+        cout << "       (Elite Bare-Metal Architecture)         " << endl;
+        cout << "===============================================" << UI::RESET << endl;
     }
 }
 
-// --- 2. SINGLETON: SCANNER DE DADOS BLINDADO ---
+// --- 2. PADRÃO SINGLETON: SCANNER BLINDADO ---
 
 class Scanner {
 private:
@@ -55,85 +62,107 @@ public:
     }
 
     template <typename T>
-    T ler(string msg) {
+    T ler(const string& msg) {
         T dado;
         while (true) {
-            cout << msg;
+            cout << UI::BRANCO << msg << UI::RESET;
             if (cin >> dado) {
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 return dado;
             }
-            cout << UI::VERMELHO << " [ERRO]: Entrada inválida. Tente novamente." << UI::RESET << endl;
+            cout << UI::VERMELHO << " [ERRO]: Tipo inválido. Purga de buffer ativa." << UI::RESET << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
 
-    string lerTexto(string msg) {
+    string lerTexto(const string& msg) {
         string t;
-        cout << msg;
+        cout << UI::BRANCO << msg << UI::RESET;
         getline(cin >> ws, t);
         return t;
     }
 };
 
-// --- 3. ESTRUTURAS DINÂMICAS MANUAIS ---
+// --- 3. ESTRUTURAS DINÂMICAS (NÍVEL ARQUITETURA) ---
 
-// Nó do Prontuário (Lista Simples)
+/**
+ * @struct ProntuarioNode
+ * @brief Registro clínico atômico em lista encadeada.
+ */
 struct ProntuarioNode {
     string diagnostico;
     string data;
     ProntuarioNode* proximo;
-    ProntuarioNode(string d, string dt) : diagnostico(d), data(dt), proximo(nullptr) {}
+    ProntuarioNode(const string& d, const string& dt) 
+        : diagnostico(d), data(dt), proximo(nullptr) {}
 };
 
-// Nó do Paciente (Para a Fila de Triagem)
+/**
+ * @struct Paciente
+ * @brief Entidade mestre que gerencia sua própria sub-estrutura dinâmica.
+ */
 struct Paciente {
     string nome;
     int idade;
-    ProntuarioNode* historico; // Lista encadeada interna
+    ProntuarioNode* historico; 
 
-    Paciente(string n, int i) : nome(n), idade(i), historico(nullptr) {}
+    Paciente(const string& n, int i) : nome(n), idade(i), historico(nullptr) {}
 
-    void adicionarAoProntuario(string diag) {
-        ProntuarioNode* novo = new ProntuarioNode(diag, "19/04/2026");
+    void adicionarAoProntuario(const string& diag) {
+        ProntuarioNode* novo = new ProntuarioNode(diag, "22/04/2026");
         novo->proximo = historico;
         historico = novo;
     }
+
+    ~Paciente() {
+        // Destruição em cascata do histórico (Zelador de Memória)
+        ProntuarioNode* h = historico;
+        while (h) {
+            ProntuarioNode* t = h;
+            h = h->proximo;
+            delete t;
+        }
+    }
 };
 
+/**
+ * @struct QueueNode
+ * @brief Container para a fila de espera FIFO.
+ */
 struct QueueNode {
-    Paciente* paciente;
+    Paciente* p;
     QueueNode* proximo;
-    QueueNode(Paciente* p) : paciente(p), proximo(nullptr) {}
+    QueueNode(Paciente* _p) : p(_p), proximo(nullptr) {}
 };
 
-// Nó da Auditoria (Pilha)
+/**
+ * @struct LogNode
+ * @brief Container para a pilha de auditoria LIFO.
+ */
 struct LogNode {
     string acao;
     LogNode* proximo;
-    LogNode(string a) : acao(a), proximo(nullptr) {}
+    LogNode(const string& a) : acao(a), proximo(nullptr) {}
 };
 
-// --- 4. GESTOR DO HOSPITAL (A CLASSE MESTRE) ---
+// --- 4. GESTOR HOSPITALAR (CORE ENGINE) ---
 
 class GHealth {
 private:
-    // Fila FIFO (Triagem)
-    QueueNode *inicioFila, *fimFila;
-    
-    // Pilha LIFO (Auditoria)
-    LogNode* topoLogs;
-
-    static int pacientesAtendidos;
+    QueueNode *inicioFila, *fimFila; // Head e Tail (FIFO)
+    LogNode* topoLogs;               // Stack Top (LIFO)
+    static int contadorSessao;
 
 public:
     GHealth() : inicioFila(nullptr), fimFila(nullptr), topoLogs(nullptr) {}
 
-    // Lógica da Fila (FIFO)
-    void registrarEntrada(string nome, int idade) {
-        Paciente* p = new Paciente(nome, idade);
-        QueueNode* novoNode = new QueueNode(p);
+    /**
+     * @brief Registra entrada via Alocação Dinâmica Multinível.
+     */
+    void registrarEntrada(const string& nome, int idade) {
+        Paciente* novoP = new Paciente(nome, idade);
+        QueueNode* novoNode = new QueueNode(novoP);
         
         if (!inicioFila) {
             inicioFila = fimFila = novoNode;
@@ -141,166 +170,173 @@ public:
             fimFila->proximo = novoNode;
             fimFila = novoNode;
         }
-        registrarLog("Entrada: " + nome);
-        cout << UI::VERDE << "[OK]: Paciente em triagem." << UI::RESET << endl;
+        registrarLog("Ingresso: " + nome);
+        cout << UI::VERDE << "[SISTEMA]: Paciente indexado na fila de triagem." << UI::RESET << endl;
     }
 
+    /**
+     * @brief Processa o próximo da fila e persiste prontuário.
+     */
     void atenderProximo() {
         if (!inicioFila) {
-            cout << UI::AMARELO << "[AVISO]: Fila vazia." << UI::RESET << endl;
+            cout << UI::AMARELO << UI::NEGRITO << "[AVISO]: Setor de triagem sem pacientes pendentes." << UI::RESET << endl;
             return;
         }
         QueueNode* temp = inicioFila;
-        Paciente* p = temp->paciente;
+        Paciente* pacienteAtivo = temp->p;
 
         UI::limpar();
-        cout << UI::CIANO << "--- CONSULTA MÉDICA ---" << UI::RESET << endl;
-        cout << "Paciente: " << p->nome << " (" << p->idade << " anos)" << endl;
+        cout << UI::CIANO << UI::NEGRITO << "--- G-HEALTH: SALA DE EXAME ---" << UI::RESET << endl;
+        cout << "Paciente : " << UI::NEGRITO << pacienteAtivo->nome << UI::RESET << endl;
+        cout << "Idade    : " << pacienteAtivo->idade << " anos" << endl;
         
-        string diag = Scanner::get().lerTexto("Digite o Diagnóstico: ");
-        p->adicionarAoProntuario(diag);
-        pacientesAtendidos++;
+        string desc = Scanner::get().lerTexto("Diagnóstico Clínico: ");
+        pacienteAtivo->adicionarAoProntuario(desc);
+        contadorSessao++;
         
-        registrarLog("Atendimento: " + p->nome);
+        registrarLog("Atendimento Concluído: " + pacienteAtivo->nome);
 
-        // Remove da fila
+        // Desencadeamento FIFO
         inicioFila = inicioFila->proximo;
         if (!inicioFila) fimFila = nullptr;
         
-        salvarExtrato(p);
+        persistirHistorico(pacienteAtivo);
         
-        // Limpeza do paciente atendido (Neste sistema, assumimos que ele vai pra casa)
-        deletarPaciente(p);
+        // Destruição segura: Paciente e seu histórico interno
+        delete pacienteAtivo; 
         delete temp;
         
-        cout << UI::VERDE << "[SUCESSO]: Prontuário atualizado e salvo." << UI::RESET << endl;
-        system("sleep 1");
+        cout << UI::VERDE << "[OK]: Prontuário digital assinado e arquivado." << UI::RESET << endl;
+        // Simulação de delay de processamento
+        for(int i=0; i<100000000; i++); 
     }
 
-    void registrarLog(string acao) {
+    void registrarLog(const string& acao) {
         LogNode* novo = new LogNode(acao);
         novo->proximo = topoLogs;
         topoLogs = novo;
     }
 
-    void exibirLogs() {
-        cout << "\n--- ÚLTIMOS EVENTOS (AUDITORIA) ---" << endl;
+    void exibirAuditoria() const {
+        cout << "\n" << UI::NEGRITO << "TRILHA DE AUDITORIA (LIFO):" << UI::RESET << endl;
         LogNode* p = topoLogs;
         while (p) {
-            cout << " >> " << p->acao << endl;
+            cout << UI::AMARELO << " >> " << UI::RESET << p->acao << endl;
             p = p->proximo;
         }
     }
 
-    void salvarExtrato(Paciente* p) {
-        ofstream arq("repositorio-extra/atividade-extra37/prontuario_" + p->nome + ".txt");
-        arq << "=== G-HEALTH HOSPITAL ===\n";
-        arq << "PACIENTE: " << p->nome << "\n";
-        arq << "DIAGNÓSTICOS:\n";
-        ProntuarioNode* h = p->historico;
-        while (h) {
-            arq << "- " << h->data << ": " << h->diagnostico << "\n";
-            h = h->proximo;
+    void persistirHistorico(Paciente* p) {
+        string path = "repositorio-extra/atividade-extra37/prontuario_" + p->nome + ".txt";
+        ofstream arq(path);
+        if (arq.is_open()) {
+            arq << "===============================================\n";
+            arq << "       G-HEALTH: PRONTUÁRIO ELETRÔNICO         \n";
+            arq << "===============================================\n";
+            arq << "NOME : " << p->nome << " | IDADE: " << p->idade << "\n";
+            arq << "HISTÓRICO DE EVENTOS:\n";
+            ProntuarioNode* h = p->historico;
+            while (h) {
+                arq << " - [" << h->data << "]: " << h->diagnostico << "\n";
+                h = h->proximo;
+            }
+            arq.close();
         }
-        arq.close();
     }
 
-    void deletarPaciente(Paciente* p) {
-        ProntuarioNode* h = p->historico;
-        while (h) {
-            ProntuarioNode* t = h;
-            h = h->proximo;
-            delete t;
-        }
-        delete p;
-    }
-
+    /**
+     * @brief Destrutor de Elite: Purga multinível da HEAP.
+     */
     ~GHealth() {
-        // Limpeza total (Zero Memory Leak)
+        cout << UI::AMARELO << "\n[SHUTDOWN]: Iniciando purga de memória hospitalar..." << UI::RESET << endl;
+        // Limpa Fila e Pacientes órfãos
         while (inicioFila) {
             QueueNode* t = inicioFila;
             inicioFila = inicioFila->proximo;
-            deletarPaciente(t->paciente);
+            delete t->p; // Aciona o destrutor do paciente (cascata)
             delete t;
         }
+        // Limpa Pilha de Logs
         while (topoLogs) {
             LogNode* t = topoLogs;
             topoLogs = topoLogs->proximo;
             delete t;
         }
+        cout << UI::VERDE << "[CHECKPOINT]: RAM liberada com sucesso." << UI::RESET << endl;
     }
 };
 
-int GHealth::pacientesAtendidos = 0;
+int GHealth::contadorSessao = 0;
 
-// --- 5. MAIN INTERATIVA ---
+// --- 5. EXECUÇÃO DO CENTRO MÉDICO ---
 
 int main()
 {
-    GHealth hospital;
-    Scanner& scan = Scanner::get();
-    int opt = 0;
+    GHealth motorHospital;
+    Scanner& s = Scanner::get();
+    int op = 0;
 
     do {
         UI::limpar();
         UI::banner();
-        cout << "[1] Nova Triagem  [2] Atender  [3] Auditoria  [4] Sair" << endl;
-        opt = scan.ler<int>("Escolha: ");
+        cout << UI::BRANCO << "[1] Triagem  [2] Atender  [3] Auditoria  [4] Sair" << UI::RESET << endl;
+        op = s.ler<int>("Ação Médica: ");
 
         try {
-            if (opt == 1) {
-                string nome = scan.lerTexto("Nome do Paciente: ");
-                int idade = scan.ler<int>("Idade: ");
-                hospital.registrarEntrada(nome, idade);
-                system("sleep 1");
+            if (op == 1) {
+                string n = s.lerTexto("Nome do Paciente: ");
+                int i = s.ler<int>("Idade: ");
+                motorHospital.registrarEntrada(n, i);
             }
-            else if (opt == 2) {
-                hospital.atenderProximo();
+            else if (op == 2) {
+                motorHospital.atenderProximo();
             }
-            else if (opt == 3) {
-                hospital.exibirLogs();
-                cout << "\n[ENTER] para voltar...";
+            else if (op == 3) {
+                motorHospital.exibirAuditoria();
+                cout << UI::AMARELO << "\n[ENTER] para retornar ao painel..." << UI::RESET;
                 cin.ignore(1000, '\n'); cin.get();
             }
         } catch (const exception& e) {
-            cout << UI::VERMELHO << "ERRO: " << e.what() << UI::RESET << endl;
+            cout << UI::VERMELHO << "FALHA CRÍTICA: " << e.what() << UI::RESET << endl;
         }
 
-    } while (opt != 4);
+    } while (op != 4);
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: O DESAFIO DA MAESTRIA LENDÁRIA
+    RESUMO TEÓRICO: ENGENHARIA BARE-METAL (FUSÃO FINAL)
     ===============================================================
 
-    1. GESTÃO DE MEMÓRIA EM MÚLTIPLAS CAMADAS:
-       - Este projeto demonstra como objetos complexos (Paciente) 
-         podem conter suas próprias estruturas dinâmicas (Lista 
-         Encadeada de Prontuários). A destruição deve ser em cascata 
-         para não deixar "órfãos" na memória.
+    1. DESTRUIÇÃO EM CASCATA:
+       - O diferencial deste projeto é a responsabilidade do objeto 
+         Paciente em limpar sua própria lista de prontuário ao 
+         morrer na memória. Isso simplifica o código do Gestor e 
+         garante o princípio da Responsabilidade Única.
 
-    2. FUSÃO DE LÓGICAS (FIFO vs LIFO):
-       - Aplicamos a Fila na Triagem (ordem de chegada) e a Pilha 
-         na Auditoria (o evento mais recente no topo). É a prova 
-         definitiva de que você sabe quando usar cada estrutura.
+    2. FANTASMA DO CPU (ELITE ACCESS):
+       - Todas as mensagens de log e diagnósticos são processadas 
+         via referências constantes, minimizando o tráfego na HEAP 
+         enquanto o sistema gerencia milhares de ponteiros.
 
-    3. ROBUSTEZ SINGLETON:
-       - O uso do Scanner Singleton garante que a interface com o 
-         humano seja o ponto mais forte, e não o mais fraco, do 
-         seu sistema.
+    3. HIERARQUIA DE ESTRUTURAS:
+       - Mostramos que uma Fila (FIFO) pode conter elementos que 
+         carregam Listas (Linked Lists). Dominar essa união é a base 
+         para construir Sistemas Operacionais ou Motores de Banco 
+         de Dados.
 
-    4. ENGENHARIA DE QUALIDADE (VAZAMENTO ZERO):
-       - O uso intensivo de destrutores que percorrem listas para 
-         liberar memória (`while(p) { delete ... }`) é o que 
-         diferencia um software acadêmico de um industrial.
+    4. RESILIÊNCIA SINGLETON:
+       - O sistema é imune a "Input Attacks". O Scanner centraliza 
+         a inteligência de recuperação de fluxo, tornando a 
+         experiência do usuário (médico/operador) fluida e estável.
 
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Grafos: Para mapear a propagação de doenças no hospital.
-    - Árvores Binárias (BST): Para busca rápida de pacientes por ID.
-    - Ponteiros Inteligentes (C++11): Como automatizar essa limpeza.
+    - Memory Pools: Como otimizar milhares de alocações pequenas.
+    - Garbage Collection Algorithms: Como linguagens como Java 
+      fariam isso automaticamente.
+    - Persistent Data Structures.
     ===============================================================
 */

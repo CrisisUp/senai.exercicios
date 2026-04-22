@@ -29,9 +29,9 @@ int main()
         }
 
         do {
-            cout << "\n--- PAINEL DE CONTROLE (MODULAR) ---" << endl;
-            cout << "Leitores na Fila: " << biblioteca.getFila().size() << " | ";
-            cout << "Empréstimos na Sessão: " << biblioteca.getHistorico().size() << endl;
+            cout << "\n--- " << UI::CYAN << "PAINEL DE CONTROLE (MODULAR)" << UI::RESET << " ---" << endl;
+            cout << "Leitores na Fila: " << UI::YELLOW << biblioteca.totalFila() << UI::RESET << " | ";
+            cout << "Empréstimos na Sessão: " << UI::YELLOW << biblioteca.totalHistorico() << UI::RESET << endl;
             cout << "[1] Adicionar Leitor à Fila" << endl;
             cout << "[2] Atender Próximo Leitor (Empréstimo)" << endl;
             cout << "[3] Cancelar Último Empréstimo (DESFAZER)" << endl;
@@ -47,17 +47,19 @@ int main()
                     biblioteca.adicionarLeitor(nome);
                 }
                 else if (opcao == 2) {
-                    if (biblioteca.getFila().empty()) {
-                        cout << "[AVISO]: Fila de atendimento vazia." << endl;
+                    if (biblioteca.totalFila() == 0) {
+                        cout << UI::YELLOW << "[AVISO]: " << UI::RESET << "Fila de atendimento vazia." << endl;
                     } else {
-                        cout << "\n--- LIVROS DISPONÍVEIS ---" << endl;
+                        const string& leitorAtual = biblioteca.getProximoLeitor();
+                        cout << UI::CYAN << "\n--- ATENDENDO: " << UI::RESET << leitorAtual << " ---" << endl;
                         cout << left << setw(4) << "ID" << setw(30) << "TÍTULO" << "ESTOQUE" << endl;
                         cout << "--------------------------------------------------------" << endl;
-                        for (int i = 0; i < (int)biblioteca.getCatalogo().size(); i++) {
-                            Livro& l = biblioteca.getCatalogo()[i];
+                        const auto& catalogo = biblioteca.getCatalogo();
+                        for (int i = 0; i < (int)catalogo.size(); i++) {
+                            const Livro& l = catalogo[i];
                             cout << left << "[" << i << "] " 
                                  << setw(30) << (l.titulo.length() > 28 ? l.titulo.substr(0, 25) + "..." : l.titulo)
-                                 << (l.estoque > 0 ? to_string(l.estoque) : "ESGOTADO") << endl;
+                                 << (l.estoque > 0 ? to_string(l.estoque) : UI::RED + "ESGOTADO" + UI::RESET) << endl;
                         }
                         
                         int index = GestorBiblioteca::lerInteiro("\nÍndice do livro (ou -1 para cancelar): ");
@@ -70,11 +72,11 @@ int main()
                     biblioteca.cancelarUltimoEmprestimo();
                 }
                 else if (opcao != 4) {
-                    cout << "[AVISO]: Opção inválida." << endl;
+                    cout << UI::YELLOW << "[AVISO]: " << UI::RESET << "Opção inválida." << endl;
                 }
 
             } catch (const ErroBiblioteca& e) {
-                cout << e.what() << endl;
+                cout << UI::RED << e.what() << UI::RESET << endl;
             }
 
         } while (opcao != 4);
@@ -82,7 +84,7 @@ int main()
         biblioteca.salvarRelatorio();
 
     } catch (const exception& e) {
-        cerr << "\nFALHA NO SISTEMA: " << e.what() << endl;
+        cerr << UI::RED << "\nFALHA NO SISTEMA: " << e.what() << UI::RESET << endl;
         return 1;
     }
 

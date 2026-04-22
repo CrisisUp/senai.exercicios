@@ -1,8 +1,9 @@
-DESAFIO INTEGRADOR: SISTEMA BANCÁRIO "G-BANK" v1.0
+DESAFIO INTEGRADOR: SISTEMA BANCÁRIO "G-BANK" v2.0
 ------------------------------------------------------------------------------
 DOMÍNIO: Finanças / Segurança de Dados
 ATIVIDADE: Extra 20 (DESAFIO DE CICLO POO)
 CONCEITOS INTEGRADOS: Classes, Encapsulamento, Sobrecarga, Static, Exceções e Arquivos.
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 1. O CENÁRIO
 O banco digital "G-Bank" precisa de um núcleo de processamento robusto. A 
@@ -12,17 +13,22 @@ diretamente, e todas as movimentações devem ser validadas.
 2. A NECESSIDADE TÉCNICA
 Este projeto consolida os 3 pilares de POO vistos até aqui:
 - ENCAPSULAMENTO: Proteção total do saldo e do histórico.
-- SOBRECARGA: Abertura de contas simples (apenas nome) ou premium (com depósito inicial).
-- STATIC: O banco precisa saber, em tempo real, o valor total sob sua custódia 
-  (soma do saldo de todos os clientes) e o número total de contas ativas.
+- SOBRECARGA: Abertura de contas simples ou premium.
+- STATIC: Gestão de recursos compartilhados e auditoria centralizada.
 
-3. REQUISITOS DO SISTEMA
-- Classe 'ContaBancaria'.
-- Atributos privados: numeroConta, titular, saldoCentavos.
-- Atributos estáticos: reservaTotalBanco, contadorContas.
-- Funcionalidades:
-    * Depositar e Sacar (com tratamento de exceções para valores negativos ou insuficientes).
-    * Transferir (um objeto interagindo com outro objeto).
-    * Persistência: Salvar o extrato final em arquivo .txt.
-    * Interface colorida para distinguir operações de débito (vermelho) e crédito (verde).
+3. 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ARQUITETURA)
+- RISCO DE CONCORRÊNCIA (RACE CONDITIONS): Em um sistema multithread (como um 
+  banco real), se dois saques ocorrerem no mesmo milissegundo, o saldo pode 
+  ficar negativo ou inconsistente. (Solução futura: Mutex/Atomics).
+- RISCO DE PERSISTÊNCIA: Se houver uma falha de hardware durante a escrita do 
+  extrato (disco cheio), o arquivo `extrato.txt` pode ser corrompido.
+- RISCO DE ARREDONDAMENTO: O uso indevido de 'float' em vez de 'long long' 
+  para centavos poderia causar discrepâncias de centavos em auditorias de 
+  milhões de transações.
+
+4. REQUISITOS DO SISTEMA
+- Classe 'ContaBancaria' com proteção total.
+- Auditoria Global via membros ESTÁTICOS.
+- Suíte de Testes Integrada (Auto-diagnóstico).
+- Persistência de Auditoria em disco.
 ------------------------------------------------------------------------------

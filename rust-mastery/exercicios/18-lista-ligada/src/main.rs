@@ -2,9 +2,17 @@
  * @file main.rs
  * @brief Atividade 18: Lista Ligada Manual (Box e Recursão).
  *
- * Aprendizados: Box<T>, Recursividade, Memória na Heap, Enums Recursivos.
+ * @section MemoryMap Mapeamento de Memória (Mestre)
+ * - **Stack:** O nó raiz da `ListaEventos` reside na Stack.
+ * - **Heap:** Cada nó subsequente é alocado no Heap via `Box<T>`.
+ * - **Indireção:** O `Box` armazena um ponteiro (8 bytes em x64) que aponta para o conteúdo real no Heap.
  *
- * @author SENAI - Rust Master
+ * @section FantasmaCPU Fantasma do CPU: Eficiência de Referências
+ * O uso de `mem::take` e `mem::replace` permite a reorganização da estrutura da lista sem a necessidade
+ * de clonar dados pesados (Strings), realizando apenas a troca de ponteiros na Stack, o que é extremamente
+ * eficiente para operações de pilha (O(1)).
+ *
+ * @author SENAI - Rust Master (Refatoração de Elite Fase 2)
  * @date 20/04/2026
  */
 use std::io::{self, Write};

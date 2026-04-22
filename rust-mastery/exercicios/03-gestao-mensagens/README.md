@@ -14,4 +14,12 @@ O **Ownership** é o conceito mais importante do Rust e o que o diferencia de to
 1. Criar uma função `processar_log(msg: String)` que recebe a posse de uma mensagem e a exibe.
 2. Demonstrar o erro de compilação ao tentar usar uma variável após o "Move".
 3. Implementar uma função que retorna uma nova string para demonstrar a transferência de volta da propriedade.
-4. Usar `String` (alocada na Heap) em vez de `&str` para evidenciar o gerenciamento de memória.
+### 4. Usar `String` (alocada na Heap) em vez de `&str` para evidenciar o gerenciamento de memória.
+
+## 🛡️ Análise de Falha Crítica (Refatoração de Elite)
+
+*   **Riscos de Panic:** Erros de alocação de memória no Heap podem causar panic se o sistema ficar sem recursos. Strings grandes sem limite de tamanho são um risco em sistemas embarcados.
+*   **Use-after-move:** O compilador Rust bloqueia estaticamente qualquer tentativa de usar uma variável cuja posse foi transferida. Isso elimina bugs de ponteiros pendentes (dangling pointers).
+*   **Borrow Checker Errors:** O uso de referências imutáveis (`&`) permite múltiplos leitores, mas impede a modificação simultânea, prevenindo condições de corrida (race conditions) em logs.
+*   **Memory Overheads:** O uso excessivo de `.clone()` duplica dados na Heap, aumentando a pressão sobre o alocador e reduzindo a performance (Fantasma do CPU). O uso de referências é a solução preferencial.
+

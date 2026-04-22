@@ -23,3 +23,10 @@ Este desafio integra os conhecimentos das Atividades 07 a 09:
     - `buscar_pacote(&self, id: &str) -> Option<&Pacote>`: Localiza o pacote usando o mapa.
     - `calcular_carga_total(&self) -> f64`: Soma o peso de todo o estoque usando iteradores.
 4. Simular uma operação de pico no `main`, demonstrando a eficiência da busca e do processamento de carga.
+
+## ⚠️ Análise de Falha Crítica
+
+Neste sistema de logística, identificamos os seguintes gargalos de performance e riscos:
+1. **Performance Bottlenecks em Logística:** O crescimento desordenado do `Vec` de estantes causa realocações massivas na memória. Usar `Vec::with_capacity()` é essencial para operações de larga escala.
+2. **Inconsistência de Índice:** Se um pacote for removido do `Vec` sem atualizar o `HashMap`, teremos uma falha catastrófica de busca (Dangling Index).
+3. **Custo de Clonagem:** O uso de `.clone()` no ID para o HashMap duplica o uso de memória por ID. Em sistemas com milhões de pacotes, isso pode levar ao transbordamento da RAM.

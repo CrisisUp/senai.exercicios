@@ -1,22 +1,23 @@
 /**
  * @file Motor.cpp
- * @brief Implementação modular do Motor Industrial usando composição.
+ * @brief Implementação da Lógica do Motor Industrial (Delegacia de Sensores).
+ * 
+ * Demonstra como a classe mestre delega responsabilidades para seus componentes.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
  */
 
 #include "Motor.h"
-#include <iostream>
+#include <sstream>
 
 namespace IoT {
 
     /**
-     * @brief O construtor do Motor deve inicializar seus objetos internos
-     * através da Lista de Inicialização (Member Initializer List).
+     * @brief Uso de Member Initializer List para instanciar o sensor interno.
      */
-    MotorIndustrial::MotorIndustrial(std::string mod, std::string idSensor) 
-        : modelo(mod), ligado(false), sensorPressao(idSensor) {}
+    MotorIndustrial::MotorIndustrial(const std::string& _modelo, const std::string& _idSensor)
+        : modelo(_modelo), ligado(false), sensorInterno(_idSensor) {}
 
     void MotorIndustrial::ligar() {
         ligado = true;
@@ -26,24 +27,25 @@ namespace IoT {
         ligado = false;
     }
 
-    bool MotorIndustrial::atualizarOperacao(double pressaoLida) {
+    bool MotorIndustrial::atualizarOperacao(double pressao) {
         if (!ligado) return false;
 
-        // Delegando a tarefa de validação para o sensor interno (COMPOSTO)
-        bool sucesso = sensorPressao.registrarLeitura(pressaoLida);
-
-        if (!sucesso) {
-            // Em caso de perigo detectado pelo sensor, o Motor DESLIGA automaticamente.
+        // DELEGAÇÃO: O motor não valida pressão, ele pergunta ao seu sensor.
+        if (sensorInterno.registrarLeitura(pressao)) {
+            return true;
+        } else {
+            // Se o sensor falhar, o motor desliga imediatamente (Autoproteção)
             desligar();
             return false;
         }
-        return true;
     }
 
     std::string MotorIndustrial::statusMotor() const {
-        std::string status = "MOTOR: " + modelo;
-        status += (ligado ? " [LIGADO]" : " [DESLIGADO - EMERGENCIA]");
-        status += " | PRESSÃO: " + std::to_string(sensorPressao.getValor()) + " psi";
-        return status;
+        std::stringstream ss;
+        ss << "[MOTOR: " << modelo << "] -> Status: " 
+           << (ligado ? "EM OPERAÇÃO" : "INATIVO/SEGURANÇA")
+           << " | Última Pressão: " << sensorInterno.getValor() << " psi.";
+        return ss.str();
     }
-}
+
+} // namespace IoT

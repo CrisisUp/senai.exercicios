@@ -22,41 +22,47 @@ int main()
 
     GerenciadorAtendimento::exibirBanner();
 
-    // Etapa Inicial: Carregar dados do arquivo para a memória (Fila)
-    // Tenta carregar do caminho relativo ao build ou ao root
-    sistema.carregarPacientes("repositorio-extra/atividade-extra11/pacientes.txt");
+    try {
+        // Etapa Inicial: Carregar dados do arquivo para a memória (Fila)
+        sistema.carregarPacientes("repositorio-extra/atividade-extra11/pacientes.txt");
+    } catch (const exception& e) {
+        cout << UI::RED << "[ERRO]: " << UI::RESET << e.what() << endl;
+        cout << UI::CYAN << "[INFO]: " << UI::RESET << "Iniciando com fila vazia." << endl;
+    }
 
     do {
-        cout << "\n--- PAINEL DE CONTROLE DE FILA ---" << endl;
-        cout << "Total na fila: " << sistema.totalFila() << " pacientes." << endl;
-        cout << "[1] Adicionar Novo Paciente" << endl;
-        cout << "[2] Chamar Próximo (ATENDER)" << endl;
-        cout << "[3] Ver Quem é o Próximo (FRONT)" << endl;
-        cout << "[4] Sair" << endl;
-        cout << "Escolha: ";
-        cin >> opcao;
+        try {
+            cout << "\n--- PAINEL DE CONTROLE DE FILA ---" << endl;
+            cout << "Total na fila: " << sistema.totalFila() << " pacientes." << endl;
+            cout << "[1] Adicionar Novo Paciente" << endl;
+            cout << "[2] Chamar Próximo (ATENDER)" << endl;
+            cout << "[3] Ver Quem é o Próximo (FRONT)" << endl;
+            cout << "[4] Sair" << endl;
+            cout << "Escolha: ";
+            
+            if (!(cin >> opcao)) {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << UI::RED << "[ERRO]: Entrada inválida!" << UI::RESET << endl;
+                continue;
+            }
 
-        if (opcao == 1) {
-            string nome;
-            cout << "Nome do Paciente: ";
-            getline(cin >> ws, nome);
-            sistema.adicionarPaciente(nome);
-        } 
-        else if (opcao == 2) {
-            string atendido = sistema.atenderProximo();
-            if (!atendido.empty()) {
-                cout << "[ATENDIMENTO]: Próximo paciente: " << atendido << endl;
-            } else {
-                cout << "[AVISO]: A fila está vazia!" << endl;
+            if (opcao == 1) {
+                string nome;
+                cout << "Nome do Paciente: ";
+                getline(cin >> ws, nome);
+                sistema.adicionarPaciente(nome);
+            } 
+            else if (opcao == 2) {
+                string atendido = sistema.atenderProximo();
+                cout << UI::CYAN << "[ATENDIMENTO]: " << UI::RESET << "Próximo paciente: " << atendido << endl;
             }
-        }
-        else if (opcao == 3) {
-            string proximo = sistema.verProximo();
-            if (!proximo.empty()) {
-                cout << "[INFO]: O primeiro da fila é: " << proximo << endl;
-            } else {
-                cout << "[AVISO]: Ninguém aguardando." << endl;
+            else if (opcao == 3) {
+                const string& proximo = sistema.verProximo();
+                cout << UI::CYAN << "[INFO]: " << UI::RESET << "O primeiro da fila é: " << proximo << endl;
             }
+        } catch (const exception& e) {
+            cout << UI::RED << e.what() << UI::RESET << endl;
         }
 
     } while (opcao != 4);

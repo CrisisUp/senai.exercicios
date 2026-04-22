@@ -1,0 +1,250 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SA-02: Infrastructure Challenge - Dual VPC, Peering, RDS and Web Hosting'
+
+# @file infrastructure.yaml
+# @brief Template completo para o Desafio de Infraestrutura SENAI/AWS.
+# 
+# @author SENAI - Cristiano Batista Pessoa
+# @date 22/04/2026
+
+Resources:
+  # ==========================================================================
+  # CAMADA 1: VPC ALPHA (10.0.0.0/16)
+  # ==========================================================================
+  AlphaVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags: [{Key: Name, Value: alpha-vpc}]
+
+  AlphaIGW:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags: [{Key: Name, Value: alpha-igw}]
+
+  AlphaVPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref AlphaVPC
+      InternetGatewayId: !Ref AlphaIGW
+
+  # Subnets Alpha
+  PubAlpha1a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref AlphaVPC
+      CidrBlock: 10.0.1.0/24
+      AvailabilityZone: !Select [0, !GetAZs '']
+      MapPublicIpOnLaunch: true
+      Tags: [{Key: Name, Value: pub-alpha-1a}]
+
+  PrivAlpha1a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref AlphaVPC
+      CidrBlock: 10.0.3.0/24
+      AvailabilityZone: !Select [0, !GetAZs '']
+      Tags: [{Key: Name, Value: priv-alpha-1a}]
+
+  # ==========================================================================
+  # CAMADA 2: VPC ALPHA-2 (10.1.0.0/16)
+  # ==========================================================================
+  Alpha2VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.1.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags: [{Key: Name, Value: alpha2-vpc}]
+
+  Alpha2IGW:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags: [{Key: Name, Value: alpha2-igw}]
+
+  Alpha2VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref Alpha2VPC
+      InternetGatewayId: !Ref Alpha2IGW
+
+  # Subnets Alpha2
+  PubAlpha21a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref Alpha2VPC
+      CidrBlock: 10.1.1.0/24
+      AvailabilityZone: !Select [0, !GetAZs '']
+      MapPublicIpOnLaunch: true
+      Tags: [{Key: Name, Value: pub-alpha2-1a}]
+
+  PrivAlpha21a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref Alpha2VPC
+      CidrBlock: 10.1.3.0/24
+      AvailabilityZone: !Select [0, !GetAZs '']
+      Tags: [{Key: Name, Value: priv-alpha2-1a}]
+
+  # ==========================================================================
+  # CAMADA 3: VPC PEERING (O TÚNEL)
+  # ==========================================================================
+  VPCPeeringConnection:
+    Type: AWS::EC2::VPCPeeringConnection
+    Properties:
+      VpcId: !Ref AlphaVPC
+      PeerVpcId: !Ref Alpha2VPC
+      Tags: [{Key: Name, Value: alpha-to-alpha2-peering}]
+
+  # ==========================================================================
+  # CAMADA 4: ROTEAMENTO
+  # ==========================================================================
+  AlphaPublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref AlphaVPC
+      Tags: [{Key: Name, Value: alpha-pub-rt}]
+
+  AlphaToInternetRoute:
+    Type: AWS::EC2::Route
+    DependsOn: AlphaVPCGatewayAttachment
+    Properties:
+      RouteTableId: !Ref AlphaPublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref AlphaIGW
+
+  AlphaToAlpha2Route:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref AlphaPublicRouteTable
+      DestinationCidrBlock: 10.1.0.0/16
+      VpcPeeringConnectionId: !Ref VPCPeeringConnection
+
+  AlphaPubSubnetAssoc:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PubAlpha1a
+      RouteTableId: !Ref AlphaPublicRouteTable
+
+  # Roteamento Alpha2
+  Alpha2PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref Alpha2VPC
+      Tags: [{Key: Name, Value: alpha2-pub-rt}]
+
+  Alpha2ToInternetRoute:
+    Type: AWS::EC2::Route
+    DependsOn: Alpha2VPCGatewayAttachment
+    Properties:
+      RouteTableId: !Ref Alpha2PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref Alpha2IGW
+
+  Alpha2ToAlphaRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref Alpha2PublicRouteTable
+      DestinationCidrBlock: 10.0.0.0/16
+      VpcPeeringConnectionId: !Ref VPCPeeringConnection
+
+  Alpha2PubSubnetAssoc:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PubAlpha21a
+      RouteTableId: !Ref Alpha2PublicRouteTable
+
+  # ==========================================================================
+  # CAMADA 5: BANCO DE DADOS RDS (MySQL)
+  # ==========================================================================
+  DBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: Subnets para o banco de dados
+      SubnetIds: 
+        - !Ref PrivAlpha1a
+        - !Ref PrivAlpha21a # Requisito Multi-AZ implícito p/ RDS
+
+  DBSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow MySQL access
+      VpcId: !Ref AlphaVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 3306
+          ToPort: 3306
+          CidrIp: 10.0.0.0/8 # Permite tráfego das duas VPCs
+
+  LabDatabase:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: lab-db
+      AllocatedStorage: '20'
+      DBInstanceClass: db.t3.micro
+      Engine: mysql
+      MasterUsername: main
+      MasterUserPassword: lab-password
+      DBName: lab
+      VPCSecurityGroups: [!Ref DBSecurityGroup]
+      DBSubnetGroupName: !Ref DBSubnetGroup
+
+  # ==========================================================================
+  # CAMADA 6: INSTÂNCIAS EC2 E SITES
+  # ==========================================================================
+  WebSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow HTTP and ICMP
+      VpcId: !Ref AlphaVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: icmp
+          FromPort: -1
+          ToPort: -1
+          CidrIp: 10.0.0.0/8 # LIBERA PING ENTRE VPCs
+
+  AlphaInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.micro
+      ImageId: ami-051f8b2130e2831f5 # Amazon Linux 2023
+      SubnetId: !Ref PubAlpha1a
+      SecurityGroupIds: [!Ref WebSecurityGroup]
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum update -y
+          yum install -y httpd
+          systemctl start httpd
+          systemctl enable httpd
+          echo "<h1>Site 01: OBRIGATÓRIO (Notion)</h1><p>VPC: Alpha</p>" > /var/www/html/index.html
+
+  Alpha2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.micro
+      ImageId: ami-051f8b2130e2831f5
+      SubnetId: !Ref PubAlpha21a
+      SecurityGroupIds: [!Ref WebSecurityGroup]
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum update -y
+          yum install -y httpd
+          systemctl start httpd
+          systemctl enable httpd
+          echo "<h1>Site 02: Template Livre</h1><p>VPC: Alpha-2</p>" > /var/www/html/index.html
+
+Outputs:
+  AlphaWebsite:
+    Value: !GetAtt AlphaInstance.PublicDnsName
+  Alpha2Website:
+    Value: !GetAtt Alpha2Instance.PublicDnsName
+  RDSEndpoint:
+    Value: !GetAtt LabDatabase.Endpoint.Address

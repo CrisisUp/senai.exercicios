@@ -1,0 +1,74 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SkyCargo Storage: Production-grade S3 Static Hosting'
+
+# @file s3-setup.yaml
+# @brief Template IaC para provisionamento de storage e site estático.
+# 
+# Atividade 02 - Cloud Storage (Nível Arquiteto).
+# 
+# @author SENAI - Cristiano Batista Pessoa
+# @date 22/04/2026
+# 
+# @section CloudMap Topologia de Storage de Elite
+# - Resource: AWS::S3::Bucket.
+# - Resiliência: DeletionPolicy: Retain (Proteção contra perda de dados).
+# - Segurança: Bucket Policy bloqueando ACLs legadas.
+# - Hosting: Servindo index.html via S3 Web Engine.
+
+Parameters:
+  ProjectTag:
+    Type: String
+    Default: skycargo-dashboard
+    Description: Nome base para identificação do bucket.
+
+Resources:
+  # 1. O BUCKET DE TELEMETRIA
+  StorageBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain # ELITE RULE: O dado é o patrimônio.
+    Properties:
+      BucketName: !Sub "${ProjectTag}-cristiano-ia"
+      WebsiteConfiguration:
+        IndexDocument: index.html
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: false
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: false
+      Tags:
+        - Key: Type
+          Value: WebHosting
+        - Key: Environment
+          Value: Production
+
+  # 2. A POLÍTICA DE ACESSO PÚBLICO SEGURO
+  PublicReadPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref StorageBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: PublicReadGetObject
+            Effect: Allow
+            Principal: '*'
+            Action: 's3:GetObject'
+            Resource: !Sub "arn:aws:s3:::${StorageBucket}/*"
+
+Outputs:
+  WebsiteURL:
+    Description: URL final do Dashboard de Drones.
+    Value: !GetAtt StorageBucket.WebsiteURL
+  BucketName:
+    Description: Nome físico gerado pela AWS.
+    Value: !Ref StorageBucket
+
+# RESUMO TEÓRICO: STORAGE DECLARATIVO
+# 1. RETENÇÃO: Em arquiteturas de elite, nunca deletamos buckets que 
+#    podem conter logs históricos por acidente.
+# 2. POLÍTICA VS ACL: Abandonamos as ACLs legadas em favor do 
+#    controle granular via JSON (Bucket Policy).
+# 3. IDEMPOTÊNCIA: Se você rodar este deploy novamente mudando apenas 
+#    uma tag, o site continua no ar sem interrupção.

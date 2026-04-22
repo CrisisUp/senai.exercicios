@@ -33,4 +33,17 @@ sem entrar em loop infinito.
 
 "Um bom programador escreve código que funciona. 
 Um mestre escreve código que não quebra."
-=====================================================
+
+===============================================================
+ANÁLISE DE FALHA CRÍTICA (REFATORAÇÃO DE ELITE - FASE 3):
+===============================================================
+1. CORRUPÇÃO DE ARQUIVO: O uso de ios::trunc ao salvar o relatório 
+   sem um backup prévio pode causar a perda irreversível do histórico 
+   caso o sistema operacional interrompa o processo (falta de energia).
+2. VAZAMENTO DE REFERÊNCIA: Métodos que retornam referências não-const 
+   para containers internos (vector, queue) quebram o encapsulamento 
+   e permitem que a UI modifique o estado interno sem validação.
+3. DEADLOCKS: Se o carregamento do catálogo e a escrita do relatório 
+   fossem realizados em threads separadas acessando o mesmo arquivo 
+   físico, ocorreria uma falha de acesso compartilhado.
+===============================================================

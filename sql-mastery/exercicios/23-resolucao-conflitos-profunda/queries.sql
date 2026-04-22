@@ -1,58 +1,72 @@
--- ==============================================================================
--- ATIVIDADE 23: RESOLUÇÃO DE CONFLITOS (INSERT OR...)
--- OBJETIVO: Gerenciar colisões de dados e violações de regras.
--- ==============================================================================
+/**
+ * @file queries.sql
+ * @brief Resolução de Conflitos Profunda e Gerenciamento de Colisões.
+ * @author Gemini CLI Agent
+ * @date 2026-04-19
+ * 
+ * @section ExecutionPlan
+ * - INSERT OR IGNORE: Otimizado para ignorar falhas de UNIQUE sem interromper o pipeline.
+ * - INSERT OR REPLACE: Operação destrutiva (DELETE + INSERT) que impacta o B-Tree e triggers.
+ * - CHECK Constraints: Validação em nível de motor para garantir integridade atômica.
+ * - Guardião Financeiro: Uso de INTEGER para centavos, evitando erros de arredondamento de ponto flutuante.
+ */
+
 -- 1. Setup da Tabela
 CREATE TABLE IF NOT EXISTS frota_internacional (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   serial TEXT UNIQUE NOT NULL,
-  horas_voo REAL CHECK (horas_voo >= 0)
+  horas_voo REAL CHECK (horas_voo >= 0),
+  custo_reparo_centavos INTEGER DEFAULT 0 CHECK (custo_reparo_centavos >= 0) -- Guardião Financeiro
 );
+
 DELETE FROM frota_internacional;
+
 -- Inserindo dado inicial (O drone original)
-INSERT INTO frota_internacional (serial, horas_voo)
-VALUES ('DRONE-GLOBAL-01', 50.0);
+INSERT INTO frota_internacional (serial, horas_voo, custo_reparo_centavos)
+VALUES ('DRONE-GLOBAL-01', 50.0, 150050); -- R$ 1.500,50
+
 -- 2. TESTE: INSERT OR IGNORE
 -- Se o serial já existe, o banco apenas ignora e não dá erro.
--- O valor continuará sendo 50.0 (o antigo).
+-- O valor continuará sendo 50.0 e o custo 150050.
 INSERT
-  OR IGNORE INTO frota_internacional (serial, horas_voo)
-VALUES ('DRONE-GLOBAL-01', 999.0);
+  OR IGNORE INTO frota_internacional (serial, horas_voo, custo_reparo_centavos)
+VALUES ('DRONE-GLOBAL-01', 999.0, 200000);
+
 -- 3. TESTE: INSERT OR REPLACE
 -- Se o serial já existe, o banco apaga a linha antiga e insere a nova.
--- O valor mudará para 75.0 (o novo). Note que o ID pode mudar!
+-- Note que o ID pode mudar e registros dependentes seriam afetados.
 INSERT
-  OR REPLACE INTO frota_internacional (serial, horas_voo)
-VALUES ('DRONE-GLOBAL-01', 75.0);
+  OR REPLACE INTO frota_internacional (serial, horas_voo, custo_reparo_centavos)
+VALUES ('DRONE-GLOBAL-01', 75.0, 180000);
+
 -- 4. TESTE: ERRO DE REGRA (CHECK)
--- Tentando inserir valor inválido. O banco barrou?
--- Usamos ABORT (padrão) para parar o comando.
--- INSERT OR ABORT INTO frota_internacional (serial, horas_voo) VALUES ('DRONE-ERRO', -10.0);
+-- Tentando inserir valor inválido (financeiro negativo). O banco barrou?
+-- INSERT OR ABORT INTO frota_internacional (serial, custo_reparo_centavos) VALUES ('DRONE-ERRO', -50);
+
 -- 5. CONSULTA DE PROVA
-SELECT *
+SELECT 
+    id, 
+    serial, 
+    horas_voo, 
+    custo_reparo_centavos,
+    PRINTF('R$ %.2f', custo_reparo_centavos / 100.0) AS custo_formatado
 FROM frota_internacional;
+
 /* 
  ===============================================================
  RESUMO TEÓRICO: POLÍTICAS DE CONFLITO
  ===============================================================
  
- 1. REPLACE: 
- - Funciona como um "Super Update". 
- - Perigo: Se houver Chaves Estrangeiras ligadas ao ID, elas 
- podem ser afetadas (CASCADE) porque o REPLACE deleta a 
- linha antes de inserir a nova.
+ 1. REPLACE: Funciona como um "Super Update", mas é tecnicamente 
+    um DELETE seguido de INSERT. Cuidado com ON DELETE CASCADE.
+ 2. IGNORE: Silencia erros de constraint. Útil em cargas massivas
+    onde duplicatas são esperadas e devem ser descartadas.
+ 3. ABORT vs ROLLBACK: ABORT cancela o comando; ROLLBACK desfaz 
+    toda a transação ativa.
  
- 2. IGNORE: 
- - Ideal para sincronização "Burra": você joga todos os dados 
- e o banco só aceita o que for novo, sem reclamar dos velhos.
- 
- 3. ABORT vs ROLLBACK:
- - ABORT: Para o comando atual, mas mantém o que comandos 
- anteriores da mesma transação fizeram.
- - ROLLBACK: Para tudo e desfaz toda a transação desde o BEGIN.
- 
- VANTAGEM DIDÁTICA: 
- O aluno aprende a lidar com "Fluxos de Erro" de forma elegante, 
- sem precisar de IFs complexos na linguagem de programação.
+ ASSUNTOS CORRELATOS:
+ - UPSERT (INSERT ... ON CONFLICT): Abordagem mais moderna e granular.
+ - Database Triggers for Conflict Logging.
+ - MVCC (Multi-Version Concurrency Control) e Lock Contention.
  ===============================================================
  */

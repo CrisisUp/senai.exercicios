@@ -8,6 +8,10 @@
  * 
  * @author SENAI - Cristiano Batista Pessoa
  * @date 15/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória
+ * As variáveis primitivas (int, double) estão alocadas na STACK (estática) 
+ * por possuírem tamanho fixo conhecido em tempo de compilação.
  */
 
 #include <iostream> // Permite entrada e saída de dados (cin, cout, endl)
@@ -15,14 +19,22 @@
 
 using namespace std; // Define uso do escopo padrão para evitar prefixo 'std::'
 
+// Namespace para Interface de Usuário com cores ANSI
+namespace UI {
+    const string RESET = "\033[0m";
+    const string VERDE = "\033[32m";
+    const string VERMELHO = "\033[31m";
+}
+
 int main()
 {
     // Configuração para exibir valores monetários com 2 casas decimais
     cout << fixed << setprecision(2);
 
-    // Variáveis do sistema
+    // Variáveis do sistema (Guardião Financeiro: Usando centavos inteiros)
     int estoqueAtual, quantidadeMinima, quantidadeReposicao;
-    double precoUnitario, custoTotal;
+    double precoInput;
+    int precoUnitarioCents, custoTotalCents;
 
     // --- 1. Entrada de Dados ---
     cout << "===============================================" << endl;
@@ -36,7 +48,8 @@ int main()
     cin >> quantidadeMinima;
 
     cout << "Digite o preço unitário do produto (R$): ";
-    cin >> precoUnitario;
+    cin >> precoInput;
+    precoUnitarioCents = (int)(precoInput * 100 + 0.5); // Conversão para centavos
 
     // --- 2. Processamento e Verificação ---
     cout << "\n          --- RESULTADO DA ANÁLISE ---" << endl;
@@ -45,18 +58,18 @@ int main()
     {
         // Cálculo de reposição
         quantidadeReposicao = quantidadeMinima - estoqueAtual;
-        custoTotal = quantidadeReposicao * precoUnitario;
+        custoTotalCents = quantidadeReposicao * precoUnitarioCents;
 
         // --- 3. Exibição (Necessário Repor) ---
-        cout << "        STATUS: [ REPOSIÇÃO NECESSÁRIA ]" << endl;
+        cout << UI::VERMELHO << "        STATUS: [ REPOSIÇÃO NECESSÁRIA ]" << UI::RESET << endl;
         cout << "-----------------------------------------------" << endl;
         cout << "Quantidade em falta: " << quantidadeReposicao << " unidades." << endl;
-        cout << "Custo da reposição : R$ " << custoTotal << endl;
+        cout << "Custo da reposição : R$ " << (custoTotalCents / 100.0) << endl;
     }
     else
     {
         // --- 3. Exibição (Estoque OK) ---
-        cout << "         STATUS: [ ESTOQUE SUFICIENTE ]" << endl;
+        cout << UI::VERDE << "         STATUS: [ ESTOQUE SUFICIENTE ]" << UI::RESET << endl;
         cout << "-----------------------------------------------" << endl;
         cout << "Nenhuma ação de compra é necessária no momento." << endl;
     }

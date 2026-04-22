@@ -11,6 +11,36 @@
 
 #include <string>
 #include <queue>
+#include <exception>
+
+/**
+ * @section MemoryMap Mapeamento de Memória (Fase 3)
+ * - STACK: Instância da classe GerenciadorAtendimento.
+ * - HEAP: Elementos da std::queue<std::string> (pacientes).
+ */
+
+// --- CÓDIGO BLINDADO (EXCEÇÕES CUSTOMIZADAS) ---
+class FilaVaziaException : public std::exception {
+public:
+    const char* what() const noexcept override {
+        return "ERRO CRÍTICO: Tentativa de operação em fila vazia!";
+    }
+};
+
+class ArquivoCorrompidoException : public std::exception {
+public:
+    const char* what() const noexcept override {
+        return "ERRO DE ARQUITETURA: Falha na integridade do arquivo de pacientes!";
+    }
+};
+
+// --- CONSOLIDAÇÃO UI ---
+namespace UI {
+    const std::string RESET = "\033[0m";
+    const std::string RED   = "\033[31m";
+    const std::string GREEN = "\033[32m";
+    const std::string CYAN  = "\033[36m";
+}
 
 class GerenciadorAtendimento {
 private:
@@ -31,14 +61,17 @@ public:
 
     /**
      * @brief Atende o próximo paciente da fila.
-     * @return Nome do paciente atendido ou string vazia se fila estiver vazia.
+     * @return Nome do paciente atendido.
+     * @throws FilaVaziaException se não houver pacientes.
      */
     std::string atenderProximo();
 
     /**
      * @brief Retorna o nome do próximo paciente sem removê-lo.
+     * @return Referência constante para o nome (Fantasma do CPU).
+     * @throws FilaVaziaException se não houver pacientes.
      */
-    std::string verProximo() const;
+    const std::string& verProximo() const;
 
     /**
      * @brief Retorna o tamanho atual da fila.

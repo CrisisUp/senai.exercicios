@@ -19,6 +19,13 @@ name = "SA-05-trafego-aereo"
 version = "0.1.0"
 
 [[package]]
+name = "SA-06-fabrica-automata"
+version = "0.1.0"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "SA-09-hub-operacoes-globais"
 version = "0.1.0"
 dependencies = [

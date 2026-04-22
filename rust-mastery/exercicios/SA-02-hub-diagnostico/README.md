@@ -18,3 +18,10 @@ Este desafio integra os conhecimentos das Atividades 04 a 06:
 2. Implementar uma função `verificar_bateria(d: &Drone) -> Result<(), &'static str>` que valida se a bateria está acima de 15%.
 3. Implementar uma função `comparar_alertas<'a>(msg1: &'a str, msg2: &'a str) -> &'a str` que seleciona a mensagem de erro mais longa (mais detalhada).
 4. Simular o diagnóstico de uma frota no `main`, exibindo o relatório final.
+
+## ⚠️ Análise de Falha Crítica
+
+Neste Hub de Diagnóstico, identificamos os seguintes riscos de arquitetura:
+1. **Deadlocks em Hubs:** Embora este exemplo use threads únicas, em uma evolução concorrente (Arc<Mutex>), o acesso circular entre Hubs de diagnóstico e Controladores de Voo pode causar um deadlock, paralisando a telemetria.
+2. **Ciclo de Referências:** O uso indevido de ponteiros inteligentes (`Rc<T>`) sem `Weak<T>` pode criar vazamentos de memória (Memory Leaks) mesmo em Rust.
+3. **Fragmentation de Heap:** A criação excessiva de `Strings` dinâmicas para alertas curtos pode fragmentar a memória de hubs com recursos limitados (RTOS).

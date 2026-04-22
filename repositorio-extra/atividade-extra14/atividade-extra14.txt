@@ -33,6 +33,18 @@ ficará colorido para sempre, mesmo após o programa fechar!
 - Desenhar um Banner atraente para o topo do programa.
 - Facilitar a leitura do catálogo com cores de status.
 
+4. ANÁLISE DE FALHA CRÍTICA (RISCOS DE ARQUITETURA):
+- Acoplamento de UI: O uso excessivo de sequências ANSI diretamente 
+  no código de negócio pode dificultar a portabilidade para outros 
+  sistemas (como Windows antigo ou logs de arquivo puro).
+- Overflow de Pilha (Stack): O uso de recursão ou structs gigantes 
+  sem ponteiros pode estourar a memória STACK se o catálogo crescer 
+  indefinidamente. Recomenda-se migrar para HEAP (new/smart pointers) 
+  em sistemas de grande porte.
+- Integridade de Estado: Se o programa travar entre a remoção da 
+  fila e a inserção no histórico, um leitor pode "desaparecer" 
+  do sistema (Atomicidade).
+
 "Uma interface limpa é boa. Uma interface intuitiva 
 é excelente."
 =====================================================

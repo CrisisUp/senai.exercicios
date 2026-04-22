@@ -13,4 +13,12 @@ O **Borrowing (Empréstimo)** permite acessar dados sem tomar a posse:
 1. Criar uma struct `Telemetria` com altitude, velocidade e bateria.
 2. Implementar uma função `exibir_painel(t: &Telemetria)` que apenas lê os dados.
 3. Implementar uma função `calibrar_altitude(t: &mut Telemetria, nova_alt: f64)` que altera o dado original.
-4. Demonstrar no `main` como os dados persistem após serem "emprestados" para as funções.
+### 4. Demonstrar no `main` como os dados persistem após serem "emprestados" para as funções.
+
+## 🛡️ Análise de Falha Crítica (Refatoração de Elite)
+
+*   **Riscos de Panic:** O acesso concorrente via referências mutáveis é bloqueado pelo compilador. Não há risco de `Panic` por race conditions de memória.
+*   **Use-after-move:** Ao usar referências, o Ownership nunca é transferido, garantindo que a struct `Telemetria` no `main` seja válida até o fim do escopo.
+*   **Borrow Checker Errors:** Tentar criar uma referência imutável enquanto uma mutável existe causaria um erro de compilação imediato, protegendo a consistência dos dados de voo.
+*   **Memory Overheads:** O uso de referências (`&`) passa apenas um ponteiro (8 bytes em 64-bit), evitando copiar a struct inteira (Fantasma do CPU), sendo a forma mais eficiente de processar dados em tempo real.
+

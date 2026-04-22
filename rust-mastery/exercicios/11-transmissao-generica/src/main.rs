@@ -2,7 +2,10 @@
  * @file main.rs
  * @brief Atividade 11: Transmissão Genérica (Generics e Trait Bounds).
  * 
- * Aprendizados: Generics <T>, Trait Bounds, Clausula where, Monomorfização.
+ * @section MemoryMap
+ * - Heap profunda: O uso de String dentro de MensagemVoo implica em alocações na Heap para armazenar o conteúdo textual dinâmico.
+ * - Monomorfização: O compilador gera instâncias específicas de transmitir_via_radio para cada tipo T utilizado, garantindo performance de Static Dispatch.
+ * - Stack: Dados primitivos como f64 e metadados das structs residem na Stack até serem movidos.
  * 
  * @author SENAI - Rust Master
  * @date 20/04/2026
@@ -127,29 +130,29 @@ mod tests {
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: GENERICS E TRAIT BOUNDS
+    RESUMO TEÓRICO: GENERICS E TRAIT BOUNDS (Fase 2)
     ===============================================================
 
     1. O QUE SÃO GENERICS?
-       - Permitem escrever código abstrato. Em vez de 'int' ou 'struct', 
-         usamos 'T'.
+       - Permitem escrever código abstrato e reutilizável. Em vez de tipos concretos,
+         usamos parâmetros de tipo (como 'T').
 
     2. TRAIT BOUNDS (T: Trait):
-       - Generics puros não podem fazer nada. Se você tem um 'T', 
-         não sabe se ele pode ser somado ou impresso. 
-       - O Bound 'T: Transmissivel' garante que o compilador só 
-         deixe passar tipos que tenham o método 'formatar_pacote'.
+       - Garantem que o tipo genérico possua as capacidades necessárias. 
+       - O Bound 'T: Transmissivel' assegura que 'formatar_pacote' exista.
 
-    3. MONOMORFIZAÇÃO (A mágica do Rust):
-       - O Rust não usa polimorfismo de runtime por padrão para 
-         generics. Ele gera o código para cada tipo em tempo de 
-         compilação. 
-       - Resultado: O código genérico é TÃO RÁPIDO quanto se você 
-         tivesse escrito funções separadas para cada tipo.
+    3. MONOMORFIZAÇÃO:
+       - Processo onde o compilador substitui tipos genéricos por tipos concretos
+         em tempo de compilação, gerando código otimizado (Static Dispatch).
 
-    4. VANTAGEM DIDÁTICA:
-       - O aluno aprende a criar ferramentas reutilizáveis e 
-         percebe como o Rust une a flexibilidade das linguagens 
-         dinâmicas com a performance do C++.
+    4. FANTASMA DO CPU (OTIMIZAÇÃO):
+       - Evitamos o uso de 'dyn Trait' (Dynamic Dispatch) quando a performance é
+         crítica, pois ele impede o inline e adiciona custos de vtable.
     ===============================================================
+
+    ASSUNTOS CORRELATOS:
+    - Zero-Cost Abstractions em Rust.
+    - Especialização de Traits (Nightly feature).
+    - Blanked Implementations (implementar trait para qualquer tipo que siga outro trait).
+    - PhantomData para marcação de tipos em generics complexos.
 */

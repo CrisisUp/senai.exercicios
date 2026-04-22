@@ -1,0 +1,73 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SkyCargo Compute: Secure EC2 Node with Dynamic Ingress'
+
+# @file ec2-setup.yaml
+# @brief Template IaC para provisionamento de instâncias e firewalls.
+# 
+# Atividade 03 - Cloud Compute (Nível Arquiteto).
+# 
+# @author SENAI - Cristiano Batista Pessoa
+# @date 22/04/2026
+# 
+# @section CloudMap Topologia de Computação
+# - Resource: AWS::EC2::Instance (t3.micro).
+# - Security: SG com Ingress SSH (Porta 22) parametrizado.
+# - Metadata: Tags de FinOps (Project: Elite).
+
+Parameters:
+  OperatorIP:
+    Type: String
+    Description: Seu IP público para liberação de SSH (ex: 1.2.3.4/32).
+  InstanceType:
+    Type: String
+    Default: t3.micro
+    AllowedValues: [t3.nano, t3.micro, t3.small]
+  LatestAmiId:
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Default: '/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64'
+
+Resources:
+  # 1. O FIREWALL VIRTUAL (Security Group)
+  SkyCargoSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: !Ref OperatorIP # Injeção dinâmica do seu IP
+
+  # 2. A INSTÂNCIA DE PROCESSAMENTO
+  ComputeNode:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType
+      ImageId: !Ref LatestAmiId
+      SecurityGroupIds:
+        - !Ref SkyCargoSG
+      Tags:
+        - Key: Name
+          Value: SkyCargo-AI-Node
+        - Key: Project
+          Value: Elite
+
+Outputs:
+  InstanceId:
+    Description: ID da instância provisionada.
+    Value: !Ref ComputeNode
+  PublicIP:
+    Description: IP Público para acesso SSH.
+    Value: !GetAtt ComputeNode.PublicIp
+  SecurityGroupId:
+    Description: ID do Security Group criado.
+    Value: !Ref SkyCargoSG
+
+# RESUMO TEÓRICO: COMPUTAÇÃO DECLARATIVA
+# 1. PARAMETRIZAÇÃO: O uso do OperatorIP como parâmetro garante que 
+#    qualquer engenheiro possa usar este template sem editar o código.
+# 2. SSM PARAMETERS: Note que não fixamos o ID da AMI. Usamos um 
+#    ponteiro para o repositório da AWS que sempre busca o Linux mais 
+#    atualizado e seguro (Zero Day Protection).
+# 3. TAGGING: O CloudFormation aplica as tags no momento do nascimento, 
+#    garantindo 100% de rastreabilidade de custos desde o segundo 1.

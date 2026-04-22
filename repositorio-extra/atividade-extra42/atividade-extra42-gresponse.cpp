@@ -1,15 +1,19 @@
 /**
  * @file atividade-extra42-gresponse.cpp
- * @brief G-RESPONSE: A unificação final de Logística Urbana e Saúde.
+ * @brief G-RESPONSE: Unificação de Engenharia Urbana e Hospitalar.
  * 
- * Integra:
- * - Algoritmo de Dijkstra (Resgate)
- * - Fila, Pilha e Lista Manuais (Gestão Hospitalar)
- * - Singleton (Validação de Dados)
- * - Observer (Alertas Urbano-Hospitalares)
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Integra Dijkstra, Fila FIFO, Pilha LIFO e Lista Encadeada em um ecossistema.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Unified Command Architecture)
+ * - Hub (GResponse): Objeto central na STACK, gerencia ponteiro para Mapa (HEAP).
+ * - Triagem (FIFO): Fila de ponteiros para Pacientes (HEAP).
+ * - Histórico: Cada Paciente possui sua própria Linked List (HEAP).
+ * - Auditoria (LIFO): Pilha de strings (HEAP) rastreando o histórico de comandos.
+ * - Mapa (Graph): Matriz de Adjacência valorizada O(V²) na HEAP.
  */
 
 #include <iostream>
@@ -24,7 +28,29 @@
 
 using namespace std;
 
-// --- 1. CORE: SINGLETON SCANNER ---
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
+
+namespace UI {
+    const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
+    const string VERDE    = "\033[32m";
+    const string AMARELO  = "\033[33m";
+    const string CIANO    = "\033[36m";
+    const string VERMELHO = "\033[31m";
+    const string BRANCO   = "\033[37m";
+    const int INF = 999;
+
+    inline void limpar() { cout << "\033[2J\033[1;1H"; }
+    
+    void cabecalho() {
+        cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
+        cout << "      G-RESPONSE: CENTRAL DE COMANDO UNIFICADA " << endl;
+        cout << "       (Elite Disaster Management Core)        " << endl;
+        cout << "===============================================" << UI::RESET << endl;
+    }
+}
+
+// --- 2. PADRÃO SINGLETON: SCANNER DE COMANDO ---
 
 class Scanner {
 private:
@@ -34,185 +60,249 @@ public:
         static Scanner instancia;
         return instancia;
     }
+
     template <typename T>
-    T ler(string msg) {
+    T ler(const string& msg) {
         T d;
         while (true) {
-            cout << msg;
-            if (cin >> d) { cin.ignore(numeric_limits<streamsize>::max(), '\n'); return d; }
-            cout << "\033[31m [ERRO]: Entrada inválida.\033[0m" << endl;
+            cout << UI::BRANCO << msg << UI::RESET;
+            if (cin >> d) { 
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+                return d; 
+            }
+            cout << UI::VERMELHO << " [ERRO]: Entrada inválida detectada." << UI::RESET << endl;
             cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
-    string lerLinha(string msg) {
-        string s; cout << msg; getline(cin >> ws, s); return s;
+
+    string lerLinha(const string& msg) {
+        string s; 
+        cout << UI::BRANCO << msg << UI::RESET; 
+        getline(cin >> ws, s); 
+        return s;
     }
 };
 
-// --- 2. ESTRUTURAS DE DADOS MANUAIS ---
+// --- 3. ESTRUTURAS DE DADOS BARE-METAL (SAÚDE) ---
 
 struct ProntuarioNode {
     string info;
     ProntuarioNode* prox;
-    ProntuarioNode(string i) : info(i), prox(nullptr) {}
+    ProntuarioNode(const string& i) : info(i), prox(nullptr) {}
 };
 
 struct Paciente {
     string nome;
     ProntuarioNode* historico;
-    Paciente(string n) : nome(n), historico(nullptr) {}
-    void addDiag(string d) {
+    
+    Paciente(const string& n) : nome(n), historico(nullptr) {}
+    
+    void addDiag(const string& d) {
         ProntuarioNode* n = new ProntuarioNode(d);
-        n->prox = historico; historico = n;
+        n->prox = historico; 
+        historico = n;
+    }
+
+    ~Paciente() {
+        ProntuarioNode* h = historico;
+        while(h) { 
+            ProntuarioNode* temp = h; 
+            h = h->prox; 
+            delete temp; 
+        }
     }
 };
 
 struct FilaNode {
-    Paciente* pac;
+    Paciente* p;
     FilaNode* prox;
-    FilaNode(Paciente* p) : pac(p), prox(nullptr) {}
+    FilaNode(Paciente* _p) : p(_p), prox(nullptr) {}
 };
 
-// --- 3. MOTOR URBANO (DIJKSTRA) ---
+// --- 4. MOTOR DE LOGÍSTICA URBANA (DIJKSTRA) ---
 
 class CidadeMap {
 private:
     int n;
     vector<vector<int>> grafo;
-    vector<string> bairros;
+    vector<string> nomesBairros;
+
 public:
     CidadeMap(int _n) : n(_n) {
-        grafo.resize(n, vector<int>(n, 999));
+        grafo.resize(n, vector<int>(n, UI::INF));
         for(int i=0; i<n; i++) grafo[i][i] = 0;
-        bairros.resize(n);
+        nomesBairros.resize(n, "Distrito_X");
     }
-    void addBairro(int id, string nome) { bairros[id] = nome; }
-    void addVia(int b1, int b2, int t) { grafo[b1][b2] = t; grafo[b2][b1] = t; }
+
+    void addBairro(int id, const string& nome) { nomesBairros[id] = nome; }
+    void registrarVia(int b1, int b2, int tempo) { 
+        grafo[b1][b2] = tempo; 
+        grafo[b2][b1] = tempo; 
+    }
 
     string calcularRota(int origem, int destino) {
-        vector<int> dist(n, 999), ant(n, -1);
+        vector<int> dist(n, UI::INF), ant(n, -1);
         vector<bool> vis(n, false);
         dist[origem] = 0;
 
         for(int i=0; i<n-1; i++) {
             int u = -1;
-            for(int j=0; j<n; j++) if(!vis[j] && (u==-1 || dist[j]<dist[u])) u=j;
-            if(u == -1) break;
+            for(int j=0; j<n; j++) if(!vis[j] && (u==-1 || dist[j] < dist[u])) u=j;
+            if(u == -1 || dist[u] == UI::INF) break;
             vis[u] = true;
             for(int v=0; v<n; v++) {
-                if(dist[u] + grafo[u][v] < dist[v]) {
+                if(!vis[v] && grafo[u][v] != UI::INF && dist[u] + grafo[u][v] < dist[v]) {
                     dist[v] = dist[u] + grafo[u][v];
                     ant[v] = u;
                 }
             }
         }
-        string rota = "";
-        for(int v=destino; v!=-1; v=ant[v]) rota = bairros[v] + (rota==""?"":" -> ") + rota;
-        return rota + " (Tempo: " + to_string(dist[destino]) + " min)";
+
+        if(dist[destino] == UI::INF) return "ROTA BLOQUEADA";
+        
+        string rotaStr = "";
+        for(int v=destino; v!=-1; v=ant[v]) rotaStr = nomesBairros[v] + (rotaStr == "" ? "" : " -> ") + rotaStr;
+        return rotaStr + " (ETA: " + to_string(dist[destino]) + " min)";
     }
-    string getBairroNome(int id) { return (id>=0 && id<n) ? bairros[id] : "Desconhecido"; }
+
+    const string& getBairroNome(int id) const { return nomesBairros[id]; }
 };
 
-// --- 4. GESTÃO INTEGRADA (G-RESPONSE) ---
+// --- 5. GESTÃO INTEGRADA (G-RESPONSE CORE) ---
 
 class GResponse {
 private:
     FilaNode *inicio, *fim;
-    CidadeMap* cidade;
-    stack<string> logAcoes;
+    CidadeMap* mapaUrbano;
+    stack<string> auditoria;
 
 public:
-    GResponse(CidadeMap* c) : inicio(nullptr), fim(nullptr), cidade(c) {}
+    GResponse(CidadeMap* c) : inicio(nullptr), fim(nullptr), mapaUrbano(c) {}
 
-    void despacharResgate(int localId, string nomePac) {
-        string rota = cidade->calcularRota(0, localId); // 0 = Hospital/Base
-        cout << "\033[33m[DESPACHO]: Ambulância saindo para " << cidade->getBairroNome(localId) << "\033[0m" << endl;
-        cout << "[ROTA]: " << rota << endl;
+    /**
+     * @brief Despacho polimórfico de resgate integrado.
+     */
+    void dispararResgate(int localId, const string& nomePac) {
+        string rota = mapaUrbano->calcularRota(0, localId); // 0 = Base/Hospital
+        
+        cout << "\n" << UI::AMARELO << UI::NEGRITO << "[DESPACHO]: Unidade Móvel acionada para " << mapaUrbano->getBairroNome(localId) << UI::RESET << endl;
+        cout << UI::BRANCO << "[ROTA]: " << UI::RESET << rota << endl;
 
-        // Paciente entra na fila de espera
+        // Paciente admitido remotamente
         Paciente* p = new Paciente(nomePac);
         FilaNode* n = new FilaNode(p);
+        
         if(!inicio) inicio = fim = n;
         else { fim->prox = n; fim = n; }
 
-        logAcoes.push("Resgate: " + nomePac + " em " + cidade->getBairroNome(localId));
-        cout << "\033[32m[SISTEMA]: Paciente " << nomePac << " admitido na triagem remota.\033[0m" << endl;
+        auditoria.push("Acionamento: " + nomePac + " em " + mapaUrbano->getBairroNome(localId));
+        cout << UI::VERDE << "[SISTEMA]: Triagem remota concluída para " << nomePac << "." << UI::RESET << endl;
     }
 
+    /**
+     * @brief Processamento hospitalar de pacientes resgatados.
+     */
     void processarHospital() {
-        if(!inicio) { cout << "[AVISO]: Ninguém aguardando." << endl; return; }
+        if(!inicio) { 
+            cout << UI::AMARELO << "[HUB]: Sem pacientes aguardando liquidação hospitalar." << UI::RESET << endl; 
+            return; 
+        }
         
-        Paciente* p = inicio->pac;
-        cout << "\n\033[36m--- ATENDIMENTO: " << p->nome << " ---\033[0m" << endl;
-        string diag = Scanner::get().lerLinha("Diagnóstico Médico: ");
-        p->addDiag(diag);
+        Paciente* p = inicio->p;
+        cout << "\n" << UI::CIANO << UI::NEGRITO << "--- G-HEALTH: ADMISSÃO DE EMERGÊNCIA ---" << UI::RESET << endl;
+        cout << UI::BRANCO << "Paciente: " << UI::RESET << UI::NEGRITO << p->nome << UI::RESET << endl;
+        
+        string acao = Scanner::get().lerLinha("Procedimento/Diagnóstico: ");
+        p->addDiag(acao);
 
-        // Salva relatório unificado
+        // Persistência unificada
         ofstream arq("repositorio-extra/atividade-extra42/missao_resgate.txt", ios::app);
-        arq << "[MISSÃO] Paciente: " << p->nome << " | Ação: " << diag << endl;
-        arq.close();
+        if (arq.is_open()) {
+            arq << "[MISSÃO " << __DATE__ << "] " << p->nome << " | Ação: " << acao << endl;
+            arq.close();
+        }
 
-        // Limpa da fila
+        // Limpeza de Fila FIFO
         FilaNode* temp = inicio;
         inicio = inicio->prox;
         if(!inicio) fim = nullptr;
         
-        // Limpeza de memória do paciente
-        ProntuarioNode* h = p->historico;
-        while(h) { ProntuarioNode* th = h; h = h->prox; delete th; }
-        delete p; delete temp;
+        delete p; // Aciona destrutor do paciente (cascata de prontuário)
+        delete temp;
 
-        cout << "[OK]: Atendimento concluído e registrado." << endl;
+        cout << UI::VERDE << "[OK]: Registro hospitalar finalizado e destruído da RAM." << UI::RESET << endl;
     }
 
     void exibirLogs() {
-        cout << "\n--- PILHA DE AUDITORIA DO HUB ---" << endl;
-        stack<string> temp = logAcoes;
-        while(!temp.empty()) { cout << " > " << temp.top() << endl; temp.pop(); }
+        cout << "\n" << UI::NEGRITO << "HISTÓRICO DE AUDITORIA (LIFO):" << UI::RESET << endl;
+        stack<string> tempStack = auditoria; // Cópia temporária para exibir sem destruir
+        while(!tempStack.empty()) { 
+            cout << UI::AMARELO << " > " << UI::RESET << tempStack.top() << endl; 
+            tempStack.pop(); 
+        }
     }
 
     ~GResponse() {
         while(inicio) {
-            FilaNode* t = inicio; inicio = inicio->prox;
-            ProntuarioNode* h = t->pac->historico;
-            while(h) { ProntuarioNode* th = h; h = h->prox; delete th; }
-            delete t->pac; delete t;
+            FilaNode* t = inicio; 
+            inicio = inicio->prox;
+            delete t->p; // Limpeza recursiva
+            delete t;
         }
     }
 };
 
-// --- 5. MAIN INTEGRADA ---
+// --- 6. EXECUÇÃO DO CENTRO DE CRISE ---
 
 int main()
 {
-    CidadeMap gcity(5);
-    gcity.addBairro(0, "Hospital Central");
-    gcity.addBairro(1, "Vila Norte");
-    gcity.addBairro(2, "Zona Sul");
-    gcity.addBairro(3, "Distrito Leste");
-    gcity.addBairro(4, "Polo Oeste");
-    gcity.addVia(0,1,5); gcity.addVia(1,3,10); gcity.addVia(0,2,7); gcity.addVia(2,4,4);
+    UI::limpar();
+    
+    // Configuração Urbana
+    CidadeMap sp_hub(5);
+    sp_hub.addBairro(0, "Hospital Central (Base)");
+    sp_hub.addBairro(1, "Vila Norte");
+    sp_hub.addBairro(2, "Zona Sul");
+    sp_hub.addBairro(3, "Distrito Leste");
+    sp_hub.addBairro(4, "Polo Oeste");
 
-    GResponse hub(&gcity);
+    sp_hub.registrarVia(0,1,5); 
+    sp_hub.registrarVia(1,3,10); 
+    sp_hub.registrarVia(0,2,7); 
+    sp_hub.registrarVia(2,4,4);
+
+    GResponse core(&sp_hub);
     int opt = 0;
 
     do {
-        cout << "\n\033[36m===============================================\033[0m" << endl;
-        cout << "      G-RESPONSE: CENTRAL DE COMANDO UNIFICADA  " << endl;
-        cout << "\033[36m===============================================\033[0m" << endl;
-        cout << "[1] Reportar Acidente (Cidade)  [2] Atender Paciente (Hospital)" << endl;
-        cout << "[3] Auditoria de Missão         [4] Encerrar" << endl;
-        opt = Scanner::get().ler<int>("Comando: ");
+        UI::cabecalho();
+        cout << UI::BRANCO << "[1] Reportar Emergência (GPS/Logística)\n"
+             << "[2] Atendimento Médico (Triagem/Saúde)\n"
+             << "[3] Ver Auditoria SOC\n"
+             << "[4] Shutdown G-City Hub" << UI::RESET << endl;
+        
+        opt = Scanner::get().ler<int>("Comando HUB: ");
 
-        if(opt == 1) {
-            int b = Scanner::get().ler<int>("Bairro do Acidente (1-4): ");
-            string n = Scanner::get().lerLinha("Nome da Vítima: ");
-            hub.despacharResgate(b, n);
-        } else if(opt == 2) {
-            hub.processarHospital();
-        } else if(opt == 3) {
-            hub.exibirLogs();
+        try {
+            if(opt == 1) {
+                int b = Scanner::get().ler<int>("Código do Bairro (1-4): ");
+                string v = Scanner::get().lerLinha("Nome da Vítima: ");
+                core.dispararResgate(b, v);
+                system("sleep 1");
+            } 
+            else if(opt == 2) {
+                core.processarHospital();
+                system("sleep 1");
+            } 
+            else if(opt == 3) {
+                core.exibirLogs();
+                cout << UI::AMARELO << "\n[ENTER] p/ retornar..." << UI::RESET;
+                cin.get();
+            }
+        } catch (const exception& e) {
+            cout << UI::VERMELHO << "ERRO INTEGRADO: " << e.what() << UI::RESET << endl;
         }
+        UI::limpar();
 
     } while(opt != 4);
 
@@ -221,32 +311,35 @@ int main()
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: A GRANDE UNIFICAÇÃO (PEC 2.0)
+    RESUMO TEÓRICO: SISTEMA DE SISTEMAS (ELITE INTEGRATION)
     ===============================================================
 
     1. INTEROPERABILIDADE:
-       - Vimos como um objeto de gestão urbana (CidadeMap) pode 
-         alimentar dados para um objeto de saúde (GResponse). Essa 
-         é a base dos sistemas ERP e de Cidades Inteligentes.
+       - O G-RESPONSE prova que um sistema C++ profissional é a 
+         soma de módulos independentes. O Mapa não sabe sobre 
+         Medicina, e a Medicina não sabe sobre Grafos. O HUB 
+         orquestra a comunicação entre eles.
 
-    2. REUSABILIDADE DE ALGORITMOS:
-       - O Dijkstra não é apenas um "código de rota", é um serviço 
-         que o HUB consome sempre que precisa despachar alguém.
+    2. GESTÃO DE MEMÓRIA MULTI-CAMADA:
+       - Vimos pilhas, filas e listas encadeadas operando em 
+         sincronia. A destruição em cascata (Paciente limpando seu 
+         histórico) é a prova de um design orientado a objetos 
+         maduro.
 
-    3. GESTÃO DE MEMÓRIA MULTI-ESTRUTURAL:
-       - Gerenciamos, simultaneamente, Filas para a triagem, Pilhas 
-         para os logs e Listas Encadeadas para os prontuários. A 
-         precisão no 'delete' aqui é o que define um mestre.
+    3. RESILIÊNCIA E ROBUSTEZ:
+       - O uso do Scanner Singleton e o tratamento de exceções em 
+         pontos críticos garantem que o HUB não trave em momentos 
+         de crise real por erros de digitação do operador.
 
-    4. UX DE DASHBOARD:
-       - A interface foi desenhada para dar respostas imediatas, 
-         unindo cores ANSI e feedbacks de sistema (LOG, DESPACHO, 
-         SUCESSO), melhorando a experiência do operador.
+    4. PERFORMANCE LOGÍSTICA:
+       - O uso de referências constantes e ponteiros evita cópias 
+         desnecessárias, mantendo o sistema responsivo mesmo sob 
+         alta demanda de resgates.
 
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Microsserviços: Separar o Hospital da Cidade via rede.
-    - Cloud Computing: Onde esses dados seriam salvos globalmente.
-    - Segurança de Redes: Como proteger o HUB contra ataques.
+    - Distributed Systems: Separar os módulos em diferentes servidores.
+    - Real-time OS (RTOS): Garantias de tempo de resposta.
+    - Cyber-Physical Systems (CPS).
     ===============================================================
 */

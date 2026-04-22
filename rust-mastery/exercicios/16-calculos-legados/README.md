@@ -18,3 +18,8 @@ Para economizar bateria, os drones da "SkyCargo" usam um chip matemático antigo
 3. Declarar a interface externa no Rust.
 4. Solicitar ao usuário o valor da aceleração via terminal.
 5. Chamar a função C dentro de um bloco `unsafe` e exibir o resultado.
+
+## ⚠️ Análise de Falha Crítica
+- **Deadlocks:** Não se aplica diretamente ao FFI simples, mas se o código C usar mutexes internos, o Rust não terá visibilidade sobre eles, podendo causar deadlocks invisíveis ao Borrow Checker.
+- **Send/Sync Violations:** Ponteiros crus (`*const T`, `*mut T`) não implementam `Send` nem `Sync`. Passar ponteiros vindos do C entre threads Rust exige cautela extrema e wrappers seguros (Newtype pattern).
+- **Stack vs Heap:** O Rust passa argumentos pela **Stack** (seguindo a ABI do C). Se o C alocar memória no Heap dele, o Rust **NÃO** pode liberá-la usando `drop()`; é necessário uma função C correspondente para desalocação (evitando memory leaks).

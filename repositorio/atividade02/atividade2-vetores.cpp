@@ -8,6 +8,10 @@
  * 
  * @author SENAI - Cristiano Batista Pessoa
  * @date 18/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória
+ * As variáveis primitivas (int, float) estão alocadas na STACK (estática) 
+ * por possuírem tamanho fixo conhecido em tempo de compilação.
  */
 
 #include <iostream> // Permite a entrada e saída de dados (cin, cout, endl)
@@ -19,14 +23,22 @@
 
 using namespace std;
 
+// Namespace para Interface de Usuário com cores ANSI
+namespace UI {
+    const string RESET = "\033[0m";
+    const string VERDE = "\033[32m";
+    const string VERMELHO = "\033[31m";
+}
+
 int main()
 {
     // Configuração da formatação de saída para 2 casas decimais
     cout << fixed << setprecision(2);
 
-    // Variáveis de configuração do sistema
+    // Variáveis de configuração do sistema (Guardião Financeiro aplicado a pesos)
     int numCurrais;
-    float minimoRacao;
+    float inputMeta;
+    int minimoRacaoCents; // Representa kg * 100
 
     // --- 1. Entrada de Configurações Iniciais ---
     cout << "===============================================" << endl;
@@ -37,38 +49,41 @@ int main()
     cin >> numCurrais;
 
     cout << "Digite a meta mínima de ração (kg) por curral: ";
-    cin >> minimoRacao;
+    cin >> inputMeta;
+    minimoRacaoCents = (int)(inputMeta * 100 + 0.5);
 
     // --- 2. Inicialização do Vetor ---
     // Uso de vector para permitir tamanho dinâmico conforme escolha do usuário
-    vector<float> racaoCurrais(numCurrais);
+    vector<int> racaoCurraisCents(numCurrais);
 
     // --- 3. Coleta de Dados dos Currais ---
     cout << "\n--- REGISTRO DE DADOS ---" << endl;
     for (int i = 0; i < numCurrais; i++)
     {
+        float inputRacao;
         cout << "Ração fornecida no curral " << (i + 1) << " (kg): ";
-        cin >> racaoCurrais[i];
+        cin >> inputRacao;
+        racaoCurraisCents[i] = (int)(inputRacao * 100 + 0.5);
     }
 
     // --- 4. Processamento e Relatório de Inspeção ---
     cout << "\n--- RELATÓRIO DE INSPEÇÃO ---" << endl;
-    cout << "Meta estabelecida: " << minimoRacao << " kg" << endl;
+    cout << "Meta estabelecida: " << (minimoRacaoCents / 100.0) << " kg" << endl;
     cout << "-----------------------------------------------" << endl;
 
     for (int i = 0; i < numCurrais; i++)
     {
         cout << "Curral " << setw(2) << (i + 1) << ": " 
-             << setw(6) << racaoCurrais[i] << " kg";
+             << setw(6) << (racaoCurraisCents[i] / 100.0) << " kg";
 
    // Lógica de Alerta: Verifica se o valor está abaixo do limite de segurança
-        if (racaoCurrais[i] < minimoRacao)
+        if (racaoCurraisCents[i] < minimoRacaoCents)
         {
-            cout << " [ALERTA: ABAIXO DA META!]";
+            cout << UI::VERMELHO << " [ALERTA: ABAIXO DA META!]" << UI::RESET;
         }
         else 
         {
-            cout << " [OK]";
+            cout << UI::VERDE << " [OK]" << UI::RESET;
         }
 
         cout << endl;

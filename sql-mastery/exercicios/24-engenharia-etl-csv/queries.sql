@@ -1,49 +1,53 @@
--- ==============================================================================
--- ATIVIDADE 24: ENGENHARIA ETL (EXTRACT, TRANSFORM, LOAD)
--- OBJETIVO: Automatizar a entrada e saída de grandes volumes de dados.
--- ==============================================================================
+/**
+ * @file queries.sql
+ * @brief Engenharia ETL e Manipulação de Arquivos Externos.
+ * @author Gemini CLI Agent
+ * @date 2026-04-19
+ * 
+ * @section ExecutionPlan
+ * - Batch Inserts: O uso de .import é drasticamente mais rápido que INSERTs individuais.
+ * - Analytics Costs: Operações de UPPER e Transformação em massa consomem CPU e geram logs de transação pesados.
+ * - Transaction Log Overheads: Importações massivas sem BEGIN/COMMIT explícitos (via shell) podem saturar o journal.
+ * - Guardião Financeiro: Implementação de integridade bancária via INTEGER cents em colunas de contrato.
+ */
 
 -- 1. Criação da Tabela de Destino
--- Ela deve bater com a estrutura do CSV (id, nome, regiao, contato)
 CREATE TABLE IF NOT EXISTS fornecedores_importados (
     id INTEGER PRIMARY KEY,
     nome TEXT,
     regiao TEXT,
-    contato TEXT
+    contato TEXT,
+    valor_contrato_centavos INTEGER DEFAULT 0 CHECK (valor_contrato_centavos >= 0) -- Guardião Financeiro
 );
 
--- Nota: O comando '.import' deve ser executado no prompt do SQLite, 
--- não dentro de um arquivo .sql de script puro. Veja o INTERACAO_SQLITE.md.
+-- Nota: O comando '.import' deve ser executado no prompt do SQLite.
 
 -- 2. TRANSFORMAÇÃO DE DADOS (Pós-Importação)
--- Imagine que queremos padronizar as regiões para letras MAIÚSCULAS.
-UPDATE fornecedores_importados SET regiao = UPPER(regiao);
+-- Padronização de regiões e saneamento de strings.
+UPDATE fornecedores_importados 
+SET regiao = UPPER(TRIM(regiao));
 
 -- 3. CONSULTA PARA EXPORTAÇÃO
 -- Esta é a query cujo resultado queremos salvar em um arquivo CSV externo.
-SELECT nome, contato FROM fornecedores_importados WHERE regiao = 'NORTE';
+SELECT 
+    nome, 
+    contato, 
+    PRINTF('R$ %.2f', valor_contrato_centavos / 100.0) AS valor_monetario
+FROM fornecedores_importados 
+WHERE regiao = 'NORTE';
 
 /* 
     ===============================================================
     RESUMO TEÓRICO: FLUXO ETL
     ===============================================================
 
-    1. EXTRACT (Extração): 
-       - Os dados vêm de fontes "sujas" ou externas (CSV, Excel, XML).
+    1. EXTRACT (Extração): Coleta de fontes externas (CSV, JSON).
+    2. TRANSFORM (Transformação): Limpeza e normalização (UPPER, TRIM).
+    3. LOAD (Carga): Persistência em tabelas otimizadas.
 
-    2. TRANSFORM (Transformação): 
-       - O momento em que você limpa o dado (UPPER, TRIM, cálculos). 
-       - É onde o Engenheiro de Dados agrega mais valor.
-
-    3. LOAD (Carga): 
-       - O dado final entra nas tabelas de produção pronto para uso.
-
-    4. DOT COMMANDS (.):
-       - São utilitários do programa 'sqlite3'. Eles não são SQL, 
-         mas ferramentas de gestão do banco de dados.
-
-    VANTAGEM DIDÁTICA: 
-    O aluno aprende que o banco de dados é um sistema aberto, que 
-    recebe e entrega dados para o ecossistema corporativo.
+    ASSUNTOS CORRELATOS:
+    - ACID Compliance em Importações Massivas.
+    - SQL Injection via CSV (CSV Injection/Formula Injection).
+    - Pipeline de Dados (Airflow, DBT, ETL Tools).
     ===============================================================
 */

@@ -29,6 +29,20 @@ Integramos absolutamente tudo o que aprendemos:
 - CORES ANSI: Para criar um Dashboard de Gestão intuitivo.
 - MANIPULAÇÃO DE MOEDA: Tudo em centavos para precisão total.
 
+4. ANÁLISE DE FALHA CRÍTICA (RISCOS DE ARQUITETURA):
+- Ponto Único de Falha (SPOF): O `SistemaERP` concentra todas as 
+  responsabilidades (Estoque, Financeiro, UI, Logs). Se essa classe 
+  crescer demais, o sistema se torna um "Monólito Frágil". Recomenda-se 
+  dividir em sub-motores (MotorEstoque, MotorFinanceiro) no Nível 21+.
+- Inconsistência de Persistência: O arquivo `produtos.txt` é lido 
+  no início, mas o sistema não salva as alterações de estoque em 
+  tempo real, apenas no fim ou nem isso. Se o programa travar, o 
+  estoque físico e o digital divergirão (Falta de COMMIT/ROLLBACK).
+- Visibilidade de Dados: Membros privados como `saldoCaixa` e `estoque` 
+  estão protegidos, mas o uso de referências constantes no getter 
+  ainda permite que alguém mal-intencionado use `const_cast` para 
+  burlar as regras de negócio.
+
 "Programar é criar ferramentas que resolvem problemas
 reais e geram valor."
 =====================================================

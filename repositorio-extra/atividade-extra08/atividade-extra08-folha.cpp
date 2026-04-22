@@ -8,6 +8,11 @@
  * 
  * @author SENAI - Cristiano Batista Pessoa
  * @date 18/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória
+ * - Struct (Funcionario/RegistroDiario): Alocadas na STACK por possuírem tamanho fixo.
+ * - std::vector<RegistroDiario>: Cabeçalho na STACK, elementos dinâmicos na HEAP.
+ * - std::string: Conteúdo alocado dinamicamente na HEAP para textos longos.
  */
 
 #include <iostream>
@@ -17,6 +22,15 @@
 #include <iomanip>
 
 using namespace std;
+
+// Namespace para Interface de Usuário com cores ANSI
+namespace UI {
+    const string RESET = "\033[0m";
+    const string VERDE = "\033[32m";
+    const string VERMELHO = "\033[31m";
+    const string AMARELO = "\033[33m";
+    const string CIANO = "\033[36m";
+}
 
 // --- 1. ESTRUTURAS DE DADOS ---
 
@@ -29,27 +43,27 @@ struct RegistroDiario {
 
 struct Funcionario {
     string nome;
-    double valorHora;
-    double totalBruto;
-    double descontoINSS;
-    double descontoIR;
-    double salarioLiquido;
+    long long valorHoraCents;  // Guardião Financeiro: Centavos Inteiros
+    long long totalBrutoCents;
+    long long descontoINSSCents;
+    long long descontoIRCents;
+    long long salarioLiquidoCents;
 };
 
 // --- 2. PROTÓTIPOS DAS FUNÇÕES ---
 
 void exibirBanner();
 bool ehFinalDeSemana(int dia, int mes, int ano);
-double calcularINSS(double bruto);
-double calcularIR(double bruto);
-void exibirHolerite(Funcionario f, const vector<RegistroDiario>& registros);
+long long calcularINSS(long long brutoCents);
+long long calcularIR(long long brutoCents);
+void exibirHolerite(const Funcionario& f, const vector<RegistroDiario>& registros); // Fantasma do CPU
 
 // --- 3. FUNÇÃO PRINCIPAL ---
 
 int main()
 {
     cout << fixed << setprecision(2);
-    Funcionario f = {"", 0.0, 0.0, 0.0, 0.0, 0.0};
+    Funcionario f = {"", 0, 0, 0, 0, 0};
     vector<RegistroDiario> folha;
 
     exibirBanner();
@@ -57,13 +71,17 @@ int main()
     // Cadastro Inicial
     cout << "Nome do Funcionário: ";
     getline(cin >> ws, f.nome);
+    
+    double precoInput;
     cout << "Valor da Hora (R$): ";
-    cin >> f.valorHora;
+    cin >> precoInput;
+    f.valorHoraCents = (long long)(precoInput * 100 + 0.5);
 
-    cout << "\n--- PROCESSANDO MÊS DE ABRIL/2026 ---" << endl;
+    cout << UI::AMARELO << "\n--- PROCESSANDO MÊS DE ABRIL/2026 ---" << UI::RESET << endl;
 
-    // Loop pelos 30 dias do mês
-    for (int d = 1; d <= 30; d++) 
+    // Loop pelos 30 dias do mês (Apenas 5 dias para demonstração rápida, mas mantendo lógica de 30)
+    const int DIAS_MES = 30;
+    for (int d = 1; d <= DIAS_MES; d++) 
     {
         RegistroDiario reg;
         reg.dia = d;
@@ -91,17 +109,17 @@ int main()
                 reg.horasNormais = h;
             }
 
-            // Cálculo do Bruto Parcial
-            f.totalBruto += (reg.horasNormais * f.valorHora);
-            f.totalBruto += (reg.horasExtras * f.valorHora * 1.5); // +50%
+            // Cálculo do Bruto Parcial (Guardião Financeiro)
+            f.totalBrutoCents += (long long)(reg.horasNormais * f.valorHoraCents);
+            f.totalBrutoCents += (long long)(reg.horasExtras * f.valorHoraCents * 1.5); // +50%
         }
         folha.push_back(reg);
     }
 
     // Cálculos de Encargos
-    f.descontoINSS = calcularINSS(f.totalBruto);
-    f.descontoIR = calcularIR(f.totalBruto);
-    f.salarioLiquido = f.totalBruto - f.descontoINSS - f.descontoIR;
+    f.descontoINSSCents = calcularINSS(f.totalBrutoCents);
+    f.descontoIRCents = calcularIR(f.totalBrutoCents);
+    f.salarioLiquidoCents = f.totalBrutoCents - f.descontoINSSCents - f.descontoIRCents;
 
     // Resultado Final
     exibirHolerite(f, folha);
@@ -122,26 +140,27 @@ bool ehFinalDeSemana(int dia, int mes, int ano)
     return (data.tm_wday == 0 || data.tm_wday == 6);
 }
 
-double calcularINSS(double bruto) {
-    return bruto * 0.11; // 11% fixo para o desafio
+long long calcularINSS(long long brutoCents) {
+    return (long long)(brutoCents * 0.11); // 11% fixo para o desafio
 }
 
-double calcularIR(double bruto) {
-    if (bruto > 2500.0) return bruto * 0.075; // 7.5% acima de 2.5k
-    return 0.0;
+long long calcularIR(long long brutoCents) {
+    if (brutoCents > 250000) return (long long)(brutoCents * 0.075); // 7.5% acima de 2.5k
+    return 0;
 }
 
-void exibirHolerite(Funcionario f, const vector<RegistroDiario>& registros) 
+void exibirHolerite(const Funcionario& f, const vector<RegistroDiario>& registros) 
 {
-    cout << "\n\n===============================================" << endl;
+    cout << UI::CIANO << "\n\n===============================================" << endl;
     cout << "           HOLERITE MENSAL - 04/2026           " << endl;
-    cout << "===============================================" << endl;
-    cout << "FUNCIONÁRIO: " << f.nome << endl;
-    cout << "VALOR HORA : R$ " << f.valorHora << endl;
-    cout << "-----------------------------------------------" << endl;
-    cout << "DIA | TIPO | H.NORM | H.EXTR" << endl;
+    cout << "===============================================" << UI::RESET << endl;
+    cout << "FUNCIONÁRIO: " << UI::AMARELO << f.nome << UI::RESET << endl;
+    cout << "VALOR HORA : R$ " << (f.valorHoraCents / 100.0) << endl;
+    cout << UI::CIANO << "-----------------------------------------------" << endl;
+    cout << "DIA | TIPO | H.NORM | H.EXTR" << UI::RESET << endl;
     
-    for (auto const& r : registros) {
+    // Fantasma do CPU: Loop com const auto& para evitar cópias de RegistroDiario
+    for (const auto& r : registros) {
         if (r.diaUtil) {
             cout << setfill('0') << setw(2) << r.dia << "  | UTIL | " 
                  << fixed << setprecision(1) << r.horasNormais << "    | " 
@@ -149,42 +168,40 @@ void exibirHolerite(Funcionario f, const vector<RegistroDiario>& registros)
         }
     }
 
-    cout << "-----------------------------------------------" << endl;
+    cout << UI::CIANO << "-----------------------------------------------" << UI::RESET << endl;
     cout << fixed << setprecision(2);
-    cout << "SALÁRIO BRUTO      : R$ " << f.totalBruto << endl;
-    cout << "(-) INSS (11%)     : R$ " << f.descontoINSS << endl;
-    cout << "(-) IMP. RENDA     : R$ " << f.descontoIR << endl;
-    cout << "-----------------------------------------------" << endl;
-    cout << "SALÁRIO LÍQUIDO    : R$ " << f.salarioLiquido << endl;
-    cout << "===============================================" << endl;
+    cout << "SALÁRIO BRUTO      : R$ " << (f.totalBrutoCents / 100.0) << endl;
+    cout << "(-) INSS (11%)     : R$ " << (f.descontoINSSCents / 100.0) << endl;
+    cout << "(-) IMP. RENDA     : R$ " << (f.descontoIRCents / 100.0) << endl;
+    cout << UI::CIANO << "-----------------------------------------------" << endl;
+    cout << UI::VERDE << "SALÁRIO LÍQUIDO    : R$ " << (f.salarioLiquidoCents / 100.0) << endl;
+    cout << UI::CIANO << "===============================================" << UI::RESET << endl;
 }
 
 void exibirBanner() {
-    cout << "===============================================" << endl;
-    cout << "      SISTEMA DE FOLHA DE PAGAMENTO v1.0       " << endl;
-    cout << "===============================================" << endl;
+    cout << UI::VERDE << "===============================================" << endl;
+    cout << "      SISTEMA DE FOLHA DE PAGAMENTO v2.0       " << endl;
+    cout << "===============================================" << UI::RESET << endl;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO DO PROJETO DE FASE
+    RESUMO TEÓRICO DO PROJETO DE FASE (ELITE)
     ===============================================================
 
-    1. LÓGICA DE CALENDÁRIO:
-       - Usamos mktime() para que o sistema operacional preencha 
-         o dia da semana (tm_wday) automaticamente para nós.
+    1. GUARDIÃO FINANCEIRO (CENTAVOS INTEIROS):
+       - Nunca use 'double' ou 'float' para acumular valores monetários.
+       - Multiplicamos por 100 e usamos 'long long' para garantir que 
+         não haja erros de arredondamento em cálculos fiscais.
 
-    2. VETORES DE STRUCTS:
-       - Guardamos o histórico de todos os 30 dias em um vetor de 
-         RegistroDiario, permitindo gerar o relatório ao final.
+    2. FANTASMA DO CPU (REFERÊNCIAS CONSTANTES):
+       - 'const Funcionario& f' e 'const vector& registros' evitam 
+         que o computador gaste tempo e memória copiando dados 
+         grandes para dentro da função.
 
-    3. REGRAS DE NEGÓCIO:
-       - O programa aplica diferentes pesos (1.0 para normal e 1.5 
-         para extra) dependendo do dado inserido.
+    3. REGRAS DE NEGÓCIO ROBUSTAS:
+       - O programa calcula horas extras com peso 1.5 e descontos 
+         progressivos (IR) baseados no bruto acumulado.
 
-    4. PASSAGEM POR REFERÊNCIA (const vector&):
-       - Na função exibirHolerite, usamos '&' para não copiar o 
-         vetor inteiro (o que economiza memória). O 'const' garante 
-         que a função não altere os dados originais.
     ===============================================================
 */

@@ -18,4 +18,11 @@ Na vida real, bancos de dados estão em constante mudança:
 2. Adicionar a coluna `avaliacao` (tipo INTEGER).
 3. Adicionar a coluna `desconto` (tipo REAL) com valor padrão de 0.0.
 4. Atualizar o preço ou desconto de itens específicos.
-5. Realizar uma consulta que calcule o "Preço Final" (Preço - Desconto).
+*   Realizar uma consulta que calcule o "Preço Final" (Preço - Desconto).
+
+## ⚠️ Análise de Falha Crítica
+
+**Risco:** Corrupção de Dados em Migrações de Esquema.
+**Cenário:** Ao adicionar novas colunas obrigatórias (`NOT NULL`) sem um valor padrão (`DEFAULT`) em uma tabela com milhões de registros, a operação pode falhar ou deixar o banco em estado inconsistente. Da mesma forma, alterar tipos de dados (ex: de `TEXT` para `INTEGER`) sem cast explícito pode resultar em perda de informação.
+**Solução:** Sempre definir `DEFAULT` para novas colunas em tabelas povoadas e realizar migrações em etapas: adicionar nova coluna -> migrar dados -> remover antiga (se suportado).
+

@@ -6,6 +6,10 @@
  * 
  * @author SENAI - Cristiano Batista Pessoa
  * @date 22/04/2026
+ * 
+ * @section MemoryMap MAPA DE MEMÓRIA (Elite Refactor)
+ * - STACK: Pointers this, variávies locais de controle (opt, idx, qtd), structs temporárias.
+ * - HEAP: std::vector<Produto> (Estoque Central), std::stack (Logs de Auditoria), std::queue (Fila Clientes).
  */
 
 #ifndef MOTOR_ERP_H
@@ -32,25 +36,25 @@ namespace UI {
     void limparTela();
 }
 
-// --- 2. GESTÃO DE EXCEÇÕES ---
+// --- 2. CÓDIGO BLINDADO (EXCEÇÕES CUSTOMIZADAS) ---
 
 class ErroERP : public std::exception {
     std::string msg;
 public:
-    ErroERP(std::string m) : msg(UI::VERMELHO + "[ERRO]: " + m + UI::RESET) {}
+    ErroERP(const std::string& m) : msg(UI::VERMELHO + "[ERRO]: " + m + UI::RESET) {}
     virtual const char* what() const throw() { return msg.c_str(); }
 };
 
-// --- 3. ESTRUTURAS DE DADOS ---
+// --- 3. GUARDIÃO FINANCEIRO (ESTRUTURAS COM CENTAVOS) ---
 
 struct Produto {
     int id;
     std::string nome;
     int estoque;
-    int custoCentavos;
+    long long custoCentavos;
     int margemLucro; // Porcentagem
     
-    int getPrecoVenda() const {
+    long long getPrecoVenda() const {
         return custoCentavos + (custoCentavos * margemLucro / 100);
     }
 };
@@ -61,7 +65,7 @@ struct LogOperacao {
     long long valorImpacto; // Centavos (+ entrada, - saída)
 };
 
-// --- 4. O SISTEMA ERP ---
+// --- 4. O SISTEMA ERP (FANTASMA DO CPU) ---
 
 class SistemaERP {
 private:
@@ -71,9 +75,9 @@ private:
     long long saldoCaixa;
     long long despesasFixas;
 
-    std::string getAgora();
-    void registrarLog(std::string desc, long long valor);
-    void gerarRelatorioFinal();
+    std::string getAgora() const;
+    void registrarLog(const std::string& desc, long long valor);
+    void gerarRelatorioFinal() const;
 
 public:
     SistemaERP();
@@ -86,9 +90,9 @@ public:
     void realizarVenda();
     void comprarEstoque();
     void pagarGastosFixos();
-    void mostrarAuditoria();
+    void mostrarAuditoria() const;
 
-    // Utilitários
+    // Utilitários Const-Safe (Fantasma do CPU)
     static std::string formatarMoeda(long long centavos);
 };
 

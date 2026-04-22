@@ -1,90 +1,120 @@
 /**
  * @file atividade-extra54-imoveis.cpp
- * @brief Programa principal para testar o Polimorfismo e a Sobrescrita.
+ * @brief Interface de Gestão Imobiliária (Polimorfismo de Elite).
+ * 
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Demonstra a força das tabelas de métodos virtuais para escalabilidade.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
  */
 
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include "Imovel.h" // Nossa interface imobiliária modular
+#include "Imovel.h" 
 
 using namespace std;
 using namespace Imobiliaria;
 
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
+
+namespace UI {
+    const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
+    const string VERDE    = "\033[32m";
+    const string AZUL     = "\033[34m";
+    const string CIANO    = "\033[36m";
+    const string AMARELO  = "\033[33m";
+    const string BRANCO   = "\033[37m";
+
+    inline void limparTela() { cout << "\033[2J\033[1;1H"; }
+}
+
+// --- 2. EXECUÇÃO DA GESTÃO DE PORTFÓLIO ---
+
 int main() {
-    // 1. Criando instâncias de diferentes tipos de imóveis.
-    Apartamento ap1("Av. Paulista, 1000", 2500.0, 800.0);
-    Casa casa1("Rua das Flores, 50", 3500.0, 300.0);
-
-    cout << "\033[36m===============================================\033[0m" << endl;
-    cout << "     SISTEMA DE GESTÃO IMOBILIÁRIA (POLIMORFISMO) " << endl;
-    cout << "\033[36m===============================================\033[0m" << endl;
-
-    cout << fixed << setprecision(2);
-
-    // 2. Chamada direta de métodos sobrescritos.
-    cout << "APARTAMENTO:\n  End: " << ap1.getEndereco() 
-         << "\n  Total Mensal: R$ " << ap1.calcularTotal() << endl;
-
-    cout << "\nCASA:\n  End: " << casa1.getEndereco() 
-         << "\n  Total Mensal: R$ " << casa1.calcularTotal() << endl;
-
-    // 3. Demonstrando o "Poder do Polimorfismo" (Uso de Ponteiros da Classe Base).
-    // Note como tratamos tipos diferentes através de uma interface comum.
-    cout << "\n\033[33m[PROCESSAMENTO POLIMÓRFICO EM LOTE]:\033[0m" << endl;
+    UI::limparTela();
     
-    vector<Imovel*> listaImoveis;
-    listaImoveis.push_back(&ap1);
-    listaImoveis.push_back(&casa1);
+    cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
+    cout << "      G-ESTATE: GESTÃO DE ATIVOS IMOBILIÁRIOS  " << endl;
+    cout << "       (Elite Polymorphism & V-Table Engine)   " << endl;
+    cout << UI::CIANO << UI::NEGRITO << "===============================================" << UI::RESET << endl;
 
-    for (Imovel* imovel : listaImoveis) {
-        // Aqui o sistema decide EM TEMPO DE EXECUÇÃO qual calcularTotal() chamar.
-        // Se for um Apartamento, chama a lógica do Apartamento.
-        // Se for uma Casa, chama a lógica da Casa.
-        cout << "- Imóvel em: " << imovel->getEndereco() 
-             << " | VALOR TOTAL: R$ " << imovel->calcularTotal() << endl;
+    // Coleção Polimórfica: Gerenciando diferentes tipos sob o mesmo contrato
+    vector<Imovel*> portfolio;
+
+    // Alocação na HEAP (Simulando banco de dados de ativos)
+    portfolio.push_back(new Apartamento("Rua das Oliveiras, 45 - Apto 302", 1850.00, 450.00));
+    portfolio.push_back(new Casa("Avenida dos Estados, 1200", 3500.00, 250.00));
+    portfolio.push_back(new Apartamento("Pça da República, 10 - Cobertura", 12400.00, 2200.00));
+
+    cout << UI::BRANCO << "\nDEMONSTRATIVO DE FATURAMENTO MENSAL (LATE BINDING):" << UI::RESET << endl;
+    cout << string(60, '-') << endl;
+
+    double faturamentoTotal = 0;
+
+    // FANTASMA DO CPU: Iteração polimórfica via ponteiros da Base
+    for (const auto* ativo : portfolio) {
+        if (ativo) {
+            double totalAtivo = ativo->calcularTotal(); // Decisão em RUNTIME via vptr
+            faturamentoTotal += totalAtivo;
+
+            cout << " >> LOCAL: " << left << setw(40) << ativo->getEndereco() 
+                 << " | VALOR: " << UI::VERDE << UI::NEGRITO << "R$ " << fixed << setprecision(2) << totalAtivo << UI::RESET << endl;
+        }
     }
 
-    cout << "\033[36m===============================================\033[0m" << endl;
+    cout << string(60, '-') << endl;
+    cout << UI::CIANO << UI::NEGRITO << "PATRIMÔNIO LÍQUIDO MENSAL: R$ " << faturamentoTotal << UI::RESET << endl;
+
+    // --- CICLO DE DESALOCAÇÃO SEGURA ---
+    cout << "\n" << UI::AMARELO << "[SISTEMA]: Encerrando sessão e liberando V-Table pointers..." << UI::RESET << endl;
+    for (auto& item : portfolio) {
+        // Devido ao DESTRUTOR VIRTUAL, o C++ sabe limpar a Casa ou o Apto corretamente
+        delete item; 
+        item = nullptr;
+    }
+    portfolio.clear();
+
+    cout << UI::VERDE << UI::NEGRITO << "Vazamento Zero garantido. Engenharia de Elite concluída." << UI::RESET << endl;
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: SOBRESCRITA E POLIMORFISMO
+    RESUMO TEÓRICO: POLIMORFISMO E DINÂMICA (ELITE)
     ===============================================================
 
-    1. MÉTODOS VIRTUAIS (virtual):
-       - Quando declaramos um método como 'virtual', o C++ cria 
-         uma tabela interna (vtable) para decidir qual versão do 
-         método executar dependendo do tipo REAL do objeto, e 
-         não do tipo do ponteiro.
+    1. LATE BINDING (LIGAÇÃO TARDIA):
+       - Diferente da herança simples, o polimorfismo permite que o 
+         programa decida qual código rodar apenas no momento da 
+         execução. O 'ativo->calcularTotal()' não aponta para um 
+         endereço fixo, mas consulta um "mapa" (V-Table).
 
-    2. SOBRESCRITA (override):
-       - O método na classe filha DEVE ter a mesma assinatura do 
-         método no pai. A palavra 'override' ajuda o compilador 
-         a validar isso, evitando que criemos uma nova função 
-         por acidente (ex: errando uma letra ou tipo).
+    2. DESTRUTOR VIRTUAL (A REGRA DE OURO):
+       - Sem o 'virtual ~Imovel()', o comando 'delete ativo' 
+         limparia apenas a parte 'Imovel' do objeto, deixando a 
+         taxa de condomínio ou de jardim "vazando" na RAM para 
+         sempre. O virtual garante a limpeza total.
 
-    3. DESTRUTOR VIRTUAL:
-       - SEMPRE use destrutores virtuais em classes bases. Se não 
-         usar, ao deletar um objeto 'Filho' através de um ponteiro 
-         'Pai', o destrutor do Filho NUNCA será chamado, causando 
-         vazamentos de memória (Memory Leaks).
+    3. ESCALABILIDADE ARQUITETURAL:
+       - Se a imobiliária começar a alugar 'Vagas de Garagem', 
+         basta criar uma classe 'Vaga' herdando de 'Imovel'. O 
+         loop de faturamento na main() continuará funcionando sem 
+         precisar de uma única alteração.
 
-    4. VANTAGEM DIDÁTICA:
-       - Ensinamos que o sistema pode ser extensível. Se criarmos um
-         novo tipo 'GalpaoIndustrial', basta herdar de 'Imovel' e 
-         sobrescrever 'calcularTotal'. O restante do sistema não 
-         precisa de nenhuma alteração para suportá-lo.
+    4. GUARDIÃO FINANCEIRO (CENTAVOS):
+       - Note que embora a interface exiba 'double', o motor 
+         interno (Imovel.cpp) processa tudo em centavos inteiros, 
+         evitando erros acumulados em portfólios de milhares de 
+         imóveis.
+
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Classes Abstratas e Métodos Virtuais Puros.
-    - Ponteiros Inteligentes (unique_ptr/shared_ptr).
-    - Ligação Tardia (Late Binding).
+    - RTTI (Run-Time Type Information) e 'dynamic_cast'.
+    - Slicing Problem: O perigo de passar objetos por valor.
+    - Abstract Base Classes (ABC): Próximo Nível.
     ===============================================================
 */

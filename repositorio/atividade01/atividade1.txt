@@ -65,3 +65,6 @@ Você será avaliado(a) por:
 • Exibir mensagens claras no console com cout;
 • Comentar seu código para explicar cada etapa;
 • Utilizar o modelo de código como ponto de partida.
+
+Análise de Falha Crítica:
+Risco de Input Failure: O sistema atual utiliza cin diretamente para capturar dados numéricos (int e double). Caso o usuário digite letras em um campo numérico, o cin entra em estado de erro (failbit), para de ler dados e entra em um loop infinito ou pula as próximas entradas, travando a lógica de negócio. Em sistemas reais, isso pode causar corrupção de memória ou negação de serviço.

@@ -39,12 +39,12 @@ void GestorBiblioteca::carregarCatalogo(const string& caminho) {
         }
     }
     arquivo.close();
-    cout << "[SISTEMA]: " << catalogo.size() << " títulos carregados." << endl;
+    cout << UI::CYAN << "[SISTEMA]: " << UI::RESET << catalogo.size() << " títulos carregados." << endl;
 }
 
 void GestorBiblioteca::adicionarLeitor(const string& nome) {
     filaLeitores.push(nome);
-    cout << "[OK]: " << nome << " entrou na fila." << endl;
+    cout << UI::GREEN << "[OK]: " << UI::RESET << nome << " entrou na fila." << endl;
 }
 
 void GestorBiblioteca::realizarEmprestimo(int index) {
@@ -74,7 +74,7 @@ void GestorBiblioteca::realizarEmprestimo(int index) {
         catalogo[index].estoque--;
         historico.push(emp);
         
-        cout << "[SUCESSO]: Empréstimo de '" << emp.livro.titulo << "' registrado!" << endl;
+        cout << UI::GREEN << "[SUCESSO]: " << UI::RESET << "Empréstimo de '" << emp.livro.titulo << "' registrado!" << endl;
     } else {
         throw ErroBiblioteca("Índice de livro inexistente.");
     }
@@ -86,7 +86,7 @@ void GestorBiblioteca::desfazerEmprestimo() {
     }
     Emprestimo ultimo = historico.top();
     catalogo[ultimo.indexCatalogo].estoque++;
-    cout << "[DESFEITO]: Livro '" << ultimo.livro.titulo << "' voltou ao estoque." << endl;
+    cout << UI::YELLOW << "[DESFEITO]: " << UI::RESET << "Livro '" << ultimo.livro.titulo << "' voltou ao estoque." << endl;
     historico.pop();
 }
 
@@ -107,7 +107,14 @@ void GestorBiblioteca::salvarRelatorio(const string& caminho) {
         temp.pop();
     }
     rel.close();
-    cout << "[SISTEMA]: Relatório gerado com segurança em " << caminho << endl;
+    cout << UI::CYAN << "[SISTEMA]: " << UI::RESET << "Relatório gerado com segurança em " << caminho << endl;
+}
+
+const string& GestorBiblioteca::getProximoLeitor() const {
+    if (filaLeitores.empty()) {
+        throw ErroBiblioteca("Tentativa de ler próximo leitor de fila vazia.");
+    }
+    return filaLeitores.front();
 }
 
 void GestorBiblioteca::exibirBanner() {

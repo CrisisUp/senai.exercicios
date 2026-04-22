@@ -39,3 +39,22 @@ Para acessar um campo da struct, usamos o PONTO (.):
 Pessoa p1;
 p1.nome = "Cristiano";
 ===============================================================
+
+===============================================================
+    ANÁLISE DE FALHA CRÍTICA (OUT-OF-BOUNDS / LOOPS)
+===============================================================
+1.  RISCO DE OVERFLOW:
+    - O uso de 'getline(cin >> ws, p1.nome)' é seguro para strings 
+      dinâmicas, mas se usássemos 'char nome[20]', uma digitação 
+      longa causaria corrupção de memória (Buffer Overflow).
+    
+2.  LÓGICA DE LOOP (ANTECIPAÇÃO):
+    - Se tentássemos acessar um índice de array inexistente em um 
+      futuro loop de inventário (ex: ler produto 10 em um array 
+      de 5), o programa sofreria um "Segmentation Fault".
+    
+3.  FILTRO DE ENTRADA:
+    - A ausência de 'limparBuffer()' após o 'cin >> preco' faria 
+      com que o caractere '\n' (Enter) sobrasse, pulando a leitura 
+      do próximo nome no cadastro seguinte.
+===============================================================

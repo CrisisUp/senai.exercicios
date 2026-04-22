@@ -1,15 +1,26 @@
-use std::fmt;
-use std::io::{self, Write};
 /**
  * @file main.rs
  * @brief Atividade 19: Gestão de Energia (Sobrecarga de Operadores).
  *
- * Aprendizados: Traits de Operadores (Add, Sub), std::fmt::Display.
+ * @section Aprendizado
+ * Traits de Operadores (Add, Sub), std::fmt::Display.
+ *
+ * @section MemoryMap
+ * - A sobrecarga de operadores em Rust é compilada em chamadas de função direta.
+ * - Não há overhead de runtime comparado a chamar um método como .add().
+ * - A semântica de Move/Copy continua sendo aplicada rigorosamente.
  *
  * @author SENAI - Rust Master
  * @date 20/04/2026
  */
+use std::fmt;
+use std::io::{self, Write};
 use std::ops::{Add, Sub};
+
+/// @section Fantasma do CPU: Performance
+/// A beleza do Rust é que o açúcar sintático do '+' é resolvido em tempo de compilação.
+/// O 'Fantasma do CPU' não vê diferença entre `a + b` e o código mais verboso,
+/// pois o compilador inlina essas chamadas de trait agressivamente.
 
 /// Representa um pack de bateria modular.
 #[derive(Debug, Copy, Clone, PartialEq)]
@@ -155,7 +166,7 @@ mod tests {
 
 /*
     ===============================================================
-    RESUMO TEÓRICO: SOBRECARGA DE OPERADORES EM RUST
+    RESUMO TEÓRICO: SOBRECARGA DE OPERADORES EM RUST (FASE ELITE)
     ===============================================================
 
     1. TRAITS std::ops:
@@ -168,14 +179,23 @@ mod tests {
        - Diferente de algumas linguagens onde você pode fazer um
          operador '+' fazer qualquer coisa, em Rust a estrutura
          exige que você defina o tipo de retorno (type Output).
+       - Isso evita ambiguidades e garante que a semântica seja
+         preservada pelo sistema de tipos.
 
-    3. DISPLAY vs DEBUG:
+    3. ZERO OVERHEAD (MemoryMap):
+       - O compilador Rust inlina essas chamadas de Traits. Usar
+         'pack_a + pack_b' tem exatamente o mesmo desempenho que
+         chamar uma função inline manual.
+
+    4. DISPLAY vs DEBUG:
        - 'Debug' ({:?}) é para o programador (gerado via derive).
        - 'Display' ({}) é para o usuário final, e deve ser
          implementado manualmente para controle total da formatação.
 
-    4. VANTAGEM DIDÁTICA:
-       - O aluno percebe como as abstrações de alto nível (operadores)
-         se conectam com os fundamentos da linguagem (Traits).
+    5. REFATORAÇÃO DE ELITE:
+       - Um código de elite não apenas "funciona", ele é expressivo.
+       - A sobrecarga de operadores deve ser usada apenas quando a
+         operação matemática é intuitiva para o domínio de negócio.
     ===============================================================
 */
+

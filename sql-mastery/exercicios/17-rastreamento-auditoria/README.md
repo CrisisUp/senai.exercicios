@@ -26,3 +26,13 @@ observam mudanças:
 valor_antigo, valor_novo, data_hora).
 3. Criar um **TRIGGER** que dispare em cada `UPDATE` na tabela de configurações.
 4. Demonstrar o registro automático de uma mudança de firmware.
+
+## ⚠️ Análise de Falha Crítica
+
+Sistemas de auditoria via Triggers, embora poderosos, apresentam riscos estruturais e de performance:
+
+1.  **Latência de Escrita (Write Amplification):** Cada `UPDATE` na tabela principal gera um `INSERT` na shadow table. Em sistemas de alta frequência, isso dobra o custo de I/O e pode causar contenção de escrita, aumentando o tempo de resposta da aplicação.
+2.  **Explosão de Armazenamento:** Se não houver uma política de purga ou arquivamento (como o `ATTACH` visto na Ativ. 16), a shadow table pode crescer exponencialmente, tornando-se muito maior que o banco de produção e dificultando manutenções.
+3.  **Inconsistência de Esquema:** Se a estrutura da tabela principal mudar (ex: renomear uma coluna) e o Trigger não for atualizado, a auditoria pode falhar silenciosamente ou impedir atualizações legítimas por erros de sintaxe no gatilho.
+4.  **Bypass de Auditoria:** Ferramentas de importação em massa ou comandos de sistema que desabilitam triggers podem permitir alterações sem rastro. A segurança deve ser complementada por permissões de arquivo no SO.
+

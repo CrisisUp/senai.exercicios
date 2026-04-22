@@ -6,6 +6,10 @@
  * 
  * @author SENAI - Cristiano Batista Pessoa
  * @date 22/04/2026
+ * 
+ * @section MemoryMap MAPA DE MEMÓRIA (Elite Refactor)
+ * - STACK: Objetos Livro/Emprestimo passados por valor, variáveis locais de controle.
+ * - HEAP: std::vector<Livro> gerencia alocação dinâmica interna conforme o catálogo cresce.
  */
 
 #ifndef INTERFACE_BIBLIOTECA_H
@@ -17,9 +21,9 @@
 #include <queue>
 #include <exception>
 
-// --- 1. NAMESPACE DE CORES (ANSI) ---
+// --- 1. NAMESPACE DE UI (ANSI) ---
 
-namespace Cor {
+namespace UI {
     const std::string RESET    = "\033[0m";
     const std::string NEGRITO  = "\033[1m";
     const std::string VERMELHO = "\033[31m";
@@ -30,13 +34,13 @@ namespace Cor {
     const std::string BRANCO   = "\033[37m";
 }
 
-// --- 2. CLASSES DE EXCEÇÃO COLORIDAS ---
+// --- 2. CÓDIGO BLINDADO (EXCEÇÕES CUSTOMIZADAS) ---
 
 class ErroBiblioteca : public std::exception {
 protected:
     std::string mensagem;
 public:
-    ErroBiblioteca(std::string msg) : mensagem(msg) {}
+    ErroBiblioteca(const std::string& msg) : mensagem(msg) {}
     virtual const char* what() const throw() {
         return mensagem.c_str();
     }
@@ -44,20 +48,20 @@ public:
 
 class ErroArquivo : public ErroBiblioteca {
 public:
-    ErroArquivo(std::string arquivo) : ErroBiblioteca(Cor::VERMELHO + "[ERRO CRÍTICO]: Arquivo '" + arquivo + "' não encontrado." + Cor::RESET) {}
+    ErroArquivo(const std::string& arquivo) : ErroBiblioteca(UI::VERMELHO + "[ERRO CRÍTICO]: Arquivo '" + arquivo + "' não encontrado." + UI::RESET) {}
 };
 
 class ErroEntrada : public ErroBiblioteca {
 public:
-    ErroEntrada() : ErroBiblioteca(Cor::AMARELO + "[AVISO]: Entrada inválida. Digite apenas números." + Cor::RESET) {}
+    ErroEntrada() : ErroBiblioteca(UI::AMARELO + "[AVISO]: Entrada inválida. Digite apenas números." + UI::RESET) {}
 };
 
 class ErroEstoque : public ErroBiblioteca {
 public:
-    ErroEstoque(std::string titulo) : ErroBiblioteca(Cor::VERMELHO + "[ESTOQUE]: O livro '" + titulo + "' esgotou." + Cor::RESET) {}
+    ErroEstoque(const std::string& titulo) : ErroBiblioteca(UI::VERMELHO + "[ESTOQUE]: O livro '" + titulo + "' esgotou." + UI::RESET) {}
 };
 
-// --- 3. ESTRUTURAS DE DADOS ---
+// --- 3. FANTASMA DO CPU (ESTRUTURAS COM REFERÊNCIA) ---
 
 struct Livro {
     std::string titulo;
@@ -74,7 +78,7 @@ struct Emprestimo {
     int indexCatalogo;
 };
 
-// --- 4. CLASSE GESTOR ESTILIZADO ---
+// --- 4. CLASSE GESTOR ESTILIZADO (MODULAR) ---
 
 class GestorEstilizado {
 private:
@@ -82,23 +86,23 @@ private:
     std::queue<std::string> filaLeitores;
     std::stack<Emprestimo> historico;
 
-    std::string formatarData(time_t t);
+    std::string formatarData(time_t t) const;
 
 public:
     void carregarCatalogo();
-    void salvarRelatorio();
+    void salvarRelatorio() const;
     
     // Ações de Negócio
-    void adicionarLeitor(std::string nome);
+    void adicionarLeitor(const std::string& nome);
     void atenderLeitor(int index);
     void desfazerUltimo();
 
-    // Getters para UI
-    std::vector<Livro>& getCatalogo() { return catalogo; }
-    std::queue<std::string>& getFila() { return filaLeitores; }
-    std::stack<Emprestimo>& getHistorico() { return historico; }
+    // Getters Const-Safe (Fantasma do CPU)
+    const std::vector<Livro>& getCatalogo() const { return catalogo; }
+    const std::queue<std::string>& getFila() const { return filaLeitores; }
+    const std::stack<Emprestimo>& getHistorico() const { return historico; }
 
-    static int lerInteiro(std::string prompt);
+    static int lerInteiro(const std::string& prompt);
     static void exibirBanner();
 };
 

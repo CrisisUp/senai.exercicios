@@ -31,3 +31,10 @@ Em Rust, os **Enums** são muito mais do que simples listas de constantes. Eles 
 * **Padrão:** Apenas 2% do valor do item.
 
 ### 4. O programa deve exibir um relatório formatado para cada tipo de teste
+
+## 🛡️ Análise de Falha Crítica (Refatoração de Elite)
+
+*   **Riscos de Panic:** O uso de `f64` para cálculos monetários pode levar a erros de precisão e, em casos extremos de conversão, falhas silenciosas. A refatoração para `u64` elimina imprecisões de ponto flutuante.
+*   **Use-after-move:** O Rust impede este erro nativamente. Ao passar referências (`&`), garantimos que o dono da encomenda (`encomendas` vector) mantenha a posse dos dados durante a iteração.
+*   **Borrow Checker Errors:** Ao iterar com `&encomendas`, criamos referências compartilhadas. Tentar modificar a encomenda dentro do loop causaria um erro de compilação, garantindo a integridade dos dados de triagem.
+*   **Memory Overheads:** O uso de `Enum` em Rust é extremamente eficiente (o tamanho é o da maior variante + tag). Evitamos alocações desnecessárias no Heap ao usar tipos primitivos e referências.

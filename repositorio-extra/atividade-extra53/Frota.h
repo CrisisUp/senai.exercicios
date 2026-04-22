@@ -1,9 +1,18 @@
 /**
  * @file Frota.h
- * @brief Definição modular de Veículos e Caminhões usando Herança.
+ * @brief Interface para Gestão de Frota via Herança.
+ * 
+ * Atividade Extra 53 - Arquitetura Modular (Nível 21+).
+ * Demonstra a hierarquia de classes e proteção de membros (protected).
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Inheritance Layout)
+ * - Objeto Caminhao: Alocado na STACK da main.
+ * - Layout na RAM: Membros da Base (placa, marca, km) + Membros da Filha (capCarga).
+ * - Cadeia de Iniciação: O construtor da Base é executado PRIMEIRO na Stack.
+ * - Strings: Objetos na STACK, conteúdo textual alocado na HEAP.
  */
 
 #ifndef FROTA_H
@@ -14,46 +23,47 @@
 namespace Logistica {
 
     /**
-     * @brief Classe Base (Pai): Define o que TODO veículo possui.
+     * @class Veiculo
+     * @brief Classe Base (Pai) contendo a fundação comum de qualquer transporte.
      */
     class Veiculo {
     protected:
-        // 'protected' permite que classes filhas acessem, mas protege do mundo externo.
+        // Protected: Visível para classes filhas, escondido do resto do app.
         std::string placa;
         std::string marca;
         double odometro;
 
     public:
-        Veiculo(std::string p, std::string m);
-        
+        /** @brief Construtor da Base (Performance por const ref). */
+        Veiculo(const std::string& _placa, const std::string& _marca);
+
+        /** @brief Incrementa a rodagem do veículo. */
         void viajar(double km);
-        
-        std::string getInfo() const;
-        double getOdometro() const { return odometro; }
+
+        // Getters
+        const std::string& getPlaca() const { return placa; }
+        double getKM() const { return odometro; }
     };
 
     /**
-     * @brief Classe Derivada (Filho): Especialização de um Veículo.
-     * RELAÇÃO: Caminhao É-UM Veiculo.
+     * @class Caminhao
+     * @brief Classe Derivada (Filha) especializada em transporte de carga pesada.
      */
     class Caminhao : public Veiculo {
     private:
-        double capacidadeCarga; // Atributo específico do Caminhão
+        double capacidadeCarga; // Em toneladas
         double cargaAtual;
 
     public:
-        Caminhao(std::string p, std::string m, double cap);
+        Caminhao(const std::string& _p, const std::string& _m, double cap);
 
-        /**
-         * @brief Carrega o caminhão (Valida contra a capacidade).
-         */
-        bool carregar(double toneladas);
+        /** @brief Tenta carregar o veículo respeitando o limite físico. */
+        bool carregar(double peso);
 
-        /**
-         * @brief Retorna as informações completas (Base + Especialização).
-         */
+        /** @brief Gera relatório técnico consolidando dados da base e da filha. */
         std::string getRelatorioCaminhao() const;
     };
-}
+
+} // namespace Logistica
 
 #endif // FROTA_H

@@ -7,6 +7,12 @@
  * 
  * @author SENAI - Cristiano Batista Pessoa
  * @date 18/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória
+ * - Struct (tm): Alocada na STACK pelo 'localtime' (estática interna 
+ *   ou fornecida pelo SO).
+ * - RegistroPonto: Alocada na STACK por possuir tamanho fixo.
+ * - std::string: Cabeçalho na STACK, conteúdo dinâmico na HEAP.
  */
 
 #include <iostream>
@@ -16,6 +22,15 @@
 #include <cctype> // Necessária para validar tipos de caracteres
 
 using namespace std;
+
+// Namespace para Interface de Usuário com cores ANSI
+namespace UI {
+    const string RESET = "\033[0m";
+    const string VERDE = "\033[32m";
+    const string VERMELHO = "\033[31m";
+    const string AMARELO = "\033[33m";
+    const string CIANO = "\033[36m";
+}
 
 // --- 1. Estrutura ---
 struct RegistroPonto {
@@ -27,8 +42,8 @@ struct RegistroPonto {
 // --- 2. Protótipos ---
 void exibirBanner();
 RegistroPonto baterPonto(string nome);
-void exibirComprovante(RegistroPonto r);
-bool validarNome(string nome); // Nova função de validação
+void exibirComprovante(const RegistroPonto& r); // Fantasma do CPU: Referência constante
+bool validarNome(const string& nome); // Fantasma do CPU: Referência constante
 
 // --- 3. Função Principal ---
 int main()
@@ -46,7 +61,7 @@ int main()
         if (validarNome(nome)) {
             nomeValido = true;
         } else {
-            cout << "[ERRO]: O nome não pode conter números. Tente novamente.\n" << endl;
+            cout << UI::VERMELHO << "[ERRO]: O nome não pode conter números. Tente novamente.\n" << UI::RESET << endl;
         }
     } while (!nomeValido);
 
@@ -63,14 +78,14 @@ int main()
 
 /**
  * Verifica se o nome contém apenas letras e espaços.
- * @param nome A string digitada pelo usuário.
+ * @param nome Referência constante (evita cópia desnecessária).
  * @return true se for válido, false se contiver números.
  */
-bool validarNome(string nome) {
+bool validarNome(const string& nome) {
     if (nome.empty()) return false;
 
-    for (char c : nome) {
-        // Se encontrar qualquer dígito numérico, retorna falso imediatamente
+    // Fantasma do CPU: Percorrendo por referência constante
+    for (const char& c : nome) {
         if (isdigit(c)) {
             return false;
         }
@@ -95,59 +110,45 @@ RegistroPonto baterPonto(string nome)
     return r;
 }
 
-void exibirComprovante(RegistroPonto r) 
+void exibirComprovante(const RegistroPonto& r) 
 {
-    cout << "\n===============================================" << endl;
+    cout << UI::CIANO << "\n===============================================" << endl;
     cout << "          COMPROVANTE DE PONTO ELETRÔNICO      " << endl;
-    cout << "===============================================" << endl;
-    cout << "Funcionário : " << r.nomeFuncionario << endl;
+    cout << "===============================================" << UI::RESET << endl;
+    cout << "Funcionário : " << UI::AMARELO << r.nomeFuncionario << UI::RESET << endl;
     cout << "Data        : " << setfill('0') << setw(2) << r.dia << "/" 
                             << setw(2) << r.mes << "/" << r.ano << endl;
     cout << "Horário     : " << setw(2) << r.hora << ":" 
                             << setw(2) << r.min  << ":" 
                             << setw(2) << r.seg  << endl;
-    cout << "-----------------------------------------------" << endl;
-    cout << "      REGISTRO REALIZADO COM SUCESSO!          " << endl;
-    cout << "===============================================" << endl;
+    cout << UI::CIANO << "-----------------------------------------------" << endl;
+    cout << UI::VERDE << "      REGISTRO REALIZADO COM SUCESSO!          " << endl;
+    cout << UI::CIANO << "===============================================" << UI::RESET << endl;
 }
 
 void exibirBanner() 
 {
-    cout << "===============================================" << endl;
+    cout << UI::VERDE << "===============================================" << endl;
     cout << "        SISTEMA DE RH - CONTROLE DE PONTO      " << endl;
-    cout << "===============================================" << endl;
+    cout << "===============================================" << UI::RESET << endl;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: VALIDAÇÃO DE STRINGS (<cctype>)
+    RESUMO TEÓRICO: VALIDAÇÃO E EFICIÊNCIA
     ===============================================================
 
     1. BIBLIOTECA <cctype>:
-       - Oferece funções para testar caracteres individuais.
        - isdigit(c): Retorna verdadeiro se o caractere for um número.
-       - isalpha(c): Retorna verdadeiro se for uma letra.
-       - isspace(c): Retorna verdadeiro se for um espaço/tab/enter.
 
-    2. LOOP DO-WHILE:
-       - É ideal para validação de dados, pois garante que o código 
-         dentro do 'do' execute pelo menos uma vez antes de testar 
-         se deve repetir.
+    2. FANTASMA DO CPU (Referência Constante):
+       - 'const string& nome': Passamos o endereço da string original 
+         em vez de criar uma cópia na pilha (STACK). Essencial para 
+         strings longas.
 
-    3. RANGE-BASED FOR (for char c : nome):
-       - Uma forma moderna (C++11) de percorrer cada "letra" de uma 
-         string do início ao fim sem precisar de índices [i].
+    3. RANGE-BASED FOR (for const char& c : nome):
+       - Acesso direto e somente leitura aos caracteres da string, 
+         evitando overhead de indexação redundante.
 
-    ===============================================================
-    TÓPICOS COMPLEMENTARES PARA O EXAME
-    ===============================================================
-
-    A. FUNÇÃO toupper() e tolower():
-       - Também da <cctype>, servem para converter letras para 
-         MAIÚSCULAS ou minúsculas.
-
-    B. O TIPO 'bool':
-       - É um tipo lógico que armazena apenas dois estados: true 
-         (1/verdadeiro) ou false (0/falso).
     ===============================================================
 */

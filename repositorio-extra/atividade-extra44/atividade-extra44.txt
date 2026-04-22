@@ -3,6 +3,7 @@ ESTUDO DE CASO: O NÚCLEO DO MOTOR (GAME LOOP KERNEL)
 DOMÍNIO: Desenvolvimento de Jogos / Simulação em Tempo Real
 ATIVIDADE: Extra 44
 CONCEITO NOVO: Game Loop e Delta Time (Biblioteca <chrono>)
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 1. O CENÁRIO
 Um jogo de Arcade não pode parar para esperar o usuário. Ele deve atualizar 
@@ -15,13 +16,22 @@ Um JOGO segue o fluxo infinito:
 - Processar Input (Teclado/Mouse).
 - Atualizar Lógica (Física, Colisões, Pontos).
 - Renderizar (Desenhar na tela).
-- Calcular o DELTA TIME: É a diferença de tempo entre o quadro atual e o 
-  quadro anterior. Usamos esse valor para que um personagem ande 5 metros por 
-  segundo, não importa se o computador está rodando a 30 FPS ou 300 FPS.
+- Calcular o DELTA TIME (dt): Diferença temporal entre quadros que garante 
+  que a física do jogo seja independente da potência do processador.
 
-3. REQUISITOS DO SISTEMA
-- Usar a biblioteca <chrono> para alta precisão (microssegundos).
-- Criar uma classe 'Engine' que gerencia o loop principal.
-- Simular um objeto se movendo na tela com velocidade baseada em tempo.
-- Interface ANSI para mostrar o FPS (Frames Per Second) em tempo real.
+3. 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ENGENHARIA DE SIMULAÇÃO)
+- RISCO DE CPU STARVATION: Um loop sem `sleep_for` consumirá 100% de um núcleo 
+  do processador, aquecendo o hardware e impedindo que outros processos do S.O. 
+  rodem suavemente.
+- RISCO DE FLOATING POINT DRIFT: Somar `velocidade * dt` durante horas em 
+  variáveis 'float' causa erros de precisão acumulados. O herói pode acabar 
+  "atravessando paredes" por erro de arredondamento. Solução: 'double'.
+- RISCO DE SPIRAL OF DEATH: Se o tempo de processamento da física for maior 
+  que o tempo disponível no quadro, o `dt` aumenta, o que exige mais física, 
+  criando um travamento progressivo.
+
+4. REQUISITOS DO SISTEMA
+- Implementação de 'Kernel Loop' baseado em <chrono>.
+- Física independente de Frame-rate (Time-Step Simulation).
+- Interface de Telemetria de FPS via ANSI Escape Codes.
 ------------------------------------------------------------------------------

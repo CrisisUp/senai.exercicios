@@ -20,3 +20,11 @@ Em Rust, a **Sobrecarga de Operadores (Operator Overloading)** não é feita de 
 3. Implementar o Trait `std::ops::Sub` para subtrair consumo de um pack.
 4. Implementar o Trait `std::fmt::Display` para exibir o pack de forma amigável.
 5. Criar uma interface interativa onde o usuário insere as capacidades de dois packs e vê a soma em tempo real.
+
+## 🛡️ Análise de Falha Crítica: Riscos de Semântica de Operadores
+
+A sobrecarga de operadores é uma faca de dois gumes. Em linguagens menos restritivas, é possível sobrecarregar o operador `+` para realizar uma subtração, o que criaria um caos de manutenção.
+
+*   **Risco de Semântica:** O maior erro em Refatoração de Elite é usar operadores para ações que não possuem uma analogia matemática clara. Somar `PackBateria` faz sentido físico (capacidade total). Somar `Usuario + Perfil` pode não ser intuitivo.
+*   **Princípio da Menor Surpresa:** Rust mitiga isso exigindo Traits específicas, mas o desenvolvedor deve garantir que a operação seja **Pura** e **Esperada**.
+*   **Prevenção de Underflow:** No exemplo prático, a subtração de bateria deve ser blindada contra valores negativos (capacidade não pode ser menor que zero), tratando a falha lógica antes que ela se torne um bug de sistema.

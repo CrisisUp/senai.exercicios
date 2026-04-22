@@ -1,12 +1,18 @@
 /**
  * @file atividade-extra38-grafos.cpp
- * @brief Rastreamento de Contágio: Introdução a Grafos e Matriz de Adjacência.
+ * @brief Epidemic-Graph: Mapeamento de Contágio via Matriz de Adjacência.
  * 
- * Demonstra como representar conexões complexas entre entidades (Pessoas)
- * utilizando uma matriz de adjacência para mapear arestas em um grafo.
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Demonstra a representação de redes sociais complexas para análise de risco.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Adjacency Matrix Layout)
+ * - Objeto MapaContagio: Alocado na STACK.
+ * - vector<vector<int>>: O descritor mestre vive na STACK.
+ * - Matriz 2D: Vetor de vetores alocado contiguamente na HEAP (O(V²) bytes).
+ * - Eficiência de Acesso: Busca de aresta em tempo constante O(1).
  */
 
 #include <iostream>
@@ -16,49 +22,68 @@
 
 using namespace std;
 
-// --- 1. NAMESPACE DE INTERFACE ---
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
 
 namespace UI {
     const string RESET    = "\033[0m";
-    const string VERMELHO = "\033[31m";
+    const string NEGRITO  = "\033[1m";
     const string VERDE    = "\033[32m";
-    const string CIANO    = "\033[36m";
+    const string VERMELHO = "\033[31m";
     const string AMARELO  = "\033[33m";
+    const string AZUL     = "\033[34m";
+    const string CIANO    = "\033[36m";
+    const string BRANCO   = "\033[37m";
+
+    inline void limparTela() { cout << "\033[2J\033[1;1H"; }
 }
 
-// --- 2. CLASSE GESTORA DE GRAFOS ---
+// --- 2. MOTOR DE ANÁLISE DE REDE (GRAFOS) ---
 
+/**
+ * @class MapaContagio
+ * @brief Gerencia a conectividade entre indivíduos em um cenário de pandemia.
+ */
 class MapaContagio {
 private:
     int numPessoas;
-    vector<vector<int>> matriz; // Matriz de Adjacência
-    vector<string> nomes;      // Mapeamento de índice para nome real
+    vector<vector<int>> matriz; // Matriz de Adjacência (Binary Connectivity)
+    vector<string> catalogoNomes;
 
 public:
+    /**
+     * @brief Construtor: Inicializa matriz isolada O(V²).
+     */
     MapaContagio(int n) : numPessoas(n) {
-        // Inicializa matriz n x n com zeros (sem contatos iniciais)
         matriz.resize(n, vector<int>(n, 0));
-        nomes.resize(n, "Desconhecido");
-    }
-
-    void setNome(int id, string nome) {
-        if (id >= 0 && id < numPessoas) nomes[id] = nome;
+        catalogoNomes.resize(n, "Desconhecido");
     }
 
     /**
-     * @brief Cria uma aresta entre dois vértices (contato entre pessoas).
-     * Como é um contato físico, o grafo é NÃO-DIRECIONADO (A encontrou B = B encontrou A).
+     * @brief Associa um nome amigável ao ID numérico.
+     * @param nome Referência constante (Fantasma do CPU).
+     */
+    void registrarIdentidade(int id, const string& nome) {
+        if (id >= 0 && id < numPessoas) catalogoNomes[id] = nome;
+    }
+
+    /**
+     * @brief Cria uma aresta bidirecional entre dois vértices.
      */
     void registrarContato(int p1, int p2) {
         if (p1 >= 0 && p1 < numPessoas && p2 >= 0 && p2 < numPessoas) {
-            matriz[p1][p2] = 1;
-            matriz[p2][p1] = 1;
-            cout << UI::AMARELO << "[CONTATO]: " << nomes[p1] << " <---> " << nomes[p2] << UI::RESET << endl;
+            matriz[p1][p2] = 1; // A -> B
+            matriz[p2][p1] = 1; // B -> A (Sincronismo de Simetria)
+            cout << UI::AMARELO << "[LOG]: Contato físico registrado entre " 
+                 << UI::NEGRITO << catalogoNomes[p1] << UI::RESET 
+                 << UI::AMARELO << " e " << UI::NEGRITO << catalogoNomes[p2] << UI::RESET << endl;
         }
     }
 
+    /**
+     * @brief Renderiza a matriz de adjacência com cores de calor.
+     */
     void exibirMatriz() const {
-        cout << "\n--- MATRIZ DE ADJACÊNCIA (MAPA DE REDE) ---" << endl;
+        cout << "\n" << UI::NEGRITO << "--- MATRIZ DE ADJACÊNCIA (TOPOLOGIA DA REDE) ---" << UI::RESET << endl;
         cout << "    ";
         for (int i = 0; i < numPessoas; i++) cout << i << " ";
         cout << endl;
@@ -66,88 +91,100 @@ public:
         for (int i = 0; i < numPessoas; i++) {
             cout << i << " | ";
             for (int j = 0; j < numPessoas; j++) {
-                if (matriz[i][j] == 1) cout << UI::VERMELHO << "1 " << UI::RESET;
-                else cout << "0 ";
+                if (matriz[i][j] == 1) cout << UI::VERMELHO << UI::NEGRITO << "1 " << UI::RESET;
+                else cout << UI::BRANCO << "0 " << UI::RESET;
             }
-            cout << "| " << nomes[i] << endl;
+            cout << "| " << UI::CIANO << catalogoNomes[i] << UI::RESET << endl;
         }
     }
 
-    void listarContatos(int p) const {
-        cout << "\nContatos diretos de " << UI::CIANO << nomes[p] << UI::RESET << ":" << endl;
-        bool teveContato = false;
+    /**
+     * @brief Lista todos os vizinhos diretos de um vértice.
+     */
+    void analisarExposicao(int p) const {
+        if (p < 0 || p >= numPessoas) return;
+
+        cout << "\nANÁLISE DE EXPOSIÇÃO PARA: " << UI::CIANO << UI::NEGRITO << catalogoNomes[p] << UI::RESET << endl;
+        bool temExposicao = false;
         for (int j = 0; j < numPessoas; j++) {
             if (matriz[p][j] == 1) {
-                cout << " -> " << nomes[j] << " (ID: " << j << ")" << endl;
-                teveContato = true;
+                cout << " -> Contato de risco detectado com: " << UI::NEGRITO << catalogoNomes[j] << UI::RESET << " (ID " << j << ")" << endl;
+                temExposicao = true;
             }
         }
-        if (!teveContato) cout << " (Isolamento total: Nenhum contato registrado)" << endl;
+        if (!temExposicao) cout << UI::VERDE << " -> Nenhum contato registrado. Isolamento social mantido." << UI::RESET << endl;
     }
 };
 
-// --- 3. FUNÇÃO PRINCIPAL ---
+// --- 3. EXECUÇÃO DA VIGILÂNCIA SANITÁRIA ---
 
 int main()
 {
-    cout << UI::CIANO << "===============================================" << endl;
-    cout << "      EPIDEMIC-GRAPH: RASTREADOR DE VÍRUS      " << endl;
+    UI::limparTela();
+    cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
+    cout << "      EPIDEMIC-GRAPH: RASTREADOR DE VÍRUS v2.0 " << endl;
+    cout << "       (Elite Computational Epidemiology)      " << endl;
     cout << "===============================================" << UI::RESET << endl;
 
-    // Criando um grupo de 5 pessoas (Vértices 0 a 4)
-    MapaContagio rede(5);
+    // Rede de 6 indivíduos (Vértices 0 a 5)
+    MapaContagio rede(6);
     
-    rede.setNome(0, "Cristiano");
-    rede.setNome(1, "Elizabeth");
-    rede.setNome(2, "Joao");
-    rede.setNome(3, "Maria");
-    rede.setNome(4, "Carlos");
+    rede.registrarIdentidade(0, "Cristiano");
+    rede.registrarIdentidade(1, "Elizabeth");
+    rede.registrarIdentidade(2, "Joao");
+    rede.registrarIdentidade(3, "Maria");
+    rede.registrarIdentidade(4, "Carlos");
+    rede.registrarIdentidade(5, "Ana (Visitante)");
 
-    // Simulando encontros (Criando Arestas)
-    rede.registrarContato(0, 1); // Cristiano encontrou Elizabeth
-    rede.registrarContato(1, 2); // Elizabeth encontrou João
-    rede.registrarContato(2, 3); // João encontrou Maria
-    rede.registrarContato(0, 4); // Cristiano encontrou Carlos
+    // Simulação de eventos de contato
+    rede.registrarContato(0, 1); 
+    rede.registrarContato(1, 2); 
+    rede.registrarContato(2, 3); 
+    rede.registrarContato(0, 4); 
+    rede.registrarContato(4, 5); 
 
-    // Visualizando o Grafo
+    // Renderização Visual
     rede.exibirMatriz();
 
-    // Consultando riscos
-    rede.listarContatos(0); // Quem Cristiano pode ter infectado?
-    rede.listarContatos(3); // Quem Maria encontrou?
+    // Consultas Forenses
+    rede.analisarExposicao(0); // Quem Cristiano pode ter exposto?
+    rede.analisarExposicao(5); // Quem Ana visitou?
+
+    cout << "\n" << UI::VERDE << UI::NEGRITO << "Sincronização de rede concluída. Dados prontos para modelagem." << UI::RESET << endl;
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: INTRODUÇÃO A GRAFOS
+    RESUMO TEÓRICO: ESTRUTURAS NÃO-LINEARES (GRAFOS)
     ===============================================================
 
-    1. O QUE SÃO GRAFOS?
-       - É uma estrutura composta por Vértices (os círculos) e 
-         Arestas (as linhas que os unem). São ideais para 
-         representar redes onde os elementos não seguem uma fila.
+    1. O PODER DOS GRAFOS:
+       - Diferente de listas ou pilhas, os grafos representam relações 
+         arbitrárias. Se você tem "muitos para muitos", você tem 
+         um grafo.
 
-    2. MATRIZ DE ADJACÊNCIA:
-       - É a forma mais simples de guardar um grafo. Se você tem 
-         N vértices, usa uma matriz N x N. 
-       - Vantagem: É instantâneo (O(1)) saber se A está conectado a B.
-       - Desvantagem: Gasta muita memória (N²) se o grafo for gigante.
+    2. MATRIZ DE ADJACÊNCIA (TRADE-OFFS):
+       - É a estrutura favorita para grafos DENSOS (muitas arestas). 
+         A memória é fixa em V², mas a velocidade de saber se A 
+         conhece B é o limite físico do silício (O(1)).
 
-    3. GRAFO NÃO-DIRECIONADO:
-       - Como neste exemplo de contato físico, se A toca B, B 
-         automaticamente toca A. Por isso a matriz é SIMÉTRICA 
-         (o triângulo superior é igual ao inferior).
+    3. SIMETRIA E NÃO-DIRECIONAMENTO:
+       - No contágio físico, o grafo é não-direcionado. Garantir que 
+         matriz[i][j] == matriz[j][i] é uma responsabilidade 
+         do desenvolvedor de sistemas para evitar falhas de lógica.
 
-    4. A IMPORTÂNCIA NO MUNDO REAL:
-       - O Google é um grande grafo de páginas web. O Facebook é 
-         um grande grafo de pessoas. O GPS é um grafo de ruas.
+    4. PROTEÇÃO FANTASMA DO CPU:
+       - Note o uso de 'vector<vector<int>>'. Embora dinâmico, o 
+         acesso bi-indexado [][] é extremamente otimizado pelos 
+         compiladores modernos, mantendo a performance de arrays 
+         C puros.
 
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Grafo Direcionado (Dígrafo): Quando a relação tem sentido único.
-    - Grafo Valorizado: Quando a aresta tem um "peso" (ex: distância).
-    - Lista de Adjacência: Uma alternativa à matriz usando listas.
+    - BFS/DFS: Algoritmos de busca para percorrer o grafo.
+    - Dijkstra: Encontrar o caminho mais curto (mínimo contágio).
+    - Adjacency List: Otimização de RAM para grafos esparsos.
     ===============================================================
 */

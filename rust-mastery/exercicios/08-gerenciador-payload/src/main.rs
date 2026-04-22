@@ -4,22 +4,28 @@
  * 
  * Aprendizados: Vec<T>, Iteradores (iter, sum), Transferência de Ownership para Coleções.
  * 
+ * @section MemoryMap
+ * - **Ownership**: O 'ManifestoVoo' possui o Vec, que por sua vez possui os 'Pacote's.
+ * - **Borrowing**: O iterador em 'exibir_lista' toma referências temporárias de cada item.
+ * - **Stack vs Heap**: O Vec guarda o ponteiro, capacidade e tamanho na stack, mas os dados reais (os itens) estão na heap.
+ * 
  * @author SENAI - Rust Master
  * @date 20/04/2026
  */
 
 /// Representa um pacote individual de entrega.
-struct Pacote {
-    descricao: String,
+/// 'Fantasma do CPU': Uso de referências (&str) para descrição reduz alocações String desnecessárias.
+struct Pacote<'a> {
+    descricao: &'a str,
     peso_kg: f64,
 }
 
 /// Gerencia a lista de pacotes para um voo.
-struct ManifestoVoo {
-    itens: Vec<Pacote>,
+struct ManifestoVoo<'a> {
+    itens: Vec<Pacote<'a>>,
 }
 
-impl ManifestoVoo {
+impl<'a> ManifestoVoo<'a> {
     /// Cria um novo manifesto vazio.
     fn new() -> Self {
         Self {
@@ -32,7 +38,7 @@ impl ManifestoVoo {
      * @param p O pacote que será transportado. 
      * Nota: A posse do pacote passa para o vetor 'itens'.
      */
-    fn adicionar_pacote(&mut self, p: Pacote) {
+    fn adicionar_pacote(&mut self, p: Pacote<'a>) {
         println!("[MANIFESTO]: Adicionando '{}' ({:.2} kg)", p.descricao, p.peso_kg);
         self.itens.push(p);
     }
@@ -41,7 +47,7 @@ impl ManifestoVoo {
      * Remove o último pacote adicionado (LIFO).
      * @return Option<Pacote> pois a lista pode estar vazia.
      */
-    fn remover_ultimo(&mut self) -> Option<Pacote> {
+    fn remover_ultimo(&mut self) -> Option<Pacote<'a>> {
         self.itens.pop()
     }
 
@@ -81,19 +87,19 @@ fn main() {
     // 1. Criando o manifesto
     let mut meu_manifesto = ManifestoVoo::new();
 
-    // 2. Adicionando pacotes (Criação de String e Struct)
+    // 2. Adicionando pacotes (Passando referências &str)
     meu_manifesto.adicionar_pacote(Pacote {
-        descricao: String::from("Remédios Termolábeis"),
+        descricao: "Remédios Termolábeis",
         peso_kg: 1.2,
     });
 
     meu_manifesto.adicionar_pacote(Pacote {
-        descricao: String::from("Kit Primeiros Socorros"),
+        descricao: "Kit Primeiros Socorros",
         peso_kg: 2.5,
     });
 
     meu_manifesto.adicionar_pacote(Pacote {
-        descricao: String::from("Baterias de Reserva"),
+        descricao: "Baterias de Reserva",
         peso_kg: 0.8,
     });
 
@@ -122,15 +128,15 @@ mod tests {
     #[test]
     fn test_soma_peso() {
         let mut m = ManifestoVoo::new();
-        m.adicionar_pacote(Pacote { descricao: String::from("A"), peso_kg: 10.0 });
-        m.adicionar_pacote(Pacote { descricao: String::from("B"), peso_kg: 5.5 });
+        m.adicionar_pacote(Pacote { descricao: "A", peso_kg: 10.0 });
+        m.adicionar_pacote(Pacote { descricao: "B", peso_kg: 5.5 });
         assert_eq!(m.calcular_peso_total(), 15.5);
     }
 
     #[test]
     fn test_remover_ultimo() {
         let mut m = ManifestoVoo::new();
-        m.adicionar_pacote(Pacote { descricao: String::from("X"), peso_kg: 1.0 });
+        m.adicionar_pacote(Pacote { descricao: "X", peso_kg: 1.0 });
         let p = m.remover_ultimo();
         assert!(p.is_some());
         assert_eq!(p.unwrap().descricao, "X");
@@ -151,24 +157,30 @@ mod tests {
     ===============================================================
 
     1. VEC<T> E OWNERSHIP:
-       - Um vetor no Rust "possui" seus elementos. Se você adicionar 
-         um objeto a um vetor, a variável original perde a posse.
-       - Se o vetor for destruído, todos os seus elementos também 
-         serão limpos da memória (RAII).
+       - Um vetor no Rust "possui" seus elementos. Ao adicionar um 
+         pacote, a struct ManifestoVoo assume a responsabilidade 
+         de limpar esses dados da Heap quando sair de escopo.
 
     2. O PODER DO ITERADOR:
-       - O método 'iter()' permite percorrer os dados sem retirá-los 
-         do vetor (emprestando-os).
-       - Encadeamento funcional: '.iter().map().sum()' é mais seguro 
-         e geralmente tão rápido quanto um loop 'for' manual.
+       - 'Fantasma do CPU': Usamos '.iter()' para processar itens por 
+         referência, evitando clonagem de dados pesados durante o loop.
+       - Encadeamento funcional: '.map().sum()' é otimizado pelo 
+         compilador para evitar saltos condicionais caros.
 
-    3. ENUMERATE:
-       - O método '.enumerate()' é útil para obter o índice do item 
-         enquanto percorremos a lista.
+    3. LIFETIMES EM COLEÇÕES:
+       - Ao usar Pacote<'a> dentro de um Vec, garantimos que os textos 
+         estáticos (&str) existam durante toda a vida do manifesto.
 
     4. VANTAGEM DIDÁTICA:
-       - O aluno aprende a lidar com dados dinâmicos e percebe como 
-         o Rust facilita o tratamento de listas vazias através do 
-         tipo 'Option' (retorno do pop()).
+       - O aluno domina coleções dinâmicas com segurança absoluta, 
+         evitando os famosos "segmentation faults" do C++ ao manipular 
+         vetores.
+
+    ===============================================================
+    ASSUNTOS CORRELATOS:
+    - Vec::with_capacity() para pré-alocação.
+    - Iterator Trait e Laziness.
+    - Diferença entre iter(), iter_mut() e into_iter().
+    - O crate 'itertools' para operações complexas.
     ===============================================================
 */

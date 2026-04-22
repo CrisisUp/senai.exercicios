@@ -1,33 +1,32 @@
 /**
  * @file Monitoramento.cpp
- * @brief Implementação modular da lógica de sensores IoT.
+ * @brief Implementação do Módulo IoT Industrial.
+ * 
+ * Isola a lógica de segurança de sensores do namespace global.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
  */
 
 #include "Monitoramento.h"
-#include <iostream>
 
-/**
- * Ao implementar dentro do namespace IoT, as definições da classe 
- * são reconhecidas.
- */
 namespace IoT {
 
-    SensorPressao::SensorPressao(std::string id) : idSensor(id), valorAtual(0.0) {}
+    SensorPressao::SensorPressao(const std::string& _id) 
+        : id(_id), valor(0.0) {}
 
-    bool SensorPressao::registrarLeitura(double novoValor) {
-        // Chamada de método privado interno
-        if (valorEhSeguro(novoValor)) {
-            valorAtual = novoValor;
+    bool SensorPressao::valorEhSeguro(double v) const {
+        // Regra de Ouro: Margem de operação entre 0 e 100 psi
+        return (v >= 0.0 && v <= 100.0);
+    }
+
+    bool SensorPressao::registrarLeitura(double v) {
+        // O usuário do módulo nunca chama valorEhSeguro() diretamente
+        if (valorEhSeguro(v)) {
+            valor = v;
             return true;
         }
         return false;
     }
 
-    bool SensorPressao::valorEhSeguro(double valor) {
-        // Lógica de segurança de fábrica (0-100 psi)
-        return (valor >= 0.0 && valor <= 100.0);
-    }
-}
+} // namespace IoT

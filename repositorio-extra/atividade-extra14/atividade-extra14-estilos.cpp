@@ -25,20 +25,20 @@ int main()
         biblioteca.carregarCatalogo();
 
         if (biblioteca.getCatalogo().empty()) {
-            throw ErroBiblioteca(Cor::VERMELHO + "Catálogo vazio. Sistema encerrado." + Cor::RESET);
+            throw ErroBiblioteca(UI::VERMELHO + "Catálogo vazio. Sistema encerrado." + UI::RESET);
         }
 
         do {
-            cout << "\n" << Cor::CIANO << Cor::NEGRITO << "--- PAINEL DE CONTROLE (MODULAR & COLORIDO) ---" << Cor::RESET << endl;
-            cout << "Leitores na Fila: " << Cor::AZUL << biblioteca.getFila().size() << Cor::RESET << " | ";
-            cout << "Empréstimos na Sessão: " << Cor::VERDE << biblioteca.getHistorico().size() << Cor::RESET << endl;
-            cout << Cor::BRANCO << "[1] Adicionar Leitor à Fila" << endl;
+            cout << "\n" << UI::CIANO << UI::NEGRITO << "--- PAINEL DE CONTROLE (MODULAR & COLORIDO) ---" << UI::RESET << endl;
+            cout << "Leitores na Fila: " << UI::AZUL << biblioteca.getFila().size() << UI::RESET << " | ";
+            cout << "Empréstimos na Sessão: " << UI::VERDE << biblioteca.getHistorico().size() << UI::RESET << endl;
+            cout << UI::BRANCO << "[1] Adicionar Leitor à Fila" << endl;
             cout << "[2] Atender Próximo Leitor (Empréstimo)" << endl;
             cout << "[3] Cancelar Último Empréstimo (DESFAZER)" << endl;
-            cout << "[4] Salvar e Encerrar Expediente" << Cor::RESET << endl;
+            cout << "[4] Salvar e Encerrar Expediente" << UI::RESET << endl;
             
             try {
-                opcao = GestorEstilizado::lerInteiro(Cor::NEGRITO + "Escolha: " + Cor::RESET);
+                opcao = GestorEstilizado::lerInteiro(UI::NEGRITO + "Escolha: " + UI::RESET);
 
                 if (opcao == 1) {
                     string nome;
@@ -48,20 +48,22 @@ int main()
                 }
                 else if (opcao == 2) {
                     if (biblioteca.getFila().empty()) {
-                        cout << Cor::AMARELO << "[AVISO]: Fila vazia." << Cor::RESET << endl;
+                        cout << UI::AMARELO << "[AVISO]: Fila vazia." << UI::RESET << endl;
                     } else {
-                        cout << "\n" << Cor::NEGRITO << "--- LIVROS DISPONÍVEIS ---" << Cor::RESET << endl;
+                        cout << "\n" << UI::NEGRITO << "--- LIVROS DISPONÍVEIS ---" << UI::RESET << endl;
                         cout << left << setw(4) << "ID" << setw(30) << "TÍTULO" << "ESTOQUE" << endl;
                         cout << "--------------------------------------------------------" << endl;
-                        for (int i = 0; i < (int)biblioteca.getCatalogo().size(); i++) {
-                            Livro& l = biblioteca.getCatalogo()[i];
+                        
+                        const auto& catalogo = biblioteca.getCatalogo();
+                        for (int i = 0; i < (int)catalogo.size(); i++) {
+                            const Livro& l = catalogo[i];
                             cout << left << "[" << i << "] " 
                                  << setw(30) << (l.titulo.length() > 28 ? l.titulo.substr(0, 25) + "..." : l.titulo);
                             
                             if (l.estoque <= 0) {
-                                cout << Cor::VERMELHO << "ESGOTADO" << Cor::RESET << endl;
+                                cout << UI::VERMELHO << "ESGOTADO" << UI::RESET << endl;
                             } else {
-                                cout << Cor::VERDE << l.estoque << Cor::RESET << endl;
+                                cout << UI::VERDE << l.estoque << UI::RESET << endl;
                             }
                         }
                         
@@ -75,7 +77,7 @@ int main()
                     biblioteca.desfazerUltimo();
                 }
                 else if (opcao != 4) {
-                    cout << Cor::AMARELO << "[AVISO]: Opção inválida." << Cor::RESET << endl;
+                    cout << UI::AMARELO << "[AVISO]: Opção inválida." << UI::RESET << endl;
                 }
 
             } catch (const ErroBiblioteca& e) {
@@ -87,7 +89,7 @@ int main()
         biblioteca.salvarRelatorio();
 
     } catch (const exception& e) {
-        cerr << "\n" << Cor::VERMELHO << Cor::NEGRITO << "FALHA CRÍTICA: " << e.what() << Cor::RESET << endl;
+        cerr << "\n" << UI::VERMELHO << UI::NEGRITO << "FALHA CRÍTICA: " << e.what() << UI::RESET << endl;
         return 1;
     }
 
@@ -110,7 +112,7 @@ int main()
          reduzindo a carga cognitiva do usuário.
 
     3. NAMESPACES PARA ORGANIZAÇÃO:
-       - O namespace Cor:: funciona como um "Dicionário de Estilos", 
+       - O namespace UI:: funciona como um "Dicionário de Estilos", 
          mantendo o código limpo e evitando colisões de nomes.
 
     ===============================================================

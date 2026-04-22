@@ -22,3 +22,12 @@ Em Rust, o processamento de coleções é feito via **Iteradores** e **Closures*
 3. Implementar uma função que converte as altitudes de metros para pés (usando `map`).
 4. Demonstrar o uso de uma closure que captura uma variável externa para ajustar um limite de tolerância.
 5. Criar testes unitários para validar a filtragem e a transformação.
+
+## ⚠️ Análise de Falha Crítica
+
+O uso de Closures e Iteradores é poderoso, mas traz desafios de arquitetura que devem ser mitigados:
+
+1.  **Iteradores "Infitinitos" e Consumo de CPU:** Iteradores como `repeat()` ou encadeamentos complexos sem limites podem causar loops infinitos se não forem consumidos com `take()` ou condições de parada claras, sobrecarregando a CPU do drone.
+2.  **Custo de Dynamic Dispatch em Closures:** Closures que capturam muitas variáveis ou que são passadas como `Box<dyn Fn>` introduzem dynamic dispatch. Preferimos generics com bounds `F: Fn()` para permitir o inline e otimização total pelo compilador.
+3.  **Heap Fragmentation em `collect()`:** O método `.collect::<Vec<T>>()` realiza uma nova alocação na Heap. Se feito dentro de um loop de alta frequência (ex: 60Hz), pode causar picos de latência e fragmentação da memória.
+4.  **Overheads de Concorrência (Rayon):** Ao migrar para iteradores paralelos (`par_iter`), deve-se considerar o custo da troca de contexto e a divisão das tarefas entre as threads, que pode ser maior que o ganho de performance em coleções pequenas.

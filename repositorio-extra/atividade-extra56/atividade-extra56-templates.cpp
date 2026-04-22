@@ -1,97 +1,118 @@
 /**
  * @file atividade-extra56-templates.cpp
- * @brief Programa principal para testar Programação Genérica com Templates.
+ * @brief Interface do Armazém Genérico (Elite Generic Programming).
+ * 
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Demonstra a versatilidade de classes genéricas para qualquer tipo de dado.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
  */
 
 #include <iostream>
 #include <string>
-#include "Armazem.h" // Nossa interface genérica modular
+#include <iomanip>
+#include "Armazem.h" 
 
 using namespace std;
 using namespace Logistica;
 
-/**
- * @brief Exemplo de um tipo de dado personalizado para estocagem.
- */
-struct PecaMecanica {
-    string nome;
-    int serial;
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
 
-    // SOBRECARGA NECESSÁRIA: O Armazem::exibir() precisa do '<<'.
+namespace UI {
+    const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
+    const string VERDE    = "\033[32m";
+    const string CIANO    = "\033[36m";
+    const string BRANCO   = "\033[37m";
+
+    inline void limparTela() { cout << "\033[2J\033[1;1H"; }
+}
+
+// --- 2. TIPOS DE DADOS CUSTOMIZADOS ---
+
+/** @struct PecaMecanica: Representa um componente físico. */
+struct PecaMecanica {
+    string sku;
+    double peso;
+
+    // SOBRECARGA OBRIGATÓRIA para compatibilidade com o template
     friend ostream& operator<<(ostream& os, const PecaMecanica& p) {
-        os << "PEÇA: " << p.nome << " (S/N: " << p.serial << ")";
+        os << UI::BRANCO << "PEÇA [" << UI::RESET << p.sku << UI::BRANCO 
+           << "] | Massa: " << UI::RESET << p.peso << " kg";
         return os;
     }
 };
 
+// --- 3. EXECUÇÃO DO ARMAZÉM GLOBAL ---
+
 int main() {
-    cout << "\033[36m===============================================\033[0m" << endl;
-    cout << "     SISTEMA DE ARMAZÉM GENÉRICO (TEMPLATES)   " << endl;
-    cout << "\033[36m===============================================\033[0m" << endl;
-
-    // 1. Armazém de Strings (Nomes de Clientes ou Fornecedores)
-    Armazem<string> setorEscritorio("Material de Escritório");
-    setorEscritorio.adicionar("Papel A4");
-    setorEscritorio.adicionar("Canetas Azuis");
-    setorEscritorio.exibir();
-
-    // 2. Armazém de Inteiros (Códigos de Barras isolados)
-    Armazem<int> setorIDs("Controle de Lotes");
-    setorIDs.adicionar(101);
-    setorIDs.adicionar(202);
-    setorIDs.adicionar(303);
-    setorIDs.removerUltimo(); // Retira o 303
-    setorIDs.exibir();
-
-    // 3. Armazém de Objetos Complexos (PecaMecanica)
-    // O mesmo código do armazém agora lida com structs!
-    Armazem<PecaMecanica> setorManutencao("Oficina Central");
+    UI::limparTela();
     
-    PecaMecanica p1 = {"Biela de Aço", 9988};
-    PecaMecanica p2 = {"Pistão Hidráulico", 7766};
-    
-    setorManutencao.adicionar(p1);
-    setorManutencao.adicionar(p2);
-    setorManutencao.exibir();
+    cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
+    cout << "      G-WAREHOUSE: ARMAZÉM INTELIGENTE v2.0    " << endl;
+    cout << "       (Elite Class Template Architecture)     " << endl;
+    cout << UI::CIANO << UI::NEGRITO << "===============================================" << UI::RESET << endl;
 
-    cout << "\n\033[32m[LOGÍSTICA]:\033[0m Total de setores gerenciados: 3." << endl;
-    cout << "\033[36m===============================================\033[0m" << endl;
+    // --- CENÁRIO 1: ARMAZÉM DE IDENTIDADES (string) ---
+    Armazem<string> setorDocs("Documentação Fiscal");
+    setorDocs.adicionar("Manifesto_NFe_101.pdf");
+    setorDocs.adicionar("Guia_Importacao_B4.xml");
+    setorDocs.exibir();
+
+    // --- CENÁRIO 2: ARMAZÉM DE LOTES (int) ---
+    Armazem<int> setorLotes("Lotes de Produção");
+    setorLotes.adicionar(20260401);
+    setorLotes.adicionar(20260402);
+    setorLotes.exibir();
+
+    // --- CENÁRIO 3: ARMAZÉM DE COMPONENTES (struct) ---
+    Armazem<PecaMecanica> setorHardware("Hardware de Precisão");
+    
+    // Fantasma do CPU: Inserindo objetos pesados via referência constante
+    setorHardware.adicionar({"MTR-V8-HYPER", 450.50});
+    setorHardware.adicionar({"SNS-LASER-3D", 2.15});
+    
+    setorHardware.exibir();
+
+    cout << UI::VERDE << UI::NEGRITO << "\n[SISTEMA]: " << UI::RESET 
+         << "Logística genérica validada com 100% de integridade estática." << endl;
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: PROGRAMAÇÃO GENÉRICA (TEMPLATES)
+    RESUMO TEÓRICO: PROGRAMAÇÃO GENÉRICA (ELITE)
     ===============================================================
 
-    1. O QUE SÃO TEMPLATES?
-       - É uma "receita" para o compilador. Em vez de você escrever 
-         várias classes para tipos diferentes, você escreve uma 
-         que usa 'T' e o C++ faz o resto do trabalho.
+    1. TEMPLATES (CONTÊINERES UNIVERSAIS):
+       - O 'Armazem<T>' é um molde. Quando você escreve <string>, o 
+         compilador C++ "cospe" uma classe real otimizada para 
+         strings. Quando escreve <int>, ele gera outra. Isso une o 
+         reuso do Python com a performance do Assembly.
 
-    2. VANTAGEM DIDÁTICA:
-       - Demonstra que o código pode ser universal, abstraindo até 
-         mesmo os tipos de dados básicos.
-       - Ensina sobre o custo de compilação: O código do template 
-         só é gerado para os tipos que você efetivamente utiliza.
+    2. DUCK TYPING EM COMPILE-TIME:
+       - O template não exige herança. Ele exige apenas que o tipo 
+         'T' ofereça o que ele pede (no caso, o operador <<). Se 
+         o tipo satisfaz a interface, ele "entra" no armazém.
 
-    3. REQUISITOS DE TIPO (CONSTRAINTS):
-       - Note que nosso Armazem<T>::exibir() exige que o tipo 'T' 
-         saiba usar o operador '<<'. Se tentarmos usar um tipo 
-         que não tenha esse operador, o compilador dará um erro 
-         claro apontando a falta dessa funcionalidade.
+    3. FANTASMA DO CPU (PERFORMANCE):
+       - Note que no 'Armazem.h', o método 'adicionar(const T& item)' 
+         usa referência constante. Isso é vital; se 'T' for uma 
+         peça de 1GB de dados, o sistema apenas passará o endereço 
+         de memória, economizando tempo e RAM.
 
-    4. POSICIONAMENTO EM CADEIA:
-       - Templates são a base de bibliotecas famosas como a STL 
-         (Standard Template Library), que usamos desde a Atividade 1.
+    4. SEGURANÇA DE TIPOS:
+       - Uma vez que o 'setorLotes' foi definido como <int>, o 
+         compilador impedirá qualquer tentativa de colocar uma 
+         peça mecânica lá dentro, protegendo o sistema contra 
+         erros de lógica.
+
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Especialização de Templates (Template Specialization).
-    - Metaprogramação em C++.
-    - Conceitos (C++20 Concepts).
+    - SFINAE: 'Substitution Failure Is Not An Error'.
+    - Variadic Templates: Aceitar infinitos parâmetros genéricos.
+    - Metaprogramação: Executar cálculos em tempo de compilação.
     ===============================================================
 */

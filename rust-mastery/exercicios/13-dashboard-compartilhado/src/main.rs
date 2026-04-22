@@ -2,9 +2,12 @@ use std::io::{self, Write};
 /**
  * @file main.rs
  * @brief Atividade 13: Dashboard Compartilhado (Rc e Interatividade).
- *
- * Aprendizados: Rc<T>, Entrada de Usuário (stdin), Parsing de tipos.
- *
+ * 
+ * @section MemoryMap
+ * - Heap: O Rc<T> aloca o valor T e dois contadores (strong e weak) na Heap.
+ * - Layout: O ponteiro Rc na Stack aponta para a "Inner Struct" na Heap.
+ * - Ownership: O Rc gerencia o tempo de vida; o dado só é destruído quando o strong_count atinge zero.
+ * 
  * @author SENAI - Rust Master
  * @date 20/04/2026
  */
@@ -102,26 +105,25 @@ fn main() {
 
 /*
     ===============================================================
-    RESUMO TEÓRICO: RC (REFERENCE COUNTING)
+    RESUMO TEÓRICO: RC (REFERENCE COUNTING) - Fase 2
     ===============================================================
 
     1. PROPRIEDADE MÚLTIPLA:
-       - No Rust normal, você não pode ter dois donos para o mesmo
-         dado. O Rc quebra essa regra de forma segura.
-       - Ele é ideal para "Leitura Compartilhada".
+       - O Rc permite que um dado tenha múltiplos donos no mesmo thread, 
+         rastreando a validade do dado via contagem de referências.
 
-    2. CUSTO ZERO?
-       - Quase. O Rc tem um custo mínimo de performance para manter
-         o contador atualizado, mas é muito mais barato que clonar
-         objetos gigantes na memória.
+    2. FANTASMA DO CPU (RC::CLONE):
+       - Rc::clone(&ptr) incrementa apenas o contador (operação barata). 
+       - Não deve ser confundido com .clone() de tipos que duplicam dados.
 
-    3. TRATAMENTO DE ENTRADA:
-       - 'read_line' sempre inclui o caractere de nova linha (\n).
-         O '.trim()' é obrigatório para limpar a string.
-
-    4. VANTAGEM DIDÁTICA:
-       - O aluno aprende que o Rust é flexível. Quando a regra de um
-         único dono atrapalha a arquitetura, a biblioteca padrão
-         fornece ferramentas como o Rc para resolver o problema.
+    3. GESTÃO DE MEMÓRIA:
+       - O Drop de cada Rc decrementa o contador. Quando zera, a memória na 
+         Heap é desalocada automaticamente, prevenindo leaks básicos.
     ===============================================================
+
+    ASSUNTOS CORRELATOS:
+    - Ciclos de Referência e o tipo Weak<T>.
+    - Arc<T> (Atomic Reference Counting) para multi-threading.
+    - Cow (Copy-on-Write) para otimização de referências e clones.
+    - Interior Mutability com RefCell<T>.
 */

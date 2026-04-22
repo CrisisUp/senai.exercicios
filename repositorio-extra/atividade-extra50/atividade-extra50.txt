@@ -1,15 +1,19 @@
 # 📘 Atividade Extra 50: Namespaces e Organização Modular (IoT Industrial)
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 ## 🎯 Estudo de Caso
 A fábrica "SmartMatrix" está instalando centenas de sensores de pressão e temperatura em sua linha de produção. Como o software está crescendo muito, eles precisam de uma forma de organizar o código para evitar que nomes de funções como `validar()` ou `processar()` entrem em conflito com outras partes do sistema (como o sistema financeiro).
 
 ## 🛠️ Necessidade Técnica
 Em projetos de grande escala (Arquitetura Modular), usamos **Namespaces** (`namespace`) para criar "espaços de nomes" isolados. 
-*   **Namespaces:** Como se fossem "pastas virtuais" dentro do código para organizar classes e funções.
-*   **Encapsulamento Avançado:** Uso de métodos privados para auxiliar o processamento interno de um módulo sem expô-lo ao usuário final.
 
-## 📋 Requisitos (Arquitetura Modular Obrigatória)
-1. Criar `Monitoramento.h` dentro do namespace `IoT`.
-2. Criar `Monitoramento.cpp` com a implementação da lógica de sensores.
-3. Criar `atividade-extra50-iot.cpp` para simular as leituras.
-4. O sistema deve validar se a pressão está em níveis seguros (entre 0 e 100 psi) antes de permitir a leitura.
+## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ARQUITETURA DE SISTEMAS)
+- RISCO DE POLLUTION (POLUIÇÃO GLOBAL): Sem namespaces, funções comuns como `Init()` ou `Reset()` causariam colisões de símbolos se integrássemos múltiplas bibliotecas externas.
+- RISCO DE NAME HIDING (OMISSÃO DE NOMES): O uso indiscriminado de `using namespace` pode esconder funções da biblioteca padrão (std), levando a bugs de difícil detecção e comportamentos indefinidos.
+- RISCO DE INCONSISTÊNCIA DE TELEMETRIA: Se um sensor IoT registrar um valor sem validação de margem (psi), o sistema de controle pode interpretar um erro de hardware como uma pressão válida, causando a explosão física do equipamento.
+
+## 📋 Requisitos de Elite
+1. Criar `Monitoramento.h` dentro do namespace `IoT` com proteção RAII.
+2. Implementar métodos privados para validação interna rigorosa.
+3. Garantir que a Interface (main) utilize apenas o contrato público do módulo.
+4. Interface ANSI para telemetria de segurança em tempo real.

@@ -1,9 +1,17 @@
 /**
  * @file Pagamento.h
- * @brief Definição modular de Meios de Pagamento usando Classes Abstratas.
+ * @brief Interface Abstrata para Motores de Pagamento.
+ * 
+ * Atividade Extra 55 - Arquitetura Modular (Nível 21+).
+ * Define o contrato obrigatório para qualquer gateway de liquidação.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Abstract Layout)
+ * - MetodoPagamento (ABC): Não ocupa espaço por si só. Define a V-TABLE.
+ * - Classes Concretas (Pix/Cartão): Instanciadas na HEAP via make_unique.
+ * - Gestão RAII: O ciclo de vida é gerido pelo unique_ptr, garantindo limpeza atômica.
  */
 
 #ifndef PAGAMENTO_H
@@ -14,53 +22,47 @@
 namespace Financeiro {
 
     /**
-     * @brief Classe Abstrata (Interface): Define o contrato para qualquer pagamento.
-     * Uma classe é abstrata se contiver pelo menos um método virtual puro.
+     * @class MetodoPagamento
+     * @brief Interface Abstrata (ABC - Abstract Base Class).
      */
     class MetodoPagamento {
     public:
-        // Destrutor virtual para garantir a limpeza correta das classes filhas.
+        /**
+         * @brief MÉTODO VIRTUAL PURO: Obriga a implementação nas subclasses.
+         * @param valor Valor total da transação (convetido para centavos internamente).
+         */
+        virtual void processar(double valor) = 0;
+
+        /** @brief Destrutor Virtual: VITAL para polimorfismo de interface. */
         virtual ~MetodoPagamento() {}
-
-        /**
-         * @brief Método Virtual Puro (= 0):
-         * Força as classes filhas a fornecerem sua própria implementação.
-         */
-        virtual void processar(double valor) const = 0;
-
-        /**
-         * @brief Métodos comuns podem coexistir em classes abstratas.
-         */
-        void exibirRecibo(double valor, std::string tipo) const;
     };
 
     /**
-     * @brief Implementação de Pagamento via Cartão de Crédito.
+     * @class CartaoCredito
+     * @brief Especialização para transações via rede adquirente.
      */
     class CartaoCredito : public MetodoPagamento {
     private:
         std::string numeroCartao;
-
     public:
-        CartaoCredito(std::string num);
-        
-        // OBRIGATÓRIO: Implementar o método herdado da classe abstrata.
-        void processar(double valor) const override;
+        CartaoCredito(const std::string& _num);
+        void processar(double valor) override;
+        ~CartaoCredito() override;
     };
 
     /**
-     * @brief Implementação de Pagamento via Pix.
+     * @class Pix
+     * @brief Especialização para liquidação via BACEN (Instantâneo).
      */
     class Pix : public MetodoPagamento {
     private:
         std::string chavePix;
-
     public:
-        Pix(std::string chave);
-
-        // OBRIGATÓRIO: Implementar o método herdado da classe abstrata.
-        void processar(double valor) const override;
+        Pix(const std::string& _chave);
+        void processar(double valor) override;
+        ~Pix() override;
     };
-}
+
+} // namespace Financeiro
 
 #endif // PAGAMENTO_H

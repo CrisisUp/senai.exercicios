@@ -16,32 +16,50 @@
 #include <stack>
 #include <queue>
 #include <exception>
+#include <ctime>
 
-// --- 1. CLASSES DE EXCEÇÃO CUSTOMIZADAS ---
+/**
+ * @section MemoryMap Mapeamento de Memória (Fase 3)
+ * - STACK: Instância de GestorBiblioteca.
+ * - HEAP: vector<Livro>, queue<string>, stack<Emprestimo>.
+ */
+
+// --- CONSOLIDAÇÃO UI ---
+namespace UI {
+    const std::string RESET = "\033[0m";
+    const std::string RED   = "\033[31m";
+    const std::string GREEN = "\033[32m";
+    const std::string CYAN  = "\033[36m";
+    const std::string YELLOW = "\033[33m";
+}
+
+// --- 1. CLASSES DE EXCEÇÃO CUSTOMIZADAS (CÓDIGO BLINDADO) ---
 
 class ErroBiblioteca : public std::exception {
 protected:
     std::string mensagem;
 public:
     ErroBiblioteca(std::string msg) : mensagem(msg) {}
-    virtual const char* what() const throw() {
+    const char* what() const noexcept override {
         return mensagem.c_str();
     }
 };
 
 class ErroArquivo : public ErroBiblioteca {
 public:
-    ErroArquivo(std::string arquivo) : ErroBiblioteca("[ERRO CRÍTICO]: Arquivo '" + arquivo + "' não encontrado.") {}
+    ErroArquivo(const std::string& arquivo) 
+        : ErroBiblioteca("ERRO CRÍTICO: Arquivo '" + arquivo + "' não encontrado ou corrompido.") {}
 };
 
 class ErroEntrada : public ErroBiblioteca {
 public:
-    ErroEntrada() : ErroBiblioteca("[AVISO]: Entrada inválida. Por favor, digite apenas números.") {}
+    ErroEntrada() : ErroBiblioteca("AVISO: Entrada inválida. Por favor, digite apenas números.") {}
 };
 
 class ErroEstoque : public ErroBiblioteca {
 public:
-    ErroEstoque(std::string titulo) : ErroBiblioteca("[ESTOQUE]: O livro '" + titulo + "' esgotou. Escolha outro.") {}
+    ErroEstoque(const std::string& titulo) 
+        : ErroBiblioteca("ESTOQUE: O livro '" + titulo + "' esgotou. Escolha outro.") {}
 };
 
 // --- 2. ESTRUTURAS DE DADOS ---
@@ -75,16 +93,17 @@ public:
     void carregarCatalogo();
     void salvarRelatorio();
     
-    // Getters e Ações
-    std::vector<Livro>& getCatalogo() { return catalogo; }
-    std::queue<std::string>& getFila() { return filaLeitores; }
-    std::stack<Emprestimo>& getHistorico() { return historico; }
+    // Getters - FANTASMA DO CPU (const refs e const methods)
+    const std::vector<Livro>& getCatalogo() const { return catalogo; }
+    size_t totalFila() const { return filaLeitores.size(); }
+    size_t totalHistorico() const { return historico.size(); }
+    const std::string& getProximoLeitor() const;
 
-    void adicionarLeitor(std::string nome);
+    void adicionarLeitor(const std::string& nome);
     void registrarEmprestimo(int index);
     void cancelarUltimoEmprestimo();
     
-    static int lerInteiro(std::string prompt);
+    static int lerInteiro(const std::string& prompt);
     static void exibirBanner();
 };
 

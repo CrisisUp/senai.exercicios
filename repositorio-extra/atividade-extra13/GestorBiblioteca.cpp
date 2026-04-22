@@ -41,7 +41,7 @@ void GestorBiblioteca::carregarCatalogo() {
         }
     }
     arquivo.close();
-    cout << "[SISTEMA]: Catálogo carregado com sucesso." << endl;
+    cout << UI::CYAN << "[SISTEMA]: " << UI::RESET << "Catálogo carregado com sucesso." << endl;
 }
 
 void GestorBiblioteca::salvarRelatorio() {
@@ -62,13 +62,13 @@ void GestorBiblioteca::salvarRelatorio() {
         temp.pop();
     }
     rel.close();
-    cout << "[SISTEMA]: Relatório final gerado com sucesso." << endl;
+    cout << UI::CYAN << "[SISTEMA]: " << UI::RESET << "Relatório final gerado com sucesso." << endl;
 }
 
-void GestorBiblioteca::adicionarLeitor(string nome) {
+void GestorBiblioteca::adicionarLeitor(const string& nome) {
     if (nome.empty()) throw ErroBiblioteca("Nome do leitor não pode ser vazio.");
     filaLeitores.push(nome);
-    cout << "[OK]: " << nome << " entrou na fila." << endl;
+    cout << UI::GREEN << "[OK]: " << UI::RESET << nome << " entrou na fila." << endl;
 }
 
 void GestorBiblioteca::registrarEmprestimo(int index) {
@@ -97,7 +97,7 @@ void GestorBiblioteca::registrarEmprestimo(int index) {
     catalogo[index].estoque--;
     historico.push(emp);
     
-    cout << "[SUCESSO]: Empréstimo de '" << emp.livro.titulo << "' registrado!" << endl;
+    cout << UI::GREEN << "[SUCESSO]: " << UI::RESET << "Empréstimo de '" << emp.livro.titulo << "' registrado!" << endl;
 }
 
 void GestorBiblioteca::cancelarUltimoEmprestimo() {
@@ -106,18 +106,18 @@ void GestorBiblioteca::cancelarUltimoEmprestimo() {
     }
     Emprestimo ultimo = historico.top();
     catalogo[ultimo.indexCatalogo].estoque++;
-    cout << "[DESFEITO]: Livro '" << ultimo.livro.titulo << "' voltou ao estoque." << endl;
+    cout << UI::YELLOW << "[DESFEITO]: " << UI::RESET << "Livro '" << ultimo.livro.titulo << "' voltou ao estoque." << endl;
     historico.pop();
 }
 
-string GestorBiblioteca::formatarData(time_t t) {
-    char buffer[20];
-    struct tm * timeinfo = localtime(&t);
-    strftime(buffer, sizeof(buffer), "%d/%m/%Y", timeinfo);
-    return string(buffer);
+const string& GestorBiblioteca::getProximoLeitor() const {
+    if (filaLeitores.empty()) {
+        throw ErroBiblioteca("Fila vazia.");
+    }
+    return filaLeitores.front();
 }
 
-int GestorBiblioteca::lerInteiro(string prompt) {
+int GestorBiblioteca::lerInteiro(const string& prompt) {
     int valor;
     cout << prompt;
     if (!(cin >> valor)) {

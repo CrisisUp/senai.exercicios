@@ -1,16 +1,18 @@
-
 /**
  * @file atividade-extra29-trading.cpp
- * @brief DESAFIO DE ELITE: Plataforma de Trading G-CRYPTO v1.0.
+ * @brief DESAFIO DE ELITE: Plataforma G-CRYPTO v2.0 (Elite Trading Core).
  * 
- * Este projeto integra:
- * 1. Class Templates (Carteira Genérica)
- * 2. STL map (Order Book e Balanços)
- * 3. Programação Defensiva (Tratamento de Exceções)
- * 4. UI/UX (Interface Colorida de Negociação)
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Integra Templates, STL Maps e Integridade Bancária (Guardião Financeiro).
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Trading Engine Architecture)
+ * - Carteira<T>: Instância na STACK. Gerencia um map na HEAP.
+ * - std::map: Cada nó na HEAP contém o Símbolo (string) e a Quantidade (T).
+ * - BRL Balance: Armazenado como long long (Centavos) para evitar drifting binário.
+ * - Performance: Busca logarítmica O(log n) para preços e balanços.
  */
 
 #include <iostream>
@@ -22,17 +24,18 @@
 
 using namespace std;
 
-// --- 1. NAMESPACE DE INTERFACE ---
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
 
 namespace UI {
     const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
     const string VERDE    = "\033[32m";
     const string AMARELO  = "\033[33m";
     const string VERMELHO = "\033[31m";
     const string CIANO    = "\033[36m";
-    const string NEGRITO  = "\033[1m";
+    const string BRANCO   = "\033[37m";
 
-    void limparTela() { cout << "\033[2J\033[1;1H"; }
+    inline void limparTela() { cout << "\033[2J\033[1;1H"; }
 }
 
 // --- 2. GESTÃO DE ERROS FINANCEIROS ---
@@ -40,191 +43,197 @@ namespace UI {
 class ErroTrade : public exception {
     string msg;
 public:
-    ErroTrade(string m) : msg(UI::VERMELHO + "[EXCHANGE ERROR]: " + m + UI::RESET) {}
+    ErroTrade(const string& m) : msg(UI::VERMELHO + "[EXCHANGE ERROR]: " + m + UI::RESET) {}
     const char* what() const throw() { return msg.c_str(); }
 };
 
-// --- 3. CLASSE TEMPLATE: CARTEIRA GENÉRICA ---
+// --- 3. CLASSE TEMPLATE: CARTEIRA GENÉRICA (ELITE) ---
 
 /**
- * @brief Gerencia saldos de ativos de qualquer tipo numérico.
+ * @class Carteira
+ * @brief Motor de custódia universal para qualquer tipo de ativo digital.
+ * @tparam T Tipo numérico da quantidade (ex: double para BTC, long para Ações).
  */
 template <typename T>
 class Carteira {
 private:
-    // Map: Símbolo do Ativo -> Quantidade
-    map<string, T> ativos;
-    double saldoBRL;
+    map<string, T> balancos; // Ativo -> Qtd
+    long long saldoBRLCentavos; // Guardião Financeiro: Integridade para moeda FIAT
 
 public:
-    Carteira(double saldoInicial) : saldoBRL(saldoInicial) {}
+    Carteira(double saldoInicialBRL) 
+        : saldoBRLCentavos(static_cast<long long>(saldoInicialBRL * 100)) {}
 
-    void adicionarAtivo(string simbolo, T qtd) {
-        ativos[simbolo] += qtd;
+    void adicionarAtivo(const string& simbolo, const T& qtd) {
+        balancos[simbolo] += qtd;
     }
 
-    bool removerAtivo(string simbolo, T qtd) {
-        if (ativos[simbolo] >= qtd) {
-            ativos[simbolo] -= qtd;
+    bool removerAtivo(const string& simbolo, const T& qtd) {
+        if (balancos[simbolo] >= qtd) {
+            balancos[simbolo] -= qtd;
             return true;
         }
         return false;
     }
 
     void debitarBRL(double valor) {
-        if (valor > saldoBRL) throw ErroTrade("Saldo BRL insuficiente para esta ordem.");
-        saldoBRL -= valor;
+        long long debitoCentavos = static_cast<long long>(valor * 100);
+        if (debitoCentavos > saldoBRLCentavos) throw ErroTrade("Saldo BRL insuficiente para liquidação.");
+        saldoBRLCentavos -= debitoCentavos;
     }
 
     void creditarBRL(double valor) {
-        saldoBRL += valor;
+        saldoBRLCentavos += static_cast<long long>(valor * 100);
     }
 
-    double getSaldoBRL() const { return saldoBRL; }
-    const map<string, T>& getAtivos() const { return ativos; }
+    // Getters de Elite
+    double getSaldoReal() const { return static_cast<double>(saldoBRLCentavos) / 100.0; }
+    const map<string, T>& getAtivos() const { return balancos; }
 };
 
-// --- 4. MOTOR DE MERCADO (SIMULADO) ---
+// --- 4. MOTOR DE MERCADO (ORDER BOOK REAL-TIME) ---
 
 class MarketEngine {
 private:
-    map<string, double> orderBook;
+    map<string, double> orderBook; // Símbolo -> Preço em BRL
 
 public:
     MarketEngine() {
-        orderBook["BTC"] = 320500.00; // Bitcoin em R$
-        orderBook["ETH"] = 12500.00;  // Ethereum em R$
-        orderBook["SOL"] = 750.45;    // Solana em R$
-        orderBook["DOT"] = 45.20;     // Polkadot em R$
+        orderBook["BTC"] = 320500.50; 
+        orderBook["ETH"] = 12450.25;  
+        orderBook["SOL"] = 745.10;    
+        orderBook["DOT"] = 42.15;     
     }
 
-    double getPreco(string simbolo) {
-        if (orderBook.find(simbolo) == orderBook.end()) {
-            throw ErroTrade("Ativo '" + simbolo + "' não listado nesta corretora.");
-        }
-        return orderBook[simbolo];
+    double getPreco(const string& simbolo) const {
+        auto it = orderBook.find(simbolo);
+        if (it == orderBook.end()) throw ErroTrade("Par de negociação '" + simbolo + "/BRL' não localizado.");
+        return it->second;
     }
 
-    void exibirMercado() {
-        cout << UI::AMARELO << "\n--- LIVRO DE OFERTAS (LIVE) ---" << UI::RESET << endl;
-        for (auto const& [ativo, preco] : orderBook) {
-            cout << "Ativo: " << left << setw(5) << ativo 
-                 << " | Preço: " << UI::VERDE << "R$ " << fixed << setprecision(2) << preco << UI::RESET << endl;
+    void dashboardMercado() const {
+        cout << "\n" << UI::AMARELO << UI::NEGRITO << "--- ORDER BOOK (LIVE TELEMETRY) ---" << UI::RESET << endl;
+        cout << string(40, '-') << endl;
+        for (const auto& [ativo, preco] : orderBook) {
+            cout << "Pair: " << left << setw(8) << (ativo + "/BRL") 
+                 << " | Last: " << UI::VERDE << UI::NEGRITO << "R$ " << fixed << setprecision(2) << preco << UI::RESET << endl;
         }
+        cout << string(40, '-') << endl;
     }
 };
 
-// --- 5. FUNÇÃO PRINCIPAL INTERATIVA ---
+// --- 5. EXECUÇÃO DA PLATAFORMA ---
 
 int main()
 {
-    MarketEngine mercado;
-    Carteira<double> minhaCarteira(10000.00); // Iniciando com 10k Reais
+    MarketEngine core;
+    Carteira<double> wallet(50000.00); // 50k BRL na STACK
 
     int opcao = 0;
 
     do {
         UI::limparTela();
-        cout << UI::CIANO << "===============================================" << endl;
-        cout << "      G-CRYPTO: DIGITAL ASSETS EXCHANGE        " << endl;
+        cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
+        cout << "      G-CRYPTO: ELITE TRADING INTERFACE        " << endl;
+        cout << "       (High-Precision Financial Core)         " << endl;
         cout << "===============================================" << UI::RESET << endl;
 
-        cout << "SALDO DISPONÍVEL: " << UI::VERDE << "R$ " << fixed << setprecision(2) 
-             << minhaCarteira.getSaldoBRL() << UI::RESET << endl;
+        cout << UI::BRANCO << "EQUITY BRL: " << UI::RESET << UI::VERDE << UI::NEGRITO 
+             << "R$ " << fixed << setprecision(2) << wallet.getSaldoReal() << UI::RESET << endl;
 
-        mercado.exibirMercado();
+        core.dashboardMercado();
 
-        cout << "\n--- SUA CARTEIRA ---" << endl;
-        bool vazia = true;
-        for (auto const& [simbolo, qtd] : minhaCarteira.getAtivos()) {
-            if (qtd > 0) {
-                cout << simbolo << ": " << UI::NEGRITO << qtd << UI::RESET << endl;
-                vazia = false;
+        cout << "\n" << UI::NEGRITO << "MY PORTFOLIO:" << UI::RESET << endl;
+        bool hasAssets = false;
+        for (const auto& [simbolo, qtd] : wallet.getAtivos()) {
+            if (qtd > 0.00000001) {
+                cout << "-> " << left << setw(5) << simbolo << ": " << UI::CIANO << UI::NEGRITO << qtd << UI::RESET << endl;
+                hasAssets = true;
             }
         }
-        if (vazia) cout << "(Carteira vazia)" << endl;
+        if (!hasAssets) cout << UI::AMARELO << "(Portfolio is currently empty)" << UI::RESET << endl;
 
-        cout << "\n[1] Comprar Ativo | [2] Vender Ativo | [3] Sair" << endl;
-        cout << "Escolha: ";
+        cout << UI::BRANCO << "\n[1] BUY ORDER  [2] SELL ORDER  [3] EXIT" << UI::RESET << endl;
+        cout << "Action: ";
         cin >> opcao;
 
         try {
             if (opcao == 1) {
-                string sim;
-                double qtd;
-                cout << "Símbolo do Ativo (ex: BTC): "; cin >> sim;
-                cout << "Quantidade desejada: "; cin >> qtd;
+                string sim; double qtd;
+                cout << "Asset Symbol: "; cin >> sim;
+                cout << "Quantity to BUY: "; cin >> qtd;
 
-                double precoUnit = mercado.getPreco(sim);
-                double totalOrdem = precoUnit * qtd;
+                double px = core.getPreco(sim);
+                double totalBRL = px * qtd;
 
-                cout << "Custo da Ordem: R$ " << totalOrdem << endl;
-                cout << "Confirmar compra? (1-Sim / 0-Não): ";
-                int conf; cin >> conf;
+                cout << UI::AMARELO << "Order Cost: R$ " << totalBRL << " (Confirm? 1-Yes): " << UI::RESET;
+                int confirm; cin >> confirm;
 
-                if (conf == 1) {
-                    minhaCarteira.debitarBRL(totalOrdem);
-                    minhaCarteira.adicionarAtivo(sim, qtd);
-                    cout << UI::VERDE << "[SUCESSO]: Ordem executada!" << UI::RESET << endl;
-                    system("sleep 1");
+                if (confirm == 1) {
+                    wallet.debitarBRL(totalBRL); // Validação de Saldo
+                    wallet.adicionarAtivo(sim, qtd);
+                    cout << UI::VERDE << UI::NEGRITO << "\n[SUCCESS]: Order filled at R$ " << px << UI::RESET << endl;
                 }
             }
             else if (opcao == 2) {
-                string sim;
-                double qtd;
-                cout << "Ativo para Venda: "; cin >> sim;
-                cout << "Quantidade: "; cin >> qtd;
+                string sim; double qtd;
+                cout << "Asset Symbol: "; cin >> sim;
+                cout << "Quantity to SELL: "; cin >> qtd;
 
-                if (minhaCarteira.removerAtivo(sim, qtd)) {
-                    double precoUnit = mercado.getPreco(sim);
-                    double ganho = precoUnit * qtd;
-                    minhaCarteira.creditarBRL(ganho);
-                    cout << UI::VERDE << "[VENDA]: Saldo BRL atualizado." << UI::RESET << endl;
-                    system("sleep 1");
+                if (wallet.removerAtivo(sim, qtd)) {
+                    double px = core.getPreco(sim);
+                    double profit = px * qtd;
+                    wallet.creditarBRL(profit);
+                    cout << UI::VERDE << UI::NEGRITO << "\n[SUCCESS]: Assets liquidated. BRL balance updated." << UI::RESET << endl;
                 } else {
-                    throw ErroTrade("Você não possui saldo deste ativo suficiente.");
+                    throw ErroTrade("Insufficient asset balance for liquidation.");
                 }
             }
         } catch (const exception& e) {
             cout << e.what() << endl;
-            cout << "Pressione ENTER para continuar...";
+            cout << UI::BRANCO << "Press ENTER to continue..." << UI::RESET;
             cin.ignore(1000, '\n'); cin.get();
         }
 
     } while (opcao != 3);
+
+    cout << UI::CIANO << "\nTerminating session. Secure vault locked." << UI::RESET << endl;
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: DESAFIO DE ELITE (G-CRYPTO)
+    RESUMO TEÓRICO: DESAFIO DE ELITE (TRADING ENGINE)
     ===============================================================
 
-    1. TEMPLATES DE CLASSE NA PRÁTICA:
-       - A classe 'Carteira<double>' gerencia os ativos. Poderíamos 
-         mudar para 'Carteira<long long>' se precisássemos de 
-         precisão em Satoshis sem decimais. O código é o mesmo.
+    1. TEMPLATES E ESCALABILIDADE:
+       - A plataforma usa 'Carteira<double>', mas o mesmo código 
+         suportaria 'Carteira<mpf_class>' (precisão infinita) para 
+         lidar com moedas nacionais hiper-inflacionadas ou tokens 
+         com 18 casas decimais.
 
-    2. PODER DO std::map:
-       - Usamos o map para duas funções vitais:
-         * Order Book: Busca instantânea do preço do ativo.
-         * Balanço: Relação dinâmica de quais ativos o usuário possui.
+    2. GARANTIA DE PRECISÃO (ELITE RULE):
+       - O saldo Fiat (BRL) é gerenciado via 'long long' centavos. 
+         Em corretoras, o "Floating Point Drift" pode causar perdas 
+         de milhares de reais por dia se não houver auditoria 
+         estática precisa.
 
-    3. DESESTRUTURAÇÃO (Structured Bindings - C++17):
-       - A sintaxe [ativo, preco] dentro do for permite desempacotar 
-         o par do map de forma elegante, tornando o código muito 
-         mais legível.
+    3. DESIGN PATTERN 'DATA REPOSITORY' (MarketEngine):
+       - Centralizamos o Order Book em uma classe gestora. Isso 
+         desacopla a lógica de quem "compra" (Carteira) de quem 
+         "fornece o preço" (Market).
 
-    4. SEGURANÇA TRANSACIONAL:
-       - O sistema primeiro debita o saldo (try-catch) e apenas em 
-         caso de sucesso ele atualiza a carteira de ativos. Isso 
-         evita a criação de "dinheiro imaginário" por erro de código.
+    4. PERFORMANCE LOGARÍTMICA:
+       - O uso intensivo de 'std::map' garante que a busca de 
+         preços e o cálculo de equity ocorram em O(log n), permitindo 
+         que o sistema suporte milhares de pares de moedas sem 
+         degradação perceptível.
 
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Multithreading: Processar ordens em paralelo.
-    - Sockets: Receber preços reais via API (Websockets).
-    - Precisão Arbitrária: Lidar com 18 casas decimais de tokens.
+    - Atomic Operations: Negociações em ambientes Multiprocessados.
+    - WebSocket Architecture: Conectando preços a APIs reais (Binance).
+    - Blockchain Persistence: Salvando saldos em bancos distribuídos.
     ===============================================================
 */

@@ -22,3 +22,10 @@ Precisamos de um sistema que auto-gere alertas de performance para que o Engenhe
     * Se `tempo_ms > 500`, inserir em incidentes como 'ALTA'.
     * Se `tempo_ms > 200`, inserir como 'MÉDIA'.
 4. Simular operações lentas e rápidas para testar o radar.
+
+## ⚠️ Análise de Falha Crítica
+
+*   **Riscos de Performance Locks:** O uso excessivo de triggers para monitoramento pode causar contenção de escrita, aumentando o tempo de bloqueio das tabelas principais durante transações pesadas.
+*   **Vacuum Latency:** Em sistemas com alta rotatividade de logs de monitoramento, o `VACUUM` pode demorar significativamente, bloqueando o acesso ao banco de dados e aumentando a latência percebida pelo usuário final.
+*   **Heap Bloat:** Tabelas de incidentes que crescem indefinidamente sem políticas de expurgo (TTL) causam fragmentação do arquivo de dados, prejudicando a performance de leitura e aumentando o consumo de disco desnecessariamente.
+*   **Transaction Log Overflow:** O registro massivo de eventos de performance em uma única transação pode sobrecarregar o log de transações (journal/WAL), levando a falhas de commit ou lentidão extrema no checkpoint.

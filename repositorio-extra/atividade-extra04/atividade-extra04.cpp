@@ -6,6 +6,13 @@
  * busca de valores extremos e lógica condicional dinâmica para 
  * analisar o consumo de combustível de uma frota de caminhões.
  * 
+ * @section MemoryMap Mapeamento de Memória (STACK):
+ * - numCaminhoes (int): 4 bytes na Stack.
+ * - somaConsumoCent (long): 8 bytes na Stack (Guardião Financeiro).
+ * - maiorKmCent (int): 4 bytes na Stack.
+ * - menorKmCent (int): 4 bytes na Stack.
+ * - frotaCent (vector<int>): Objeto na Stack, dados no HEAP.
+ * 
  * @author SENAI - Cristiano Batista Pessoa
  * @date 18/04/2026
  */
@@ -13,8 +20,24 @@
 #include <iostream>
 #include <vector>
 #include <iomanip>
+#include <string>
 
 using namespace std;
+
+/**
+ * @namespace UI
+ * @brief Gerencia a interface visual do sistema através de cores ANSI.
+ */
+namespace UI {
+    const string RESET   = "\033[0m";
+    const string BOLD    = "\033[1m";
+    const string RED     = "\033[31m";
+    const string GREEN   = "\033[32m";
+    const string YELLOW  = "\033[33m";
+    const string BLUE    = "\033[34m";
+    const string MAGENTA = "\033[35m";
+    const string CYAN    = "\033[36m";
+}
 
 int main()
 {
@@ -22,85 +45,91 @@ int main()
     cout << fixed << setprecision(2);
 
     int numCaminhoes;
-    double somaConsumo = 0.0, mediaFrota = 0.0;
-    double maiorKm = -1.0, menorKm = 999.0;
+    long somaConsumoCent = 0; // Guardião Financeiro: Inteiros p/ precisão
+    int maiorKmCent = -1, menorKmCent = 99900; // Valores em centésimos
     int idMelhor = 0, idPior = 0;
 
     // --- 1. Entrada de Dados ---
-    cout << "===============================================" << endl;
-    cout << "       GESTÃO DE PERFORMANCE DE FROTA          " << endl;
-    cout << "===============================================" << endl;
+    cout << UI::CYAN << "===============================================" << UI::RESET << endl;
+    cout << UI::BOLD << "       GESTÃO DE PERFORMANCE DE FROTA          " << UI::RESET << endl;
+    cout << UI::CYAN << "===============================================" << UI::RESET << endl;
 
     cout << "Digite a quantidade de caminhões na frota: ";
     cin >> numCaminhoes;
 
     if (numCaminhoes <= 0) {
-        cout << "[ERRO]: Quantidade inválida." << endl;
+        cout << UI::RED << "[ERRO]: Quantidade inválida." << UI::RESET << endl;
         return 1;
     }
 
-    vector<double> frota(numCaminhoes);
+    // Vetor armazenando em "centavos" (Km/L * 100)
+    vector<int> frotaCent(numCaminhoes);
 
     // --- 2. Coleta e Processamento (O Cérebro) ---
-    cout << "\n--- REGISTRO DE CONSUMO (Km/L) ---" << endl;
+    cout << "\n--- " << UI::YELLOW << "REGISTRO DE CONSUMO (Km/L)" << UI::RESET << " ---" << endl;
     for (int i = 0; i < numCaminhoes; i++)
     {
+        double entrada;
         cout << "Caminhão #" << (i + 1) << ": ";
-        cin >> frota[i];
+        cin >> entrada;
 
-        somaConsumo += frota[i];
+        // Conversão para o Guardião Financeiro
+        frotaCent[i] = static_cast<int>(entrada * 100);
+
+        somaConsumoCent += frotaCent[i];
 
         // Lógica de Maior (Mais Econômico)
-        if (frota[i] > maiorKm) {
-            maiorKm = frota[i];
+        if (frotaCent[i] > maiorKmCent) {
+            maiorKmCent = frotaCent[i];
             idMelhor = i + 1;
         }
 
         // Lógica de Menor (Mais Gastão)
-        if (frota[i] < menorKm) {
-            menorKm = frota[i];
+        if (frotaCent[i] < menorKmCent) {
+            menorKmCent = frotaCent[i];
             idPior = i + 1;
         }
     }
 
-    mediaFrota = somaConsumo / numCaminhoes;
+    double mediaFrota = (somaConsumoCent / 100.0) / numCaminhoes;
 
     // --- 3. Relatório Estatístico ---
-    cout << "\n===============================================" << endl;
-    cout << "          ESTATÍSTICAS DA FROTA                " << endl;
-    cout << "===============================================" << endl;
+    cout << "\n" << UI::CYAN << "===============================================" << UI::RESET << endl;
+    cout << UI::BOLD << "          ESTATÍSTICAS DA FROTA                " << UI::RESET << endl;
+    cout << UI::CYAN << "===============================================" << UI::RESET << endl;
     cout << "Média da Frota    : " << mediaFrota << " Km/L" << endl;
-    cout << "Mais Econômico    : " << maiorKm << " Km/L (#" 
+    cout << "Mais Econômico    : " << (maiorKmCent / 100.0) << " Km/L (#" 
          << idMelhor << ")" << endl;
-    cout << "Mais Gastão       : " << menorKm << " Km/L (#" 
+    cout << "Mais Gastão       : " << (menorKmCent / 100.0) << " Km/L (#" 
          << idPior << ")" << endl;
-    cout << "Amplitude Consumo : " << (maiorKm - menorKm) << " Km/L" << endl;
+    cout << "Amplitude Consumo : " << (maiorKmCent - menorKmCent) / 100.0 << " Km/L" << endl;
     cout << "-----------------------------------------------" << endl;
 
     // --- 4. Relatório de Inspeção Individual ---
-    cout << "\n--- ANÁLISE INDIVIDUAL ---" << endl;
+    cout << "\n--- " << UI::YELLOW << "ANÁLISE INDIVIDUAL" << UI::RESET << " ---" << endl;
     for (int i = 0; i < numCaminhoes; i++)
     {
+        double kmL = frotaCent[i] / 100.0;
         cout << "Caminhão #" << setw(2) << (i + 1) << ": " 
-             << setw(6) << frota[i] << " Km/L ";
+             << setw(6) << kmL << " Km/L ";
 
         // Regras de Negócio Dinâmicas
-        if (frota[i] < (mediaFrota * 0.80)) {
-            cout << "[CRÍTICO: REVISÃO]";
-        } else if (frota[i] > mediaFrota) {
-            cout << "[ÓTIMO DESEMPENHO]";
+        if (kmL < (mediaFrota * 0.80)) {
+            cout << UI::RED << "[CRÍTICO: REVISÃO]" << UI::RESET;
+        } else if (kmL > mediaFrota) {
+            cout << UI::GREEN << "[ÓTIMO DESEMPENHO]" << UI::RESET;
         } else {
-            cout << "[DESEMPENHO REGULAR]";
+            cout << UI::BLUE << "[DESEMPENHO REGULAR]" << UI::RESET;
         }
         cout << endl;
     }
 
     // --- 5. Simulação de Viagem (Extra) ---
-    double litrosViagem = 500.0 / maiorKm;
-    cout << "\n-----------------------------------------------" << endl;
-    cout << "SIMULAÇÃO: Viagem de 500 Km (Melhor Caminhão)" << endl;
-    cout << "Combustível Estimado: " << litrosViagem << " Litros" << endl;
-    cout << "===============================================" << endl;
+    double litrosViagem = 500.0 / (maiorKmCent / 100.0);
+    cout << "\n" << UI::CYAN << "-----------------------------------------------" << UI::RESET << endl;
+    cout << UI::BOLD << "SIMULAÇÃO: Viagem de 500 Km (Melhor Caminhão)" << UI::RESET << endl;
+    cout << "Combustível Estimado: " << UI::GREEN << litrosViagem << " Litros" << UI::RESET << endl;
+    cout << UI::CYAN << "===============================================" << UI::RESET << endl;
 
     cout << "\nPressione Enter para finalizar...";
     cin.ignore();
@@ -114,39 +143,37 @@ int main()
     RESUMO TEÓRICO PARA EXAME FINAL (CONSOLIDAÇÃO)
     ===============================================================
 
-    1. LÓGICA DE EXTREMOS DUPLOS:
+    1. GUARDIÃO FINANCEIRO (INTEGRIDADE):
+       - Transformar valores decimais em inteiros (multiplicando por 100) 
+         garante que operações de soma acumulada não sofram com a 
+         imprecisão binária do ponto flutuante.
+
+    2. NAMESPACE UI (ARQUITETURA):
+       - Isolar elementos de interface em um namespace próprio facilita 
+         a transição futura para outras bibliotecas gráficas.
+
+    3. LÓGICA DE EXTREMOS DUPLOS:
        - Para encontrar Maior e Menor simultaneamente, usamos dois 
          'ifs' independentes dentro do mesmo loop.
-       - Menor: Inicialize com um valor muito alto.
-       - Maior: Inicialize com zero ou valor muito baixo.
 
-    2. CÁLCULO DE AMPLITUDE:
-       - Em estatística, é a diferença entre o maior e o menor valor. 
-         Útil para ver a variação de qualidade em uma frota.
-
-    3. CONDICIONAIS COM PORCENTAGEM:
-       - Podemos usar matemática dentro do 'if'. 
-         Ex: if (valor < (media * 0.8)).
-
-    4. SIMULAÇÃO DE VARIÁVEIS:
-       - O programa usa dados processados (maiorKm) para prever 
-         resultados futuros (litros para 500km).
+    4. CÁLCULO DE AMPLITUDE:
+       - Diferença entre o maior e o menor valor, indicando a dispersão 
+         dos dados de consumo.
 
     ===============================================================
     TÓPICOS COMPLEMENTARES PARA O EXAME
     ===============================================================
 
     A. CONSTANTES (const):
-       - Se o valor '500.0' da viagem for fixo, poderíamos usar:
-         const double DISTANCIA_PADRAO = 500.0;
-       - Isso protege o valor de ser alterado acidentalmente.
+       - O uso de 'const string' no namespace UI protege os códigos de 
+         cores de modificações acidentais.
 
-    B. TIPO 'long double':
-       - Para precisão ainda maior que 'double', usado em cálculos 
-         astronômicos ou científicos complexos.
+    B. TIPO 'long':
+       - Essencial quando trabalhamos com acumuladores que podem 
+         ultrapassar o limite de 2 bilhões do 'int' padrão.
 
-    C. VALIDAÇÃO DE ENTRADA:
-       - O uso de 'if (numCaminhoes <= 0)' evita que o programa tente 
-         criar um vetor vazio ou divida por zero.
+    C. VALIDAÇÃO DE ENTRADA (cin.fail):
+       - O uso de 'if (numCaminhoes <= 0)' e a detecção de falha na 
+         leitura são pilares de um código de nível "Elite".
     ===============================================================
 */

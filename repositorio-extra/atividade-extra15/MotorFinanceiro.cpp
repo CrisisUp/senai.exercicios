@@ -33,26 +33,26 @@ void GestorFinanceiro::carregarCatalogo() {
             l.titulo = linha.substr(0, p1);
             l.autor = linha.substr(p1 + 1, p2 - p1 - 1);
             l.estoque = stoi(linha.substr(p2 + 1, p3 - p2 - 1));
-            l.precoCentavos = stoi(linha.substr(p3 + 1));
-            l.id = catalogo.size();
+            l.precoCentavos = stoll(linha.substr(p3 + 1));
+            l.id = (int)catalogo.size();
             catalogo.push_back(l);
         }
     }
-    cout << Cor::VERDE << "[SISTEMA]: Catálogo Financeiro carregado com sucesso." << Cor::RESET << endl;
+    cout << UI::VERDE << "[SISTEMA]: Catálogo Financeiro carregado com sucesso." << UI::RESET << endl;
 }
 
-void GestorFinanceiro::adicionarLeitor(string nome) {
+void GestorFinanceiro::adicionarLeitor(const string& nome) {
     if (nome.empty()) throw ErroBiblioteca("Nome do leitor não pode ser vazio.");
     filaLeitores.push(nome);
-    cout << Cor::VERDE << "[OK]: " << nome << " aguardando atendimento." << Cor::RESET << endl;
+    cout << UI::VERDE << "[OK]: " << nome << " aguardando atendimento." << UI::RESET << endl;
 }
 
-void GestorFinanceiro::processarAluguel(int idx, string valorStr) {
+void GestorFinanceiro::processarAluguel(int idx, const string& valorStr) {
     if (idx < 0 || idx >= (int)catalogo.size()) throw ErroBiblioteca("ID de livro inválido.");
     if (catalogo[idx].estoque <= 0) throw ErroBiblioteca("Livro esgotado.");
 
-    int recebido = converterParaCentavos(valorStr);
-    int preco = catalogo[idx].precoCentavos;
+    long long recebido = converterParaCentavos(valorStr);
+    long long preco = catalogo[idx].precoCentavos;
 
     if (recebido < preco) {
         throw ErroFinanceiro("Valor insuficiente! Faltam " + formatarMoeda(preco - recebido));
@@ -65,46 +65,46 @@ void GestorFinanceiro::processarAluguel(int idx, string valorStr) {
     catalogo[idx].estoque--;
     caixaTotal += preco;
 
-    int troco = recebido - preco;
-    cout << Cor::VERDE << "[SUCESSO]: Aluguel de '" << catalogo[idx].titulo << "' confirmado!" << Cor::RESET << endl;
-    if (troco > 0) cout << "Troco devolvido: " << Cor::AMARELO << formatarMoeda(troco) << Cor::RESET << endl;
+    long long troco = recebido - preco;
+    cout << UI::VERDE << "[SUCESSO]: Aluguel de '" << catalogo[idx].titulo << "' confirmado!" << UI::RESET << endl;
+    if (troco > 0) cout << "Troco devolvido: " << UI::AMARELO << formatarMoeda(troco) << UI::RESET << endl;
 
     Aluguel alg = {leitor, catalogo[idx], preco};
     historico.push(alg);
 }
 
-string GestorFinanceiro::formatarMoeda(int centavos) {
+string GestorFinanceiro::formatarMoeda(long long centavos) {
     double reais = static_cast<double>(centavos) / 100.0;
     stringstream ss;
     ss << "R$ " << fixed << setprecision(2) << reais;
     return ss.str();
 }
 
-int GestorFinanceiro::converterParaCentavos(string input) {
+long long GestorFinanceiro::converterParaCentavos(string input) {
     replace(input.begin(), input.end(), ',', '.');
     try {
-        float valor = stof(input);
+        double valor = stod(input);
         if (valor < 0) throw 1;
-        return static_cast<int>((valor * 100.0f) + 0.5f);
+        return static_cast<long long>((valor * 100.0) + 0.5);
     } catch (...) {
         throw ErroFinanceiro("Valor monetário inválido: '" + input + "'");
     }
 }
 
-int GestorFinanceiro::lerInteiro(string prompt) {
+int GestorFinanceiro::lerInteiro(const string& prompt) {
     int v;
     cout << prompt;
     if (!(cin >> v)) {
         cin.clear();
         cin.ignore(1000, '\n');
-        throw ErroBiblioteca(Cor::AMARELO + "[ERRO]: Digite um número válido." + Cor::RESET);
+        throw ErroBiblioteca(UI::AMARELO + "[ERRO]: Digite um número válido." + UI::RESET);
     }
     return v;
 }
 
 void GestorFinanceiro::exibirBanner() {
-    cout << Cor::CIANO << "===============================================" << endl;
+    cout << UI::CIANO << "===============================================" << endl;
     cout << "      BIBLIOTECA FINANCEIRA v3.0 (SEGURA)      " << endl;
     cout << "      (Arquitetura Modular Refatorada)         " << endl;
-    cout << "===============================================" << Cor::RESET << endl;
+    cout << "===============================================" << UI::RESET << endl;
 }

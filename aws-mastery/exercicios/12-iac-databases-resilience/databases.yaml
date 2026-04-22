@@ -1,0 +1,70 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SkyCargo Data Resilience: Persistent DB Stack'
+
+# @file databases.yaml
+# @brief Template de Infraestrutura Resiliente para Bancos de Dados.
+# 
+# Atividade 12 - Data Survival (Nível Arquiteto).
+# 
+# @author SENAI - Cristiano Batista Pessoa
+# @date 22/04/2026
+# 
+# @section CloudMap Topologia de Resiliência
+# - DynamoDB: DeletionPolicy: Retain (Proteção máxima para telemetria).
+# - RDS: DeletionPolicy: Snapshot (Backup final garantido).
+# - Segurança: Uso de NoEcho p/ ocultar senhas nos logs da stack.
+
+Parameters:
+  DBUsername:
+    Type: String
+    Default: admin_elite
+  DBPassword:
+    Type: String
+    NoEcho: true # ELITE RULE: Oculta a senha em toda a interface AWS
+    Description: Senha mestre do motor RDS.
+
+Resources:
+  # 1. TELEMETRIA (NoSQL - RESILIÊNCIA TOTAL)
+  DroneTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain # O banco NÃO MORRE se a stack for deletada.
+    Properties:
+      TableName: SkyCargo-Global-Telemetry
+      AttributeDefinitions:
+        - AttributeName: DroneID
+          AttributeType: S
+      KeySchema:
+        - AttributeName: DroneID
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+  # 2. CORE FINANCEIRO (SQL - BACKUP FINAL)
+  FinancialDB:
+    Type: AWS::RDS::DBInstance
+    DeletionPolicy: Snapshot # ANTES de apagar, tira uma foto (Snapshot).
+    Properties:
+      DBInstanceIdentifier: skycargo-financial-master
+      DBName: skycargo_audit
+      Engine: postgres
+      DBInstanceClass: db.t3.micro
+      AllocatedStorage: '20'
+      MasterUsername: !Ref DBUsername
+      MasterUserPassword: !Ref DBPassword
+      BackupRetentionPeriod: 7
+      PubliclyAccessible: false
+
+Outputs:
+  DynamoTable:
+    Description: Nome da tabela de telemetria persistente.
+    Value: !Ref DroneTable
+  RDSAddress:
+    Description: Endpoint do banco de dados financeiro.
+    Value: !GetAtt FinancialDB.Endpoint.Address
+
+# RESUMO TEÓRICO: POLÍTICAS DE SOBREVIVÊNCIA
+# 1. DELETION POLICY: Retain vs Snapshot vs Delete (Default). 
+#    Em produção, 'Delete' é proibido para bancos de dados.
+# 2. NO ECHO: O C++ protege a memória RAM; o 'NoEcho: true' protege 
+#    os logs de auditoria e a interface gráfica da AWS.
+# 3. REPRODUTIBILIDADE: Este template pode ser rodado em qualquer 
+#    região, criando a mesma fortaleza de dados em segundos.

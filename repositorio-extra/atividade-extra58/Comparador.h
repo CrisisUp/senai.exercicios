@@ -1,53 +1,56 @@
 /**
  * @file Comparador.h
- * @brief Definição modular de Templates de Funções e Especialização.
+ * @brief Interface Genérica com Especialização para Análise de Sensores.
+ * 
+ * Atividade Extra 58 - Programação Genérica II (Nível 31+).
+ * Demonstra a resolução de tipos em compile-time e polimorfismo estático.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Static Resolve)
+ * - Templates: Não ocupam RAM.
+ * - Código Gerado: O compilador cria instâncias físicas no CODE SEGMENT.
+ * - Escolha de Rota: A decisão entre a versão genérica e a especializada é 
+ *   feita 100% no compile-time (Zero Runtime Penalty).
  */
 
 #ifndef COMPARADOR_H
 #define COMPARADOR_H
 
-#include <iostream>
 #include <string>
 
 namespace IoT {
 
-    /**
-     * @brief Template Genérico de Função.
-     * Retorna o maior entre dois valores de qualquer tipo 'T'.
-     * Requisito: O tipo 'T' deve suportar o operador '>'.
-     */
-    template <typename T>
-    T obterMaior(T a, T b) {
-        std::cout << "[INFO]: Usando Template Genérico." << std::endl;
-        return (a > b) ? a : b;
-    }
-
-    /**
-     * @brief Especialização Explícita de Template para o tipo std::string.
-     * Em vez de comparar alfabeticamente, vamos comparar por COMPRIMENTO.
-     * Note a sintaxe: template<> para indicar a especialização.
-     */
-    template <>
-    inline std::string obterMaior<std::string>(std::string a, std::string b) {
-        std::cout << "[INFO]: Usando Especialização para std::string (Comprimento)." << std::endl;
-        return (a.length() > b.length()) ? a : b;
-    }
-
-    /**
-     * @brief Struct para representar uma leitura complexa.
-     */
+    /** @struct LeituraSensor: Exemplo de dado complexo. */
     struct LeituraSensor {
         int id;
         double valor;
 
-        // Sobrecarga de Operador para que o template genérico funcione.
-        bool operator>(const LeituraSensor& outra) const {
-            return (this->valor > outra.valor);
+        // OBRIGATÓRIO: Operador < para o template genérico funcionar
+        bool operator<(const LeituraSensor& outra) const {
+            return this->valor < outra.valor;
         }
     };
-}
+
+    /**
+     * @brief TEMPLATE GENÉRICO (FANTASMA DO CPU).
+     * Usa referências constantes para evitar cópia de T.
+     */
+    template <typename T>
+    const T& obterMaior(const T& a, const T& b) {
+        return (a < b) ? b : a;
+    }
+
+    /**
+     * @brief ESPECIALIZAÇÃO EXPLÍCITA PARA STRING.
+     * Regra de Negócio: Compara comprimento em vez de ordem alfabética.
+     */
+    template <>
+    const std::string& obterMaior<std::string>(const std::string& a, const std::string& b) {
+        return (a.length() < b.length()) ? b : a;
+    }
+
+} // namespace IoT
 
 #endif // COMPARADOR_H

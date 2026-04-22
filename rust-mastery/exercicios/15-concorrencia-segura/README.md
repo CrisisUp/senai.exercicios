@@ -19,3 +19,8 @@ Em Rust, a concorrência é "destemida" (*fearless concurrency*). O compilador g
 2. Solicitar ao usuário o número de drones que estão em voo (número de threads).
 3. Cada thread deve simular uma viagem de drone e somar um valor aleatório (ou fixo) à quilometragem total.
 4. Usar `join()` para garantir que o programa principal espere todas as threads terminarem antes de exibir o resultado final.
+
+## ⚠️ Análise de Falha Crítica
+- **Deadlocks:** Ocorre se duas threads tentarem travar dois Mutexes em ordens diferentes (Ex: T1 trava M1 e espera M2; T2 trava M2 e espera M1). No Rust, o uso de escopos curtos para locks minimiza esse risco.
+- **Send/Sync Violations:** Tipos que não implementam `Send` (como `Rc`) não podem ser passados para `thread::spawn`. O `Arc<T>` exige que `T` seja `Send + Sync` para ser compartilhado com segurança entre threads.
+- **Stack vs Heap:** O `Arc` aloca o contador de referências atômico e o `Mutex` no **Heap**. O `Mutex` protege o dado real e utiliza primitivas de sincronização do SO.

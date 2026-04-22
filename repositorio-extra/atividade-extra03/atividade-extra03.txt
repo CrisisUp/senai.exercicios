@@ -33,3 +33,13 @@ Para encontrar o maior valor em um vetor, inicializamos uma
 variável 'maior' com o primeiro elemento do vetor e depois 
 comparamos com o restante em um loop.
 ===============================================================
+
+===============================================================
+ANÁLISE DE FALHA CRÍTICA (INPUT FAILURE):
+Se o usuário digitar uma letra no lugar de um número (ex: "cin >> numVacas"), 
+o C++ entra em estado de 'failbit'. O programa não trava 
+imediatamente, mas as próximas leituras serão ignoradas e as 
+variáveis podem conter lixo ou zero. 
+SOLUÇÃO: Usar 'cin.fail()' para detectar e 'cin.clear()' + 
+'cin.ignore()' para resetar o fluxo de entrada.
+===============================================================

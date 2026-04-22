@@ -1,75 +1,103 @@
 /**
  * @file atividade-extra50-iot.cpp
- * @brief Programa principal (Interface) para monitoramento IoT industrial.
+ * @brief Programa principal para monitoramento IoT Industrial (Namespaces).
+ * 
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Demonstra a organização profissional de escopos e segurança de hardware.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
  */
 
 #include <iostream>
-#include <vector>
-#include "Monitoramento.h" // Importando nossa interface IoT modular
+#include <iomanip>
+#include "Monitoramento.h" 
 
 using namespace std;
 
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
+
+namespace UI {
+    const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
+    const string VERDE    = "\033[32m";
+    const string CIANO    = "\033[36m";
+    const string VERMELHO = "\033[31m";
+    const string BRANCO   = "\033[37m";
+
+    inline void limparTela() { cout << "\033[2J\033[1;1H"; }
+}
+
 /**
- * Ao usar 'using namespace IoT;', podemos chamar SensorPressao diretamente.
+ * Ao usar o namespace IoT, integramos os drivers industriais.
  */
 using namespace IoT;
 
 int main() {
-    // Criando um sensor IoT identificado como Pressão da Caldeira Principal
-    SensorPressao sensor1("CALDEIRA_01");
-    double novaLeitura;
+    UI::limparTela();
+    
+    // Instanciação na STACK
+    SensorPressao caldeira("MAIN_REACTOR_01");
+    double leituraInput;
 
-    cout << "\033[36m===============================================\033[0m" << endl;
-    cout << "     SISTEMA DE MONITORAMENTO IoT (NÍVEL 11+)  " << endl;
-    cout << "\033[36m===============================================\033[0m" << endl;
-    cout << "ID SENSOR: " << sensor1.getId() << endl;
+    cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
+    cout << "      G-SYSTEM: MONITORAMENTO IOT v2.0         " << endl;
+    cout << "       (Elite Scope & Namespace Control)       " << endl;
+    cout << "===============================================" << UI::RESET << endl;
 
-    cout << "\nDigite a leitura atual de pressão (psi): ";
-    cin >> novaLeitura;
+    cout << UI::BRANCO << "ID SENSOR ATIVO: " << UI::RESET << caldeira.getId() << endl;
 
-    // Chamada modular: A validação interna protege o sistema.
-    if (sensor1.registrarLeitura(novaLeitura)) {
-        cout << "\n\033[32m[SUCESSO]:\033[0m Leitura registrada: " 
-             << sensor1.getValor() << " psi." << endl;
+    cout << "\nDigite o pulso de pressão atual (psi): ";
+    if (!(cin >> leituraInput)) return 1;
+
+    // --- INTERAÇÃO MODULAR ---
+    if (caldeira.registrarLeitura(leituraInput)) {
+        cout << "\n" << UI::VERDE << UI::NEGRITO << "[SUCESSO]: " << UI::RESET 
+             << "Telemetria estável em " << caldeira.getValor() << " psi." << endl;
     } else {
-        cout << "\n\033[31m[ALERTA]:\033[0m Valor de " << novaLeitura 
-             << " psi FORA DA MARGEM DE SEGURANÇA!" << endl;
-        cout << "Sistema de emergência acionado." << endl;
+        cout << "\n" << UI::VERMELHO << UI::NEGRITO << "[ALERTA CRÍTICO]: " << UI::RESET 
+             << UI::VERMELHO << "Valor (" << leituraInput << ") fora dos limites físicos!" << UI::RESET << endl;
+        cout << UI::VERMELHO << "Procedimento de Evasão/Shut-down acionado." << UI::RESET << endl;
     }
 
-    cout << "\033[36m===============================================\033[0m" << endl;
+    cout << UI::CIANO << UI::NEGRITO << "\n===============================================" << UI::RESET << endl;
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: NAMESPACES E ENCAPSULAMENTO AVANÇADO
+    RESUMO TEÓRICO: NAMESPACES E PROTEÇÃO DE ESCOPO
     ===============================================================
 
-    1. NAMESPACES (namespace IoT):
-       - Servem para agrupar funcionalidades lógicas em "pastas".
-       - Permite que você tenha uma classe 'SensorPressao' em IoT 
-         e outra diferente em 'Financeiro' sem que o compilador 
-         se confunda.
-       - Acesso: `IoT::SensorPressao` ou `using namespace IoT;`.
+    1. NAMESPACES (ESPACIALIZAÇÃO LÓGICA):
+       - Em sistemas industriais, centenas de módulos precisam 
+         coexistir. Namespaces funcionam como "Pastas Virtuais", 
+         permitindo que 'SensorPressao' em IoT não colida com 
+         'SensorPressao' em uma biblioteca de meteorologia.
 
-    2. MÉTODOS PRIVADOS EM MÓDULOS:
+    2. ENCAPSULAMENTO DE HARDWARE:
        - No arquivo Monitoramento.h, 'valorEhSeguro' é privado. 
-       - O usuário do módulo (main) não consegue chamá-lo diretamente.
-       - Isso garante que a regra de segurança da fábrica nunca 
-         seja ignorada ou burlada por outros desenvolvedores.
+         Isso é vital; o programador da UI (main) não pode burlar a 
+         validação física do reactor para registrar um valor 
+         perigoso. O contrato é indestrutível.
 
-    3. VANTAGEM DIDÁTICA:
-       - O sistema cresce de forma segura e organizada, seguindo os 
-         padrões de Engenharia de Software de grandes empresas.
+    3. USANDO 'using namespace':
+       - Embora facilite a escrita, o 'using namespace' deve ser 
+         usado com cautela em arquivos .h (Headers). O ideal é 
+         usá-lo apenas em arquivos .cpp para manter o controle 
+         estrito de quais nomes estão sendo injetados no sistema.
+
+    4. PERFORMANCE MODULAR:
+       - Namespaces são resolvidos inteiramente pelo compilador. Não 
+         há um único byte extra de RAM ou ciclo de CPU gasto para 
+         organizar seu código desta forma. É organização pura e 
+         gratuita.
+
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Escopo de Variáveis em C++.
-    - Princípio da Responsabilidade Única (SOLID).
-    - Interfaces vs Implementações.
+    - Namespace Aliases: `namespace io = IoT;` para nomes longos.
+    - Inline Namespaces (C++11): Versionamento de bibliotecas.
+    - Unnamed Namespaces: Para criar funções "locais" ao arquivo .cpp.
     ===============================================================
 */

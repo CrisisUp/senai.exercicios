@@ -1,112 +1,142 @@
 /**
  * @file atividade-extra46-render.cpp
- * @brief G-TERRAIN: Sistema de Renderização por Grade e Matrizes Dinâmicas.
+ * @brief G-TERRAIN: Sistema de Renderização por Grade e Matriz de Elite.
  * 
- * Demonstra como gerenciar o espaço bidimensional do jogo utilizando um buffer
- * de memória (Matriz) que é desenhado de forma otimizada no terminal.
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Implementa Buffer de Tela 2D genérico com otimização de Aspect Ratio.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Screen Buffer Layout)
+ * - Objeto GradeRender: Alocado na STACK da main.
+ * - std::vector<vector<T>>: O descritor mestre vive na STACK (24 bytes aprox).
+ * - Buffer de Pixel: Matriz dinâmica alocada na HEAP (O(LxA * sizeof(T))).
+ * - Performance: Acesso bi-indexado [][] traduzido em aritmética de ponteiros direta.
  */
 
 #include <iostream>
 #include <vector>
 #include <string>
+#include <iomanip>
 
 using namespace std;
 
-// --- 1. NAMESPACE DE INTERFACE ---
+// --- 1. NAMESPACE DE INTERFACE (ANSI GRAPHICS) ---
 
 namespace UI {
     const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
     const string VERDE    = "\033[32m";
     const string AMARELO  = "\033[33m";
     const string CIANO    = "\033[36m";
     const string BRANCO   = "\033[37m";
+    const string CINZA    = "\033[90m";
     
-    void limparTela() { cout << "\033[2J\033[H"; }
+    inline void limparTela() { cout << "\033[2J\033[H"; }
 }
 
-// --- 2. CLASS TEMPLATE: GRADE DE RENDERIZAÇÃO ---
+// --- 2. CLASS TEMPLATE: GRADE DE RENDERIZAÇÃO (ENGINE) ---
 
+/**
+ * @class GradeRender
+ * @brief Gerencia um buffer de memória 2D para visualização espacial.
+ * @tparam T Tipo do pixel (char, int, ou custom struct).
+ */
 template <typename T>
 class GradeRender {
 private:
     int largura, altura;
-    vector<vector<T>> buffer; // A "memória de vídeo" da nossa engine
-    T charFundo;
+    vector<vector<T>> buffer; // Memória de vídeo simulada
+    T fundo;
 
 public:
-    GradeRender(int l, int a, T fundo) 
-        : largura(l), altura(a), charFundo(fundo) {
-        // Inicializa o buffer com o caractere de fundo
-        buffer.resize(altura, vector<T>(largura, charFundo));
+    /**
+     * @brief Construtor: Inicializa o cenário na HEAP.
+     */
+    GradeRender(int l, int a, const T& _fundo) 
+        : largura(l), altura(a), fundo(_fundo) {
+        buffer.resize(altura, vector<T>(largura, fundo));
     }
 
+    /**
+     * @brief Purgar o buffer voltando ao estado original.
+     */
     void limpar() {
-        for(int y = 0; y < altura; y++) {
-            for(int x = 0; x < largura; x++) {
-                buffer[y][x] = charFundo;
-            }
+        for(auto& linha : buffer) {
+            fill(linha.begin(), linha.end(), fundo);
         }
     }
 
-    void setPixel(int x, int y, T valor) {
+    /**
+     * @brief Define valor de um pixel com validação de limites (Bound Checking).
+     */
+    void setPixel(int x, int y, const T& valor) {
         if (x >= 0 && x < largura && y >= 0 && y < altura) {
             buffer[y][x] = valor;
         }
     }
 
+    /**
+     * @brief Despeja o buffer no stdout em um único ciclo de renderização.
+     */
     void desenhar() const {
-        // Desenha a borda superior
-        cout << UI::CIANO << "+" << string(largura * 2, '-') << "+" << UI::RESET << endl;
+        // Moldura Superior
+        cout << UI::CIANO << "┌" << string(largura * 2, '─') << "┐" << UI::RESET << endl;
 
         for (int y = 0; y < altura; y++) {
-            cout << UI::CIANO << "|" << UI::RESET; // Borda lateral esquerda
+            cout << UI::CIANO << "│" << UI::RESET; // Moldura Lateral
             for (int x = 0; x < largura; x++) {
-                T pixel = buffer[y][x];
+                const T& pixel = buffer[y][x]; // Fantasma do CPU
                 
-                // Lógica de cores baseada no caractere (Cromia básica)
-                if (pixel == '#') cout << UI::BRANCO << "##" << UI::RESET;
-                else if (pixel == 'X') cout << UI::VERDE << "[]" << UI::RESET;
-                else cout << "  "; // Espaço vazio para manter a proporção quadrada
+                // Lógica de Renderização Baseada em Caracteres
+                if (pixel == '#') cout << UI::BRANCO << "██" << UI::RESET; // Rocha Sólida
+                else if (pixel == 'X') cout << UI::VERDE << UI::NEGRITO << "[]" << UI::RESET; // Robô
+                else if (pixel == '.') cout << UI::CINZA << " ." << UI::RESET; // Solo Vazio
+                else cout << "  ";
             }
-            cout << UI::CIANO << "|" << UI::RESET << endl; // Borda lateral direita
+            cout << UI::CIANO << "│" << UI::RESET << endl;
         }
 
-        // Desenha a borda inferior
-        cout << UI::CIANO << "+" << string(largura * 2, '-') << "+" << UI::RESET << endl;
+        // Moldura Inferior
+        cout << UI::CIANO << "└" << string(largura * 2, '─') << "┘" << UI::RESET << endl;
     }
 };
 
-// --- 3. FUNÇÃO PRINCIPAL ---
+// --- 3. EXECUÇÃO DO MAPEADOR DE TERRENO ---
 
 int main()
 {
     UI::limparTela();
-    cout << UI::AMARELO << "G-TERRAIN RENDER ENGINE v1.0" << UI::RESET << endl;
+    cout << UI::AMARELO << UI::NEGRITO << "G-TERRAIN RENDER ENGINE v2.0 (ELITE)" << UI::RESET << endl;
+    cout << "Status: Mapeamento de Terreno Ativo (Buffer Logic)" << endl;
 
-    // Criando uma grade de 20x10 para o mapa
-    GradeRender<char> mapa(20, 10, '.');
+    // Cenário 24x12 (Aspect Ratio Compensado)
+    GradeRender<char> mapa(24, 12, '.');
 
-    // 1. Desenhando obstáculos (Rochas)
-    for(int i = 0; i < 20; i++) {
-        mapa.setPixel(i, 0, '#'); // Teto
-        mapa.setPixel(i, 9, '#'); // Piso
+    // 1. GERAÇÃO DE OBSTÁCULOS (PERÍMETRO)
+    for(int i = 0; i < 24; i++) {
+        mapa.setPixel(i, 0, '#');
+        mapa.setPixel(i, 11, '#');
     }
-    mapa.setPixel(5, 5, '#');
-    mapa.setPixel(6, 5, '#');
-    mapa.setPixel(7, 5, '#');
+    
+    // 2. FORMAÇÕES ROCHOSAS (RANDOM SEED SIMULADO)
+    mapa.setPixel(5, 5, '#'); mapa.setPixel(5, 6, '#');
+    mapa.setPixel(6, 5, '#'); mapa.setPixel(6, 6, '#');
+    
+    mapa.setPixel(18, 3, '#'); mapa.setPixel(19, 3, '#');
+    mapa.setPixel(18, 4, '#'); mapa.setPixel(19, 4, '#');
 
-    // 2. Posicionando o Robô explorador
-    int roboX = 10, roboY = 5;
+    // 3. POSICIONAMENTO DO ROBÔ EXPLORADOR
+    int roboX = 12, roboY = 6;
     mapa.setPixel(roboX, roboY, 'X');
 
-    // 3. Renderização Final
+    // 4. RENDERIZAÇÃO FINAL
     mapa.desenhar();
 
-    cout << "\n[SISTEMA]: Mapa renderizado via Buffer de Matriz." << endl;
-    cout << "Legenda: " << UI::BRANCO << "## (Rocha) " << UI::VERDE << "[] (Robô) " << UI::RESET << endl;
+    cout << "\n" << UI::BRANCO << "TELEMETRIA DE CAMPO:" << UI::RESET << endl;
+    cout << " >> Localização do Sensor: " << UI::VERDE << "(" << roboX << ", " << roboY << ")" << UI::RESET << endl;
+    cout << " >> Densidade Terreno    : " << UI::AMARELO << "Alta (Rochas detectadas)" << UI::RESET << endl;
 
     return 0;
 }
@@ -116,31 +146,32 @@ int main()
     RESUMO TEÓRICO: RENDERIZAÇÃO POR GRADE (GRID)
     ===============================================================
 
-    1. O CONCEITO DE BUFFER:
-       - Em vez de dar 'cout' em cada objeto conforme ele é criado, 
-         nós guardamos tudo em uma matriz central. Só depois de 
-         montar a "foto" completa do mundo é que fazemos um único 
-         ciclo de impressão.
+    1. O PODER DO BUFFER:
+       - Escrever no terminal é caro (lento). Escrever na memória 
+         (vetor) é barato (rápido). Ao montar o mapa na RAM e 
+         imprimir de uma vez, reduzimos drasticamente o jitter 
+         do sistema.
 
-    2. ASPECT RATIO NO TERMINAL:
-       - Um caractere de terminal é mais alto do que largo. Para 
-         que o mapa pareça quadrado e não "esticado", usamos dois 
-         espaços ou dois caracteres para cada 'pixel' (ex: "##").
+    2. ASPECT RATIO (REVISITADO):
+       - Caracteres de terminal têm largura ~0.5 da altura. Usar 
+         duas posições horizontais ("██" ou " .") para cada 
+         unidade de grade é o padrão de elite para manter mapas 
+         com proporção 1:1.
 
-    3. COORDENADAS CARTESIANAS (x, y):
-       - A matriz inverte o pensamento comum: matriz[y][x]. O 
-         índice externo é a LINHA (Y) e o interno é a COLUNA (X). 
-         Dominar essa inversão é vital para algoritmos de colisão.
+    3. MATRIZES GENÉRICAS:
+       - O uso de Templates permite que esta mesma engine seja 
+         usada para renderizar caracteres, códigos de cores (int) 
+         ou até objetos complexos contendo física e cor.
 
-    4. TEMPLATES PARA FLEXIBILIDADE:
-       - Usamos 'GradeRender<T>' para que possamos trocar de 'char' 
-         para um 'int' (códigos de cores) ou até para uma struct 
-         'Celula' sem mudar o código da engine.
+    4. SEGURANÇA DE MEMÓRIA (BOUND CHECKING):
+       - O método setPixel() atua como um firewall, impedindo que 
+         coordenadas fora da tela corrompam a memória adjacente 
+         na HEAP.
 
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Raycasting: Como jogos tipo Doom simulam 3D em grades 2D.
-    - Tile-based Games: Jogos baseados em blocos (Zelda, Pokémon).
-    - Bitmaps: Como imagens reais são armazenadas na memória.
+    - Z-Buffer: Para lidar com profundidade (3D).
+    - Sprite Sheets: Desenhar imagens complexas a partir de blocos.
+    - Pathfinding (A*): Rodar algoritmos de busca sobre o buffer.
     ===============================================================
 */

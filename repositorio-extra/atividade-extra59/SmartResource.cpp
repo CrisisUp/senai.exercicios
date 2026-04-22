@@ -1,22 +1,26 @@
 /**
  * @file SmartResource.cpp
- * @brief Implementação modular do recurso crítico.
+ * @brief Implementação de Telemetria GPS com Automação de Ciclo de Vida.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
  */
 
 #include "SmartResource.h"
 #include <iostream>
+#include <iomanip>
 
 namespace Logistica {
 
-    ModuloGPS::ModuloGPS(std::string _id) : id(_id), latitude(0.0), longitude(0.0) {
-        std::cout << "\033[32m[HARDWARE]:\033[0m Iniciando ModuloGPS ID: " << id << std::endl;
+    ModuloGPS::ModuloGPS(const std::string& _id) 
+        : idCaminhao(_id), latitude(0.0), longitude(0.0) {
+        std::cout << "\033[32m[SMART-ALLOC]: Módulo GPS para " << idCaminhao 
+                  << " alocado com sucesso.\033[0m" << std::endl;
     }
 
     ModuloGPS::~ModuloGPS() {
-        std::cout << "\033[31m[HARDWARE]:\033[0m Encerrando e Limpando ModuloGPS ID: " << id << std::endl;
+        std::cout << "\033[31m[SMART-FREE]: Módulo GPS para " << idCaminhao 
+                  << " destruído (Memória devolvida via RAII).\033[0m" << std::endl;
     }
 
     void ModuloGPS::atualizarCoordenadas(double lat, double lon) {
@@ -25,6 +29,8 @@ namespace Logistica {
     }
 
     void ModuloGPS::mostrarStatus() const {
-        std::cout << "GPS: " << id << " | COORD: [" << latitude << ", " << longitude << "]" << std::endl;
+        std::cout << " >> GPS [" << idCaminhao << "] -> Lat: " << std::fixed 
+                  << std::setprecision(4) << latitude << " | Lon: " << longitude << std::endl;
     }
-}
+
+} // namespace Logistica

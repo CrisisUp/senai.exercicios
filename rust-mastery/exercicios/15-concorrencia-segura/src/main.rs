@@ -1,16 +1,25 @@
-use std::io::{self, Write};
 /**
  * @file main.rs
  * @brief Atividade 15: Concorrência Segura (Threads, Arc e Mutex).
  *
- * Aprendizados: Multi-threading, Arc<T>, Mutex<T>, Interatividade Paralela.
+ * @section MemoryMap Mapeamento de Memória (Mestre)
+ * - **Stack:** Cada thread possui sua própria stack para variáveis locais.
+ * - **Heap:** O `Arc<Mutex<f64>>` reside no Heap, permitindo que o contador de referências
+ *   e o Mutex sejam acessíveis por todas as threads de forma atômica.
+ * - **MutexGuard:** É um ponteiro inteligente na Stack que libera o lock ao sair de escopo.
  *
- * @author SENAI - Rust Master
+ * @section FantasmaCPU Fantasma do CPU: Eficiência de Referências
+ * O uso de `Arc::clone` apenas incrementa um contador atômico, sem duplicar o dado real.
+ * O `Mutex` garante que não existam conflitos de cache (cache coherency) entre núcleos de CPU
+ * ao forçar a sincronização de memória.
+ *
+ * @author SENAI - Rust Master (Refatoração de Elite Fase 2)
  * @date 20/04/2026
  */
 use std::sync::{Arc, Mutex}; // Para compartilhamento seguro entre threads
 use std::thread; // Para criação de threads
 use std::time::Duration;
+use std::io::{self, Write};
 
 fn main() {
     println!("===============================================");
@@ -114,28 +123,26 @@ mod tests {
 
 /*
     ===============================================================
-    RESUMO TEÓRICO: CONCORRÊNCIA DESTEMIDA
+    RESUMO TEÓRICO: CONCORRÊNCIA DESTEMIDA (ELITE)
     ===============================================================
 
-    1. POR QUE ARC EM VEZ DE RC?
-       - O Rc não é thread-safe. Se você tentar passá-lo para uma
-         thread, o Rust nem compila. O Arc usa operações atômicas
-         (custo ligeiramente maior) para garantir a segurança.
+    1. ARC VS RC:
+       - Rc (Reference Counted) não é seguro para threads. Arc (Atomic)
+         garante que o contador seja atualizado via instruções de CPU.
 
-    2. O PAPEL DO MUTEX:
-       - Em Rust, "mutabilidade compartilhada" é proibida. O Mutex
-         é a ferramenta que permite que você mude um dado
-         compartilhado, garantindo que ninguém mais mexe nele
-         enquanto você tem o "lock".
+    2. MUTEX E POISONING:
+       - Se uma thread entrar em pânico enquanto segura um Mutex, o
+         Rust marca o Mutex como "envenenado". O unwrap() no lock()
+         propaga esse pânico para outras threads para evitar dados inconsistentes.
 
-    3. MOVE NAS THREADS:
-       - A palavra 'move' na closure da thread transfere a posse
-         das variáveis capturadas para dentro da nova linha de
-         execução.
+    3. DATA RACES VS RACE CONDITIONS:
+       - O Rust elimina Data Races (acessos simultâneos sem sincronia).
+       - Race Conditions lógicas ainda são possíveis, mas muito mais fáceis de diagnosticar.
 
-    4. VANTAGEM DIDÁTICA:
-       - O aluno aprende a criar sistemas que escalam para CPUs
-         modernas sem o medo de corrupção de memória ou
-         travamentos bizarros de race conditions.
+    ASSUNTOS CORRELATOS:
+    - Atomics (std::sync::atomic).
+    - RwLock (Read-Write Lock) para múltiplos leitores.
+    - Channels (mpsc) para comunicação entre threads.
+    - Send and Sync traits.
     ===============================================================
 */

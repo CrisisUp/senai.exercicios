@@ -1,13 +1,18 @@
 /**
  * @file atividade-extra44-gameloop.cpp
- * @brief Core Engine: Implementação de Game Loop e Delta Time.
+ * @brief Core Engine: Implementação de Game Loop e Delta Time de Elite.
  * 
- * Este programa demonstra o padrão de arquitetura fundamental para jogos
- * em tempo real, utilizando a biblioteca <chrono> para garantir que a 
- * simulação seja independente da taxa de quadros (FPS).
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Utiliza a biblioteca <chrono> para simulação física temporal de alta precisão.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Real-Time Engine Layout)
+ * - Objeto GameEngine: Alocado na STACK da main.
+ * - time_point (tempoAnterior): Estrutura de 8 bytes na STACK guardando o tick da CPU.
+ * - Variáveis de Estado (xPos, velocidade): Localizadas na STACK para acesso ultrarrápido.
+ * - Rendereização: Utiliza buffer de saída (stdout) para comunicação com o terminal.
  */
 
 #include <iostream>
@@ -18,95 +23,112 @@
 
 using namespace std;
 
-// --- 1. NAMESPACE DE INTERFACE ---
+// --- 1. NAMESPACE DE INTERFACE (ANSI ENGINE) ---
 
 namespace UI {
     const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
     const string VERDE    = "\033[32m";
     const string CIANO    = "\033[36m";
     const string AMARELO  = "\033[33m";
+    const string VERMELHO = "\033[31m";
+    const string BRANCO   = "\033[37m";
     
-    void moverCursor(int x, int y) {
-        cout << "\033[" << y << ";" << x << "H";
-    }
-
-    void limparTela() {
-        cout << "\033[2J\033[H";
-    }
+    inline void moverCursor(int x, int y) { cout << "\033[" << y << ";" << x << "H"; }
+    inline void limparTela() { cout << "\033[2J\033[H"; }
+    inline void ocultarCursor() { cout << "\033[?25l"; }
+    inline void mostrarCursor() { cout << "\033[?25h"; }
 }
 
-// --- 2. CLASSE ENGINE (O MOTOR DO JOGO) ---
+// --- 2. CLASSE ENGINE (O NÚCLEO DO PROCESSAMENTO) ---
 
 class GameEngine {
 private:
-    bool rodando;
+    bool ativo;
     double xPos;
-    double velocidade; // Unidades por segundo
+    double velocidade; // Pixels por segundo
 
-    // Controle de Tempo
+    // Motor Temporal (<chrono>)
     chrono::steady_clock::time_point tempoAnterior;
 
 public:
-    GameEngine() : rodando(true), xPos(1.0), velocidade(10.0) {
+    /**
+     * @brief Construtor: Inicializa estado e calibra o relógio.
+     */
+    GameEngine() : ativo(true), xPos(0.0), velocidade(15.0) {
         tempoAnterior = chrono::steady_clock::now();
     }
 
-    void rodar() {
+    /**
+     * @brief Loop Infinito controlado por Delta Time.
+     */
+    void executar() {
         UI::limparTela();
-        cout << UI::CIANO << "ENGINE STATUS: ATIVA | Mova o cursor do terminal para ver..." << UI::RESET << endl;
+        UI::ocultarCursor();
+        
+        cout << UI::CIANO << UI::NEGRITO << "SYSTEM STATUS: SIMULATION ACTIVE | SPEED: " << velocidade << " u/s" << UI::RESET << endl;
 
-        // O LOOP INFINITO (GAME LOOP)
-        while (rodando && xPos < 50.0) {
+        // --- O GAME LOOP CORE ---
+        while (ativo && xPos < 60.0) {
             
-            // 1. CÁLCULO DO DELTA TIME
+            // 1. CÁLCULO DO DELTA TIME (O Coração da Simulação)
             auto tempoAtual = chrono::steady_clock::now();
-            chrono::duration<double> diferenca = tempoAtual - tempoAnterior;
-            double deltaTime = diferenca.count();
+            chrono::duration<double> gap = tempoAtual - tempoAnterior;
+            double dt = gap.count(); // Tempo transcorrido em segundos decimais
             tempoAnterior = tempoAtual;
 
-            // 2. PROCESSAR INPUT (Simplificado: apenas tempo por enquanto)
+            // 2. ATUALIZAÇÃO DA FÍSICA (Independente de FPS)
+            // Fórmula: Espaço = Espaço_Anterior + (Velocidade * Tempo)
+            xPos += (velocidade * dt);
 
-            // 3. ATUALIZAR LÓGICA (Independente de FPS)
-            xPos += velocidade * deltaTime;
+            // 3. RENDERIZAÇÃO
+            desenharFrame(dt);
 
-            // 4. RENDERIZAR
-            desenhar(deltaTime);
-
-            // Pequeno descanso para o CPU (Simula 60 FPS aprox.)
+            // 4. CONTROLE DE CARGA (60 FPS Target)
+            // Evita CPU Starvation consumindo apenas o necessário
             this_thread::sleep_for(chrono::milliseconds(16));
         }
 
-        UI::moverCursor(1, 10);
-        cout << UI::VERDE << "\n[SIMULAÇÃO]: Trajeto concluído com precisão de tempo." << UI::RESET << endl;
+        UI::mostrarCursor();
+        UI::moverCursor(1, 12);
+        cout << UI::VERDE << UI::NEGRITO << "\n[FINISH]: Trajeto de simulação concluído com sucesso." << UI::RESET << endl;
     }
 
-    void desenhar(double dt) {
-        // Desenha na linha 5
+private:
+    /**
+     * @brief Desenha o estado atual no terminal via Escape Codes.
+     */
+    void desenharFrame(double dt) {
+        // Barra de Progresso
         UI::moverCursor(1, 5);
-        cout << "Progresso: [";
-        for(int i=0; i<50; i++) {
-            if(i < (int)xPos) cout << "=";
+        cout << UI::BRANCO << "Progress: [" << UI::RESET;
+        for(int i=0; i<60; i++) {
+            if(i < (int)xPos) cout << UI::VERDE << "=" << UI::RESET;
             else cout << " ";
         }
-        cout << "] " << fixed << setprecision(2) << xPos << " units" << endl;
+        cout << UI::BRANCO << "] " << fixed << setprecision(2) << xPos << " units" << UI::RESET << endl;
 
-        // Mostra o FPS em tempo real
-        UI::moverCursor(1, 7);
-        cout << UI::AMARELO << "Delta Time: " << dt << " s | FPS: " << (1.0 / dt) << UI::RESET << "    ";
-        fflush(stdout); // Garante que o desenho apareça sem precisar de '\n'
+        // Telemetria de Performance
+        UI::moverCursor(1, 8);
+        cout << UI::AMARELO << "Telemetry -> DeltaTime: " << fixed << setprecision(6) << dt 
+             << " s | Real-Time FPS: " << UI::NEGRITO << (1.0 / dt) << UI::RESET << "    ";
+        
+        // Força o despejo do buffer para animação fluida
+        cout.flush();
     }
 };
 
-// --- 3. FUNÇÃO PRINCIPAL ---
+// --- 3. EXECUÇÃO PRINCIPAL ---
 
 int main()
 {
-    GameEngine engine;
+    GameEngine core;
     
     try {
-        engine.rodar();
+        core.executar();
     } catch (const exception& e) {
-        cerr << "Erro fatal na Engine: " << e.what() << endl;
+        cerr << UI::VERMELHO << "CRITICAL ENGINE FAILURE: " << e.what() << UI::RESET << endl;
+        return 1;
     }
 
     return 0;
@@ -114,34 +136,34 @@ int main()
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: GAME LOOP E DELTA TIME
+    RESUMO TEÓRICO: ENGENHARIA DE TEMPO REAL
     ===============================================================
 
-    1. O CONCEITO DE DELTA TIME (dt):
-       - É o tempo que passou desde o último frame. Se o loop rodou 
-         rápido, o dt é pequeno. Se rodou lento, o dt é grande.
-       - Fórmula Mestra: posicao += velocidade * dt.
-       - Isso garante que seu jogo rode na mesma velocidade em um 
-         PC de 1990 ou em um de 2026.
+    1. INDEPENDÊNCIA DE HARDWARE:
+       - Um loop sem Delta Time rodaria 10x mais rápido em um i9 do 
+         que em um i3. Usando dt, o movimento é normalizado pelo 
+         tempo do mundo real, não pela velocidade do processador.
 
-    2. BIBLIOTECA <chrono>:
-       - É a forma moderna do C++ de medir tempo com precisão de 
-         nanossegundos, evitando as limitações da antiga <ctime>.
+    2. O MOTOR <CHRONO>:
+       - Diferente do 'time.h' do C, o <chrono> do C++ moderno 
+         trabalha com relógios monotônicos (steady_clock), que 
+         nunca voltam atrás mesmo se o relógio do sistema mudar, 
+         garantindo estabilidade à física.
 
-    3. ANSI ESCAPE SEQUENCES:
-       - Usamos '\033[y;xH' para mover o cursor sem limpar a tela 
-         toda. Isso é vital para evitar o 'Flicker' (piscar) nos 
-         jogos de terminal.
+    3. REDUÇÃO DE FLICKER:
+       - Em vez de limpar a tela inteira a cada frame (que faz a 
+         tela piscar), usamos o movimento de cursor ANSI para 
+         sobrescrever apenas as linhas necessárias.
 
-    4. MULTITHREADING BÁSICO:
-       - 'this_thread::sleep_for' é usado para não consumir 100% 
-         da CPU desnecessariamente, permitindo que o sistema 
-         operacional respire entre os quadros.
+    4. GESTÃO DE RECURSOS (RAII):
+       - A classe encapsula todo o controle de tempo e posição. Ao 
+         sair da função main(), os recursos da stack são liberados 
+         automaticamente.
 
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Fixed Time Step vs Variable Time Step.
-    - Double Buffering: Técnica para renderização suave.
-    - Latência de Input: O atraso entre o comando e a reação.
+    - Game Loops de Thread Única vs Multi-threaded.
+    - Interpolação e Extrapolação (Smoothing).
+    - Latência de Rede (Lag Compensation).
     ===============================================================
 */

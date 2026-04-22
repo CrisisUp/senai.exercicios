@@ -29,3 +29,9 @@ As **Funções de Agregação** permitem realizar cálculos sobre um conjunto de
     * Quantidade de produtos por categoria.
     * Média de preço por categoria.
     * Filtrar categorias que possuem soma de estoque maior que 20 unidades.
+
+## ⚠️ Análise de Falha Crítica
+
+**Risco:** Imprecisão em Cálculos de Ponto Flutuante (REAL vs INTEGER).
+**Cenário:** Ao utilizar o tipo `REAL` para valores monetários, o banco de dados pode arredondar centavos em operações de soma em larga escala devido à representação binária de números decimais.
+**Solução:** Implementar o padrão 'Guardião Financeiro', utilizando `INTEGER` para armazenar o valor em centavos (ex: R$ 10,50 vira 1050), garantindo precisão absoluta.

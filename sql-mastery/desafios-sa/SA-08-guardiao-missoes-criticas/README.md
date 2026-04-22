@@ -29,6 +29,15 @@ Este desafio integra as Atividades 25 a 30:
 4. Garantir que o sistema dispare alertas se qualquer operação levar mais de 500ms.
 5. Simular uma carga de 100.000 registros para validar o ambiente sob pressão.
 
+## ⚠️ Análise de Falha Crítica (Security & Resilience)
+
+Em missões críticas, a falha do banco de dados pode significar a perda de ativos físicos e digitais:
+
+1.  **Riscos de Performance de Window Functions:** Operações de detecção de anomalias (como `LAG` ou `LEAD` para detectar brute-force) em tabelas de log massivas sem particionamento por data ou índices de cobertura podem travar o processamento de novos acessos, criando um gargalo de segurança.
+2.  **Corrupção Massiva por Abuso de Savepoints:** O uso excessivo ou incorreto de `SAVEPOINT` dentro de transações longas, especialmente sob carga alta, pode exaurir o espaço de log do banco (journal/WAL), levando a falhas de escrita e possível corrupção se o sistema de arquivos não for resiliente.
+3.  **Data Leaks via Telemetria:** Logs de acesso que capturam latência e metadados podem vazar informações sobre a topologia da rede e horários de vulnerabilidade se não forem protegidos por Views de Segurança que mascarem IPs e IDs de usuários para analistas não autorizados.
+4.  **Inconsistência de Backup em Tempo Real:** Tentar realizar backups (via `cp` ou `rsync`) enquanto o sistema processa transações massivas de telemetria resultará em arquivos corrompidos. É obrigatório o uso do SQLite Backup API ou comandos `.backup` para garantir a consistência dos dados.
+
 ## 🏗️ Estrutura de Arquivos Obrigatória
 
 * `README.md`: Este guia mestre.

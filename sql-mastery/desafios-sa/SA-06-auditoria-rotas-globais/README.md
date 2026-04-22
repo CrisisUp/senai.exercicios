@@ -25,8 +25,11 @@ Este desafio integra:
 4. Implementar um Trigger que grave o log de auditoria ao mudar a quilometragem de uma rota.
 5. Realizar uma query que busque o caminho entre Cidade A e Cidade C e mostre se há algum drone inativo associado por erro.
 
-## 🏗️ Estrutura de Arquivos Obrigatória
+## ⚠️ Análise de Falha Crítica (Riscos de Auditoria Global)
 
-* `README.md`: Este guia.
-* `queries.sql`: A arquitetura e transações.
-* `INTERACAO_SQLITE.md`: Guia operacional.
+A unificação de bases internacionais e o roteamento de dados exigem atenção a vulnerabilidades sistêmicas:
+
+1.  **Riscos de Performance de Índices Parciais:** O uso de Índices Parciais em rotas críticas (ex: rotas com distância > 1000km) deve ser calibrado com precisão. Se as consultas não utilizarem exatamente o mesmo predicado do índice, o banco ignorará a otimização, resultando em latência catastrófica em sistemas de logística em tempo real.
+2.  **Corrupção Multi-banco:** O uso de `ATTACH DATABASE` introduz o risco de corrupção se um dos bancos (como o `arquivo_morto.db`) for desconectado ou sofrer falha de I/O durante uma transação de escrita. Sem o modo `WAL` (Write-Ahead Logging) ativo e sincronizado, a integridade referencial entre os bancos pode ser perdida.
+3.  **Latência de Dashboard:** Consultas recursivas (CTE) para navegação de rotas, se não limitadas por profundidade ou não otimizadas por índices nas colunas `origem` e `destino`, podem levar segundos para retornar, congelando dashboards operacionais e impedindo a resposta a incidentes de rota.
+4.  **Insegurança de Dados:** Triggers de auditoria são a última linha de defesa. Se houver falha na implementação que permita desativar os triggers (`PRAGMA recursive_triggers = OFF`) ou se as tabelas de log não forem imutáveis, alterações maliciosas em rotas globais podem passar despercebidas pela auditoria.

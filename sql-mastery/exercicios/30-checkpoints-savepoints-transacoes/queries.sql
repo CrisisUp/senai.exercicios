@@ -1,77 +1,90 @@
+/**
+ * @file queries.sql
+ * @brief Gerenciamento de transações granulares: SAVEPOINTs e ROLLBACK TO.
+ * @author SENAI C++ Engenheiro de Elite
+ * @date 2026-04-19
+ */
+
 -- ==============================================================================
--- ATIVIDADE 30: CHECKPOINTS EM TRANSAÇÕES (SAVEPOINTS)
--- OBJETIVO: Gerenciar falhas parciais em processos de manutenção longos.
+-- 1. SETUP DA TABELA DE MANUTENÇÃO E FATURAMENTO
 -- ==============================================================================
--- 1. Setup da Tabela de Manutenção
+
+-- Tabela de Progresso (Guardião Financeiro: custo_cents)
 CREATE TABLE IF NOT EXISTS manutencao_progresso (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     drone_id TEXT NOT NULL,
     etapa TEXT NOT NULL,
+    custo_cents INTEGER, -- Integridade Financeira
     status TEXT NOT NULL
 );
+
 DELETE FROM manutencao_progresso;
--- 2. INÍCIO DO PROCESSO COMPLEXO
+
+-- ==============================================================================
+-- 2. TRANSAÇÃO LONGA COM CHECKPOINTS (Savepoints)
+-- ==============================================================================
+
 BEGIN TRANSACTION;
--- ETAPA 1: Limpeza Física
-INSERT INTO manutencao_progresso (drone_id, etapa, status)
-VALUES ('DRONE-777', '1. Limpeza Física', 'CONCLUÍDO');
--- Criamos o primeiro CHECKPOINT
+
+-- ETAPA 1: Limpeza Física (Custo: R$ 50,00)
+INSERT INTO manutencao_progresso (drone_id, etapa, custo_cents, status)
+VALUES ('DRONE-777', '1. Limpeza Física', 5000, 'CONCLUÍDO');
+
 SAVEPOINT sp_limpeza;
--- ETAPA 2: Calibragem de Sensores
-INSERT INTO manutencao_progresso (drone_id, etapa, status)
-VALUES (
-        'DRONE-777',
-        '2. Calibragem de Sensores',
-        'CONCLUÍDO'
-    );
--- Criamos o segundo CHECKPOINT
+
+-- ETAPA 2: Calibragem (Custo: R$ 120,50)
+INSERT INTO manutencao_progresso (drone_id, etapa, custo_cents, status)
+VALUES ('DRONE-777', '2. Calibragem de Sensores', 12050, 'CONCLUÍDO');
+
 SAVEPOINT sp_calibragem;
+
 -- ETAPA 3: Atualização de Firmware (VAI FALHAR!)
-INSERT INTO manutencao_progresso (drone_id, etapa, status)
-VALUES (
-        'DRONE-777',
-        '3. Firmware v4.0',
-        'FALHA CRÍTICA - ARQUIVO CORROMPIDO'
-    );
--- 3. O PULO DO GATO: VOLTAR NO TEMPO PARCIALMENTE
--- Percebemos que o Firmware deu erro. Não queremos perder a Limpeza nem a Calibragem.
--- Voltamos para o ponto exato após a calibragem.
+INSERT INTO manutencao_progresso (drone_id, etapa, custo_cents, status)
+VALUES ('DRONE-777', '3. Firmware v4.0', 0, 'ERRO CRÍTICO');
+
+-- ==============================================================================
+-- 3. @section ExecutionPlan (O Pulo do Gato: Recuperação Parcial)
+-- ==============================================================================
+
+-- O banco desfaz apenas as operações após o checkpoint solicitado.
 ROLLBACK TO sp_calibragem;
--- 4. TENTATIVA DE RECUPERAÇÃO
--- Vamos tentar instalar uma versão estável em vez da v4.0
-INSERT INTO manutencao_progresso (drone_id, etapa, status)
-VALUES (
-        'DRONE-777',
-        '3. Firmware v3.9 (Stable)',
-        'CONCLUÍDO'
-    );
--- 5. FINALIZAÇÃO DO TRABALHO
+
+-- Tentativa de Recuperação (Firmware estável: R$ 80,00)
+INSERT INTO manutencao_progresso (drone_id, etapa, custo_cents, status)
+VALUES ('DRONE-777', '3. Firmware v3.9 Stable', 8000, 'CONCLUÍDO');
+
+-- Persistência Final (Libera locks e grava no HD)
 COMMIT;
--- 6. CONSULTA DE PROVA
--- Note que o registro da v4.0 (que falhou) SUMIU, mas as etapas 1 e 2 foram PRESERVADAS.
-SELECT *
-FROM manutencao_progresso;
+
+-- Auditoria de Integridade Financeira
+SELECT 
+    drone_id, 
+    SUM(custo_cents) / 100.0 AS "Total Faturado R$"
+FROM manutencao_progresso
+GROUP BY drone_id;
+
 /* 
- ===============================================================
- RESUMO TEÓRICO: SAVEPOINTS
- ===============================================================
+ ==============================================================================
+ RESUMO TEÓRICO: SAVEPOINTS E GRANULARIDADE
+ ==============================================================================
  
- 1. ALÉM DO COMMIT/ROLLBACK: 
- - SAVEPOINTs permitem que você erre no final de um script sem 
- ter que rodar os 50 comandos iniciais de novo.
+ 1. ATOMICIDADE PARCIAL: 
+ - Savepoints permitem quebrar o "Tudo ou Nada" do ACID em sub-etapas, 
+ mantendo a integridade sem recomeçar do zero.
  
- 2. RELEASE vs COMMIT: 
- - 'RELEASE nome' apenas remove o checkpoint da memória (ele 
- não salva no HD, quem faz isso é o COMMIT final).
+ 2. GUARDIÃO FINANCEIRO (INTEGER Cents): 
+ - O faturamento parcial das etapas deve ser somado como inteiros para evitar 
+ divergências de caixa em centavos durante o fechamento.
  
- 3. USOS REAIS: 
- - Processamento de faturas em lote. Se a fatura 99 der erro, 
- você dá ROLLBACK para a 98 e continua para a 100, sem 
- perder as primeiras 98 que deram certo.
- 
- VANTAGEM DIDÁTICA: 
- O aluno aprende a lidar com a complexidade do mundo real, onde 
- nem tudo é "binário" (certo ou errado), mas sim uma sequência 
- de estados que podem ser recuperados.
- ===============================================================
+ 3. @section ExecutionPlan (Maintenance Overhead):
+ - Cada SAVEPOINT gera uma entrada na tabela de símbolos de transação e aumenta 
+ o tamanho do log temporário (undo log).
+
+ ==============================================================================
+ ASSUNTOS CORRELATOS:
+ - Transações Aninhadas (Nested Transactions).
+ - Deadlock Detection em transações longas.
+ - Two-Phase Commit (2PC) em sistemas distribuídos.
+ - Isolation Levels (Read Committed vs Serializable).
+ ==============================================================================
  */

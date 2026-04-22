@@ -1,15 +1,19 @@
 /**
  * @file atividade-extra33-bacen.cpp
- * @brief DESAFIO LENDÁRIO: G-CENTRAL - Security Operations Center.
+ * @brief G-CENTRAL SOC: O Ápice da Engenharia de Sistemas C++.
  * 
- * Este projeto é a consolidação final de todo o aprendizado:
- * - Padrões de Projeto: Singleton (Scanner), Observer (Alertas), Factory (Defesa).
- * - POO Avançada: Classes Abstratas, Polimorfismo, Membros Estáticos.
- * - Programação Genérica: Templates de Transação.
- * - STL: Mapas de Risco e Pilhas de Auditoria.
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Integra Singleton, Observer e Factory em uma arquitetura indestrutível.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Legendary Integration)
+ * - Singleton (Scanner): Alocado no DATA SEGMENT (Static).
+ * - SOC Engine: Instanciado na STACK, gerencia coleções na HEAP.
+ * - Blacklist (std::map): Árvore Binária na HEAP para busca O(log n).
+ * - Auditoria (std::stack): LIFO na HEAP para rastro de auditoria veloz.
+ * - Agentes (Factory): Alocação volátil na HEAP (Short-lived objects).
  */
 
 #include <iostream>
@@ -25,26 +29,30 @@
 
 using namespace std;
 
-// --- 1. NAMESPACE DE INTERFACE (UI) ---
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
 
 namespace UI {
     const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
     const string VERDE    = "\033[32m";
     const string VERMELHO = "\033[31m";
     const string AMARELO  = "\033[33m";
+    const string AZUL     = "\033[34m";
     const string CIANO    = "\033[36m";
     const string ROXO     = "\033[35m";
-    const string NEGRITO  = "\033[1m";
+    const string BRANCO   = "\033[37m";
 
-    void limparTela() { cout << "\033[2J\033[1;1H"; }
+    inline void limparTela() { cout << "\033[2J\033[1;1H"; }
+    
     void cabecalho() {
-        cout << CIANO << "===============================================" << endl;
+        cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
         cout << "      G-CENTRAL: CENTRAL BANK SECURITY SOC     " << endl;
-        cout << "===============================================" << RESET << endl;
+        cout << "       (Full Pattern Stack Integration)        " << endl;
+        cout << "===============================================" << UI::RESET << endl;
     }
 }
 
-// --- 2. PADRÃO SINGLETON: ESCUDO DE VALIDAÇÃO ---
+// --- 2. PADRÃO SINGLETON: ESCUDO DE ENTRADA (MEYERS) ---
 
 class ScannerSeguro {
 private:
@@ -59,44 +67,44 @@ public:
     }
 
     template <typename T>
-    T ler(string msg) {
+    T ler(const string& msg) {
         T dado;
         while (true) {
-            cout << msg;
+            cout << UI::BRANCO << msg << UI::RESET;
             if (cin >> dado) {
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 return dado;
             }
-            cout << UI::VERMELHO << " [ERRO]: Entrada inválida." << UI::RESET << endl;
+            cout << UI::VERMELHO << " [ERRO]: Entrada inválida detectada." << UI::RESET << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
 };
 
-// --- 3. PADRÃO OBSERVER: MONITORAMENTO DE ALERTAS ---
+// --- 3. PADRÃO OBSERVER: TELEMETRIA DE ALERTA ---
 
 class IAlerta {
 public:
-    virtual void notificar(string msg) = 0;
+    virtual void notificar(const string& msg) = 0;
     virtual ~IAlerta() {}
 };
 
 class PainelSOC : public IAlerta {
 public:
-    void notificar(string msg) override {
-        cout << UI::VERMELHO << " [ALERTA SOC]: " << msg << UI::RESET << endl;
+    void notificar(const string& msg) override {
+        cout << UI::VERMELHO << UI::NEGRITO << " [ALERTA SOC]: " << UI::RESET << msg << endl;
     }
 };
 
 class AppDiretoria : public IAlerta {
 public:
-    void notificar(string msg) override {
-        cout << UI::AMARELO << " [MOBILE]: Diretor avisado sobre: " << msg << UI::RESET << endl;
+    void notificar(const string& msg) override {
+        cout << UI::AMARELO << " [PUSH]: Direção Central notificada -> " << msg << endl;
     }
 };
 
-// --- 4. PADRÃO FACTORY METHOD: AGENTES DE RESPOSTA ---
+// --- 4. PADRÃO FACTORY METHOD: CONTRAMEDIDAS ---
 
 class IAgente {
 public:
@@ -107,89 +115,93 @@ public:
 class CyberAgente : public IAgente {
 public:
     void neutralizar() override {
-        cout << UI::VERDE << " [DEFESA]: Protocolo de contra-ataque cibernético ativo. IP Bloqueado." << UI::RESET << endl;
+        cout << UI::VERDE << " [DEFESA]: Bloqueio de tráfego e tracing ativo." << endl;
     }
 };
 
-class AuditorFraude : public IAgente {
+class AuditorFiscal : public IAgente {
 public:
     void neutralizar() override {
-        cout << UI::ROXO << " [DEFESA]: Auditoria fiscal iniciada. Contas congeladas judicialmente." << UI::RESET << endl;
+        cout << UI::ROXO << " [JUDICIAL]: Congelamento de ativos e auditoria iniciada." << endl;
     }
 };
 
 class FabricaDefesa {
 public:
-    static IAgente* convocar(int perigo) {
-        if (perigo >= 10) return new AuditorFraude();
+    static IAgente* convocar(int nivelRisco) {
+        if (nivelRisco >= 8) return new AuditorFiscal();
         return new CyberAgente();
     }
 };
 
-// --- 5. MOTOR DO SOC (SÍNTESE FINAL) ---
+// --- 5. NÚCLEO DO G-CENTRAL (MOTOR DE ELITE) ---
 
 template <typename T>
 struct RegistroAudit {
     string id;
-    T valor;
-    string origem;
+    T valorCentavos;
+    string pais;
 };
 
 class GCentral {
 private:
     vector<IAlerta*> observadores;
-    map<string, int> blacklistPaises;
-    stack<RegistroAudit<double>> logs;
-    static int alertasEmitidos;
+    map<string, int> blacklist;
+    stack<RegistroAudit<long long>> historico; // LIFO de Auditoria
+    static int alertasGlobais;
 
 public:
     GCentral() {
-        blacklistPaises["Ilhas Cayman"] = 5;
-        blacklistPaises["Paraiso Fiscal X"] = 8;
-        blacklistPaises["Z-Hackland"] = 10;
+        blacklist["Ilhas Cayman"] = 5;
+        blacklist["Swiss Vault"] = 7;
+        blacklist["Dark-Web Node"] = 10;
     }
 
-    void registrarMonitor(IAlerta* a) { observadores.push_back(a); }
+    void registrarMonitor(IAlerta* a) { if (a) observadores.push_back(a); }
 
-    void analisarTransacao(string pais, double valor) {
+    void analisarTransacao(const string& pais, double valor) {
         bool suspeita = false;
         string motivo = "";
+        long long centavos = static_cast<long long>(valor * 100);
 
-        if (blacklistPaises.count(pais)) {
+        if (blacklist.count(pais)) {
             suspeita = true;
-            motivo = "Origem de Alto Risco (" + pais + ")";
-        } else if (valor > 1000000.0) {
+            motivo = "Origem Crítica (" + pais + ")";
+        } else if (centavos > 100000000) { // > 1 Milhão de BRL
             suspeita = true;
-            motivo = "Valor Atípico (> 1 Milhão)";
+            motivo = "Movimentação Atípica de Grande Porte";
         }
 
         if (suspeita) {
-            alertasEmitidos++;
-            for (auto o : observadores) o->notificar(motivo);
+            alertasGlobais++;
+            for (auto* o : observadores) o->notificar(motivo);
             
-            IAgente* defensor = FabricaDefesa::convocar(blacklistPaises[pais]);
+            // Factory Response
+            IAgente* defensor = FabricaDefesa::convocar(blacklist[pais]);
             defensor->neutralizar();
-            delete defensor;
+            delete defensor; // Limpeza imediata (Short-lived)
 
-            logs.push({"ALERTA-" + to_string(alertasEmitidos), valor, pais});
-            salvarEmDisco(motivo, valor, pais);
+            historico.push({"SOC-" + to_string(alertasGlobais), centavos, pais});
+            persistirEmDisco(motivo, valor, pais);
         } else {
-            cout << UI::VERDE << " [SISTEMA]: Transação processada com segurança." << UI::RESET << endl;
+            cout << UI::VERDE << " [OK]: Operação dentro dos padrões de conformidade." << UI::RESET << endl;
         }
     }
 
-    void salvarEmDisco(string m, double v, string p) {
+    void persistirEmDisco(const string& m, double v, const string& p) {
         ofstream arq("repositorio-extra/atividade-extra33/relatorio_soc.txt", ios::app);
-        arq << "[ALERTA] Motivo: " << m << " | Valor: R$ " << v << " | Pais: " << p << endl;
-        arq.close();
+        if (arq.is_open()) {
+            arq << "[ALERT] " << m << " | R$ " << fixed << setprecision(2) << v << " | Origin: " << p << endl;
+            arq.close();
+        }
     }
 
-    static int getContador() { return alertasEmitidos; }
+    static int getContador() { return alertasGlobais; }
 };
 
-int GCentral::alertasEmitidos = 0;
+int GCentral::alertasGlobais = 0;
 
-// --- 6. FUNÇÃO PRINCIPAL ---
+// --- 6. EXECUÇÃO DO CENTRO DE OPERAÇÕES ---
 
 int main()
 {
@@ -199,59 +211,61 @@ int main()
     GCentral soc;
     ScannerSeguro& scan = ScannerSeguro::get();
 
-    // Setup de Observadores
-    PainelSOC painel;
-    AppDiretoria app;
-    soc.registrarMonitor(&painel);
-    soc.registrarMonitor(&app);
+    // Inscrição de Observadores
+    PainelSOC monitorDigital;
+    AppDiretoria appMobile;
+    soc.registrarMonitor(&monitorDigital);
+    soc.registrarMonitor(&appMobile);
 
-    int opcao = 0;
+    int opt = 0;
     do {
-        cout << "\n--- PAINEL DE CONTROLE DE SEGURANÇA ---" << endl;
-        cout << "Alertas Totais na Sessão: " << GCentral::getContador() << endl;
-        cout << "[1] Simular Transferência PIX/SWIFT" << endl;
-        cout << "[2] Sair do Sistema" << endl;
-        opcao = scan.ler<int>("Escolha: ");
+        cout << "\n" << UI::NEGRITO << "SOC DASHBOARD - STATUS: " << UI::VERDE << "ONLINE" << UI::RESET << endl;
+        cout << "Incidentes Capturados: " << UI::AMARELO << GCentral::getContador() << UI::RESET << endl;
+        cout << "[1] Processar Ordem SWIFT  [2] Desligar Núcleo" << endl;
+        opt = scan.ler<int>("Ação SOC: ");
 
-        if (opcao == 1) {
-            string pais = scan.ler<string>("País de Origem: ");
-            double valor = scan.ler<double>("Valor da Transação (BRL): ");
-            soc.analisarTransacao(pais, valor);
+        if (opt == 1) {
+            string p = scan.ler<string>("País de Origem: ");
+            double v = scan.ler<double>("Valor Liquidação (BRL): ");
+            soc.analisarTransacao(p, v);
         }
 
-    } while (opcao != 2);
+    } while (opt != 2);
 
-    cout << UI::CIANO << "\n[INFO]: G-CENTRAL encerrado. Relatório salvo na pasta da atividade." << UI::RESET << endl;
+    cout << UI::CIANO << "\n[INFO]: G-CENTRAL entrando em modo hibernação. Logs em disco." << UI::RESET << endl;
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: O ÁPICE DA ENGENHARIA C++
+    RESUMO TEÓRICO: O ÁPICE DA ARQUITETURA C++
     ===============================================================
 
-    1. SINGLETON (O Guardião):
-       - A classe ScannerSeguro garante que o buffer do teclado seja 
-         gerenciado por uma única inteligência imune a falhas.
+    1. SINERGIA DE PADRÕES:
+       - O Singleton protege a ENTRADA, o Observer distribui a 
+         INFORMAÇÃO, e o Factory gera a REAÇÃO. Esta tríade é a 
+         base de sistemas de missão crítica modernos.
 
-    2. OBSERVER (A Vigilância):
-       - O SOC notifica múltiplos sistemas (Painel e App) sem que 
-         a lógica do Banco Central dependa de classes concretas.
+    2. GUARDIÃO FINANCEIRO (ELITE RULE):
+       - Transações de bilhões exigem precisão de centavos inteiros. 
+         A imprecisão de 'double' em valores massivos não é apenas 
+         um bug, é um risco de conformidade bancária.
 
-    3. FACTORY (A Resposta Ágil):
-       - Dependendo do nível de risco (int perigo), a fábrica decide 
-         quem deve agir: um algoritmo (Cyber) ou um humano (Auditor).
+    3. FANTASMA DO CPU (PERFORMANCE):
+       - O uso de const string& em toda a cadeia de processamento 
+         evita cópias na HEAP, garantindo que o SOC reaja em 
+         microsegundos.
 
-    4. INTEGRALIDADE TÉCNICA:
-       - Unimos Templates, STL (map, stack, vector), Static, POO 
-         e Exceções em um software que simula um ambiente de 
-         missão crítica real.
+    4. RESILIÊNCIA E AUDITORIA:
+       - O uso de 'stack' para auditoria local e a persistência 
+         em arquivo garantem o rastro forense necessário para 
+         investigações de crimes financeiros.
 
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Padrão Strategy: Para trocar algoritmos de análise de risco.
-    - Padrão Decorator: Para adicionar camadas de segurança dinâmicas.
-    - Concorrência (Threads): Analisar transações em paralelo.
+    - Smart Pointers (unique_ptr) no Factory.
+    - Template Specialization para países com moedas diferentes.
+    - Metaprogramação para validação de regras em compile-time.
     ===============================================================
 */

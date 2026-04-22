@@ -1,0 +1,57 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SkyCargo Telemetry: High-Performance NoSQL Table with Retention'
+
+# @file dynamo-setup.yaml
+# @brief Template IaC para provisionamento de tabelas NoSQL resilientes.
+# 
+# Atividade 05 - Cloud NoSQL (Nível Arquiteto).
+# 
+# @author SENAI - Cristiano Batista Pessoa
+# @date 22/04/2026
+# 
+# @section CloudMap Topologia NoSQL de Elite
+# - Resource: AWS::DynamoDB::Table.
+# - Protection: DeletionPolicy: Retain (O banco é o patrimônio).
+# - Performance: BillingMode: PAY_PER_REQUEST (Otimização de custo).
+
+Resources:
+  # 1. TABELA DE TELEMETRIA GLOBAL
+  DroneTelemetryTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain # ELITE RULE: O dado sobrevive à morte do código.
+    Properties:
+      TableName: SkyCargo-Drone-Telemetry
+      AttributeDefinitions:
+        - AttributeName: DroneID
+          AttributeType: S
+        - AttributeName: Timestamp
+          AttributeType: N
+      KeySchema:
+        - AttributeName: DroneID
+          KeyType: HASH # Partition Key (Distribuição uniforme)
+        - AttributeName: Timestamp
+          KeyType: RANGE # Sort Key (Ordenação cronológica)
+      BillingMode: PAY_PER_REQUEST
+      Tags:
+        - Key: Environment
+          Value: Dev
+        - Key: DataClassification
+          Value: Sensitive
+
+Outputs:
+  TableName:
+    Description: Nome físico da tabela na AWS.
+    Value: !Ref DroneTelemetryTable
+  TableArn:
+    Description: Identificador de recurso (ARN) da tabela.
+    Value: !GetAtt DroneTelemetryTable.Arn
+
+# RESUMO TEÓRICO: PERSISTÊNCIA NoSQL DECLARATIVA
+# 1. RETENTION POLICY: Como o DynamoDB é um serviço Serverless de alta 
+#    disponibilidade, a maior ameaça é o erro humano na deleção de infra. 
+#    O 'Retain' é a nossa proteção contra o 'delete-stack' acidental.
+# 2. KEY DESIGN: O CloudFormation fixa o design da chave primária (PK/SK). 
+#    Mudar isso depois exige a recriação da tabela. O design deve ser 
+#    perfeito no nascimento.
+# 3. PAY-PER-REQUEST: Ideal para o ambiente SENAI, onde o custo cai para 
+#    zero quando você não está rodando seus programas.

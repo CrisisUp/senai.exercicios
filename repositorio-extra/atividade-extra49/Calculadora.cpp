@@ -1,19 +1,26 @@
 /**
  * @file Calculadora.cpp
- * @brief Implementação (Lógica de Negócio) do motor matemático.
+ * @brief Implementação da Lógica de Cálculo de Engenharia.
+ * 
+ * Atividade Extra 49 - Arquitetura Modular (Nível 11+).
+ * Isola a física e a matemática da interface de usuário.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
  */
 
 #include "Calculadora.h"
+#include <cmath>
 
-// Implementação das funções estáticas declaradas no .h
-double CalculadoraEngenharia::calcularVolumeCilindro(double raio, double altura) {
-    return calcularAreaCirculo(raio) * altura;
-}
+namespace CalculadoraEngenharia {
 
-double CalculadoraEngenharia::calcularAreaCirculo(double raio) {
-    // M_PI está em cmath
-    return M_PI * std::pow(raio, 2);
+    double calcularAreaCirculo(double raio) {
+        return PI * std::pow(raio, 2);
+    }
+
+    double calcularVolumeCilindro(double raio, double altura) {
+        // Reuso de código interno do módulo
+        return calcularAreaCirculo(raio) * altura;
+    }
+
 }

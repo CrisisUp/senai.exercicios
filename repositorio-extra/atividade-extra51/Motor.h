@@ -1,51 +1,66 @@
 /**
  * @file Motor.h
- * @brief Definição modular de Motores Industriais usando Composição.
+ * @brief Interface para o Módulo de Motores Industriais (Composição).
+ * 
+ * Atividade Extra 51 - Arquitetura Modular (Nível 11+).
+ * Demonstra o relacionamento "Has-A" entre classes.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Composition Layout)
+ * - Objeto MotorIndustrial: Alocado na STACK da main.
+ * - Sensor Interno: Alocado NA STACK, dentro do corpo do objeto Motor.
+ * - Agregação de Memória: O tamanho total do Motor na RAM é a soma (sizeof(Motor) + sizeof(Sensor)).
+ * - Localidade de Referência: A composição garante que o sensor esteja fisicamente próximo 
+ *   do motor na RAM, otimizando o cache da CPU.
  */
 
 #ifndef MOTOR_H
 #define MOTOR_H
 
 #include <string>
-#include "../atividade-extra50/Monitoramento.h" // Reutilização modular
+#include "../atividade-extra50/Monitoramento.h" // Importação modular do sensor
 
 namespace IoT {
 
     /**
-     * @brief Classe MotorIndustrial (Composição: O Motor TEM UM Sensor).
+     * @class MotorIndustrial
+     * @brief Representa um equipamento crítico composto por múltiplos subsistemas.
      */
     class MotorIndustrial {
     private:
         std::string modelo;
         bool ligado;
-        
-        // COMPOSIÇÃO: O objeto SensorPressao agora é um ATRIBUTO do Motor.
-        SensorPressao sensorPressao;
+        SensorPressao sensorInterno; // COMPOSIÇÃO: O Motor TEM UM Sensor
 
     public:
         /**
-         * @brief Construtor do motor que também inicializa o sensor interno.
+         * @brief Construtor: Inicializa motor e compõe o sensor.
          */
-        MotorIndustrial(std::string mod, std::string idSensor);
+        MotorIndustrial(const std::string& _modelo, const std::string& _idSensor);
 
+        /**
+         * @brief Ativa o sistema elétrico do motor.
+         */
         void ligar();
-        void desligar();
-        
-        /**
-         * @brief Atualiza a pressão do sensor interno do motor.
-         */
-        bool atualizarOperacao(double pressaoLida);
 
         /**
-         * @brief Retorna o estado de saúde do motor.
+         * @brief Desativa o sistema por segurança ou comando.
          */
-        std::string statusMotor() const;
-        
+        void desligar();
+
+        /**
+         * @brief Processa um ciclo de operação baseado na telemetria.
+         * @return false se o motor precisar ser abortado por segurança.
+         */
+        bool atualizarOperacao(double pressao);
+
+        // Getters de Estado (FANTASMA DO CPU)
         bool estaLigado() const { return ligado; }
+        std::string statusMotor() const;
     };
-}
+
+} // namespace IoT
 
 #endif // MOTOR_H

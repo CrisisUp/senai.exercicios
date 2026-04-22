@@ -1,11 +1,21 @@
 /**
  * @file main.rs
- * @brief SA-04: Central de Comando e Controle Inteligente.
+ * @brief SA-04: Central de Comando e Controle Inteligente (Refatoração de Elite).
  * 
- * Integração de Traits, Generics, Iteradores, Closures e Tratamento de Erros.
+ * Integração robusta de Traits, Generics e Dynamic Dispatch para monitoramento de infraestrutura crítica.
  * 
  * @author SENAI - Rust Master
  * @date 20/04/2026
+ * 
+ * @section MemoryMap Árvore de Ownership e Gerenciamento de Memória:
+ * - central (Vec<Box<dyn Hardware>>): [STACK] Ponteiro p/ [HEAP] Vetor de [STACK] Fat Pointers p/ [HEAP] Objetos.
+ * - DroneVoo/BaseCarregamento: [HEAP] Alocados via Box, cada um possui sua própria string de ID (Heap).
+ * - falhas (Vec<String>): [STACK] Ponteiro p/ [HEAP] Novo vetor com cópias das strings de identificação.
+ * 
+ * @section FantasmadoCPU Fantasma do CPU (Performance e Segurança):
+ * - Zero-copy: O uso de iteradores (.iter()) evita a duplicação dos objetos Hardware na memória.
+ * - Referências: 'transmitir_emergencia(&T)' utiliza referências para passar o controle sem mover a posse.
+ * - Lifetimes: O tempo de vida das referências dentro do loop é limitado ao escopo do loop, garantido pelo compilador.
  */
 
 /// Define o contrato para qualquer hardware monitorado pela central.
@@ -148,7 +158,7 @@ mod tests {
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: DESAFIO INTEGRADOR SA-04
+    RESUMO TEÓRICO: DESAFIO INTEGRADOR SA-04 (REFATORAÇÃO DE ELITE)
     ===============================================================
 
     1. TRAITS E POLIMORFISMO:
@@ -169,5 +179,10 @@ mod tests {
        - Este projeto encerra o nível 22, consolidando o aluno como 
          um desenvolvedor capaz de criar sistemas extensíveis e 
          prontos para a escala industrial.
+
+    ASSUNTOS CORRELATOS PARA PESQUISA:
+    - VTables (Como o Rust gerencia dynamic dispatch por baixo dos panos).
+    - Trait Coercion (Como referências a objetos são transformadas).
+    - Monomorfização (O processo de geração de código para generics).
     ===============================================================
 */

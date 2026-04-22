@@ -1,7 +1,16 @@
--- ==============================================================================
--- ATIVIDADE 25: O ESCUDO CIBERNÉTICO (FORENSE DE DADOS)
--- OBJETIVO: Detectar padrões de ataque e anomalias estatísticas.
--- ==============================================================================
+/**
+ * @file queries.sql
+ * @brief Detecção de Anomalias de Segurança e Forense de Dados.
+ * @author Gemini CLI Agent
+ * @date 2026-04-19
+ * 
+ * @section ExecutionPlan
+ * - Window Functions (LAG, AVG): Requerem ordenação em memória ou uso de índices compostos (B-Tree).
+ * - Analytics Costs: O cálculo de média móvel sobre milhões de linhas pode causar latência em dashboards de segurança.
+ * - Transaction Log Overheads: Tabelas de log (acessos_sistema) crescem rápido; considere partições ou expurgo.
+ * - Guardião Financeiro: Monitoramento de fraude baseado em INTEGER cents para evitar imprecisões decimais.
+ */
+
 -- 1. Setup das Tabelas de Segurança
 CREATE TABLE IF NOT EXISTS acessos_sistema (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -9,31 +18,32 @@ CREATE TABLE IF NOT EXISTS acessos_sistema (
     data_hora TEXT DEFAULT CURRENT_TIMESTAMP,
     status TEXT -- 'SUCESSO' ou 'FALHA'
 );
+
 CREATE TABLE IF NOT EXISTS transacoes_financeiras (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     drone_id TEXT NOT NULL,
-    valor REAL NOT NULL,
+    valor_centavos INTEGER NOT NULL, -- Guardião Financeiro
     data_transacao TEXT DEFAULT CURRENT_TIMESTAMP
 );
+
 DELETE FROM acessos_sistema;
 DELETE FROM transacoes_financeiras;
+
 -- 2. POPULAÇÃO DE TESTE (Cenário de Ataque)
--- Simulando Brute Force (Usuário 'hacker_xyz')
 INSERT INTO acessos_sistema (usuario, data_hora, status)
 VALUES ('admin', '2026-04-21 10:00:00', 'SUCESSO'),
     ('hacker_xyz', '2026-04-21 10:05:01', 'FALHA'),
     ('hacker_xyz', '2026-04-21 10:05:02', 'FALHA'),
     ('hacker_xyz', '2026-04-21 10:05:03', 'FALHA');
--- Simulando Anomalia de Valor (Drone 'X-10' costuma gastar ~100)
-INSERT INTO transacoes_financeiras (drone_id, valor)
-VALUES ('X-10', 100.0),
-    ('X-10', 110.0),
-    ('X-10', 95.0),
-    ('X-10', 5000.0);
--- ANOMALIA DETECTADA!
+
+INSERT INTO transacoes_financeiras (drone_id, valor_centavos)
+VALUES ('X-10', 10000), -- R$ 100,00
+    ('X-10', 11000),
+    ('X-10', 9500),
+    ('X-10', 500000); -- ANOMALIA (R$ 5.000,00)
+
 -- 3. QUERIES DE DETECÇÃO
 -- [A] DETECTOR DE BRUTE FORCE
--- Calcula a diferença de segundos entre a tentativa atual e a anterior.
 SELECT usuario,
     data_hora,
     status,
@@ -45,38 +55,37 @@ SELECT usuario,
     ) AS delta_segundos
 FROM acessos_sistema
 WHERE status = 'FALHA';
+
 -- [B] DETECTOR DE ANOMALIA FINANCEIRA (OUTLIERS)
--- Compara o valor atual com a média móvel histórica do drone.
 WITH analise_estatistica AS (
     SELECT drone_id,
-        valor,
-        AVG(valor) OVER(PARTITION BY drone_id) AS media_historica
+        valor_centavos,
+        AVG(valor_centavos) OVER(PARTITION BY drone_id) AS media_historica
     FROM transacoes_financeiras
 )
-SELECT *,
+SELECT 
+    drone_id,
+    PRINTF('R$ %.2f', valor_centavos / 100.0) AS valor,
+    PRINTF('R$ %.2f', media_historica / 100.0) AS media,
     CASE
-        WHEN valor > (media_historica * 3) THEN '🚨 POSSÍVEL FRAUDE/ATAQUE'
+        WHEN valor_centavos > (media_historica * 3) THEN '🚨 POSSÍVEL FRAUDE/ATAQUE'
         ELSE 'NORMAL'
     END AS alerta_seguranca
 FROM analise_estatistica;
+
 /* 
  ===============================================================
  RESUMO TEÓRICO: SQL COMO FERRAMENTA DE SECURITY
  ===============================================================
  
- 1. O DELTA DE TEMPO (LAG): 
- - Ataques automatizados são rápidos demais para seres humanos. 
- - Um delta < 1 segundo em múltiplas linhas é uma "assinatura" 
- digital de um bot de brute force.
- 
- 2. O DESVIO PADRÃO LÓGICO: 
- - Definir uma regra como "3x maior que a média" permite que o 
- banco ignore flutuações normais mas capture ataques de 
- exfiltração de crédito.
- 
- VANTAGEM DIDÁTICA: 
- O aluno percebe que o banco de dados é a "Primeira Resposta" em 
- um incidente de segurança, fornecendo provas e alertas em 
- tempo real.
+ 1. LAG() PARA TEMPO: Essencial para detectar automação (bots).
+ 2. AVG() OVER(): Cria baselines dinâmicas de comportamento.
+ 3. INTEGER CENTS: Impede que arredondamentos de ponto flutuante 
+    escondam pequenas exfiltrações de capital.
+
+ ASSUNTOS CORRELATOS:
+ - SQL Injection Protection.
+ - Database Auditing (Audit Trails).
+ - Intrusion Detection Systems (IDS) integrados a Bancos de Dados.
  ===============================================================
  */

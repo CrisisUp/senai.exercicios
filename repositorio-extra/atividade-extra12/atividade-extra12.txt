@@ -36,4 +36,18 @@ Dica:
 time_t tempo = time(0);
 tempo += (7 * 24 * 60 * 60); // Soma os segundos de uma semana
 tm *dataDevolucao = localtime(&tempo);
+
+===============================================================
+ANÁLISE DE FALHA CRÍTICA (REFATORAÇÃO DE ELITE - FASE 3):
+===============================================================
+1. CORRUPÇÃO DE ARQUIVO: A falha no fechamento do 'relatorio_dia.txt' 
+   devido a uma exceção não capturada durante a escrita pode resultar 
+   em perda total dos dados da sessão.
+2. VAZAMENTO DE REFERÊNCIA: Ao retornar const vector<Livro>&, se a 
+   instância de GestorBiblioteca for destruída enquanto o chamador 
+   ainda segura a referência, teremos um comportamento indefinido.
+3. DEADLOCKS (TEÓRICO): Caso o sistema fosse multi-thread, a disputa 
+   pelo recurso compartilhado 'catalogo' entre a thread de empréstimo 
+   e a thread de salvamento de relatório exigiria Mutex para evitar 
+   condições de corrida.
 ===============================================================

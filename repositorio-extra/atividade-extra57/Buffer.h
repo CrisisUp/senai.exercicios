@@ -1,9 +1,18 @@
 /**
  * @file Buffer.h
- * @brief Definição modular de um Gerenciador de Buffer de Log manual.
+ * @brief Interface para o Gerenciador de Memória Manual (Buffer).
+ * 
+ * Atividade Extra 57 - Anatomia da Memória (Nível 31+).
+ * Demonstra a alocação dinâmica pura e o padrão RAII.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Manual Heap Layout)
+ * - Objeto BufferLog: Alocado na STACK da main/função.
+ * - char* dados: Ponteiro de 8 bytes na STACK.
+ * - Bloco de Caracteres: Alocado via 'new[]' na HEAP (área de vida longa).
+ * - Ciclo de Vida: O controle (Stack) garante que o lixo (Heap) seja limpo.
  */
 
 #ifndef BUFFER_H
@@ -14,45 +23,37 @@
 namespace Logistica {
 
     /**
-     * @brief Classe que gerencia a memória dinâmica (Heap) manualmente.
+     * @class BufferLog
+     * @brief Gerenciador de memória 'Bare-Metal' para telemetria embarcada.
      */
     class BufferLog {
     private:
-        char* dados;        ///< Ponteiro para o array na Heap.
-        int tamanhoMax;     ///< Capacidade reservada em bytes.
-        int posicaoAtual;   ///< Onde a próxima mensagem será escrita.
+        char* dados;        // O endereço bruto na HEAP
+        int tamanhoTotal;   // Capacidade total reservada
+        int posicaoAtual;   // Cursor de escrita
 
     public:
         /**
-         * @brief Construtor: Onde a Alocação ocorre (new).
-         * @param tam Tamanho em bytes do buffer.
+         * @brief Construtor: Realiza a alocação física de RAM.
+         * @param tam Tamanho em bytes a ser reservado na HEAP.
          */
         BufferLog(int tam);
 
         /**
-         * @brief Destrutor: Onde a Liberação ocorre (delete).
-         * CRITICAL: Se este método não for implementado, a memória
-         * nunca voltará ao sistema (Memory Leak).
+         * @brief DESTRUTOR: Devolve a memória ao S.O. (O Coração do RAII).
          */
         ~BufferLog();
 
-        /**
-         * @brief Escreve uma mensagem crua no buffer de memória.
-         */
+        /** @brief Insere texto no buffer com proteção de limites. */
         void escrever(const std::string& msg);
 
-        /**
-         * @brief Reseta o ponteiro de escrita sem deletar a memória.
-         */
-        void limpar();
+        /** @brief Exibe o conteúdo e limpa o cursor. */
+        void despejar();
 
-        /**
-         * @brief Imprime o conteúdo bruto da memória reservada.
-         */
-        void despejar() const;
-
-        int getTamanhoDisponivel() const { return tamanhoMax - posicaoAtual; }
+        // Getters
+        int getTamanhoDisponivel() const { return tamanhoTotal - posicaoAtual; }
     };
-}
+
+} // namespace Logistica
 
 #endif // BUFFER_H

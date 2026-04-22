@@ -1,8 +1,14 @@
 /**
  * @file main.rs
- * @brief SA-02: Hub de Diagnóstico de Frota.
+ * @brief SA-02: Hub de Diagnóstico de Frota (Refatoração de Elite).
  * 
- * Integração de Borrowing, Tratamento de Erros e Lifetimes.
+ * Integração de Borrowing, Tratamento de Erros e Lifetimes com foco em performance.
+ * 
+ * @section MemoryMap Árvore de Posse e Empréstimos
+ * - `d1`, `d2`: Drone (Posse do main, Stack-based struct).
+ * - `alerta_final`: String (Heap-allocated, mutável para acumular diagnósticos).
+ * - `&Drone`: Empréstimo imutável passado para funções de análise (Zero Copy).
+ * - `&'a str`: Referência com Lifetime vinculada à String de erro (Fantasma do CPU).
  * 
  * @author SENAI - Rust Master
  * @date 20/04/2026
@@ -17,11 +23,12 @@ struct Drone {
 
 /**
  * Valida a integridade da bateria.
- * Usa um empréstimo imutável (&) para não destruir o objeto drone.
+ * Fantasma do CPU: Usa empréstimo imutável (&) para evitar clonagem do Drone.
  */
 fn verificar_saude(d: &Drone) -> Result<(), String> {
     // 1. Verifica sensor (Uso de Option)
     if d.status_sensor.is_none() {
+        // Alocação em Heap necessária apenas no caminho de erro
         return Err(format!("ERRO_HARDWARE: Sensor offline no drone {}", d.id));
     }
 
@@ -35,10 +42,10 @@ fn verificar_saude(d: &Drone) -> Result<(), String> {
 
 /**
  * Seleciona o alerta mais detalhado entre dois erros detectados.
- * O lifetime 'a garante que o retorno seja válido enquanto as strings originais existirem.
+ * Fantasma do CPU: Trabalha apenas com referências, zero alocação adicional.
  */
 fn selecionar_prioridade<'a>(erro1: &'a str, erro2: &'a str) -> &'a str {
-    if erro1.len() > erro2.len() {
+    if erro1.len() >= erro2.len() {
         erro1
     } else {
         erro2
@@ -48,7 +55,11 @@ fn selecionar_prioridade<'a>(erro1: &'a str, erro2: &'a str) -> &'a str {
 fn main() {
     println!("===============================================");
     println!("     SKYCARGO - HUB DE DIAGNÓSTICO (SA-02)     ");
+    println!("     REFATORAÇÃO DE ELITE - FANTASMA DO CPU    ");
     println!("===============================================");
+
+    // Guardião Financeiro: Custo de manutenção preventiva (centavos)
+    let custo_diagnostico: u32 = 5000; // R$ 50,00 por drone analisado
 
     // 1. Instanciando drones (Ownership permanece no main)
     let d1 = Drone { id: String::from("ALPHA-01"), bateria: 12.0, status_sensor: Some(25.0) };
@@ -56,26 +67,34 @@ fn main() {
 
     // 2. Coletando alertas (Tratamento de Result/Option com Borrowing)
     let mut alerta_final = String::from("NENHUM_ERRO_DETECTADO");
+    let mut custo_total: u32 = 0;
 
     println!("Analisando frota...");
 
     // Análise do Drone 1
+    custo_total += custo_diagnostico;
     if let Err(e) = verificar_saude(&d1) {
         println!("\x1b[31m[ALERTA]: {}\x1b[0m", e);
-        // Note: 'e' é uma String local aqui. Precisamos de uma lógica de comparação.
         alerta_final = e; 
     }
 
     // Análise do Drone 2
+    custo_total += custo_diagnostico;
     if let Err(e) = verificar_saude(&d2) {
         println!("\x1b[31m[ALERTA]: {}\x1b[0m", e);
-        // Uso de Lifetimes para decidir qual erro é mais detalhado
-        // Como 'selecionar_prioridade' retorna &str, usamos .to_string() para guardar.
-        alerta_final = selecionar_prioridade(&alerta_final, &e).to_string();
+        // Fantasma do CPU: 'selecionar_prioridade' decide via referência
+        // Fazemos o clone apenas se houver mudança de fato (otimização de escrita)
+        let melhor_alerta = selecionar_prioridade(&alerta_final, &e);
+        if melhor_alerta != alerta_final {
+            alerta_final = melhor_alerta.to_string();
+        }
     }
 
     println!("\n\x1b[33m--- RELATÓRIO DE PRIORIDADE ---\x1b[0m");
     println!("ALERTA MAIS CRÍTICO: {}", alerta_final);
+    
+    // Guardião Financeiro: Integridade bancária no faturamento do Hub
+    println!("FATURAMENTO DO HUB: R$ {}.{:02}", custo_total / 100, custo_total % 100);
 
     println!("===============================================");
 }
@@ -109,25 +128,26 @@ mod tests {
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: DESAFIO INTEGRADOR SA-02
+    RESUMO TEÓRICO: DESAFIO INTEGRADOR SA-02 (ELITE)
     ===============================================================
 
-    1. GESTÃO DE MEMÓRIA COMPARTILHADA:
-       - O Hub (main) consegue olhar para os drones através de 
-         referências (&), mantendo a integridade dos dados sem 
-         precisar cloná-los ou tomar a posse.
+    1. ZERO-COPY BORROWING:
+       - O Hub analisa drones de centenas de megabytes (simulados) 
+         sem nunca duplicar a memória, apenas movendo referências 
+         nos registradores.
 
-    2. ROBUSTEZ DE ERROS:
-       - Combinamos Option (para presença de hardware) e Result 
-         (para validade de dados), criando uma barreira de 
-         segurança contra falhas físicas.
+    2. LIFETIMES (Tempo de Vida):
+       - O compilador Rust atua como um 'garbage collector' em tempo 
+         de compilação, garantindo que o alerta retornado nunca 
+         seja um ponteiro pendurado (dangling pointer).
 
-    3. CONFIABILIDADE DE REFERÊNCIAS:
-       - O uso de Lifetimes garante que o Hub nunca retorne um 
-         alerta que aponte para uma memória que já foi liberada.
+    3. GUARDIÃO FINANCEIRO:
+       - Processamento de faturamento de serviços de telemetria 
+         usando tipos inteiros para precisão absoluta.
 
-    4. EVOLUÇÃO PEDAGÓGICA:
-       - O aluno agora entende como o Rust gerencia a memória em 
-         tempo de compilação, permitindo sistemas rápidos e seguros.
+    4. ASSUNTOS CORRELATOS:
+       - Generics (T).
+       - Traits (Interfaces).
+       - Smart Pointers (Box, Arc, Mutex).
     ===============================================================
 */

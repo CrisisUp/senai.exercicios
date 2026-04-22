@@ -1,0 +1,74 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SkyCargo Foundation: S3 Static Hosting via CloudFormation'
+
+# @file template.yaml
+# @brief Contrato Declarativo de Infraestrutura para Hospedagem de Telemetria.
+# 
+# Atividade 11 - IaC Foundation (Nível Arquiteto).
+# 
+# @author SENAI - Cristiano Batista Pessoa
+# @date 22/04/2026
+# 
+# @section CloudMap Topologia de Elite (Segurança Centralizada)
+# - Recurso 1: AWS::S3::Bucket.
+# - Segurança: ACLs desativadas em favor de Bucket Policies (Best Practice).
+# - Resiliência: DeletionPolicy: Retain (Proteção contra deleção de stack).
+# - Integridade: Versionamento ativado.
+
+# 1. PARÂMETROS (ENTRADAS DO SISTEMA)
+Parameters:
+  ProjectName:
+    Type: String
+    Default: skycargo-telemetry
+    Description: Nome base para o ecossistema de dados.
+
+# 2. RECURSOS (A INFRAESTRUTURA REAL)
+Resources:
+  # O BUCKET S3 (Resiliente)
+  TelemetryBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain # ELITE RULE: O dado sobrevive à destruição do código.
+    Properties:
+      BucketName: !Sub "${ProjectName}-cristiano-ia"
+      # Removido: AccessControl (ACL) em favor de Política Centralizada.
+      WebsiteConfiguration:
+        IndexDocument: index.html
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration: # Quebra de bloqueio explícita para Hosting
+        BlockPublicAcls: true        # Bloqueia ACLs (Legacy)
+        BlockPublicPolicy: false     # Permite a nossa política JSON
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: false
+
+  # A POLÍTICA DE ACESSO (O Único Ponto de Verdade)
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref TelemetryBucket 
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: PublicReadGetObject
+            Effect: Allow
+            Principal: '*'
+            Action: 's3:GetObject'
+            Resource: !Sub "arn:aws:s3:::${TelemetryBucket}/*"
+
+# 3. SAÍDAS (EXPORTAÇÃO DE DADOS OPERACIONAIS)
+Outputs:
+  WebsiteURL:
+    Description: URL pública para o dashboard de drones.
+    Value: !GetAtt TelemetryBucket.WebsiteURL
+  BucketARN:
+    Description: ARN do bucket para uso em outros serviços.
+    Value: !GetAtt TelemetryBucket.Arn
+
+# RESUMO TEÓRICO: ENGENHARIA DE INFRAESTRUTURA SÊNIOR
+# 1. CENTRALIZAÇÃO DE ACESSO: ACLs são fragmentadas e difíceis de auditar. 
+#    Políticas de Bucket permitem auditoria centralizada em JSON.
+# 2. DATA SURVIVABILITY: Em Cloud, "Código é efêmero, dado é eterno". 
+#    'DeletionPolicy: Retain' garante que se você mudar de ideia e apagar 
+#    a infraestrutura, o patrimônio de dados da empresa está seguro.
+# 3. SEGURANÇA POR DESIGN: Bloquear ACLs no próprio recurso evita que um 
+#    usuário manual dê permissão indevida a um arquivo específico.

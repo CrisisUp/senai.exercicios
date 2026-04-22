@@ -1,9 +1,9 @@
 /**
  * @file Imovel.cpp
- * @brief Implementação da lógica de Imóveis com polimorfismo.
+ * @brief Implementação das Regras de Negócio Imobiliárias (Polimorfismo).
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
  */
 
 #include "Imovel.h"
@@ -11,28 +11,43 @@
 
 namespace Imobiliaria {
 
-    // IMPLEMENTAÇÃO CLASSE BASE (IMOVEL)
-    Imovel::Imovel(std::string end, double valor) : endereco(end), valorBase(valor) {}
+    // --- BASE ---
+    Imovel::Imovel(const std::string& _end, double _valor)
+        : endereco(_end), valorBaseCentavos(static_cast<long long>(_valor * 100)) {}
 
     double Imovel::calcularTotal() const {
-        return valorBase; // Valor genérico
+        return static_cast<double>(valorBaseCentavos) / 100.0;
     }
 
-    // IMPLEMENTAÇÃO CLASSE FILHA (APARTAMENTO)
-    Apartamento::Apartamento(std::string end, double valor, double cond)
-        : Imovel(end, valor), condomínio(cond) {}
+    Imovel::~Imovel() {
+        // Log de depuração para provar a destruição polimórfica
+        // std::cout << "[BASE]: Memória base de " << endereco << " purgada." << std::endl;
+    }
+
+    // --- APARTAMENTO ---
+    Apartamento::Apartamento(const std::string& _e, double _v, double _condo)
+        : Imovel(_e, _v), taxaCondominioCentavos(static_cast<long long>(_condo * 100)) {}
 
     double Apartamento::calcularTotal() const {
-        // Redefine (Sobrescreve) o comportamento base.
-        return valorBase + condomínio;
+        long long total = valorBaseCentavos + taxaCondominioCentavos;
+        return static_cast<double>(total) / 100.0;
     }
 
-    // IMPLEMENTAÇÃO CLASSE FILHA (CASA)
-    Casa::Casa(std::string end, double valor, double jard)
-        : Imovel(end, valor), manutencaoJardim(jard) {}
+    Apartamento::~Apartamento() {
+        // std::cout << "[FILHA]: Memória de APARTAMENTO limpa." << std::endl;
+    }
+
+    // --- CASA ---
+    Casa::Casa(const std::string& _e, double _v, double _jardim)
+        : Imovel(_e, _v), taxaJardimCentavos(static_cast<long long>(_jardim * 100)) {}
 
     double Casa::calcularTotal() const {
-        // Redefine (Sobrescreve) o comportamento base.
-        return valorBase + manutencaoJardim;
+        long long total = valorBaseCentavos + taxaJardimCentavos;
+        return static_cast<double>(total) / 100.0;
     }
-}
+
+    Casa::~Casa() {
+        // std::cout << "[FILHA]: Memória de CASA limpa." << std::endl;
+    }
+
+} // namespace Imobiliaria

@@ -1,15 +1,19 @@
 # 📘 Atividade Extra 51: Composição de Classes (Motor Industrial)
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 ## 🎯 Estudo de Caso
-A fábrica "SmartMatrix" precisa agora de um sistema para monitorar seus **Motores Industriais**. Um motor não é apenas um sensor, mas um sistema composto por múltiplos sensores (Pressão e Temperatura). Se qualquer um desses sensores detectar uma anomalia, o motor inteiro deve ser desligado por segurança.
+A fábrica "SmartMatrix" precisa agora de um sistema para monitorar seus **Motores Industriais**. Um motor não é apenas um sensor, mas um sistema composto por múltiplos sensores. Se qualquer um desses sensores detectar uma anomalia, o motor inteiro deve ser desligado por segurança.
 
 ## 🛠️ Necessidade Técnica
 Em vez de colocar toda a lógica de sensores dentro da classe `Motor`, usamos a **Composição (Relationship "Has-A")**. 
-*   **Composição:** Uma classe complexa é construída usando instâncias de outras classes menores como seus atributos.
-*   **Vantagem:** O código do Sensor (criado na Atividade 50) pode ser **reutilizado** sem modificações. Isso ensina o aluno que objetos bem projetados são como peças de LEGO.
 
-## 📋 Requisitos (Arquitetura Modular)
-1. Reutilizar a lógica de `Sensor` (Atividade 50) dentro do namespace `IoT`.
-2. Criar a classe `MotorIndustrial` que contém (compõe) um `SensorPressao`.
-3. Implementar um método `verificarSaude()` no Motor que analisa as leituras do seu sensor interno.
-4. Criar `Motor.h`, `Motor.cpp` e `atividade-extra51-motor.cpp`.
+## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL DESIGN DE SISTEMAS)
+- RISCO DE ACOPLAMENTO RÍGIDO (TIGHT COUPLING): Se a classe `Motor` depender de uma implementação específica de `Sensor`, qualquer mudança no sensor exige recompilar o motor. Solução: Injeção de Dependência ou Interfaces.
+- RISCO DE CASCATA DE FALHA: Se o objeto `Sensor` interno falhar ou for corrompido, o objeto `Motor` perderá sua capacidade de autodefesa física, levando a danos estruturais catastróficos.
+- RISCO DE CICLO DE VIDA ÓRFÃO: Em composições dinâmicas (ponteiros), deletar o motor sem deletar seus sensores internos causaria vazamento de memória. Como usamos composição estática (stack-based), o RAII protege o sistema automaticamente.
+
+## 📋 Requisitos de Elite
+1. Reutilizar a lógica de `Sensor` (Atividade 50) via inclusão modular.
+2. Implementar a classe `MotorIndustrial` usando Member Initializer List para compor o sensor.
+3. Delegar a validação de segurança para o sensor interno (Princípio da Responsabilidade Única).
+4. Interface ANSI para telemetria de motor e status de segurança.

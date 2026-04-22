@@ -1,8 +1,11 @@
 /**
  * @file main.rs
- * @brief Atividade 04: Sistema de Telemetria (Borrowing e Referências).
+ * @brief Sistema de Telemetria de Voo (Atividade 04 - Refatoração de Elite).
  * 
- * Aprendizados: Referências Imutáveis (&), Referências Mutáveis (&mut), Structs.
+ * @section MemoryMap
+ * - Ownership: A struct 'Telemetria' no main é a dona dos dados.
+ * - Borrowing: Utilizamos &Telemetria (Leitura) e &mut Telemetria (Escrita).
+ * - Stack vs Heap: A struct Telemetria reside no Stack por conter apenas tipos primitivos (f64).
  * 
  * @author SENAI - Rust Master
  * @date 20/04/2026
@@ -16,8 +19,9 @@ struct Telemetria {
 }
 
 /**
- * Função que toma um EMPRÉSTIMO IMUTÁVEL.
- * Pode apenas ler os dados. O objeto original não é destruído.
+ * @section Fantasma do CPU
+ * Função que toma um EMPRÉSTIMO IMUTÁVEL (&).
+ * Passa apenas o ponteiro (8 bytes), evitando a cópia da struct.
  */
 fn exibir_painel(t: &Telemetria) {
     println!("\x1b[36m--- PAINEL DE TELEMETRIA ---\x1b[0m");
@@ -27,44 +31,37 @@ fn exibir_painel(t: &Telemetria) {
 }
 
 /**
- * Função que toma um EMPRÉSTIMO MUTÁVEL.
- * Permite alterar o objeto original através da referência.
+ * Função que toma um EMPRÉSTIMO MUTÁVEL (&mut).
+ * Permite alteração segura sem invalidação de outros ponteiros.
  */
 fn calibrar_altitude(t: &mut Telemetria, nova_alt: f64) {
     println!("\x1b[33m[SISTEMA]: Calibrando altitude para {:.1} m...\x1b[0m", nova_alt);
-    t.altitude = nova_alt; // Altera o valor no objeto original
+    t.altitude = nova_alt;
 }
 
 fn main() {
     println!("===============================================");
-    println!("     SKYCARGO - SISTEMA DE TELEMETRIA          ");
+    println!("     SKYCARGO - SISTEMA DE TELEMETRIA (ELITE)  ");
     println!("===============================================");
 
-    // 1. Criando o objeto (Deve ser 'mut' para permitir empréstimos de escrita futuramente)
     let mut dados_voo = Telemetria {
         altitude: 150.5,
         velocidade: 45.0,
         bateria: 88.0,
     };
 
-    // 2. PRIMEIRO EMPRÉSTIMO (Leitura)
-    // Passamos '&dados_voo'. Main continua sendo o dono.
+    // Leitura via referência
     exibir_painel(&dados_voo);
 
-    // 3. SEGUNDO EMPRÉSTIMO (Escrita)
-    // Passamos '&mut dados_voo'. 
+    // Escrita via referência mutável
     calibrar_altitude(&mut dados_voo, 160.0);
 
-    // 4. TERCEIRO EMPRÉSTIMO (Leitura pós-calibração)
-    // Provamos que o objeto original foi alterado e ainda existe!
+    // Verificação de persistência
     exibir_painel(&dados_voo);
 
     println!("===============================================");
 }
 
-// -----------------------------------------------------------------------------
-// TESTES UNITÁRIOS
-// -----------------------------------------------------------------------------
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -77,36 +74,27 @@ mod tests {
     }
 
     #[test]
-    fn test_persistencia_dados() {
+    fn test_borrowing_rules() {
         let t = Telemetria { altitude: 10.0, velocidade: 10.0, bateria: 10.0 };
         exibir_painel(&t);
-        // Se o Ownership fosse transferido, a linha abaixo não compilaria.
         assert_eq!(t.altitude, 10.0); 
     }
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: BORROWING (EMPRÉSTIMO)
+    RESUMO TEÓRICO: BORROWING E SEGURANÇA
     ===============================================================
+    1. EXCLUSIVIDADE MUTÁVEL: O Rust impede que você tenha uma 
+       referência mutável e qualquer outra referência ao mesmo tempo.
+    2. ALIASING PROTECTION: Evita que uma função altere um dado 
+       enquanto outra função o lê de forma concorrente.
+    3. ZERO OVERHEAD: Referências em Rust compilam para ponteiros 
+       simples, sem checagem de runtime (a checagem é estática).
 
-    1. POR QUE É MELHOR QUE C++?
-       - No C++, você pode ter referências (aliasing) para o mesmo 
-         dado e alterá-lo enquanto outra parte do código o lê, 
-         causando bugs imprevisíveis.
-       - No Rust, o Borrow Checker impede isso em tempo de compilação.
-
-    2. REFERÊNCIAS IMUTÁVEIS (&):
-       - "Posso dar uma olhada?" - Sim, e muitos podem olhar ao 
-         mesmo tempo.
-
-    3. REFERÊNCIAS MUTÁVEIS (&mut):
-       - "Posso mexer?" - Sim, mas enquanto você estiver mexendo, 
-         ninguém mais pode nem olhar nem mexer. Isso garante 
-         exclusividade e segurança.
-
-    4. VANTAGEM DIDÁTICA:
-       - O aluno aprende a diferença entre ler e escrever e como 
-         o acesso compartilhado aos dados deve ser controlado.
+    ASSUNTOS CORRELATOS:
+    - Interior Mutability (Cell, RefCell).
+    - Concurrency and Send/Sync traits.
+    - Pointer aliasing in LLVM.
     ===============================================================
 */

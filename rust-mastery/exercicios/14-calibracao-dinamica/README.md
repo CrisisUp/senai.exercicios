@@ -19,3 +19,8 @@ Em Rust, quando um dado é compartilhado (via `&` ou `Rc`), ele torna-se imutáv
 3. Criar uma função que simula um sistema de monitoramento (leitura).
 4. Criar uma função que solicita ao usuário um novo valor de calibração (escrita).
 5. Demonstrar que todos os sistemas enxergam a mudança instantaneamente.
+
+## ⚠️ Análise de Falha Crítica
+- **Deadlocks:** Embora o `RefCell` não cause deadlocks tradicionais de threads (pois opera em thread única), ele causa **Panic em Runtime** se houver violação de empréstimo (ex: tentar `borrow_mut()` enquanto um `borrow()` ainda está ativo).
+- **Send/Sync Violations:** `Rc<T>` e `RefCell<T>` **NÃO** implementam `Send` nem `Sync`. Isso significa que eles não podem ser transferidos ou compartilhados entre threads. Tentar usá-los com `std::thread::spawn` resultará em erro de compilação.
+- **Stack vs Heap:** O `Rc` aloca o contador de referências e o dado no **Heap**. O `RefCell` adiciona um pequeno overhead de um `isize` (contador de borrows) também no Heap (dentro do Rc).

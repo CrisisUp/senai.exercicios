@@ -1,77 +1,104 @@
 /**
  * @file atividade-extra53-frota.cpp
- * @brief Programa para testar a Herança em um sistema de frota logística.
+ * @brief Interface do sistema de gestão de frota (Herança de Elite).
+ * 
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Demonstra a especialização de classes e o uso de membros protegidos.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
  */
 
 #include <iostream>
 #include <iomanip>
-#include "Frota.h" // Nossa nova interface de logística
+#include "Frota.h" 
 
 using namespace std;
 using namespace Logistica;
 
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
+
+namespace UI {
+    const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
+    const string VERDE    = "\033[32m";
+    const string AZUL     = "\033[34m";
+    const string VERMELHO = "\033[31m";
+    const string BRANCO   = "\033[37m";
+
+    inline void limparTela() { cout << "\033[2J\033[1;1H"; }
+}
+
+// --- 2. EXECUÇÃO DA GESTÃO DE LOGÍSTICA ---
+
 int main() {
-    // 1. Criando um Caminhão (Classe Derivada)
-    // Passamos placa, marca (Base) e capacidade (Derivada)
-    Caminhao caminhao1("ABC-1234", "VOLVO FH", 30.5);
+    UI::limparTela();
+    
+    // Instanciação de um objeto especializado na STACK
+    Caminhao volvo("SCANIA-R450", "LogiSpeed-Express", 40.0);
 
-    cout << "\033[34m===============================================\033[0m" << endl;
-    cout << "     SISTEMA DE GESTÃO DE FROTA (HERANÇA)      " << endl;
-    cout << "\033[34m===============================================\033[0m" << endl;
+    cout << UI::AZUL << UI::NEGRITO << "===============================================" << endl;
+    cout << "      G-LOGISTICS: MONITORAMENTO DE FROTA v2.0 " << endl;
+    cout << "       (Elite Class Inheritance Standard)       " << endl;
+    cout << UI::AZUL << UI::NEGRITO << "===============================================" << UI::RESET << endl;
 
-    // 2. Testando comportamento herdado (Métodos da Base)
-    cout << "\nIniciando viagem de entrega..." << endl;
-    caminhao1.viajar(450.0); // O Caminhão usa o método 'viajar' que veio do Veiculo!
+    // --- TESTE DE COMPORTAMENTO HERDADO (BASE) ---
+    cout << UI::BRANCO << "\n[SISTEMA]: " << UI::RESET << "Iniciando ordem de serviço para Rastreio GPS..." << endl;
+    volvo.viajar(850.50); 
 
-    // 3. Testando comportamento especializado (Métodos da Derivada)
-    cout << "Tentando carregar 20 toneladas..." << endl;
-    if (caminhao1.carregar(20.0)) {
-        cout << "\033[32m[SUCESSO]:\033[0m Carga autorizada." << endl;
+    // --- TESTE DE COMPORTAMENTO ESPECIALIZADO (FILHA) ---
+    cout << UI::BRANCO << "[CARGA]: " << UI::RESET << "Tentando embarque de 35 toneladas..." << endl;
+    if (volvo.carregar(35.0)) {
+        cout << UI::VERDE << UI::NEGRITO << " >> SUCESSO: " << UI::RESET << "Manobra de carregamento autorizada." << endl;
     }
 
-    cout << "\nTentando carregar mais 15 toneladas..." << endl;
-    if (!caminhao1.carregar(15.0)) {
-        cout << "\033[31m[BLOQUEIO]:\033[0m Excesso de peso! Capacidade máxima excedida." << endl;
+    cout << UI::BRANCO << "\n[CARGA]: " << UI::RESET << "Tentando embarque extra de 10 toneladas..." << endl;
+    if (!volvo.carregar(10.0)) {
+        cout << UI::VERMELHO << UI::NEGRITO << " >> BLOQUEIO: " << UI::RESET 
+             << UI::VERMELHO << "Excesso de carga detectado. Riscos estruturais!" << UI::RESET << endl;
     }
 
-    // 4. Exibindo Relatório Final (Combinação de dados Base + Derivada)
-    cout << "\n" << caminhao1.getRelatorioCaminhao() << endl;
+    // --- RELATÓRIO CONSOLIDADO ---
+    cout << "\n" << UI::BRANCO << volvo.getRelatorioCaminhao() << UI::RESET << endl;
 
-    cout << "\033[34m===============================================\033[0m" << endl;
+    cout << UI::AZUL << UI::NEGRITO << "\n===============================================" << UI::RESET << endl;
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: HERANÇA SIMPLES ("É-UM")
+    RESUMO TEÓRICO: HERANÇA E REUSABILIDADE (ELITE)
     ===============================================================
 
-    1. O QUE É HERANÇA:
-       - É a capacidade de uma classe (Derivada) adquirir atributos e 
-         métodos de outra classe (Base).
-       - Exemplo: Um Caminhão É UM Veículo.
+    1. RELACIONAMENTO "IS-A" (É-UM):
+       - A herança é a ferramenta mais poderosa para evitar a 
+         duplicação de código. Ao definir 'Veiculo', garantimos que 
+         Vans, Carros e Caminhões tenham Placa e KM sem precisar 
+         escrever isso três vezes.
 
-    2. MODIFICADOR 'protected':
-       - Diferente do 'private', o 'protected' permite que a Classe 
-         Filha (Caminhao) acesse os membros do Pai (Veiculo) 
-         diretamente, mantendo o encapsulamento contra o mundo externo.
+    2. O MODIFICADOR PROTECTED:
+       - Diferente do 'private', o 'protected' é um "voto de 
+         confiança" para a família. Ele impede que a main() mexa no 
+         odômetro, mas permite que o Caminhão o faça livremente, 
+         equilibrando segurança e flexibilidade.
 
-    3. LISTA DE INICIALIZAÇÃO DO CONSTRUTOR:
-       - A classe filha DEVE chamar o construtor da classe base 
-         na sua lista de inicialização: `Caminhao(...) : Veiculo(...)`.
+    3. FANTASMA DO CPU (MEMORY ALIGNMENT):
+       - Na memória, o objeto Caminhão é contíguo. Primeiro vem os 
+         dados do pai, depois os do filho. Isso torna o acesso aos 
+         membros herdados tão rápido quanto o acesso aos membros 
+         nativos.
 
-    4. VANTAGEM DIDÁTICA:
-       - O aluno aprende a criar hierarquias de conhecimento. 
-       - O código fica muito mais limpo: toda a lógica de 
-         movimentação (viajar) só existe em um lugar (Veiculo).
+    4. CHAINING DE CONSTRUTORES:
+       - O C++ garante a ordem de nascimento: primeiro o objeto 
+         genérico (Veiculo) é validado e construído, e apenas 
+         depois a especialização (Caminhao) recebe seus dados. Isso 
+         evita que um caminhão exista com uma placa inválida.
+
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Polimorfismo (Próxima Etapa).
-    - Sobrescrita de Métodos (Override).
-    - Herança Múltipla (Caminhos complexos).
+    - Sobrescrita de Métodos (Overriding).
+    - Upcasting e Downcasting (Conversão de ponteiros).
+    - Classes Abstratas (Próxima Atividade).
     ===============================================================
 */

@@ -36,3 +36,18 @@ DICA TEÓRICA PARA O EXAME:
   - `arquivo.open("nome.txt")`: Abre ou cria o arquivo.
   - `arquivo << dado`: Grava no arquivo como se fosse o 'cout'.
 ===============================================================
+
+===============================================================
+⚠️ ANÁLISE DE FALHA CRÍTICA: SEGURANÇA E INTEGRIDADE
+===============================================================
+1. RISCO DE LOG INCOMPLETO:
+   Se o programa travar ou o computador desligar ANTES do comando 
+   `salvarHistorico`, todos os dados na RAM (Pilha) serão perdidos.
+   Solução: Salvar em disco a cada nova inserção (Auto-save).
+
+2. CORRUPÇÃO DE ARQUIVO:
+   Se múltiplos processos tentarem escrever no mesmo `log_seguranca.txt`
+   simultaneamente, o arquivo pode ficar ilegível.
+   Solução: Implementar travas de arquivo (File Locking) ou 
+   nomes de arquivos únicos por sessão (Timestamped Logs).
+===============================================================

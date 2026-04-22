@@ -6,6 +6,14 @@
  * a produção total, a média do dia e identificando o animal com a
  * maior produtividade (campeã do dia).
  * 
+ * @section MemoryMap Mapeamento de Memória (STACK):
+ * - numVacas (int): 4 bytes na Stack.
+ * - totalMililitros (long): 8 bytes na Stack (Guardião Financeiro).
+ * - mediaProducao (float): 4 bytes na Stack.
+ * - maiorMililitros (int): 4 bytes na Stack.
+ * - vacaCampeã (int): 4 bytes na Stack.
+ * - producao (vector<int>): Objeto na Stack, dados no HEAP.
+ * 
  * @author SENAI - Cristiano Batista Pessoa
  * @date 18/04/2026
  */
@@ -13,8 +21,24 @@
 #include <iostream> // Entrada e saída de dados
 #include <vector>   // Uso de vetores dinâmicos
 #include <iomanip>  // Formatação de precisão decimal e alinhamento
+#include <string>
 
 using namespace std;
+
+/**
+ * @namespace UI
+ * @brief Gerencia a interface visual do sistema através de cores ANSI.
+ */
+namespace UI {
+    const string RESET   = "\033[0m";
+    const string BOLD    = "\033[1m";
+    const string RED     = "\033[31m";
+    const string GREEN   = "\033[32m";
+    const string YELLOW  = "\033[33m";
+    const string BLUE    = "\033[34m";
+    const string MAGENTA = "\033[35m";
+    const string CYAN    = "\033[36m";
+}
 
 int main()
 {
@@ -22,70 +46,77 @@ int main()
     cout << fixed << setprecision(2);
 
     int numVacas;
-    float totalProducao = 0.0, mediaProducao = 0.0;
-    float maiorProducao = -1.0; // Inicializamos com valor impossível
+    long totalMililitros = 0; // Guardião Financeiro: Inteiros p/ precisão
+    int maiorMililitros = -1;
     int vacaCampeã = 0;
 
     // --- 1. Entrada de Configurações ---
-    cout << "===============================================" << endl;
-    cout << "      MONITORAMENTO DE PRODUÇÃO LEITEIRA       " << endl;
-    cout << "===============================================" << endl;
+    cout << UI::CYAN << "===============================================" << UI::RESET << endl;
+    cout << UI::BOLD << "      MONITORAMENTO DE PRODUÇÃO LEITEIRA       " << UI::RESET << endl;
+    cout << UI::CYAN << "===============================================" << UI::RESET << endl;
 
     cout << "Digite a quantidade de vacas no rebanho: ";
     cin >> numVacas;
 
     // Inicialização do vetor com o tamanho definido pelo usuário
-    vector<float> producao(numVacas);
+    // Armazenamos em mililitros (int) para garantir integridade dos dados
+    vector<int> producaoMililitros(numVacas);
 
     // --- 2. Coleta de Dados e Processamento Inicial ---
-    cout << "\n--- REGISTRO DE PRODUÇÃO DIÁRIA ---" << endl;
+    cout << "\n--- " << UI::YELLOW << "REGISTRO DE PRODUÇÃO DIÁRIA" << UI::RESET << " ---" << endl;
     for (int i = 0; i < numVacas; i++)
     {
+        float entradaLitros;
         cout << "Produção da vaca " << (i + 1) << " (litros): ";
-        cin >> producao[i];
+        cin >> entradaLitros;
+
+        // Conversão para o Guardião Financeiro (L -> ml)
+        producaoMililitros[i] = static_cast<int>(entradaLitros * 1000);
 
         // Acumulando o total para cálculo da média posterior
-        totalProducao += producao[i];
+        totalMililitros += producaoMililitros[i];
 
         // Lógica para encontrar a maior produção (Campeã)
-        if (producao[i] > maiorProducao)
+        if (producaoMililitros[i] > maiorMililitros)
         {
-            maiorProducao = producao[i];
+            maiorMililitros = producaoMililitros[i];
             vacaCampeã = i + 1;
         }
     }
 
-    // Cálculo da média
-    if (numVacas > 0) mediaProducao = totalProducao / numVacas;
+    // Cálculo da média (convertendo de volta para float apenas na exibição)
+    float mediaProducaoLitros = 0.0;
+    if (numVacas > 0) mediaProducaoLitros = (totalMililitros / 1000.0) / numVacas;
 
     // --- 3. Relatório Estatístico ---
-    cout << "\n===============================================" << endl;
-    cout << "          RELATÓRIO DE DESEMPENHO              " << endl;
-    cout << "===============================================" << endl;
-    cout << "Produção Total : " << totalProducao << " litros" << endl;
-    cout << "Média Diária   : " << mediaProducao << " litros" << endl;
+    cout << "\n" << UI::CYAN << "===============================================" << UI::RESET << endl;
+    cout << UI::BOLD << "          RELATÓRIO DE DESEMPENHO              " << UI::RESET << endl;
+    cout << UI::CYAN << "===============================================" << UI::RESET << endl;
+    cout << "Produção Total : " << (totalMililitros / 1000.0) << " litros" << endl;
+    cout << "Média Diária   : " << mediaProducaoLitros << " litros" << endl;
     cout << "Vaca Campeã    : Vaca " << vacaCampeã << " (" 
-         << maiorProducao << " L)" << endl;
+         << (maiorMililitros / 1000.0) << " L)" << endl;
     cout << "-----------------------------------------------" << endl;
 
     // --- 4. Relatório de Inspeção Individual ---
     for (int i = 0; i < numVacas; i++)
     {
+        float litrosVaca = producaoMililitros[i] / 1000.0;
         cout << "Vaca " << setw(2) << (i + 1) << ": " 
-             << setw(6) << producao[i] << " L";
+             << setw(6) << litrosVaca << " L";
 
         // Comparação dinâmica com a média calculada
-        if (producao[i] < mediaProducao)
+        if (litrosVaca < mediaProducaoLitros)
         {
-            cout << " [ALERTA: DESEMPENHO BAIXO]";
+            cout << UI::RED << " [ALERTA: DESEMPENHO BAIXO]" << UI::RESET;
         }
         else 
         {
-            cout << " [OK]";
+            cout << UI::GREEN << " [OK]" << UI::RESET;
         }
         cout << endl;
     }
-    cout << "===============================================" << endl;
+    cout << UI::CYAN << "===============================================" << UI::RESET << endl;
 
     // --- 5. Finalização ---
     cout << "\nPressione Enter para finalizar...";
@@ -100,26 +131,24 @@ int main()
     RESUMO TEÓRICO PARA EXAME FINAL (ESTATÍSTICA E ALGORITMOS)
     ===============================================================
 
-    1. ACUMULADORES (Soma Total):
+    1. GUARDIÃO FINANCEIRO (INTEGRIDADE):
+       - Uso de inteiros para representar valores decimais (ex: mililitros 
+         em vez de litros) para evitar erros de arredondamento inerentes 
+         ao tipo 'float' e 'double'.
+       - Regra: Multiplicar por 1000 na entrada e dividir por 1000.0 na exibição.
+
+    2. NAMESPACE UI (ORGANIZAÇÃO):
+       - Agrupar constantes de cores ANSI em um 'namespace' evita poluir 
+         o escopo global e facilita a manutenção da interface.
+
+    3. ACUMULADORES (Soma Total):
        - Uma variável (geralmente inicializada com 0) que recebe ela 
          mesma mais um novo valor a cada volta do loop.
-       - Sintaxe: total += valor;
 
-    2. CÁLCULO DE MÉDIA:
-       - A média aritmética é a soma de todos os elementos dividida 
-         pela quantidade total de elementos. 
-       - IMPORTANTE: Sempre verifique se o divisor não é zero!
-
-    3. BUSCA DE MAIOR/MENOR VALOR:
+    4. BUSCA DE MAIOR/MENOR VALOR:
        - Técnica do "Rei da Montanha": Criamos uma variável para guardar 
          o maior valor visto até agora. A cada iteração, comparamos o 
-         item atual com esse "rei". Se o atual for maior, ele assume 
-         o trono.
-
-    4. COMPARAÇÃO COM VARIÁVEIS DINÂMICAS:
-       - Diferente dos exercícios anteriores onde a meta era fixa, 
-         aqui o limite (média) é calculado pelo próprio programa 
-         antes de ser usado na comparação do relatório.
+         item atual com esse "rei".
 
     ===============================================================
     TÓPICOS COMPLEMENTARES PARA O EXAME
@@ -127,14 +156,14 @@ int main()
 
     A. INICIALIZAÇÃO DE SENTINELAS:
        - Ao procurar o maior valor, podemos inicializar a variável com 
-         o primeiro elemento do vetor ou com um número muito pequeno.
+         o primeiro elemento do vetor ou com um número impossível (-1).
 
-    B. PRECISÃO DE DADOS (float vs double):
-       - Litros de leite não exigem precisão financeira, por isso o 
-         'float' (7 casas decimais) é suficiente e economiza memória.
+    B. PRECISÃO DE DADOS (long vs float):
+       - O tipo 'long' (inteiro) oferece 100% de precisão para operações 
+         de soma acumulada, evitando os erros de ponto flutuante.
 
-    C. FORMATAÇÃO COM 'setw':
-       - O 'setw' (Set Width) garante que as colunas fiquem alinhadas 
-         mesmo quando passamos de 9 para 10 vacas (unidades p/ dezenas).
+    C. ESTADO DE FALHA (cin.fail):
+       - Se o usuário digitar texto onde se espera número, o 'cin' entra 
+         em erro. Validar a entrada é essencial para sistemas robustos.
     ===============================================================
 */

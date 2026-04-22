@@ -39,3 +39,23 @@ DICA TEÓRICA PARA O EXAME:
 A sintaxe `->` é usada para acessar membros de um PONTEIRO de 
 struct (aprenderemos mais sobre ponteiros em breve!).
 ===============================================================
+
+===============================================================
+    ANÁLISE DE FALHA CRÍTICA (OUT-OF-BOUNDS / LOOPS)
+===============================================================
+1.  PÂNICO NO LOOP DE VALIDAÇÃO:
+    - Se a condição do 'do-while' estivesse invertida ou a flag 
+      'nomeValido' nunca fosse alterada, teríamos um "Infinite 
+      Loop", travando o processamento da CPU em 100%.
+    
+2.  SEGMENTATION FAULT (PREVENÇÃO):
+    - No 'validarNome', o loop percorre a string. Se tentássemos 
+      acessar 'nome[nome.length()]', estaríamos lendo fora dos 
+      limites (Out-of-Bounds), o que causa comportamento 
+      indefinido ou queda do programa.
+    
+3.  ESTOURO DE TEMPO (TIME_T):
+    - O tipo 'time_t' (32 bits em sistemas antigos) sofrerá o 
+      "Problema do Ano 2038". Em sistemas modernos (64 bits), 
+      estamos protegidos contra esse estouro de contagem.
+===============================================================

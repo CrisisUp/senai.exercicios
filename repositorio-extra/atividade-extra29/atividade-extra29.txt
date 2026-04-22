@@ -1,8 +1,9 @@
-DESAFIO INTEGRADOR: PLATAFORMA DE TRADING "G-CRYPTO" v1.0
+DESAFIO INTEGRADOR: PLATAFORMA DE TRADING "G-CRYPTO" v2.0
 ------------------------------------------------------------------------------
 DOMÍNIO: Fintech / Blockchain / Criptoativos
 ATIVIDADE: Extra 29 (DESAFIO DE ELITE)
-CONCEITO INTEGRADO: Class Templates, std::map, STL, Exceções e Precisão.
+CONCEITO NOVO: Class Templates, std::map, STL, Exceções e Precisão.
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 1. O CENÁRIO
 A "G-Crypto" é uma corretora de ativos digitais que precisa processar milhares 
@@ -12,21 +13,23 @@ dos usuários de forma genérica.
 
 2. A MISSÃO TÉCNICA
 Este projeto é a prova final do nível 31+. Você integrará:
-- TEMPLATE DE CLASSE: Uma classe 'Carteira<T>' que pode guardar qualquer tipo 
-  de ativo (Criptos, Ações ou Moedas Reais).
-- STL MAP: Um dicionário central que guarda o "Order Book" (Livro de Ofertas), 
-  mapeando o Símbolo do Ativo -> Preço Atual.
-- TRATAMENTO DE ERROS: Proteção total contra saldos insuficientes ou ativos 
-  inexistentes.
+- TEMPLATE DE CLASSE: Abstração total do tipo de ativo operado.
+- STL MAP: Indexação logarítmica para Order Book e Balance Control.
+- TRATAMENTO DE ERROS: Proteção transacional completa (All-or-Nothing).
 
-3. REQUISITOS DO SISTEMA
-- Classe Template 'Carteira<T>':
-    * Map interno para guardar Quantidade de cada Ativo.
-    * Método para adicionar/remover ativos.
-- Motor de Preços (Market):
-    * Map estático contendo os preços em tempo real.
-- Funcionalidades:
-    * Comprar Ativo: Calcula o custo, verifica saldo e atualiza a carteira.
-    * Dashboard: Mostra todos os ativos do usuário e o valor total convertido 
-      em Reais (usando templates para o cálculo).
+3. 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ENGENHARIA FINANCEIRA)
+- RISCO DE IMPRECISÃO BINÁRIA: O uso de 'double' para saldos fiat (BRL) em 
+  corretoras causa imprecisões no fechamento do dia (ex: 0.1+0.1+0.1 != 0.3). 
+  Solução: Guardião Financeiro (Centavos Inteiros).
+- RISCO DE ITERATOR INVALIDATION: Se o mercado for atualizado (remoção de ativo) 
+  enquanto um dashboard de usuário está sendo impresso, o sistema sofrerá Crash.
+- RISCO DE "DUSTY CORNERS": Ativos com quantidades ínfimas (ex: 0.00000001 BTC) 
+  podem se perder em conversões de tipo se o template não suportar precisão 
+  arbitrária.
+
+4. REQUISITOS DO SISTEMA
+- Motor de Câmbio Genérico (Templates).
+- Indexação de Ativos via Árvores Binárias (std::map).
+- Guardião Financeiro para saldo BRL.
+- Interface de Telemetria Financeira ANSI.
 ------------------------------------------------------------------------------

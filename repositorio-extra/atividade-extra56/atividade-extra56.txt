@@ -1,17 +1,19 @@
 # 📘 Atividade Extra 56: Programação Genérica e Templates (Armazém Inteligente)
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 ## 🎯 Estudo de Caso
-A transportadora "LogiSpeed" está crescendo e agora precisa armazenar diferentes tipos de itens em seu estoque: desde `PecaMecanica` até `ProdutoQuimico`. Antigamente, eles criavam uma classe diferente para cada tipo de caixa de armazenamento. O novo desafio é criar uma **Caixa Genérica** que possa armazenar QUALQUER tipo de dado, mantendo a segurança de tipos (Type Safety) e evitando a duplicação de código.
+A transportadora "LogiSpeed" está crescendo e agora precisa armazenar diferentes tipos de itens em seu estoque: desde `PecaMecanica` até `ProdutoQuimico`. Antigamente, eles criavam uma classe diferente para cada tipo de caixa de armazenamento. O novo desafio é criar uma **Caixa Genérica** que possa armazenar QUALQUER tipo de dado, mantendo a segurança de tipos (Type Safety).
 
 ## 🛠️ Necessidade Técnica
 Entramos agora no **Nível 31 (Engenheiro de Elite)**, onde exploramos **Templates**.
-*   **Templates (Genéricos):** Permitem criar classes e funções que trabalham com "tipos coringa" (`T`). O compilador gera o código específico para cada tipo no momento em que você o utiliza.
-*   **Reuso Extremo:** Um único código de `Caixa<T>` serve para armazenar inteiros, strings ou objetos complexos.
-*   **Desempenho:** Diferente de linguagens que usam "Object" (como Java antigo), C++ gera código otimizado para cada tipo específico em tempo de compilação.
 
-## 📋 Requisitos (Arquitetura Modular)
-1. Criar a classe template `Armazem<T>` para gerenciar um estoque genérico.
-2. Implementar métodos para `adicionarItem()`, `removerUltimo()` e `exibirEstoque()`.
-3. Criar structs simples `Peca` e `Pacote` para testar o armazém com tipos diferentes.
-4. Demonstrar o uso de templates com tipos primitivos (`int`, `string`) e tipos definidos pelo usuário.
-5. Criar `Armazem.h` e `atividade-extra56-templates.cpp`.
+## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ARQUITETURA GENÉRICA)
+- RISCO DE CODE BLOAT (MACRO-EXPANSÃO): O compilador gera uma classe física para cada tipo (string, int, Peca). Em sistemas de hardware limitado (embarcados), o uso excessivo de instâncias de templates diferentes pode esgotar a memória Flash do microcontrolador.
+- RISCO DE VIOLAÇÃO DE INTERFACE DO TIPO T: Se o método `exibir()` do template tentar imprimir o conteúdo e o tipo `T` não tiver o operador `<<` sobrecarregado, o código falhará em compilação, gerando logs complexos ("Template Backtrace").
+- RISCO DE OVERHEAD DE CÓPIA EM T: Se o tipo `T` for um objeto pesado e o método `adicionar()` receber por valor, a performance cairá drasticamente. É obrigatório o uso de referências constantes (const T&).
+
+## 📋 Requisitos de Elite
+1. Implementação de Class Template `Armazem<T>` com proteção de performance (Fantasma do CPU).
+2. Uso de `std::vector<T>` para armazenamento dinâmico na HEAP.
+3. Sobrecarga de operadores em tipos customizados para compatibilidade com o template.
+4. Interface ANSI para telemetria de logística genérica.

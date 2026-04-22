@@ -35,4 +35,18 @@ DICA TEÓRICA PARA O EXAME:
 - Leitura (ifstream):
   - `ifstream arquivo("nome.txt")`: Abre para leitura.
   - `getline(arquivo, variavel)`: Lê uma linha inteira do arquivo.
+
+===============================================================
+ANÁLISE DE FALHA CRÍTICA (REFATORAÇÃO DE ELITE - FASE 3):
+===============================================================
+1. CORRUPÇÃO DE ARQUIVO: Se o arquivo 'pacientes.txt' for modificado 
+   externamente durante a leitura, ou se contiver caracteres nulos, 
+   o programa pode entrar em loop infinito ou carregar lixo para a RAM.
+2. VAZAMENTO DE REFERÊNCIA: Retornar referências para objetos que 
+   podem ser removidos da fila (pop) causaria um "Dangling Reference". 
+   Solução: Sempre retornar cópias ou garantir que a referência seja 
+   válida apenas enquanto o elemento existir na fila.
+3. ESTOURO DE MEMÓRIA (OOM): Como std::queue cresce dinamicamente no 
+   HEAP, uma inserção infinita de pacientes sem atendimento causará 
+   o travamento do sistema operacional.
 ===============================================================

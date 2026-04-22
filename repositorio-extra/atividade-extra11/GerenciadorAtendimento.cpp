@@ -16,7 +16,7 @@ void GerenciadorAtendimento::carregarPacientes(const string& caminhoArquivo) {
     ifstream arquivo;
     string nome;
     
-    cout << "\n[SISTEMA]: Carregando lista de espera de: " << caminhoArquivo << "..." << endl;
+    cout << "\n" << UI::CYAN << "[SISTEMA]: " << UI::RESET << "Carregando lista de espera de: " << caminhoArquivo << "..." << endl;
     
     arquivo.open(caminhoArquivo);
 
@@ -27,31 +27,32 @@ void GerenciadorAtendimento::carregarPacientes(const string& caminhoArquivo) {
             }
         }
         arquivo.close();
-        cout << "[SUCESSO]: Lista carregada com sucesso!" << endl;
+        cout << UI::GREEN << "[SUCESSO]: " << UI::RESET << "Lista carregada com sucesso!" << endl;
     } else {
-        cout << "[AVISO]: Arquivo de pacientes não encontrado. Fila iniciada vazia." << endl;
+        throw ArquivoCorrompidoException();
     }
 }
 
 void GerenciadorAtendimento::adicionarPaciente(const string& nome) {
     filaAtendimento.push(nome);
-    cout << "[OK]: " << nome << " entrou no final da fila." << endl;
+    cout << UI::GREEN << "[OK]: " << UI::RESET << nome << " entrou no final da fila." << endl;
 }
 
 string GerenciadorAtendimento::atenderProximo() {
-    if (!filaAtendimento.empty()) {
-        string atendido = filaAtendimento.front();
-        filaAtendimento.pop();
-        return atendido;
+    if (filaAtendimento.empty()) {
+        throw FilaVaziaException();
     }
-    return "";
+    
+    string atendido = filaAtendimento.front();
+    filaAtendimento.pop();
+    return atendido;
 }
 
-string GerenciadorAtendimento::verProximo() const {
-    if (!filaAtendimento.empty()) {
-        return filaAtendimento.front();
+const string& GerenciadorAtendimento::verProximo() const {
+    if (filaAtendimento.empty()) {
+        throw FilaVaziaException();
     }
-    return "";
+    return filaAtendimento.front();
 }
 
 size_t GerenciadorAtendimento::totalFila() const {

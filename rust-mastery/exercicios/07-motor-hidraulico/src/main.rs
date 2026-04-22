@@ -4,26 +4,34 @@
  * 
  * Aprendizados: Structs, blocos impl, self, &mut self, Encapsulamento.
  * 
+ * @section MemoryMap
+ * - **Ownership**: O 'main' possui o motor (motor_alfa).
+ * - **Borrowing**: Os métodos 'status' e 'ajustar_pressao' pegam emprestado o motor.
+ * - **Stack vs Heap**: A struct 'MotorHidraulico' vive na stack; referências (&str) apontam para a memória estática.
+ * 
  * @author SENAI - Rust Master
  * @date 20/04/2026
  */
 
 /// Representa um motor de drone de carga.
-struct MotorHidraulico {
+/// 'Fantasma do CPU': Uso de referências (&str) para evitar alocações desnecessárias na heap.
+struct MotorHidraulico<'a> {
     id: u32,
+    modelo: &'a str,
     ligado: bool,
     pressao_psi: f64,
 }
 
-impl MotorHidraulico {
+impl<'a> MotorHidraulico<'a> {
     /**
      * Função Associada (Construtor).
      * Não recebe 'self', pois serve para criar o objeto.
      */
-    fn new(id: u32) -> Self {
-        println!("\x1b[32m[MOTOR {}]: Instalado com sucesso.\x1b[0m", id);
+    fn new(id: u32, modelo: &'a str) -> Self {
+        println!("\x1b[32m[MOTOR {} - {}]: Instalado com sucesso.\x1b[0m", id, modelo);
         Self {
             id,
+            modelo,
             ligado: false,
             pressao_psi: 0.0,
         }
@@ -66,8 +74,8 @@ impl MotorHidraulico {
     fn status(&self) {
         let estado = if self.ligado { "LIGADO" } else { "DESLIGADO" };
         println!("-----------------------------------------------");
-        println!("MOTOR ID: {} | ESTADO: {} | PRESSÃO: {:.1} PSI", 
-                 self.id, estado, self.pressao_psi);
+        println!("MOTOR: {} ({}) | ESTADO: {} | PRESSÃO: {:.1} PSI", 
+                 self.id, self.modelo, estado, self.pressao_psi);
         println!("-----------------------------------------------");
     }
 }
@@ -77,8 +85,8 @@ fn main() {
     println!("     SKYCARGO - SISTEMA DE PROPULSÃO           ");
     println!("===============================================");
 
-    // 1. Instanciando o motor
-    let mut motor_alfa = MotorHidraulico::new(101);
+    // 1. Instanciando o motor (Passando referência &str)
+    let mut motor_alfa = MotorHidraulico::new(101, "HYDRA-MAX-500");
 
     // 2. Testando segurança (tentando ajustar pressão desligado)
     motor_alfa.ajustar_pressao(1500.0);
@@ -107,21 +115,21 @@ mod tests {
 
     #[test]
     fn test_motor_inicializacao() {
-        let m = MotorHidraulico::new(1);
+        let m = MotorHidraulico::new(1, "TEST");
         assert_eq!(m.ligado, false);
         assert_eq!(m.pressao_psi, 0.0);
     }
 
     #[test]
     fn test_motor_ligar() {
-        let mut m = MotorHidraulico::new(1);
+        let mut m = MotorHidraulico::new(1, "TEST");
         m.ligar();
         assert_eq!(m.ligado, true);
     }
 
     #[test]
     fn test_pressao_segura() {
-        let mut m = MotorHidraulico::new(1);
+        let mut m = MotorHidraulico::new(1, "TEST");
         m.ligar();
         let ok = m.ajustar_pressao(2500.0);
         assert!(ok);
@@ -130,7 +138,7 @@ mod tests {
 
     #[test]
     fn test_pressao_insegura() {
-        let mut m = MotorHidraulico::new(1);
+        let mut m = MotorHidraulico::new(1, "TEST");
         m.ligar();
         let ok = m.ajustar_pressao(9999.0);
         assert!(!ok);
@@ -145,22 +153,29 @@ mod tests {
 
     1. ENCAPSULAMENTO DE COMPORTAMENTO:
        - No Rust, os dados (struct) e o comportamento (impl) são 
-         definidos em blocos separados, mas agem como uma unidade.
-       - Isso é mais limpo que as classes do C++, pois separa a 
-         "forma" (campos) das "funções".
+         definidos em blocos separados.
+       - 'Fantasma do CPU': Ao usar referências (&str) em structs, 
+         otimizamos a memória evitando alocações na Heap para textos 
+         estáticos (literais).
 
     2. O CONCEITO DE SELF:
-       - 'self': Toma a posse do objeto (raro em métodos).
-       - '&self': Apenas olha para os dados (Read-only).
-       - '&mut self': Pode alterar os dados (Read-write).
+       - 'self': Toma a posse (Consome o objeto).
+       - '&self': Empréstimo Imutável (Leitura).
+       - '&mut self': Empréstimo Mutável (Escrita).
 
-    3. FUNÇÕES ASSOCIADAS:
-       - É o equivalente aos métodos estáticos do C++. Usamos 
-         '::' para chamar: `MotorHidraulico::new(101)`.
+    3. LIFETIMES (VIVACIDADE):
+       - O uso de <'a> indica que a struct não pode viver mais que 
+         a referência que ela carrega (modelo).
 
     4. VANTAGEM DIDÁTICA:
-       - O aluno aprende a modelar objetos do mundo real com regras 
-         de segurança embutidas, protegendo o estado interno contra 
-         uso indevido.
+       - O aluno aprende a modelar objetos com segurança de memória 
+         e performance de CPU integradas desde o design da struct.
+
+    ===============================================================
+    ASSUNTOS CORRELATOS:
+    - Lifetimes em Rust (O marcador <'a>).
+    - String vs &str (Heap vs Static).
+    - Padrão 'Newtype' para tipos fortes.
+    - Traits de conversão: From e Into.
     ===============================================================
 */

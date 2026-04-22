@@ -1,13 +1,18 @@
 /**
  * @file atividade-extra45-input.cpp
- * @brief G-PILOT Engine: Input Não-Bloqueante e Raw Mode.
+ * @brief G-PILOT: Pilotagem de Drone via Input Não-Bloqueante.
  * 
- * Este programa demonstra como manipular as configurações do terminal Unix/macOS
- * para capturar teclas instantaneamente, permitindo interações em tempo real
- * essenciais para jogos e sistemas de controle.
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Demonstra a manipulação de Kernel Terminals (Unix/macOS) para resposta imediata.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Kernel Interface Layout)
+ * - struct termios: Armazenada na STACK (44-60 bytes). Contém flags de controle do S.O.
+ * - STDIN_FILENO: Descritor de arquivo (inteiro) usado para chamadas fcntl e read.
+ * - Loop de Polling: Executa na STACK em ciclos de 30ms, consultando o buffer do Kernel.
+ * - RAII: O objeto InputManager garante a integridade do hardware do terminal.
  */
 
 #include <iostream>
@@ -20,54 +25,62 @@
 
 using namespace std;
 
-// --- 1. NAMESPACE DE INTERFACE ---
+// --- 1. NAMESPACE DE INTERFACE (ANSI ROBOTICS) ---
 
 namespace UI {
     const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
     const string VERDE    = "\033[32m";
     const string AMARELO  = "\033[33m";
     const string CIANO    = "\033[36m";
+    const string VERMELHO = "\033[31m";
     
-    void moverCursor(int x, int y) { cout << "\033[" << y << ";" << x << "H"; }
-    void limparTela() { cout << "\033[2J\033[H"; }
-    void esconderCursor() { cout << "\033[?25l"; }
-    void mostrarCursor() { cout << "\033[?25h"; }
+    inline void moverCursor(int x, int y) { cout << "\033[" << y << ";" << x << "H"; }
+    inline void limparTela() { cout << "\033[2J\033[H"; }
+    inline void ocultarCursor() { cout << "\033[?25l"; }
+    inline void mostrarCursor() { cout << "\033[?25h"; }
 }
 
-// --- 2. GESTOR DE INPUT (SISTEMA DE BAIXO NÍVEL) ---
+// --- 2. GESTOR DE ENTRADA (BAIXO NÍVEL - SISTEMA UNIX) ---
 
+/**
+ * @class InputManager
+ * @brief Controlador RAII para configurar o terminal em modo RAW e não-bloqueante.
+ */
 class InputManager {
 private:
-    struct termios original; // Para restaurar o terminal no fim
+    struct termios original; // Backup das configurações do usuário
 
 public:
+    /**
+     * @brief Construtor: Altera o estado do terminal via System Calls.
+     */
     InputManager() {
-        // Salva as configurações atuais do terminal
+        // Captura o estado atual
         tcgetattr(STDIN_FILENO, &original);
         
         struct termios raw = original;
-        // Desativa modo canônico (esperar Enter) e eco (mostrar tecla)
+        // Desliga o processamento de texto do S.O. (Modo RAW)
         raw.c_lflag &= ~(ICANON | ECHO);
         tcsetattr(STDIN_FILENO, TCSANOW, &raw);
 
-        // Configura a leitura como não-bloqueante (Non-blocking)
+        // Configura descritor de entrada para modo não-espera (O_NONBLOCK)
         int flags = fcntl(STDIN_FILENO, F_GETFL, 0);
         fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
     }
 
     /**
-     * @brief Tenta ler um caractere do teclado sem parar o programa.
-     * @return Caractere pressionado ou 0 se nada foi apertado.
+     * @brief Tenta ler um pulso de tecla sem interromper o fluxo da CPU.
+     * @return char Código ASCII ou 0 se o buffer estiver vazio.
      */
-    char getTecla() {
+    char capturarPulso() {
         char ch;
         if (read(STDIN_FILENO, &ch, 1) > 0) return ch;
         return 0;
     }
 
     /**
-     * @brief Destrutor: Devolve o terminal ao estado original.
-     * Sem isso, seu terminal ficaria "bugado" após o programa fechar!
+     * @brief Destrutor RAII: Blindagem contra 'Zombie Terminals'.
      */
     ~InputManager() {
         tcsetattr(STDIN_FILENO, TCSANOW, &original);
@@ -75,90 +88,99 @@ public:
     }
 };
 
-// --- 3. FUNÇÃO PRINCIPAL (SIMULADOR DE DRONE) ---
+// --- 3. EXECUÇÃO DO SIMULADOR DE PILOTAGEM ---
 
 int main()
 {
     UI::limparTela();
-    UI::esconderCursor();
+    UI::ocultarCursor();
     
-    InputManager input;
+    InputManager hub;
     
-    int droneX = 20, droneY = 10;
-    bool rodando = true;
-    int frames = 0;
+    int droneX = 30, droneY = 12;
+    bool ativo = true;
+    long long frames = 0;
 
-    cout << UI::CIANO << "CONTROLE DE DRONE ATIVO [WASD para mover | Q para sair]" << UI::RESET << endl;
+    cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
+    cout << "      G-PILOT: DRONE INSPECTION CORE v2.0      " << endl;
+    cout << "       (Real-Time Async Input Shield)          " << endl;
+    cout << "===============================================" << UI::RESET << endl;
+    cout << "Comandos: [W A S D] para Pilotagem | [Q] Abortar" << endl;
 
-    // Loop de Tempo Real
-    while (rodando) {
+    // --- LOOP DE TEMPO REAL (NO-BLOCK) ---
+    while (ativo) {
         frames++;
         
-        // 1. Processar Input (INSTANTÂNEO)
-        char tecla = input.getTecla();
-        if (tecla == 'q' || tecla == 'Q') rodando = false;
+        // 1. PROCESSAR INPUT (Zero Latency)
+        char comando = hub.capturarPulso();
         
-        if (tecla == 'w' || tecla == 'W') droneY--;
-        if (tecla == 's' || tecla == 'S') droneY++;
-        if (tecla == 'a' || tecla == 'A') droneX--;
-        if (tecla == 'd' || tecla == 'D') droneX++;
+        if (comando == 'q' || comando == 'Q') ativo = false;
+        if (comando == 'w' || comando == 'W') droneY--;
+        if (comando == 's' || comando == 'S') droneY++;
+        if (comando == 'a' || comando == 'A') droneX--;
+        if (comando == 'd' || comando == 'D') droneX++;
 
-        // Limites da tela
+        // Delimitação Física do Cenário
         if (droneX < 1) droneX = 1;
-        if (droneY < 2) droneY = 2;
+        if (droneY < 5) droneY = 5;
 
-        // 2. Renderizar (Sem apagar a tela toda para evitar flicker)
-        UI::moverCursor(1, 2);
-        cout << "Frames processados: " << frames << " | Posição: (" << droneX << "," << droneY << ")   " << endl;
+        // 2. RENDERIZAÇÃO (FANTASMA DO CPU: Sobrescrita seletiva)
+        UI::moverCursor(1, 4);
+        cout << UI::BRANCO << "Telemetria -> Frame: " << frames 
+             << " | Coordinates: (" << droneX << "," << droneY << ")   " << UI::RESET << endl;
 
-        // Desenha o drone
+        // Desenha Ícone do Drone
         UI::moverCursor(droneX, droneY);
-        cout << UI::VERDE << "<^>" << UI::RESET;
+        cout << UI::VERDE << UI::NEGRITO << "<=X=>" << UI::RESET;
         
-        // Pequena pausa e limpeza do rastro (simplificada)
-        fflush(stdout);
+        // Sincronização com o Monitor (Refresh Rate)
+        cout.flush();
         this_thread::sleep_for(chrono::milliseconds(30));
         
+        // Limpeza de Ghosting (Apaga a posição antiga antes do próximo loop)
         UI::moverCursor(droneX, droneY);
-        cout << "   "; // Apaga a posição antiga
+        cout << "     "; 
     }
 
     UI::limparTela();
-    cout << "Simulação de voo encerrada com sucesso." << endl;
+    cout << UI::VERDE << UI::NEGRITO << "[LOG]: Missão de inspeção concluída. Terminal restaurado." << UI::RESET << endl;
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: INPUT NÃO-BLOQUEANTE (NON-BLOCKING)
+    RESUMO TEÓRICO: ENGENHARIA DE INPUT ASSÍNCRONO
     ===============================================================
 
-    1. MODO CANÔNICO VS BRUTO (RAW):
-       - No modo canônico, o SO processa o texto e espera o Enter. 
-         No modo Raw, os bytes do teclado chegam diretamente ao 
-         seu programa. Isso é o segredo de qualquer jogo.
+    1. RAW MODE (MODO BRUTO):
+       - No C++ comum, o programa é 'escravo' do S.O. (esperando o 
+         Enter). No modo RAW, o programa assume a soberania do 
+         hardware, recebendo os sinais elétricos do teclado no 
+         instante em que ocorrem.
 
-    2. FCNTL E O_NONBLOCK:
-       - Por padrão, a função 'read' espera um dado chegar. O 
-         O_NONBLOCK diz: "Se não tiver nada agora, não espere, 
-         retorne erro imediatamente e deixe o programa seguir".
+    2. FCNTL E FLUXO DE DADOS:
+       - O flag 'O_NONBLOCK' muda a semântica da função 'read'. Ela 
+         deixa de ser uma função de "espera" e passa a ser uma 
+         função de "consulta". Se não há dados, ela retorna 
+         instantaneamente, mantendo o Game Loop vivo.
 
-    3. LIMPEZA DE RASTRO (Ghosting):
-       - Em jogos de terminal, para evitar que o rastro do objeto 
-         fique na tela, desenhamos o objeto, esperamos o frame e 
-         depois desenhamos espaços vazios na mesma posição antes 
-         de mover.
+    3. RESPONSABILIDADE RAII:
+       - Mexer nas configurações do terminal é perigoso. O uso do 
+         Destrutor para restaurar o 'original' garante que o 
+         computador do usuário continue funcional após o 
+         fechamento do software.
 
-    4. TERMIOS (O contrato com o SO):
-       - Gerenciar o terminal é uma responsabilidade pesada. O uso 
-         de 'tcgetattr' e 'tcsetattr' garante que o usuário não 
-         perca o controle do terminal dele após jogar seu jogo.
+    4. PERFORMANCE FANTASMA:
+       - Usamos o buffer do stdout e a função flush() para garantir 
+         que a animação seja transmitida para a GPU/Monitor sem 
+         atrasos de processamento interno do C++.
 
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Buffering de Saída (fflush).
-    - Event Polling: Sistemas que verificam múltiplos inputs.
-    - Signal Handling: Capturar Ctrl+C para sair limpando a memória.
+    - Interrupt Handling: Como o hardware avisa a CPU de uma tecla.
+    - Double Buffering: Eliminar o 'flicker' em resoluções maiores.
+    - Cross-Platform Wrappers (SFML/SDL): Bibliotecas que 
+      abstraem o 'termios' para Windows e Linux.
     ===============================================================
 */

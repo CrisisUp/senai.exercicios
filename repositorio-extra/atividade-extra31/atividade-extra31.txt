@@ -3,6 +3,7 @@ ESTUDO DE CASO: TERMINAL DE ACESSO DE ALTA SEGURANÇA (CYBER-GUARD)
 DOMÍNIO: Segurança Cibernética / Defesa de Dados
 ATIVIDADE: Extra 31
 CONCEITO NOVO: Validação de Dados Robusta e Padrão Singleton
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 1. O CENÁRIO
 Um terminal de acesso militar precisa receber o 'Nível de Autorização' (int) 
@@ -16,15 +17,22 @@ fluxo de entrada entra em estado de falha e o programa entra em loop infinito.
 Precisamos de um "Escudo de Entrada".
 
 O PADRÃO SINGLETON será usado aqui para criar a classe 'Validador'. 
-- Singleton: Garante que o sistema tenha apenas UMA instância do validador 
-  gerenciando o teclado, evitando conflitos de buffer.
+- Singleton: Garante a unicidade da gestão de IOStream, evitando estados de 
+  corrida ou conflitos de sincronização no buffer de entrada.
 
-3. REQUISITOS DO SISTEMA
-- Classe 'Validador' (Singleton):
-    * Método Template 'lerDado(mensagem)': Exibe a mensagem e só retorna 
-      quando o usuário digitar o tipo correto.
-    * Método 'validarIntervalo(valor, min, max)': Garante que o número esteja 
-      dentro do esperado.
-- Simulação: O sistema pede dados críticos e reage a entradas propositalmente 
-  erradas do usuário.
+3. 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL SEGURANÇA DE DADOS)
+- RISCO DE INPUT DOS (DENIAL OF SERVICE): Uma sequência infinita de caracteres 
+  inválidos pode travar o processamento do terminal se o buffer não for limpo 
+  rigorosamente via `cin.clear()` e `cin.ignore()`.
+- RISCO DE CORRUPÇÃO DE TELA: O uso de Singleton sem controle de concorrência 
+  em sistemas multithread pode causar o entrelaçamento de mensagens de erro 
+  no terminal.
+- RISCO DE BUFFER OVERFLOW (HISTÓRICO): Embora o `std::string` do C++ moderno 
+  seja resiliente, entradas de gigabytes podem estourar a memória Heap se não 
+  houver limite de captura.
+
+4. REQUISITOS DO SISTEMA
+- Implementação de 'Singleton' estático (Meyers Singleton).
+- Template de Leitura Blindada com recuperação automática de fluxo.
+- Interface de Comando ANSI para feedback de autorização.
 ------------------------------------------------------------------------------

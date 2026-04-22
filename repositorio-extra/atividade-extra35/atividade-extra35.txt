@@ -3,6 +3,7 @@ ESTUDO DE CASO: SISTEMA DE PLAYLIST (G-STREAM PLAYER)
 DOMÍNIO: Entretenimento / Software de Streaming
 ATIVIDADE: Extra 35
 CONCEITO NOVO: Lista Duplamente Encadeada (Doubly Linked List)
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 1. O CENÁRIO
 Um player de música moderno precisa permitir que o usuário pule para a "Próxima 
@@ -13,17 +14,23 @@ desde o começo até achar o nó anterior.
 2. A NECESSIDADE TÉCNICA
 Na LISTA DUPLAMENTE ENCADEADA, dobramos o controle sobre a memória:
 - O Nó Duplo: Contém o dado e DOIS ponteiros ('proximo' e 'anterior').
-- Navegação Bidirecional: Podemos caminhar do início para o fim e do fim para 
-  o início com a mesma facilidade.
-- Ponteiro de Cauda (Tail): Além da cabeça (Head), manteremos um ponteiro para 
-  o último elemento, permitindo inserções rápidas no final da playlist.
+- Navegação Bidirecional: Walk do início para o fim e vice-versa em O(1) por passo.
+- Ponteiro de Cauda (Tail): Acesso imediato ao último item da coleção.
 
-3. REQUISITOS DO SISTEMA
-- Classe 'MusicaNode': 
-    * Atributos: titulo, artista, proximo, anterior.
-- Classe 'Playlist':
-    * Métodos 'adicionarMusica()': Insere sempre no final (cauda).
-    * Métodos 'avancar()' e 'retroceder()': Simulam a navegação do usuário.
-    * Método 'exibirReverso()': Prova que a lista consegue voltar.
-    * Destrutor: Limpeza rigorosa da memória.
+3. 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ESTRUTURA DE DADOS II)
+- RISCO DE POINTER TANGLING (EMARANHAMENTO): Inserir um nó exige atualizar 4 
+  ponteiros simultaneamente. Se um deles falhar ou for esquecido, a lista se 
+  torna "manca" ou entra em loop infinito de navegação.
+- RISCO DE VAZAMENTO BIDIRECIONAL: Ciclos de ponteiros podem enganar alguns 
+  algoritmos de limpeza. No C++, como a gestão é manual, o risco é dobrado se 
+  o percurso de destruição não for rigorosamente linear.
+- RISCO DE FRAGMENTAÇÃO DE HEAP: Playlist de milhões de faixas geram milhões 
+  de alocações pequenas na Heap, o que pode causar lentidão no sistema 
+  operacional (Heap Exhaustion).
+
+4. REQUISITOS DO SISTEMA
+- Implementação de 'MusicaNode' (Bidirecional).
+- Gestão de 'Playlist' com Head e Tail.
+- Proteção de CPU via referências constantes (Fantasma do CPU).
+- Interface ANSI para visualização de fluxo de áudio digital.
 ------------------------------------------------------------------------------

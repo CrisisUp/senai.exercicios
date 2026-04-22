@@ -18,3 +18,11 @@ As **Window Functions** do Nível 40 podiam olhar para o grupo inteiro. Agora, n
 2. Inserir uma série temporal de 10 leituras para um único drone, simulando uma queda de carga.
 3. Criar uma consulta que utilize `AVG() OVER(...)` com `ROWS BETWEEN` para calcular a média móvel de 3 pontos.
 4. Adicionar uma coluna que mostre o "Desvio da Média" (Bateria Atual - Média Móvel).
+
+---
+
+## 🛡️ ANÁLISE DE FALHA CRÍTICA (Fase 3)
+
+1. **RISCOS DE TIME-SERIES DRIFT:** Pequenos atrasos na ingestão de dados (latency drift) podem fazer com que a janela deslizante (`ROWS BETWEEN`) processe dados cronologicamente distantes como se fossem vizinhos, gerando falsos negativos em alertas de segurança.
+2. **OVERHEAD DE CÁLCULO:** Em tabelas com milhões de registros, janelas muito amplas (ex: `1000 PRECEDING`) sem indexação adequada por `data_hora` podem causar picos de I/O e travamento do motor de relatórios.
+3. **IMPRECISÃO EM AGREGADOS:** O uso de `REAL` para médias de telemetria pode sofrer de imprecisões de arredondamento IEEE 754. Para sensores de altíssima precisão, recomenda-se o uso de inteiros escalonados.

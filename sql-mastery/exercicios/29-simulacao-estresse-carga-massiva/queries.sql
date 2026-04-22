@@ -1,61 +1,76 @@
+/**
+ * @file queries.sql
+ * @brief Teste de estresse e carga massiva (1 milhão de registros) com integridade financeira.
+ * @author SENAI C++ Engenheiro de Elite
+ * @date 2026-04-19
+ */
+
 -- ==============================================================================
--- ATIVIDADE 29: TESTE DE ESTRESSE (DATA EXPLOSION)
--- OBJETIVO: Gerar e auditar 1 milhão de registros via SQL.
+-- 1. SETUP DO AMBIENTE DE ESTRESSE
 -- ==============================================================================
--- 1. Setup do Ambiente
+
+-- Tabela de Logs de Estresse (Guardião Financeiro: centavos em logs de auditoria)
 CREATE TABLE IF NOT EXISTS estresse_logs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     drone_id TEXT,
-    msg TEXT
+    msg TEXT,
+    custo_operacional_cents INTEGER -- Integridade Financeira
 );
+
 CREATE INDEX IF NOT EXISTS idx_estresse_drone ON estresse_logs(drone_id);
 DELETE FROM estresse_logs;
--- 2. A EXPLOSÃO DE DADOS (The Big Bang)
--- Criamos 1.000 números e multiplicamos por eles mesmos (1.000 * 1.000 = 1.000.000)
--- Nota: Esta operação pode levar alguns segundos.
+
+-- ==============================================================================
+-- 2. A EXPLOSÃO DE DADOS (The Big Bang - 1 Milhão de Linhas)
+-- ==============================================================================
+
+-- CTE Recursiva para gerar a massa crítica.
+-- Nota: 1.000 x 1.000 via CROSS JOIN = 1.000.000 de registros.
 WITH RECURSIVE gerador(n) AS (
-    SELECT 1
-    UNION ALL
-    SELECT n + 1
-    FROM gerador
-    WHERE n < 1000
+    SELECT 1 UNION ALL SELECT n + 1 FROM gerador WHERE n < 1000
 )
-INSERT INTO estresse_logs (drone_id, msg)
-SELECT 'DRONE-' || a.n,
-    'Log de telemetria número ' || b.n
+INSERT INTO estresse_logs (drone_id, msg, custo_operacional_cents)
+SELECT 
+    'DRONE-' || a.n,
+    'Log de telemetria número ' || b.n,
+    (a.n + b.n) * 5 -- R$ 0,05 incrementais
 FROM gerador a
-    CROSS JOIN gerador b;
--- 3. AUDITORIA DE MASSA
-SELECT COUNT(*) AS "Total de Registros Inseridos"
-FROM estresse_logs;
--- 4. TESTE DE PERFORMANCE SOB PESO
--- Mesmo com 1 milhão de linhas, o índice deve retornar o resultado instantaneamente.
+CROSS JOIN gerador b;
+
+-- ==============================================================================
+-- 3. @section ExecutionPlan (Performance sob Pressão)
+-- ==============================================================================
+
+-- Verificação da eficiência do índice com volume massivo.
 EXPLAIN QUERY PLAN
-SELECT *
+SELECT SUM(custo_operacional_cents) / 100.0 AS "Custo Total R$"
 FROM estresse_logs
 WHERE drone_id = 'DRONE-500';
-SELECT *
-FROM estresse_logs
-WHERE drone_id = 'DRONE-500'
-LIMIT 5;
+
+-- Auditoria Final
+SELECT COUNT(*) AS "Total de Registros" FROM estresse_logs;
+
 /* 
- ===============================================================
- RESUMO TEÓRICO: TESTE DE ESTRESSE
- ===============================================================
+ ==============================================================================
+ RESUMO TEÓRICO: CARGA MASSIVA E ESCALABILIDADE
+ ==============================================================================
  
- 1. CROSS JOIN (Produto Cartesiano): 
- - É a arma de destruição em massa do SQL. Une cada linha da 
- Tabela A com TODAS as linhas da Tabela B. 
- - Usado para gerar massa de teste ou simular todas as 
- combinações possíveis de um sistema.
+ 1. DATA EXPLOSION: 
+ - O uso de CROSS JOIN permite simular cenários de produção de anos em segundos. 
  
- 2. LIMITES DO SQLITE: 
- - O SQLite aguenta até 140 Terabytes de dados. 1 milhão de 
- linhas é apenas o aquecimento.
+ 2. GUARDIÃO FINANCEIRO (INTEGER Cents): 
+ - Mesmo em simulações de estresse, a precisão financeira deve ser mantida. 
+ Cálculos sobre milhões de linhas usando floats acumulariam erros inaceitáveis.
  
- 3. VANTAGEM DIDÁTICA: 
- - O aluno perde o medo de grandes volumes e aprende a confiar 
- nos seus índices. Se a query ficar lenta com 1 milhão, o 
- problema não é o volume, é a arquitetura (falta de índice).
- ===============================================================
+ 3. I/O OVERHEAD:
+ - Inserir 1 milhão de linhas gera um volume imenso de escrita em disco. 
+ Se o banco não usar WAL, as operações de leitura concorrentes serão paralisadas.
+
+ ==============================================================================
+ ASSUNTOS CORRELATOS:
+ - Write-Ahead Logging (WAL) vs Journaling Mode.
+ - Bulk Insert (COPY no PostgreSQL) vs Insert em Lote.
+ - Sharding e Particionamento de Tabelas Massivas.
+ - Benchmarking de Latência (Percentis P95/P99).
+ ==============================================================================
  */

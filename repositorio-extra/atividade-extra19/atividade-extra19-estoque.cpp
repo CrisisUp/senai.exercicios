@@ -1,8 +1,9 @@
 /**
  * @file atividade-extra19-estoque.cpp
- * @brief Gestão de Inventário com STL Vector e Algoritmos de Ordenação.
+ * @brief Gestão de Inventário Dinâmico com STL, Sort e Lambdas.
  * 
- * Demonstra o uso de coleções dinâmicas e lambdas para ordenação flexível.
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Foco em performance de algoritmos e gestão eficiente de coleções na HEAP.
  * 
  * @author SENAI - Cristiano Batista Pessoa
  * @date 22/04/2026
@@ -17,38 +18,44 @@
 using namespace std;
 
 /**
- * @brief Função auxiliar para exibir o cabeçalho da tabela.
+ * @brief Exibe o cabeçalho da tabela de inventário.
  */
 void exibirCabecalho() {
-    cout << "\n" << UI::CIANO << left << setw(10) << "SKU" 
-         << setw(25) << "NOME" 
-         << right << setw(10) << "PREÇO" 
-         << setw(15) << "ESTOQUE" << UI::RESET << endl;
+    cout << "\n" << UI::NEGRITO << left << setw(12) << "SKU" 
+         << left << setw(20) << "NOME" 
+         << right << setw(10) << "ESTOQUE" 
+         << right << setw(15) << "PREÇO" << UI::RESET << endl;
     cout << string(60, '-') << endl;
 }
 
 int main() {
-    // 1. VETOR DINÂMICO (O coração da STL)
+    UI::limparTela();
+    cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
+    cout << "     TECH-FLOW: GESTÃO DE INVENTÁRIO v3.0      " << endl;
+    cout << "       (Elite Performance & STL Edition)       " << endl;
+    cout << "===============================================" << UI::RESET << endl;
+
+    // --- COLEÇÃO DINÂMICA (ALOCADA NA HEAP) ---
     vector<Produto> estoque;
 
-    // 2. CADASTRO INICIAL (Simulando carga de dados)
-    estoque.push_back(Produto("RES-10K", "Resistor 10k Ohms", 150, 0.05));
-    estoque.push_back(Produto("CAP-100u", "Capacitor 100uF 25V", 3, 0.45));
-    estoque.push_back(Produto("LED-RED", "LED Difuso Vermelho", 200, 0.12));
-    estoque.push_back(Produto("ARD-UNO", "Arduino Uno R3 Original", 4, 185.90));
-    estoque.push_back(Produto("ESP-32", "Módulo ESP32 DevKit V1", 12, 45.00));
+    // Alimentação manual simulada para demonstração rápida
+    estoque.push_back(Produto("COMP-001", "Resistor 10k", 150, 0.15));
+    estoque.push_back(Produto("IC-555", "Timer NE555", 3, 2.50));
+    estoque.push_back(Produto("MCU-32", "ESP32 DevKit", 12, 45.90));
+    estoque.push_back(Produto("DISP-OLED", "Display OLED I2C", 2, 28.00));
+    estoque.push_back(Produto("SENS-TEMP", "Sensor DHT22", 25, 18.50));
 
     int opcao = 0;
-    while (opcao != 4) {
-        cout << "\n" << UI::CIANO << "===============================================" << endl;
-        cout << "      SISTEMA TECH-FLOW: CONTROLE DE ESTOQUE   " << endl;
-        cout << "===============================================" << UI::RESET << endl;
-        cout << "1. Listar Estoque (Original)\n";
-        cout << "2. Ordenar por NOME (A-Z)\n";
-        cout << "3. Ordenar por PREÇO (Maior -> Menor)\n";
-        cout << "4. Sair\n";
-        cout << "Escolha: ";
-        cin >> opcao;
+    do {
+        cout << "\n" << UI::NEGRITO << "MENU DE OPERAÇÕES:" << UI::RESET << endl;
+        cout << "1. Listar Estoque (Ordem de Entrada)" << endl;
+        cout << "2. Ordenar por NOME (A-Z)" << endl;
+        cout << "3. Ordenar por PREÇO (Crescente)" << endl;
+        cout << "4. Ordenar por ESTOQUE (Crítico Primeiro)" << endl;
+        cout << "0. Sair" << endl;
+        cout << UI::BRANCO << "Escolha: " << UI::RESET;
+        
+        if (!(cin >> opcao)) break;
 
         switch (opcao) {
             case 1:
@@ -57,57 +64,63 @@ int main() {
                 break;
 
             case 2:
-                // 3. ORDENAÇÃO COM LAMBDA (Nome)
-                sort(estoque.begin(), estoque.end(), [](const Produto& a, const Produto& b) {
+                // FANTASMA DO CPU: Usamos 'const auto&' na Lambda para evitar cópias durante as trocas
+                sort(estoque.begin(), estoque.end(), [](const auto& a, const auto& b) {
                     return a.getNome() < b.getNome();
                 });
-                cout << UI::VERDE << "[OK]: Estoque ordenado por Nome." << UI::RESET << endl;
+                cout << UI::VERDE << "Estoque ordenado por NOME." << UI::RESET << endl;
                 break;
 
             case 3:
-                // 4. ORDENAÇÃO COM LAMBDA (Preço Descendente)
-                sort(estoque.begin(), estoque.end(), [](const Produto& a, const Produto& b) {
-                    return a.getPreco() > b.getPreco();
+                sort(estoque.begin(), estoque.end(), [](const auto& a, const auto& b) {
+                    return a.getPreco() < b.getPreco();
                 });
-                cout << UI::VERDE << "[OK]: Estoque ordenado por Preço (Decrescente)." << UI::RESET << endl;
+                cout << UI::VERDE << "Estoque ordenado por PREÇO." << UI::RESET << endl;
+                break;
+
+            case 4:
+                sort(estoque.begin(), estoque.end(), [](const auto& a, const auto& b) {
+                    return a.getQuantidade() < b.getQuantidade();
+                });
+                cout << UI::VERDE << "Estoque ordenado por PRIORIDADE DE REPOSIÇÃO." << UI::RESET << endl;
                 break;
         }
-    }
+
+    } while (opcao != 0);
+
+    cout << UI::CIANO << "\nSistema encerrado. Integridade de memória garantida." << UI::RESET << endl;
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: VETORES DINÂMICOS E ALGORITMOS STL
+    RESUMO TEÓRICO: ALGORITMOS, COLEÇÕES E PERFORMANCE
     ===============================================================
 
-    1. O QUE É O std::vector?
-       - Diferente do array comum (int v[5]), o vector gerencia sua 
-         própria memória. Ele cresce conforme você usa push_back() 
-         e libera memória ao ser destruído. É o container padrão 
-         para 90% das tarefas em C++.
+    1. O PODER DO std::vector:
+       - Diferente do array comum, o vector gerencia sua própria 
+         memória na HEAP. Ele cresce dinamicamente. A complexidade 
+         de inserção (push_back) é O(1) amortizado, tornando-o a 
+         escolha ideal para inventários.
 
-    2. O ALGORITMO std::sort:
-       - Um dos algoritmos mais rápidos do mundo. Ele não te obriga 
-         a saber COMO ordenar (bolha, inserção, etc), apenas QUAL 
-         é o critério de comparação.
+    2. std::sort E FUNÇÕES LAMBDA:
+       - O 'std::sort' usa o algoritmo Introsort (híbrido de QuickSort 
+         e HeapSort) com complexidade O(n log n). As lambdas `[](){}` 
+         permitem injetar critérios de comparação personalizados 
+         sem a necessidade de criar funções globais pesadas.
 
-    3. FUNÇÕES LAMBDA (Closures):
-       - São funções "sem nome" criadas na hora.
-       - Sintaxe: [](params) { corpo }.
-       - No código, usamos a lambda para dizer ao sort: "Compare o 
-         produto A com o B usando o preço como critério".
-
-    4. ITERAÇÃO MODERNA (Range-based for):
-       - for (const auto& p : estoque)
-       - Evita erros de índice e é muito mais legível.
+    3. MEDALHA ⚡ FANTASMA DO CPU (REFERÊNCIAS EM LAMBDAS):
+       - Ao ordenar, o C++ realiza milhares de comparações. Se a 
+         lambda recebesse `(Produto a, Produto b)`, o sistema criaria 
+         duas cópias de cada produto a cada comparação. Usando 
+         `const auto&`, trabalhamos diretamente com os dados originais 
+         na HEAP, eliminando o overhead de cópia.
 
     ===============================================================
-    ASSUNTOS CORRELATOS (Para pesquisa):
-    - Complexidade de Tempo (O log N): Por que o sort é rápido.
-    - Iteradores (begin/end): As "pontes" entre containers e algoritmos.
-    - Reserva de Memória (reserve()): Otimizando vetores gigantes.
-    - std::map: Coleções baseadas em chave-valor (Dicionários).
+    ASSUNTOS CORRELATOS:
+    - Big O Notation: Entendendo a escala de algoritmos.
+    - Capacity vs Size: Como o vector reserva memória antecipadamente.
+    - Stable Sort: Quando a ordem relativa de itens iguais deve ser mantida.
     ===============================================================
 */

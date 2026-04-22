@@ -21,3 +21,11 @@ O padrão **Type State** utiliza o sistema de tipos para representar os estados 
 4. Implementar o método `decolar()` que move o drone de `Terra` para `Voo`.
 5. Implementar o método `pousar()` que move o drone de `Voo` para `Terra`.
 6. Criar uma interface interativa onde o usuário tenta mover o drone entre estados.
+
+## 🛡️ Análise de Falha Crítica: Illegal State Transitions
+
+A maioria dos bugs de segurança em drones ocorre por comandos enviados em estados inválidos (ex: desligar motor em voo). Sistemas baseados em `if` ou `switch` são frágeis porque dependem da atenção do programador.
+
+*   **Risco Crítico:** Tentar decolar sem passar pela calibração (Manutenção -> Terra).
+*   **A Abordagem Elite:** Type States bloqueiam o erro no nascimento. Como o método `.decolar()` só existe na implementação `impl Drone<Terra>`, se você tentar chamá-lo num `Drone<Manutencao>`, o compilador emite um erro de "método não encontrado".
+*   **Segurança de Propriedade:** Ao usar o consumo do `self` (`fn decolar(self)`), garantimos que o drone antigo (em Terra) não possa mais ser usado após a transição para o drone novo (em Voo). O estado "zumbi" (usar o drone em dois estados ao mesmo tempo) é impossível.

@@ -1,67 +1,81 @@
+/**
+ * @file queries.sql
+ * @brief Manutenção profunda de banco de dados: VACUUM, ANALYZE e Fragmentação.
+ * @author SENAI C++ Engenheiro de Elite
+ * @date 2026-04-19
+ */
+
 -- ==============================================================================
--- ATIVIDADE 28: MANUTENÇÃO E LIMPEZA (VACUUM)
--- OBJETIVO: Recuperar espaço em disco e otimizar a estrutura do banco.
+-- 1. SETUP DA TABELA PESADA (Simulando Acúmulo de Dados)
 -- ==============================================================================
--- 1. Setup da Tabela Pesada
-CREATE TABLE IF NOT EXISTS logs_temporarios (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  data TEXT,
-  conteudo TEXT
+
+-- Tabela de Logs Financeiros (Guardião Financeiro: centavos inteiros)
+CREATE TABLE IF NOT EXISTS logs_financeiros (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    data_hora TEXT DEFAULT CURRENT_TIMESTAMP,
+    valor_cents INTEGER,
+    status TEXT
 );
--- 2. POPULAÇÃO MASSIVA (Simulando meses de uso)
--- Usamos um truque de recursividade para inserir 1000 linhas rápido.
+
+DELETE FROM logs_financeiros;
+
+-- População Massiva (10.000 registros para sentir o peso)
 WITH RECURSIVE contador(n) AS (
-  SELECT 1
-  UNION ALL
-  SELECT n + 1
-  FROM contador
-  WHERE n < 1000
+    SELECT 1 UNION ALL SELECT n + 1 FROM contador WHERE n < 10000
 )
-INSERT INTO logs_temporarios (data, conteudo)
-SELECT '2026-01-01',
-  'LOG_PESADO_DE_TELEMETRIA_DRONE_DATA_DUMP_ESTRUTURA_GIGANTE'
-FROM contador;
--- 3. VERIFICAÇÃO DE TAMANHO INICIAL
-SELECT 'Páginas ANTES da limpeza:' as info,
-  page_count
-FROM pragma_page_count();
--- 4. O ERRO COMUM: DELETE sem VACUUM
--- Deletamos tudo, mas o arquivo no seu HD continuará com o mesmo tamanho!
-DELETE FROM logs_temporarios;
-SELECT 'Páginas APÓS DELETE (sem limpeza):' as info,
-  page_count
-FROM pragma_page_count();
--- 5. A SOLUÇÃO: VACUUM
--- O banco se auto-reorganiza agora.
+INSERT INTO logs_financeiros (valor_cents, status)
+SELECT n * 10, 'PROCESSADO' FROM contador;
+
+-- ==============================================================================
+-- 2. VERIFICAÇÃO DE FRAGMENTAÇÃO (Heap Bloat)
+-- ==============================================================================
+
+SELECT 'Páginas ANTES da exclusão:' AS status, page_count FROM pragma_page_count();
+
+-- Simulação de Limpeza de Legado (Excluímos 90% dos dados)
+DELETE FROM logs_financeiros WHERE id > 1000;
+
+-- O "Falso Vazio": O arquivo no HD continua com o mesmo tamanho (Heap Bloat).
+SELECT 'Páginas APÓS DELETE (sem VACUUM):' AS status, page_count FROM pragma_page_count();
+
+-- ==============================================================================
+-- 3. @section ExecutionPlan (Otimização e I/O Cost)
+-- ==============================================================================
+
+-- Antes do ANALYZE, o banco pode usar estatísticas obsoletas.
+EXPLAIN QUERY PLAN
+SELECT * FROM logs_financeiros WHERE valor_cents > 5000;
+
+-- Execução do VACUUM (Bloqueio Exclusivo!)
 VACUUM;
-SELECT 'Páginas APÓS VACUUM (limpeza real):' as info,
-  page_count
-FROM pragma_page_count();
--- 6. OTIMIZAÇÃO DE BUSCA
--- Faz o banco olhar no espelho e recalcular seus planos de query.
+
+-- Atualização de Estatísticas (Reduz o I/O Cost do planejador)
 ANALYZE;
+
+SELECT 'Páginas APÓS VACUUM (Limpeza Real):' AS status, page_count FROM pragma_page_count();
+
 /* 
- ===============================================================
- RESUMO TEÓRICO: MANUTENÇÃO DE BANCO
- ===============================================================
+ ==============================================================================
+ RESUMO TEÓRICO: MANUTENÇÃO E PERFORMANCE
+ ==============================================================================
  
- 1. FRAGMENTAÇÃO: 
- - Quando você deleta uma linha, o SQLite apenas marca aquele 
- espaço como "Vazio", mas não devolve o espaço para o Windows/Mac. 
- - Isso cria buracos no arquivo (Fragmentação).
+ 1. HEAP BLOAT E FRAGMENTAÇÃO: 
+ - Quando linhas são deletadas, o banco não devolve o espaço ao OS imediatamente. 
+ - Páginas vazias continuam ocupando RAM e disco, degradando a performance.
  
- 2. VACUUM: 
- - Copia os dados válidos para um novo arquivo temporário e 
- sobrescreve o antigo. 
- - É o "Desfragmentador de Disco" do banco de dados.
+ 2. VACUUM (I/O Cost): 
+ - O comando VACUUM reconstrói o arquivo. É uma operação cara que requer 
+ espaço extra em disco (quase o dobro do tamanho original temporariamente).
  
- 3. ANALYZE: 
- - Coleta estatísticas sobre os índices. 
- - Exemplo: "O índice X agora é inútil porque 90% dos dados 
- são iguais". Isso faz o banco ignorar o índice e ganhar tempo.
- 
- VANTAGEM DIDÁTICA: 
- O aluno aprende que ser Arquiteto não é só construir, mas também 
- manter e limpar o sistema para que ele dure anos.
- ===============================================================
+ 3. GUARDIÃO FINANCEIRO (INTEGER Cents): 
+ - Manter a precisão nos logs financeiros (centavos inteiros) é vital mesmo em 
+ tabelas de log massivas.
+
+ ==============================================================================
+ ASSUNTOS CORRELATOS:
+ - Auto-Vacuum (Full vs Incremental) no SQLite.
+ - Autovacuum Workers no PostgreSQL e Dead Tuples.
+ - Fragmentação de Índices B-Tree.
+ - Estratégias de Archiving (Moving logs to cold storage).
+ ==============================================================================
  */

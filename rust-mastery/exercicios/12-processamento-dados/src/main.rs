@@ -2,7 +2,10 @@
  * @file main.rs
  * @brief Atividade 12: Processamento de Dados de Voo (Closures e Iteradores).
  * 
- * Aprendizados: Closures, Iteradores, filter, map, collect.
+ * @section MemoryMap
+ * - Heap: Vec<LeituraVoo> armazena as structs na Heap. O uso de .collect() pode gerar novas alocações se não for otimizado.
+ * - Stack: Iteradores e closures (se não capturarem por movimento) são geralmente alocados na Stack.
+ * - Monomorfização: Closures genéricas são otimizadas pelo compilador para cada local de chamada.
  * 
  * @author SENAI - Rust Master
  * @date 20/04/2026
@@ -39,12 +42,11 @@ fn main() {
     // 2. Filtragem: Selecionar voos em altitude elevada
     let limite_seguranca = 200.0;
     
-    // O filter() usa uma closure que recebe uma referência.
-    // Retornamos true para manter o item.
-    let voos_altos: Vec<LeituraVoo> = leituras.iter()
+    // FANTASMA DO CPU: Evitamos .cloned() para não duplicar dados na Heap.
+    // Usamos referências (&LeituraVoo) no novo vetor.
+    let voos_altos: Vec<&LeituraVoo> = leituras.iter()
         .filter(|l| l.altitude_m > limite_seguranca)
-        .cloned() // Clona o objeto para o novo vetor
-        .collect(); // Transforma o iterador em uma coleção real
+        .collect(); // Transforma o iterador em uma coleção de referências
 
     println!("\x1b[33m[ALERTA]:\x1b[0m Voos acima de {:.0}m encontrados: {}", limite_seguranca, voos_altos.len());
     for v in &voos_altos {
@@ -109,29 +111,27 @@ mod tests {
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: CLOSURES E ITERADORES
+    RESUMO TEÓRICO: CLOSURES E ITERADORES (Fase 2)
     ===============================================================
 
-    1. CLOSURES:
-       - São funções anônimas. A sintaxe '|p| { ... }' permite criar
-         lógica rápida sem precisar definir uma função completa.
-       - Captura de Ambiente: Diferente de funções normais, closures 
-         podem ler variáveis que estão fora delas (como o 
-         'fator_conversao' no main).
+    1. CLOSURES E CAPTURA:
+       - Closures podem capturar por referência (&T), referência mutável (&mut T)
+         ou movimento (T). O compilador escolhe a forma menos restritiva.
 
-    2. ITERADORES LAZY:
-       - 'iter()' não faz nada até que você peça um resultado. 
-       - Isso permite encadear múltiplas operações (filter, map, 
-         take, etc.) de forma extremamente eficiente, pois o Rust 
-         processa tudo em um único loop por baixo dos panos.
+    2. ITERADORES E PERFORMANCE:
+       - Iteradores em Rust são "Zero-Cost". O compilador frequentemente 
+         transforma o encadeamento funcional em um loop assembly altamente 
+         otimizado, equivalente ou superior a um loop 'for' manual.
 
-    3. COLLECT:
-       - É o "consumidor" final. Ele pega os resultados do iterador 
-         e os coloca em uma nova coleção (como um Vec).
-
-    4. VANTAGEM DIDÁTICA:
-       - O aluno aprende a escrever código declarativo: "O QUE eu quero 
-         fazer" (filtrar, mapear) em vez de "COMO fazer" (loops manuais, 
-         contadores, ifs aninhados).
+    3. FANTASMA DO CPU (REFERÊNCIAS):
+       - Priorizar o uso de referências em iteradores evita clones custosos 
+         em structs grandes, economizando ciclos de CPU e alocações na Heap.
     ===============================================================
+
+    ASSUNTOS CORRELATOS:
+    - Trait Fn, FnMut e FnOnce.
+    - Currying e Partial Application em Rust.
+    - Iteradores paralelos com a biblioteca Rayon.
+    - Streaming Iterators e GATs (Generic Associated Types).
 */
+

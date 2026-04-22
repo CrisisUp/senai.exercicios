@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SkyCargo Observability: Centralized Logging and Alerts'
+
+# @file cw-setup.yaml
+# @brief Template IaC para provisionamento de Logs e Alarmes.
+# 
+# Atividade 10 - Cloud Monitoring (Nível Arquiteto).
+# 
+# @author SENAI - Cristiano Batista Pessoa
+# @date 22/04/2026
+
+Resources:
+  # 1. O LOG GROUP CENTRALIZADO
+  TelemetryLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Retain
+    Properties:
+      LogGroupName: /aws/skycargo/telemetry-iac
+      RetentionInDays: 7 # BUDGET GUARDIAN: Economia automática
+
+  # 2. ALARME DE ERROS (VIGIA)
+  HighErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: SkyCargo-Critical-Errors-IaC
+      AlarmDescription: "Alerta de falhas no processamento de drones"
+      MetricName: Errors
+      Namespace: AWS/Lambda
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: GreaterThanThreshold
+      Dimensions:
+        - Name: FunctionName
+          Value: SkyCargo-AlertProcessor-IaC
+
+Outputs:
+  LogGroupName:
+    Description: Nome do repositório de logs.
+    Value: !Ref TelemetryLogGroup
+  AlarmArn:
+    Description: ARN do alarme de monitoramento.
+    Value: !GetAtt HighErrorAlarm.Arn

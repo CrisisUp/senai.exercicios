@@ -27,4 +27,14 @@ ocupa disco).
 1. Criar a tabela `status_frota` com `id`, `serial`, `bateria` e `horas_voo`.
 2. Adicionar uma **Coluna Virtual** chamada `score_saude` que faz o cálculo automático.
 3. Criar um **Índice Parcial** que indexa apenas drones com `bateria < 20`.
-4. Realizar consultas e auditar o plano de execução para provar a otimização.
+- Realizar consultas e auditar o plano de execução para provar a otimização.
+
+## ⚠️ Análise de Falha Crítica
+
+A otimização extrema via índices parciais e colunas virtuais exige um equilíbrio entre CPU, RAM e Disco:
+
+1.  **Trade-off de CPU (Virtual Columns):** Colunas do tipo `VIRTUAL` economizam espaço em disco, mas consomem ciclos de CPU em **cada leitura**. Em sistemas com alto tráfego de `SELECT`, isso pode se tornar um gargalo de processamento.
+2.  **Abismo de Performance (Index Miss):** Um índice parcial é invisível para consultas que não atendem exatamente aos seus critérios de `WHERE`. Se um desenvolvedor mudar a query de `bateria < 20` para `bateria < 21`, o banco pode ignorar o índice e realizar um **Full Table Scan**, derrubando a performance.
+3.  **Rigidez de Esquema:** Colunas geradas não podem ser alteradas facilmente. Se a fórmula do `score_saude` mudar, pode ser necessário recriar a tabela inteira, o que é um risco em bancos de dados em produção.
+4.  **Limitação de Funções:** O SQLite não permite o uso de funções não-determinísticas (como `date('now')`) ou subconsultas em colunas geradas, limitando cálculos que dependem de fatores externos ou outras tabelas.
+

@@ -17,4 +17,12 @@ A "SkyCargo" armazena centenas de logs de voo. O sistema de auditoria precisa co
 1. Criar uma função `comparar_logs<'a>(log1: &'a str, log2: &'a str) -> &'a str` que retorna a string mais longa.
 2. Explicar por que a anotação `'a` é necessária (ajuda o compilador a entender que o retorno é válido enquanto AMBOS os parâmetros forem válidos).
 3. Demonstrar no `main` um caso onde o tempo de vida é respeitado.
-4. Demonstrar (em comentário) o erro que ocorreria se tentássemos usar uma referência após o objeto original sair de escopo.
+### 4. Demonstrar (em comentário) o erro que ocorreria se tentássemos usar uma referência após o objeto original sair de escopo.
+
+## 🛡️ Análise de Falha Crítica (Refatoração de Elite)
+
+*   **Riscos de Panic:** Lifetimes previnem `Panic` em tempo de execução ao garantir que não existam ponteiros para memória liberada. O erro é capturado em tempo de compilação.
+*   **Use-after-move:** O Rust impede que você mova (move) um dono de dado enquanto referências (`'a`) para ele estiverem ativas, evitando acessos a dados inválidos.
+*   **Borrow Checker Errors:** O maior risco aqui são erros de compilação complexos ao tentar retornar referências de escopos locais. A anotação `'a` resolve a ambiguidade de quem "vive mais".
+*   **Memory Overheads:** Lifetimes têm custo **ZERO** em runtime. São puramente uma verificação estática do compilador para garantir a segurança sem garbage collection.
+

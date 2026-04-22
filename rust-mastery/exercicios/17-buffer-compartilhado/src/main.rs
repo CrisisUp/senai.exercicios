@@ -2,9 +2,17 @@
  * @file main.rs
  * @brief Atividade 17: Buffer Compartilhado (Ponteiros Crus e FFI).
  * 
- * Aprendizados: *mut T, Aritmética de Ponteiros, FFI com buffers.
- * 
- * @author SENAI - Rust Master
+ * @section MemoryMap Mapeamento de Memória (Mestre)
+ * - **Stack:** O descritor do `Vec` (ponteiro, capacidade, tamanho) reside na Stack.
+ * - **Heap:** O buffer real de dados `[i32; tamanho]` reside no Heap.
+ * - **Pointer Arithmetic:** `ptr_buffer.add(i)` calcula o endereço exato no Heap sem verificações de limites (bounds checking).
+ *
+ * @section FantasmaCPU Fantasma do CPU: Eficiência de Referências
+ * O uso de ponteiros crus elimina o overhead do "Bounds Checking" do Rust em cada acesso,
+ * permitindo que a CPU execute loops de processamento de vetores com máxima performance (SIMD-friendly),
+ * ao custo da segurança garantida pelo compilador.
+ *
+ * @author SENAI - Rust Master (Refatoração de Elite Fase 2)
  * @date 20/04/2026
  */
 

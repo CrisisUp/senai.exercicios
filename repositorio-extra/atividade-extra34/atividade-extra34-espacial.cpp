@@ -1,12 +1,18 @@
 /**
  * @file atividade-extra34-espacial.cpp
- * @brief Exploração Espacial: Implementação Manual de Lista Encadeada.
+ * @brief Voyager Core: Engenharia de Estruturas Dinâmicas (Linked List).
  * 
- * Demonstra como criar e gerenciar uma estrutura de dados dinâmica do zero,
- * utilizando alocação de memória manual (new/delete) e encadeamento por ponteiros.
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Implementação manual de lista encadeada para máxima eficiência em memória.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Linked Chain)
+ * - Cabeça (TelemetriaNode*): Um único ponteiro na STACK (8 bytes).
+ * - Nós da Lista: Espalhados de forma não-contígua na HEAP.
+ * - Cada Nó: Contém dados (int + string) e o endereço do próximo (ponteiro).
+ * - Diferencial: Ocupa apenas o necessário por item, mas perde localidade de cache.
  */
 
 #include <iostream>
@@ -14,103 +20,123 @@
 
 using namespace std;
 
-// --- 1. NAMESPACE DE INTERFACE ---
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
 
 namespace UI {
     const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
     const string VERDE    = "\033[32m";
-    const string CIANO    = "\033[36m";
     const string AMARELO  = "\033[33m";
+    const string AZUL     = "\033[34m";
+    const string CIANO    = "\033[36m";
     const string ROXO     = "\033[35m";
+    const string BRANCO   = "\033[37m";
+
+    inline void limparTela() { cout << "\033[2J\033[1;1H"; }
 }
 
 // --- 2. O NÓ (DADO + PONTEIRO) ---
 
+/**
+ * @struct TelemetriaNode
+ * @brief Elo fundamental da corrente de dados espaciais.
+ */
 struct TelemetriaNode {
     int id;
     string mensagem;
-    TelemetriaNode* proximo; // O elo da corrente
+    TelemetriaNode* proximo; // O elo para o próximo endereço na HEAP
 
-    TelemetriaNode(int _id, string _msg) : id(_id), mensagem(_msg), proximo(nullptr) {}
+    TelemetriaNode(int _id, const string& _msg) 
+        : id(_id), mensagem(_msg), proximo(nullptr) {}
 };
 
-// --- 3. A LISTA (GERENCIADORA DA MEMÓRIA) ---
+// --- 3. A LISTA (GERENCIADORA DE MEMÓRIA DE ELITE) ---
 
 class BufferEspacial {
 private:
-    TelemetriaNode* cabeca; // Início da lista
+    TelemetriaNode* cabeca; // Ponto de entrada da estrutura
 
 public:
     BufferEspacial() : cabeca(nullptr) {}
 
     /**
-     * @brief Insere um novo nó no início da lista (O(1)).
+     * @brief Inserção O(1) no início da lista.
+     * @param id Identificador do pacote.
+     * @param msg Referência constante (Fantasma do CPU).
      */
-    void receberDados(int id, string msg) {
+    void receberDados(int id, const string& msg) {
         TelemetriaNode* novo = new TelemetriaNode(id, msg);
         novo->proximo = cabeca;
         cabeca = novo;
-        cout << UI::VERDE << "[SISTEMA]: Pacote " << id << " acoplado ao buffer." << UI::RESET << endl;
+        cout << UI::VERDE << "[SISTEMA]: " << UI::RESET << "Pacote " << id << " acoplado ao buffer (Stack Entry)." << endl;
     }
 
     /**
-     * @brief Percorre a lista exibindo os dados de cada nó.
+     * @brief Percurso linear da lista via indereçamento indireto.
      */
     void transmitirRelatorio() const {
-        cout << UI::CIANO << "\n--- TRANSMISSÃO DE TELEMETRIA ESPACIAL ---" << UI::RESET << endl;
+        cout << "\n" << UI::CIANO << UI::NEGRITO << "--- TRANSMISSÃO DE TELEMETRIA: VOYAGER ENGINE ---" << UI::RESET << endl;
         TelemetriaNode* atual = cabeca;
 
         if (!atual) {
-            cout << "(Buffer vazio)" << endl;
+            cout << UI::AMARELO << "[AVISO]: Buffer de telemetria vazio." << UI::RESET << endl;
             return;
         }
 
         while (atual != nullptr) {
-            cout << "[ID: " << atual->id << "] Mensagem: " << UI::AMARELO << atual->mensagem << UI::RESET << endl;
-            atual = atual->proximo; // Pula para o próximo endereço de memória
+            cout << UI::BRANCO << "[PKG " << atual->id << "]: " << UI::RESET 
+                 << UI::AMARELO << atual->mensagem << UI::RESET << endl;
+            atual = atual->proximo; // Pulo para o próximo bloco na HEAP
         }
-        cout << "--- FIM DA TRANSMISSÃO ---" << endl;
+        cout << UI::CIANO << UI::NEGRITO << "-----------------------------------------------" << UI::RESET << endl;
     }
 
     /**
-     * @brief Destrutor: Limpa toda a memória alocada manualmente.
-     * Crucial para evitar Memory Leaks.
+     * @brief Destrutor Industrial: Evita Memory Leaks via limpeza iterativa.
      */
     ~BufferEspacial() {
-        cout << UI::ROXO << "\n[LIMPEZA]: Desalocando memória do buffer..." << UI::RESET << endl;
+        cout << "\n" << UI::ROXO << "[LIMPEZA]: Iniciando purga de memória do satélite..." << UI::RESET << endl;
+        int nosLimpos = 0;
         TelemetriaNode* atual = cabeca;
+        
         while (atual != nullptr) {
             TelemetriaNode* temp = atual;
             atual = atual->proximo;
-            delete temp; // Libera o nó atual
+            delete temp; // Liberação física na HEAP
+            nosLimpos++;
         }
-        cout << "[OK]: Memória RAM totalmente liberada." << endl;
+        cabeca = nullptr;
+        cout << UI::VERDE << "[OK]: " << nosLimpos << " blocos de memória purgados com sucesso." << UI::RESET << endl;
     }
 };
 
-// --- 4. FUNÇÃO PRINCIPAL ---
+// --- 4. EXECUÇÃO DO NÚCLEO VOYAGER ---
 
 int main()
 {
-    cout << UI::CIANO << "===============================================" << endl;
-    cout << "      VOYAGER CORE: SISTEMA DE DADOS v1.0      " << endl;
+    UI::limparTela();
+    cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
+    cout << "      VOYAGER CORE: SISTEMA DE DADOS v2.0      " << endl;
+    cout << "       (Elite Linked-Data Architecture)        " << endl;
     cout << "===============================================" << UI::RESET << endl;
 
-    // Criando a lista manual
+    // Buffer instanciado na STACK (RAII pattern)
     BufferEspacial voyagerBuffer;
 
-    // Recebendo dados aleatórios do espaço
-    voyagerBuffer.receberDados(101, "Radiação solar detectada.");
-    voyagerBuffer.receberDados(102, "Foto da lua de Júpiter processada.");
-    voyagerBuffer.receberDados(103, "Anomalia magnética no setor 7.");
+    // Simulação de telemetria recebida em tempo real
+    voyagerBuffer.receberDados(101, "Radiação solar detectada (Setor Alpha).");
+    voyagerBuffer.receberDados(102, "Análise espectral de Europa concluída.");
+    voyagerBuffer.receberDados(103, "Variação gravitacional: +0.02 G.");
+    voyagerBuffer.receberDados(104, "Check-list de propulsão: Estável.");
 
-    // Visualizando o encadeamento
+    // Transmissão consolidada
     voyagerBuffer.transmitirRelatorio();
 
     /* 
-       DICA DIDÁTICA:
-       Note que, como inserimos no INÍCIO, os dados aparecem em ordem 
-       INVERSA à chegada. Isso é uma característica da inserção O(1).
+       DICA DIDÁTICA DE ENGENHARIA:
+       Ao usar Lista Encadeada, temos flexibilidade total. Poderíamos 
+       adicionar milhões de pacotes sem nunca precisar realocar ou 
+       copiar a memória anterior (diferente do vector).
     */
 
     return 0;
@@ -118,32 +144,35 @@ int main()
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: LISTA ENCADEADA MANUAL
+    RESUMO TEÓRICO: ESTRUTURAS DINÂMICAS MANUAIS
     ===============================================================
 
-    1. ALOCAÇÃO DINÂMICA (new):
-       - Diferente do 'vector', onde os dados estão lado a lado na 
-         memória, aqui cada nó pode estar em qualquer lugar da RAM. 
-         O que os une é o endereço guardado no ponteiro 'proximo'.
+    1. ANATOMIA DO PONTEIRO 'PRÓXIMO':
+       - É o "fio" que une a lista. Sem ele, a memória HEAP estaria 
+         cheia de dados órfãos. Gerenciar esse ponteiro manualmente 
+         é a forma mais pura de programação de sistemas.
 
-    2. CUSTO DE INSERÇÃO:
-       - Inserir no início de uma lista encadeada é O(1) (constante). 
-         É muito mais rápido que inserir no início de um vector, 
-         que exigiria mover todos os outros elementos.
+    2. CUSTO O(1) vs O(n):
+       - Adicionar no início é O(1). Buscar um item pelo ID, porém, 
+         exige percorrer toda a corrente (O(n)). Em sistemas 
+         espaciais, a velocidade de gravação costuma ser mais vital 
+         que a de busca.
 
-    3. O PERIGO DO MEMORY LEAK:
-       - Como usamos 'new' para cada nó, se perdermos o ponteiro da 
-         cabeça sem dar 'delete' nos nós, aquela memória fica "presa" 
-         até o computador ser reiniciado. O Destrutor é vital aqui.
+    3. PROTEÇÃO CONTRA VAZAMENTOS:
+       - O C++ não tem Garbage Collector automático. Se o satélite 
+         esquecer de deletar um nó, a memória "morre" e a missão 
+         falha por falta de recursos (System Hang). O Destrutor é o 
+         zelador da memória.
 
-    4. NAVEGAÇÃO POR PONTEIROS:
-       - Aprendemos a usar o loop 'while (atual != nullptr)'. É a 
-         forma mais pura de percorrer estruturas de dados.
+    4. PASSAGEM POR REFERÊNCIA (ELITE):
+       - As mensagens de texto são passadas por 'const string&', 
+         evitando cópias temporárias entre a função de recebimento 
+         e a criação do nó na HEAP.
 
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Lista Duplamente Encadeada (Anterior e Próximo).
-    - Complexidade Algorítmica (Big O notation).
-    - Smart Pointers (unique_ptr) para automação de listas.
+    - Double Linked Lists (Lista Dupla): Navegação para frente e trás.
+    - Stack & Queue (Pilha e Fila): Implementadas via Lista Encadeada.
+    - Pointer Arithmetic: Manipulando endereços de memória diretamente.
     ===============================================================
 */

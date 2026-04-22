@@ -1,100 +1,101 @@
 /**
  * @file main.rs
- * @brief Sistema de Gestão de Mensagens (Atividade 03 - Nível 11).
+ * @brief Sistema de Gestão de Mensagens (Atividade 03 - Refatoração de Elite).
  * 
- * Aprendizados: Ownership (Posse), Move Semantics, Drop, Clone.
+ * @section MemoryMap
+ * - Ownership: Strings são alocadas no Heap. A variável original é a dona do ponteiro.
+ * - Borrowing: O uso de &str ou &String permite que funções acessem os dados sem tomar a posse.
+ * - Stack vs Heap: O 'Smart Pointer' da String fica no Stack (ponteiro, capacidade, tamanho), 
+ *   enquanto o conteúdo textual reside no Heap.
  * 
  * @author SENAI - Rust Master
  * @date 20/04/2026
  */
 
 /**
+ * @section Consumo de Posse
  * Esta função toma a POSSE (ownership) da string.
- * Quando a função termina, 'msg' sai de escopo e a memória é liberada (Drop).
+ * Útil quando a função precisa transformar os dados ou armazená-los.
  */
-fn processar_log(msg: String) {
-    println!("\x1b[34m[PROCESSADOR]:\x1b[0m Analisando: {}", msg);
-} // Memória de 'msg' é liberada aqui!
+fn processar_log_consumo(msg: String) {
+    println!("\x1b[34m[CONSUMO]:\x1b[0m Analisando e descartando: {}", msg);
+} // 'msg' sofre DROP aqui.
+
+/**
+ * @section Fantasma do CPU
+ * Esta função usa BORROWING (referência).
+ * Evita o custo de alocação no Heap e o uso de .clone() desnecessário.
+ */
+fn processar_log_referencia(msg: &str) {
+    println!("\x1b[32m[REFERÊNCIA]:\x1b[0m Lendo dado compartilhado: {}", msg);
+}
 
 /**
  * Esta função cria um novo log e transfere a posse para quem chamou.
  */
 fn criar_alerta(nivel: &str) -> String {
-    let alerta = format!("ALERTA_NIVEL_{}", nivel);
-    alerta // Retorna a posse para o chamador
+    format!("ALERTA_NIVEL_{}", nivel)
 }
 
 fn main() {
     println!("===============================================");
-    println!("     SKYCARGO - GESTOR DE MEMÓRIA (OWNERSHIP)  ");
+    println!("     SKYCARGO - GESTOR DE MEMÓRIA (ELITE)      ");
     println!("===============================================");
 
-    // 1. Criando uma String na Heap
-    let log_inicial = String::from("SISTEMA_INICIALIZADO");
-    
-    // 2. TRANSFERÊNCIA DE POSSE (MOVE)
-    // Ao passar 'log_inicial', main deixa de ser o dono.
-    processar_log(log_inicial);
-    
-    // println!("{}", log_inicial); // ERRO DE COMPILAÇÃO: value borrowed here after move
-    println!("[INFO]: A mensagem original foi 'movida' e destruída.");
+    // 1. Uso de Referência (Otimizado)
+    let log_estatitico = String::from("SISTEMA_OK");
+    processar_log_referencia(&log_estatitico);
+    println!("[INFO]: Log ainda disponível: {}", log_estatitico);
 
-    // 3. CLONAGEM (Cópia profunda na memória)
-    let log_importante = String::from("ERRO_SENSOR_BATERIA");
-    let copia_log = log_importante.clone(); // Duplicamos os dados na Heap
-    
-    processar_log(copia_log);
-    println!("[INFO]: Como clonamos, o log ainda existe aqui: {}", log_importante);
+    // 2. Transferência de Posse (Move)
+    let log_transitorio = String::from("INICIALIZANDO_DRONE");
+    processar_log_consumo(log_transitorio);
+    // println!("{}", log_transitorio); // ERRO: value borrowed here after move
 
-    // 4. RETORNO DE POSSE
-    let meu_alerta = criar_alerta("CRITICO");
-    println!("\x1b[31m[CENTRAL]: {}\x1b[0m", meu_alerta);
+    // 3. Custo do Clone (Evitar quando possível)
+    let log_importante = String::from("ERRO_GPS_SENSIVEL");
+    // Em vez de: processar_log_consumo(log_importante.clone());
+    // Preferimos:
+    processar_log_referencia(&log_importante);
+
+    // 4. Retorno de Posse
+    let alerta = criar_alerta("ALTO");
+    println!("\x1b[31m[CENTRAL]: {}\x1b[0m", alerta);
 
     println!("===============================================");
 }
 
-// -----------------------------------------------------------------------------
-// TESTES UNITÁRIOS
-// -----------------------------------------------------------------------------
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_criacao_alerta() {
-        let res = criar_alerta("TESTE");
-        assert_eq!(res, "ALERTA_NIVEL_TESTE");
+        assert_eq!(criar_alerta("TESTE"), "ALERTA_NIVEL_TESTE");
     }
 
     #[test]
-    fn test_ownership_transfer() {
-        let s = String::from("Olá");
-        processar_log(s);
-        // assert_eq!(s, "Olá"); // Isso faria o teste nem compilar!
+    fn test_referencia() {
+        let s = String::from("Teste");
+        processar_log_referencia(&s);
+        assert_eq!(s, "Teste"); // Garantimos que a string não foi movida
     }
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: OWNERSHIP (PROPRIEDADE)
+    RESUMO TEÓRICO: OWNERSHIP E PERFORMANCE
     ===============================================================
+    1. MOVE SEMANTICS: Ao contrário do C++, o move em Rust é uma 
+       cópia rasa (shallow copy) do stack pointer, invalidando o original.
+    2. BORROW CHECKER: Garante que você não tenha referências para 
+       dados que já sofreram Drop.
+    3. STR vs STRING: 'String' é um buffer expansível no Heap. 
+       '&str' é uma fatia (slice) imutável, muito mais eficiente para leitura.
 
-    1. POR QUE EXISTE?
-       - No C++, se você esquecer o 'delete', a memória vaza. 
-       - No Rust, o compilador rastreia quem é o dono. Quando o 
-         dono morre (sai de escopo), o Rust limpa a memória na hora.
-
-    2. O CONCEITO DE MOVE:
-       - Por padrão, passar um dado complexo para uma função 
-         TRANSFERE a posse. Isso é extremamente rápido, pois não 
-         copia os bytes, apenas muda o nome do dono.
-
-    3. CLONE:
-       - Deve ser usado com cautela, pois ele realmente copia todo 
-         o conteúdo para um novo lugar na memória RAM.
-
-    4. VANTAGEM DIDÁTICA:
-       - O aluno aprende que memória é um recurso finito e que cada 
-         byte deve ter um responsável claro.
+    ASSUNTOS CORRELATOS:
+    - Slice types (&[T] e &str).
+    - Lifetime annotations (introdução).
+    - Smart Pointers (Box, Rc, Arc).
     ===============================================================
 */

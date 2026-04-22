@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SkyCargo Alerts: Global Pub/Sub Topic for Multi-channel Notifications'
+
+# @file sns-setup.yaml
+# @brief Template IaC para provisionamento de Tópicos e Assinaturas.
+# 
+# Atividade 09 - Cloud Notifications (Nível Arquiteto).
+# 
+# @author SENAI - Cristiano Batista Pessoa
+# @date 22/04/2026
+
+Resources:
+  # 1. O TÓPICO CENTRAL
+  AlertTopic:
+    Type: AWS::SNS::Topic
+    DeletionPolicy: Retain
+    Properties:
+      TopicName: SkyCargo-Global-Alerts
+      DisplayName: "SkyCargo-Alert-System"
+
+Outputs:
+  TopicArn:
+    Description: Identificador (ARN) do tópico de alertas.
+    Value: !Ref AlertTopic

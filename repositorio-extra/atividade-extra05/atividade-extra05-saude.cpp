@@ -6,14 +6,30 @@
  * separando a lógica de exibição, cálculo de IMC e recomendação
  * hídrica em blocos reutilizáveis.
  * 
+ * @section MemoryMap Explicação de Memória
+ * O std::vector aloca seus elementos na HEAP (memória dinâmica), 
+ * permitindo redimensionamento em tempo de execução. O ponteiro 
+ * que gerencia essa memória, entretanto, reside na STACK.
+ * 
  * @author SENAI - Cristiano Batista Pessoa
  * @date 18/04/2026
  */
 
 #include <iostream>
 #include <iomanip>
+#include <string>
 
 using namespace std;
+
+// --- 0. Namespace para Interface de Usuário ---
+namespace UI {
+    const string RESET  = "\033[0m";
+    const string RED    = "\033[31m";
+    const string GREEN  = "\033[32m";
+    const string YELLOW = "\033[33m";
+    const string BLUE   = "\033[34m";
+    const string CYAN   = "\033[36m";
+}
 
 // --- 1. Protótipos das Funções (Declaração) ---
 void exibirBanner();
@@ -42,14 +58,14 @@ int main()
     double litrosAgua = recomendarAgua(pesoUser);
 
     // Relatório Final
-    cout << "\n===============================================" << endl;
+    cout << UI::GREEN << "\n===============================================" << endl;
     cout << "          RELATÓRIO DE SAÚDE INDIVIDUAL        " << endl;
     cout << "===============================================" << endl;
-    cout << "Seu IMC atual é    : " << imc << endl;
-    cout << "Meta de Água/Dia   : " << litrosAgua << " Litros" << endl;
+    cout << UI::RESET << "Seu IMC atual é    : " << UI::YELLOW << imc << UI::RESET << endl;
+    cout << "Meta de Água/Dia   : " << UI::BLUE << litrosAgua << " Litros" << UI::RESET << endl;
     cout << "-----------------------------------------------" << endl;
-    cout << "DICA: Mantenha-se sempre hidratado!" << endl;
-    cout << "===============================================" << endl;
+    cout << UI::CYAN << "DICA: Mantenha-se sempre hidratado!" << endl;
+    cout << "===============================================" << UI::RESET << endl;
 
     cout << "\nPressione Enter para finalizar...";
     cin.ignore();
@@ -66,9 +82,9 @@ int main()
  */
 void exibirBanner() 
 {
-    cout << "===============================================" << endl;
+    cout << UI::CYAN << "===============================================" << endl;
     cout << "       SISTEMA DE APOIO À SAÚDE CLÍNICA        " << endl;
-    cout << "===============================================" << endl;
+    cout << "===============================================" << UI::RESET << endl;
 }
 
 /**

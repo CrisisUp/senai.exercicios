@@ -32,5 +32,19 @@ bilionários possam usar o sistema sem erros!
 - Desenvolver um sistema de pagamento com validação de texto.
 - Integrar com as Exceções da Atividade 13 e Cores da 14.
 
+5. ANÁLISE DE FALHA CRÍTICA (RISCOS DE ARQUITETURA):
+- Arredondamento de Câmbio: Embora o sistema use centavos inteiros 
+  para evitar erros de ponto flutuante, a conversão inicial de 
+  string (vinda da UI) para float ainda é um ponto fraco. Se o 
+  usuário digitar um valor com muitas casas decimais, o `stof` 
+  pode introduzir micro-erros antes do cast para `int`.
+- Segurança de Transação: O sistema processa o aluguel na memória 
+  antes de salvar um log persistente. Se a energia cair após o 
+  `caixaTotal += preco` mas antes de um eventual `save()`, o 
+  dinheiro "estará no caixa" mas não haverá registro (Falta de logs transacionais).
+- Limites de Tipo: O uso de `int` para centavos limita o caixa a 
+  aproximadamente R$ 21 milhões. Para sistemas corporativos, deve-se 
+  usar `long long` (Guardião Financeiro Elite).
+
 "No código de um banco, um centavo perdido é um erro fatal."
 =====================================================

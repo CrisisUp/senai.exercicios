@@ -38,3 +38,22 @@ DICA TEÓRICA PARA O EXAME:
   - `s.length()`: Retorna o número de letras.
   - `s.empty()`: Verifica se a string está vazia.
 ===============================================================
+
+===============================================================
+    ANÁLISE DE FALHA CRÍTICA (OUT-OF-BOUNDS / LOOPS)
+===============================================================
+1.  OVERFLOW DE MATRIZ (OOB):
+    - Se o loop de prateleiras tentasse acessar 'armazem[3][0]', 
+      estaria acessando uma linha inexistente (índices 0, 1, 2). 
+      Isso causaria corrupção de outras variáveis na STACK.
+    
+2.  LOOP ANINHADO EXPLOSIVO:
+    - Um erro na condição de parada do loop interno (ex: j < 30 
+      em vez de j < 3) percorreria memória não inicializada, 
+      exibindo lixo ou travando o sistema.
+    
+3.  FALHA DE ALINHAMENTO (UTF-8):
+    - Se não tratássemos os bytes de caracteres acentuados, o 
+      'setw' contaria bytes e não letras, deslocando toda a 
+      tabela visual e impedindo a leitura correta pelo operador.
+===============================================================

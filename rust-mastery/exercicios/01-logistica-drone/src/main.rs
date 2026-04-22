@@ -4,8 +4,14 @@
  * 
  * Aprendizados: Imutabilidade, Tipagem f64, Testes Unitários.
  * 
- * @author SENAI - Rust Master
- * @date 20/04/2026
+ * @author SENAI - Cristiano Batista Pessoa
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Rust Safety Standard)
+ * - nome_drone: String Literal (&str) alocada no CODE SEGMENT do binário.
+ * - peso_carga (f64): Alocada na STACK (8 bytes).
+ * - nivel_bateria (f64): Alocada na STACK (8 bytes).
+ * - Ciclo de Vida: Todas as variáveis são destruídas ao fim do escopo da main().
  */
 
 /// Verifica se o drone tem condições técnicas para decolagem.
@@ -22,19 +28,19 @@ fn main() {
     let peso_carga = 3.2;
     let nivel_bateria = 85.0;
 
-    println!("===============================================");
-    println!("     SKYCARGO - SISTEMA DE DECOLAGEM           ");
-    println!("===============================================");
-    println!("Drone: {}", nome_drone);
+    println!("\x1b[36m===============================================\x1b[0m");
+    println!("     SKYCARGO - SISTEMA DE DECOLAGEM v2.0      ");
+    println!("\x1b[36m===============================================\x1b[0m");
+    println!("Drone: \x1b[1m{}\x1b[0m", nome_drone);
 
     if pode_decolar(peso_carga, nivel_bateria) {
-        // Uso de cores ANSI no terminal
+        // Uso de cores ANSI no terminal para feedback UX
         println!("\x1b[32m[STATUS]: DECOLAGEM AUTORIZADA!\x1b[0m");
     } else {
-        println!("\x1b[31m[ALERTA]: CONDIÇÕES INSUFICIENTES.\x1b[0m");
+        println!("\x1b[31m[ALERTA]: CONDIÇÕES INSUFICIENTES PARA VOO.\x1b[0m");
     }
 
-    println!("===============================================");
+    println!("\x1b[36m===============================================\x1b[0m");
 }
 
 // -----------------------------------------------------------------------------
@@ -62,21 +68,28 @@ mod tests {
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: O FUNDAMENTO DO RUST
+    RESUMO TEÓRICO: SEGURANÇA ATÔMICA DO RUST
     ===============================================================
 
-    1. IMUTABILIDADE:
-       - No C++, variáveis podem mudar a qualquer momento. No Rust,
-         você deve pedir permissão ao compilador usando 'mut'.
-       - Isso evita que dados mudem por acidente em programas grandes.
+    1. IMUTABILIDADE ESTÁTICA:
+       - No Rust, variáveis são 'Ready-only' por padrão. Isso significa 
+         que o compilador garante que 'peso_carga' nunca mudará entre a 
+         leitura e a chamada da função, prevenindo 'Side Effects'.
 
-    2. FUNÇÕES E EXPRESSÕES:
-       - Em Rust, não precisamos sempre da palavra 'return'. 
-       - Se a última linha da função não tiver ';' ela é tratada
-         como o valor de retorno.
+    2. TIPAGEM FORTE:
+       - Diferente do C++, o Rust não faz conversões implícitas 
+         perigosas (ex: converter int para float sem avisar). Isso 
+         elimina classes inteiras de bugs de precisão.
 
-    3. SEGURANÇA NA COMPILAÇÃO:
-       - Se você tentar passar um 'int' onde a função pede 'f64',
-         o Rust nem sequer gera o executável. Zero surpresas no runtime.
+    3. TEST-DRIVEN DEVELOPMENT (TDD):
+       - A macro #[cfg(test)] permite que a validação viva no mesmo 
+         arquivo do código, facilitando a manutenção e garantindo 
+         que mudanças futuras não quebrem a lógica de decolagem.
+
+    ===============================================================
+    ASSUNTOS CORRELATOS:
+    - Shadowing: Redefinindo variáveis no mesmo escopo.
+    - Floating Point Standards (IEEE 754).
+    - Cargo: O gerenciador de pacotes e build do Rust.
     ===============================================================
 */

@@ -1,9 +1,18 @@
 /**
  * @file Armazem.h
- * @brief Implementação modular de um Armazém Genérico usando Templates.
+ * @brief Interface Genérica para Gestão de Estoque Multinível.
+ * 
+ * Atividade Extra 56 - Programação Genérica (Nível 31+).
+ * Implementa o molde para containers de qualquer tipo de dado.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Generic Container Layout)
+ * - Objeto Armazem<T>: Alocado na STACK ou HEAP.
+ * - std::vector<T> itens: O descritor está no corpo do Armazem.
+ * - Elementos T: Alocados em um bloco contíguo na HEAP.
+ * - Especialização: O espaço de cada item (sizeof(T)) é decidido pelo compilador.
  */
 
 #ifndef ARMAZEM_H
@@ -16,49 +25,53 @@
 namespace Logistica {
 
     /**
-     * @brief Classe Template Armazem (Nível 31 - Engenheiro de Elite).
-     * O tipo 'T' será definido no momento da criação do objeto.
+     * @class Armazem
+     * @brief Container universal para estocagem técnica.
+     * @tparam T Tipo da carga (Deve suportar o operador <<).
      */
     template <typename T>
     class Armazem {
     private:
+        std::string setor;
         std::vector<T> itens;
-        std::string nomeSetor;
 
     public:
-        Armazem(std::string nome) : nomeSetor(nome) {}
+        /** @brief Construtor: Nomeia o setor físico de armazenamento. */
+        Armazem(const std::string& _setor) : setor(_setor) {}
 
         /**
-         * @brief Adiciona um item genérico ao estoque.
+         * @brief Adiciona item ao estoque via Referência Constante (FANTASMA DO CPU).
          */
-        void adicionar(T item) {
+        void adicionar(const T& item) {
             itens.push_back(item);
         }
 
-        /**
-         * @brief Remove o último item (Pilha LIFO).
-         */
+        /** @brief Remove a última unidade entrada (LIFO behavior). */
         void removerUltimo() {
             if (!itens.empty()) itens.pop_back();
         }
 
         /**
-         * @brief Exibe o estoque completo. 
-         * Requer que o tipo 'T' suporte o operador '<<'.
+         * @brief Itera e exibe a carga usando o polimorfismo de template.
          */
         void exibir() const {
-            std::cout << "\n\033[34m[SETOR: " << nomeSetor << "]\033[0m" << std::endl;
+            std::cout << "\n\033[36m--- MANIFESTO DE SETOR: " << setor << " ---\033[0m" << std::endl;
             if (itens.empty()) {
-                std::cout << "  (Vazio)" << std::endl;
+                std::cout << " [VAZIO]" << std::endl;
                 return;
             }
+
+            int count = 1;
             for (const auto& item : itens) {
-                std::cout << "  - " << item << std::endl;
+                std::cout << "  " << count++ << ". " << item << std::endl;
             }
+            std::cout << "\033[36m" << std::string(35, '-') << "\033[0m" << std::endl;
         }
 
-        size_t totalItens() const { return itens.size(); }
+        // Getters
+        size_t getQuantidade() const { return itens.size(); }
     };
-}
+
+} // namespace Logistica
 
 #endif // ARMAZEM_H

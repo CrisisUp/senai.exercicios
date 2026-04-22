@@ -20,6 +20,15 @@ Este desafio integra TODO o conhecimento da trilha SQL Mastery, com foco no Nív
 4. Criar um script de consulta que utilize **WITH RECURSIVE** para listar todas as peças de um drone específico.
 5. Demonstrar uma transição de estado/limpeza usando as restrições de integridade.
 
+## ⚠️ Análise de Falha Crítica (Falhas de Logística)
+
+Em um Data Warehouse global, falhas de integridade e lógica podem cegar a diretoria e causar prejuízos multimilionários:
+
+1.  **Distorção de Ranking Regional:** O uso inadequado de Window Functions (`RANK()` vs `DENSE_RANK()`) ou a falta de tratamento de nulos em agregações de distância podem distorcer a produtividade real, levando a investimentos errôneos em regiões menos eficientes.
+2.  **Recursão Infinita e Travamento de Servidor:** Falhas na definição de ciclos em tabelas de componentes (`Recursive CTEs`) podem causar loops infinitos que consomem toda a CPU/RAM do banco de dados, paralisando a operação global.
+3.  **Expurgo Acidental de Ativos (Cascata Descontrolada):** O uso imprudente de `ON DELETE CASCADE` pode resultar na deleção de anos de histórico de viagens e componentes ao remover um drone da frota, se não houver um processo de arquivamento (Shadow Tables) antes da exclusão.
+4.  **Inconsistência Monetária Global:** A conversão de moedas e o armazenamento de custos em `REAL` em um DW de larga escala amplificam erros de arredondamento, tornando impossível uma auditoria financeira precisa entre diferentes continentes.
+
 ## 🏗️ Estrutura de Arquivos Obrigatória
 - `README.md`: Este guia.
 - `queries.sql`: A arquitetura completa do Data Warehouse.

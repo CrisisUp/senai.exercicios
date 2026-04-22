@@ -1,9 +1,19 @@
 /**
  * @file Imovel.h
- * @brief Definição modular de Imóveis usando Herança e Polimorfismo.
+ * @brief Interface Polimórfica para Gestão de Imóveis.
+ * 
+ * Atividade Extra 54 - Arquitetura Modular (Nível 21+).
+ * Demonstra a ligação dinâmica (Late Binding) e destrutores virtuais.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Polymorphic Layout)
+ * - vptr (Virtual Pointer): Cada instância (Casa/Apto) na RAM contém um ponteiro 
+ *   para a V-TABLE (8 bytes).
+ * - V-TABLE: Tabela no DATA SEGMENT mapeando o endereço real de calcularTotal().
+ * - Heap/Stack: Objetos podem residir em ambos, mas o acesso polimórfico 
+ *   costuma ocorrer via ponteiros para a Base na HEAP.
  */
 
 #ifndef IMOVEL_H
@@ -14,61 +24,66 @@
 namespace Imobiliaria {
 
     /**
-     * @brief Classe Base (Pai): Define os atributos genéricos de um imóvel.
+     * @class Imovel
+     * @brief Classe Base Polimórfica (O Contrato Imobiliário).
      */
     class Imovel {
     protected:
         std::string endereco;
-        double valorBase;
+        long long valorBaseCentavos; // Guardião Financeiro
 
     public:
-        Imovel(std::string end, double valor);
-        
-        // Destrutor Virtual: Essencial ao usar herança para evitar memory leaks.
-        virtual ~Imovel() {}
+        Imovel(const std::string& _end, double _valor);
 
         /**
-         * @brief Método Virtual: Define um comportamento que as subclasses podem sobrescrever.
-         * @return O valor total (neste caso, apenas o valor base).
+         * @brief Método Virtual: Define comportamento redefinível pelas filhas.
+         * @return double Valor total convertido para real (apenas na interface).
          */
         virtual double calcularTotal() const;
 
-        std::string getEndereco() const { return endereco; }
+        /**
+         * @brief DESTRUTOR VIRTUAL: REGRA DE OURO DA POO ELITE.
+         * Garante que as classes filhas sejam limpas da RAM.
+         */
+        virtual ~Imovel();
+
+        // Getters
+        const std::string& getEndereco() const { return endereco; }
     };
 
     /**
-     * @brief Classe Derivada (Filho): Especialização para Apartamentos.
+     * @class Apartamento
+     * @brief Especialização com regras de condomínio.
      */
     class Apartamento : public Imovel {
     private:
-        double condomínio;
+        long long taxaCondominioCentavos;
 
     public:
-        Apartamento(std::string end, double valor, double cond);
-
-        /**
-         * @brief Sobrescrita do Cálculo (Override):
-         * Adiciona o valor do condomínio ao valor base do aluguel.
-         */
+        Apartamento(const std::string& _e, double _v, double _condo);
+        
+        /** @brief Sobrescrita (Override) da lógica de cálculo. */
         double calcularTotal() const override;
+        
+        ~Apartamento() override;
     };
 
     /**
-     * @brief Classe Derivada (Filho): Especialização para Casas.
+     * @class Casa
+     * @brief Especialização com regras de manutenção predial.
      */
     class Casa : public Imovel {
     private:
-        double manutencaoJardim;
+        long long taxaJardimCentavos;
 
     public:
-        Casa(std::string end, double valor, double jard);
-
-        /**
-         * @brief Sobrescrita do Cálculo (Override):
-         * Adiciona a manutenção de jardim ao valor base.
-         */
+        Casa(const std::string& _e, double _v, double _jardim);
+        
         double calcularTotal() const override;
+        
+        ~Casa() override;
     };
-}
+
+} // namespace Imobiliaria
 
 #endif // IMOVEL_H

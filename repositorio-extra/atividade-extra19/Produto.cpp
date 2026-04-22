@@ -1,6 +1,6 @@
 /**
  * @file Produto.cpp
- * @brief Implementação dos métodos do modelo Produto.
+ * @brief Implementação dos métodos da classe Produto.
  * 
  * @author SENAI - Cristiano Batista Pessoa
  * @date 22/04/2026
@@ -11,18 +11,26 @@
 
 using namespace std;
 
-Produto::Produto(string s, string n, int q, double p) 
+/**
+ * @brief Construtor otimizado (Fase 3+).
+ */
+Produto::Produto(const string& s, const string& n, int q, double p)
     : sku(s), nome(n), quantidade(q), preco(p) {}
 
+/**
+ * @brief Exibe dados formatados com cores ANSI para status de estoque.
+ */
 void Produto::exibirLinha() const {
-    cout << left << setw(10) << sku 
-         << setw(25) << nome 
-         << right << setw(10) << fixed << setprecision(2) << preco;
+    cout << left << setw(12) << sku 
+         << left << setw(20) << nome;
     
-    // Alerta visual de estoque baixo
+    // Feedback visual para estoque crítico
     if (quantidade < 5) {
-        cout << UI::VERMELHO << setw(10) << quantidade << " [!] " << UI::RESET << endl;
+        cout << UI::VERMELHO << UI::NEGRITO << right << setw(10) << quantidade << UI::RESET;
     } else {
-        cout << UI::VERDE << setw(10) << quantidade << UI::RESET << endl;
+        cout << UI::VERDE << right << setw(10) << quantidade << UI::RESET;
     }
+
+    cout << fixed << setprecision(2) 
+         << right << setw(12) << "R$ " << preco << endl;
 }

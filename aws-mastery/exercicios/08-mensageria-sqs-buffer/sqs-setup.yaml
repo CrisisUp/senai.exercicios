@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SkyCargo Resilience: Main Maintenance Queue with DLQ Protection'
+
+# @file sqs-setup.yaml
+# @brief Template IaC para provisionamento de Filas e DLQs.
+# 
+# Atividade 08 - Cloud Messaging (Nível Arquiteto).
+# 
+# @author SENAI - Cristiano Batista Pessoa
+# @date 22/04/2026
+
+Resources:
+  # 1. FILA DE LIXO (DEAD LETTER QUEUE)
+  MaintenanceDLQ:
+    Type: AWS::SQS::Queue
+    DeletionPolicy: Retain
+    Properties:
+      QueueName: SkyCargo-Maintenance-DLQ
+
+  # 2. FILA PRINCIPAL (WITH REDRIVE POLICY)
+  MaintenanceQueue:
+    Type: AWS::SQS::Queue
+    DeletionPolicy: Retain
+    Properties:
+      QueueName: SkyCargo-Maintenance-Queue
+      VisibilityTimeout: 60
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt MaintenanceDLQ.Arn
+        maxReceiveCount: 5 # Tenta 5 vezes antes de descartar p/ DLQ
+
+Outputs:
+  QueueUrl:
+    Description: URL da fila principal de manutenção.
+    Value: !Ref MaintenanceQueue
+  QueueArn:
+    Description: ARN da fila para integração com Lambda.
+    Value: !GetAtt MaintenanceQueue.Arn

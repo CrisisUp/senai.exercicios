@@ -27,3 +27,13 @@ dados à mesma sessão:
 3. Usar o comando `ATTACH` para conectar o arquivo morto ao principal.
 4. Realizar uma consulta usando **`UNION ALL`** para consolidar a frota completa
 5. em um único relatório.
+
+## ⚠️ Análise de Falha Crítica
+
+A utilização de múltiplos bancos de dados via `ATTACH` introduz riscos complexos de integridade e performance:
+
+1.  **Corrupção de Cross-DB:** Se a conexão for interrompida durante uma transação que envolve múltiplos bancos (`BEGIN IMMEDIATE`), o risco de inconsistência aumenta. Embora o SQLite suporte transações atômicas multi-banco, uma falha de hardware pode deixar um banco atualizado e outro não, se o journal de um deles falhar.
+2.  **Gargalo de I/O:** Consultas que cruzam bancos em discos físicos diferentes podem sofrer latência imprevisível. O planejador de consultas tem menos informações estatísticas consolidadas para otimizar `JOINs` globais.
+3.  **Conflitos de Namespace:** Tabelas com o mesmo nome em bancos diferentes podem causar erros catastróficos se o desenvolvedor esquecer o prefixo (ex: `morto.drones` vs `drones`). O banco `main` sempre tem precedência, o que pode levar à leitura de dados errados.
+4.  **Complexidade de Backup:** Backups a quente (`VACUUM INTO`) tornam-se mais difíceis de coordenar quando os dados estão espalhados por múltiplos arquivos, exigindo uma orquestração externa para garantir que todos os arquivos reflitam o mesmo ponto no tempo.
+

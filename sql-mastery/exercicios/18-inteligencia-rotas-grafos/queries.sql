@@ -1,56 +1,76 @@
+/**
+ * @file queries.sql
+ * @brief Inteligência de Rotas (Graph Pathfinding com CTE Recursiva).
+ * @author Gemini CLI
+ * @date 2026-04-19
+ * @section ExecutionPlan Estratégia de Navegação Recursiva e Prevenção de Ciclos.
+ */
+
 -- ==============================================================================
 -- ATIVIDADE 18: INTELIGÊNCIA DE ROTAS (GRAPH NAVIGATION)
 -- OBJETIVO: Resolver problemas de logística e caminhos usando SQL.
 -- ==============================================================================
 
--- 1. Setup do Mapa de Conexões
+-- 1. Setup do Mapa de Conexões com Guardião Financeiro
 CREATE TABLE IF NOT EXISTS conexoes_bases (
     origem TEXT NOT NULL,
     destino TEXT NOT NULL,
-    distancia REAL NOT NULL
+    distancia REAL NOT NULL,
+    custo_frete_cents INTEGER NOT NULL DEFAULT 0 CHECK (custo_frete_cents >= 0)
 );
 
 DELETE FROM conexoes_bases;
 
 -- Populando o Grafo (O mapa de rede)
-INSERT INTO conexoes_bases (origem, destino, distancia) VALUES 
-('BASE-A', 'BASE-B', 150.0),
-('BASE-B', 'BASE-C', 200.0),
-('BASE-B', 'BASE-D', 450.0),
-('BASE-C', 'BASE-D', 100.0),
-('BASE-D', 'BASE-E', 300.0);
+INSERT INTO conexoes_bases (origem, destino, distancia, custo_frete_cents) VALUES 
+('BASE-A', 'BASE-B', 150.0, 5000),   -- R$ 50,00
+('BASE-B', 'BASE-C', 200.0, 7500),   -- R$ 75,00
+('BASE-B', 'BASE-D', 450.0, 15000),  -- R$ 150,00
+('BASE-C', 'BASE-D', 100.0, 3000),   -- R$ 30,00
+('BASE-D', 'BASE-E', 300.0, 12000);  -- R$ 120,00
 
 -- 2. CONSULTA DE NAVEGAÇÃO RECURSIVA
--- Queremos sair da BASE-A e ver todas as formas de chegar a outros lugares.
-
+-- @section ExecutionPlan: A CTE recursiva expande a árvore de busca em memória.
 WITH RECURSIVE navegador_rotas AS (
     -- [A] ÂNCORA: Iniciar na BASE-A
-    SELECT destino, 
-           distancia AS km_total, 
-           origem || ' -> ' || destino AS trajeto,
-           1 AS paradas
+    SELECT 
+        destino, 
+        distancia AS km_total, 
+        custo_frete_cents AS custo_total_cents,
+        origem || ' -> ' || destino AS trajeto,
+        1 AS paradas
     FROM conexoes_bases
     WHERE origem = 'BASE-A'
 
     UNION ALL
 
     -- [B] MEMBRO RECURSIVO: Buscar o próximo salto
-    SELECT c.destino, 
-           n.km_total + c.distancia, 
-           n.trajeto || ' -> ' || c.destino,
-           n.paradas + 1
+    SELECT 
+        c.destino, 
+        n.km_total + c.distancia, 
+        n.custo_total_cents + c.custo_frete_cents,
+        n.trajeto || ' -> ' || c.destino,
+        n.paradas + 1
     FROM conexoes_bases c
     JOIN navegador_rotas n ON c.origem = n.destino
     -- Prevenção de Ciclos (Não passar pela mesma base duas vezes)
     WHERE n.trajeto NOT LIKE '%' || c.destino || '%'
+      AND n.paradas < 10 -- Limite de segurança contra explosão de caminhos
 )
 -- Consulta Final: Verificando as opções para chegar na BASE-D
-SELECT trajeto AS "Rota Completa",
-       km_total AS "Distância Total",
-       paradas AS "Qtd de Saltos"
+SELECT 
+    trajeto AS "Rota Completa",
+    km_total AS "Distância Total",
+    custo_total_cents / 100.0 AS "Custo Total (R$)",
+    paradas AS "Qtd de Saltos"
 FROM navegador_rotas
 WHERE destino = 'BASE-D'
 ORDER BY km_total ASC;
+
+-- Auditoria da Performance de Recursão
+EXPLAIN QUERY PLAN
+WITH RECURSIVE t(n) AS (VALUES(1) UNION ALL SELECT n+1 FROM t WHERE n<5)
+SELECT * FROM t;
 
 /* 
     ===============================================================
@@ -58,21 +78,18 @@ ORDER BY km_total ASC;
     ===============================================================
 
     1. O QUE É UM GRAFO EM SQL?
-       - É uma tabela onde cada registro representa uma conexão entre 
-         dois pontos (Nodes). Muito usado em redes sociais (amizades) 
-         e logística (rotas).
+       - Representação de conexões entre Nodes (Bases) e Edges (Rotas).
 
     2. ACÚMULO DE DADOS NA RECURSÃO:
-       - 'n.km_total + c.distancia': Estamos somando os valores de 
-         cada trecho conforme o SQL "anda" pelo mapa.
+       - Soma de quilometragem e custos financeiros em tempo real.
 
-    3. PREVENÇÃO DE LOOPS (CICLOS):
-       - 'NOT LIKE %destino%': Impede que o drone fique voando em 
-         círculos entre bases, o que faria a query travar o banco.
+    3. GUARDIÃO FINANCEIRO:
+       - Garante que o custo total da logística seja exato (INTEGER).
 
-    VANTAGEM DIDÁTICA: 
-    O aluno aprende que o SQL é uma ferramenta matemática poderosa, 
-    capaz de resolver problemas de "Caminho Mais Curto" (Shortest Path) 
-    que normalmente exigiriam algoritmos complexos em outras linguagens.
+    ===============================================================
+    ASSUNTOS CORRELATOS:
+    - Algoritmo de Dijkstra em SQL.
+    - Hierarchical Data (Adjacency List vs Nested Sets).
+    - Window Functions vs Recursion.
     ===============================================================
 */

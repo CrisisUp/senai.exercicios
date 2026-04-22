@@ -7,6 +7,11 @@
  * 
  * @author SENAI - Cristiano Batista Pessoa
  * @date 18/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória
+ * - Matriz (ItemLogistica): Alocada na STACK (estática) por possuir tamanho fixo.
+ * - std::string: O objeto de controle está na STACK, mas o texto longo 
+ *   é alocado dinamicamente na HEAP.
  */
 
 #include <iostream>
@@ -15,30 +20,53 @@
 
 using namespace std;
 
+// Namespace para Interface de Usuário com cores ANSI
+namespace UI {
+    const string RESET = "\033[0m";
+    const string VERDE = "\033[32m";
+    const string VERMELHO = "\033[31m";
+    const string AMARELO = "\033[33m";
+    const string CIANO = "\033[36m";
+}
+
+struct ItemLogistica {
+    string nome;
+    long long valorCents; // Guardião Financeiro: Integridade Bancária
+};
+
 // --- 1. Protótipos das Funções ---
 void exibirBanner();
-void exibirMapa(string armazem[3][3]);
-int contarLetrasVisuais(string s); // O segredo do alinhamento
-void imprimirCelula(string s, int largura);
+void exibirMapa(const ItemLogistica armazem[3][3]);
+int contarLetrasVisuais(const string& s); // Fantasma do CPU: Referência constante
+void imprimirCelula(const string& s, int largura);
 
 // --- 2. Função Principal ---
 int main()
 {
-    string armazem[3][3];
+    ItemLogistica armazem[3][3];
     exibirBanner();
 
-    cout << "\n--- MAPEAMENTO DO ARMAZÉM ---" << endl;
+    cout << UI::AMARELO << "\n--- MAPEAMENTO DO ARMAZÉM ---" << UI::RESET << endl;
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            cout << "C" << (i + 1) << " P" << (j + 1) << ": ";
-            getline(cin >> ws, armazem[i][j]);
-            if (armazem[i][j].empty()) armazem[i][j] = "---";
+            cout << "C" << (i + 1) << " P" << (j + 1) << " Nome : ";
+            getline(cin >> ws, armazem[i][j].nome);
+            if (armazem[i][j].nome.empty() || armazem[i][j].nome == "---") {
+                armazem[i][j].nome = "VAZIO";
+                armazem[i][j].valorCents = 0;
+            } else {
+                double preco;
+                cout << "C" << (i + 1) << " P" << (j + 1) << " Valor (R$): ";
+                cin >> preco;
+                armazem[i][j].valorCents = (long long)(preco * 100 + 0.5);
+            }
         }
     }
 
     exibirMapa(armazem);
 
     cout << "\nPressione Enter para finalizar...";
+    cin.ignore();
     cin.get();
     return 0;
 }
@@ -48,11 +76,11 @@ int main()
 /**
  * CONTA APENAS O QUE O OLHO VÊ (Ignora bytes extras de acentos).
  */
-int contarLetrasVisuais(string s) {
+int contarLetrasVisuais(const string& s) {
     int visual = 0;
+    // Fantasma do CPU: Loop com char simples (cópia de byte é desprezível)
     for (unsigned char c : s) {
         // Em UTF-8, bytes extras começam com os bits '10'.
-        // Nós só contamos bytes que NÃO são extras (0x80 = 10000000).
         if ((c & 0xC0) != 0x80) visual++;
     }
     return visual;
@@ -61,57 +89,64 @@ int contarLetrasVisuais(string s) {
 /**
  * Imprime o texto e completa com espaços até a largura desejada.
  */
-void imprimirCelula(string s, int largura) {
+void imprimirCelula(const string& s, int largura) {
     int letras = contarLetrasVisuais(s);
     cout << s;
-    // Adiciona os espaços que faltam para chegar na largura
     for (int i = 0; i < (largura - letras); i++) {
         cout << " ";
     }
 }
 
-void exibirMapa(string armazem[3][3]) 
+void exibirMapa(const ItemLogistica armazem[3][3]) 
 {
-    cout << "\n--- MAPA ATUAL DO ESTOQUE (Alinhamento Real) ---" << endl;
-    cout << "--------------------------------------------------------" << endl;
-    cout << "CORR | PRATELEIRA 1    | PRATELEIRA 2    | PRATELEIRA 3    |" << endl;
-    cout << "--------------------------------------------------------" << endl;
+    cout << UI::CIANO << "\n--- MAPA ATUAL DO ESTOQUE (Alinhamento Real) ---" << endl;
+    cout << "------------------------------------------------------------------------" << endl;
+    cout << "CORR | PRATELEIRA 1      | PRATELEIRA 2      | PRATELEIRA 3      |" << endl;
+    cout << "------------------------------------------------------------------------" << UI::RESET << endl;
 
     for (int i = 0; i < 3; i++) 
     {
-        cout << "C" << (i + 1) << "   | ";
+        cout << UI::CIANO << "C" << (i + 1) << "   | " << UI::RESET;
         for (int j = 0; j < 3; j++) 
         {
-            imprimirCelula(armazem[i][j], 15); // Cada célula tem 15 de largura
-            cout << " | ";
+            imprimirCelula(armazem[i][j].nome, 17); 
+            cout << UI::CIANO << " | " << UI::RESET;
         }
         cout << endl;
+        
+        // Exibe os valores (Guardião Financeiro)
+        cout << "     | ";
+        for (int j = 0; j < 3; j++) {
+            string v = "R$ " + to_string(armazem[i][j].valorCents / 100.0);
+            // Corta se for muito longo para o terminal
+            if(v.length() > 17) v = v.substr(0, 14) + "...";
+            imprimirCelula(v, 17);
+            cout << UI::CIANO << " | " << UI::RESET;
+        }
+        cout << endl << UI::CIANO << "------------------------------------------------------------------------" << UI::RESET << endl;
     }
-    cout << "--------------------------------------------------------" << endl;
 }
 
 void exibirBanner() {
-    cout << "===============================================" << endl;
+    cout << UI::VERDE << "===============================================" << endl;
     cout << "       SISTEMA DE LOGÍSTICA DE ARMAZÉM         " << endl;
-    cout << "===============================================" << endl;
+    cout << "===============================================" << UI::RESET << endl;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: LÓGICA DE BYTES vs VISUAL
+    RESUMO TEÓRICO: LÓGICA DE BYTES E GUARDIÃO FINANCEIRO
     ===============================================================
-    1. O QUE APRENDEMOS:
-       - 'setw' e 'length()' contam BYTES (memória). 
-       - Caracteres especiais (á, õ, ç) ocupam 2 bytes. 
-       - Isso quebra tabelas no terminal.
+    1. GUARDIÃO FINANCEIRO:
+       - O uso de 'long long valorCents' protege o sistema contra 
+         erros de arredondamento em matrizes de grandes estoques.
 
-    2. A FUNÇÃO 'contarLetrasVisuais':
-       - Ela analisa os bits de cada byte. Se o byte for apenas a 
-         "continuação" de um acento, ela não conta como letra nova.
-       - Isso garante que "café" conte como 4 e "leite" como 5.
+    2. FANTASMA DO CPU:
+       - Passagem de matrizes e strings por referência constante 
+         evita a cópia de centenas de bytes a cada chamada de função.
 
-    3. MANIPULAÇÃO MANUAL:
-       - Quando as ferramentas prontas (setw) falham, o programador 
-         C++ usa laços 'for' para preencher espaços manualmente.
+    3. UTF-8 BITWISE:
+       - A operação '(c & 0xC0) != 0x80' é uma técnica de baixo nível 
+         para identificar o início de um caractere multi-byte.
     ===============================================================
 */

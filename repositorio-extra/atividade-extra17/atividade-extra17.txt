@@ -3,6 +3,7 @@ ESTUDO DE CASO: SISTEMA DE MONITORAMENTO DE SINAIS VITAIS (UTI)
 DOMÍNIO: Medicina / Engenharia Biomédica
 ATIVIDADE: Extra 17
 CONCEITO NOVO: Classes e Encapsulamento (private/public)
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 1. O CENÁRIO
 Em uma Unidade de Terapia Intensiva (UTI), os monitores cardíacos coletam dados
@@ -21,13 +22,22 @@ permitem o ENCAPSULAMENTO:
 - Métodos Públicos (public): Funções especiais (Getters e Setters) que validam 
   os dados antes de permitir a alteração.
 
-3. REQUISITOS DO SISTEMA
+3. ANÁLISE DE FALHA CRÍTICA (NÍVEL ARQUITETURA)
+- RISCO DE INPUT FAILURE: Se o monitor receber um caractere alfabético no lugar 
+  de um valor numérico (BPM), o fluxo do C++ (std::cin) entrará em estado de erro 
+  (failbit). Sem validação, o sistema pode entrar em loop infinito de alarmes.
+- RISCO DE ESTOURO DE PILHA (STACK): Como instanciamos o objeto Paciente na 
+  Stack, se criarmos milhões de pacientes simultaneamente em uma função recursiva, 
+  o sistema sofrerá um Stack Overflow.
+- RISCO DE VIOLAÇÃO DE ENCAPSULAMENTO: Se o programador retornar um ponteiro 
+  direto para um membro privado, a segurança da classe é quebrada. Por isso, 
+  usamos referências constantes (const&).
+
+4. REQUISITOS DO SISTEMA
 - Criar uma classe 'PacienteMonitorado'.
 - Atributos privados: frequenciaCardiaca (bpm), temperatura e oxigenacao.
 - Métodos públicos:
-    * Setters: Devem validar se o BPM está entre 0 e 250, Temperatura entre 30 
-    e 45, e Oxigenação entre 0 e 100%. Caso receba um valor inválido, o sistema 
-    deve ignorar e manter o valor anterior (ou lançar uma exceção).
-    * Getters: Para leitura segura dos dados.
-    * Gerar Alerta: Um método que analisa se os sinais estão fora do normal.
+    * Setters: Validar faixas médicas seguras.
+    * Getters: Acesso somente-leitura otimizado (CPU Ghost prevention).
+    * Gerar Alerta: Interface visual colorida para triagem rápida.
 ------------------------------------------------------------------------------

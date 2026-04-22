@@ -20,3 +20,8 @@ No **Nível 32 (Engenheiro de Performance)**, exploramos a manipulação direta 
 4. Alocar um `Vec<i32>` e converter seu ponteiro para um ponteiro cru mutável.
 5. Chamar a função C dentro de um bloco `unsafe`.
 6. Exibir os dados processados pelo C no terminal Rust.
+
+## ⚠️ Análise de Falha Crítica
+- **Deadlocks:** Se o C travar um mutex global e o Rust tentar chamá-lo de outra thread sem liberar um lock correspondente, teremos um deadlock indetectável pelo Rust.
+- **Send/Sync Violations:** `*mut T` **NÃO** é `Send` nem `Sync`. Se você tentar mover um ponteiro cru para outra thread, o compilador impedirá. Você deve encapsular o ponteiro em uma struct e implementar `unsafe impl Send for MyStruct {}` se tiver certeza da segurança (Newtype pattern).
+- **Stack vs Heap:** O `Vec<i32>` aloca o buffer no **Heap**. O ponteiro cru retornado por `as_mut_ptr()` aponta para esse Heap. Se o `Vec` sair de escopo (drop), o ponteiro torna-se um **Dangling Pointer**, e o C causará um Segmentation Fault se tentar acessá-lo.

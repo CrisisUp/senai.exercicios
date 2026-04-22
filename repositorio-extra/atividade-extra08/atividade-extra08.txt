@@ -38,3 +38,24 @@ if(data_teste.tm_wday == 0 || data_teste.tm_wday == 6) {
     // É FINAL DE SEMANA!
 }
 ===============================================================
+
+===============================================================
+    ANÁLISE DE FALHA CRÍTICA (OUT-OF-BOUNDS / LOOPS)
+===============================================================
+1.  ESTOURO DE VETOR (OOB):
+    - Se o loop de dias (1 a 30) tentasse acessar 'folha[d]' em um 
+      vetor não redimensionado (push_back resolve isso), o programa 
+      tentaria escrever em memória protegida, causando o "Aborted" 
+      ou "Segmentation Fault".
+    
+2.  LOOP INFINITO (CALENDÁRIO):
+    - Uma falha na lógica do 'mktime' ou um incremento errado no 
+      loop 'for(int d=1; d<=30; d++)' impediria que o holerite fosse 
+      gerado, mantendo o processo preso no cálculo.
+    
+3.  CORRUPÇÃO FINANCEIRA (FLOATING POINT):
+    - O uso de 'double' para somas sucessivas de 30 dias pode 
+      acumular erros de arredondamento binário (ex: 0.1 + 0.2 != 0.3). 
+      A solução de ELITE é usar "Centavos Inteiros" (Guardião 
+      Financeiro).
+===============================================================

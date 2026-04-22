@@ -3,6 +3,7 @@ ESTUDO DE CASO: SISTEMA DE TRÁFEGO AÉREO (AIR CONTROL)
 DOMÍNIO: Aviação / Engenharia Aeroespacial
 ATIVIDADE: Extra 22
 CONCEITO NOVO: Polimorfismo (Métodos Virtuais e Sobrescrita)
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 1. O CENÁRIO
 Uma torre de controle de aeroporto precisa gerenciar diversos tipos de aeronaves: 
@@ -17,16 +18,22 @@ O POLIMORFISMO (através da palavra-chave 'virtual') permite a "Ligação Dinâm
 - Método Virtual: Avisa ao compilador: "Não decida agora qual função usar; 
   espere o programa rodar e veja quem é o objeto de verdade".
 - Override: A classe filha sobrescreve o comportamento da mãe com sua própria 
-  lógica (ex: Helicóptero decola verticalmente, Avião precisa de pista).
+  lógica.
 
-3. REQUISITOS DO SISTEMA
-- Classe Base 'Aeronave':
-    * Método virtual 'decolar()'.
-    * Método virtual 'pousar()'.
-- Classe 'AviaoComercial' (Filha):
-    * Implementa decolagem usando pista.
-- Classe 'Helicoptero' (Filha):
-    * Implementa decolagem vertical.
-- O programa deve demonstrar a torre de controle comandando uma lista de 
-  aeronaves diferentes usando apenas ponteiros da classe base.
+3. 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ARQUITETURA)
+- RISCO DE VAZAMENTO DE MEMÓRIA (MEMORY LEAK): Sem um destrutor virtual na 
+  classe mãe, ao deletar um 'Helicoptero' através de um ponteiro 'Aeronave*', 
+  apenas a memória da base é limpa. A memória extra da classe filha fica presa na 
+  RAM para sempre (Zumbi de Memória).
+- OVERHEAD DE PERFORMANCE (V-TABLE): Chamadas polimórficas exigem um "pulo" extra 
+  na tabela de ponteiros (V-Table). Em loops de altíssima performance (bilhões de 
+  ciclos), isso pode ser um gargalo.
+- RISCO DE INDIREÇÃO NULA: Se a lista da torre contiver um ponteiro 'nullptr', o 
+  sistema sofrerá um Crash imediato (Segfault) ao tentar autorizar a decolagem.
+
+4. REQUISITOS DO SISTEMA
+- Classe Base 'Aeronave' com destrutor virtual e métodos virtuais.
+- Sobrescrita (Override) obrigatória nas subclasses.
+- Gestão dinâmica de memória (Heap) com limpeza rigorosa.
+- Interface ANSI para visualização de telemetria aérea.
 ------------------------------------------------------------------------------

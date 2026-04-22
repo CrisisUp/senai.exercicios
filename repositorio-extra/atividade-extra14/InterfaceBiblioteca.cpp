@@ -33,7 +33,7 @@ void GestorEstilizado::carregarCatalogo() {
                 l.titulo = linha.substr(0, pos1);
                 l.autor = linha.substr(pos1 + 1, pos2 - pos1 - 1);
                 l.estoque = stoi(linha.substr(pos2 + 1));
-                l.id = catalogo.size();
+                l.id = (int)catalogo.size();
                 catalogo.push_back(l);
             }
         } catch (...) {
@@ -41,10 +41,10 @@ void GestorEstilizado::carregarCatalogo() {
         }
     }
     arquivo.close();
-    cout << Cor::VERDE << "[SISTEMA]: Catálogo colorido carregado com sucesso." << Cor::RESET << endl;
+    cout << UI::VERDE << "[SISTEMA]: Catálogo colorido carregado com sucesso." << UI::RESET << endl;
 }
 
-void GestorEstilizado::salvarRelatorio() {
+void GestorEstilizado::salvarRelatorio() const {
     ofstream rel("repositorio-extra/atividade-extra14/relatorio_final.txt", ios::trunc);
     if (!rel.is_open()) rel.open("relatorio_final.txt", ios::trunc);
 
@@ -62,18 +62,18 @@ void GestorEstilizado::salvarRelatorio() {
         temp.pop();
     }
     rel.close();
-    cout << Cor::VERDE << "[SISTEMA]: Relatório gerado com sucesso." << Cor::RESET << endl;
+    cout << UI::VERDE << "[SISTEMA]: Relatório gerado com sucesso." << UI::RESET << endl;
 }
 
-void GestorEstilizado::adicionarLeitor(string nome) {
-    if (nome.empty()) throw ErroBiblioteca(Cor::AMARELO + "[AVISO]: Nome do leitor vazio." + Cor::RESET);
+void GestorEstilizado::adicionarLeitor(const string& nome) {
+    if (nome.empty()) throw ErroBiblioteca(UI::AMARELO + "[AVISO]: Nome do leitor vazio." + UI::RESET);
     filaLeitores.push(nome);
-    cout << Cor::VERDE << "[OK]: " << nome << " entrou na fila." << Cor::RESET << endl;
+    cout << UI::VERDE << "[OK]: " << nome << " entrou na fila." << UI::RESET << endl;
 }
 
 void GestorEstilizado::atenderLeitor(int index) {
     if (index < 0 || index >= (int)catalogo.size()) {
-        throw ErroBiblioteca(Cor::VERMELHO + "[ERRO]: Índice de livro inválido." + Cor::RESET);
+        throw ErroBiblioteca(UI::VERMELHO + "[ERRO]: Índice de livro inválido." + UI::RESET);
     }
 
     if (catalogo[index].estoque <= 0) {
@@ -97,27 +97,27 @@ void GestorEstilizado::atenderLeitor(int index) {
     catalogo[index].estoque--;
     historico.push(emp);
     
-    cout << Cor::VERDE << "[SUCESSO]: Empréstimo de '" << emp.livro.titulo << "' registrado!" << Cor::RESET << endl;
+    cout << UI::VERDE << "[SUCESSO]: Empréstimo de '" << emp.livro.titulo << "' registrado!" << UI::RESET << endl;
 }
 
 void GestorEstilizado::desfazerUltimo() {
     if (historico.empty()) {
-        throw ErroBiblioteca(Cor::AMARELO + "[AVISO]: Nenhum empréstimo para desfazer." + Cor::RESET);
+        throw ErroBiblioteca(UI::AMARELO + "[AVISO]: Nenhum empréstimo para desfazer." + UI::RESET);
     }
     Emprestimo ultimo = historico.top();
     catalogo[ultimo.indexCatalogo].estoque++;
-    cout << Cor::AMARELO << "[DESFEITO]: Livro '" << ultimo.livro.titulo << "' voltou ao estoque." << Cor::RESET << endl;
+    cout << UI::AMARELO << "[DESFEITO]: Livro '" << ultimo.livro.titulo << "' voltou ao estoque." << UI::RESET << endl;
     historico.pop();
 }
 
-string GestorEstilizado::formatarData(time_t t) {
+string GestorEstilizado::formatarData(time_t t) const {
     char buffer[20];
     struct tm * timeinfo = localtime(&t);
     strftime(buffer, sizeof(buffer), "%d/%m/%Y", timeinfo);
     return string(buffer);
 }
 
-int GestorEstilizado::lerInteiro(string prompt) {
+int GestorEstilizado::lerInteiro(const string& prompt) {
     int valor;
     cout << prompt;
     if (!(cin >> valor)) {
@@ -129,8 +129,8 @@ int GestorEstilizado::lerInteiro(string prompt) {
 }
 
 void GestorEstilizado::exibirBanner() {
-    cout << Cor::CIANO << "===============================================" << Cor::RESET << endl;
-    cout << Cor::CIANO << Cor::NEGRITO << "      BIBLIOTECA DIGITAL v2.0 (ANSI UI)        " << Cor::RESET << endl;
-    cout << Cor::CIANO << "      (Arquitetura Modular Refatorada)         " << Cor::RESET << endl;
-    cout << Cor::CIANO << "===============================================" << Cor::RESET << endl;
+    cout << UI::CIANO << "===============================================" << UI::RESET << endl;
+    cout << UI::CIANO << UI::NEGRITO << "      BIBLIOTECA DIGITAL v2.0 (ANSI UI)        " << UI::RESET << endl;
+    cout << UI::CIANO << "      (Arquitetura Modular Refatorada)         " << UI::RESET << endl;
+    cout << UI::CIANO << "===============================================" << UI::RESET << endl;
 }

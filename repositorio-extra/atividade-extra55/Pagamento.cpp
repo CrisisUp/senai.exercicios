@@ -1,9 +1,9 @@
 /**
  * @file Pagamento.cpp
- * @brief Implementação das formas de pagamento modulares.
+ * @brief Implementação dos Motores de Liquidação (ABC Pattern).
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
  */
 
 #include "Pagamento.h"
@@ -12,27 +12,37 @@
 
 namespace Financeiro {
 
-    // IMPLEMENTAÇÃO CLASSE BASE (ABSTRATA)
-    void MetodoPagamento::exibirRecibo(double valor, std::string tipo) const {
-        std::cout << "\033[32m[RECIBO]:\033[0m Pagamento de R$ " << std::fixed 
-                  << std::setprecision(2) << valor << " realizado via: " << tipo << std::endl;
+    // --- CARTÃO DE CRÉDITO ---
+
+    CartaoCredito::CartaoCredito(const std::string& _num) 
+        : numeroCartao(_num) {}
+
+    void CartaoCredito::processar(double valor) {
+        // Guardião Financeiro: Operando em centavos internamente
+        long long centavos = static_cast<long long>(valor * 100);
+        
+        std::cout << "[GATEWAY ADQUIRENTE]: Comunicando com rede Visa/Master..." << std::endl;
+        std::cout << " >> Cartão: " << numeroCartao.substr(0, 4) << " XXXX XXXX " << numeroCartao.substr(12) << std::endl;
+        std::cout << " >> Autorizado: R$ " << std::fixed << std::setprecision(2) << (centavos/100.0) << std::endl;
     }
 
-    // IMPLEMENTAÇÃO CARTÃO DE CRÉDITO
-    CartaoCredito::CartaoCredito(std::string num) : numeroCartao(num) {}
+    CartaoCredito::~CartaoCredito() {}
 
-    void CartaoCredito::processar(double valor) const {
-        std::cout << "Conectando com a operadora de cartões..." << std::endl;
-        std::cout << "Autorizando transação no cartão: ****" << numeroCartao.substr(numeroCartao.length() - 4) << std::endl;
-        exibirRecibo(valor, "Cartão de Crédito");
+    // --- PIX ---
+
+    Pix::Pix(const std::string& _chave) 
+        : chavePix(_chave) {}
+
+    void Pix::processar(double valor) {
+        long long centavos = static_cast<long long>(valor * 100);
+
+        std::cout << "[GATEWAY PIX]: Gerando Payload de Liquidação Instantânea..." << std::endl;
+        std::cout << " >> Chave Destino: " << chavePix << std::endl;
+        std::cout << " >> Valor Pendente: R$ " << (centavos/100.0) << std::endl;
+        std::cout << " >> [SISTEMA]: QR-Code gerado. Aguardando confirmação do BACEN..." << std::endl;
+        std::cout << " >> [SUCESSO]: Liquidação concluída via G-Pay." << std::endl;
     }
 
-    // IMPLEMENTAÇÃO PIX
-    Pix::Pix(std::string chave) : chavePix(chave) {}
+    Pix::~Pix() {}
 
-    void Pix::processar(double valor) const {
-        std::cout << "Gerando QR Code Dinâmico para a chave: " << chavePix << std::endl;
-        std::cout << "Aguardando confirmação do Banco Central..." << std::endl;
-        exibirRecibo(valor, "Pix");
-    }
-}
+} // namespace Financeiro

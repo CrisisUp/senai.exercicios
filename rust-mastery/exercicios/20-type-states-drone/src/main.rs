@@ -2,13 +2,24 @@
  * @file main.rs
  * @brief Atividade 20: Estados por Tipo (Type States).
  *
- * Aprendizados: Zero-Sized Structs, Generics para estados, Ownership para transições.
+ * @section Aprendizado
+ * Zero-Sized Structs, Generics para estados, Ownership para transições.
+ *
+ * @section MemoryMap: Zero-cost Abstractions
+ * - As structs marcadoras (Terra, Voo, Manutencao) são Zero-Sized Types (ZST).
+ * - Em tempo de execução, elas ocupam 0 bytes na memória RAM.
+ * - O `PhantomData<S>` também é removido pelo compilador.
+ * - O custo de segurança é pago inteiramente em Tempo de Compilação.
  *
  * @author SENAI - Rust Master
  * @date 20/04/2026
  */
-use std::io::{self, Write};
 use std::marker::PhantomData;
+
+/// @section Fantasma do CPU: Performance
+/// No 'Type States', o código de máquina gerado é exatamente o mesmo que se não usássemos tipos.
+/// O 'Fantasma do CPU' não precisa realizar verificações de estado (checks) no processador,
+/// pois o Rust garante que o drone estará no estado correto pela estrutura do código.
 
 // -----------------------------------------------------------------------------
 // STRUCTS MARCADORAS (ZERO-SIZED TYPES)
@@ -30,6 +41,7 @@ struct Drone<S> {
 // COMPORTAMENTO COMUM (Para todos os estados)
 // -----------------------------------------------------------------------------
 impl<S> Drone<S> {
+    #[allow(dead_code)]
     fn id(&self) -> &str {
         &self.id
     }
@@ -80,6 +92,7 @@ impl Drone<Terra> {
     }
 
     // Transição: Terra -> Manutenção
+    #[allow(dead_code)]
     fn recolher_para_oficina(self) -> Drone<Manutencao> {
         println!(
             "\x1b[33m[OFFLINE]: Drone {} enviado para manutenção preventiva.\x1b[0m",
@@ -165,29 +178,30 @@ mod tests {
 
 /*
     ===============================================================
-    RESUMO TEÓRICO: TYPE STATES (MÁQUINA DE ESTADOS EM COMPILAÇÃO)
+    RESUMO TEÓRICO: TYPE STATES (FASE ELITE - SEGURANÇA TOTAL)
     ===============================================================
 
     1. O QUE SÃO TYPE STATES?
-       - É o uso de tipos diferentes para representar diferentes
-         estados de um mesmo objeto.
+       - É o uso de tipos diferentes (ZSTs) para representar estados
+         distintos de um mesmo objeto em tempo de compilação.
 
     2. VANTAGEM SOBRE ENUMS:
-       - Um 'enum Status { Terra, Voo }' exige que você verifique o
-         estado em tempo de execução (runtime).
-       - Com Type States, se você tentar chamar um método de voo em
-         um objeto que está em 'Terra', o código NEM COMPILA.
-       - O erro é detectado antes do usuário sequer receber o programa.
+       - Enums são verificados em Runtime. Type States são
+         verificados em Compile-Time.
+       - Erros de lógica de negócio (ex: decolar em manutenção) se
+         tornam erros de compilação, não bugs em produção.
 
-    3. CONSUMO DE PROPRIEDADE (self):
-       - Note que os métodos de transição usam 'self' (sem &). Isso
-         significa que o objeto no estado antigo é DESTRUÍDO e um
-         novo objeto no estado novo é CRIADO.
-       - Isso impede que você use a variável antiga por acidente.
+    3. ZERO COST ABSTRACTION (MemoryMap):
+       - Structs vazias e PhantomData não ocupam espaço na RAM.
+       - A segurança é "grátis" para o usuário final, com o custo
+         sendo pago apenas durante o build.
 
-    4. VANTAGEM DIDÁTICA:
-       - O aluno aprende o verdadeiro poder do sistema de tipos do
-         Rust: não apenas evitar Nulls, mas evitar erros de Lógica
-         de Negócio.
+    4. CONSUMO DE PROPRIEDADE (Ownership):
+       - Ao usar 'fn metodo(self)', garantimos a transição atômica
+         de estados, prevenindo o uso acidental do estado antigo.
+
+    5. FANTASMA DO CPU:
+       - O processador não executa nenhuma instrução extra para
+         manter essa segurança; é pura semântica de tipos do Rust.
     ===============================================================
 */

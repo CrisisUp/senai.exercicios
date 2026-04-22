@@ -42,7 +42,7 @@ void SistemaERP::carregarDados() {
         getline(ss, s_margem, ';');
         
         if (!s_id.empty()) {
-            estoque.push_back({stoi(s_id), s_nome, stoi(s_est), stoi(s_custo), stoi(s_margem)});
+            estoque.push_back({stoi(s_id), s_nome, stoi(s_est), stoll(s_custo), stoi(s_margem)});
         }
     }
     arq.close();
@@ -118,7 +118,7 @@ void SistemaERP::realizarVenda() {
     if (idx < 0 || idx >= (int)estoque.size()) throw ErroERP("ID inválido.");
     if (estoque[idx].estoque <= 0) throw ErroERP("Produto indisponível.");
 
-    int preco = estoque[idx].getPrecoVenda();
+    long long preco = estoque[idx].getPrecoVenda();
     saldoCaixa += preco;
     estoque[idx].estoque--;
     filaClientes.pop();
@@ -141,7 +141,7 @@ void SistemaERP::comprarEstoque() {
 
     if (idx < 0 || idx >= (int)estoque.size()) throw ErroERP("ID inválido.");
     
-    long long total = (long long)estoque[idx].custoCentavos * qtd;
+    long long total = estoque[idx].custoCentavos * qtd;
     if (total > saldoCaixa) throw ErroERP("Saldo insuficiente para compra.");
 
     saldoCaixa -= total;
@@ -161,7 +161,7 @@ void SistemaERP::pagarGastosFixos() {
     usleep(500000);
 }
 
-void SistemaERP::mostrarAuditoria() {
+void SistemaERP::mostrarAuditoria() const {
     UI::limparTela();
     cout << UI::CIANO << "--- DASHBOARD DE AUDITORIA ---" << UI::RESET << endl;
     cout << "\nULTIMAS OPERAÇÕES (LIFO):" << endl;
@@ -179,19 +179,21 @@ void SistemaERP::mostrarAuditoria() {
     cin.ignore(1000, '\n'); cin.get();
 }
 
-void SistemaERP::registrarLog(string desc, long long valor) {
+void SistemaERP::registrarLog(const string& desc, long long valor) {
     logs.push({getAgora(), desc, valor});
 }
 
-void SistemaERP::gerarRelatorioFinal() {
+void SistemaERP::gerarRelatorioFinal() const {
     ofstream arq("repositorio-extra/atividade-extra16/DRE_SESSAO.txt");
     if (!arq.is_open()) arq.open("DRE_SESSAO.txt");
     arq << "RELATÓRIO ERP - FECHAMENTO DE CAIXA\n";
     arq << "Saldo Final: " << formatarMoeda(saldoCaixa) << "\n\n";
-    while (!logs.empty()) {
-        LogOperacao l = logs.top();
+    
+    stack<LogOperacao> temp = logs;
+    while (!temp.empty()) {
+        LogOperacao l = temp.top();
         arq << "[" << l.timestamp << "] " << l.acao << " : " << formatarMoeda(l.valorImpacto) << "\n";
-        logs.pop();
+        temp.pop();
     }
     arq.close();
     cout << UI::VERDE << "\n[ERP]: Fechamento concluído. Verifique DRE_SESSAO.txt." << UI::RESET << endl;
@@ -205,7 +207,7 @@ string SistemaERP::formatarMoeda(long long centavos) {
     return ss.str();
 }
 
-string SistemaERP::getAgora() {
+string SistemaERP::getAgora() const {
     time_t t = time(0);
     struct tm * now = localtime(&t);
     char b[10];

@@ -2,9 +2,17 @@
  * @file main.rs
  * @brief Atividade 16: Cálculos Legados (Unsafe e FFI).
  *
- * Aprendizados: FFI (Interação C-Rust), blocos unsafe, build.rs.
+ * @section MemoryMap Mapeamento de Memória (Mestre)
+ * - **Stack:** Argumentos (`f64`) são passados via Stack seguindo a ABI do C (System V ou Windows x64).
+ * - **Unsafe Boundary:** O bloco `unsafe` sinaliza que o Rust abre mão das garantias de memória
+ *   ao cruzar a fronteira para o código C.
+ * - **Foreign Memory:** Se o C alocasse memória, ela estaria em um Heap externo ao controle do Rust.
  *
- * @author SENAI - Rust Master
+ * @section FantasmaCPU Fantasma do CPU: Eficiência de Referências
+ * Chamadas FFI têm um overhead mínimo (apenas alguns ciclos de CPU para ajuste de registradores).
+ * É a forma mais eficiente de reutilizar lógica de baixo nível sem reescrever tudo em Rust.
+ *
+ * @author SENAI - Rust Master (Refatoração de Elite Fase 2)
  * @date 20/04/2026
  */
 use std::io::{self, Write};
@@ -54,29 +62,25 @@ fn main() {
 
 /*
     ===============================================================
-    RESUMO TEÓRICO: UNSAFE RUST E FFI
+    RESUMO TEÓRICO: UNSAFE RUST E FFI (ELITE)
     ===============================================================
 
     1. O QUE É UNSAFE?
-       - Não significa "código ruim". Significa que o compilador
-         não consegue provar a segurança.
-       - O unsafe permite: desreferenciar ponteiros crus, chamar
-         funções externas e acessar variáveis globais mutáveis.
+       - Permite: desreferenciar ponteiros crus, chamar funções FFI,
+         acessar estáticos mutáveis e implementar traits unsafe.
 
     2. FFI (Foreign Function Interface):
-       - É o mecanismo que permite que linguagens diferentes se
-         comuniquem.
-       - Rust é excelente nisso, sendo frequentemente usado para
-         substituir partes críticas de sistemas em C/C++.
+       - Usa a ABI (Application Binary Interface) do C como padrão de ouro
+         para interoperabilidade entre linguagens.
 
-    3. BUILD.RS:
-       - Um script que roda ANTES da compilação do Rust. No nosso
-         caso, ele invoca o compilador de C para gerar a biblioteca
-         estática que o Rust vai usar.
+    3. BUILD.RS E LINKAGEM:
+       - O script de build instrui o linker do Rust sobre onde encontrar
+         os símbolos externos compitados (bibliotecas estáticas ou dinâmicas).
 
-    4. VANTAGEM DIDÁTICA:
-       - O aluno aprende que o Rust não é uma "bolha". Ele pode
-         aproveitar 40 anos de bibliotecas escritas em C, trazendo
-         performance sem abrir mão da segurança no resto do sistema.
+    ASSUNTOS CORRELATOS:
+    - Bindgen (geração automática de bindings).
+    - C-style Enums e Structs em Rust (#[repr(C)]).
+    - Manipulação de Strings entre C e Rust (CString, CStr).
+    - Pânico através da fronteira FFI (comportamento indefinido).
     ===============================================================
 */

@@ -28,3 +28,10 @@ As transações básicas (`BEGIN/COMMIT`) são "Tudo ou Nada". Os **SAVEPOINTS**
 5. Criar um `SAVEPOINT` chamado `calibragem_ok`.
 6. Simular uma falha na Etapa 3 e usar `ROLLBACK TO` para voltar ao checkpoint da calibragem.
 7. Confirmar a transação final.
+
+## ⚠️ Análise de Falha Crítica
+
+*   **Riscos de Performance Locks:** Manter transações abertas com múltiplos `SAVEPOINTS` por longos períodos impede que outros processos realizem manutenção no banco e pode segurar locks de escrita em linhas cruciais, causando filas de espera (lock contention).
+*   **Vacuum Latency:** Transações longas impedem que o banco limpe páginas antigas. No SQLite, isso atrasa o reaproveitamento de espaço; em outros bancos (como Postgres), isso impede o avanço do `FREEZE` e do `VACUUM`, causando lentidão sistêmica.
+*   **Heap Bloat:** O uso excessivo de `SAVEPOINTS` dentro de loops massivos pode aumentar significativamente o uso de memória temporária e criar fragmentação no arquivo de journal, pois cada ponto de salvamento precisa ser rastreado individualmente.
+*   **Transaction Log Overflow:** Se uma transação com muitos checkpoints envolver um grande volume de modificações de dados, o log de transações (UNDO/REDO log) pode crescer até atingir o limite físico do disco, forçando um rollback automático de todo o trabalho.

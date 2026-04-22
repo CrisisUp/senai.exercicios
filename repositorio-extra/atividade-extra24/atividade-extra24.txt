@@ -1,8 +1,9 @@
-DESAFIO INTEGRADOR: SIMULADOR DE ECOSSISTEMA "BIO-CPP" v1.0
+DESAFIO INTEGRADOR: SIMULADOR DE ECOSSISTEMA "BIO-CPP" v2.0
 ------------------------------------------------------------------------------
 DOMÍNIO: Biologia Computacional / Vida Artificial
 ATIVIDADE: Extra 24 (GRANDE DESAFIO DE CICLO)
 CONCEITO INTEGRADO: Herança, Polimorfismo, Classes Abstratas, Static, Exceções.
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 1. O CENÁRIO
 Precisamos simular um ambiente fechado (uma reserva natural) contendo diferentes 
@@ -12,21 +13,24 @@ formas de vida: Plantas, Herbívoros e Carnívoros. O ecossistema evolui em
 2. A NECESSIDADE TÉCNICA
 Este projeto é o ápice da POO. Usaremos a abstração para definir o que é ser vivo:
 - CLASSE ABSTRATA 'SerVivo': Define o "contrato" de existência (comer, crescer).
-- HERANÇA: 'Planta', 'Herbivoro' e 'Carnivoro' herdam de SerVivo.
-- POLIMORFISMO: O simulador percorre uma lista de Seres Vivos. Se for uma Planta, 
-  ela faz fotossíntese; se for um animal, ele procura comida.
-- STATIC: Controlamos a "Temperatura Global" e o "Contador de População" via 
-  membros estáticos compartilhados por todos.
-- EXCEÇÕES: Lançamos eventos como 'ExtincaoEspecie' ou 'FomeCritica'.
+- HERANÇA: Especialização de comportamento (Planta, Animal).
+- POLIMORFISMO: Desacoplamento entre a gestão da reserva e a biologia individual.
+- STATIC: Controle de variáveis ambientais globais.
 
-3. REQUISITOS DO SISTEMA
-- Classe Abstrata 'SerVivo' (Método virtual puro: 'agir()').
-- Classes Concretas:
-    * 'Planta': Ganha energia automaticamente a cada ciclo.
-    * 'Animal' (Abstrata): Adiciona atributos de fome.
-    * 'Herbivoro' e 'Carnivoro': Implementam a lógica de alimentação.
-- Lógica de Ecossistema:
-    * Um 'vector' de ponteiros SerVivo* controla a vida.
-    * Persistência: Gravar o histórico de população em 'log_ecossistema.txt'.
-    * Cores ANSI: Verde (Plantas), Amarelo (Herbívoros), Vermelho (Carnívoros).
+3. 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ARQUITETURA)
+- RISCO DE ACÚMULO DE MEMÓRIA (DEAD BODIES): Se os objetos mortos não forem 
+  removidos do vetor principal, a memória Heap continuará crescendo até o 
+  esgotamento (Memory Bloat), mesmo que a população ativa seja pequena.
+- RISCO DE INVALIDAÇÃO DE ITERADOR: Se tentarmos apagar um ser vivo do vetor 
+  enquanto o loop do ciclo está rodando, o programa sofrerá um Crash (Runtime 
+  Error). Solução: Marcar para exclusão e limpar após o loop.
+- RISCO DE INSTABILIDADE DE ESTADO: Sem tratamento de exceções, a morte de um 
+  ser vivo no meio de uma interação complexa (ex: caça) deixaria o sistema em 
+  estado indefinido.
+
+4. REQUISITOS DO SISTEMA
+- Arquitetura Baseada em Contratos (ABC - Abstract Base Classes).
+- Gestão de Memória via Destrutores Virtuais e Limpeza de Lixo.
+- Otimização de CPU via referências constantes e lambdas.
+- Interface Gráfica via Terminal ANSI com telemetria de biodiversidade.
 ------------------------------------------------------------------------------

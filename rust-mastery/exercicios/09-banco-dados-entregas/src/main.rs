@@ -2,7 +2,9 @@
  * @file main.rs
  * @brief Atividade 09: Banco de Dados de Clientes (HashMap).
  * 
- * Aprendizados: HashMap, Entry API, Option, Iteraçao em Dicionários.
+ * @section MemoryMap
+ * - **HashMap na Heap:** O HashMap armazena suas chaves e valores na Heap para permitir crescimento dinâmico.
+ * - **String vs &str:** Chaves do tipo String vivem na Heap, garantindo que o HashMap possua (Ownership) os dados.
  * 
  * @author SENAI - Rust Master
  * @date 20/04/2026
@@ -27,6 +29,7 @@ fn main() {
     let mut banco_clientes = HashMap::new();
 
     // 2. Inserindo dados (O Ownership do ID e da Struct passa para o Map)
+    // Fantasma do CPU: Referências constantes evitadas aqui para garantir Ownership no Map
     banco_clientes.insert(
         String::from("111.222.333-44"), 
         HistoricoCliente { nome: String::from("João Silva"), total_entregas: 5 }
@@ -113,22 +116,20 @@ mod tests {
        - Uma coleção que armazena pares Chave-Valor. 
        - Diferente do C++, o Rust implementa o HashMap com foco 
          em segurança contra ataques de negação de serviço (DoS) 
-         via colisões de hash por padrão.
+         via colisões de hash por padrão (SipHash).
 
     2. ENTRY API:
-       - É uma das funcionalidades mais poderosas do Rust. 
        - Permite verificar, inserir ou modificar um valor em uma 
-         única operação segura e eficiente, sem precisar de 
-         múltiplas buscas no mapa.
+         única operação segura e eficiente.
 
     3. OWNERSHIP:
        - Ao inserir uma chave ou valor no HashMap, ele se torna 
-         o dono do dado. Por isso usamos 'String' em vez de '&str' 
-         se a chave precisa persistir dentro do mapa.
+         o dono do dado.
 
-    4. VANTAGEM DIDÁTICA:
-       - O aluno aprende a escolher a estrutura de dados correta 
-         para o problema (O(1) vs O(n)) e pratica o uso de 
-         Option para lidar com dados que podem não existir.
+    4. ASSUNTOS CORRELATOS:
+       - BTreeMap: Alternativa para quando chaves ordenadas são necessárias.
+       - Custom Hashers: Uso de algoritmos como FxHash para maior performance 
+         quando a segurança contra DoS não é o foco principal.
+       - Capacity & Rehash: Como pré-alocar memória para evitar realocações.
     ===============================================================
 */

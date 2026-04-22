@@ -42,3 +42,13 @@ double soma(double a, double b) {
     return a + b;
 }
 ===============================================================
+ANÁLISE DE FALHA CRÍTICA:
+1. Out-of-Bounds Memory: Ocorre ao acessar um índice inexistente 
+   em um vetor ou array (ex: acessar posicao [10] em um vetor de 
+   tamanho 10). Isso pode corromper outros dados na memória ou 
+   causar um crash (Segmentation Fault).
+2. Loop Infinito: Acontece quando a condição de parada de um 
+   laço (for/while) nunca é atingida. Consome 100% da CPU e trava 
+   a aplicação. Prevenção: Garantir que a variável de controle 
+   seja alterada corretamente dentro do bloco.
+===============================================================

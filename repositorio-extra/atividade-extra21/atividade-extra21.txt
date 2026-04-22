@@ -3,6 +3,7 @@ ESTUDO DE CASO: GESTÃO DE FROTA AGRÍCOLA (AGROTECH 4.0)
 DOMÍNIO: Agronegócio / Automação
 ATIVIDADE: Extra 21
 CONCEITO NOVO: Herança (Inheritance) e Modificador 'protected'
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 1. O CENÁRIO
 Uma fazenda inteligente utiliza diversos tipos de maquinário: Tratores, 
@@ -21,12 +22,19 @@ A HERANÇA permite criar uma classe base (Mãe) e classes derivadas (Filhas):
   as classes filhas acessem os dados da mãe, mas mantém o bloqueio para o resto 
   do mundo (segurança com flexibilidade).
 
-3. REQUISITOS DO SISTEMA
-- Classe Base 'MaquinaAgricola':
-    * Atributos protegidos: id, marca, nivelCombustivel.
-    * Método: abastecer().
-- Classe Derivada 'Trator':
-    * Atributos extras: cargaReboque.
-    * Método: operar() -> Consome combustível e verifica se há reboque.
-- Implementação de um menu simples para operar o trator.
+3. 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ARQUITETURA)
+- RISCO DE OBJECT SLICING (CORTE DE OBJETO): Se passarmos um 'Trator' por VALOR 
+  para uma função que espera uma 'MaquinaAgricola', a parte "Trator" é cortada, 
+  restante apenas a base. Isso causa perda de dados e comportamentos bizarros.
+- RISCO DE FRAGILE BASE CLASS: Se alterarmos um atributo 'protected' na classe 
+  mãe, podemos quebrar acidentalmente todas as dezenas de classes filhas que 
+  dependem daquele nome ou tipo.
+- RISCO DE ACOPLAMENTO FORTE: A herança é o vínculo mais forte entre duas 
+  classes. Um erro no design da classe base se propaga para todo o ecossistema.
+
+4. REQUISITOS DO SISTEMA
+- Classe Base 'MaquinaAgricola' com membros protegidos.
+- Classe Derivada 'Trator' com especialização funcional.
+- Uso de referências constantes para evitar overhead de cópia.
+- Interface ANSI para feedback de telemetria.
 ------------------------------------------------------------------------------

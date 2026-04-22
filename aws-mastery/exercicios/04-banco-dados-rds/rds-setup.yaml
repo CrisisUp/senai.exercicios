@@ -1,0 +1,72 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SkyCargo Data: Managed RDS Instance with Snapshot Protection'
+
+# @file rds-setup.yaml
+# @brief Template IaC para provisionamento de banco de dados relacional.
+# 
+# Atividade 04 - Cloud Database (Nível Arquiteto).
+# 
+# @author SENAI - Cristiano Batista Pessoa
+# @date 22/04/2026
+# 
+# @section CloudMap Topologia de Resiliência
+# - Resource: AWS::RDS::DBInstance (PostgreSQL).
+# - Protection: DeletionPolicy: Snapshot (Backup mandatório antes da destruição).
+# - Security: NoEcho para proteção de credenciais em trânsito.
+
+Parameters:
+  DBUser:
+    Type: String
+    Default: master_admin
+  DBPass:
+    Type: String
+    NoEcho: true
+    Description: Senha de acesso ao motor do banco de dados.
+
+Resources:
+  # 1. O FIREWALL DO BANCO (Tier 2)
+  DatabaseSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Acesso restrito ao motor SQL
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 0.0.0.0/0 # ELITE NOTE: Em produção, libere apenas o SG da App!
+
+  # 2. A INSTÂNCIA GERENCIADA
+  FinancialDB:
+    Type: AWS::RDS::DBInstance
+    DeletionPolicy: Snapshot # GARANTIA DE ELITE: Foto final dos dados se a stack cair.
+    Properties:
+      DBInstanceIdentifier: skycargo-financial-db
+      Engine: postgres
+      DBInstanceClass: db.t3.micro
+      AllocatedStorage: '20'
+      MasterUsername: !Ref DBUser
+      MasterUserPassword: !Ref DBPass
+      PubliclyAccessible: true # Apenas p/ fins educacionais (Sandbox)
+      VPCSecurityGroups:
+        - !Ref DatabaseSG
+      Tags:
+        - Key: Service
+          Value: Finance
+        - Key: Layer
+          Value: Data
+
+Outputs:
+  DBEndpoint:
+    Description: Endereço de conexão para o PostgreSQL.
+    Value: !GetAtt FinancialDB.Endpoint.Address
+  DBResourceId:
+    Description: Identificador único do recurso na AWS.
+    Value: !GetAtt FinancialDB.DbiResourceId
+
+# RESUMO TEÓRICO: PERSISTÊNCIA GERENCIADA
+# 1. SNAPSHOT POLICY: Se você deletar esta Stack por erro, a AWS não 
+#    destruirá o banco sem antes tirar uma foto completa dos dados.
+# 2. NOECHO: Protege a integridade da sua arquitetura; a senha não é 
+#    exposta nem na CLI nem no Console da AWS.
+# 3. SEPARAÇÃO DE CAMADAS: O uso de um Security Group exclusivo para o 
+#    banco permite o isolamento de rede (Tiered Security).

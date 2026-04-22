@@ -21,3 +21,9 @@ Em Rust, o **`Vec<T>`** (Vetor) é a coleção dinâmica padrão, equivalente ao
     * `remover_ultimo(&mut self) -> Option<Pacote>`: Remove e retorna o último pacote.
     * `calcular_peso_total(&self) -> f64`: Soma o peso de todos os itens usando iteradores.
 4. O programa deve exibir a lista completa de pacotes e o peso total da carga.
+
+## ⚠️ Análise de Falha Crítica
+
+*   **Riscos de Panic:** Acessar índices de um `Vec` diretamente (ex: `vec[10]`) quando o índice não existe causa panic imediato. Use `.get(index)` para segurança.
+*   **Heap Exhaustion:** Vetores crescem dinamicamente na heap. Adicionar elementos sem limite em um loop pode esgotar a memória disponível, especialmente em sistemas com recursos restritos.
+*   **Trait Misuse:** Tentar implementar `Copy` em uma struct que contém um `Vec` (que não é `Copy`) resultará em erro de compilação. Entender a diferença entre `Clone` (cópia profunda) e `Copy` (cópia de bits) é vital.

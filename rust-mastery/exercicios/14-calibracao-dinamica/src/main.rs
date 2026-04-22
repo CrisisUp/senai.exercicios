@@ -1,15 +1,23 @@
-use std::cell::RefCell; // Para mutabilidade interior
-use std::io::{self, Write};
 /**
  * @file main.rs
  * @brief Atividade 14: Calibração Dinâmica (RefCell e Interatividade).
  *
- * Aprendizados: RefCell<T>, borrow(), borrow_mut(), Mutabilidade Interior.
+ * @section MemoryMap Mapeamento de Memória (Mestre)
+ * - **Stack:** Armazena os ponteiros inteligentes `Rc<RefCell<SensorCalibragem>>`.
+ * - **Heap:** `Rc` aloca o bloco de controle (contadores) e o `RefCell` que contém o `SensorCalibragem`.
+ * - **RefCell Overhead:** Adiciona uma flag de estado (Borrow Flag) para rastrear empréstimos em runtime.
  *
- * @author SENAI - Rust Master
+ * @section FantasmaCPU Fantasma do CPU: Eficiência de Referências
+ * O uso de `borrow()` e `borrow_mut()` evita cópias desnecessárias de structs grandes, permitindo
+ * acesso direto à memória no Heap através de ponteiros seguros, mas com o custo de uma
+ * verificação de contador em runtime por acesso.
+ *
+ * @author SENAI - Rust Master (Refatoração de Elite Fase 2)
  * @date 20/04/2026
  */
 use std::rc::Rc;
+use std::cell::RefCell; // Para mutabilidade interior
+use std::io::{self, Write};
 
 #[derive(Debug)]
 struct SensorCalibragem {
@@ -118,26 +126,27 @@ mod tests {
 
 /*
     ===============================================================
-    RESUMO TEÓRICO: REFCELL E MUTABILIDADE INTERIOR
+    RESUMO TEÓRICO: REFCELL E MUTABILIDADE INTERIOR (ELITE)
     ===============================================================
 
     1. O QUE É MUTABILIDADE INTERIOR?
-       - É a habilidade de mutar um dado mesmo quando você tem apenas
-         uma referência imutável (&) para o container dele.
+       - É o padrão de design que permite mutar dados mesmo quando
+         existem referências imutáveis para esse dado. É útil para
+         implementar padrões como Observer ou Cache.
 
-    2. REFCELL<T>:
-       - Ele move as regras do "Borrow Checker" do tempo de compilação
-         para o tempo de execução.
-       - Se você tentar dar .borrow_mut() enquanto alguém está dando
-         .borrow(), o programa trava (panic) em vez de corromper dados.
+    2. REFCELL<T> VS CELL<T>:
+       - Cell<T> funciona para tipos Copy (copia o valor).
+       - RefCell<T> funciona para qualquer tipo, permitindo referências
+         (& ou &mut) via Borrow Checker em Runtime.
 
-    3. QUANDO USAR?
-       - Quando você usa Rc<T> (que é imutável) mas precisa que o dado
-         dentro dele mude conforme a necessidade do sistema.
+    3. RC<REFCELL<T>>:
+       - O "Padrão de Propriedade Compartilhada Mutável". Essencial para
+         estruturas de dados complexas como Grafos e Árvores.
 
-    4. VANTAGEM DIDÁTICA:
-       - O aluno aprende que o Rust oferece "válvulas de escape" seguras.
-         Você pode burlar regras rígidas, mas ainda terá a proteção
-         do sistema contra acessos simultâneos inválidos.
+    ASSUNTOS CORRELATOS:
+    - Interior Mutability Pattern.
+    - Thread-safety (Send/Sync traits).
+    - Unsafe Rust e o uso de UnsafeCell.
+    - Cow (Copy on Write) para otimização de memória.
     ===============================================================
 */

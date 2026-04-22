@@ -1,87 +1,120 @@
 /**
  * @file atividade-extra52-operadores.cpp
- * @brief Programa para testar a Sobrecarga de Operadores em medições de sensores.
+ * @brief Teste de Operadores Customizados para Telemetria.
+ * 
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Demonstra a integração de álgebra física com tratamento de exceções.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
  */
 
 #include <iostream>
 #include <iomanip>
-#include "Medicao.h" // Nossa interface modular de medições
+#include "Medicao.h" 
 
 using namespace std;
 using namespace IoT;
 
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
+
+namespace UI {
+    const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
+    const string VERDE    = "\033[32m";
+    const string AMARELO  = "\033[33m";
+    const string CIANO    = "\033[36m";
+    const string VERMELHO = "\033[31m";
+    const string BRANCO   = "\033[37m";
+
+    inline void limparTela() { cout << "\033[2J\033[1;1H"; }
+}
+
+// --- 2. EXECUÇÃO DA ANÁLISE DE PRECISÃO ---
+
 int main() {
-    // Definindo medições de diferentes sensores.
-    Medicao sensor_A(45.5, "psi");
-    Medicao sensor_B(30.2, "psi");
-    Medicao sensor_C(45.5, "psi");
+    UI::limparTela();
+    
+    // Instâncias de Telemetria
+    Medicao s1(45.50, "psi");
+    Medicao s2(32.15, "psi");
+    Medicao s3(45.50, "psi");
 
-    cout << "\033[33m===============================================\033[0m" << endl;
-    cout << "     SISTEMA DE ANÁLISE DE SENSORES (OPERADORES) " << endl;
-    cout << "\033[33m===============================================\033[0m" << endl;
+    cout << UI::AMARELO << UI::NEGRITO << "===============================================" << endl;
+    cout << "      G-SYSTEM: ANÁLISE DE SENSORES v2.0       " << endl;
+    cout << "       (Elite Operator Overloading Engine)     " << endl;
+    cout << UI::AMARELO << UI::NEGRITO << "===============================================" << UI::RESET << endl;
 
-    // Teste 1: Exibição usando o operador << sobrecarregado.
-    cout << "SENSOR A: " << sensor_A << endl;
-    cout << "SENSOR B: " << sensor_B << endl;
-    cout << "SENSOR C: " << sensor_C << endl;
+    // TESTE 1: Renderização via Operator<< (Friend)
+    cout << UI::BRANCO << "TELEMETRIA S1: " << UI::RESET << UI::CIANO << s1 << UI::RESET << endl;
+    cout << UI::BRANCO << "TELEMETRIA S2: " << UI::RESET << UI::CIANO << s2 << UI::RESET << endl;
+    cout << UI::BRANCO << "TELEMETRIA S3: " << UI::RESET << UI::CIANO << s3 << UI::RESET << endl;
 
-    // Teste 2: Adição usando o operador + sobrecarregado.
-    Medicao carga_total = sensor_A + sensor_B;
-    cout << "\n\033[32m[SOMA]:\033[0m A carga total da tubulação (A+B) é: " 
-         << carga_total << endl;
-
-    // Teste 3: Comparação usando o operador < sobrecarregado.
-    if (sensor_B < sensor_A) {
-        cout << "\n\033[32m[ANÁLISE]:\033[0m O sensor B está com MENOR carga que o sensor A." << endl;
-    }
-
-    // Teste 4: Igualdade usando o operador == sobrecarregado.
-    if (sensor_A == sensor_C) {
-        cout << "\033[32m[PRECISÃO]:\033[0m Os sensores A e C estão calibrados igualmente." << endl;
-    }
-
-    // Teste 5: Tratamento de erro (Tentar somar psi com Celsius).
+    // TESTE 2: Álgebra de Sensores (Operator+)
     try {
-        Medicao temp(25.0, "C");
-        cout << "\nTentando somar psi com Celsius..." << endl;
-        Medicao erro = sensor_A + temp;
+        Medicao cargaTotal = s1 + s2;
+        cout << "\n" << UI::VERDE << UI::NEGRITO << "[ALGEBRA]: " << UI::RESET 
+             << "Carga Combinada (S1+S2): " << UI::NEGRITO << cargaTotal << UI::RESET << endl;
     } catch (const exception& e) {
-        cout << "\033[31m[ERRO TRATADO]:\033[0m " << e.what() << endl;
+        cout << UI::VERMELHO << "[ERRO FISICO]: " << e.what() << UI::RESET << endl;
     }
 
-    cout << "\033[33m===============================================\033[0m" << endl;
+    // TESTE 3: Lógica de Comparação (Operator< e Operator==)
+    cout << "\n" << UI::NEGRITO << "ANÁLISE DE FLUXO E CALIBRAÇÃO:" << UI::RESET << endl;
+    
+    if (s2 < s1) {
+        cout << " >> S2 opera em regime " << UI::AMARELO << "REDUZIDO" << UI::RESET << " comparado a S1." << endl;
+    }
+
+    if (s1 == s3) {
+        cout << " >> S1 e S3 apresentam " << UI::VERDE << "CALIBRAÇÃO IDÊNTICA" << UI::RESET << "." << endl;
+    }
+
+    // TESTE 4: Proteção de Unidade (Cientista do Caos)
+    cout << "\n" << UI::VERMELHO << "[STRESS TEST]: Somando grandezas incompatíveis (PSI + C)..." << UI::RESET << endl;
+    try {
+        Medicao t1(25.0, "C");
+        Medicao falha = s1 + t1; // Deve disparar exceção
+    } catch (const exception& e) {
+        cout << UI::VERDE << "[CONTENÇÃO]: Sistema bloqueou operação ilegal: " << UI::RESET << e.what() << endl;
+    }
+
+    cout << UI::AMARELO << UI::NEGRITO << "\n===============================================" << UI::RESET << endl;
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: SOBRECARGA DE OPERADORES
+    RESUMO TEÓRICO: SOBRECARGA DE OPERADORES (ELITE)
     ===============================================================
 
-    1. O QUE É:
-       - É dar uma nova função a um operador existente para que ele
-         saiba como tratar seus próprios objetos.
-       - Melhora drasticamente a legibilidade do código.
+    1. SINTAXE NATURAL E READABILITY:
+       - O C++ permite que 's1 + s2' seja código válido para objetos. 
+         Isso remove a verbosidade de 's1.somar(s2)', tornando o 
+         sistema mais limpo e próximo da modelagem matemática.
 
-    2. OPERADORES COMUNS:
-       - Unários: ++, --, !.
-       - Binários: +, -, *, /, ==, <, >.
-       - Entrada/Saída: <<, >>.
+    2. FUNÇÕES FRIEND (operator<<):
+       - O operador de saída não é membro da classe Medicao (pois o 
+         objeto à esquerda é o std::cout). Usamos 'friend' para que 
+         essa função externa possa ler os atributos privados de 
+         Medicao sem quebrá-los.
 
-    3. PALAVRA-CHAVE 'operator':
-       - Usada para definir a função especial: `operator+(const Medicao& outras)`.
+    3. PROTEÇÃO FISICA VIA EXCEÇÕES:
+       - Operadores não devem apenas processar dados, devem garantir 
+         a lógica do domínio. Impedir a soma de PSI com Celsius via 
+         'operator+' é um exemplo de design defensivo sênior.
 
-    4. VANTAGEM DIDÁTICA:
-       - Aproxima a programação da lógica matemática real do aluno.
-       - Ensina sobre o sistema de tipos e assinaturas de funções em C++.
+    4. FANTASMA DO CPU (RETURN VALUE OPTIMIZATION):
+       - Embora o 'operator+' retorne um objeto por valor, os 
+         compiladores modernos realizam RVO (Return Value 
+         Optimization), construindo o resultado diretamente na 
+         memória de destino, eliminando cópias pesadas na Stack.
+
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Funções Friend (Amigas).
-    - Manipulação de Exceções (try-catch).
-    - Polimorfismo Ad-hoc.
+    - Operator Overloading vs Method Calling.
+    - Postfix vs Prefix operators (++obj vs obj++).
+    - Conversões Implícitas e a palavra-chave 'explicit'.
     ===============================================================
 */

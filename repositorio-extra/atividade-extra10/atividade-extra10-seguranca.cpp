@@ -19,6 +19,26 @@
 
 using namespace std;
 
+/**
+ * @namespace UI
+ * @brief Gerencia as cores e estilos da interface CLI.
+ */
+namespace UI {
+    const string RESET   = "\033[0m";
+    const string RED     = "\033[31m";
+    const string GREEN   = "\033[32m";
+    const string YELLOW  = "\033[33m";
+    const string CYAN    = "\033[36m";
+    const string BOLD    = "\033[1m";
+}
+
+/**
+ * @section MemoryMap
+ * - Pilha (std::stack): Alocada na Stack Frame da função main.
+ * - Heap: Utilizado dinamicamente pelo std::string para armazenar as mensagens de log.
+ * - fstream: Buffer de arquivo gerenciado pelo SO, aberto via stack objects.
+ */
+
 // --- 1. Protótipos das Funções ---
 void exibirBanner();
 string obterHoraAtual();
@@ -33,10 +53,11 @@ int main()
     exibirBanner();
 
     do {
-        cout << "\n--- MENU DE OPERAÇÕES ---" << endl;
+        cout << "\n" << UI::BOLD << "--- MENU DE OPERAÇÕES ---" << UI::RESET << endl;
         cout << "[1] Registrar Nova Ação" << endl;
         cout << "[2] Desfazer Última Ação (POP)" << endl;
-        cout << "[3] Salvar Histórico e Sair" << endl;
+        cout << "[3] Visualizar Pilha (Preview)" << endl;
+        cout << "[4] Salvar Histórico e Sair" << endl;
         cout << "Escolha: ";
         cin >> opcao;
 
@@ -48,18 +69,32 @@ int main()
             // Adicionando na pilha: "HORA | ACAO"
             string registro = obterHoraAtual() + " | " + acao;
             historico.push(registro);
-            cout << "[OK]: Registro adicionado ao topo da pilha." << endl;
+            cout << UI::GREEN << "[OK]: Registro adicionado ao topo da pilha." << UI::RESET << endl;
         } 
         else if (opcao == 2) {
             if (!historico.empty()) {
-                cout << "[AVISO]: Removendo: " << historico.top() << endl;
+                cout << UI::YELLOW << "[AVISO]: Removendo: " << historico.top() << UI::RESET << endl;
                 historico.pop(); // Remove o topo (LIFO)
             } else {
-                cout << "[ERRO]: Histórico vazio. Nada para desfazer." << endl;
+                cout << UI::RED << "[ERRO]: Histórico vazio. Nada para desfazer." << UI::RESET << endl;
+            }
+        }
+        else if (opcao == 3) {
+            if (historico.empty()) {
+                cout << UI::RED << "[ERRO]: Nada para exibir." << UI::RESET << endl;
+            } else {
+                cout << UI::CYAN << "\n--- PREVIEW DO LOG (TOPO PARA BASE) ---" << UI::RESET << endl;
+                stack<string> copia = historico; // Copiamos para não destruir a original
+                while (!copia.empty()) {
+                    // "Fantasma do CPU": Uso de const auto& para evitar cópia desnecessária do objeto string
+                    const auto& log = copia.top();
+                    cout << " > " << log << endl;
+                    copia.pop();
+                }
             }
         }
 
-    } while (opcao != 3);
+    } while (opcao != 4);
 
     // Salvando os dados antes de encerrar
     salvarHistorico(historico);
@@ -100,23 +135,25 @@ void salvarHistorico(stack<string> s)
 
         // Como a pilha é LIFO, os itens saem do último para o primeiro
         while (!s.empty()) {
-            arquivo << s.top() << endl;
+            // "Fantasma do CPU": Evitando cópia da string ao referenciá-la diretamente no topo
+            const auto& log = s.top();
+            arquivo << log << endl;
             s.pop();
         }
 
         arquivo << "===============================================" << endl;
         arquivo.close(); // Sempre feche o arquivo após usar!
         
-        cout << "\n[SUCESSO]: Histórico salvo em 'log_seguranca.txt'!" << endl;
+        cout << UI::GREEN << "\n[SUCESSO]: Histórico salvo em 'log_seguranca.txt'!" << UI::RESET << endl;
     } else {
-        cout << "\n[ERRO]: Não foi possível criar o arquivo de log." << endl;
+        cout << UI::RED << "\n[ERRO]: Não foi possível criar o arquivo de log." << UI::RESET << endl;
     }
 }
 
 void exibirBanner() {
-    cout << "===============================================" << endl;
-    cout << "       SISTEMA DE MONITORAMENTO VIGIA 1.0      " << endl;
-    cout << "===============================================" << endl;
+    cout << UI::CYAN << "===============================================" << UI::RESET << endl;
+    cout << UI::BOLD << "       SISTEMA DE MONITORAMENTO VIGIA 1.0      " << UI::RESET << endl;
+    cout << UI::CYAN << "===============================================" << UI::RESET << endl;
 }
 
 /* 

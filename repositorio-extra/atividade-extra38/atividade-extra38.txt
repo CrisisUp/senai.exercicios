@@ -3,6 +3,7 @@ ESTUDO DE CASO: RASTREAMENTO DE CONTÁGIO (EPIDEMIC-GRAPH)
 DOMÍNIO: Epidemiologia / Saúde Coletiva / Matemática Computacional
 ATIVIDADE: Extra 38
 CONCEITO NOVO: Grafos - Vértices, Arestas e Matriz de Adjacência
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 1. O CENÁRIO
 Um vírus altamente contagioso foi detectado. Para conter o avanço, a vigilância 
@@ -12,15 +13,23 @@ Pessoa B, e a Pessoa B encontrou a Pessoa C, o vírus pode viajar pela rede.
 2. A NECESSIDADE TÉCNICA (O que é um Grafo?)
 Uma lista simples não resolve, pois uma pessoa pode encontrar várias outras de 
 forma não linear. O GRAFO é a solução:
-- Vértices (Nodes): São as pessoas.
-- Arestas (Edges): Representam o contato físico entre elas.
-- Matriz de Adjacência: Um tabuleiro 2D onde marcamos '1' se houver contato 
-  entre a linha (Pessoa X) e a coluna (Pessoa Y), e '0' caso contrário.
+- Vértices (Nodes): Representam as entidades (Pessoas).
+- Arestas (Edges): Representam a conexão/contato físico entre elas.
+- Matriz de Adjacência: Tabela 2D de booleanos/inteiros que mapeia a conectividade.
 
-3. REQUISITOS DO SISTEMA
-- Classe 'MapaContagio':
-    * Atributo: Matriz 2D de inteiros (alocação dinâmica ou estática).
-    * Método 'registrarContato(p1, p2)': Marca a aresta no grafo.
-    * Método 'exibirMatriz()': Mostra o desenho das conexões.
-    * Método 'quemEncontrou(pessoa)': Lista os contatos diretos daquela pessoa.
+3. 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL CIÊNCIA DE DADOS)
+- RISCO DE EXPLOSÃO DE MEMÓRIA (V²): O uso de matriz de adjacência consome memória 
+  quadrática. Se mapearmos uma cidade de 1 milhão de pessoas, precisaríamos de 
+  1 TRILHÃO de inteiros na RAM (Impossível). Solução: Listas de Adjacência.
+- RISCO DE INCONSISTÊNCIA DE SIMETRIA: Em grafos não-direcionados, se o sistema 
+  marcar contato de A com B mas esquecer de marcar B com A, o grafo se torna 
+  inválido e as análises epidemiológicas falharão.
+- RISCO DE ÍNDICE FORA DE FAIXA: Tentar registrar contato entre IDs inexistentes 
+  causará um Crash por acesso ilegal a memória do vetor 2D.
+
+4. REQUISITOS DO SISTEMA
+- Implementação de Grafo via Matriz de Adjacência Dinâmica.
+- Garantia de Simetria em Contatos Não-Direcionados.
+- Proteção de performance via referências constantes.
+- Interface ANSI para visualização de matriz de risco.
 ------------------------------------------------------------------------------

@@ -1,13 +1,24 @@
+/**
+ * @file queries.sql
+ * @brief Rastreamento de Auditoria (Shadow Tables).
+ * @author Gemini CLI
+ * @date 2026-04-19
+ * @section ExecutionPlan Impacto de Write Amplification em Shadow Tables e Auditoria.
+ */
+
 -- ==============================================================================
 -- ATIVIDADE 17: RASTREAMENTO DE AUDITORIA (AUDIT TRAIL)
 -- OBJETIVO: Implementar uma "Caixa Preta" para mudanças no banco de dados.
 -- ==============================================================================
--- 1. Setup das Tabelas
+
+-- 1. Setup das Tabelas com Guardião Financeiro
 CREATE TABLE IF NOT EXISTS configuracao_drones (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     serial TEXT UNIQUE NOT NULL,
-    firmware_versao TEXT NOT NULL
+    firmware_versao TEXT NOT NULL,
+    custo_licenca_cents INTEGER NOT NULL DEFAULT 0 CHECK (custo_licenca_cents >= 0)
 );
+
 -- Tabela de Auditoria (Shadow Table)
 CREATE TABLE IF NOT EXISTS auditoria_logs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -18,21 +29,25 @@ CREATE TABLE IF NOT EXISTS auditoria_logs (
     valor_novo TEXT,
     data_hora TEXT DEFAULT CURRENT_TIMESTAMP
 );
+
 DELETE FROM configuracao_drones;
 DELETE FROM auditoria_logs;
+
 -- 2. CRIAÇÃO DO GATILHO DE AUDITORIA (UPDATE)
 -- Este gatilho verifica se a versão do firmware mudou e loga os dois estados.
+-- @section ExecutionPlan: O trigger adiciona um passo extra de INSERT a cada UPDATE.
 CREATE TRIGGER IF NOT EXISTS trg_auditoria_firmware
-AFTER
-UPDATE OF firmware_versao ON configuracao_drones FOR EACH ROW BEGIN
-INSERT INTO auditoria_logs (
+AFTER UPDATE OF firmware_versao ON configuracao_drones 
+FOR EACH ROW 
+BEGIN
+    INSERT INTO auditoria_logs (
         tabela_nome,
         registro_id,
         coluna,
         valor_antigo,
         valor_novo
     )
-VALUES (
+    VALUES (
         'configuracao_drones',
         OLD.id,
         'firmware_versao',
@@ -40,18 +55,33 @@ VALUES (
         NEW.firmware_versao
     );
 END;
+
 -- 3. TESTE DE AUDITORIA
--- A: Inserindo drone inicial
-INSERT INTO configuracao_drones (serial, firmware_versao)
-VALUES ('SN-ALPHA', 'v1.0.0');
+-- A: Inserindo drone inicial (Padrão Guardião Financeiro)
+INSERT INTO configuracao_drones (serial, firmware_versao, custo_licenca_cents)
+VALUES ('SN-ALPHA', 'v1.0.0', 15000); -- R$ 150,00
+
 -- B: Realizando um Update (Simulando uma atualização de sistema)
 UPDATE configuracao_drones
 SET firmware_versao = 'v1.2.5'
 WHERE serial = 'SN-ALPHA';
+
 -- 4. CONSULTA DE AUDITORIA
 -- O resultado mostrará a "história" da mudança sem que tenhamos feito o log manual.
-SELECT *
-FROM auditoria_logs;
+SELECT 
+    l.data_hora,
+    c.serial,
+    l.coluna,
+    l.valor_antigo,
+    l.valor_novo,
+    c.custo_licenca_cents / 100.0 AS custo_real
+FROM auditoria_logs l
+JOIN configuracao_drones c ON l.registro_id = c.id;
+
+-- Auditoria do Plano de Execução
+EXPLAIN QUERY PLAN
+SELECT * FROM auditoria_logs WHERE registro_id = 1;
+
 /* 
  ===============================================================
  RESUMO TEÓRICO: AUDIT TRAILS (GOVERNANÇA)
@@ -59,18 +89,18 @@ FROM auditoria_logs;
  
  1. TRANSPARÊNCIA: 
  - Triggers de auditoria garantem que nenhuma mudança seja 
- "silenciosa". Isso é requisito legal em muitos setores.
- 
+ "silenciosa".
+
  2. OLD vs NEW: 
- - OLD.coluna: O valor que o banco ia apagar.
- - NEW.coluna: O valor que o banco acabou de escrever.
+ - Referências internas que capturam o estado antes e depois.
  
- 3. MANUTENÇÃO:
- - Você pode criar gatilhos para DELETE também, capturando 
- os dados antes que eles sumam para sempre.
- 
- VANTAGEM DIDÁTICA: 
- O aluno aprende que o banco de dados pode ser auto-explicativo 
- e que o histórico é tão valioso quanto o estado atual.
+ 3. GUARDIÃO FINANCEIRO:
+ - Mantém a precisão monetária mesmo em registros históricos.
+
+ ===============================================================
+ ASSUNTOS CORRELATOS:
+ - Change Data Capture (CDC).
+ - Temporal Tables (Padrão SQL:2011).
+ - SQLite Session Extension.
  ===============================================================
  */

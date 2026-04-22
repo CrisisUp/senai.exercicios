@@ -1,17 +1,19 @@
 # 📘 Atividade Extra 57: A Anatomia da Memória (Gerenciador de Buffer de Log)
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 ## 🎯 Estudo de Caso
-A transportadora "LogiSpeed" está instalando terminais de monitoramento em seus caminhões. Como o hardware é limitado (pouca memória RAM), eles não podem usar bibliotecas pesadas ou coleções que crescem sozinhas sem controle. Eles precisam de um **Buffer de Memória Manual** para armazenar mensagens de log temporárias antes de enviá-las para a nuvem.
+A transportadora "LogiSpeed" está instalando terminais de monitoramento em seus caminhões. Como o hardware é limitado (pouca memória RAM), eles não podem usar bibliotecas pesadas. Eles precisam de um **Buffer de Memória Manual** para armazenar mensagens de log temporárias antes de enviá-las para a nuvem.
 
 ## 🛠️ Necessidade Técnica
-Até agora, usamos `std::vector` e `std::string`, que gerenciam a memória sozinhos. No **Nível 31 (Engenheiro de Elite)**, você deve entender como a memória funciona no "chão de fábrica".
-*   **Alocação Dinâmica (`new`):** Reserva um espaço de memória na *Heap* (uma área de memória global e persistente).
-*   **Liberação Manual (`delete`):** Diferente de Java ou Python, o C++ não tem um "Garbage Collector". Se você não liberar a memória reservada, o programa sofrerá um **Memory Leak**, travando o sistema em poucas horas.
-*   **Destrutor (`~Classe`):** O método especial que é chamado automaticamente quando o objeto sai de escopo. É o lugar sagrado onde devolvemos a memória ao sistema.
+No **Nível 31 (Engenheiro de Elite)**, você deve entender como a memória funciona no "chão de fábrica": Alocação Dinâmica (`new`), Liberação Manual (`delete`) e o Padrão RAII.
 
-## 📋 Requisitos (Arquitetura Modular)
-1. Criar a classe `BufferLog` que aloca um array de caracteres (`char*`) com tamanho fixo via `new`.
-2. Implementar o **Destrutor** para garantir que a memória seja limpa com `delete[]`.
-3. Adicionar métodos para `escreverMensagem()` e `limparBuffer()`.
-4. Demonstrar a diferença entre memória na *Stack* (automática) e na *Heap* (manual).
-5. Criar `Buffer.h`, `Buffer.cpp` e `atividade-extra57-memoria.cpp`.
+## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL PROGRAMAÇÃO DE SISTEMAS)
+- RISCO DE MEMORY LEAK (VAZAMENTO): Se o desenvolvedor esquecer de implementar o destrutor, cada ciclo de log consumirá um bloco de RAM que nunca será devolvido ao sistema operacional, resultando em falha total do computador de bordo (OOM - Out of Memory).
+- RISCO DE DOUBLE FREE: Tentar deletar o mesmo endereço de memória duas vezes (ex: via cópia rasa do objeto) causará o corrompimento imediato da Heap e o Crash do sistema.
+- RISCO DE DANGLING POINTER (PONTEIRO FANTASMA): Acessar o buffer após ele ter sido deletado lerá dados corrompidos ou causará falhas de segmentação. É obrigatório anular o ponteiro (`nullptr`) após a liberação.
+
+## 📋 Requisitos de Elite
+1. Implementação de classe `BufferLog` com gestão manual de `char*` na HEAP.
+2. Garantia de RAII total: Alocação no construtor e liberação atômica no destrutor.
+3. Tratamento de limites para evitar estouro de buffer (Buffer Overflow).
+4. Interface ANSI para telemetria de consumo de RAM.

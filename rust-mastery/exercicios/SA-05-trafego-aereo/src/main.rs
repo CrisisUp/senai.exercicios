@@ -1,13 +1,23 @@
-use std::io::{self, Write};
 /**
  * @file main.rs
- * @brief SA-05: Sistema de Controle de Tráfego Aéreo (SA-05).
+ * @brief SA-05: Sistema de Controle de Tráfego Aéreo (Refatoração de Elite).
  *
- * Integração de Arc, Mutex, Threads e Interatividade via Terminal.
+ * Implementação de alta confiabilidade para gerenciamento de aeronaves em tempo real utilizando concorrência segura.
  *
  * @author SENAI - Rust Master
  * @date 20/04/2026
+ * 
+ * @section MemoryMap Árvore de Ownership e Gerenciamento de Memória:
+ * - frota (Arc<Mutex<Vec<DroneAereo>>>): [STACK] Ponteiro atômico p/ [HEAP] Mutex que protege [HEAP] Vetor.
+ * - frota_simulacao: Clone do Arc (incrementa o contador de referências no HEAP), compartilha o mesmo Mutex.
+ * - DroneAereo: [HEAP] Alocado dentro do vetor, contém sua própria string de ID.
+ * 
+ * @section FantasmadoCPU Fantasma do CPU (Performance e Segurança):
+ * - Zero-copy: O uso de iteradores (.iter()) no vetor bloqueado pelo Mutex evita a cópia dos drones.
+ * - Referências: 'drones.iter()' e 'drones.iter_mut()' trabalham diretamente na memória protegida pelo lock.
+ * - Lifetimes: O tempo de vida do 'lock' (MutexGuard) garante que a memória não seja acessada após o desbloqueio.
  */
+use std::io::{self, Write};
 use std::sync::{Arc, Mutex};
 use std::thread;
 use std::time::Duration;
@@ -109,7 +119,7 @@ fn main() {
 
 /*
     ===============================================================
-    RESUMO TEÓRICO: DESAFIO INTEGRADOR SA-05
+    RESUMO TEÓRICO: DESAFIO INTEGRADOR SA-05 (REFATORAÇÃO DE ELITE)
     ===============================================================
 
     1. O PODER DA CONCORRÊNCIA SEGURA:
@@ -130,5 +140,10 @@ fn main() {
        - Este projeto encerra o ciclo de gerenciamento de recursos,
          provando que o aluno consegue arquitetar aplicações multi-cpu
          completas e seguras.
+
+    ASSUNTOS CORRELATOS PARA PESQUISA:
+    - Deadlocks (Como evitar o travamento mútuo entre Mutexes).
+    - Send e Sync (Traits que garantem a segurança entre threads).
+    - RwLock (Como permitir múltiplas leituras simultâneas, mas escrita única).
     ===============================================================
 */

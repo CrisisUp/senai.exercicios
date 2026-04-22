@@ -13,6 +13,12 @@ As **Window Functions (Funções de Janela)** permitem realizar cálculos que ab
 * **RANK() / ROW_NUMBER():** Atribui posições baseadas em uma ordenação.
 * **LAG() / LEAD():** Acessa dados da linha anterior ou seguinte (essencial para séries temporais).
 
+## ⚠️ Análise de Falha Crítica: Impactos de Performance em Window Functions
+
+O uso de **Window Functions** em tabelas com milhões de registros pode ser custoso. Se não houver índices que suportem a cláusula `PARTITION BY` e `ORDER BY` dentro do `OVER()`, o banco de dados precisará realizar múltiplas passagens pelos dados e criar arquivos temporários em disco.
+*   **Impacto:** Aumento drástico no tempo de resposta de relatórios analíticos.
+*   **Prevenção:** Utilizar índices compostos que cubram as colunas de partição e ordenação da janela.
+
 ## 📋 Requisitos
 
 1. Criar a tabela `desempenho_pilotos` (id, nome, regiao, entregas_realizadas).

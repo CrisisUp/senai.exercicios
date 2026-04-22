@@ -3,6 +3,7 @@ ESTUDO DE CASO: MAPEAMENTO DE TERRENO (G-TERRAIN MAPPER)
 DOMÍNIO: Geoprocessamento / Planejamento de Jogos / Exploração
 ATIVIDADE: Extra 46
 CONCEITO NOVO: Renderização por Grade (Screen Buffer) e Matrizes Genéricas
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 1. O CENÁRIO
 Um robô explorador precisa mapear uma área de 20x20 metros em busca de minerais. 
@@ -11,20 +12,27 @@ O sistema deve representar o terreno: '.' para solo vazio, '#' para rochas e
 a cada frame.
 
 2. A NECESSIDADE TÉCNICA (O Plano Cartesiano)
-Jogos Senior não usam 'cout' aleatórios. Eles usam um 'Screen Buffer' (Buffer 
-de Tela):
-- Matriz Dinâmica: Uma matriz 'largura x altura' que representa cada pixel 
-  (ou caractere) da tela.
-- Double Buffering (Conceitual): Primeiro você "pinta" tudo na matriz na 
-  memória, e depois imprime a matriz inteira de uma vez na tela. Isso evita 
-  o efeito de "flicker" (tremido).
-- Coordenadas (x, y): A base para sistemas de colisão que veremos a seguir.
+Jogos Senior não usam 'cout' aleatórios espalhados pelo código. Eles usam um 
+'Screen Buffer' (Buffer de Tela):
+- Matriz Dinâmica: Representação linear na RAM do espaço 2D.
+- Double Buffering (Conceitual): Primeiro você "pinta" o mundo na memória e 
+  depois despeja a matriz inteira no stdout em uma única operação atômica.
+- Coordenadas (x, y): A base para sistemas de colisão e pathfinding.
 
-3. REQUISITOS DO SISTEMA
-- Classe Template 'GradeTerreno<T>':
-    * Matriz 2D dinâmica de tipo T.
-    * Método 'limpar()': Preenche a grade com um caractere padrão.
-    * Método 'setPixel(x, y, valor)': Coloca um objeto em uma coordenada.
-    * Método 'renderizar()': Imprime a grade com molduras ANSI.
-- Simulação: Gerar um mapa com obstáculos fixos e um "robô" móvel.
+3. 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ENGENHARIA GRÁFICA)
+- RISCO DE COORDENADA INVERTIDA: Em matrizes 2D `buffer[y][x]`, confundir X 
+  com Y é o bug mais comum. Tentar acessar `x=20, y=5` em uma grade 20x10 causará 
+  Segmentation Fault imediato.
+- RISCO DE FLICKER (TREMIDA): Limpar a tela inteira (`clear`) antes de imprimir 
+  cada caractere causa cansaço visual. O buffer deve ser impresso em um único 
+  bloco de texto para manter a estabilidade da imagem.
+- RISCO DE ASPEC RATIO: Caracteres de terminal não são quadrados. Sem o 
+  preenchimento duplo ("##" ou "  "), o mapa parecerá achatado, prejudicando a 
+  intuição espacial do operador.
+
+4. REQUISITOS DO SISTEMA
+- Implementação de Class Template 'GradeRender<T>'.
+- Sistema de Borda Dinâmica via ANSI Escape Codes.
+- Proteção de performance via referências constantes.
+- Proporção Quadrada (Square Mapping) no terminal.
 ------------------------------------------------------------------------------

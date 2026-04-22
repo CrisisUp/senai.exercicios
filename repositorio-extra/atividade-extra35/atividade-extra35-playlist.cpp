@@ -1,12 +1,19 @@
 /**
  * @file atividade-extra35-playlist.cpp
- * @brief Player de Música: Implementação de Lista Duplamente Encadeada.
+ * @brief G-Stream Player: Engenharia de Listas Duplamente Encadeadas.
  * 
- * Demonstra a navegação bidirecional em estruturas de dados, permitindo
- * caminhar para o próximo nó ou retornar ao anterior de forma eficiente.
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Implementa navegação bidirecional e gestão de memória industrial.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Double Link Layout)
+ * - Cabeça & Cauda: Dois ponteiros na STACK (16 bytes totais).
+ * - Cursor 'atual': Ponteiro na STACK rastreando o nó ativo na HEAP.
+ * - Nós (MusicaNode): Alocados de forma não-contígua na HEAP.
+ * - Elo Duplo: Cada nó consome 16 bytes apenas em ponteiros (prev + next), 
+ *   além das strings de título e artista.
  */
 
 #include <iostream>
@@ -15,44 +22,54 @@
 
 using namespace std;
 
-// --- 1. NAMESPACE DE INTERFACE ---
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
 
 namespace UI {
     const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
     const string VERDE    = "\033[32m";
     const string AZUL     = "\033[34m";
     const string CIANO    = "\033[36m";
     const string AMARELO  = "\033[33m";
-    const string NEGRITO  = "\033[1m";
+    const string ROXO     = "\033[35m";
+    const string BRANCO   = "\033[37m";
+
+    inline void limparTela() { cout << "\033[2J\033[1;1H"; }
 }
 
-// --- 2. O NÓ DUPLO (DADO + 2 PONTEIROS) ---
+// --- 2. O NÓ DUPLO (ESTRUTURA DE DADOS) ---
 
+/**
+ * @struct MusicaNode
+ * @brief Representação atômica de uma faixa na memória com elos bidirecionais.
+ */
 struct MusicaNode {
     string titulo;
     string artista;
     MusicaNode* proximo;
     MusicaNode* anterior;
 
-    MusicaNode(string t, string a) 
+    MusicaNode(const string& t, const string& a) 
         : titulo(t), artista(a), proximo(nullptr), anterior(nullptr) {}
 };
 
-// --- 3. A PLAYLIST (ESTRUTURA DUPLA) ---
+// --- 3. A PLAYLIST (CONTROLADOR DE ELITE) ---
 
 class Playlist {
 private:
-    MusicaNode* cabeca; // Primeiro da lista
-    MusicaNode* cauda;  // Último da lista
-    MusicaNode* atual;  // Cursor de reprodução
+    MusicaNode* cabeca; // Start point
+    MusicaNode* cauda;  // End point (O(1) insertion)
+    MusicaNode* atual;  // Cursor de áudio
 
 public:
     Playlist() : cabeca(nullptr), cauda(nullptr), atual(nullptr) {}
 
     /**
-     * @brief Adiciona uma música no final da playlist (O(1) graças à cauda).
+     * @brief Adiciona faixa ao final da lista com complexidade O(1).
+     * @param t Título (const ref).
+     * @param a Artista (const ref).
      */
-    void adicionarMusica(string t, string a) {
+    void adicionarMusica(const string& t, const string& a) {
         MusicaNode* novo = new MusicaNode(t, a);
         
         if (cabeca == nullptr) {
@@ -62,123 +79,144 @@ public:
             novo->anterior = cauda;
             cauda = novo;
         }
-        cout << UI::VERDE << "[OK]: '" << t << "' adicionada à fila." << UI::RESET << endl;
-    }
-
-    void proxima() {
-        if (atual && atual->proximo) {
-            atual = atual->proximo;
-            cout << UI::AZUL << "[PLAY]: " << atual->titulo << " - " << atual->artista << UI::RESET << endl;
-        } else {
-            cout << UI::AMARELO << "[FIM]: Você já está na última música." << UI::RESET << endl;
-        }
-    }
-
-    void anterior() {
-        if (atual && atual->anterior) {
-            atual = atual->anterior;
-            cout << UI::AZUL << "[PLAY]: " << atual->titulo << " - " << atual->artista << UI::RESET << endl;
-        } else {
-            cout << UI::AMARELO << "[INÍCIO]: Você já está na primeira música." << UI::RESET << endl;
-        }
-    }
-
-    void exibirStatus() const {
-        if (!atual) return;
-        cout << "\n" << UI::CIANO << "===============================================" << endl;
-        cout << "   TOCANDO AGORA: " << UI::NEGRITO << atual->titulo << UI::RESET << endl;
-        cout << "   ARTISTA: " << atual->artista << endl;
-        cout << "===============================================" << UI::RESET << endl;
+        cout << UI::VERDE << "[SISTEMA]: " << UI::RESET << "'" << t << "' indexada ao Stream Cache." << endl;
     }
 
     /**
-     * @brief Percorre do fim para o início (Prova da lista dupla).
+     * @brief Avança o cursor para a próxima faixa via ponteiro 'proximo'.
+     */
+    void proxima() {
+        if (atual && atual->proximo) {
+            atual = atual->proximo;
+            cout << UI::AZUL << "[STREAMING]: Transição de faixa concluída." << UI::RESET << endl;
+        } else {
+            cout << UI::AMARELO << UI::NEGRITO << "[AVISO]: Fim da playlist alcançado." << UI::RESET << endl;
+        }
+    }
+
+    /**
+     * @brief Retrocede o cursor via ponteiro 'anterior' (O diferencial da lista dupla).
+     */
+    void anterior() {
+        if (atual && atual->anterior) {
+            atual = atual->anterior;
+            cout << UI::AZUL << "[STREAMING]: Retornando à faixa anterior." << UI::RESET << endl;
+        } else {
+            cout << UI::AMARELO << UI::NEGRITO << "[AVISO]: Início da playlist alcançado." << UI::RESET << endl;
+        }
+    }
+
+    /**
+     * @brief Renderiza telemetria de reprodução.
+     */
+    void exibirStatus() const {
+        if (!atual) {
+            cout << UI::AMARELO << "\n(Nenhuma faixa em reprodução)" << UI::RESET << endl;
+            return;
+        }
+        cout << "\n" << UI::CIANO << UI::NEGRITO << "===============================================" << UI::RESET << endl;
+        cout << UI::BRANCO << "   PLAYING: " << UI::RESET << UI::NEGRITO << atual->titulo << UI::RESET << endl;
+        cout << UI::BRANCO << "   ARTIST : " << UI::RESET << atual->artista << endl;
+        cout << UI::CIANO << UI::NEGRITO << "===============================================" << UI::RESET << endl;
+    }
+
+    /**
+     * @brief Exibe a trilha de ponteiros do fim ao início.
      */
     void exibirFilaReversa() const {
-        cout << "\n--- FILA DE REPRODUÇÃO (ORDEM INVERSA) ---" << endl;
+        cout << "\n" << UI::NEGRITO << "TRACE: NAVEGAÇÃO REVERSA (TAIL TO HEAD):" << UI::RESET << endl;
         MusicaNode* p = cauda;
         while (p != nullptr) {
-            cout << " <- " << p->titulo;
-            p = p->anterior;
+            cout << UI::AMARELO << " <- " << UI::RESET << p->titulo;
+            p = p->anterior; // Caminhada via Back-Pointer
         }
         cout << endl;
     }
 
+    /**
+     * @brief Destrutor Linear: Garante purga completa da HEAP.
+     */
     ~Playlist() {
+        cout << "\n" << UI::ROXO << "[LIMPEZA]: Desalocando biblioteca de mídia..." << UI::RESET << endl;
         MusicaNode* p = cabeca;
+        int count = 0;
         while (p != nullptr) {
             MusicaNode* temp = p;
             p = p->proximo;
             delete temp;
+            count++;
         }
+        cout << UI::VERDE << "[OK]: " << count << " faixas purgadas da RAM." << UI::RESET << endl;
     }
 };
 
-// --- 4. FUNÇÃO PRINCIPAL ---
+// --- 4. EXECUÇÃO DO PLAYER ---
 
 int main()
 {
-    Playlist minhaLista;
+    UI::limparTela();
+    Playlist player;
 
-    cout << UI::CIANO << "===============================================" << endl;
-    cout << "      G-STREAM PLAYER: LISTA DINÂMICA v1.0     " << endl;
+    cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
+    cout << "      G-STREAM PLAYER: ELITE AUDIO CORE        " << endl;
+    cout << "       (Double-Linked Data Architecture)       " << endl;
     cout << "===============================================" << UI::RESET << endl;
 
-    // Montando a playlist
-    minhaLista.adicionarMusica("Bohemian Rhapsody", "Queen");
-    minhaLista.adicionarMusica("Imagine", "John Lennon");
-    minhaLista.adicionarMusica("Hotel California", "Eagles");
-    minhaLista.adicionarMusica("Comfortably Numb", "Pink Floyd");
+    // População da estrutura dinâmica
+    player.adicionarMusica("Bohemian Rhapsody", "Queen");
+    player.adicionarMusica("Imagine", "John Lennon");
+    player.adicionarMusica("Hotel California", "Eagles");
+    player.adicionarMusica("Comfortably Numb", "Pink Floyd");
 
-    int opcao = 0;
+    int opt = 0;
     do {
-        minhaLista.exibirStatus();
-        cout << "[1] Próxima  [2] Anterior  [3] Ver Fila Reversa  [4] Sair" << endl;
-        cout << "Escolha: ";
-        cin >> opcao;
+        player.exibirStatus();
+        cout << UI::BRANCO << "[1] Next  [2] Prev  [3] Trace Map  [4] Shutdown" << UI::RESET << endl;
+        cout << "Action: ";
+        if (!(cin >> opt)) break;
 
-        switch (opcao) {
-            case 1: minhaLista.proxima(); break;
-            case 2: minhaLista.anterior(); break;
-            case 3: minhaLista.exibirFilaReversa(); system("sleep 2"); break;
+        switch (opt) {
+            case 1: player.proxima(); break;
+            case 2: player.anterior(); break;
+            case 3: player.exibirFilaReversa(); break;
+            case 4: cout << UI::VERMELHO << "Shutting down audio engine..." << UI::RESET << endl; break;
         }
 
-    } while (opcao != 4);
+    } while (opt != 4);
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: LISTA DUPLAMENTE ENCADEADA
+    RESUMO TEÓRICO: LISTAS DUPLAMENTE ENCADEADAS
     ===============================================================
 
-    1. O PODER DOS DOIS PONTEIROS:
-       - Cada nó agora tem consciência de quem vem antes e de quem 
-         vem depois. Isso permite que a navegação seja 
-         bidirecional, algo vital para Players, Navegadores Web 
-         (Botão Voltar/Avançar) e Editores de Texto.
+    1. O CUSTO DA NAVEGAÇÃO:
+       - Em uma lista simples, retroceder um item é O(n). Na lista 
+         dupla, o ponteiro 'anterior' reduz esse custo para O(1). 
+         É o padrão industrial para navegação de UI e histórico.
 
-    2. PONTEIRO DE CAUDA (Tail):
-       - Manter uma referência para o último nó torna a inserção 
-         no final da lista uma operação O(1). Sem a cauda, 
-         teríamos que percorrer a lista toda só para achar o 
-         lugar de inserir a nova música.
+    2. PONTEIRO DE CAUDA (TAIL):
+       - Ao manter 'cauda', a inserção no final não depende de 
+         percorrer a lista. Isso é vital para playlists ou logs, 
+         onde sempre adicionamos dados ao final da coleção.
 
-    3. COMPLEXIDADE DE MANIPULAÇÃO:
-       - Embora mais poderosa, a lista dupla exige mais cuidado: 
-         ao inserir ou remover um nó, você precisa atualizar 4 
-         ponteiros em vez de 2, para não quebrar a corrente.
+    3. PROTEÇÃO FANTASMA DO CPU:
+       - Note o uso intensivo de ponteiros constantes no loop de 
+         exibição e referências constantes na criação. Manipulamos 
+         apenas endereços (8 bytes), nunca clonamos os dados da 
+         mídia.
 
-    4. APLICAÇÕES REAIS:
-       - Histórico de Navegação, Algoritmos de Cache (LRU), e 
-         qualquer sistema que exija o conceito de "Desfazer/Refazer" 
-         (Undo/Redo).
+    4. RESILIÊNCIA DE PONTEIROS:
+       - A complexidade da lista dupla está na atualização de 
+         endereços. Cada nó inserido requer 4 atribuições de 
+         ponteiros para manter a integridade bidirecional da cadeia.
 
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Lista Circular (O último aponta para o primeiro).
-    - Iteradores Bidirecionais da STL.
-    - Estruturas de Dados Persistentes.
+    - Circular Doubly Linked Lists (Loop de Playlist).
+    - Skip Lists: Melhorando a busca em listas encadeadas.
+    - Sentinel Nodes: Simplificando o código de inserção/emoção.
     ===============================================================
 */

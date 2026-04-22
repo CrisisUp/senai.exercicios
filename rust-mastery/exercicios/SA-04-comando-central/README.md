@@ -19,3 +19,13 @@ Este desafio integra os conhecimentos das Atividades 10 a 12:
     - Filtrar apenas os dispositivos que apresentam falha de segurança.
     - Transformar os IDs desses dispositivos em uma lista de strings para o esquadrão de manutenção.
 6. Garantir que o sistema seja robusto contra falhas de hardware ausente (Uso de Option).
+
+---
+
+## ⚠️ Análise de Falha Crítica (Engenharia de Confiabilidade)
+
+Como este sistema lida com infraestrutura crítica, devemos prever os seguintes cenários de falha em uma implementação de baixo nível:
+
+1.  **Riscos de Race Conditions:** Em um ambiente multithreaded (ex: telemetria chegando via rádio enquanto a central analisa falhas), sem o uso de `Arc<Mutex<T>>` ou `channels`, dois processos poderiam tentar atualizar o estado da bateria de um drone simultaneamente, levando a estados corrompidos ou leituras obsoletas.
+2.  **Transactional Inconsistency:** Se uma falha é detectada na `BaseCarregamento` (curto-circuito), o comando de "Desligamento de Emergência" deve ser atômico. Se o sistema falhar entre a detecção e o comando, a estação pode sofrer danos físicos permanentes. Rust mitiga isso forçando o tratamento de todos os caminhos de erro com `Result`.
+3.  **Buffer Overflows em Sockets:** Na transmissão via rádio/rede, o uso de buffers fixos sem verificação de limites (comum em C legado) é a porta de entrada para ataques. O sistema de tipos do Rust e a segurança de memória garantem que, mesmo em transmissões genéricas, nunca acessaremos memória fora dos limites do buffer de transmissão.

@@ -12,6 +12,12 @@ As **CTEs (Common Table Expressions)**, definidas pela cláusula **`WITH`**, fun
 * **Reusabilidade:** Você pode consultar a mesma CTE várias vezes dentro da mesma query.
 * **Organização:** Separa a lógica de "preparação dos dados" da lógica de "exibição final".
 
+## ⚠️ Análise de Falha Crítica: Recursion Bloat em CTEs
+
+Embora poderosas, as CTEs recursivas podem causar o **Recursion Bloat** (Inchaço por Recursão). Se a condição de parada não for bem definida ou o conjunto de dados for cíclico, a query pode consumir toda a memória RAM ou gerar um estouro de pilha.
+*   **Impacto:** Queda do serviço de banco de dados e lentidão sistêmica.
+*   **Prevenção:** Sempre utilizar cláusulas `LIMIT` em testes e garantir que o grafo de dados seja um DAG (Grafo Acíclico Dirigido).
+
 ## 📋 Requisitos
 
 1. Criar a tabela `vendas` (id, data, valor).

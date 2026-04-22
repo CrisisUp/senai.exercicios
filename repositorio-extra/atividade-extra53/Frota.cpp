@@ -1,49 +1,52 @@
 /**
  * @file Frota.cpp
- * @brief Implementação modular da Herança para Veículos e Caminhões.
+ * @brief Implementação da Lógica de Frota (Herança e Cadeia de Construtores).
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
  */
 
 #include "Frota.h"
-#include <iostream>
+#include <sstream>
+#include <iomanip>
 
 namespace Logistica {
 
-    // IMPLEMENTAÇÃO DA CLASSE BASE (VEICULO)
-    Veiculo::Veiculo(std::string p, std::string m) : placa(p), marca(m), odometro(0.0) {}
+    // --- IMPLEMENTAÇÃO VEICULO (BASE) ---
+
+    Veiculo::Veiculo(const std::string& _placa, const std::string& _marca)
+        : placa(_placa), marca(_marca), odometro(0.0) {}
 
     void Veiculo::viajar(double km) {
         if (km > 0) odometro += km;
     }
 
-    std::string Veiculo::getInfo() const {
-        return "PLACA: " + placa + " | MARCA: " + marca + " | ODO: " + std::to_string(odometro);
-    }
+    // --- IMPLEMENTAÇÃO CAMINHAO (FILHA) ---
 
-    // IMPLEMENTAÇÃO DA CLASSE DERIVADA (CAMINHAO)
     /**
-     * @brief O construtor do Filho DEVE chamar o construtor do Pai
-     * usando a Lista de Inicialização.
+     * @brief Construtor da Filha chamando o construtor da Mãe via Initializer List.
      */
-    Caminhao::Caminhao(std::string p, std::string m, double cap) 
-        : Veiculo(p, m), capacidadeCarga(cap), cargaAtual(0.0) {}
+    Caminhao::Caminhao(const std::string& _p, const std::string& _m, double cap)
+        : Veiculo(_p, _m), capacidadeCarga(cap), cargaAtual(0.0) {}
 
-    bool Caminhao::carregar(double toneladas) {
-        if (cargaAtual + toneladas > capacidadeCarga) {
-            return false; // Excesso de peso
+    bool Caminhao::carregar(double peso) {
+        // A filha acessa 'placa' e 'marca' livremente porque são protected na mãe.
+        if (cargaAtual + peso <= capacidadeCarga) {
+            cargaAtual += peso;
+            return true;
         }
-        cargaAtual += toneladas;
-        return true;
+        return false;
     }
 
     std::string Caminhao::getRelatorioCaminhao() const {
-        // Note como acessamos 'placa' e 'marca' diretamente porque são PROTECTED na base.
-        std::string rel = ">>> RELATÓRIO DO CAMINHÃO <<<\n";
-        rel += "IDENTIFICAÇÃO: " + placa + " (" + marca + ")\n";
-        rel += "ODO: " + std::to_string(odometro) + " km\n";
-        rel += "CARGA: " + std::to_string(cargaAtual) + " t / " + std::to_string(capacidadeCarga) + " t";
-        return rel;
+        std::stringstream ss;
+        ss << std::fixed << std::setprecision(2);
+        ss << "[RELATÓRIO DE FROTA]" << "\n"
+           << " >> PLACA : " << placa << "\n"
+           << " >> MARCA : " << marca << "\n"
+           << " >> KM    : " << odometro << " km" << "\n"
+           << " >> CARGA : " << cargaAtual << " / " << capacidadeCarga << " ton.";
+        return ss.str();
     }
-}
+
+} // namespace Logistica

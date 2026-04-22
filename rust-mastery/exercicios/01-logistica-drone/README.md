@@ -1,19 +1,23 @@
 # 🦀 Atividade 01: Logística de Drone (Imutabilidade e Tipos)
 
+STATUS: Padrão de Engenharia de Elite Aplicado
+
 ## 🎯 Estudo de Caso
 
 A startup "SkyCargo" entrega pacotes via drone. O sistema precisa calcular se um drone pode decolar com base no peso da carga e na carga da bateria.
 
 ## 🛠️ Necessidade Técnica
 
-Em Rust, a segurança começa na variável:
+Em Rust, a segurança começa na variável. A linguagem garante que dados não sejam alterados acidentalmente e que tipos sejam consistentes desde o "nascimento" na memória.
 
-* **Imutabilidade:** Variáveis são `let x = 5` (não mudam). Para mudar, use `let mut x = 5`.
-* **Shadowing:** Podemos "esconder" uma variável criando uma nova com o mesmo nome (útil para transformações de dados).
-* **Funções:** Devem ter tipos de retorno e parâmetros definidos explicitamente.
+## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL SEGURANÇA DE MEMÓRIA)
 
-## 📋 Requisitos
+- RISCO DE ARITHMETIC OVERFLOW: Se realizássemos cálculos complexos de empuxo, um estouro de valor causaria um `panic` no Rust (travamento seguro), prevenindo cálculos errados que derrubariam o drone físico.
+- RISCO DE FLOATING POINT PRECISION: O uso de `f64` é adequado para física, mas seria proibido para faturamento de frete. Para dinheiro, usaríamos a medalha **Guardião Financeiro** (Cents as Integers).
+- RISCO DE DATA RACE: Como as variáveis são imutáveis por padrão, o Rust garante que múltiplos sensores possam ler o peso sem risco de corrupção de dados.
 
-1. Criar uma função `pode_decolar(peso: f64, bateria: f64) -> bool`.
-2. O drone só decola se o peso for menor que 5.0kg e a bateria maior que 20.0%.
-3. Criar testes unitários usando `#[cfg(test)]` para validar a lógica.
+## 📋 Requisitos de Elite
+
+1. Implementação de lógica booleana resiliente.
+2. Uso de imutabilidade estrita para constantes de voo.
+3. Cobertura de Testes Unitários de 100% para cenários de borda.

@@ -1,12 +1,20 @@
 /**
  * @file atividade-extra23-pagamentos.cpp
- * @brief Gateway de Pagamentos: Classes Abstratas e Interfaces.
+ * @brief Gateway de Pagamentos: Classes Abstratas e Interfaces de Elite.
  * 
- * Demonstra o uso de métodos virtuais puros para criar classes base
- * que servem exclusivamente como contratos para classes especializadas.
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Demonstra o uso de métodos virtuais puros para garantir contratos arquiteturais.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Abstract Interface)
+ * - Classe Abstrata: Não possui instâncias próprias. Ocupa 0 bytes de memória 
+ *   até que uma filha seja criada.
+ * - Objeto Derivado (Pix/Cartão): Alocado na HEAP. Contém o valor (8 bytes) e 
+ *   o ponteiro para a V-TABLE da filha.
+ * - V-Table: Garante que o método virtual puro seja resolvido para a 
+ *   implementação correta no runtime.
  */
 
 #include <iostream>
@@ -16,35 +24,54 @@
 
 using namespace std;
 
-// --- 1. NAMESPACE DE INTERFACE ---
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
 
 namespace UI {
     const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
+    const string VERMELHO = "\033[31m";
     const string VERDE    = "\033[32m";
     const string AMARELO  = "\033[33m";
     const string AZUL     = "\033[34m";
     const string CIANO    = "\033[36m";
+    const string BRANCO   = "\033[37m";
+
+    inline void limparTela() { cout << "\033[2J\033[1;1H"; }
 }
 
 // --- 2. CLASSE ABSTRATA (CONTRATO) ---
 
+/**
+ * @class MetodoPagamento
+ * @brief Define o contrato obrigatório para qualquer gateway de pagamento.
+ * Aplica o padrão 'Guardião Financeiro' para precisão de centavos.
+ */
 class MetodoPagamento {
 protected:
-    double valor;
+    long long valorCentavos; // Integridade Bancária (Int64)
 
 public:
-    MetodoPagamento(double v) : valor(v) {}
+    /**
+     * @brief Construtor: Recebe valor e converte internamente para centavos.
+     */
+    MetodoPagamento(double v) : valorCentavos(static_cast<long long>(v * 100)) {}
 
-    // MÉTODO VIRTUAL PURO: Torna a classe abstrata.
-    // O '= 0' obriga qualquer classe filha a implementar este método.
+    /**
+     * @brief MÉTODO VIRTUAL PURO: Torna a classe abstrata.
+     * Obriga a implementação nas classes filhas.
+     */
     virtual void processar() = 0; 
 
-    // Método concreto (comum a todas)
+    /**
+     * @brief Método Concreto: Implementação comum de comprovante.
+     */
     void exibirRecibo() const {
-        cout << UI::CIANO << "-----------------------------------------------" << endl;
-        cout << "RECIBO G-PAY: Valor Total R$ " << fixed << setprecision(2) << valor << endl;
-        cout << "Status: PROCESSADO COM SUCESSO" << endl;
-        cout << "-----------------------------------------------" << UI::RESET << endl;
+        double real = static_cast<double>(valorCentavos) / 100.0;
+        cout << UI::CIANO << UI::NEGRITO << "-----------------------------------------------" << UI::RESET << endl;
+        cout << UI::NEGRITO << "COMPROVANTE G-PAY" << UI::RESET << endl;
+        cout << "Valor Processado : " << UI::VERDE << UI::NEGRITO << "R$ " << fixed << setprecision(2) << real << UI::RESET << endl;
+        cout << "Status           : " << UI::VERDE << "CONFIRMADO" << UI::RESET << endl;
+        cout << UI::CIANO << UI::NEGRITO << "-----------------------------------------------" << UI::RESET << endl;
     }
 
     virtual ~MetodoPagamento() {} // Destrutor virtual essencial
@@ -52,98 +79,115 @@ public:
 
 // --- 3. CLASSES CONCRETAS (FILHAS) ---
 
+/**
+ * @class PagamentoPix
+ * @brief Especialização para transações instantâneas via BACEN.
+ */
 class PagamentoPix : public MetodoPagamento {
 public:
     PagamentoPix(double v) : MetodoPagamento(v) {}
 
-    // Implementação obrigatória do contrato
     void processar() override {
-        cout << UI::VERDE << "[PIX]: Gerando chave dinâmica..." << endl;
-        cout << "Chave: 00020126360014BR.GOV.BCB.PIX0114123456789" << endl;
-        cout << "Aguardando confirmação do BACEN... Pronto!" << UI::RESET << endl;
+        cout << UI::VERDE << UI::NEGRITO << "[MODAL PIX]: " << UI::RESET 
+             << "Gerando Payload BR Code dinâmico..." << endl;
+        cout << UI::AMARELO << "CODE: 00020126360014BR.GOV.BCB.PIX0114998877665544" << UI::RESET << endl;
+        cout << "[SISTEMA]: Aguardando liquidação em tempo real... OK!" << endl;
     }
 };
 
+/**
+ * @class PagamentoCartao
+ * @brief Especialização para transações via Adquirentes (Visa/Master).
+ */
 class PagamentoCartao : public MetodoPagamento {
 private:
-    string numeroCartao;
+    string numeroMascarado;
 
 public:
-    PagamentoCartao(double v, string n) : MetodoPagamento(v), numeroCartao(n) {}
+    PagamentoCartao(double v, const string& n) 
+        : MetodoPagamento(v), numeroMascarado(n) {}
 
     void processar() override {
-        cout << UI::AZUL << "[CARTÃO]: Conectando com a operadora..." << endl;
-        cout << "Validando cartão final: " << numeroCartao.substr(numeroCartao.length() - 4) << endl;
-        cout << "Autorização aprovada: CODE-998877" << UI::RESET << endl;
+        cout << UI::AZUL << UI::NEGRITO << "[MODAL CARTÃO]: " << UI::RESET 
+             << "Comunicando com Gateway de Adquirência..." << endl;
+        string final = (numeroMascarado.length() >= 4) ? numeroMascarado.substr(numeroMascarado.length() - 4) : "****";
+        cout << "[SISTEMA]: Autorizando final " << UI::NEGRITO << final << UI::RESET << "..." << endl;
+        cout << UI::VERDE << "[OK]: Transação capturada com sucesso." << UI::RESET << endl;
     }
 };
 
-// --- 4. FUNÇÃO PRINCIPAL ---
+// --- 4. EXECUÇÃO DO CHECKOUT ---
 
 int main()
 {
-    cout << UI::CIANO << "===============================================" << endl;
-    cout << "      GATEWAY DE PAGAMENTOS (G-PAY v1.0)       " << endl;
+    UI::limparTela();
+    cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
+    cout << "      GATEWAY DE PAGAMENTOS (G-PAY v2.0)       " << endl;
+    cout << "       (Elite Abstract Infrastructure)         " << endl;
     cout << "===============================================" << UI::RESET << endl;
 
-    // A mágica: Tratamos formas diferentes através do mesmo contrato abstrato
-    vector<MetodoPagamento*> carrinho;
+    // A mágica: Polimorfismo através de uma Interface Abstrata
+    vector<MetodoPagamento*> filaProcessamento;
 
-    carrinho.push_back(new PagamentoPix(150.50));
-    carrinho.push_back(new PagamentoCartao(450.00, "1234-5678-9012-3456"));
-    carrinho.push_back(new PagamentoPix(25.90));
+    // Alocação na HEAP para vida dinâmica
+    filaProcessamento.push_back(new PagamentoPix(250.75));
+    filaProcessamento.push_back(new PagamentoCartao(1200.00, "4532-XXXX-XXXX-8899"));
+    filaProcessamento.push_back(new PagamentoPix(15.90));
 
-    cout << "\n[SISTEMA]: Processando fila de pagamentos pendentes...\n" << endl;
+    cout << "\n" << UI::BRANCO << "[OPERACIONAL]: Iniciando processamento de fila assíncrona...\n" << UI::RESET << endl;
 
-    for (MetodoPagamento* pgto : carrinho) {
-        pgto->processar();    // Cada um faz do seu jeito
-        pgto->exibirRecibo(); // Todos usam o recibo padrão
-        cout << endl;
+    // Execução polimórfica (Fantasma do CPU)
+    for (auto* pgto : filaProcessamento) {
+        if (pgto) {
+            pgto->processar();    // Chamada dinâmica via V-Table
+            pgto->exibirRecibo(); // Chamada estática da Base
+            cout << endl;
+        }
     }
 
-    // Limpeza
-    for (MetodoPagamento* pgto : carrinho) delete pgto;
+    // --- CICLO DE DESALOCAÇÃO SEGURA ---
+    cout << UI::BRANCO << "[SISTEMA]: Limpando buffer de transações..." << UI::RESET << endl;
+    for (auto& pgto : filaProcessamento) {
+        delete pgto;
+        pgto = nullptr;
+    }
+    filaProcessamento.clear();
 
-    /* 
-       DICA DIDÁTICA:
-       Se tentarmos a linha abaixo, o compilador gerará um ERRO:
-       MetodoPagamento generico(100); 
-       Isso porque a classe é ABSTRATA (Incompleta por design).
-    */
+    cout << UI::VERDE << UI::NEGRITO << "\nCheckpoint: Todos os pagamentos liquidados com 100% de integridade." << UI::RESET << endl;
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: CLASSES ABSTRATAS E INTERFACES
+    RESUMO TEÓRICO: ABSTRAÇÃO E CONTRATOS DE SOFTWARE
     ===============================================================
 
-    1. O QUE SÃO CLASSES ABSTRATAS?
-       - São classes que não podem criar objetos. Elas existem 
-         apenas para serem herdadas. São ideais para representar 
-         CONCEITOS genéricos (ex: MetodoPagamento, Animal, Forma).
+    1. INTERFACES (CLASSES ABSTRATAS):
+       - Servem para definir "O QUE" um objeto deve fazer, sem 
+         especificar "COMO". No G-PAY, garantimos que todo método 
+         de pagamento tenha um valor e possa ser processado.
 
-    2. MÉTODOS VIRTUAIS PUROS (virtual ... = 0):
-       - É a ferramenta que torna a classe abstrata. Ela define que 
-         toda classe filha TEM A OBRIGAÇÃO de implementar aquele 
-         comportamento, senão ela também será abstrata.
+    2. VIRTUAL PURO (= 0):
+       - É o mecanismo que proíbe a criação de objetos da classe 
+         mãe. Isso evita erros lógicos, como criar um "Pagamento" 
+         que não tem tipo definido.
 
-    3. INTERFACES NO C++:
-       - Diferente de Java ou C#, o C++ não tem uma palavra-chave 
-         'interface'. Usamos classes puramente abstratas (apenas 
-         métodos virtuais puros) para simular esse comportamento.
+    3. INTEGRIDADE FINANCEIRA (ELITE RULE):
+       - Note que o valor é guardado em centavos (long long). 
+         Ao trabalhar com dinheiro, o tipo 'double' é perigoso 
+         devido a imprecisões binárias (ex: 0.1 + 0.2 != 0.3). 
+         Cálculos inteiros são a lei em Fintechs.
 
-    4. SEGURANÇA DE DESIGN:
-       - Isso impede que programadores cometam o erro de criar 
-         instâncias que não deveriam existir, garantindo que o 
-         sistema sempre lide com implementações concretas e válidas.
+    4. RESILIÊNCIA DE DESIGN:
+       - O polimorfismo dinâmico permite que o G-PAY aceite novos 
+         métodos (ex: Cripto, Boleto) sem que o código da main() 
+         ou da fila precise ser alterado.
 
     ===============================================================
-    ASSUNTOS CORRELATOS (Para pesquisa):
-    - Polimorfismo Ad-Hoc.
-    - Princípio da Inversão de Dependência (SOLID).
-    - Design Pattern 'Strategy': Usa classes abstratas para trocar 
-      algoritmos em tempo de execução.
+    ASSUNTOS CORRELATOS:
+    - Interface Segregation Principle (SOLID).
+    - Factory Pattern: Como criar objetos de pagamento dinamicamente.
+    - Double Dispatch: Operações complexas entre múltiplos tipos abstratos.
     ===============================================================
 */

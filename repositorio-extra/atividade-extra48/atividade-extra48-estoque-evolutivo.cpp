@@ -1,176 +1,199 @@
 /**
  * @file atividade-extra48-estoque-evolutivo.cpp
- * @brief DESAFIO DE REFATORAÇÃO: Sistema de Suprimentos Industrial.
+ * @brief G-STOCK: Evolução Industrial da Atividade 01 para Elite C++.
  * 
- * Evolução da Atividade 01 utilizando as técnicas de Engenharia:
- * 1. POO com Encapsulamento de Atributos (Private).
- * 2. Gestão de Memória Moderna (std::unique_ptr e make_unique).
- * 3. Validação Ativa via Suite de Testes Unitários.
- * 4. Containers STL (std::vector) para múltiplos itens.
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Integra Smart Pointers (unique_ptr), Testes Unitários e Integridade Financeira.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 20/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (RAII Suppli Chain Layout)
+ * - Objeto Estoque: Alocado na STACK da main.
+ * - std::vector<unique_ptr<Produto>>: Descritor na STACK, lista de Smart Pointers na HEAP.
+ * - Instâncias Produto: Alocadas na HEAP via make_unique.
+ * - Gestão RAII: O ciclo de vida da memória é atado ao escopo do vector. 
+ *   Remover um item do vector limpa a RAM instantaneamente sem 'delete'.
  */
 
 #include <iostream>
 #include <string>
 #include <vector>
 #include <iomanip>
-#include <memory>   // Para unique_ptr (C++ Moderno)
+#include <memory>
 #include <algorithm>
 
 using namespace std;
 
-// --- 1. NAMESPACE DE INTERFACE (Cores ANSI) ---
+// --- 1. NAMESPACE DE INTERFACE (ANSI ELITE) ---
 
 namespace UI {
     const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
     const string VERDE    = "\033[32m";
     const string VERMELHO = "\033[31m";
     const string AMARELO  = "\033[33m";
     const string CIANO    = "\033[36m";
-    const string NEGRITO  = "\033[1m";
+    const string BRANCO   = "\033[37m";
 
+    inline void limparTela() { cout << "\033[2J\033[1;1H"; }
+    
     void cabecalho() {
-        cout << CIANO << "===============================================" << endl;
-        cout << "      G-STOCK: SISTEMA DE GESTÃO INDUSTRIAL    " << endl;
-        cout << "          (Evolução da Atividade 01)           " << endl;
-        cout << "===============================================" << RESET << endl;
+        cout << UI::CIANO << UI::NEGRITO << "===============================================" << endl;
+        cout << "      G-STOCK: GESTÃO DE SUPRIMENTOS v3.0      " << endl;
+        cout << "       (Elite Engineering Refactored)          " << endl;
+        cout << "===============================================" << UI::RESET << endl;
     }
 }
 
-// --- 2. MODELO DE NEGÓCIO: CLASSE PRODUTO ---
+// --- 2. MODELO DE DOMÍNIO: CLASSE PRODUTO (GUARDIÃO FINANCEIRO) ---
 
 class Produto {
 private:
     string nome;
-    int atual;
-    int minimo;
-    double preco;
+    int qtdAtual;
+    int qtdMinima;
+    long long precoCentavos; // Integridade Bancária: Centavos Inteiros
 
 public:
-    Produto(string n, int a, int m, double p) 
-        : nome(n), atual(a), minimo(m), preco(p) {}
+    /**
+     * @brief Construtor de Elite com Inicialização por Lista.
+     */
+    Produto(const string& n, int a, int m, double p) 
+        : nome(n), qtdAtual(a), qtdMinima(m), 
+          precoCentavos(static_cast<long long>(p * 100)) {}
 
-    // Getters e Lógica de Negócio (Encapsulamento)
-    string getNome() const { return nome; }
-    bool precisaRepor() const { return atual < minimo; }
-    int getFalta() const { return (precisaRepor()) ? (minimo - atual) : 0; }
-    double getCustoReposicao() const { return getFalta() * preco; }
+    // Lógica de Negócio Encapsulada
+    const string& getNome() const { return nome; }
+    bool precisaRepor() const { return qtdAtual < qtdMinima; }
+    int getFalta() const { return (precisaRepor()) ? (qtdMinima - qtdAtual) : 0; }
     
+    long long getCustoReposicaoCentavos() const { 
+        return getFalta() * precoCentavos; 
+    }
+
+    double getPrecoReal() const { return static_cast<double>(precoCentavos) / 100.0; }
+
+    /**
+     * @brief Renderiza linha de status com feedback de criticidade.
+     */
     void exibirStatus() const {
-        cout << UI::NEGRITO << left << setw(15) << nome << UI::RESET;
-        cout << " | " << setw(5) << atual << " / " << setw(5) << minimo;
+        cout << UI::NEGRITO << left << setw(18) << nome << UI::RESET;
+        cout << " | Stock: " << setw(4) << qtdAtual << " / " << setw(4) << qtdMinima;
+        
         if (precisaRepor()) {
-            cout << UI::VERMELHO << " | FALTA: " << setw(4) << getFalta() 
-                 << " | CUSTO: R$ " << fixed << setprecision(2) << getCustoReposicao() << UI::RESET << endl;
+            double custoReal = static_cast<double>(getCustoReposicaoCentavos()) / 100.0;
+            cout << UI::VERMELHO << " | [BAIXO] " << UI::RESET 
+                 << UI::AMARELO << "Falta: " << setw(3) << getFalta() 
+                 << " | Invest: R$ " << fixed << setprecision(2) << custoReal << UI::RESET << endl;
         } else {
-            cout << UI::VERDE << " | ESTOQUE SUFICIENTE" << UI::RESET << endl;
+            cout << UI::VERDE << " | [OK] " << UI::RESET << "Estoque Nominal" << endl;
         }
     }
 };
 
-// --- 3. LABORATORIO DE TESTES (VALIDAÇÃO ATIVA) ---
+// --- 3. SUÍTE DE DIAGNÓSTICO (ZERO TOLERANCE QA) ---
 
-class SuiteDeTestes {
+class DiagnosticSuite {
 public:
     static void executar() {
-        int falhas = 0;
-        cout << UI::AMARELO << "\n--- TESTANDO LOGICA DE REPOSICAO ---" << UI::RESET << endl;
+        cout << UI::AMARELO << UI::NEGRITO << ">>> INICIANDO AUTO-DIAGNÓSTICO DE LÓGICA..." << UI::RESET << endl;
+        int erros = 0;
 
-        // Caso 1: Estoque abaixo do mínimo
-        Produto p1("Teste1", 5, 10, 2.0);
-        if (p1.getFalta() != 5 || p1.getCustoReposicao() != 10.0) {
-            cout << UI::VERMELHO << "[FALHA]: Cálculo de reposição incorreto para p1." << UI::RESET << endl;
-            falhas++;
-        } else {
-            cout << UI::VERDE << "[OK]: Cálculo de falta e custo validado." << UI::RESET << endl;
+        // Teste 1: Cálculo de Reposição Crítica
+        Produto t1("Chipset", 5, 20, 10.00); // Falta 15, Custo 150.00
+        if (t1.getFalta() != 15 || t1.getCustoReposicaoCentavos() != 15000) {
+            cout << UI::VERMELHO << " [FALHA]: Cálculo de reposição incoerente em T1." << UI::RESET << endl;
+            erros++;
         }
 
-        // Caso 2: Estoque exatamente no mínimo
-        Produto p2("Teste2", 10, 10, 2.0);
-        if (p2.precisaRepor()) {
-            cout << UI::VERMELHO << "[FALHA]: Produto no limite não deve repor." << UI::RESET << endl;
-            falhas++;
-        } else {
-            cout << UI::VERDE << "[OK]: Limite de estoque validado." << UI::RESET << endl;
+        // Teste 2: Limite de Segurança
+        Produto t2("Sensor", 10, 10, 5.00); 
+        if (t2.precisaRepor()) {
+            cout << UI::VERMELHO << " [FALHA]: Produto no limite (10/10) disparou alerta falso." << UI::RESET << endl;
+            erros++;
         }
 
-        cout << UI::AMARELO << "-----------------------------------------------" << endl;
-        if (falhas == 0) 
-            cout << UI::VERDE << "RESULTADO: MOTOR DE ESTOQUE 100% CONFIAVEL.\n" << UI::RESET << endl;
-        else
-            exit(1); // Aborta se a lógica estiver errada (Rigor de Engenharia)
+        if (erros == 0) {
+            cout << UI::VERDE << " [PASSOU]: Todas as invariantes de negócio validadas." << UI::RESET << endl;
+        } else {
+            cout << UI::VERMELHO << UI::NEGRITO << " [CRÍTICO]: MOTOR DE LÓGICA CORROMPIDO. ABORTANDO." << UI::RESET << endl;
+            exit(1); // Engenharia de Elite: Não rodar com erros de lógica
+        }
     }
 };
 
-// --- 4. FUNÇÃO PRINCIPAL ---
+// --- 4. EXECUÇÃO DO SISTEMA DE SUPRIMENTOS ---
 
 int main()
 {
+    UI::limparTela();
     UI::cabecalho();
 
-    // EXIGÊNCIA DE ENGENHARIA: Validar antes de rodar
-    SuiteDeTestes::executar();
+    // Validação Mandatória (Cientista do Caos prevention)
+    DiagnosticSuite::executar();
 
-    // Gestão Moderna com Smart Pointers e Coleções STL
-    vector<unique_ptr<Produto>> estoque;
+    // Coleção Segura: std::unique_ptr garante que nenhum produto vaze da RAM
+    vector<unique_ptr<Produto>> armazem;
 
-    // Cadastro de produtos (Simulando uma carga de banco de dados/arquivo)
-    estoque.push_back(make_unique<Produto>("Monitor LED", 12, 15, 450.00));
-    estoque.push_back(make_unique<Produto>("Teclado Mec", 45, 20, 180.00));
-    estoque.push_back(make_unique<Produto>("Mouse Laser", 8, 25, 90.00));
+    // População do Estoque (Simulando persistência)
+    armazem.push_back(make_unique<Produto>("Monitor 4K", 12, 15, 2450.75));
+    armazem.push_back(make_unique<Produto>("Servidor Rack", 2, 5, 18200.00));
+    armazem.push_back(make_unique<Produto>("Nobreak Ind", 45, 20, 850.30));
+    armazem.push_back(make_unique<Produto>("Cabos Cat6", 150, 50, 4.50));
 
-    cout << UI::NEGRITO << left << setw(15) << "PRODUTO" << " | ESTOQUE / MIN | STATUS" << UI::RESET << endl;
-    cout << "-----------------------------------------------" << endl;
+    cout << "\n" << UI::BRANCO << left << setw(18) << "PRODUTO" << " | MÉTRICAS DE ESTOQUE | STATUS DE REPOSIÇÃO" << UI::RESET << endl;
+    cout << string(70, '-') << endl;
 
-    double custoTotalGeral = 0;
+    long long investimentoTotalCentavos = 0;
 
-    for (const auto& item : estoque) {
-        item->exibirStatus();
-        custoTotalGeral += item->getCustoReposicao();
+    // Iteração Eficiente (Fantasma do CPU)
+    for (const auto& item : armazem) {
+        if (item) {
+            item->exibirStatus();
+            investimentoTotalCentavos += item->getCustoReposicaoCentavos();
+        }
     }
 
-    cout << "-----------------------------------------------" << endl;
-    cout << UI::CIANO << "INVESTIMENTO TOTAL NECESSARIO: R$ " 
-         << fixed << setprecision(2) << custoTotalGeral << UI::RESET << endl;
-    cout << "===============================================" << endl;
+    cout << string(70, '-') << endl;
+    double totalReal = static_cast<double>(investimentoTotalCentavos) / 100.0;
+    cout << UI::CIANO << UI::NEGRITO << "CAPEX NECESSÁRIO PARA REPOSIÇÃO: R$ " << fixed << setprecision(2) << totalReal << UI::RESET << endl;
+    cout << UI::CIANO << "======================================================================" << UI::RESET << endl;
 
-    // Nota: Nenhum 'delete' manual é necessário. 
-    // O unique_ptr limpa a memória automaticamente ao sair do escopo.
+    cout << UI::VERDE << "\nSessão de suprimentos encerrada. RAII limpando HEAP..." << UI::RESET << endl;
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: O CICLO DE EVOLUÇÃO (REFATORAÇÃO)
+    RESUMO TEÓRICO: REFATORAÇÃO EVOLUTIVA (ELITE)
     ===============================================================
 
-    1. POR QUE REFATORAR?
-       - Refatorar não é apenas "mudar o nome da variável". É elevar o 
-         código para novos padrões de segurança. A Atividade 01 era 
-         funcional, mas esta Atividade 48 é INDUSTRIAL.
+    1. O FIM DO GERENCIAMENTO MANUAL:
+       - Substituir 'new/delete' por 'std::unique_ptr' é o maior 
+         salto de produtividade no C++. O código torna-se "Safe 
+         by Design", aproximando-se da segurança do Rust.
 
-    2. SMART POINTERS NO ESTOQUE:
-       - Ao usar std::unique_ptr, eliminamos o risco de o sistema 
-         perder um produto da memória e causar um crash. O 
-         gerenciamento agora é determinístico e automático.
+    2. INTEGRALIDADE BANCÁRIA (ELITE RULE):
+       - Refatoramos os preços para 'long long' centavos. Isso 
+         elimina o "Drifting de Ponto Flutuante" (0.1 + 0.2 != 0.3), 
+         essencial para auditorias em armazéns de alto valor.
 
-    3. O PODER DOS TESTES UNITÁRIOS:
-       - No primeiro dia (Ativ. 01), você testava digitando valores. 
-         Agora, o SuiteDeTestes faz isso em milissegundos, provando 
-         que o código está certo matematicamente.
+    3. UNIT TESTING COMO GATEKEEPER:
+       - Um sistema industrial nunca deve abrir para o usuário se a 
+         lógica interna falhar. O SuiteDeTestes garante que o 
+         "Coração" do software esteja batendo corretamente no boot.
 
-    4. ENCAPSULAMENTO (SEGURANÇA):
-       - Ao tornar os atributos privados, impedimos que uma parte 
-         acidental do código altere o preço de um produto sem passar 
-         pela lógica de negócio.
+    4. ENCAPSULAMENTO DE MÉTRICAS:
+       - A classe Produto não apenas guarda dados; ela "conhece" a 
+         regra de reposição. Isso remove a lógica da main() e a 
+         distribui entre os objetos, facilitando a manutenção futura.
 
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Serialização JSON: Como salvar este estoque em arquivos modernos.
-    - Padrão de Projeto Factory: Para criar produtos de diferentes tipos.
-    - Injeção de Dependência: Como testar o sistema com dados falsos.
+    - Smart Pointer 'std::shared_ptr': Quando vários donos dividem um recurso.
+    - Custom Deleters: Fechar arquivos ou sockets automaticamente.
+    - Test-Driven Development (TDD): Escrever o teste ANTES do código.
     ===============================================================
 */

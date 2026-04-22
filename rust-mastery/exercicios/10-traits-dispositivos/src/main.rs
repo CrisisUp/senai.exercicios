@@ -1,49 +1,101 @@
 /**
  * @file main.rs
- * @brief Atividade 11: Transmissão Genérica (Generics e Traits).
- *
- * Aprendizados: Uso de <T>, Trait Bounds, Monomorfização.
- *
+ * @brief Atividade 10: Protocolos de Hardware (Traits e Interfaces).
+ * 
+ * @section MemoryMap
+ * - **V-Tables (Virtual Tables):** Ao usar `dyn Dispositivo`, o Rust utiliza uma vtable para resolver os métodos em tempo de execução.
+ * - **Heap Allocation:** O uso de `Box<dyn Dispositivo>` coloca o objeto na Heap, pois o tamanho de diferentes implementações de Trait pode variar.
+ * 
  * @author SENAI - Rust Master
  * @date 20/04/2026
  */
-use std::fmt::Display;
 
-/// Função genérica que aceita qualquer tipo T, desde que ele implemente a trait Display.
-fn enviar_multiplos<T: Display>(dado1: T, dado2: T) {
-    println!(
-        "[RÁDIO]: Transmitindo múltiplos dados: {} e {}",
-        dado1, dado2
-    );
-    println!("[OK]: Pacotes enviados com sucesso.");
+/// Define o contrato básico para qualquer hardware do drone.
+trait Dispositivo {
+    fn status(&self) -> String;
+    fn reiniciar(&mut self);
+}
+
+// -----------------------------------------------------------------------------
+// IMPLEMENTAÇÕES DE HARDWARE
+// -----------------------------------------------------------------------------
+
+struct SensorGPS {
+    satelites: u8,
+    ativo: bool,
+}
+
+impl Dispositivo for SensorGPS {
+    fn status(&self) -> String {
+        if self.ativo {
+            format!("[GPS]: Ativo ({} satélites detectados)", self.satelites)
+        } else {
+            String::from("[GPS]: Inativo")
+        }
+    }
+
+    fn reiniciar(&mut self) {
+        println!("\x1b[33m[SISTEMA]:\x1b[0m Reiniciando módulo GPS...");
+        self.ativo = true;
+    }
+}
+
+struct Motor {
+    rpm: u32,
+    temperatura: f32,
+}
+
+impl Dispositivo for Motor {
+    fn status(&self) -> String {
+        format!("[MOTOR]: {} RPM | Temp: {:.1}°C", self.rpm, self.temperatura)
+    }
+
+    fn reiniciar(&mut self) {
+        println!("\x1b[33m[SISTEMA]:\x1b[0m Calibrando motores...");
+        self.rpm = 0;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// FUNÇÃO DE DIAGNÓSTICO (DYNAMIC DISPATCH)
+// -----------------------------------------------------------------------------
+
+/**
+ * Executa o diagnóstico de uma lista de dispositivos variados.
+ * Usa referências constantes (&) - Fantasma do CPU: Evita cópias desnecessárias.
+ */
+fn diagnostico_geral(dispositivos: &Vec<Box<dyn Dispositivo>>) {
+    println!("\n\x1b[36m--- INICIANDO DIAGNÓSTICO DE HARDWARE ---\x1b[0m");
+    for (i, dispositivo) in dispositivos.iter().enumerate() {
+        println!("Componente {}: {}", i + 1, dispositivo.status());
+    }
 }
 
 fn main() {
     println!("===============================================");
-    println!("     SKYCARGO - TRANSMISSÃO GENÉRICA          ");
+    println!("     SKYCARGO - GESTÃO DE HARDWARE (TRAITS)    ");
     println!("===============================================");
 
-    // 1. Simulação de transmissão de pacotes (dados específicos)
-    println!("[RÁDIO]: Transmitindo pacote...");
-    println!(">> Conteúdo: [MSG|PRIO:1]: Carga entregue no ponto B");
-    println!("[OK]: Pacote enviado com sucesso.\n");
+    // 1. Criando a coleção de dispositivos (Polimorfismo com Box)
+    let mut hardware_drone: Vec<Box<dyn Dispositivo>> = Vec::new();
 
-    println!("[RÁDIO]: Transmitindo pacote...");
-    println!(">> Conteúdo: [GPS]: -23.5505, -46.6333");
-    println!("[OK]: Pacote enviado com sucesso.\n");
+    // Fantasma do CPU: Referências constantes seriam usadas se não precisássemos de Ownership no Vec
+    hardware_drone.push(Box::new(SensorGPS { satelites: 8, ativo: true }));
+    hardware_drone.push(Box::new(Motor { rpm: 12000, temperatura: 45.5 }));
+    hardware_drone.push(Box::new(SensorGPS { satelites: 0, ativo: false }));
 
-    // 2. Utilizando a função genérica para demonstrar polimorfismo paramétrico
-    println!("[INFO]: Utilizando função genérica para múltiplos dados:");
+    // 2. Executando diagnóstico
+    diagnostico_geral(&hardware_drone);
 
-    // Teste com strings
-    enviar_multiplos("Sensor_01", "Sensor_02");
-    println!();
+    // 3. Simulando reinicialização crítica
+    println!("\n\x1b[31m[ALERTA]:\x1b[0m Falha detectada. Reiniciando todos os componentes...");
+    for dispositivo in &mut hardware_drone {
+        dispositivo.reiniciar();
+    }
 
-    // Teste com números (f64)
-    enviar_multiplos(10.5, 20.8);
-    println!();
+    // 4. Diagnóstico pós-reparo
+    diagnostico_geral(&hardware_drone);
 
-    println!("[INFO]: Dados transmitidos e limpos da memória.");
     println!("===============================================");
 }
 
@@ -55,36 +107,48 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_generics_logic() {
-        // Apenas para garantir que o compilador resolve os tipos corretamente
-        enviar_multiplos(1, 2);
-        enviar_multiplos("A", "B");
-        assert!(true);
+    fn test_gps_status() {
+        let gps = SensorGPS { satelites: 5, ativo: true };
+        assert!(gps.status().contains("5 satélites"));
+    }
+
+    #[test]
+    fn test_motor_reiniciar() {
+        let mut motor = Motor { rpm: 5000, temperatura: 40.0 };
+        motor.reiniciar();
+        assert_eq!(motor.rpm, 0);
+    }
+
+    #[test]
+    fn test_polimorfismo() {
+        let mut list: Vec<Box<dyn Dispositivo>> = Vec::new();
+        list.push(Box::new(SensorGPS { satelites: 1, ativo: true }));
+        list.push(Box::new(Motor { rpm: 100, temperatura: 20.0 }));
+        assert_eq!(list.len(), 2);
     }
 }
 
-/*
+/* 
     ===============================================================
     RESUMO TEÓRICO: TRAITS (INTERFACES RUST)
     ===============================================================
 
     1. O QUE SÃO TRAITS?
-       - São contratos. Elas definem "o que um tipo pode fazer" sem
-         se preocupar com "quem o tipo é".
+       - São contratos que definem o comportamento de um tipo.
 
     2. DYNAMIC DISPATCH (dyn):
-       - Quando usamos 'Box<dyn Trait>', estamos usando polimorfismo
-         de tempo de execução. O Rust usa uma vtable (similar ao C++)
-         para localizar o método correto.
+       - Permite que o programa escolha qual método executar em tempo 
+         de execução através de uma vtable.
 
-    3. COMPARAÇÃO COM C++:
-       - Em C++, usaríamos herança e métodos virtuais. No Rust,
-         usamos composição e Traits, o que é considerado mais
-         flexível e evita o "problema do diamante" na herança.
+    3. BOX E HEAP:
+       - Diferentes structs têm tamanhos diferentes. Para colocá-las em 
+         um Vec, usamos Box (ponteiro inteligente) para que todos os 
+         elementos tenham o mesmo tamanho de ponteiro na Stack.
 
-    4. VANTAGEM DIDÁTICA:
-       - O aluno aprende a arquitetar sistemas plugáveis, onde o
-         código central não precisa conhecer os detalhes de cada
-         peça de hardware, apenas o seu protocolo.
+    4. ASSUNTOS CORRELATOS:
+       - Trait Objects Safety: Por que nem toda Trait pode ser usada com 'dyn'.
+       - Associated Types: Uma forma avançada de generics dentro de traits.
+       - Blanket Implementations: Implementar uma trait para qualquer tipo 
+         que já implemente outra trait.
     ===============================================================
 */

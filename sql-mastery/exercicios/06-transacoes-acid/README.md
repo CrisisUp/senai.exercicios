@@ -24,6 +24,12 @@ Comandos Chave:
 * **COMMIT:** Confirma todas as mudanças e as torna permanentes.
 * **ROLLBACK:** Descarta todas as mudanças do rascunho se algo der errado.
 
+## ⚠️ Análise de Falha Crítica: Riscos de Deadlocks
+
+Em sistemas de alta concorrência, as transações podem levar a **Deadlocks** (Impasse). Isso ocorre quando a Transação A bloqueia o Registro 1 e tenta acessar o Registro 2, enquanto a Transação B bloqueia o Registro 2 e tenta acessar o Registro 1. Ambos ficam esperando indefinidamente.
+*   **Impacto:** Travamento do banco de dados e timeout em aplicações.
+*   **Prevenção:** Sempre acessar recursos em uma ordem consistente e manter transações o mais curtas possível.
+
 ## 📋 Requisitos
 
 1. Criar a tabela `estoque_geral` (id, item, quantidade).

@@ -22,6 +22,15 @@ Este desafio integra os conhecimentos do Nível 21 (Atividades 04 a 06):
 3. Criar uma View chamada `v_auditoria_financeira` que consolide esses dados.
 4. Demonstrar um cenário de ROLLBACK caso ocorra uma falha simulada (ex: tentar vender mais do que há no estoque).
 
+## ⚠️ Análise de Falha Crítica (Erros de Faturamento)
+
+O sistema de faturamento é o coração financeiro da empresa, e falhas nesta camada podem levar a prejuízos diretos e problemas legais:
+
+1.  **Cálculo de Imposto Impreciso:** O uso de `REAL` para impostos pode gerar dízimas periódicas que, ao serem somadas em milhares de transações, resultam em diferenças significativas no recolhimento fiscal.
+2.  **Vendas sem Estoque (Race Conditions):** Sem o uso de transações atômicas (`BEGIN/COMMIT`) e travas adequadas, dois pedidos simultâneos podem "vender" o mesmo item físico, resultando em estoque negativo ou pedidos não atendidos.
+3.  **Faturamento Fantasma:** Se um pedido for inserido mas a transação falhar antes de registrar os itens ou baixar o estoque (sem um `ROLLBACK`), o sistema terá um registro de venda sem produtos associados.
+4.  **Violação de Integridade na View:** Se a View de auditoria não considerar cancelamentos ou devoluções, o relatório financeiro apresentará um faturamento inflado, levando a decisões gerenciais baseadas em dados falsos.
+
 ## 🏗️ Estrutura de Arquivos Obrigatória
 
 - `README.md`: Contexto e requisitos (Este arquivo).

@@ -18,3 +18,11 @@ O **Pivoteamento (Pivot)** é a técnica de transformar valores de linhas em cab
 2. Inserir dados simulando lucro para diferentes meses e tipos de drone.
 3. Criar uma consulta que gere colunas para "Jan", "Fev" e "Mar", mostrando o lucro somado de cada categoria.
 4. Adicionar uma coluna de "Total Acumulado" no final da linha.
+
+---
+
+## 🛡️ ANÁLISE DE FALHA CRÍTICA (Fase 3)
+
+1. **PIVOT OVERHEAD:** O uso extensivo de `CASE WHEN` dentro de funções de agregação (`SUM`, `AVG`) força o motor a avaliar múltiplas condições por linha. Em datasets de escala "Big Data", isso pode resultar em tempos de resposta inaceitáveis se não houver um `GROUP BY` eficiente.
+2. **INCONSISTÊNCIA DE SCHEMA:** O pivoetamento manual é "estático". Se uma nova categoria de dado surgir (ex: um novo mês ou status), ela será ignorada no relatório a menos que o SQL seja alterado, o que pode levar a decisões baseadas em dados incompletos.
+3. **DRIFT DE AGREGAÇÃO:** Realizar pivoteamento sobre colunas do tipo `REAL` (ponto flutuante) pode acumular erros de precisão significativos ao somar milhões de registros, afetando a fidedignidade financeira do Q1.

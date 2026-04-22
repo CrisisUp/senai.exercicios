@@ -45,9 +45,9 @@ int main()
         }
 
         do {
-            cout << "\n--- PAINEL DE CONTROLE ---" << endl;
-            cout << "Leitores na Fila: " << gestor.totalFila() << " | ";
-            cout << "Empréstimos na Sessão: " << gestor.totalHistorico() << endl;
+            cout << "\n--- " << UI::CYAN << "PAINEL DE CONTROLE" << UI::RESET << " ---" << endl;
+            cout << "Leitores na Fila: " << UI::YELLOW << gestor.totalFila() << UI::RESET << " | ";
+            cout << "Empréstimos na Sessão: " << UI::YELLOW << gestor.totalHistorico() << UI::RESET << endl;
             cout << "[1] Adicionar Leitor à Fila" << endl;
             cout << "[2] Atender Próximo Leitor (Empréstimo)" << endl;
             cout << "[3] Cancelar Último Empréstimo (DESFAZER)" << endl;
@@ -64,24 +64,24 @@ int main()
                 }
                 else if (opcao == 2) {
                     if (gestor.filaVazia()) {
-                        cout << "[AVISO]: Fila de atendimento vazia." << endl;
+                        cout << UI::YELLOW << "[AVISO]: " << UI::RESET << "Fila de atendimento vazia." << endl;
                     } else {
-                        string leitorAtual = gestor.getProximoLeitor();
+                        const string& leitorAtual = gestor.getProximoLeitor();
                         
-                        cout << "\n--- LIVROS DISPONÍVEIS ---" << endl;
+                        cout << "\n--- " << UI::CYAN << "LIVROS DISPONÍVEIS" << UI::RESET << " ---" << endl;
                         cout << left << setw(4) << "ID" << setw(30) << "TÍTULO" << "ESTOQUE" << endl;
                         cout << "--------------------------------------------------------" << endl;
                         const auto& catalogo = gestor.getCatalogo();
                         for (int i = 0; i < (int)catalogo.size(); i++) {
                             cout << left << "[" << i << "] " 
                                  << setw(30) << (catalogo[i].titulo.length() > 28 ? catalogo[i].titulo.substr(0, 25) + "..." : catalogo[i].titulo)
-                                 << (catalogo[i].estoque > 0 ? to_string(catalogo[i].estoque) : "ESGOTADO") << endl;
+                                 << (catalogo[i].estoque > 0 ? to_string(catalogo[i].estoque) : UI::RED + "ESGOTADO" + UI::RESET) << endl;
                         }
                         
                         int index = lerInteiro("\nEscolha o índice do livro para " + leitorAtual + " (ou -1 para cancelar): ");
 
                         if (index == -1) {
-                            cout << "[AVISO]: Atendimento cancelado." << endl;
+                            cout << UI::YELLOW << "[AVISO]: " << UI::RESET << "Atendimento cancelado." << endl;
                         } else {
                             gestor.realizarEmprestimo(index);
                         }
@@ -91,11 +91,13 @@ int main()
                     gestor.desfazerEmprestimo();
                 }
                 else if (opcao != 4) {
-                    cout << "[AVISO]: Opção inválida." << endl;
+                    cout << UI::YELLOW << "[AVISO]: " << UI::RESET << "Opção inválida." << endl;
                 }
 
             } catch (const ErroBiblioteca& e) {
-                cout << e.what() << endl;
+                cout << UI::RED << e.what() << UI::RESET << endl;
+            } catch (const exception& e) {
+                cout << UI::RED << "ERRO INESPERADO: " << e.what() << UI::RESET << endl;
             }
 
         } while (opcao != 4);
@@ -103,7 +105,7 @@ int main()
         gestor.salvarRelatorio("repositorio-extra/atividade-extra12/relatorio_dia.txt");
 
     } catch (const exception& e) {
-        cerr << "\nFATAL: " << e.what() << endl;
+        cerr << UI::RED << "\nFATAL: " << e.what() << UI::RESET << endl;
         return 1;
     }
 

@@ -1,12 +1,18 @@
 /**
  * @file atividade-extra27-templates-classe.cpp
- * @brief Gestão de Carga: Introdução a Class Templates.
+ * @brief Gestão de Carga: Programação Genérica com Class Templates.
  * 
- * Demonstra como criar classes genéricas que podem armazenar e processar
- * qualquer tipo de dado, simulando um container universal de logística.
+ * Versão Refatorada: Padrão de Engenharia de Elite (Silicon Valley Standard).
+ * Demonstra a criação de componentes universais e a otimização de performance genérica.
  * 
  * @author SENAI - Cristiano Batista Pessoa
- * @date 19/04/2026
+ * @date 22/04/2026
+ * 
+ * @section MemoryMap Mapeamento de Memória (Class Template Instance)
+ * - Objeto UnidadeDeCarga<T>: Alocado na STACK ou HEAP conforme a main().
+ * - Atributo 'T conteudo': O espaço reservado depende do tipo T (int=4b, double=8b, string=32b).
+ * - Polimorfismo Estático: Não há V-TABLE. O compilador gera classes físicas 
+ *   separadas para cada T utilizado, garantindo performance de código nativo.
  */
 
 #include <iostream>
@@ -15,106 +21,126 @@
 
 using namespace std;
 
-// --- 1. NAMESPACE DE INTERFACE ---
+// --- 1. NAMESPACE DE INTERFACE (ANSI) ---
 
 namespace UI {
     const string RESET    = "\033[0m";
+    const string NEGRITO  = "\033[1m";
     const string VERDE    = "\033[32m";
     const string AMARELO  = "\033[33m";
     const string AZUL     = "\033[34m";
     const string CIANO    = "\033[36m";
-    const string NEGRITO  = "\033[1m";
+    const string BRANCO   = "\033[37m";
+
+    inline void limparTela() { cout << "\033[2J\033[1;1H"; }
 }
 
-// --- 2. DEFINIÇÃO DA CLASS TEMPLATE (O CONCEITO ELITE) ---
+// --- 2. DEFINIÇÃO DA CLASS TEMPLATE (CONTEINER UNIVERSAL) ---
 
+/**
+ * @class UnidadeDeCarga
+ * @brief Abstração genérica para armazenamento e transporte de qualquer tipo de dado.
+ * @tparam T Tipo do conteúdo transportado (Pode ser primitivo ou objeto complexo).
+ */
 template <typename T>
 class UnidadeDeCarga {
 private:
     string id;
     double pesoTotal;
-    T conteudo; // O tipo T será decidido na criação do objeto
+    T conteudo; // Memória reservada dinamicamente pelo compilador conforme o tipo T
 
 public:
-    // Construtor
-    UnidadeDeCarga(string _id, double _peso, T _conteudo) 
+    /**
+     * @brief Construtor Universal.
+     * @param _conteudo Passagem por Referência Constante (FANTASMA DO CPU).
+     */
+    UnidadeDeCarga(const string& _id, double _peso, const T& _conteudo) 
         : id(_id), pesoTotal(_peso), conteudo(_conteudo) {}
 
-    // Método para atualizar o conteúdo
-    void atualizarConteudo(T novoConteudo) {
+    /**
+     * @brief Atualiza o conteúdo genérico com proteção contra cópias pesadas.
+     */
+    void atualizarConteudo(const T& novoConteudo) {
         conteudo = novoConteudo;
     }
 
-    // Exibição polimórfica (por tipo de dado)
+    /**
+     * @brief Gera manifesto técnico baseado no tipo T instanciado.
+     */
     void exibirManifesto() const {
-        cout << UI::CIANO << "MANIFESTO DE CARGA [" << id << "]" << UI::RESET << endl;
-        cout << "Peso Bruto: " << pesoTotal << " kg" << endl;
-        cout << "CONTEÚDO  : " << UI::AMARELO << conteudo << UI::RESET << endl;
-        cout << "-----------------------------------------------" << endl;
+        cout << UI::CIANO << UI::NEGRITO << "-----------------------------------------------" << UI::RESET << endl;
+        cout << UI::NEGRITO << "MANIFESTO DE CARGA [" << UI::CIANO << id << UI::RESET << UI::NEGRITO << "]" << UI::RESET << endl;
+        cout << UI::BRANCO << "PESO BRUTO: " << UI::RESET << fixed << setprecision(2) << pesoTotal << " kg" << endl;
+        cout << UI::BRANCO << "CONTEÚDO  : " << UI::RESET << UI::AMARELO << UI::NEGRITO << conteudo << UI::RESET << endl;
+        cout << UI::CIANO << UI::NEGRITO << "-----------------------------------------------" << UI::RESET << endl;
     }
 };
 
-// --- 3. FUNÇÃO PRINCIPAL ---
+// --- 3. EXECUÇÃO PRINCIPAL ---
 
 int main()
 {
+    UI::limparTela();
     cout << fixed << setprecision(2);
 
-    cout << UI::CIANO << "===============================================" << endl;
-    cout << "      LOGÍSTICA GLOBAL: CONTAINER ENGINE       " << endl;
+    cout << UI::VERDE << UI::NEGRITO << "===============================================" << endl;
+    cout << "      LOGÍSTICA GLOBAL: CONTAINER ENGINE v2.0  " << endl;
+    cout << "       (Elite Class Template Instance)         " << endl;
     cout << "===============================================" << UI::RESET << endl;
 
-    // Cenário 1: Container de Sensores Eletrônicos (T = int)
-    // Note a sintaxe <int> na criação
+    // --- INSTÂNCIA 1: UNIDADES INTEIRAS (T = int) ---
     UnidadeDeCarga<int> c1("BR-778", 150.0, 500); 
-    cout << "[LOG]: Criando Unidade de Carga (Tipo: Unidades Inteiras)" << endl;
+    cout << UI::BRANCO << "[LOG]: Unidade Inteira (Sensores) configurada na STACK." << UI::RESET << endl;
     c1.exibirManifesto();
 
-    // Cenário 2: Container de Combustível (T = double)
+    // --- INSTÂNCIA 2: VOLUME LÍQUIDO (T = double) ---
     UnidadeDeCarga<double> c2("OIL-99", 5400.5, 450.75);
-    cout << "[LOG]: Criando Unidade de Carga (Tipo: Volume Líquido)" << endl;
+    cout << UI::BRANCO << "[LOG]: Unidade de Precisão (Volume) configurada na STACK." << UI::RESET << endl;
     c2.exibirManifesto();
 
-    // Cenário 3: Container de Documentação (T = string)
-    UnidadeDeCarga<string> c3("DOC-001", 12.0, "Contratos e Certidões de Exportação");
-    cout << "[LOG]: Criando Unidade de Carga (Tipo: Texto/Documental)" << endl;
+    // --- INSTÂNCIA 3: CARGA DOCUMENTAL (T = string) ---
+    UnidadeDeCarga<string> c3("DOC-001", 12.0, "CERTIFICADOS_EXPORT_A1.PDF");
+    cout << UI::BRANCO << "[LOG]: Unidade de Texto (Log) configurada na STACK." << UI::RESET << endl;
     c3.exibirManifesto();
 
-    cout << UI::VERDE << "SISTEMA GENÉRICO VALIDADO COM SUCESSO!" << UI::RESET << endl;
+    cout << "\n" << UI::VERDE << UI::NEGRITO << "SISTEMA GENÉRICO HOMOLOGADO COM 100% DE TIPAGEM ESTÁTICA." << UI::RESET << endl;
 
     return 0;
 }
 
 /* 
     ===============================================================
-    RESUMO TEÓRICO: CLASS TEMPLATES
+    RESUMO TEÓRICO: CLASS TEMPLATES E REUSO ESTRUTURAL
     ===============================================================
 
-    1. FLEXIBILIDADE DE ESTRUTURA:
-       - Enquanto Function Templates geram funções, Class Templates 
-         permitem que uma CLASSE inteira seja genérica. Os atributos 
-         e parâmetros de métodos se adaptam ao tipo 'T' escolhido.
+    1. TEMPLATES DE CLASSE (CONTAINERS):
+       - Diferente dos templates de função, aqui a CLASSE INTEIRA 
+         se torna um molde. É a base da Standard Template Library 
+         (STL). Ao invés de criarmos 'VectorInt' e 'VectorFloat', 
+         criamos 'Vector<T>'.
 
-    2. INSTANCIAÇÃO (<T>):
-       - Ao criar o objeto, o programador DEVE informar o tipo 
-         entre os sinais de menor/maior (ex: UnidadeDeCarga<int>). 
-         A partir daí, aquele objeto específico só aceitará 'int'.
+    2. FANTASMA DO CPU (ELITE PERFORMANCE):
+       - Note o uso de 'const T&' em todos os parâmetros. Como não 
+         sabemos se o usuário passará um 'int' (4 bytes) ou uma 
+         'Struct de 1MB', usamos a referência constante para 
+         garantir que o sistema nunca clone dados pesados.
 
-    3. REUTILIZAÇÃO EM LARGA ESCALA:
-       - Este é o padrão usado pela biblioteca padrão do C++ (STL). 
-         Sem isso, teríamos que escrever centenas de classes para 
-         cada tipo de dado possível.
+    3. MONOMORFIZAÇÃO:
+       - O compilador gera três classes físicas em código de 
+         máquina neste programa. Isso significa que não há perda de 
+         performance por "verificar o tipo" no runtime. O C++ é 
+         tão rápido em código genérico quanto em código manual.
 
-    4. COMPILAÇÃO:
-       - O C++ usa um processo chamado 'Instanciação de Template'. 
-         O código real para a classe 'UnidadeDeCarga<int>' só é 
-         gerado quando você tenta usá-la no código.
+    4. SEGURANÇA ARQUITETURAL:
+       - Templates forçam o programador a decidir o tipo no momento 
+         da criação. Uma vez definido que o container 'c1' é <int>, 
+         é impossível colocar uma string dentro dele, protegendo o 
+         sistema contra corrupção de dados.
 
     ===============================================================
     ASSUNTOS CORRELATOS:
-    - Default Template Arguments: Definir um tipo padrão (ex: T=int).
-    - Variadic Templates: Templates que aceitam um número infinito 
-      de tipos de dados (C++11).
-    - STL (Standard Template Library): O ápice do uso de templates.
+    - Template Meta-Programming (TMP).
+    - Policy-based Design.
+    - Explicit Template Instantiation: Para reduzir tempo de build.
     ===============================================================
 */

@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SkyCargo IAM: Secure Identity & Access Setup'
+
+# @file iam-setup.yaml
+# @brief Template IaC para provisionamento de Identidades e Acessos.
+# 
+# Atividade 01 - Cloud Identity (Nível Arquiteto).
+# 
+# @author SENAI - Cristiano Batista Pessoa
+# @date 22/04/2026
+# 
+# @section CloudMap Topologia de Identidade (RBAC)
+# - User: Dev-Elite (Entidade Humana).
+# - Group: CloudEngineers (Role-Based Access Control).
+# - Managed Policy: PowerUserAccess (Controle de recursos, não de IAM).
+# - Security: Login via AccessKeys (Simulado).
+
+Resources:
+  # 1. O GRUPO DE ENGENHARIA (O "Cargo" do usuário)
+  EngineeringGroup:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: Elite-Cloud-Engineers
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/PowerUserAccess
+
+  # 2. O USUÁRIO (A entidade física)
+  EliteUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: Dev-Elite-Cristiano
+      Groups:
+        - !Ref EngineeringGroup # O usuário nasce dentro do grupo
+
+  # 3. AS CHAVES DE ACESSO (Opcional - p/ uso em CLI)
+  # ELITE NOTE: No mundo real, prefira usar Roles temporárias (SSO).
+  UserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref EliteUser
+
+Outputs:
+  AccessKeyID:
+    Description: Chave de Acesso para o CLI.
+    Value: !Ref UserAccessKey
+  SecretAccessKey:
+    Description: Chave Secreta (PROTEGIDA).
+    Value: !GetAtt UserAccessKey.SecretAccessKey
+  # ELITE NOTE: O CloudFormation é um dos poucos lugares onde você pode 
+  # recuperar a Secret Key após a criação, use com cautela extrema!
+
+# RESUMO TEÓRICO: SEGURANÇA POR CÓDIGO
+# 1. RBAC (Role-Based Access Control): Ao usar Grupos, você não precisa 
+#    configurar cada usuário. Basta trocar a permissão do Grupo e todos 
+#    os engenheiros recebem o upgrade instantaneamente.
+# 2. POWER USER VS ADMIN: O PowerUser pode criar Buckets e Lambdas, mas 
+#    NÃO pode criar outros usuários ou apagar logs de auditoria. Isso 
+#    impede que um invasor "se esconda" criando novas identidades.
+# 3. IDENTIDADE IMUTÁVEL: Se o usuário for deletado por erro, a stack 
+#    do CloudFormation pode recriá-lo com as mesmas permissões em segundos.

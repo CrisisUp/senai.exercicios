@@ -3,6 +3,7 @@ ESTUDO DE CASO: SISTEMA DE RASTREIO DE ENCOMENDAS (LOGÍSTICA 4.0)
 DOMÍNIO: Logística / E-commerce
 ATIVIDADE: Extra 18
 CONCEITO NOVO: Sobrecarga de Construtores e Lista de Inicialização
+STATUS: Padrão de Engenharia de Elite Aplicado
 
 1. O CENÁRIO
 Em um centro de distribuição automatizado, as encomendas chegam de duas formas:
@@ -21,13 +22,23 @@ Além disso, usaremos a LISTA DE INICIALIZAÇÃO (aquela sintaxe após os dois
 pontos ':'), que é a forma mais performática e profissional de atribuir valores 
 iniciais aos atributos de uma classe em C++.
 
-3. REQUISITOS DO SISTEMA
+3. ANÁLISE DE FALHA CRÍTICA (LOGÍSTICA)
+- RISCO DE FRAGMENTAÇÃO DE HEAP: Como strings como 'destino' e 'rastreio' 
+  alocam memória dinâmica, a criação e destruição massiva de pacotes sem o 
+  uso de referências constantes (&) pode fragmentar a memória Heap.
+- RISCO DE INCONSISTÊNCIA FÍSICA: Se um sistema de logística aceitar pesos 
+  negativos ou nulos, o cálculo de frete e o equilíbrio de carga do caminhão 
+  serão corrompidos, causando prejuízos financeiros e riscos de segurança.
+- RISCO DE DEADLOCK DE CADASTRO: Se um pacote manual nunca for pesado (peso 0), 
+  ele pode travar na esteira de despacho por falta de dados críticos.
+
+4. REQUISITOS DO SISTEMA
 - Classe 'PacoteLogistico'.
 - Atributos privados: codigoRastreio (string), peso (double), destino (string).
-- Construtor 1 (Completo): Recebe todos os dados (Rastreio, Peso, Destino).
-- Construtor 2 (Parcial): Recebe apenas o Código de Rastreio (Peso inicia em 0.0 
-  e Destino como "A DEFINIR").
+- Construtor 1 (Completo): Scanner (Uso de Initializer List).
+- Construtor 2 (Parcial): Manual (Sobrecarga de Construtor).
 - Métodos Públicos:
-    * Setters para Peso e Destino (com validação de peso > 0).
-    * Método 'exibirEtiqueta': Imprime os dados formatados com cores ANSI.
+    * Setters com retorno booleano para controle de fluxo.
+    * Getters otimizados com retorno por referência constante.
+    * Etiqueta visual ANSI para feedback imediato no terminal.
 ------------------------------------------------------------------------------
