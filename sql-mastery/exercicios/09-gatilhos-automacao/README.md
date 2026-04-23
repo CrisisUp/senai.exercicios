@@ -15,8 +15,9 @@ Os **Gatilhos (Triggers)** são blocos de código SQL que "disparam" automaticam
 ## ⚠️ Análise de Falha Crítica: Trigger Loops/Recursion
 
 Um dos maiores perigos na automação de banco de dados é o **Trigger Loop** (Recursão Infinita). Isso ocorre quando o Gatilho A altera a Tabela B, e um Gatilho na Tabela B altera de volta a Tabela A, disparando o Gatilho A novamente.
-*   **Impacto:** Consumo total de CPU e travamento do processo do banco de dados (Stack Overflow).
-*   **Prevenção:** Evitar cadeias de gatilhos circulares e, se possível, utilizar a cláusula `WHEN` para filtrar disparos desnecessários.
+
+* **Impacto:** Consumo total de CPU e travamento do processo do banco de dados (Stack Overflow).
+* **Prevenção:** Evitar cadeias de gatilhos circulares e, se possível, utilizar a cláusula `WHEN` para filtrar disparos desnecessários.
 
 ## 📋 Requisitos
 

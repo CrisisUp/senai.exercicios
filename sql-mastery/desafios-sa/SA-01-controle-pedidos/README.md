@@ -27,10 +27,10 @@ Este desafio integra os conhecimentos das Atividades 01, 02 e 03:
 
 A operação de controle de pedidos enfrenta riscos críticos que podem comprometer a confiança do cliente e a saúde financeira da SkyCargo:
 
-1.  **Inconsistência de Faturamento:** O uso de tipos de dados de ponto flutuante (`REAL`/`FLOAT`) para valores monetários pode causar erros de arredondamento em grandes volumes, resultando em discrepâncias de centavos que se acumulam.
-2.  **Orfandade de Dados:** A falta de restrições de `FOREIGN KEY` (ou desativação das mesmas) pode permitir que itens de pedido existam sem um pedido pai, ou pedidos sem um cliente válido.
-3.  **Duplicidade de Pedidos:** Falhas na validação de entrada podem permitir que o mesmo pedido seja processado múltiplas vezes se não houver chaves únicas compostas ou travas de transação.
-4.  **Estado Inválido:** Mudanças de status de pedido sem uma máquina de estados (ex: de 'Cancelado' para 'Entregue') podem gerar falhas logísticas graves.
+1. **Inconsistência de Faturamento:** O uso de tipos de dados de ponto flutuante (`REAL`/`FLOAT`) para valores monetários pode causar erros de arredondamento em grandes volumes, resultando em discrepâncias de centavos que se acumulam.
+2. **Orfandade de Dados:** A falta de restrições de `FOREIGN KEY` (ou desativação das mesmas) pode permitir que itens de pedido existam sem um pedido pai, ou pedidos sem um cliente válido.
+3. **Duplicidade de Pedidos:** Falhas na validação de entrada podem permitir que o mesmo pedido seja processado múltiplas vezes se não houver chaves únicas compostas ou travas de transação.
+4. **Estado Inválido:** Mudanças de status de pedido sem uma máquina de estados (ex: de 'Cancelado' para 'Entregue') podem gerar falhas logísticas graves.
 
 ## 🏗️ Estrutura de Arquivos Obrigatória
 

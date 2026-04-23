@@ -7,39 +7,34 @@
  * @author Gemini CLI
  * @date 2026-04-19
  */
-
 -- ==============================================================================
 -- ATIVIDADE 03: RELACIONAMENTO DE FORNECEDORES (JOINs)
 -- OBJETIVO: Normalizar o banco e conectar tabelas via Chaves Estrangeiras.
 -- ==============================================================================
-
 -- 1. Criação da Tabela de Fornecedores (A tabela "Pai")
 CREATE TABLE IF NOT EXISTS fornecedores (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL,
     pais TEXT
 );
-
 -- 2. Criação da Tabela de Produtos (A tabela "Filha")
 -- Aplicando Guardião Financeiro: preco_centavos como INTEGER
 CREATE TABLE IF NOT EXISTS produtos (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL,
-    preco_centavos INTEGER, -- R$ 10,50 vira 1050
+    preco_centavos INTEGER,
+    -- R$ 10,50 vira 1050
     fornecedor_id INTEGER,
     FOREIGN KEY (fornecedor_id) REFERENCES fornecedores(id)
 );
-
 -- Limpando dados antigos
 DELETE FROM produtos;
 DELETE FROM fornecedores;
-
 -- 3. Inserção de Fornecedores
 INSERT INTO fornecedores (nome, pais)
 VALUES ('TecnoDrone Brasil', 'Brasil'),
     ('Global Sensors Co.', 'China'),
     ('AeroParts GmbH', 'Alemanha');
-
 -- 4. Inserção de Produtos vinculados (Guardião Financeiro aplicado)
 INSERT INTO produtos (nome, preco_centavos, fornecedor_id)
 VALUES ('Bateria Lipo 4S', 45000, 1),
@@ -47,16 +42,13 @@ VALUES ('Bateria Lipo 4S', 45000, 1),
     ('Sensor GPS Alfa', 120000, 2),
     ('Compass Digital', 35000, 2),
     ('Motor Brushless X', 55000, 3);
-
 -- 5. CONSULTAS COM JOIN
-
 -- [A] LISTAR PRODUTO E O NOME DO FORNECEDOR (INNER JOIN)
 -- Colunas explícitas para otimização e clareza.
 SELECT p.nome AS "Produto",
     f.nome AS "Fornecedor"
 FROM produtos p
     INNER JOIN fornecedores f ON p.fornecedor_id = f.id;
-
 -- [B] LISTAR APENAS PRODUTOS DE FORNECEDORES ESTRANGEIROS
 SELECT p.nome AS "Produto",
     p.preco_centavos / 100.0 AS "Preço (R$)",
@@ -64,7 +56,6 @@ SELECT p.nome AS "Produto",
 FROM produtos p
     INNER JOIN fornecedores f ON p.fornecedor_id = f.id
 WHERE f.pais <> 'Brasil';
-
 -- [C] CONTAR QUANTOS PRODUTOS CADA FORNECEDOR POSSUI
 -- LEFT JOIN garante que fornecedores sem produtos também apareçam (evita orfandade no relatório).
 SELECT f.nome AS "Fornecedor",
@@ -72,7 +63,6 @@ SELECT f.nome AS "Fornecedor",
 FROM fornecedores f
     LEFT JOIN produtos p ON f.id = p.fornecedor_id
 GROUP BY f.nome;
-
 /* 
  ===============================================================
  RESUMO TEÓRICO: JOINs E NORMALIZAÇÃO

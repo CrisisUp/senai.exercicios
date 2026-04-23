@@ -17,11 +17,11 @@ As **Vistas (Views)** são tabelas virtuais baseadas no resultado de um SELECT:
 1. Utilizar a estrutura de `produtos` e `fornecedores` das atividades anteriores.
 2. Criar uma View chamada `v_catalogo_completo` que una Produto, Preço e Nome do Fornecedor.
 3. Criar uma View chamada `v_promocoes_ativas` que liste apenas produtos com desconto > 0, já com o preço final calculado.
-*   Realizar consultas simples diretamente sobre as Views (como se fossem tabelas comuns).
+
+* Realizar consultas simples diretamente sobre as Views (como se fossem tabelas comuns).
 
 ## ⚠️ Análise de Falha Crítica
 
 **Risco:** Degradação de Performance em Views Empilhadas (Nested Views).
 **Cenário:** Criar views que consultam outras views que, por sua vez, realizam joins complexos. Em grandes volumes de dados, o otimizador de consultas pode ter dificuldade em aplicar índices de forma eficiente, resultando em lentidão extrema.
 **Solução:** Evitar o excesso de camadas de abstração. Monitorar o plano de execução e, se necessário, materializar os dados (Materialized Views - não disponível nativamente no SQLite, mas simulável via tabelas temporárias) para relatórios pesados.
-

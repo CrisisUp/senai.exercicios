@@ -16,8 +16,9 @@ As **Window Functions (Funções de Janela)** permitem realizar cálculos que ab
 ## ⚠️ Análise de Falha Crítica: Impactos de Performance em Window Functions
 
 O uso de **Window Functions** em tabelas com milhões de registros pode ser custoso. Se não houver índices que suportem a cláusula `PARTITION BY` e `ORDER BY` dentro do `OVER()`, o banco de dados precisará realizar múltiplas passagens pelos dados e criar arquivos temporários em disco.
-*   **Impacto:** Aumento drástico no tempo de resposta de relatórios analíticos.
-*   **Prevenção:** Utilizar índices compostos que cubram as colunas de partição e ordenação da janela.
+
+* **Impacto:** Aumento drástico no tempo de resposta de relatórios analíticos.
+* **Prevenção:** Utilizar índices compostos que cubram as colunas de partição e ordenação da janela.
 
 ## 📋 Requisitos
 

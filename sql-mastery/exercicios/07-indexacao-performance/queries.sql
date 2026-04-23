@@ -11,12 +11,10 @@
  * - Com índice: O(log n) - Index Seek (Busca binária balanceada na árvore).
  * - O índice `idx_drone_id` armazena pares (drone_id, rowid), permitindo saltar diretamente para a linha na B-Tree de dados.
  */
-
 -- ==============================================================================
 -- ATIVIDADE 07: ENGENHARIA DE PERFORMANCE (INDEXAÇÃO)
 -- OBJETIVO: Otimizar buscas em grandes volumes de dados.
 -- ==============================================================================
-
 -- 1. Criação da Tabela de Logs
 -- @note Guardião Financeiro: custo_processamento_cents (INTEGER) para precisão de auditoria.
 CREATE TABLE IF NOT EXISTS historico_voo (
@@ -26,10 +24,8 @@ CREATE TABLE IF NOT EXISTS historico_voo (
   custo_processamento_cents INTEGER DEFAULT 0,
   data_hora TEXT DEFAULT CURRENT_TIMESTAMP
 );
-
 -- Limpando dados para o teste de performance
 DELETE FROM historico_voo;
-
 -- 2. Populando o banco com massa de dados (Simulação)
 INSERT INTO historico_voo (drone_id, evento, custo_processamento_cents)
 VALUES ('DRONE-X1', 'Decolagem autorizada', 50),
@@ -39,34 +35,28 @@ VALUES ('DRONE-X1', 'Decolagem autorizada', 50),
   ('DRONE-X1', 'Cruzando setor Alfa', 20),
   ('DRONE-B2', 'Pouso concluído', 45),
   ('DRONE-X1', 'Pouso concluído', 45);
-
 -- 3. ANÁLISE ANTES DO ÍNDICE
 -- Este comando revela que o SQLite fará um "SCAN" (ler tudo)
 EXPLAIN QUERY PLAN
 SELECT *
 FROM historico_voo
 WHERE drone_id = 'DRONE-X1';
-
 -- 4. CRIAÇÃO DO ÍNDICE (Aceleração)
 -- Criamos um índice dedicado à coluna de busca mais comum.
 CREATE INDEX IF NOT EXISTS idx_drone_id ON historico_voo(drone_id);
-
 -- 5. ANÁLISE DEPOIS DO ÍNDICE
 -- Este comando revela que agora o SQLite fará um "SEARCH" (busca direta via guia)
 EXPLAIN QUERY PLAN
 SELECT *
 FROM historico_voo
 WHERE drone_id = 'DRONE-X1';
-
 -- 6. CONSULTA REAL (Rápida e otimizada)
-SELECT 
-    drone_id, 
-    evento, 
-    (custo_processamento_cents / 100.0) AS custo_reais,
-    data_hora
+SELECT drone_id,
+  evento,
+  (custo_processamento_cents / 100.0) AS custo_reais,
+  data_hora
 FROM historico_voo
 WHERE drone_id = 'DRONE-X1';
-
 /* 
  ===============================================================
  RESUMO TEÓRICO: ÍNDICES E PLANOS DE EXECUÇÃO
@@ -84,7 +74,7 @@ WHERE drone_id = 'DRONE-X1';
  - Índices ocupam espaço em disco e deixam os INSERTs e UPDATEs 
  um pouco mais lentos (pois o índice deve ser atualizado). 
  - Regra: Crie índices apenas nas colunas usadas no WHERE ou JOIN.
-
+ 
  4. GUARDIÃO FINANCEIRO:
  - Mesmo em logs de telemetria, custos de operação devem ser 
  rastreados com INTEGER cents para garantir integridade em 
@@ -93,7 +83,7 @@ WHERE drone_id = 'DRONE-X1';
  VANTAGEM DIDÁTICA: 
  O aluno aprende a não apenas "fazer a query funcionar", mas a 
  se preocupar com o custo computacional e a escalabilidade do sistema.
-
+ 
  ASSUNTOS CORRELATOS:
  - Covering Indexes (Índices que contêm todas as colunas da query).
  - Indexes on Expressions (Índices em funções como UPPER(col)).

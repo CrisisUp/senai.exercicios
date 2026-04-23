@@ -14,8 +14,9 @@ Quando fazemos um `SELECT ... WHERE drone_id = 'X'`, o banco precisa ler linha p
 ## ⚠️ Análise de Falha Crítica: Fragmentation em Índices
 
 A criação excessiva de índices ou a inserção aleatória de dados pode levar à **Fragmentação**. Isso acontece quando as páginas da B-Tree do índice não estão mais contíguas no disco, forçando o cabeçote de leitura a saltar entre setores físicos.
-*   **Impacto:** Degradação gradual da performance de busca, anulando o benefício do índice.
-*   **Prevenção:** Monitoramento regular via `ANALYZE` e reconstrução de índices fragmentados com `REINDEX`.
+
+* **Impacto:** Degradação gradual da performance de busca, anulando o benefício do índice.
+* **Prevenção:** Monitoramento regular via `ANALYZE` e reconstrução de índices fragmentados com `REINDEX`.
 
 ## 📋 Requisitos
 

@@ -6,12 +6,10 @@
  * @author Gemini CLI
  * @date 2026-04-19
  */
-
 -- ==============================================================================
 -- ATIVIDADE 04: EVOLUÇÃO DO ESQUEMA (ALTER TABLE)
 -- OBJETIVO: Modificar a estrutura de uma tabela existente.
 -- ==============================================================================
-
 -- 1. Preparação: Garantir que a tabela base exista
 -- Aplicando Guardião Financeiro: preco_centavos
 CREATE TABLE IF NOT EXISTS produtos (
@@ -21,36 +19,44 @@ CREATE TABLE IF NOT EXISTS produtos (
   preco_centavos INTEGER,
   estoque INTEGER
 );
-
 -- Populando com dados iniciais
 INSERT INTO produtos (nome, categoria, preco_centavos, estoque)
-SELECT 'Bateria Lipo 4S', 'Energia', 45000, 15
-WHERE NOT EXISTS (SELECT 1 FROM produtos WHERE nome = 'Bateria Lipo 4S');
-
+SELECT 'Bateria Lipo 4S',
+  'Energia',
+  45000,
+  15
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM produtos
+    WHERE nome = 'Bateria Lipo 4S'
+  );
 INSERT INTO produtos (nome, categoria, preco_centavos, estoque)
-SELECT 'Sensor GPS Alfa', 'Navegação', 120000, 5
-WHERE NOT EXISTS (SELECT 1 FROM produtos WHERE nome = 'Sensor GPS Alfa');
-
+SELECT 'Sensor GPS Alfa',
+  'Navegação',
+  120000,
+  5
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM produtos
+    WHERE nome = 'Sensor GPS Alfa'
+  );
 -- 2. EVOLUÇÃO DO BANCO (ALTER TABLE)
 -- Adicionando coluna de Avaliação
-ALTER TABLE produtos ADD COLUMN avaliacao INTEGER;
-
+ALTER TABLE produtos
+ADD COLUMN avaliacao INTEGER;
 -- Adicionando coluna de Desconto com Valor Padrão (Em centavos)
-ALTER TABLE produtos ADD COLUMN desconto_centavos INTEGER DEFAULT 0;
-
+ALTER TABLE produtos
+ADD COLUMN desconto_centavos INTEGER DEFAULT 0;
 -- 3. MANUTENÇÃO DE DADOS (UPDATE)
 -- Dando 5 estrelas para o GPS
 UPDATE produtos
 SET avaliacao = 5
 WHERE nome = 'Sensor GPS Alfa';
-
 -- Aplicando desconto de R$ 45,00 na Bateria (4500 centavos)
 UPDATE produtos
 SET desconto_centavos = 4500
 WHERE nome = 'Bateria Lipo 4S';
-
 -- 4. CONSULTAS COM CÁLCULOS DINÂMICOS
-
 -- [A] LISTAR PREÇO ORIGINAL, DESCONTO E PREÇO FINAL
 -- Colunas explícitas e conversão para visualização.
 SELECT nome,
@@ -58,13 +64,14 @@ SELECT nome,
   desconto_centavos / 100.0 AS "Valor Desconto (R$)",
   (preco_centavos - desconto_centavos) / 100.0 AS "Preço Final (R$)"
 FROM produtos;
-
 -- [B] LISTAR APENAS PRODUTOS COM 5 ESTRELAS
 -- Otimizado: sem SELECT *
-SELECT id, nome, categoria, avaliacao
+SELECT id,
+  nome,
+  categoria,
+  avaliacao
 FROM produtos
 WHERE avaliacao = 5;
-
 /* 
  ===============================================================
  RESUMO TEÓRICO: EVOLUÇÃO E MANUTENÇÃO
@@ -81,7 +88,7 @@ WHERE avaliacao = 5;
  3. VALORES DEFAULT:
  - Cruciais para manter a compatibilidade com sistemas legados 
  que ainda não enviam dados para as novas colunas.
-
+ 
  4. GUARDIÃO FINANCEIRO:
  - Ao migrar esquemas, garantir que novos campos monetários 
  (como descontos e taxas) sigam o padrão INTEGER (centavos) 

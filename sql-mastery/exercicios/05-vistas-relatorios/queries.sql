@@ -7,18 +7,15 @@
  * @author Gemini CLI
  * @date 2026-04-19
  */
-
 -- ==============================================================================
 -- ATIVIDADE 05: VISTAS E RELATÓRIOS (VIEWS)
 -- OBJETIVO: Criar abstrações para simplificar consultas complexas.
 -- ==============================================================================
-
 -- 1. Setup do Banco (Tabelas e Dados)
 CREATE TABLE IF NOT EXISTS fornecedores (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL
 );
-
 -- Aplicando Guardião Financeiro: preco_centavos, desconto_centavos
 CREATE TABLE IF NOT EXISTS produtos (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -28,22 +25,22 @@ CREATE TABLE IF NOT EXISTS produtos (
     fornecedor_id INTEGER,
     FOREIGN KEY (fornecedor_id) REFERENCES fornecedores(id)
 );
-
 DELETE FROM produtos;
 DELETE FROM fornecedores;
-
 INSERT INTO fornecedores (nome)
 VALUES ('TecnoDrone'),
     ('AeroParts');
-
-INSERT INTO produtos (nome, preco_centavos, desconto_centavos, fornecedor_id)
+INSERT INTO produtos (
+        nome,
+        preco_centavos,
+        desconto_centavos,
+        fornecedor_id
+    )
 VALUES ('Bateria Lipo 4S', 45000, 4500, 1),
     ('Frame Carbono', 22000, 0, 1),
     ('GPS Alfa', 120000, 10000, 2),
     ('Motor X', 55000, 0, 2);
-
 -- 2. CRIAÇÃO DAS VISTAS (VIEWS)
-
 -- [A] VISTA DE CATÁLOGO (JOIN Escondido)
 -- Colunas explícitas para garantir integridade.
 CREATE VIEW IF NOT EXISTS v_catalogo_completo AS
@@ -53,7 +50,6 @@ SELECT p.id,
     f.nome AS "Fornecedor"
 FROM produtos p
     INNER JOIN fornecedores f ON p.fornecedor_id = f.id;
-
 -- [B] VISTA DE PROMOÇÕES (Cálculo Escondido)
 CREATE VIEW IF NOT EXISTS v_promocoes_ativas AS
 SELECT nome AS "Produto",
@@ -62,17 +58,18 @@ SELECT nome AS "Produto",
     (preco_centavos - desconto_centavos) / 100.0 AS "Preço Final (R$)"
 FROM produtos
 WHERE desconto_centavos > 0;
-
 -- 3. CONSULTAS SOBRE AS VIEWS
-
 -- Listar catálogo completo (Colunas explícitas)
-SELECT id, "Produto", "Preço (R$)", "Fornecedor"
+SELECT id,
+    "Produto",
+    "Preço (R$)",
+    "Fornecedor"
 FROM v_catalogo_completo;
-
 -- Listar apenas itens em promoção
-SELECT "Produto", "Preço Original (R$)", "Preço Final (R$)"
+SELECT "Produto",
+    "Preço Original (R$)",
+    "Preço Final (R$)"
 FROM v_promocoes_ativas;
-
 /* 
  ===============================================================
  RESUMO TEÓRICO: VISTAS (TABELAS VIRTUAIS)
