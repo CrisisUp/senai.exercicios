@@ -1,0 +1,51 @@
+## 🛠️ Necessidade Técnica
+Implementação de padrões de engenharia de elite para garantir escalabilidade e robustez.
+
+## 🎯 Estudo de Caso
+Análise técnica do cenário de negócio para o componente atividade-extra03.txt.
+
+===============================================================
+       ATIVIDADE 3: SISTEMA DE MONITORAMENTO DE PRODUÇÃO
+===============================================================
+
+CONTEXTO:
+Uma fazenda deseja monitorar a produção diária de leite de suas 
+vacas para identificar quais animais estão produzindo abaixo da 
+média e qual é a "campeã" de produção do dia.
+
+OBJETIVOS DO PROGRAMA:
+1.  Solicitar ao usuário a quantidade de vacas no rebanho.
+2.  Utilizar um VETOR (std::vector) para armazenar a produção 
+    (em litros) de cada vaca.
+3.  CALCULAR E EXIBIR:
+    a) A produção TOTAL da fazenda no dia.
+    b) A MÉDIA de produção por animal.
+    c) A MAIOR produção registrada (identificando qual vaca foi).
+4.  EXIBIR UM RELATÓRIO FINAL:
+    - Listar a produção de cada vaca.
+    - Se a produção da vaca estiver ABAIXO da média da fazenda, 
+      exibir um alerta: [DESEMPENHO BAIXO].
+
+DIFICULDADE ADICIONAL (O PULO DO GATO):
+Para resolver este problema, você precisará aprender a:
+- Acumular valores dentro de um loop para calcular o total.
+- Usar uma lógica de comparação para descobrir o maior valor:
+  "Se o valor atual for maior que o meu 'maior' guardado, 
+  então o valor atual passa a ser o novo 'maior'."
+
+===============================================================
+DICA TEÓRICA PARA O EXAME:
+Para encontrar o maior valor em um vetor, inicializamos uma 
+variável 'maior' com o primeiro elemento do vetor e depois 
+comparamos com o restante em um loop.
+===============================================================
+
+===============================================================
+## 🧪 ANÁLISE DE FALHA CRÍTICA (INPUT FAILURE):
+Se o usuário digitar uma letra no lugar de um número (ex: "cin >> numVacas"), 
+o C++ entra em estado de 'failbit'. O programa não trava 
+imediatamente, mas as próximas leituras serão ignoradas e as 
+variáveis podem conter lixo ou zero. 
+SOLUÇÃO: Usar 'cin.fail()' para detectar e 'cin.clear()' + 
+'cin.ignore()' para resetar o fluxo de entrada.
+===============================================================

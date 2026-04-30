@@ -1,0 +1,1 @@
+(function(){"use strict";self.onmessage=t=>{if(t.data==="START_CALCULATION"){for(let s=1;s<=10;s++){const e=s/10*100;self.postMessage({type:"PROGRESS",value:e})}self.postMessage({type:"COMPLETE",result:"500 MILHÕES DE PONTOS DE TELEMETRIA CALCULADOS."})}}})();

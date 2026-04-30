@@ -1,0 +1,24 @@
+# 📘 Atividade 07: Visão Tática (Filtros, Select e Cores Modernas)
+STATUS: Nível 07 (Iniciado) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A frota da "LogiSpeed Global" cresceu tanto que o monitoramento se tornou confuso. O operador precisa focar apenas nos drones que apresentam risco (ALERTA) ou nos que estão em trânsito (EM ROTA). Usaremos a inteligência dos arrays do JavaScript para criar uma visão filtrada, e usaremos cores modernas no CSS para criar camadas de profundidade visual.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** A tag `<select>` e `<option>` para criação de menus suspensos (filtros).
+2. **CSS (Estética):** Formatos de cores **RGBA** (com transparência) e **HSL** (Hue, Saturation, Lightness). O HSL é o padrão de elite para criar paletas consistentes.
+3. **JS (Atitude):** O método **`.filter()`**. Ele cria um novo array contendo apenas os itens que atendem a uma condição, essencial para buscas industriais.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **OVERLOAD DE INFORMAÇÃO:** Exibir 100 drones simultaneamente sem filtro faz com que o alerta de bateria crítica passe despercebido. Filtros salvam missões.
+- **CORES ESTÁTICAS:** Usar apenas Hexadecimal torna difícil criar variações de brilho para estados de erro. O HSL permite ajustar o "L" (Lightness) para criar efeitos de pulsação.
+- **MUTABILIDADE INDEVIDA:** Tentar filtrar alterando o array original. Aprenderemos que o `.filter()` é seguro pois gera uma CÓPIA filtrada, preservando os dados brutos.
+
+## 📋 Requisitos de Elite
+1. Criar um menu `<select>` para filtrar por status: "TODOS", "OPERACIONAL", "ALERTA".
+2. Estilizar o fundo do card usando RGBA para criar um efeito de vidro (Glassmorphism).
+3. No JS, implementar a lógica de filtro que atualiza a tabela automaticamente ao mudar o select.
+
+------------------------------------------------------------------------------
+"Filtre o ruído para encontrar o sinal; essa é a base da inteligência de comando."

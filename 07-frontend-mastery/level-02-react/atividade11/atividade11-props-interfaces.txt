@@ -1,0 +1,26 @@
+# 📘 Atividade 11: Props e Interfaces (Rigor de Dados)
+STATUS: Nível 13 (Arquiteto de Componentes) - Pilar de React
+
+## 🎯 Estudo de Caso
+No SkyCargo OS, o `DroneCard` (Molecular) precisa de mais informações para ser útil: modelo do drone, última mensagem de log e um botão de ação que dispara um comando real. Se passarmos essas informações como strings avulsas, o código ficará sujo. Precisamos agrupar os dados em **Interfaces de Domínio** e passá-las como Props.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos a passagem de dados via **Props (Properties)** com tipagem estática.
+1. **Domain Interfaces:** Criaremos um arquivo `types/drone.ts` para centralizar a definição do que é um Drone no sistema.
+2. **Object Props:** Em vez de passar 10 props individuais, passaremos o objeto `drone` completo para o componente.
+3. **Function Props (Callbacks):** Aprenderemos a passar funções como props, permitindo que um componente filho (ex: Botão) avise o pai (ex: Dashboard) sobre uma ação.
+4. **Children Prop:** Uso da propriedade especial `children` para criar componentes de layout flexíveis (Wrappers).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (DATA FLOW)
+- **PROP DRILLING:** Passar dados por muitos níveis de componentes desnecessariamente. Aprenderemos a identificar quando fatiar melhor os componentes.
+- **TYPE MISMATCH:** O dashboard tenta passar uma data como String, mas o Card espera um objeto Date. O TypeScript bloqueia esse erro na compilação.
+- **UNDEFINED ACTIONS:** Tentar clicar em um botão cujo comando não foi injetado pelo pai. Usaremos props obrigatórias para garantir que a ação exista.
+
+## 📋 Requisitos de Elite
+1. Centralizar tipos em `src/types/index.ts`.
+2. Implementar o componente `ActionCenter.tsx` que recebe uma lista de drones via props.
+3. Criar o componente `ButtonElite.tsx` que recebe um callback de clique.
+4. Orquestrar o Dashboard no `App.tsx` disparando alertas de sistema via console.
+
+------------------------------------------------------------------------------
+"Um componente sem contrato de dados é um passageiro sem passagem: ele não deveria estar no sistema."

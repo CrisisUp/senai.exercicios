@@ -1,0 +1,37 @@
+# 📘 Atividade 14: O Contrato Sagrado (Classes Abstratas & Interfaces)
+STATUS: Nível 14 (Guardião) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+A frota Nexus agora tem Drones, Carros e Barcos Autônomos. Todos eles devem ser capazes de `mover()`, mas cada um se move de forma totalmente diferente. Você não quer criar um "veículo genérico" que faz tudo; você quer um **Contrato** que obrigue todo veículo a saber se mover. Você aprenderá a usar **Classes Abstratas** e **Funções Virtuais Puras** para definir o que um sistema deve fazer, sem ditar como ele faz.
+
+## 🛠️ Necessidade Técnica
+- **Função Virtual Pura**: `virtual void mover() = 0;`. Não tem corpo, obriga as filhas a implementar.
+- **Classe Abstrata**: Uma classe que tem pelo menos uma função virtual pura. Não pode ser instanciada.
+
+### Exemplo (C++):
+```cpp
+class Veiculo { // Abstrata
+public:
+    virtual void mover() = 0; // O Contrato
+};
+
+class Drone : public Veiculo {
+public:
+    void mover() override { cout << "Voando..." << endl; }
+};
+```
+
+## 🚀 Missão
+1.  Crie a classe abstrata `DispositivoNexus`.
+2.  Defina o método virtual puro `executarProtocolo()`.
+3.  Faça a classe `Drone` herdar de `DispositivoNexus` e implementar o protocolo.
+4.  No `main()`, tente criar um objeto do tipo `DispositivoNexus` e veja o erro de compilação (prova de abstração).
+5.  Use um ponteiro da classe base para apontar para um drone: `DispositivoNexus* d = new Drone(...)`.
+
+## 📋 Requisitos de Elite
+- Definição clara de interfaces via funções virtuais puras.
+- Garantir que a lógica de negócio dependa de abstrações, não de implementações (DIP - SOLID).
+- Compreender o uso do modificador `override` para segurança tática.
+
+------------------------------------------------------------------------------
+"Abstração é o poder de ignorar o irrelevante para focar no essencial."

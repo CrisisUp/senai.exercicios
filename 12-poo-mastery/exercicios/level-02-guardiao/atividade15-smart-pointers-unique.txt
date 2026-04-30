@@ -1,0 +1,32 @@
+# 📘 Atividade 15: O Gerente de Memória (Smart Pointers - unique_ptr)
+STATUS: Nível 15 (Guardião) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+Vazamentos de memória (Memory Leaks) são inaceitáveis na "SkyCargo Nexus". Mesmo engenheiros experientes podem esquecer um `delete`. Você aprenderá a usar o **std::unique_ptr**, um ponteiro inteligente do C++ Moderno que garante que o objeto seja deletado AUTOMATICAMENTE quando sair de escopo. É o fim do gerenciamento manual de memória para proprietários únicos.
+
+## 🛠️ Necessidade Técnica
+- **`std::unique_ptr`**: Um container que possui um ponteiro. Não permite cópia (propriedade exclusiva), apenas transferência (`std::move`).
+- **Inclusão**: `#include <memory>`
+
+### Exemplo (C++11/14):
+```cpp
+#include <memory>
+// Cria um drone na Heap com gestão automática
+std::unique_ptr<Drone> droneSmart = std::make_unique<Drone>("Alpha", 100);
+droneSmart->decolar(); 
+// Nenhum 'delete' é necessário!
+```
+
+## 🚀 Missão
+1.  No seu laboratório, substitua o uso de ponteiros crus (`Drone*`) por `std::unique_ptr<Drone>`.
+2.  Tente copiar um `unique_ptr` para outro e observe o erro de compilação (prova de unicidade).
+3.  Use `std::move()` para transferir o drone de uma variável para outra.
+4.  Observe como o destrutor do Drone é chamado sem que você precise digitar `delete`.
+
+## 📋 Requisitos de Elite
+- Eliminar completamente o uso de `delete` manual para objetos de dono único.
+- Uso obrigatório de `std::make_unique` (padrão de performance).
+- Compreender o ciclo de vida automatizado do C++ moderno.
+
+------------------------------------------------------------------------------
+"O melhor 'delete' é aquele que você não precisa escrever."

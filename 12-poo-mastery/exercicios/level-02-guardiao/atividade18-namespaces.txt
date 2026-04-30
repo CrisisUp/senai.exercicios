@@ -1,0 +1,38 @@
+# 📘 Atividade 18: Territórios Isolados (Namespaces)
+STATUS: Nível 18 (Guardião) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+A frota Nexus integrou um novo sistema de radares de um fornecedor externo. O problema: o fornecedor também tem uma classe chamada `Sensor`. Se você tentar compilar os dois juntos, o C++ vai entrar em conflito. Você aprenderá a usar **Namespaces**, criando perímetros virtuais para o seu código. É a forma industrial de organizar o hangar para que nomes iguais não causem acidentes.
+
+## 🛠️ Necessidade Técnica
+- **`namespace { ... }`**: Agrupa classes, funções e variáveis em um escopo nomeado.
+- **`::`**: Operador de resolução de escopo para acessar o conteúdo do território.
+
+### Exemplo (C++):
+```cpp
+namespace SkyCargo {
+    class Sensor { /* nosso sensor */ };
+}
+
+namespace RadarCorp {
+    class Sensor { /* sensor deles */ };
+}
+
+// Uso:
+SkyCargo::Sensor meuGps;
+RadarCorp::Sensor radarExterno;
+```
+
+## 🚀 Missão
+1.  Envolva sua classe `Drone` e `Sensor` dentro do namespace `Nexus`.
+2.  No `main.cpp`, tente usar as classes sem o prefixo e veja o erro.
+3.  Utilize `using namespace Nexus;` em um escopo controlado (dentro de uma função) para facilitar o acesso.
+4.  Entenda por que `using namespace std;` no topo do arquivo é considerado má prática em projetos de elite.
+
+## 📋 Requisitos de Elite
+- Organização total do código em territórios lógicos.
+- Evitar colisões de nomes em grandes ecossistemas.
+- Compreender o uso do operador de escopo global.
+
+------------------------------------------------------------------------------
+"Muros bem construídos garantem a convivência pacífica de diferentes sistemas."

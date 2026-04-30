@@ -1,5 +1,0 @@
----
-triple:          'arm64-apple-darwin'
-binary-path:     './repositorio-extra/atividade-extra16/atividade-extra16-erp'
-relocations:     []
-...

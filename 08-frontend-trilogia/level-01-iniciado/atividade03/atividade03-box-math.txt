@@ -1,0 +1,24 @@
+# 📘 Atividade 03: Geometria e Lógica (Box Model e Matemática)
+STATUS: Nível 03 (Iniciado) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" precisa exibir a foto do Drone e calcular sua autonomia de voo baseada na bateria atual. No Nível 02, aprendemos variáveis. Agora, usaremos essas variáveis para realizar cálculos matemáticos e usaremos o CSS para controlar as bordas e o espaçamento (Box Model) dos cards de visualização.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** A tag `<img>` para visualização e `<section>` para agrupar conteúdo relacionado.
+2. **CSS (Estética):** O **Box Model** (Border, Padding, Margin). É o pilar que define o tamanho real de tudo na tela.
+3. **JS (Atitude):** Operadores matemáticos (`+`, `-`, `*`, `/`) e concatenação de strings para exibir resultados calculados.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **OVERFLOW DE IMAGEM:** Imagens sem tamanho definido podem "explodir" o layout. Aprenderemos a limitar sua largura.
+- **COLAPSO DE MARGENS:** Sem entender o Box Model, elementos podem ficar "colados" uns nos outros, tornando a leitura impossível para o operador.
+- **PRECISÃO MATEMÁTICA:** Erros de cálculo no JS podem levar a uma estimativa falsa de bateria, causando a queda do drone na simulação.
+
+## 📋 Requisitos de Elite
+1. Inserir uma imagem de drone (usaremos um placeholder industrial).
+2. Estilizar o card do drone com bordas arredondadas e espaçamento interno (Padding).
+3. No `script.js`, calcular a autonomia: `Bateria * 1.5` km e exibir o resultado no HTML.
+
+------------------------------------------------------------------------------
+"Na engenharia, a estética é apenas a moldura da precisão matemática."

@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/SA-02-hub-diagnostico: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/exercicios/SA-02-hub-diagnostico/src/main.rs

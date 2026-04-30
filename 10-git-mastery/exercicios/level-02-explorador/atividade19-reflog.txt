@@ -1,0 +1,30 @@
+# 📘 Atividade 19: O Seguro de Vida (Git Reflog)
+STATUS: Nível 19 (Explorador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Desastre na "SkyCargo Nexus"! Você tentou fazer um `git reset --hard` para limpar um erro, mas errou o ID do commit e acabou deletando todo o trabalho da última semana. O commit não está mais no `git log`. O pânico é real. Mas espere! O Git quase nunca deleta nada de verdade. Você aprenderá a usar o **Reflog**, o diário secreto do Git que registra cada movimento do seu HEAD, permitindo recuperar até commits que pareciam perdidos para sempre.
+
+## 🛠️ Necessidade Técnica
+Enquanto o `git log` mostra o histórico da branch (o que você quer que os outros vejam), o `git reflog` mostra o histórico das suas ações locais. Se o HEAD apontou para um commit em algum momento, o Reflog o registrou.
+
+### Comandos Chave:
+1.  **`git reflog`**: Mostra a lista de ações recentes (HEAD@{0}, HEAD@{1}, etc).
+2.  **`git reset --hard <hash-do-reflog>`**: Restaura o estado para um ponto registrado no reflog.
+
+## 🚀 Missão
+1.  Na branch `main`, faça um commit importante: `echo "DADOS VITAIS" > segredo.txt`, adicione e commite.
+2.  Anote o ID desse commit.
+3.  Simule o desastre: `git reset --hard HEAD~1`. Rode `ls`. O arquivo `segredo.txt` sumiu!
+4.  Rode `git log`. O commit importante não aparece mais.
+5.  Agora, use o seguro de vida: `git reflog`.
+6.  Encontre a linha que diz `commit: feat: inicializar manifesto` (ou o nome do seu commit).
+7.  Recupere-o: `git reset --hard HEAD@{1}` (ou o ID específico).
+8.  Rode `ls`. O arquivo voltou!
+
+## 📋 Requisitos de Elite
+- Entender que o Reflog é local e não é enviado para o servidor.
+- Saber diferenciar o `git log` (história do código) do `git reflog` (história das suas mãos).
+- Manter a calma e usar o Reflog como primeira ferramenta de resgate.
+
+------------------------------------------------------------------------------
+"No Git, você só perde um commit se deletar a pasta .git ou formatar o HD."

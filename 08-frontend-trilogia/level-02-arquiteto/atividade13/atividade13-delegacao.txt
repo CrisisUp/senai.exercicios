@@ -1,0 +1,27 @@
+# 📘 Atividade 13: Eficiência e Busca (Event Delegation e Data Attributes)
+STATUS: Nível 13 (Arquiteto) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A frota da "LogiSpeed Global" agora pode conter centenas de drones em uma única tela. Se adicionarmos um "Ouvinte de Evento" (EventListener) para cada card de drone, a memória do terminal irá estourar e a interface ficará lenta. Precisamos de uma técnica de elite: a **Delegação de Eventos**. Além disso, precisamos associar o ID real do drone (que vem do banco de dados) diretamente ao elemento visual usando **Data Attributes**.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Os atributos **`data-*`** (ex: `data-id="707"`). Eles permitem guardar metadados invisíveis no HTML que o JavaScript pode ler instantaneamente.
+2. **CSS (Estética):** **Seletores de Atributo** (`[data-status="alert"]`). Aprenderemos a mudar o estilo de um elemento baseado no dado que ele carrega.
+3. **JS (Atitude):** 
+   - **Event Delegation:** Em vez de 100 ouvintes, usaremos apenas 1 no container pai.
+   - **Busca Dinâmica:** Usaremos o evento `input` para filtrar a frota em tempo real enquanto o operador digita.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **MEMORY LEAK (JS):** Criar milhares de listeners em uma lista longa. O navegador perde performance e pode crashar. A delegação de eventos resolve isso com custo fixo de memória.
+- **DADO DESVINCULADO:** Clicar em um botão e não saber qual drone ele representa. O `data-attribute` é a "etiqueta" que nunca se perde.
+- **DELAY DE BUSCA:** Tentar buscar apenas ao clicar em um botão. O operador de elite exige busca instantânea (ao digitar).
+
+## 📋 Requisitos de Elite
+1. Implementar um campo de busca tática.
+2. Cada card gerado deve conter o atributo `data-id` e `data-status`.
+3. Usar 1 único `addEventListener` no container pai para capturar o clique em qualquer card.
+4. Interface ANSI (visual) destacando os drones encontrados.
+
+------------------------------------------------------------------------------
+"Economize recursos no código para gastá-los na experiência do usuário."

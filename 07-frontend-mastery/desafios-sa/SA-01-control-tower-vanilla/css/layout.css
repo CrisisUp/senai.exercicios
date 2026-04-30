@@ -1,0 +1,96 @@
+/**
+ * @file layout.css
+ * @brief Orquestração Espacial Matrix (Grid + Flexbox).
+ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.nexus-grid {
+    display: grid;
+    min-height: 100vh;
+    grid-template-areas: 
+        "header header"
+        "radar  mapa"
+        "logs   mapa"
+        "footer footer";
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: auto 1fr 1fr auto;
+    gap: 15px;
+    padding: 15px;
+}
+
+@media (max-width: 1024px) {
+    .nexus-grid {
+        grid-template-areas: 
+            "header"
+            "mapa"
+            "radar"
+            "logs"
+            "footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 400px auto 1fr auto;
+    }
+}
+
+/* Áreas do Grid */
+.header { grid-area: header; }
+.radar  { grid-area: radar; }
+.mapa   { grid-area: mapa; }
+.logs   { grid-area: logs; }
+.footer { grid-area: footer; }
+
+/* Módulos */
+.module-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-elite);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mapa {
+    background: radial-gradient(circle at center, #1c2531, #0a0e14);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: 1px solid var(--brand-primary);
+}
+
+.logs-container {
+    flex: 1;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 0.8rem;
+    margin-top: 10px;
+}
+
+/* Flexbox para Lista de Drones */
+.drone-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.drone-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: var(--bg-card);
+    border-radius: 4px;
+}

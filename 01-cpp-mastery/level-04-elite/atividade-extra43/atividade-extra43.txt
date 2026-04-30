@@ -1,0 +1,41 @@
+## 🛠️ Necessidade Técnica
+Implementação de padrões de engenharia de elite para garantir escalabilidade e robustez.
+
+## 🎯 Estudo de Caso
+Análise técnica do cenário de negócio para o componente atividade-extra43.txt.
+
+ESTUDO DE CASO: MANUTENÇÃO NO SISTEMA DE TRÁFEGO (ELITE DEBUGGING)
+------------------------------------------------------------------------------
+DOMÍNIO: Engenharia de Software / Qualidade (QA)
+ATIVIDADE: Extra 43
+CONCEITO NOVO: Técnicas de Debugging e Análise de Falhas (Bug Hunting)
+STATUS: Padrão de Engenharia de Elite Aplicado
+
+1. O CENÁRIO
+Um engenheiro júnior tentou atualizar o sistema de controle de semáforos da 
+G-City, mas o código começou a apresentar comportamentos estranhos: a memória 
+do servidor está subindo sem parar e os tempos de rota estão sendo calculados 
+de forma errada em alguns bairros.
+
+2. A MISSÃO TÉCNICA (A Caça ao Bug)
+O código original continha 3 falhas clássicas de engenharia de software:
+- BUG 1 (Lógico): Erro de "Off-by-one" no percurso do vetor.
+- BUG 2 (Memória): 'Memory Leak' massivo por falta de desalocação manual.
+- BUG 3 (Segurança): Vulnerabilidade de buffer no fluxo de entrada do cin.
+
+3. 🧪 ## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL QA & QUALITY ASSURANCE)
+- RISCO DE SEGMENTATION FAULT: Acessar a posição `vetor.size()` é um erro 
+  fatal. O C++ tentará ler memória que não pertence ao vetor, causando o 
+  fechamento imediato do sistema de trânsito.
+- RISCO DE HEAP EXHAUSTION: Objetos criados via 'new' que nunca morrem via 
+  'delete' acumulam-se silenciosamente até que o servidor sofra um Crash por 
+  falta de RAM.
+- RISCO DE INPUT ATTACK: Se o validador não limpar o buffer, um único erro do 
+  operador (digitar uma letra) pode travar o HUB em um loop de processamento 
+  infinito.
+
+4. REQUISITOS DA CORREÇÃO
+- Implementação de RAII (Resource Acquisition Is Initialization).
+- Blindagem de loops com limites rígidos.
+- Validação Singleton de Elite para entrada de dados.
+------------------------------------------------------------------------------

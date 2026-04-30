@@ -1,0 +1,42 @@
+## 🛠️ Necessidade Técnica
+Implementação de padrões de engenharia de elite para garantir escalabilidade e robustez.
+
+## 🎯 Estudo de Caso
+Análise técnica do cenário de negócio para o componente atividade-extra34.txt.
+
+ESTUDO DE CASO: BUFFER DE TELEMETRIA ESPACIAL (VOYAGER CORE)
+------------------------------------------------------------------------------
+DOMÍNIO: Aeroespacial / Sistemas Embarcados
+ATIVIDADE: Extra 34
+CONCEITO NOVO: Estruturas Dinâmicas: Lista Encadeada Simples (Linked List)
+STATUS: Padrão de Engenharia de Elite Aplicado
+
+1. O CENÁRIO
+Uma sonda espacial capta "Pacotes de Telemetria" enquanto orbita um planeta. 
+Como a memória é limitada e os pacotes chegam em tempos imprevisíveis, não 
+podemos usar um array fixo (que desperdiça espaço) nem um vector (que pode 
+causar picos de processamento ao realocar). Precisamos de uma estrutura 
+que cresça "nó por nó".
+
+2. A NECESSIDADE TÉCNICA
+Até agora, a STL cuidava da memória para nós. Na LISTA ENCADEADA MANUAL, 
+nós somos os arquitetos da memória:
+- O Nó (Node): Uma struct que guarda o dado e um PONTEIRO para o próximo elo.
+- Alocação Dinâmica: Gestão cirúrgica via 'new' e 'delete'.
+
+3. 🧪 ## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ARQUITETURA DE MEMÓRIA)
+- RISCO DE PERDA DE CABEÇA (HEAD LOSS): Se o ponteiro 'cabeca' for sobrescrito 
+  acidentalmente sem liberar os nós anteriores, toda a lista se torna inacessível 
+  na RAM, causando um vazamento de memória fatal para a sonda.
+- RISCO DE FRAGMENTAÇÃO DISPERSA: Como cada nó é alocado de forma independente, 
+  os dados podem ficar espalhados em endereços distantes na RAM, o que prejudica 
+  o uso do Cache da CPU em relação ao std::vector (O(n) scan slow-down).
+- RISCO DE INDIREÇÃO INVÁLIDA: Tentar acessar `atual->proximo` quando `atual` 
+  é nulo resultará em um Crash imediato.
+
+4. REQUISITOS DO SISTEMA
+- Implementação manual de 'Node' e 'Linked List'.
+- Gestão de memória via Destrutor Iterativo.
+- Proteção de performance via referências constantes (Fantasma do CPU).
+- Interface ANSI para visualização de recepção de telemetria.
+------------------------------------------------------------------------------

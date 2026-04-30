@@ -1,0 +1,27 @@
+# 📘 Atividade 13: useEffect (Efeitos Colaterais e Sincronia)
+STATUS: Nível 15 (Arquiteto de Componentes) - Pilar de React
+
+## 🎯 Estudo de Caso
+O SkyCargo Control Tower agora precisa de um monitor de telemetria "ao vivo". Não podemos esperar que o operador clique em "Sincronizar" o tempo todo. O sistema deve iniciar uma conexão com o Nexus Vault assim que a tela for ligada e atualizar a posição dos drones a cada 5 segundos automaticamente. Além disso, se o operador sair da tela, o rádio deve ser desligado para economizar bateria e processamento.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o Hook **`useEffect`**.
+1. **Mounting:** Executar lógica apenas uma vez quando o componente nasce na tela (ex: API Call inicial).
+2. **Dependency Array:** Aprenderemos a fazer o efeito rodar apenas quando uma variável específica mudar (ex: se o ID do drone mudar, buscamos novos dados).
+3. **Cleanup Function:** O conceito vital de "limpeza". Se abrirmos um temporizador ou conexão, devemos fechá-los quando o componente for destruído (Unmount), evitando vazamentos de memória.
+4. **Subscription Pattern:** Assinar fluxos de dados externos.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (MEMORY LEAK & INFINITE LOOPS)
+- **INFINITE RE-RENDERS:** Atualizar o estado dentro de um `useEffect` sem o array de dependências correto cria um loop infinito que trava o navegador.
+- **ZOMBIE TIMERS:** Iniciar um `setInterval` e não limpá-lo faz com que o código continue rodando em segundo plano mesmo após fechar o dashboard, consumindo recursos e gerando bugs bizarros.
+- **STALE DATA:** Se o efeito não for re-executado quando as propriedades mudarem, o operador verá dados de um drone enquanto o ID exibido é de outro.
+
+## 📋 Requisitos de Elite
+1. Criar o componente `LiveTelemetry.tsx`.
+2. Implementar um cronômetro automático de missão usando `useEffect`.
+3. Simular busca periódica de dados (Poling) a cada 3 segundos.
+4. Garantir que todos os recursos sejam liberados na função de cleanup.
+5. Interface ANSI (visual) com sinalizador de "RADIO ACTIVE" pulsante.
+
+------------------------------------------------------------------------------
+"Um componente de elite sabe quando começar, mas sabe perfeitamente quando parar."

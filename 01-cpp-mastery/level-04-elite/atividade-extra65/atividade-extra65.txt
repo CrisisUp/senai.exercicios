@@ -1,0 +1,25 @@
+# 📘 Atividade Extra 65: Coroutines C++20 (Assincronia de Elite)
+STATUS: Nível 31 (Engenheiro de Elite) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+A "LogiSpeed" agora precisa monitorar 10.000 drones simultaneamente. Se criarmos uma thread para cada drone, o servidor travará devido ao consumo de RAM e trocas de contexto. Precisamos que o sistema "espere" pela resposta de um drone sem ocupar uma thread real enquanto não há dados.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos **Coroutines (C++20)**. Uma coroutine é uma função que pode "pausar" sua execução (`co_await`) e devolver o controle para o sistema, sendo retomada apenas quando o dado estiver pronto.
+1. **Promise Object:** O objeto que gerencia o estado e o retorno da coroutine.
+2. **Awaitable:** O recurso pelo qual estamos esperando (ex: um timer ou socket).
+3. **Handle:** O controle manual para retomar a execução.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (ESCALABILIDADE MASSIVA)
+- **THREAD EXHAUSTION:** Criar threads demais esgota os recursos do SO. Coroutines usam apenas alguns bytes na Heap para salvar o estado (Stackless), permitindo milhões de tarefas simultâneas.
+- **INVERSÃO DE CONTROLE:** Em vez de "bloquear" a CPU esperando, a coroutine "se suspende", liberando a CPU para processar outros drones.
+- **COMPLEXIDADE DE ESTADO:** Diferente de callbacks (Callback Hell), o código de uma coroutine parece linear e síncrono, facilitando a manutenção.
+
+## 📋 Requisitos de Elite
+1. Implementar um `Gerador` de telemetria assíncrona.
+2. Usar `co_yield` para produzir dados sob demanda.
+3. Demonstrar a suspensão e retomada manual da coroutine.
+4. Interface ANSI para monitoramento de suspensões e estados.
+
+------------------------------------------------------------------------------
+"Coroutines são para threads o que o Wi-Fi é para os cabos: liberdade de escala."

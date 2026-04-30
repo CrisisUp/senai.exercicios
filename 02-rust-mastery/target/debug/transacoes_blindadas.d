@@ -1,0 +1,1 @@
+/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/transacoes_blindadas: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/integracao-rust-sql/23-transacoes-blindadas/src/main.rs

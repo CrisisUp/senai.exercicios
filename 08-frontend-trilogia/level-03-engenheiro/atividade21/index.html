@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 21</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Tactical Radar Engine</h1>
+        <p>Tóquio Command Center - Unidade de Elite</p>
+    </header>
+
+    <main class="radar-container">
+        <!-- O CANVAS: A nossa tela de desenho bruto -->
+        <canvas id="radar-canvas" width="400" height="400"></canvas>
+    </main>
+
+    <footer class="controls">
+        <button onclick="desenharGrade()">GERAR GRADE</button>
+        <button onclick="adicionarDrone()">DETECTAR UNIDADE</button>
+        <button onclick="limparRadar()" class="btn-clear">LIMPAR TELA</button>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

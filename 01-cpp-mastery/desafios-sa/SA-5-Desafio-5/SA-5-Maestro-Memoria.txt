@@ -1,0 +1,29 @@
+# 📘 SA-05: Desafio Integrador - O Maestro de Memória (LogiSpeed 2.0)
+STATUS: Nível 31 (Engenheiro de Elite) - Ciclo de Maestria de Memória
+
+## 🎯 Estudo de Caso
+A transportadora "LogiSpeed" expandiu sua frota. Agora, o sistema de telemetria não recebe dados de um único caminhão, mas de uma frota inteira simultaneamente. Cada módulo GPS envia pacotes de dados que precisam ser processados por três departamentos: **Logística (Rota)**, **Manutenção (Desgaste)** e **Faturamento (Consumo)**. 
+
+Se cada departamento criar sua própria cópia dos dados, a memória RAM dos servidores de borda irá estourar. Se usarmos ponteiros crus em múltiplas threads, o sistema sofrerá de "Data Races" e corrompimento de memória.
+
+## 🛠️ Necessidade Técnica
+Este desafio exige a unificação dos três pilares anteriores:
+1. **Memória Dinâmica (Ativ. 57):** Gestão eficiente de buffers.
+2. **Templates (Ativ. 58):** Criação de estruturas genéricas para qualquer tipo de dado de telemetria.
+3. **Smart Pointers (Ativ. 59):** Garantia de que o dado só será deletado quando o último departamento terminar de usá-lo.
+4. **NOVO - Concorrência:** Sincronização básica para evitar que duas threads acessem o mesmo recurso simultaneamente.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (SISTEMAS DISTRIBUÍDOS)
+- **RACE CONDITION:** Duas threads tentando atualizar o status de um caminhão ao mesmo tempo, resultando em valores inconsistentes (ex: quilometragem saltando negativamente).
+- **MEMORY LEAK EM THREADS:** Se uma thread "morrer" ou for finalizada incorretamente sem liberar os recursos que ela "travou", o sistema entrará em Deadlock.
+- **REFERÊNCIA ZUMBI:** Uma thread de manutenção tenta acessar os dados de um caminhão que a thread de faturamento já removeu da memória.
+
+## 📋 Requisitos de Elite (Missão Atividade 60)
+1. **Refatoração Obrigatória:** Evoluir o `BufferLog` (Atividade 57) para um `SmartBuffer<T>` que utiliza `std::unique_ptr` internamente e suporta Templates.
+2. **Shared Telemetry:** Implementar um despachante que distribui `std::shared_ptr<Telemetria>` para os departamentos.
+3. **Segurança Atômica:** Usar `std::mutex` e `std::lock_guard` para proteger a escrita nos dados compartilhados.
+4. **Interface ANSI:** Criar um painel que mostre, em tempo real, quantos departamentos ainda estão "segurando" o ponteiro de um caminhão específico (Contagem de Referência).
+5. **RAII para Threads:** Garantir que todas as threads de processamento sejam finalizadas corretamente no encerramento do programa.
+
+------------------------------------------------------------------------------
+"Em C++, você não paga pelo que não usa, mas paga caro pelo que não entende."

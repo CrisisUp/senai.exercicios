@@ -1,0 +1,34 @@
+# 📘 Atividade 13: O Escudo de Build (.dockerignore)
+STATUS: Nível 13 (Arquiteto) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Ao construir a imagem do Nexus OS, você percebeu que o Docker está enviando gigabytes de dados para o "contexto de build", incluindo pastas pesadas como `.git` e arquivos de log gigantescos. Isso torna o build lento e pode até incluir segredos que não deveriam estar na imagem. Você aprenderá a criar um **Escudo de Build** usando o arquivo `.dockerignore`.
+
+## 🛠️ Necessidade Técnica
+O arquivo `.dockerignore` funciona exatamente como o `.gitignore`. Ele diz ao CLI do Docker quais arquivos e pastas **não** devem ser enviados para o daemon do Docker durante o comando `build`.
+
+### Regras de Ouro do .dockerignore:
+- Pasta de controle de versão (`.git`).
+- Logs e arquivos temporários (`*.log`, `tmp/`).
+- Dependências locais (`node_modules`, `target`, `vendor`).
+- Arquivos de configuração sensíveis (`.env`).
+
+## 🚀 Missão
+1.  Na pasta `labs/primeira-imagem`, crie uma pasta pesada de mentira: `mkdir .git && touch .git/projeto_gigante.db`.
+2.  Tente rodar o build: `docker build -t nexus-slow .`. Observe a linha "Sending build context to Docker daemon". Anote o tamanho.
+3.  Crie o arquivo `.dockerignore` na mesma pasta.
+4.  Dentro dele, escreva:
+    ```text
+    .git
+    *.log
+    ```
+5.  Rode o build novamente: `docker build -t nexus-fast .`.
+6.  Observe a diferença no tamanho do contexto enviado. A velocidade é o resultado da disciplina.
+
+## 📋 Requisitos de Elite
+- Reduzir o tempo de transferência do contexto de build.
+- Garantir que arquivos de metadados do Git não vazem para dentro da imagem.
+- Compreender que o `.dockerignore` deve estar na raiz do contexto de build.
+
+------------------------------------------------------------------------------
+"Um bom arquiteto não carrega o que não vai usar. O Dockerignore é sua lista de desapego."

@@ -1,0 +1,26 @@
+# 📘 Atividade 09: Setup Industrial (Vite + React + TS)
+STATUS: Nível 11 (Arquiteto de Componentes) - Pilar de React
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" decidiu que o SkyCargo Control Tower será sua interface padrão mundial. Para suportar centenas de desenvolvedores trabalhando simultaneamente em diferentes módulos (Mapa, Logs, Faturamento), a abordagem Vanilla se tornou arriscada. Precisamos de uma arquitetura que isole o código em **Componentes Reutilizáveis** e ofereça uma experiência de desenvolvimento de ultra-velocidade.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o **Vite** (Francês para "Rápido").
+1. **Bundler Moderno:** O Vite serve o código via ES Modules nativos durante o desenvolvimento, eliminando o tempo de espera para ver as mudanças.
+2. **React 18+:** Uso das funcionalidades mais recentes de concorrência e renderização.
+3. **Strict TypeScript:** Integração nativa com o compilador TS que configuramos anteriormente.
+4. **Fast Refresh:** Atualização instantânea da interface sem perder o estado atual (ex: se você estiver com um drone selecionado, ele continuará selecionado após você editar o código).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (SCALE & SPEED)
+- **BUNDLE SIZE BLOAT:** Ferramentas antigas geram arquivos JavaScript gigantescos. O Vite, aliado ao React, permite o "Tree Shaking" (remover código não utilizado).
+- **DEVELOPMENT LATENCY:** Em projetos grandes, esperar 30 segundos para o servidor de desenvolvimento reiniciar após um "Save" destrói a produtividade. O Vite resolve isso com o uso de cache e pré-bundling.
+- **IMPLICIT RENDERING:** No Vanilla, você decide quando atualizar a tela. No React, você define o **Estado** e o React decide a forma mais eficiente de atualizar o DOM (Virtual DOM), evitando "Layout Thrashing".
+
+## 📋 Requisitos de Elite
+1. Inicializar o projeto usando o template `react-ts` do Vite.
+2. Limpar o boilerplate padrão (remover logos e estilos de exemplo).
+3. Configurar a estrutura de pastas industrial: `/src/components`, `/src/styles`, `/src/types`.
+4. Interface ANSI (no console do terminal) provando que o servidor de desenvolvimento está ativo em milissegundos.
+
+------------------------------------------------------------------------------
+"Um engenheiro de elite não espera pelo computador; ele usa ferramentas que acompanham a velocidade do pensamento."

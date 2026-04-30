@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 17</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Data Validation</h1>
+        <p>Terminal de Integridade de Missão</p>
+    </header>
+
+    <main class="container">
+        <!-- 1. Validador de Identidade (Regex) -->
+        <section class="card">
+            <h2>Registro de Unidade</h2>
+            <div class="input-group">
+                <label for="drone-id">ID DO DRONE (PADRÃO: AAAAA-000):</label>
+                <input type="text" id="drone-id" placeholder="Ex: ALPHA-707" oninput="validarID()">
+                <div id="validation-msg" class="feedback">Aguardando entrada...</div>
+            </div>
+        </section>
+
+        <!-- 2. Console de Auditoria (Dates & Strings) -->
+        <section class="card">
+            <h2>Logs de Auditoria Forense</h2>
+            <pre id="audit-log" class="log-view">
+> SISTEMA INICIALIZADO ÀS <span id="current-time">00/00/0000</span>
+            </pre>
+            <div class="form">
+                <input type="text" id="log-input" placeholder="Mensagem do log...">
+                <button onclick="registrarLog()" class="btn">AUDITAR</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

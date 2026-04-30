@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 28</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Alert System</h1>
+        <p>Gerenciamento de Notificações e Feedback Háptico</p>
+    </header>
+
+    <main class="container">
+        <!-- 1. GESTÃO DE PERMISSÃO -->
+        <section class="card permission-panel">
+            <h2>Permissões de Sistema</h2>
+            <div id="status-box">
+                STATUS: <strong id="perm-status">NÃO SOLICITADO</strong>
+            </div>
+            <button id="btn-request" onclick="solicitarPermissao()">ATIVAR NOTIFICAÇÕES</button>
+        </section>
+
+        <!-- 2. SIMULADORES DE EVENTO -->
+        <section class="card alerts-grid">
+            <h2>Simular Eventos de Campo</h2>
+            
+            <div class="alert-trigger" onclick="dispararAlerta('INFO')">
+                <h3>INFO</h3>
+                <p>Status de rotina</p>
+            </div>
+
+            <div class="alert-trigger warning" onclick="dispararAlerta('WARNING')">
+                <h3>WARNING</h3>
+                <p>Vibração Tátil</p>
+            </div>
+
+            <div id="critical-card" class="alert-trigger critical" onclick="dispararAlerta('CRITICAL')">
+                <h3>CRITICAL</h3>
+                <p>Notificação + Vibração</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="system-log">
+        LOGS: <span id="alert-log">SISTEMA INICIALIZADO</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

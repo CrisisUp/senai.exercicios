@@ -1,0 +1,42 @@
+# 📘 Atividade 18: O Dockerfile Blindado (Security Hardening)
+STATUS: Nível 18 (Arquiteto) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Muitas imagens Docker rodam como usuário `root` por padrão. Se um hacker invadir seu container, ele terá controle total sobre o que está lá dentro. Na "SkyCargo Nexus", aplicamos o princípio do menor privilégio. Você aprenderá a criar um **Dockerfile Blindado**, definindo um usuário comum para rodar o software e removendo permissões desnecessárias.
+
+## 🛠️ Necessidade Técnica
+Executar processos como `root` dentro de um container é uma falha de segurança grave (CVE). Usamos a instrução `USER` para mudar para um usuário com permissões limitadas.
+
+### Instruções Chave:
+1.  **`RUN adduser -D <nome>`**: Cria um novo usuário no Alpine Linux.
+2.  **`USER <nome>`**: Muda o contexto de execução para o usuário especificado.
+
+## 🚀 Missão
+1.  Crie um `Dockerfile` de segurança:
+    ```dockerfile
+    FROM alpine
+    # 1. Cria usuário de sistema
+    RUN adduser -D nexus_operator
+    WORKDIR /app
+    COPY nexus_script.sh .
+    RUN chmod +x nexus_script.sh && chown nexus_operator:nexus_operator nexus_script.sh
+    
+    # 2. Muda para o usuário sem privilégios
+    USER nexus_operator
+    
+    CMD ["./nexus_script.sh"]
+    ```
+2.  Construa: `docker build -t nexus-hardened .`.
+3.  Valide quem está rodando o processo:
+    `docker run --rm nexus-hardened whoami`.
+4.  O output deve ser `nexus_operator`, não `root`.
+5.  **O Teste do Invasor:** Tente instalar algo no container rodando:
+    `docker run --rm nexus-hardened apk add curl`. (Deve falhar por falta de permissão).
+
+## 📋 Requisitos de Elite
+- Rodar aplicações sempre com usuários não-root.
+- Ajustar a posse dos arquivos (`chown`) antes de mudar o usuário.
+- Compreender como o isolamento de privilégios protege o host de escapes de container.
+
+------------------------------------------------------------------------------
+"Um container seguro é aquele onde até o próprio processo tem o mínimo de poder necessário."

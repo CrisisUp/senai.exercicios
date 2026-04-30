@@ -1,0 +1,24 @@
+# 📘 Atividade 38: Segurança e Auditoria Forense (Dados Blindados)
+STATUS: Nível 60+ (Lead Data Architect) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+A "LogiSpeed" agora opera em múltiplos países. Um motorista do Brasil não pode ver os dados de telemetria de um motorista da Argentina. Além disso, se um administrador mal-intencionado tentar apagar um registro de "Excesso de Velocidade" para evitar uma multa, o sistema deve impedir a deleção física e mover o registro para um cofre digital inviolável.
+
+## 🛠️ Necessidade Técnica
+1. **Row Level Security (RLS) Simulado:** Utilizaremos uma tabela de `SessaoAtual` e `Views` que filtram os dados automaticamente com base no usuário logado.
+2. **Auditoria Forense (Cofre):** Implementaremos `Triggers` de `BEFORE DELETE` que cancelam a deleção e movem o dado para uma tabela de `Auditoria_Externa` com timestamp e hash de integridade.
+3. **Imutabilidade:** O motor do banco de dados será configurado para que a tabela de auditoria seja "Append-Only" (apenas inserção).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (DATA CYBERSECURITY)
+- **SQL INJECTION DE ACESSO:** Se o filtro de usuário for feito no código da aplicação, um erro de lógica pode expor dados de toda a frota. Ao mover a segurança para o banco (RLS), o dado nasce protegido.
+- **TAMPERING (ADULTERAÇÃO):** Um atacante com acesso ao banco tenta dar um `UPDATE` no valor do combustível roubado. O Trigger de auditoria salvará o valor original ANTES da alteração.
+- **INSIDER THREAT:** Funcionários com privilégios de escrita não podem ter privilégios de apagar a auditoria. Criaremos uma "armadilha" (Honeypot) para detectar tentativas de alteração.
+
+## 📋 Requisitos de Elite
+1. Implementar sistema de filtragem por `id_usuario` via View.
+2. Criar Trigger de Auditoria que impede o `DELETE` e salva o rastro.
+3. Demonstrar uma tentativa de acesso não autorizado sendo bloqueada.
+4. Interface ANSI para telemetria de segurança e integridade.
+
+------------------------------------------------------------------------------
+"Um banco de dados de elite não é apenas um lugar para guardar dados; é o guardião final da verdade."

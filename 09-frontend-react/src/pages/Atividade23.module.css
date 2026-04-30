@@ -1,0 +1,146 @@
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #0b0e14;
+    border-radius: 12px;
+    border: 1px solid #1f2937;
+    text-align: center;
+}
+
+.header h1 {
+    color: #60a5fa;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    color: #9ca3af;
+    margin-bottom: 2rem;
+}
+
+.audioPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #111827;
+    border: 1px solid #374151;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.led {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    background: #4b5563;
+    transition: all 0.3s;
+}
+
+.ledActive {
+    background: #10b981;
+    box-shadow: 0 0 10px #10b981;
+}
+
+.engineText {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+}
+
+.btnStart {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btnStart:hover {
+    background: #2563eb;
+}
+
+.volumeControl {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.volumeControl label {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+.slider {
+    width: 100%;
+    cursor: pointer;
+}
+
+.volumeVal {
+    align-self: flex-end;
+    font-family: monospace;
+    color: #fbbf24;
+}
+
+.tacticalButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.btnTactical {
+    background: #1f2937;
+    color: #60a5fa;
+    border: 1px solid #374151;
+    padding: 1rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btnTactical:hover {
+    background: #374151;
+}
+
+.btnAlert {
+    grid-column: span 2;
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.btnAlert:hover {
+    background: #7f1d1d;
+    color: white;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+}
+
+.theoryBox {
+    background: rgba(16, 185, 129, 0.05);
+    border: 1px dashed #10b981;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: left;
+    margin-top: 2rem;
+}
+
+.theoryBox h4 {
+    color: #10b981;
+    margin-top: 0;
+}
+
+.theoryBox p {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}

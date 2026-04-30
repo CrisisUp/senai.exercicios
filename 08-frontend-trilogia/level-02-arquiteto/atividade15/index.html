@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 15</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Data Link</h1>
+        <p>Sincronização com o Registro Central de Drones</p>
+    </header>
+
+    <main class="container">
+        <!-- 1. Botão de Ação -->
+        <button id="btn-fetch" onclick="carregarDrones()">REQUISITAR DADOS DO NEXUS</button>
+
+        <!-- 2. Área de Conteúdo -->
+        <div id="data-container" class="data-view">
+            <!-- SKELETON LOADERS (Aparecem antes dos dados) -->
+            <div id="loading-state" class="skeleton-wrapper" style="display: none;">
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+            </div>
+
+            <!-- CONTAINER DE RESULTADOS -->
+            <div id="results" class="results-grid">
+                <p class="placeholder-text">Aguardando solicitação do operador...</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

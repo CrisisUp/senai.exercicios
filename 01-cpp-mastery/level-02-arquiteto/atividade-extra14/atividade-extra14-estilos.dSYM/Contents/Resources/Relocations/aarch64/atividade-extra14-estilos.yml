@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     './repositorio-extra/atividade-extra14/atividade-extra14-estilos'
+relocations:     []
+...

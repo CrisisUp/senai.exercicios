@@ -1,0 +1,24 @@
+# 📘 Atividade 11: Arquitetura Modular (Seletores e Flex-Wrap)
+STATUS: Nível 11 (Arquiteto) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+O SkyCargo OS precisa de um dashboard que exiba vários "Módulos de Controle" (Bateria, Radar, Clima, Logs). No nível anterior, usávamos IDs para tudo, mas em uma interface modular, teremos muitos elementos similares. Usaremos seletores modernos do JavaScript e o poder do Flexbox para criar uma grade de módulos que se ajusta ao tamanho da tela.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Uso profundo de `<article>` e `<header>` internos para criar componentes visuais independentes.
+2. **CSS (Estética):** **Flex-Wrap** e **Gap**. Aprenderemos a criar "Grades Flexíveis" que quebram de linha automaticamente em telas menores.
+3. **JS (Atitude):** **`querySelectorAll()`** e **Arrow Functions (`=>`)**. Aprenderemos a capturar todos os módulos de uma vez e aplicar uma ação em massa usando a sintaxe moderna de funções.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **ID DUPLICADO:** Criar dois módulos com o mesmo ID quebra a lógica do JS. Aprenderemos a usar Classes e seletores de grupo para evitar este erro de amadores.
+- **LAYOUT ESMAGADO:** No Flexbox comum, os itens tentam ficar todos na mesma linha. O `flex-wrap` é o que garante que a interface não fique "esmagada" em tablets.
+- **VERBOSE CODE:** Escrever `function() { ... }` para cada pequeno loop. Arrow functions tornam o código de um Arquiteto mais limpo e legível.
+
+## 📋 Requisitos de Elite
+1. Criar 4 módulos (cards) de controle no HTML usando a mesma classe `.module`.
+2. Usar `flex-wrap: wrap` no container principal para suportar responsividade.
+3. No JS, usar `querySelectorAll` para encontrar todos os módulos e adicionar uma borda de destaque ao clicar em qualquer um deles usando um loop.
+
+------------------------------------------------------------------------------
+"Um arquiteto não constrói paredes; ele define sistemas que as sustentam."

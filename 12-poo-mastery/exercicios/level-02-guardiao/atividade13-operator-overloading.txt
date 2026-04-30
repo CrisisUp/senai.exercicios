@@ -1,0 +1,35 @@
+# 📘 Atividade 13: O Objeto como Tipo Nativo (Sobrecarga de Operadores)
+STATUS: Nível 13 (Guardião) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+É frustrante ter que digitar `droneA.somarBateria(droneB)`. Na "SkyCargo Nexus", queremos que nossos objetos se comportem como tipos nativos da linguagem. Você aprenderá a **Sobrecarga de Operadores**, permitindo que você escreva códigos elegantes como `droneTotal = droneA + droneB` ou use o `cout << droneA` diretamente.
+
+## 🛠️ Necessidade Técnica
+Podemos redefinir o comportamento de quase todos os operadores (`+`, `-`, `*`, `==`, `<<`) para nossas classes.
+
+### Exemplo (C++):
+```cpp
+// Somando baterias de forma elegante
+Drone operator+(const Drone& outro) {
+    return Drone("Soma", this->bateria + outro.bateria);
+}
+
+// Comparação tática
+bool operator==(const Drone& outro) {
+    return this->modelo == outro.modelo;
+}
+```
+
+## 🚀 Missão
+1.  Implemente o `operator+` para somar a bateria de dois drones.
+2.  Implemente o `operator==` para verificar se dois drones são do mesmo modelo.
+3.  Implemente o `operator<<` (como função amiga) para imprimir o drone diretamente via `std::cout`.
+4.  No `main()`, realize as operações matemáticas e de comparação diretamente com os objetos.
+
+## 📋 Requisitos de Elite
+- Transformar comportamentos de classe em sintaxe natural da linguagem.
+- Uso correto de funções amigas (`friend`) para sobrecarga de operadores de stream.
+- Manter a semântica intuitiva (o operador `+` deve realmente somar algo lógico).
+
+------------------------------------------------------------------------------
+"Interface de Elite é aquela que desaparece sob a intuição do programador."

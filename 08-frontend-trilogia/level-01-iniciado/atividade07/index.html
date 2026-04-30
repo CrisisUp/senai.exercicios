@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 07</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Vision - Filtro Tático</h1>
+    </header>
+
+    <main class="container">
+        <!-- Barra de Ferramentas (Filtros) -->
+        <section class="toolbar">
+            <label for="status-filter">FILTRAR SITUAÇÃO:</label>
+            <select id="status-filter" onchange="aplicarFiltro()">
+                <option value="TODOS">--- EXIBIR TODOS ---</option>
+                <option value="OPERACIONAL">OPERACIONAL</option>
+                <option value="EM ROTA">EM ROTA</option>
+                <option value="ALERTA">ALERTA</option>
+                <option value="MANUTENÇÃO">MANUTENÇÃO</option>
+            </select>
+        </section>
+
+        <!-- Tabela de Resultados -->
+        <section class="viewport">
+            <table>
+                <thead>
+                    <tr>
+                        <th>CÓDIGO</th>
+                        <th>BATERIA</th>
+                        <th>SITUAÇÃO</th>
+                    </tr>
+                </thead>
+                <tbody id="fleet-table">
+                    <!-- Gerado dinamicamente -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+/**
+ * @file style.css
+ * @brief Estética de Elite com Classes e IDs (Atividade 02).
+ */
+
+body {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    font-family: sans-serif;
+    padding: 30px;
+}
+
+h1, h2 {
+    color: #58a6ff;
+}
+
+/* Estilo de Classe: Aplicado a múltiplos itens */
+.drone-active {
+    color: #3fb950; /* Verde operacional */
+    list-style: '✅ ';
+    margin-bottom: 10px;
+}
+
+/* Estilo de ID: Único e com maior precedência */
+#drone-warning {
+    color: #f85149; /* Vermelho alerta */
+    font-weight: bold;
+    list-style: '⚠️ ';
+    background-color: rgba(248, 81, 73, 0.1);
+    padding: 5px;
+    border: 1px solid #f85149;
+}

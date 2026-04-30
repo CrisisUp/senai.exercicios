@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 08</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Live Monitor</h1>
+        <div class="system-status">
+            <span class="led"></span> LINK DE SATÉLITE: ATIVO
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <!-- Card Drone 1 -->
+        <article class="card" id="drone-707">
+            <div class="radar-box">
+                <div class="radar-scanner"></div>
+                <span class="drone-dot"></span>
+            </div>
+            <h3>ALPHA-707</h3>
+            <p>BATERIA: <span class="bat-val">100</span>%</p>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+        </article>
+
+        <!-- Card Drone 2 -->
+        <article class="card" id="drone-404">
+            <div class="radar-box">
+                <div class="radar-scanner"></div>
+                <span class="drone-dot"></span>
+            </div>
+            <h3>BETA-404</h3>
+            <p>BATERIA: <span class="bat-val">100</span>%</p>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+        </article>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

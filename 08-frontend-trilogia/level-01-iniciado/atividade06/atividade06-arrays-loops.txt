@@ -1,0 +1,24 @@
+# 📘 Atividade 06: A Frota em Massa (Arrays, Loops e Tabelas)
+STATUS: Nível 06 (Iniciado) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" expandiu. Agora não monitoramos apenas um drone, mas uma frota inteira. Se criássemos um card para cada drone manualmente no HTML, o código ficaria gigantesco e impossível de manter. Precisamos de uma lista dinâmica (Array) e uma forma de repetir a estrutura visual para cada item (Loop), organizando tudo em uma grade tabular.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** A tag `<table>` e seus componentes: `<thead>` (cabeçalho), `<tbody>` (corpo) e `<tr>`/`<td>` (linhas e células).
+2. **CSS (Estética):** Estilização de tabelas, bordas colapsadas e **Zebra Striping** (cores alternadas para facilitar a leitura).
+3. **JS (Atitude):** **Arrays** (listas de dados) e o método **`.forEach()`** para percorrer a frota e gerar o HTML dinamicamente.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **CÓDIGO REPETITIVO:** Copiar e colar 50 linhas de HTML para 50 drones. Se o design mudar, você falhará no prazo. Loops resolvem isso gerando 50 linhas a partir de 1 único molde.
+- **DADOS ESTÁTICOS:** Uma tabela que não se atualiza com a memória. Arrays permitem que o sistema adicione ou remova drones em tempo de execução.
+- **FALTA DE CONTRASTE:** Tabelas densas sem zebra striping cansam a vista do operador, aumentando o risco de erro humano na leitura de coordenadas.
+
+## 📋 Requisitos de Elite
+1. Criar uma estrutura de tabela vazia no HTML.
+2. No CSS, aplicar cores alternadas nas linhas (`nth-child(even)`).
+3. No JS, declarar um array de objetos (Frota) e preencher a tabela usando um loop.
+
+------------------------------------------------------------------------------
+"Um engenheiro automatiza a repetição para focar na criação."

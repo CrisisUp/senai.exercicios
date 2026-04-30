@@ -1,0 +1,42 @@
+# 📘 Atividade 16: O Hangar de Compilação (Multi-stage Builds)
+STATUS: Nível 16 (Arquiteto) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Para rodar o Nexus OS, você precisa compilar um código fonte. No entanto, o compilador e as ferramentas de build ocupam 500MB, enquanto o programa final (o binário) ocupa apenas 5MB. Se você enviar tudo para o servidor, estará desperdiçando espaço e criando brechas de segurança. Você aprenderá a usar o **Multi-stage Build** para construir o código em uma imagem pesada e depois mover o resultado final para uma imagem vazia e minúscula.
+
+## 🛠️ Necessidade Técnica
+Um único `Dockerfile` pode ter múltiplas instruções `FROM`. Cada uma inicia um novo estágio. Podemos nomear um estágio como `builder` e copiar arquivos dele para o estágio final usando `--from`.
+
+### Instruções Chave:
+1.  **`FROM <imagem> AS builder`**: Nomeia o primeiro estágio.
+2.  **`COPY --from=builder <origem> <destino>`**: Copia arquivos de um estágio anterior para o atual.
+
+## 🚀 Missão
+1.  Na pasta `labs/primeira-imagem`, crie um `Dockerfile` de elite:
+    ```dockerfile
+    # ESTÁGIO 1: O Hangar (Pesado, com compiladores)
+    FROM alpine AS builder
+    RUN apk add --no-cache build-base
+    WORKDIR /build
+    # Simula a criação de um binário compilado
+    RUN echo "BINARIO_NEXUS_EXECUTAVEL_V2" > nexus_binary
+    
+    # ESTÁGIO 2: O Drone (Leve, apenas para execução)
+    FROM alpine
+    WORKDIR /app
+    # O segredo: Copia apenas o resultado do primeiro estágio
+    COPY --from=builder /build/nexus_binary .
+    
+    CMD ["cat", "nexus_binary"]
+    ```
+2.  Construa a imagem: `docker build -t nexus-multistage .`.
+3.  Compare os tamanhos: `docker images` e veja como a imagem final é minúscula, apesar de ter passado por um processo de build pesado.
+4.  Rode o container: `docker run --rm nexus-multistage`.
+
+## 📋 Requisitos de Elite
+- Separar o ambiente de desenvolvimento/compilação do ambiente de produção.
+- Garantir que ferramentas de build (gcc, make, npm) não existam na imagem final.
+- Reduzir drasticamente a superfície de ataque da imagem.
+
+------------------------------------------------------------------------------
+"Um arquiteto de elite não constrói um hangar dentro do drone; ele constrói o drone no hangar e o lança sozinho."

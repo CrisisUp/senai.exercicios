@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCargo Hypersonic Command v4.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="nexus-header">
+        <div class="header-top">
+            <div class="logo-area">
+                <span class="nexus-logo">HYPERSONIC COMMAND</span>
+                <span class="version-tag">OS v4.0 ELITE</span>
+            </div>
+            <div class="system-status">
+                <span id="ram-mode">MODE: ZERO-COPY RAM</span>
+                <span id="disk-status">STORAGE: OK</span>
+                <span id="net-status" class="status-online">LINK: SAT-ACTIVE</span>
+            </div>
+        </div>
+        <div class="ticker">
+            <span id="ticker-msg">INITIALIZING INTEGRATED COMMAND CENTER... ALL MODULES LOADED.</span>
+        </div>
+    </header>
+
+    <main class="command-grid">
+        <!-- TACTICAL RADAR (Shared Logic) -->
+        <section class="module radar-sector">
+            <header><h3><span class="icon">📡</span> TACTICAL RADAR</h3></header>
+            <div class="radar-container">
+                <canvas id="radar-canvas"></canvas>
+                <div class="radar-scan"></div>
+                <div id="drone-target" class="drone-target"></div>
+            </div>
+            <div class="telemetry-bar">
+                <span>LAT: <b id="lat-val">0.00</b></span>
+                <span>LNG: <b id="lng-val">0.00</b></span>
+            </div>
+        </section>
+
+        <!-- TELEMETRY GAUGES (Atomic Driven) -->
+        <section class="module telemetry-sector">
+            <header><h3><span class="icon">🚀</span> REAL-TIME TELEMETRY</h3></header>
+            <div class="gauges-grid">
+                <div class="gauge">
+                    <label>ALTITUDE</label>
+                    <div class="value"><span id="alt-val">0</span> <small>m</small></div>
+                </div>
+                <div class="gauge">
+                    <label>VELOCITY</label>
+                    <div class="value"><span id="vel-val">0</span> <small>mach</small></div>
+                </div>
+                <div class="gauge">
+                    <label>BATTERY</label>
+                    <div class="value"><span id="bat-val">0</span> <small>%</small></div>
+                    <div class="progress-mini"><div id="bat-progress" class="bar"></div></div>
+                </div>
+            </div>
+            <div class="control-actions">
+                <button id="btn-init-system" class="btn-primary">INITIALIZE COMMAND</button>
+                <button id="btn-emergency" class="btn-danger">EMERGENCY SHUTDOWN</button>
+            </div>
+        </section>
+
+        <!-- SONIC ANALYZER (Web Audio API) -->
+        <section class="module audio-sector">
+            <header><h3><span class="icon">📈</span> SONIC ANALYZER</h3></header>
+            <div class="audio-container">
+                <canvas id="audio-canvas"></canvas>
+            </div>
+            <div class="audio-controls">
+                <label>SONIC FEEDBACK: <span id="sonic-status">ACTIVE</span></label>
+            </div>
+        </section>
+
+        <!-- BLACK BOX BROWSER (IndexedDB API) -->
+        <section class="module blackbox-sector">
+            <header><h3><span class="icon">🗄️</span> BLACK BOX BROWSER</h3></header>
+            <div class="blackbox-list">
+                <table id="logs-table">
+                    <thead>
+                        <tr>
+                            <th>TIME</th>
+                            <th>EVENT</th>
+                            <th>VAL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logs-body">
+                        <!-- IndexedDB entries group by Batch -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="blackbox-stats">
+                <span>TOTAL RECORDS: <b id="total-logs">0</b></span>
+                <button id="btn-export" class="btn-minimal">WIPE DISK</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="nexus-footer">
+        <div class="footer-left">AUTH: COMMANDER_CRISTIANO | MODE: MISSION_CONTROL</div>
+        <div id="atomic-hz" class="footer-right">PROCESS RATE: 0 Hz</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

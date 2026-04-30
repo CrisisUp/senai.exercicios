@@ -1,0 +1,36 @@
+# 📘 Atividade 26: Multiplicando a Frota (Scaling)
+STATUS: Nível 26 (Orquestrador) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+O tráfego no SkyCargo Nexus aumentou drasticamente! Uma única instância da API não é mais suficiente para processar a telemetria de mil drones simultâneos. Você aprenderá a técnica de **Scaling**, permitindo que o Docker Compose suba múltiplas réplicas do mesmo serviço instantaneamente para dividir a carga de trabalho.
+
+## 🛠️ Necessidade Técnica
+O Docker Compose permite escalar serviços que não dependem de portas fixas no host (ou que usam balanceadores de carga). Isso é a base da Alta Disponibilidade.
+
+### Comandos Chave:
+1.  **`docker-compose up -d --scale <serviço>=<número>`**: Escala o serviço para a quantidade desejada.
+2.  **`docker-compose ps`**: Verifique as múltiplas instâncias rodando.
+
+## 🚀 Missão
+1.  Utilize um `docker-compose.yml` simples:
+    ```yaml
+    version: '3.8'
+    services:
+      worker:
+        image: alpine
+        command: sh -c "echo 'Processando dados...' && sleep 3600"
+    ```
+2.  Inicie com uma frota de 5 workers:
+    `docker-compose up -d --scale worker=5`.
+3.  Verifique a frota: `docker-compose ps`. Você verá `worker_1`, `worker_2`, ..., `worker_5`.
+4.  **O Desafio de Redução:** Reduza para 2 workers:
+    `docker-compose up -d --scale worker=2`.
+5.  Observe o Docker parando e removendo o excesso automaticamente.
+
+## 📋 Requisitos de Elite
+- Escalar serviços horizontalmente conforme a demanda.
+- Entender que serviços com mapeamento de porta fixa (ex: `80:80`) não podem ser escalados no host (conflito de porta).
+- Visualizar o status de múltiplas réplicas simultâneas.
+
+------------------------------------------------------------------------------
+"Um drone é uma ferramenta; uma enxame é um sistema de elite."

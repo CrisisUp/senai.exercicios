@@ -1,0 +1,94 @@
+/**
+ * @file style.css
+ * @brief Estética de Comunicação em Tempo Real (Atividade 30).
+ */
+
+body {
+    background-color: #05080a;
+    color: #e6edf3;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 0; margin: 0;
+}
+
+header {
+    background: #0d1117;
+    padding: 30px;
+    border-bottom: 2px solid #00f2ff;
+    text-align: center;
+}
+
+h1 { letter-spacing: 5px; color: #00f2ff; }
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.05);
+}
+
+/* FEED DE TELEMETRIA */
+.feed-view {
+    background: #000;
+    height: 250px;
+    padding: 15px;
+    border-radius: 4px;
+    overflow-y: auto;
+    font-size: 0.85rem;
+    color: #2ea043;
+    border: 1px solid #1a1a1a;
+}
+
+/* SCROLLBAR INDUSTRIAL */
+.feed-view::-webkit-scrollbar { width: 5px; }
+.feed-view::-webkit-scrollbar-thumb { background: #00f2ff; }
+
+/* INPUT DE COMANDO */
+.input-group { display: flex; gap: 10px; margin-top: 15px; }
+input {
+    flex: 1;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    color: #00f2ff;
+    padding: 12px;
+    border-radius: 4px;
+    outline: none;
+}
+
+button {
+    background: #00f2ff;
+    color: black;
+    border: none;
+    padding: 0 25px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* STATUS BADGES */
+.status-badge {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+.connecting { background: #d29922; color: black; animation: pulse 1s infinite; }
+.open { background: #2ea043; color: white; box-shadow: 0 0 10px #2ea043; }
+.closed { background: #f85149; color: white; }
+
+@keyframes pulse { 50% { opacity: 0.5; } }
+
+.footer-bar {
+    position: fixed; bottom: 0; width: 100%;
+    background: #00f2ff; color: black;
+    padding: 8px; text-align: center; font-size: 0.7rem; font-weight: bold;
+}

@@ -1,0 +1,41 @@
+# 📘 Atividade 21: A Batuta do Maestro (Introdução ao Docker Compose)
+STATUS: Nível 21 (Orquestrador) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Até agora, você subiu cada parte do SkyCargo Nexus manualmente: um comando para o banco de dados, outro para a rede, outro para o backend. Se o sistema tiver 10 microserviços, você levaria minutos e cometeria erros. Você aprenderá a usar o **Docker Compose**, o maestro que lê um arquivo de partitura (`docker-compose.yml`) e sobe todo o ecossistema Nexus com um único movimento.
+
+## 🛠️ Necessidade Técnica
+O Docker Compose é uma ferramenta para definir e rodar aplicações multi-container. Ele usa arquivos YAML para configurar os serviços, redes e volumes da aplicação de forma declarativa (Infraestrutura como Código).
+
+### Comandos Chave:
+1.  **`docker-compose up`**: Cria e inicia todos os serviços definidos no arquivo.
+2.  **`docker-compose up -d`**: Sobe tudo em segundo plano (Detached).
+3.  **`docker-compose down`**: Para e remove todos os containers, redes e imagens definidos (Limpeza total).
+4.  **`docker-compose ps`**: Lista o status da orquestração.
+
+## 🚀 Missão
+1.  Crie uma pasta de laboratório: `mkdir -p labs/nexus-orchestra && cd labs/nexus-orchestra`.
+2.  Crie um arquivo chamado `docker-compose.yml`.
+3.  Escreva a partitura do Nexus (Web + Cache):
+    ```yaml
+    version: '3.8'
+    services:
+      nexus-web:
+        image: nginx:alpine
+        ports:
+          - "8081:80"
+      nexus-cache:
+        image: redis:alpine
+    ```
+4.  Inicie a orquestra: `docker-compose up -d`.
+5.  Verifique o status: `docker-compose ps`. Note que dois serviços nasceram juntos.
+6.  Acesse `http://localhost:8081` no seu navegador para validar o Web.
+7.  Encerre o show: `docker-compose down`.
+
+## 📋 Requisitos de Elite
+- Substituir múltiplos comandos `docker run` por um único arquivo YAML.
+- Compreender a estrutura de indentação do YAML (vital para o Compose).
+- Utilizar o `down` para garantir que nenhum resíduo de infraestrutura permaneça ativo.
+
+------------------------------------------------------------------------------
+"O Docker Compose transforma comandos individuais em uma sinfonia sincronizada."

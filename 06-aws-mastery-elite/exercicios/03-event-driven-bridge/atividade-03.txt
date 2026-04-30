@@ -1,0 +1,25 @@
+# 📘 Atividade 03: Event Bus Industrial (O Sistema Nervoso da Nuvem)
+STATUS: Nível 81 (Engenheiro de Eventos) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+Atualmente, quando a Lambda de Telemetria (Ativ 02) recebe um dado, ela precisa saber quem deve receber esse dado (SQL Vault, Notificador SMS, Dashboard). Se quisermos adicionar um quarto consumidor (ex: IA Preditiva), teríamos que alterar o código da Lambda. Isso é um erro de arquitetura. Usaremos o **AWS EventBridge** para desacoplar totalmente o sistema.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o conceito de **Event Bus e Rules**.
+1. **Event Bus:** Um canal central onde eventos são publicados.
+2. **Rules (Regras):** Filtros inteligentes que direcionam eventos específicos para alvos específicos (ex: Se 'status_bateria < 10', envie para o SNS de Alerta).
+3. **Schema Registry:** Definição formal do contrato do evento para que C++, Rust e SQL falem a mesma língua.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (DESACOPLAMENTO E EXTENSIBILIDADE)
+- **CASCADING FAILURES:** Em sistemas acoplados, se o SQL Vault estiver lento, a Lambda de Telemetria também fica lenta e pode dar timeout. Com eventos, a Lambda publica e "esquece"; o EventBridge garante a entrega.
+- **RIGIDEZ DE CÓDIGO:** Sem EDA, cada nova funcionalidade exige re-deploy de componentes core. Com EDA, você adiciona novos consumidores apenas criando novas regras no barramento, sem tocar no código produtor.
+- **EVENT LOSS:** Se um consumidor cair, o barramento pode tentar re-entregar o evento (Retry Policy), garantindo resiliência.
+
+## 📋 Requisitos de Elite
+1. Implementar a publicação de eventos `TelemetriaProcessada` a partir do Rust.
+2. Definir a infraestrutura de um **Custom Event Bus** via Terraform.
+3. Criar uma **Regra de Filtro** que identifique anomalias (ex: velocidade > 110).
+4. Interface ANSI para monitoramento de despacho de eventos.
+
+------------------------------------------------------------------------------
+"Em uma arquitetura de elite, os componentes não conversam entre si; eles deixam mensagens no quadro de avisos da empresa."

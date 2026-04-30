@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 23</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Audio Engine</h1>
+        <p>Sistema de Alertas Auditivos Industriais</p>
+    </header>
+
+    <main class="audio-panel">
+        <!-- Status do Motor de Áudio -->
+        <section class="engine-card">
+            <div id="audio-status-led" class="led idle"></div>
+            <h2 id="engine-text">ENGINE: STANDBY</h2>
+            <button id="btn-start" onclick="inicializarAudio()">INICIALIZAR ÁUDIO</button>
+        </section>
+
+        <!-- Controles de Volume -->
+        <section class="card">
+            <h3>NÍVEL DE SAÍDA (MASTER)</h3>
+            <input type="range" id="volume-master" min="0" max="1" step="0.1" value="0.5" oninput="ajustarVolume()">
+            <span id="volume-val">50%</span>
+        </section>
+
+        <!-- Testes de Sinais -->
+        <section class="card tactical-buttons">
+            <button class="btn-tactical" onclick="tocarSinal('NORMAL')">BIPE RADAR</button>
+            <button class="btn-tactical" onclick="tocarSinal('WARNING')">AVISO NÍVEL 1</button>
+            <button class="btn-tactical btn-alert" onclick="tocarSinal('CRITICAL')">ALERTA CRÍTICO</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

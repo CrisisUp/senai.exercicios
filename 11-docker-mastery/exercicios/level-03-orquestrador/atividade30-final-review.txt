@@ -1,0 +1,29 @@
+# 📘 Atividade 30: O Selo do Orquestrador (Review & Cleanup)
+STATUS: Nível 30 (Mestre Orquestrador) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Você concluiu a construção da orquestra SkyCargo Nexus. Seus serviços estão isolados, persistentes, escaláveis e blindados. Como missão final para atingir o Nível 30, você aprenderá a fazer a **Auditoria de Integridade** de todo o seu ecossistema orquestrado e a limpar o hangar de forma definitiva, garantindo que nenhum resíduo de infraestrutura permaneça ativo ou consumindo recursos.
+
+## 🛠️ Necessidade Técnica
+Um Mestre Orquestrador sabe como verificar a conectividade, o uso de volumes e como destruir toda a infraestrutura com segurança.
+
+### Comandos de Inspeção:
+1.  **`docker-compose logs -f`**: Telemetria em tempo real de todos os serviços.
+2.  **`docker-compose top`**: Mostra os processos reais rodando dentro de cada container.
+3.  **`docker-compose down -v`**: Remove tudo, INCLUINDO os volumes declarados (Cuidado!).
+
+## 🚀 Missão
+1.  Na pasta `labs/nexus-orchestra`, garanta que tudo está rodando: `docker-compose up -d`.
+2.  **Auditoria Geral:** Rode `docker-compose top` e identifique os PIDs (IDs de processos) no seu Mac.
+3.  **Monitoramento de Radar:** Rode `docker-compose logs --tail=10 -f`. Observe a sinfonia de outputs.
+4.  **O Ritual de Encerramento:** Execute a limpeza profunda:
+    `docker-compose down -v --remove-orphans`.
+5.  Verifique: `docker volume ls` e `docker network ls`. O ecossistema Nexus sumiu sem deixar rastros. O hangar está limpo para a próxima missão.
+
+## 📋 Requisitos de Elite
+- Dominar os comandos de inspeção agregada (logs/top).
+- Compreender o perigo e a utilidade da flag `-v` no comando down.
+- Garantir a remoção de containers "órfãos" que não pertencem mais ao arquivo YAML.
+
+------------------------------------------------------------------------------
+"Um Arquiteto de Elite não apenas constrói; ele sabe como desmontar com a mesma perfeição."

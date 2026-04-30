@@ -1,0 +1,40 @@
+## 🛠️ Necessidade Técnica
+Implementação de padrões de engenharia de elite para garantir escalabilidade e robustez.
+
+## 🎯 Estudo de Caso
+Análise técnica do cenário de negócio para o componente atividade-extra37.txt.
+
+DESAFIO SUPREMO: G-HEALTH - SISTEMA HOSPITALAR INTEGRADO v2.0
+------------------------------------------------------------------------------
+DOMÍNIO: Medicina / Gestão de Fluxo / Engenharia de Software
+ATIVIDADE: Extra 37 (DESAFIO INTEGRADO - MAESTRIA LENDÁRIA)
+CONCEITO INTEGRADO: Fila Manual, Lista Manual, Stack Manual, Singleton, 
+                      Templates, Validação Robusta, Persistência e Exceções.
+STATUS: Padrão de Engenharia de Elite Aplicado
+
+1. O CENÁRIO
+O hospital "G-Health" precisa de um sistema que gerencie três pilares críticos:
+- TRIAGEM (Fila FIFO): Ordem cronológica de chegada para atendimento.
+- PRONTUÁRIO (Lista Encadeada): Histórico clínico expansível e persistente.
+- AUDITORIA (Pilha LIFO): Trilha de eventos forenses da sessão médica.
+
+2. A MISSÃO TÉCNICA (A Fusão Final)
+Construção de uma arquitetura "Bare Metal", sem dependência de containers da 
+STL (vector, queue, stack). Gestão manual de alocação no Heap em multinível.
+
+3. 🧪 ## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL SUPREMO)
+- RISCO DE DESTRUIÇÃO EM CASCATA: Como um 'Paciente' contém uma 'Lista de 
+  Prontuários', deletar o paciente sem limpar sua lista interna causa vazamento 
+  de memória em profundidade. A limpeza deve ser recursiva ou iterativa total.
+- RISCO DE PONTEIRO DUPLO: O gerenciamento de uma Fila de Pacientes onde cada 
+  item é um ponteiro para um objeto na Heap exige cuidado redobrado para evitar 
+  'Double Free' (deletar o mesmo endereço duas vezes).
+- RISCO DE INTEGRIDADE FORENSE: Se o sistema cair durante o salvamento do 
+  prontuário, o rastro de auditoria (Stack) deve ser capaz de reconstruir a 
+  última ação realizada antes do crash.
+
+4. REQUISITOS DO SISTEMA
+- Motor 'Bare Metal' (Estruturas Dinâmicas Manuais).
+- Validação Singleton de Elite.
+- Dashboard ANSI de Telemetria Hospitalar.
+------------------------------------------------------------------------------

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogiSpeed Global - Mission Control v3.1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="terminal-header">
+        <div class="status-bar">
+            <span class="pulse"></span> SYSTEM: ONLINE | AUTH: ENGINEER_ELITE | MODULE: CARGO_DRAG_DROP
+        </div>
+        <h1>SKYCARGO HANGAR - LOADING BAY 07</h1>
+    </header>
+
+    <main class="dashboard">
+        <section class="inventory-sector">
+            <h2><span class="icon">📦</span> CENTRO DE DISTRIBUIÇÃO</h2>
+            <div id="inventory" class="cargo-grid">
+                <div class="cargo-item" draggable="true" data-id="C-001" data-type="STANDARD" data-weight="50">
+                    <span class="item-tag">STANDARD</span>
+                    <span class="item-weight">50kg</span>
+                </div>
+                <div class="cargo-item fragile" draggable="true" data-id="C-002" data-type="FRAGILE" data-weight="20">
+                    <span class="item-tag">FRAGILE</span>
+                    <span class="item-weight">20kg</span>
+                </div>
+                <div class="cargo-item heavy" draggable="true" data-id="C-003" data-type="HEAVY" data-weight="150">
+                    <span class="item-tag">HEAVY</span>
+                    <span class="item-weight">150kg</span>
+                </div>
+                <div class="cargo-item" draggable="true" data-id="C-004" data-type="STANDARD" data-weight="50">
+                    <span class="item-tag">STANDARD</span>
+                    <span class="item-weight">50kg</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="loading-sector">
+            <h2><span class="icon">🚁</span> DRONE FLIGHT DECK (MAX 300KG)</h2>
+            <div id="drop-zone" class="drop-zone">
+                <p class="drop-placeholder">ARRASTE A CARGA PARA INICIAR O CARREGAMENTO</p>
+            </div>
+            
+            <div class="telemetry-panel">
+                <div class="stat">
+                    <label>PESO ATUAL:</label>
+                    <span id="current-weight">0</span> / 300 kg
+                </div>
+                <div class="stat">
+                    <label>STATUS:</label>
+                    <span id="mission-status" class="status-ready">READY FOR LOADING</span>
+                </div>
+                <div class="progress-container">
+                    <div id="weight-progress" class="progress-bar" style="width: 0%"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="manifest-sector">
+            <h2><span class="icon">📋</span> MANIFESTO DE VOO</h2>
+            <ul id="manifest-list" class="manifest-list">
+                <!-- Itens serão adicionados aqui -->
+            </ul>
+        </section>
+    </main>
+
+    <footer class="terminal-footer">
+        <p>[LOG]: <span id="terminal-log">Aguardando interação do operador...</span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

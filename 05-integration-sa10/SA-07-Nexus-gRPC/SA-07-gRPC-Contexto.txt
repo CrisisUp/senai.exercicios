@@ -1,0 +1,26 @@
+# 🏆 SA-07: Desafio Integrador - gRPC & Protobuf (A Fronteira Binária)
+STATUS: Nível 100 (Distinguished Engineer) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" agora opera satélites de baixa órbita para comandar drones. O overhead do JSON (chaves repetidas em texto como "velocidade": 85) consome 40% da largura de banda do satélite. Precisamos migrar para o **gRPC**, onde os dados viajam de forma binária e comprimida, e as funções do motor C++ podem ser chamadas pelo Rust como se fossem funções locais.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o ecossistema **gRPC (Google Remote Procedure Call)**.
+1. **Protocol Buffers (proto3):** Linguagem neutra para definir a estrutura de dados e os serviços.
+2. **Code Generation:** O compilador `protoc` gerará classes C++ e Stubs Rust automaticamente a partir do arquivo `.proto`.
+3. **HTTP/2 Transport:** O gRPC utiliza multiplexação e compressão de cabeçalhos nativamente.
+4. **Strict Contract:** Se o C++ mudar um campo, o Rust falhará em compilar, garantindo sincronia total entre os times.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (SERIALIZATION LATENCY)
+- **JSON PARSING OVERHEAD:** Converter números para texto e vice-versa consome ciclos de CPU. No gRPC, os dados já estão quase prontos para o processador.
+- **VERSION MISMATCH:** No REST/JSON, se o servidor adiciona um campo, o cliente pode quebrar. O Protobuf gerencia retrocompatibilidade de forma nativa.
+- **LATÊNCIA DE REDE:** O gRPC mantém a conexão aberta (Keep-alive) e evita o handshake TCP/TLS repetitivo de cada chamada HTTP/1.1.
+
+## 📋 Requisitos de Elite
+1. Definir o serviço `TelemetriaService` no arquivo `telemetria.proto`.
+2. Implementar o servidor C++ que "escuta" comandos de ajuste de rota.
+3. Implementar o cliente Rust que solicita o status do drone via gRPC.
+4. Documentar o ganho de banda simulado (Protobuf vs JSON).
+
+------------------------------------------------------------------------------
+"Em sistemas de ultra-velocidade, o texto é um ruído; o binário é o sinal."

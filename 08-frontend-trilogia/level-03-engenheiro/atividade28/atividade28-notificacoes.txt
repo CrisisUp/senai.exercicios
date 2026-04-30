@@ -1,0 +1,28 @@
+# 📘 Atividade 28: Alertas Externos (Mastering Notification & Vibration API)
+STATUS: Nível 28 (Engenheiro) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+Em missões críticas de longa duração, o operador da "LogiSpeed Global" pode estar consultando relatórios em outra janela ou aba do navegador. Se um drone entrar em rota de colisão ou detectar uma invasão de perímetro, o sistema deve ser capaz de "gritar" por atenção. Usaremos a **Notification API** para enviar alertas nativos no desktop e a **Vibration API** para fornecer um feedback tátil (háptico) em dispositivos portáteis de campo.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Botão de solicitação de permissão e painel de disparos de teste.
+2. **CSS (Estética):** Animações de tremor (shake) para reforçar o alerta visual junto ao vibratório.
+3. **JS (Atitude):** 
+   - **`Notification.requestPermission()`**: Solicitação de autorização de segurança ao operador.
+   - **`new Notification()`**: Criação do alerta com título, corpo e ícone industrial.
+   - **`navigator.vibrate()`**: Definição de padrões de vibração (ex: SOS).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **SILENT FAILURE:** Um alerta crítico ocorre mas o operador não é notificado por estar com a aba minimizada. As notificações nativas resolvem o problema de foco.
+- **PERMISSION DENIED:** Se o operador negar a permissão no boot, o sistema deve registrar a falha e usar alternativas visuais/sonoras.
+- **HAPTIC OVERLOAD:** Vibrar sem parar consome bateria e irrita o operador. Aprenderemos a criar padrões curtos e rítmicos (Pulse).
+
+## 📋 Requisitos de Elite
+1. Implementar um fluxo de permissão de notificação profissional.
+2. Criar 3 níveis de alerta: INFO, WARNING (Vibração Curta), CRITICAL (Vibração Longa + Notificação OS).
+3. Utilizar o ícone do SkyCargo na notificação para reforçar a identidade visual.
+4. Interface ANSI (visual) logando se a permissão foi concedida ou negada.
+
+------------------------------------------------------------------------------
+"A segurança de uma frota depende da rapidez com que o sistema consegue chamar o seu mestre."

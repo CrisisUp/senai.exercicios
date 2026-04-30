@@ -1,0 +1,26 @@
+# 📘 Atividade 33: Performance de Elite (Shared Memory & Atomics)
+STATUS: Nível 33 (Engenheiro de Elite) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" expandiu sua frota para drones hipersônicos que enviam telemetria a cada 1 milissegundo. O custo de clonagem de objetos via `postMessage` (Ativ 24) tornou-se um gargalo, consumindo CPU excessiva apenas no transporte de dados. Implementaremos o **SharedArrayBuffer**, permitindo que a Thread Principal e o Web Worker compartilhem o mesmo pedaço de memória RAM, eliminando a latência de cópia.
+
+## 🛠️ Necessidade Técnica (O Próximo Nível)
+Nesta atividade, aprenderemos:
+1. **JS (Memória Compartilhada):** `new SharedArrayBuffer()` para alocar memória bruta que ambos os processos enxergam.
+2. **JS (TypedArrays):** Uso de `Int32Array` ou `Float64Array` para ler e escrever dados binários na memória compartilhada.
+3. **JS (Atomics API):** Uso de `Atomics.store()`, `Atomics.load()` e `Atomics.wait()` para evitar "Race Conditions" (quando dois processos tentam mudar o mesmo dado ao mesmo tempo).
+4. **HTML/CSS:** Dashboard de telemetria de alta frequência com medidores de latência de barramento.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **MEMORY CORRUPTION:** Sem o uso de Atomics, um processo pode ler um dado enquanto o outro ainda o está escrevendo, gerando valores corrompidos. Aprenderemos a "travar" o acesso durante a escrita.
+- **SECURITY RESTRICTIONS:** `SharedArrayBuffer` exige cabeçalhos de isolamento de origem (COOP/COEP). Simularemos o ambiente e discutiremos por que isso é vital para evitar ataques como Spectre.
+- **DEADLOCKS:** Um processo esperando por um dado que o outro nunca envia. Implementaremos timeouts de segurança.
+
+## 📋 Requisitos de Elite
+1. Instanciar um Web Worker que processa 1000 sinais de telemetria/segundo.
+2. Utilizar um `SharedArrayBuffer` para compartilhar a "Bateria" e "Altitude" do drone entre as threads.
+3. Garantir a integridade dos dados usando o objeto global `Atomics`.
+4. Interface ANSI (visual) mostrando a diferença de consumo de memória entre Cópia (postMessage) e Compartilhamento (SAB).
+
+------------------------------------------------------------------------------
+"Na elite da engenharia, não movemos os dados até o processador; movemos o processador até os dados."

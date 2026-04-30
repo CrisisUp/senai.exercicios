@@ -1,0 +1,27 @@
+# 📘 Atividade 21: O Servidor Central (Bare Repositories)
+STATUS: Nível 21 (Embaixador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+A "SkyCargo Nexus" está expandindo e agora vários engenheiros precisam colaborar no sistema do Alpha-707. Você foi encarregado de configurar o "Servidor Central" da empresa. Como o servidor não é um lugar para editar arquivos, mas sim para armazenar o histórico e permitir o tráfego de dados, você criará um repositório **Bare** (Nu).
+
+## 🛠️ Necessidade Técnica
+Um repositório comum tem uma "Working Tree" (os arquivos que você edita). Um repositório **Bare** não tem esses arquivos; ele é apenas a pasta `.git` exposta. É o padrão usado por servidores como GitHub e GitLab.
+
+### Comandos Chave:
+1.  **`git clone --bare <origem> <destino>`**: Cria uma cópia "nua" do repositório.
+
+## 🚀 Missão
+1.  Abra o terminal na pasta `10-git-mastery/labs/`.
+2.  Crie o servidor a partir do seu repositório atual: 
+    `git clone --bare nexus-drone-system nexus-server.git`.
+3.  Entre na pasta `nexus-server.git` e rode `ls`.
+4.  Observe que não há `manifesto.txt` ou `radar.txt`. Há apenas pastas como `hooks`, `info`, `objects` e `refs`. Este é o coração do seu servidor.
+5.  Saia da pasta. O servidor está pronto para receber conexões.
+
+## 📋 Requisitos de Elite
+- Entender que um repositório Bare é o "Hub" de colaboração.
+- Identificar que não se pode fazer commits diretamente dentro de um repositório Bare.
+- A pasta do servidor deve terminar convencionalmente com `.git`.
+
+------------------------------------------------------------------------------
+"O servidor é a fonte da verdade; ele não cria, ele apenas preserva."

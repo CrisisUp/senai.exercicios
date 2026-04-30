@@ -1,0 +1,29 @@
+# 📘 Atividade 22: Estabelecendo o Link (Git Remote)
+STATUS: Nível 22 (Embaixador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Agora que o `nexus-server.git` existe, seu repositório local (`nexus-drone-system`) ainda não sabe da existência dele. Você precisa estabelecer um "link de rádio" entre sua máquina e o servidor central para poder enviar seus commits. Você aprenderá a gerenciar **Remotos**.
+
+## 🛠️ Necessidade Técnica
+Um "Remote" é uma URL ou caminho de pasta que aponta para outra cópia do repositório. Por convenção, o servidor principal é chamado de **origin**.
+
+### Comandos Chave:
+1.  **`git remote add <nome> <caminho>`**: Cria o link com o servidor.
+2.  **`git remote -v`**: Lista os remotos conectados.
+3.  **`git push -u origin main`**: Envia seus commits para o servidor. O `-u` (upstream) cria o vínculo permanente entre sua branch local e a remota.
+
+## 🚀 Missão
+1.  No terminal, entre na pasta `10-git-mastery/labs/nexus-drone-system`.
+2.  Adicione o link para o servidor: 
+    `git remote add origin ../nexus-server.git`.
+3.  Verifique a conexão: `git remote -v`.
+4.  Envie seus dados: `git push -u origin main`.
+5.  Observe o Git contando objetos e enviando para o servidor.
+
+## 📋 Requisitos de Elite
+- Entender que o nome `origin` é apenas um apelido padrão, mas extremamente importante.
+- Compreender que o `push` é o ato de publicar seu trabalho para o restante da equipe.
+- O vínculo `upstream` facilitará os futuros comandos de `push` e `pull`.
+
+------------------------------------------------------------------------------
+"Sem um remoto, seu código está em uma ilha; com ele, você faz parte de um arquipélago."

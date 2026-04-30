@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCargo OS - Nexus Link</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/grid.css">
+    <style>
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top: 3px solid var(--brand-accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .error-msg { color: var(--status-alert); font-weight: bold; }
+    </style>
+</head>
+<body class="nexus-dashboard">
+
+    <header class="header module-box" style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>NEXUS <span style="font-weight: 300;">LINK SYNC</span></h1>
+        <div style="display: flex; gap: 20px; align-items: center;">
+            <div id="loader" class="loading-spinner"></div>
+            <button id="btn-sync" style="padding: 10px 20px; cursor: pointer; background: var(--brand-primary); color: white; border: none; border-radius: var(--border-radius);">
+                SINCRONIZAR VAULT
+            </button>
+        </div>
+    </header>
+
+    <aside class="radar module-box">
+        <h2>Status de Conexão</h2>
+        <div id="connection-status" style="margin-top: 15px; font-family: monospace; font-size: 0.8rem;">
+            <p>> STANDBY</p>
+        </div>
+    </aside>
+
+    <main class="mapa module-box" id="data-display">
+        <div style="text-align: center;">
+            <h2>DADOS DO VAULT</h2>
+            <p style="color: var(--text-secondary);">Aguardando sincronização manual...</p>
+        </div>
+    </main>
+
+    <section class="logs module-box">
+        <h2>Network Stream</h2>
+        <div id="network-logs" style="font-family: monospace; font-size: 0.8rem;"></div>
+    </section>
+
+    <footer class="footer module-box">
+        Communication Layer: <span id="layer-status" style="color: var(--status-warning);">IDLE</span>
+    </footer>
+
+    <script type="module" src="dist/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# 📘 Atividade 23: O Segundo Operador (Git Clone)
+STATUS: Nível 23 (Embaixador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Você configurou o servidor e enviou o código. Agora, simule que um novo engenheiro, o "Agente 02", acabou de entrar na equipe. Ele não tem nada no computador dele. Você aprenderá como ele pode baixar o projeto completo, com todo o histórico de commits, a partir do servidor central.
+
+## 🛠️ Necessidade Técnica
+O comando `clone` é o ponto de entrada para qualquer novo colaborador. Ele baixa o banco de dados do Git e cria a sua área de trabalho automaticamente.
+
+### Comandos Chave:
+1.  **`git clone <origem> <novo-nome-da-pasta>`**: Baixa o repositório completo.
+
+## 🚀 Missão
+1.  Abra o terminal na pasta `10-git-mastery/labs/`.
+2.  Simule a entrada do novo colega clonando o servidor em uma pasta diferente:
+    `git clone nexus-server.git nexus-operator-02`.
+3.  Entre na pasta `nexus-operator-02` e rode `ls`. Todos os arquivos estão lá!
+4.  Rode `git log --oneline`. O histórico completo está lá!
+5.  Rode `git remote -v`. Observe que o Git já configurou automaticamente o `origin` para ele, apontando para o servidor.
+
+## 📋 Requisitos de Elite
+- Compreender que o clone traz o histórico **inteiro**, não apenas a última versão.
+- Notar que o `clone` já configura o link remoto automaticamente.
+- Manter as duas pastas (`nexus-drone-system` e `nexus-operator-02`) para as próximas atividades de colaboração.
+
+------------------------------------------------------------------------------
+"Clonar é o primeiro passo para a imortalidade do código distribuído."

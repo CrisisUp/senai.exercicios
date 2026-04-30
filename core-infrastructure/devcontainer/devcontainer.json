@@ -1,0 +1,25 @@
+{
+    "name": "Engenharia de Elite (C++/Rust/SQL/AWS)",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cmake-tools",
+                "rust-lang.rust-analyzer",
+                "mtxr.sqltools",
+                "mtxr.sqltools-driver-sqlite",
+                "amazonwebservices.aws-toolkit-vscode",
+                "tamasfe.even-better-toml"
+            ]
+        }
+    },
+    "settings": {
+        "cmake.configureSettings": {
+            "CMAKE_TOOLCHAIN_FILE": "/opt/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        }
+    },
+    "remoteUser": "root"
+}

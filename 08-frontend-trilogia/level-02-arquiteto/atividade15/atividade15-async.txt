@@ -1,0 +1,28 @@
+# 📘 Atividade 15: Conexão Global (Fetch API e Estados de Rede)
+STATUS: Nível 15 (Arquiteto) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A central de comando da "LogiSpeed Global" precisa carregar a lista de "Drones em Espera" que estão registrados em um servidor remoto. Como a rede pode ser lenta ou falhar, não podemos simplesmente deixar a tela vazia. Precisamos de um estado de "Carregando" (Skeleton Screen) e uma lógica que aguarde a resposta do servidor sem travar a interface do operador.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Criação de **Skeleton Loaders** (espaços reservados cinzas que imitam o conteúdo real) para manter o layout estável durante o fetch.
+2. **CSS (Estética):** Transições de **Opacity** e filtros de **Blur**. Aprenderemos a suavizar a entrada dos dados quando eles chegam da rede.
+3. **JS (Atitude):** 
+   - **`fetch()`**: A API nativa para buscar dados via HTTP.
+   - **Async/Await**: A forma moderna e limpa de lidar com **Promises** (Promessas).
+   - **Try/Catch**: Tratamento de erros de rede (ex: servidor offline).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **BLOCKING UI:** Fazer uma requisição de rede síncrona que congela o mouse do operador. O `async/await` garante que a interface continue respondendo.
+- **SUDDEN POP-IN:** Dados que aparecem do nada, assustando o usuário. Usaremos opacidade gradual para uma entrada suave.
+- **SILENT ERRORS:** O servidor falha e a tela fica "carregando" para sempre. O bloco `catch` é vital para exibir uma mensagem de erro ao operador.
+
+## 📋 Requisitos de Elite
+1. Implementar um botão "REQUISITAR DADOS DO NEXUS".
+2. Mostrar um Skeleton Loader enquanto a requisição está em curso.
+3. Usar a **Fetch API** com `async/await` para buscar dados de um simulador (JSONPlaceholder).
+4. Aplicar um efeito de **Fade-In** nos dados ao final do carregamento.
+
+------------------------------------------------------------------------------
+"Na engenharia de rede, a paciência do usuário é um recurso finito; o feedback visual é o que o renova."

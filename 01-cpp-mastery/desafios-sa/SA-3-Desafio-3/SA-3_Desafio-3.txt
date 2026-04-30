@@ -1,0 +1,27 @@
+# 🏭 DESAFIO INTEGRADOR: Sistema de Refinaria Modulado (SA-3)
+
+## 🎯 Estudo de Caso
+A "Refinaria Norte-Sul" precisa de um software robusto para gerenciar seus tanques de combustíveis. Até agora, o controle era feito por planilhas e scripts isolados. O novo sistema deve ser **Modulado**, **Seguro** e de **Fácil Manutenção**.
+
+## 🛠️ Necessidade Técnica
+Como este é o Desafio Integrador do **Nível 11 (Arquiteto)**, o projeto deve aplicar **EXCLUSIVAMENTE** os conceitos aprendidos no ciclo 3+1 (Atividades 49 a 52):
+1.  **Arquitetura Modular:** Separar rigorosamente Interface (`.h`) de Implementação (`.cpp`).
+2.  **Namespaces:** Todo o sistema deve residir dentro do namespace `Refinaria`.
+3.  **Composição de Classes:** A classe `Tanque` deve "ter-um" objeto de medição (da Atividade 52) ou um sensor interno.
+4.  **Sobrecarga de Operadores:** Permitir somar o volume de dois tanques (`tanqueA + tanqueB`) e comparar qual tanque está mais cheio (`tanqueA > tanqueB`).
+5.  **Encapsulamento:** Garantir que um tanque não possa receber uma carga maior que sua capacidade máxima.
+
+## 📋 Requisitos Funcionais
+1. Criar uma classe `Tanque` com:
+   - ID do Tanque (ex: "T-901").
+   - Tipo de Produto (ex: "Diesel", "Gasolina").
+   - Volume Atual e Capacidade Máxima.
+2. Sobregar o operador `+` para permitir a transferência de conteúdo entre tanques do **mesmo produto**.
+3. Sobregar o operador `>` para alertas de nível crítico.
+4. Sobregar o operador `<<` para imprimir um relatório visual do tanque (com cores ANSI).
+5. O programa principal deve simular uma central de controle operando pelo menos 3 tanques.
+
+## 🏗️ Estrutura de Arquivos Obrigatória
+- `Tanque.h`: Declarações do namespace e classe.
+- `Tanque.cpp`: Lógica de transferência e validação.
+- `SA-3-Refinaria.cpp`: Função `main` com a simulação completa.

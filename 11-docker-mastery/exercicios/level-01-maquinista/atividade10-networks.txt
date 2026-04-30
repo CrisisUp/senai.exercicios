@@ -1,0 +1,33 @@
+# 📘 Atividade 10: Malha de Comunicação (Docker Networks)
+STATUS: Nível 10 (Maquinista) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+O ecossistema Nexus está crescendo. Agora temos um servidor web e um banco de dados que precisam conversar entre si. No entanto, usar o endereço IP interno (Atividade 09) é perigoso, pois o IP muda toda vez que o container reinicia. Você aprenderá a criar uma **Rede Virtual Privada** onde os containers podem se encontrar pelo **Nome**, garantindo uma comunicação estável e segura dentro do hangar.
+
+## 🛠️ Necessidade Técnica
+Por padrão, containers rodam na rede `bridge`. Mas para ter um "DNS Interno" (onde um container resolve o nome do outro), precisamos criar uma rede customizada. Isso isola o tráfego e facilita a orquestração.
+
+### Comandos Chave:
+1.  **`docker network create <nome-da-rede>`**: Cria uma nova rede isolada.
+2.  **`docker run --network <nome-da-rede> --name <nome>`**: Conecta o container à rede no nascimento.
+3.  **`docker network ls`**: Lista todas as redes virtuais.
+4.  **`docker network connect <rede> <container>`**: Conecta um container que já está rodando a uma rede.
+
+## 🚀 Missão
+1.  Crie a rede do ecossistema: `docker network create nexus-net`.
+2.  Inicie o "Servidor de Dados" (simulado com Alpine):
+    `docker run -d --name data-node --network nexus-net alpine sleep 3600`.
+3.  Inicie o "Operador de Busca" e tente dar um "ping" no servidor usando apenas o nome:
+    `docker run --rm --network nexus-net alpine ping -c 3 data-node`.
+4.  Observe a mágica: O Docker resolveu o nome `data-node` para o IP correto automaticamente!
+5.  **Teste de Isolamento:** Tente dar um ping de um container que NÃO está na rede:
+    `docker run --rm alpine ping -c 1 data-node`. (Deve falhar/não encontrar).
+6.  Limpeza: `docker stop data-node`, `docker rm data-node` e `docker network rm nexus-net`.
+
+## 📋 Requisitos de Elite
+- Estabelecer comunicação entre containers via nome (DNS interno).
+- Compreender o isolamento de tráfego entre diferentes redes.
+- Identificar a rede como a "espinha dorsal" de um sistema de microserviços.
+
+------------------------------------------------------------------------------
+"Em sistemas de elite, o nome é o endereço. Redes Docker são a tradução dessa identidade."

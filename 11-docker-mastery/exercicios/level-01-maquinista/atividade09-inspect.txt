@@ -1,0 +1,32 @@
+# 📘 Atividade 09: Visão de Raio-X (Docker Inspect & Metadata)
+STATUS: Nível 09 (Maquinista) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+O container do banco de dados `nexus-db` está rodando, mas o Comandante Nexus precisa saber exatamente qual é o endereço IP interno dele dentro da rede do Docker para configurar um sensor. Abrir o terminal do container é um exagero; você precisa ler a "ficha técnica" do container. Você aprenderá a usar o **Inspect**, a ferramenta de auditoria que revela todos os segredos e metadados de qualquer objeto Docker.
+
+## 🛠️ Necessidade Técnica
+Tudo no Docker (containers, imagens, volumes, redes) é um objeto JSON gigante nos bastidores. O comando `inspect` despeja essas informações. Para um Engenheiro de Elite, o segredo é saber filtrar esse oceano de dados para encontrar apenas o que importa (IP, caminhos de volume, variáveis ativas).
+
+### Comandos Chave:
+1.  **`docker inspect <id-ou-nome>`**: Mostra o JSON completo do objeto.
+2.  **`docker inspect --format '{{.NetworkSettings.IPAddress}}' <id-ou-nome>`**: Usa o motor de templates do Go para filtrar uma informação específica.
+
+## 🚀 Missão
+1.  Inicie um container qualquer em background (ex: Nginx):
+    `docker run -d --name xray-lab nginx`.
+2.  Tente ver o "RG" completo do container: `docker inspect xray-lab`. Observe a montanha de dados.
+3.  **O Desafio de Filtro:** Descubra o endereço IP do container usando o filtro de formato:
+    `docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' xray-lab`.
+4.  Descubra onde o Docker guardou os arquivos do container no seu host:
+    `docker inspect --format '{{.Id}}' xray-lab`.
+5.  Verifique o estado de saúde e status:
+    `docker inspect --format '{{.State.Status}}' xray-lab`.
+6.  Limpeza: `docker stop xray-lab` && `docker rm xray-lab`.
+
+## 📋 Requisitos de Elite
+- Acessar metadados profundos sem precisar entrar no container.
+- Utilizar a flag `--format` para extrair informações precisas (IP, ID, Status).
+- Entender que o `inspect` funciona para IMAGENS também (tente `docker inspect nginx`).
+
+------------------------------------------------------------------------------
+"O Inspect é o microscópio do engenheiro; ele revela o que está invisível a olho nu."

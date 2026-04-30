@@ -1,0 +1,26 @@
+# 📘 Atividade 08: O Diálogo com o Nexus (Async/Await & Fetch)
+STATUS: Nível 08 (Iniciado Frontend) - Pilar de Fundamentos
+
+## 🎯 Estudo de Caso
+O SkyCargo Control Tower precisa carregar a lista de drones ativos do Nexus Vault (SQL). Se fizermos isso de forma síncrona, o navegador travará (ficará branco) até que o servidor responda, o que é inaceitável em um centro de comando. Precisamos solicitar os dados "em segundo plano" e atualizar a UI assim que eles chegarem.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o modelo de concorrência do JavaScript/TypeScript.
+1. **Promises:** O "contrato" de que um dado será entregue no futuro.
+2. **Async/Await:** Sintaxe de elite que torna o código assíncrono legível como se fosse sequencial.
+3. **Fetch API:** O padrão moderno para realizar requisições HTTP (GET/POST) nativamente.
+4. **Error Handling (Try/Catch):** Tratamento de falhas de rede ou indisponibilidade do Nexus.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (BLOCKING I/O)
+- **UI FREEZE:** Requisições síncronas bloqueiam a thread principal. O operador não conseguiria clicar no botão de "Abortar Missão" enquanto os dados carregam.
+- **RACE CONDITIONS (DATA):** Se a Telemetria A chegar depois da Telemetria B mas for processada antes, a tela mostrará dados antigos. Aprenderemos a gerenciar o estado da promessa.
+- **SILENT NETWORK FAILURES:** Sem um bloco `catch` robusto, se a internet cair, a tela simplesmente pararia de atualizar sem avisar o operador.
+
+## 📋 Requisitos de Elite
+1. Implementar um serviço `NexusService` em TypeScript para buscar dados.
+2. Usar `async/await` para gerenciar o fluxo de telemetria.
+3. Criar uma "Simulação de Latência" para provar que a interface continua responsiva durante o carregamento.
+4. Interface ANSI (visual) para exibir indicadores de "Carregando..." e "Erro de Conexão".
+
+------------------------------------------------------------------------------
+"Em um sistema distribuído, a espera é inevitável; a lentidão na interface é opcional."

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCargo OS - Event Loop Mastery</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/grid.css">
+</head>
+<body class="nexus-dashboard">
+
+    <header class="header module-box" style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>PERFORMANCE <span style="font-weight: 300;">ENGINE</span></h1>
+        <div style="text-align: right;">
+            <p id="perf-metrics" style="font-family: monospace; font-size: 0.8rem; color: var(--brand-accent);">
+                EVENTOS: 0 | PROCESSADOS: 0
+            </p>
+        </div>
+    </header>
+
+    <aside class="radar module-box">
+        <h2>Busca Tática</h2>
+        <input type="text" id="search-drone" placeholder="ID do Drone..." style="width: 100%; padding: 10px; margin-top: 10px; background: var(--bg-page); color: white; border: 1px solid var(--border-color);">
+        <p id="search-status" style="font-size: 0.7rem; margin-top: 5px; color: var(--text-muted);">Aguardando digitação (Debounced)...</p>
+    </aside>
+
+    <main id="mapa-movimento" class="mapa module-box" style="cursor: crosshair; flex-direction: column;">
+        <p style="margin-bottom: 20px;">MOVA O MOUSE NESTA ÁREA (THROTTLED)</p>
+        <div id="pos-display" style="font-family: monospace; font-size: 2rem;">X: 0 | Y: 0</div>
+    </main>
+
+    <section class="logs module-box">
+        <h2>Monitor de Carga</h2>
+        <div id="logs-perf" style="font-family: monospace; font-size: 0.8rem;"></div>
+    </section>
+
+    <footer class="footer module-box">
+        Event Loop Status: <span style="color: var(--status-success);">OPTIMIZED (THROTTLED)</span>
+    </footer>
+
+    <script type="module" src="dist/main.js"></script>
+</body>
+</html>

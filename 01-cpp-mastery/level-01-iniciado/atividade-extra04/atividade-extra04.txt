@@ -1,0 +1,61 @@
+## 🛠️ Necessidade Técnica
+Implementação de padrões de engenharia de elite para garantir escalabilidade e robustez.
+
+## 🎯 Estudo de Caso
+Análise técnica do cenário de negócio para o componente atividade-extra04.txt.
+
+===============================================================
+       DESAFIO 4: SISTEMA DE GESTÃO DE PERFORMANCE DE FROTA
+===============================================================
+
+ESTE É O SEU PRIMEIRO GRANDE DESAFIO! 
+Ele combina tudo o que aprendemos (Vetores, Médias, Máximos, 
+Mínimos e Condicionais dinâmicas).
+
+CONTEXTO:
+Uma transportadora quer analisar o consumo de combustível (Km/L) 
+de seus caminhões para reduzir custos. O objetivo é entender o 
+comportamento da frota e identificar veículos "gastões".
+
+REQUISITOS DO PROGRAMA:
+1.  SOLICITAÇÃO DE DADOS:
+    - Perguntar quantos caminhões compõem a frota.
+    - Criar um vetor para armazenar o consumo (Km/L) de cada um.
+
+2.  PROCESSAMENTO (O Cérebro do Código):
+    - Calcular a MÉDIA de consumo da frota inteira.
+    - Identificar o caminhão MAIS ECONÔMICO (maior Km/L).
+    - Identificar o caminhão MAIS GASTÃO (menor Km/L).
+    - Calcular a AMPLITUDE de consumo (Diferença entre o mais 
+      econômico e o mais gastão).
+
+3.  RELATÓRIO DE INSPEÇÃO (Lógica de Decisão):
+    - Listar o consumo de todos os caminhões.
+    - Critério de Alerta: Se um caminhão consome menos que 80% 
+      da média da frota, ele deve receber o status: 
+      [CRÍTICO: REVISÃO NECESSÁRIA].
+    - Se estiver acima da média: [ÓTIMO DESEMPENHO].
+    - Caso contrário: [DESEMPENHO REGULAR].
+
+4.  SIMULAÇÃO DE VIAGEM (Extra):
+    - Calcule quantos litros de combustível o caminhão MAIS 
+      ECONÔMICO gastaria para fazer uma viagem de 500 Km.
+
+===============================================================
+DICAS PARA O SUCESSO:
+- Para o "Menor Valor", inicialize sua variável com um valor 
+  muito alto (ex: 999.0) ou com o primeiro item do vetor.
+- Use 'float' or 'double' para o consumo e cálculos.
+- Lembre-se do 'fixed' e 'setprecision(2)' para um visual 
+  profissional.
+===============================================================
+
+===============================================================
+## 🧪 ANÁLISE DE FALHA CRÍTICA (INPUT FAILURE):
+A robustez de um sistema de frota depende da qualidade dos dados. 
+Se um usuário inserir um caractere inválido, o programa pode entrar 
+em loop infinito ou processar zeros indevidamente. 
+SOLUÇÃO: Sempre verifique 'if (cin.fail())' após leituras críticas 
+e limpe o buffer com 'cin.clear()' e 'cin.ignore()'.
+===============================================================
+

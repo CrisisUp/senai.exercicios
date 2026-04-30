@@ -1,0 +1,25 @@
+# 📘 Atividade 39: Full Text Search FTS5 (Busca Inteligente)
+STATUS: Nível 60+ (Lead Data Architect) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+A "LogiSpeed" agora armazena "Diários de Bordo" dos motoristas e "Relatórios de Manutenção" detalhados. Quando um gerente precisa encontrar todos os relatos que mencionam "falha no freio" ou "pneu desgastado" em um histórico de 10 anos, uma busca comum trava o sistema. Precisamos de um motor de busca profissional integrado ao SQL.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos a extensão **FTS5 (Full Text Search)**.
+1. **Virtual Tables:** Criaremos uma tabela virtual FTS5 que indexa o texto de forma "invertida" (mapeando palavras para documentos).
+2. **Tokenização:** O motor divide o texto em palavras (tokens), permitindo buscas por prefixos, frases exatas ou proximidade.
+3. **Ranking (BM25):** O sistema não apenas encontra o dado, mas pode ranquear os resultados por relevância (quais relatórios mencionam o termo com mais frequência).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (DATA DISCOVERY)
+- **O PROBLEMA DO LIKE:** O comando `LIKE '%falha%'` não usa índices. Ele precisa ler cada caractere de cada linha do disco. Em Big Data, isso é proibitivo.
+- **STORAGE OVERHEAD:** Índices FTS5 ocupam espaço extra em disco. Em sistemas de elite, aceitamos esse custo em troca de uma busca 1000x mais rápida.
+- **SYNCHRONIZATION:** Se a tabela de texto mudar, o índice FTS5 deve ser atualizado. Usaremos `Triggers` para garantir que o motor de busca esteja sempre em sincronia com os dados reais.
+
+## 📋 Requisitos de Elite
+1. Criar tabela virtual `diario_bordo_fts` usando o motor FTS5.
+2. Implementar sincronização automática entre a tabela original e o índice de busca.
+3. Realizar buscas complexas (AND, OR, NEAR) e ranqueamento.
+4. Interface ANSI para telemetria de latência de busca inteligente.
+
+------------------------------------------------------------------------------
+"A informação só tem valor se você conseguir encontrá-la no tempo exato da decisão."

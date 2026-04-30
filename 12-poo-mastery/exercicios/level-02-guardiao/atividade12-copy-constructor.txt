@@ -1,0 +1,36 @@
+# 📘 Atividade 12: O Clone Perfeito (Construtor de Cópia & Deep Copy)
+STATUS: Nível 12 (Guardião) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+Um drone foi clonado para uma missão de backup, mas ambos os drones começaram a compartilhar o mesmo sensor físico na memória. Quando o clone foi desativado, ele deletou o sensor do drone original! Você aprenderá a diferença fatal entre **Shallow Copy** (cópia rasa de endereços) e **Deep Copy** (cópia profunda de valores), garantindo que cada objeto tenha sua própria integridade física na memória.
+
+## 🛠️ Necessidade Técnica
+Por padrão, o C++ apenas copia os valores dos bits. Se você tem um ponteiro, ele copia o endereço, não os dados apontados. O **Construtor de Cópia** é necessário para alocar nova memória para o clone.
+
+### Exemplo (C++):
+```cpp
+class Drone {
+    Sensor* gps;
+public:
+    // Construtor de Cópia de Elite (Deep Copy)
+    Drone(const Drone& outro) {
+        this->modelo = outro.modelo;
+        // Aloca um NOVO sensor e copia os valores
+        this->gps = new Sensor(*(outro.gps)); 
+    }
+};
+```
+
+## 🚀 Missão
+1.  Modifique o `Drone` para que o seu `Sensor` seja um **Ponteiro** (`Sensor*`).
+2.  Implemente o Construtor de Cópia para realizar Deep Copy.
+3.  Implemente o Operador de Atribuição (`operator=`) para evitar vazamentos em atribuições (Rule of Three).
+4.  No `main()`, crie um `droneA`, faça um `droneB = droneA` e altere dados em um sem afetar o outro.
+
+## 📋 Requisitos de Elite
+- Implementação rigorosa de Deep Copy para membros alocados dinamicamente.
+- Prevenção de "Dangling Pointers" (ponteiros pendentes).
+- Uso da "Regra dos Três" (Construtor, Destrutor e Operador de Atribuição).
+
+------------------------------------------------------------------------------
+"Um clone de elite não compartilha fraquezas com o original; ele herda apenas o estado."

@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     './repositorio-extra/atividade-extra08/atividade-extra08-folha'
+relocations:     []
+...

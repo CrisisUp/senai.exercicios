@@ -1,0 +1,26 @@
+# 📘 Atividade 18: WebSockets Industriais (O Fluxo Constante)
+STATUS: Nível 22 (Engenheiro Full-Stack) - Pilar de Integração
+
+## 🎯 Estudo de Caso
+Na "LogiSpeed Global", os operadores precisam ver o movimento suave dos drones no mapa. Fazer requisições HTTP a cada 100ms sobrecarregaria o servidor e geraria tráfego de rede desnecessário (cabeçalhos repetidos). Precisamos de uma conexão aberta e leve que envie apenas as mudanças de coordenadas em tempo real.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o protocolo **WebSocket (WS)**.
+1. **Full-Duplex:** Comunicação simultânea nos dois sentidos (Servidor -> Cliente e Cliente -> Servidor).
+2. **Backend Rust (Tokio-Tungstenite):** Gerenciaremos milhares de conexões persistentes de forma assíncrona.
+3. **Frontend React (useWebSocket):** Aprenderemos a gerenciar o estado do socket dentro do ciclo de vida do componente.
+4. **Binary vs Text:** Embora usaremos JSON para simplificar, entenderemos que WebSockets suportam dados binários para performance extrema.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (CONNECTION RESILIENCE)
+- **CONNECTION DROP:** Se o Wi-Fi do operador oscilar, o socket morre. Precisamos de uma lógica de "Auto-Reconnect" com backoff exponencial.
+- **BACKPRESSURE:** O servidor envia dados mais rápido do que a tela consegue desenhar. Usaremos Throttling no frontend para filtrar o fluxo.
+- **ZOMBIE CONNECTIONS:** Esquecer de fechar o socket ao mudar de tela esgota os recursos do servidor Rust. O Cleanup do `useEffect` é obrigatório.
+
+## 📋 Requisitos de Elite
+1. Implementar servidor de WebSocket em Rust que envia coordenadas aleatórias a cada 1s.
+2. No React, criar o componente `LiveMap.tsx` que assina o fluxo do servidor.
+3. Adicionar lógica de reconexão automática com feedback visual de status.
+4. Interface ANSI (no console) logando a economia de overhead comparado ao HTTP.
+
+------------------------------------------------------------------------------
+"Em sistemas de tempo real, o silêncio do servidor é uma incerteza; o fluxo constante é a segurança."

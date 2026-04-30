@@ -1,0 +1,1 @@
+/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/buffer_compartilhado: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/exercicios/17-buffer-compartilhado/build.rs /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/exercicios/17-buffer-compartilhado/src/main.rs

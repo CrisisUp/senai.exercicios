@@ -1,0 +1,28 @@
+# 📘 Atividade 31: Logística Tátil (Mastering Drag and Drop API)
+STATUS: Nível 31 (Mestre Engenheiro) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+Na "LogiSpeed Global", o carregamento de containers nos drones de carga (Cargo Drones) é uma tarefa crítica que exige precisão e rapidez. Atualmente, os operadores usam seletores manuais, o que é ineficiente em situações de alta demanda. Implementaremos a **Drag and Drop API** nativa para permitir que o operador arraste containers de carga diretamente do inventário para o deck de voo do drone, simulando a logística real de um hangar automatizado.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Atributo `draggable="true"` para tornar elementos móveis e zonas de drop semânticas.
+2. **CSS (Estética):** Feedback visual dinâmico usando classes como `.dragging` e `.drag-over` para iluminar alvos válidos.
+3. **JS (Atitude):** 
+   - **`dragstart` / `dragend`**: Gerenciamento do estado do item sendo movido.
+   - **`dragover` / `drop`**: Manipulação do evento de recebimento e cancelamento do comportamento padrão do browser.
+   - **`dataTransfer`**: Uso do "envelope de dados" para transportar metadados (ID, Peso, Tipo) sem poluir o estado global.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **ACCIDENTAL DROP:** Soltar o container em uma zona morta. O sistema deve garantir que o item retorne ao inventário sem perda de integridade.
+- **DEFAULT BROWSER INTERFERENCE:** O navegador tentando "abrir" o objeto arrastado como um link ou imagem. Aprenderemos a domar o `event.preventDefault()`.
+- **OVERLOAD RISK:** Tentar carregar um drone além de sua capacidade nominal. Implementaremos uma validação de peso em tempo real durante o evento de drop.
+
+## 📋 Requisitos de Elite
+1. Criar um "Centro de Distribuição" (Inventário) com 3 tipos de carga: `STANDARD` (50kg), `FRAGILE` (20kg), `HEAVY` (150kg).
+2. Implementar o "Drone Loading Bay" com capacidade máxima de 300kg.
+3. Exibir o manifesto de carga atualizado a cada drop bem-sucedido.
+4. Interface ANSI (visual) com efeitos de luz (box-shadow) quando um item estiver sobre a zona de drop.
+
+------------------------------------------------------------------------------
+"Na engenharia de elite, a interface deve ser uma extensão natural da mão do operador."

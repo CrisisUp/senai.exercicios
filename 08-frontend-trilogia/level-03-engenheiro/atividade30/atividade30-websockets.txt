@@ -1,0 +1,28 @@
+# 📘 Atividade 30: O Link Bi-direcional (Mastering WebSockets API)
+STATUS: Nível 30 (Mestre Engenheiro) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+Na central de comando global da "LogiSpeed Global", as requisições HTTP (Ativ 15-19) tornaram-se lentas para o rastreio de drones supersônicos. Precisamos de um canal de comunicação de latência zero. Usaremos a **WebSockets API** para abrir um "cano" persistente de dados entre o navegador e o Nexus Server, permitindo que cada mudança de posição seja refletida na interface no exato milissegundo em que ocorre.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Console de stream de rede e indicadores de ping.
+2. **CSS (Estética):** Animações de "Data Flow" (linhas de dados que se movem) para representar a conexão ativa.
+3. **JS (Atitude):** 
+   - **`new WebSocket()`**: Abertura do canal TCP persistente.
+   - **`onopen`, `onmessage`, `onerror`, `onclose`**: Gerenciamento do ciclo de vida da conexão.
+   - **`send()`**: Envio de comandos do operador para o servidor através do mesmo canal.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **CONNECTION TIMEOUT:** A internet oscila e o socket morre silenciosamente. Aprenderemos a implementar o "Heartbeat" (batida de coração) para detectar quedas.
+- **DATA OVERLOAD:** O servidor envia 1000 mensagens/segundo. Aprenderemos a filtrar o que é importante antes de renderizar no DOM para não travar a UI.
+- **ZOMBIE CONNECTIONS:** Abrir múltiplos sockets sem fechar os anteriores. Aprenderemos a encerrar o link ao fechar o terminal.
+
+## 📋 Requisitos de Elite
+1. Abrir uma conexão WebSocket com um servidor de eco (ex: wss://echo.websocket.org ou similar).
+2. Implementar o envio de comandos táticos e o recebimento da confirmação.
+3. Exibir o status do link (CONNECTING, OPEN, CLOSED) com cores industriais.
+4. Interface ANSI (visual) com fluxo de mensagens em tempo real no console do dashboard.
+
+------------------------------------------------------------------------------
+"Em sistemas de elite, o silêncio não existe; a rede pulsa em sincronia constante."

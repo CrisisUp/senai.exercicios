@@ -1,0 +1,28 @@
+# 📘 Atividade 18: A Sincronia de Dubai (Callbacks, Event Loop e Promises)
+STATUS: Nível 18 (Arquiteto) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A central de comando da "LogiSpeed Global" precisa carregar o status de 50 hangares simultaneamente. Se fizermos isso de forma síncrona, a tela ficará "branca" e travará o navegador do operador até que o último hangar responda. Precisamos entender como o JavaScript executa tarefas em segundo plano usando o **Event Loop** e as **Promises**.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Elementos de feedback de rede: `<span>` para status e carregadores visuais.
+2. **CSS (Estética):** Animações de **Skeleton Loading** (os "fantasmas" cinzas que aparecem antes do dado real).
+3. **JS (Atitude):** 
+   - **Callbacks:** Passar uma função para ser executada depois (ex: após o timer).
+   - **SetTimeout:** Simulação de latência de rede industrial.
+   - **Promises:** O contrato de que um dado será entregue no futuro (`then`, `catch`, `finally`).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **BLOCKING THE MAIN THREAD:** Rodar um cálculo pesado ou espera de rede que impede o operador de clicar em "Abortar". O Event Loop resolve isso jogando a espera para a fila de tarefas.
+- **CALLBACK HELL:** Aninhar funções dentro de funções até o código se tornar ilegível. Promises resolvem isso com o encadeamento linear.
+- **UNHANDLED REJECTION:** Uma promessa falha (rede cai) e o sistema crasha silenciosamente. O `catch` é a rede de proteção do Arquiteto.
+
+## 📋 Requisitos de Elite
+1. Implementar um simulador de "Handshake de Satélite" usando uma Promise.
+2. Mostrar um Skeleton Loader enquanto o satélite não responde.
+3. Usar `setTimeout` para criar uma espera artificial de 3 segundos (Latência Real).
+4. Interface ANSI (visual) mostrando os estados: IDLE -> CONNECTING -> ONLINE / ERROR.
+
+------------------------------------------------------------------------------
+"O tempo do computador é medido em ciclos; o tempo do humano é medido em paciência."

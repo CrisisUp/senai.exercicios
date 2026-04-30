@@ -1,0 +1,30 @@
+# 📘 Atividade 35: O Protocolo Final (Nexus Integration Challenge)
+STATUS: Nível 35 (Lorde Estrategista) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Chegou o momento da verdade. O Comandante Nexus exige que todo o ecossistema SkyCargo seja unificado em um único comando de infraestrutura. Sua missão final é integrar tudo o que você aprendeu — do Maquinista ao Estrategista — para subir uma arquitetura de missão crítica que seja segura, resiliente, monitorada e persistente.
+
+## 🛠️ Necessidade Técnica
+Integrar Dockerfiles otimizados, Compose com redes isoladas, volumes persistentes, limites de hardware e healthchecks em um único diretório mestre.
+
+## 🚀 Missão Final
+Crie a estrutura definitiva na pasta `labs/nexus-ultimate`:
+
+1.  **Frontend (React):** Use Multi-stage build para servir o app via Nginx (Atividade 16).
+2.  **Backend (API Simulada):** Imagem Hardened (usuário não-root) com Healthcheck ativo (Atividade 17 e 18).
+3.  **Banco de Dados:** MariaDB com Volume persistente e senha injetada via `.env` (Atividade 23 e 25).
+4.  **Orquestração:**
+    - Isole o Banco de Dados em uma rede `backend-net`.
+    - Coloque o Frontend e a API em uma rede `frontend-net`.
+    - Defina limites de CPU de 0.25 para cada serviço (Atividade 29).
+    - Garanta que a API espere pelo Banco estar `healthy` (Atividade 24).
+5.  **A Entrega:** Suba tudo com `docker-compose up -d`.
+6.  **A Validação:** Verifique a saúde geral com `docker stats` e garanta que o sistema está operando em sincronia total.
+
+## 📋 Requisitos de Elite
+- Concluir a unificação sem erros de compilação ou execução.
+- Provar a persistência de dados ao destruir e recriar o ecossistema.
+- Demonstrar a segurança através do isolamento de redes e usuários.
+
+------------------------------------------------------------------------------
+"A Maestria não é apenas conhecer as ferramentas, mas saber como elas se tornam uma única força sob o seu comando."

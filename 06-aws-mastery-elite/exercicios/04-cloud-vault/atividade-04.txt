@@ -1,0 +1,25 @@
+# 📘 Atividade 04: Vault de Nuvem (Secrets & Hardware Encryption)
+STATUS: Nível 91 (Guardião da Nuvem) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+O Nexus de Telemetria precisa se conectar ao SQL Vault e a APIs de terceiros. Se um desenvolvedor acidentalmente commitar um arquivo com a senha do banco no Git, a "LogiSpeed Global" estará exposta a um ataque massivo. Precisamos que as credenciais existam apenas dentro de um hardware de segurança.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos a dupla dinâmica de segurança da AWS:
+1. **AWS Secrets Manager:** O cofre que armazena, rotaciona e gerencia o acesso a segredos (senhas, certificados).
+2. **AWS KMS:** O serviço de chaves mestras criptografadas em módulos de hardware (HSM). O Secrets Manager usa o KMS para "envelopar" os dados.
+3. **IAM Roles:** Em vez de usar chaves fixas, a nossa Lambda/Rust usará uma role temporária com permissão explícita para "abrir o cofre".
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (DATA BREACH & COMPLIANCE)
+- **SECRET EXPOSURE:** Variáveis de ambiente são visíveis em logs de erro ou para qualquer um com acesso ao console. O Secrets Manager exige uma chamada de API autenticada e auditada pelo CloudTrail.
+- **CREDENTIAL ROTATION:** Senhas que nunca mudam são alvos fáceis. O Secrets Manager permite rotacionar a senha do banco automaticamente a cada 30 dias sem downtime.
+- **UNAUTHORIZED DECRYPTION:** Mesmo que alguém roube o arquivo de estado do Terraform, ele não conseguirá descriptografar os segredos sem a chave mestra do KMS, que nunca sai da AWS.
+
+## 📋 Requisitos de Elite
+1. Criar uma **KMS Key** customizada para o Nexus via Terraform.
+2. Definir um **Secret** no Secrets Manager usando a chave KMS criada.
+3. Implementar a lógica de recuperação de segredo em Rust (Design de Código).
+4. Interface ANSI para monitoramento de auditoria de chaves.
+
+------------------------------------------------------------------------------
+"Na nuvem de elite, a melhor maneira de guardar um segredo é garantir que nem você o conheça."

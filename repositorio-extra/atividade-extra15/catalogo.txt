@@ -1,5 +1,0 @@
-Dom Casmurro;Machado de Assis;3;250
-A Hora da Estrela;Clarice Lispector;2;300
-O Alquimista;Paulo Coelho;5;150
-Sertões;Euclides da Cunha;1;400
-Grande Sertão: Veredas;Guimarães Rosa;2;350

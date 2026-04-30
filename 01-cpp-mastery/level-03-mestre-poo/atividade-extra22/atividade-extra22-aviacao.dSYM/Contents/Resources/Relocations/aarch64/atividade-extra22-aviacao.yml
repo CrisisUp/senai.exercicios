@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     './repositorio-extra/atividade-extra22/atividade-extra22-aviacao'
+relocations:     []
+...

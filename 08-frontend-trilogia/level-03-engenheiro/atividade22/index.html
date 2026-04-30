@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 22</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Kinetic Radar</h1>
+        <div class="system-meta">
+            SCANNER: <span id="engine-status">ONLINE</span> | 
+            UPTIME: <span id="uptime-val">0</span>s
+        </div>
+    </header>
+
+    <main class="radar-viewport">
+        <!-- O Canvas Cinético -->
+        <canvas id="kinetic-canvas" width="500" height="500"></canvas>
+    </main>
+
+    <footer class="controls">
+        <button onclick="toggleEngine()" id="btn-toggle">SUSPENDER VARREDURA</button>
+        <button onclick="resetEngine()">RESET ENGINE</button>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

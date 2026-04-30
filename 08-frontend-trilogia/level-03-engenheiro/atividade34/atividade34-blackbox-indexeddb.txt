@@ -1,0 +1,26 @@
+# 📘 Atividade 34: A Caixa Preta (Mastering IndexedDB API)
+STATUS: Nível 34 (Engenheiro de Elite) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+Em missões de longa distância, os drones da "LogiSpeed Global" geram milhares de entradas de log (eventos de motor, variações de vento, sensores de proximidade). O `LocalStorage` (Ativ 06/32) é limitado a ~5MB e é síncrono, o que travaria a UI em escritas massivas. Implementaremos a **IndexedDB API**, um banco de dados NoSQL transacional embutido no navegador, para criar a "Caixa Preta" (Black Box) do drone, capaz de armazenar gigabytes de dados de telemetria de forma assíncrona.
+
+## 🛠️ Necessidade Técnica (O Arquiteto de Dados)
+Nesta atividade, aprenderemos:
+1. **JS (Banco de Dados):** `indexedDB.open()` e o evento `onupgradeneeded` para versionamento de schema.
+2. **JS (Transações):** Uso de `transaction('readwrite')` para garantir a atomicidade das operações.
+3. **JS (Object Stores):** Criação de tabelas (Stores) e índices (`createIndex`) para buscas ultra-rápidas por ID ou Timestamp.
+4. **JS (Cursor & Ranges):** Uso de `openCursor()` e `IDBKeyRange` para iterar sobre milhares de registros sem consumir toda a RAM.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **QUOTA EXCEEDED:** O navegador tem um limite de armazenamento. Aprenderemos a verificar o `navigator.storage.estimate()` para evitar falhas silenciosas.
+- **TRANSACTION COLLISION:** Tentar escrever em um store que está sendo deletado ou migrado. O versionamento correto do banco é a nossa blindagem.
+- **UI BLOCKING (PARADOX):** Embora o IndexedDB seja assíncrono, processar 10.000 registros no DOM de uma vez travará a tela. Usaremos paginação técnica.
+
+## 📋 Requisitos de Elite
+1. Criar um banco chamado `SkyCargo_BlackBox` com um store de `telemetry_logs`.
+2. Implementar uma rotina que gera 50 logs/segundo (simulação) e os persiste via transação.
+3. Criar uma interface de "Busca Forense" que filtra logs por nível de severidade (INFO, WARNING, CRITICAL) usando índices.
+4. Interface ANSI (visual) com medidor de "Disk Usage" (Capacidade do Banco).
+
+------------------------------------------------------------------------------
+"Dados voláteis são apenas fumaça; a engenharia de elite exige persistência imutável."

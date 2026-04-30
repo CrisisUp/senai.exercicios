@@ -1,0 +1,87 @@
+.nexusCard {
+    background: #111827;
+    border: 1px solid #374151;
+    padding: 1.5rem;
+    border-radius: 12px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.nexusCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    border-color: #3b82f6;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cardHeader h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #60a5fa;
+    text-transform: uppercase;
+}
+
+.statusBadge {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.online { background: #064e3b; color: #10b981; }
+.offline { background: #450a0a; color: #f87171; }
+.maint { background: #451a03; color: #fbbf24; }
+
+.batteryArea {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.batteryLabel {
+    font-size: 0.65rem;
+    color: #9ca3af;
+    display: flex;
+    justify-content: space-between;
+}
+
+.batteryBar {
+    height: 6px;
+    background: #1f2937;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.batteryFill {
+    height: 100%;
+    background: #10b981;
+    transition: width 0.3s ease;
+}
+
+.lowBattery { background: #ef4444; }
+
+.actionBtn {
+    background: transparent;
+    border: 1px solid #3b82f6;
+    color: #3b82f6;
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.actionBtn:hover {
+    background: #3b82f6;
+    color: white;
+}

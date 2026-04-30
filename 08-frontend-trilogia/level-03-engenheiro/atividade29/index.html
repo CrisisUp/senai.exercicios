@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 29</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header id="main-header">
+        <h1>Nexus Offline Protocol</h1>
+        <div class="network-badge">
+            STATUS: <span id="net-status">ONLINE</span>
+        </div>
+    </header>
+
+    <main id="app-content" class="container">
+        <!-- Dashboard Tático -->
+        <section class="card">
+            <h2>Monitor de Campo (Resiliente)</h2>
+            <p>Os ativos visuais desta tela estão protegidos pelo Service Worker.</p>
+            <div class="mock-drone-list">
+                <div class="drone-item">DRONE-707: <mark>EM ROTA</mark></div>
+                <div class="drone-item">DRONE-404: <mark>POUSADO</mark></div>
+            </div>
+        </section>
+
+        <!-- Registro de Auditoria -->
+        <section class="card">
+            <h2>Log de Auditoria</h2>
+            <textarea id="log-input" placeholder="Digite observações de campo..."></textarea>
+            <button class="btn-save">REGISTRAR LOCALMENTE</button>
+            <p style="font-size: 0.7rem; color: #7d8590; margin-top: 10px;">
+                * Dados salvos mesmo em queda de link.
+            </p>
+        </section>
+    </main>
+
+    <footer class="footer-bar">
+        OFFLINE STORAGE: <span id="storage-status">VALIDATING...</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

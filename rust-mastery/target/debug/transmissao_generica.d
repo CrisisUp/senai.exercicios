@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/transmissao_generica: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/exercicios/11-transmissao-generica/src/main.rs

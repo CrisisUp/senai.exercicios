@@ -1,0 +1,24 @@
+# 📘 Atividade 04: Controle e Reação (Eventos e Funções)
+STATUS: Nível 04 (Iniciado) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+O SkyCargo OS precisa de botões para que o operador possa "Carregar Bateria" ou "Iniciar Voo". No Nível 03, calculamos a autonomia uma única vez. Agora, precisamos de uma forma de recalcular esse valor sempre que a bateria mudar, sem repetir o código. Usaremos funções para organizar a lógica e eventos para capturar o clique do operador.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** A tag `<button>` para criação de controles interativos.
+2. **CSS (Estética):** **Pseudo-classes (`:hover`, `:active`)** e a propriedade `transition` para criar interfaces fluidas e profissionais.
+3. **JS (Atitude):** **Funções** (agrupamento de código) e o evento `onclick` para disparar ações.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **INTERFACE ESTÁTICA:** Um botão que não muda de cor ao passar o mouse parece "morto", confundindo o usuário se ele é clicável ou não.
+- **CÓDIGO ESPAGUETE:** Repetir a fórmula de cálculo da autonomia em cinco lugares diferentes. Se a fórmula mudar, você terá que caçar todos os erros. Funções resolvem isso (DRY - Don't Repeat Yourself).
+- **DELAY DE FEEDBACK:** Se o JavaScript for mal escrito, o operador clica e a tela demora a atualizar, gerando insegurança na missão.
+
+## 📋 Requisitos de Elite
+1. Criar dois botões no HTML: "RECARREGAR" e "GASTAR ENERGIA".
+2. Estilizar os botões com efeitos de hover (mudar brilho) e active (efeito de clique).
+3. No `script.js`, criar uma função `atualizarInterface(novaBateria)` que centraliza a atualização dos textos na tela.
+
+------------------------------------------------------------------------------
+"Um engenheiro de elite automatiza a rotina para focar na exceção."

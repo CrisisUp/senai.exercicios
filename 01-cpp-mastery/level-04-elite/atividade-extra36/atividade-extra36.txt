@@ -1,0 +1,43 @@
+## 🛠️ Necessidade Técnica
+Implementação de padrões de engenharia de elite para garantir escalabilidade e robustez.
+
+## 🎯 Estudo de Caso
+Análise técnica do cenário de negócio para o componente atividade-extra36.txt.
+
+ESTUDO DE CASO: LOGÍSTICA DE PÁTIO DE AEROPORTO (G-WING LOGISTICS)
+------------------------------------------------------------------------------
+DOMÍNIO: Logística Aeroportuária / Transportes
+ATIVIDADE: Extra 36
+CONCEITO NOVO: Pilha (Stack) vs Fila (Queue) Manuais
+STATUS: Padrão de Engenharia de Elite Aplicado
+
+1. O CENÁRIO
+No pátio de um aeroporto, dois processos ocorrem simultaneamente:
+- Carregamento de Bagagens: As malas são empilhadas uma sobre a outra no 
+  compartimento do avião. A última mala colocada será a primeira a ser 
+  retirada (LIFO).
+- Fila de Decolagem: Os aviões entram na pista de táxi. O primeiro avião que 
+  chegar deve ser o primeiro a decolar (FIFO).
+
+2. A NECESSIDADE TÉCNICA
+Até agora, usamos 'std::stack' e 'std::queue'. Na implementação MANUAL:
+- Pilha (Stack): Usa um ponteiro 'topo'. Inserir e Remover ocorrem sempre no topo.
+- Fila (Queue): Usa dois ponteiros ('inicio' e 'fim'). Inserir no fim e remover 
+  do início em O(1).
+
+3. 🧪 ## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ESTRUTURA DE DADOS III)
+- RISCO DE "UNDERFLOW" NO POP: Tentar desempilhar ou remover de uma fila vazia 
+  sem checagem de ponteiro nulo causará um Segmentation Fault imediato.
+- RISCO DE PERDA DE INTEGRALIDADE NA FILA: Esquecer de atualizar o ponteiro 'fim' 
+  quando o último item é removido deixa a estrutura em estado inconsistente 
+  (Dangling Tail).
+- RISCO DE ESTOURO DE RECURSOS: Em sistemas de alta frequência, se a velocidade 
+  de entrada (Push/Enqueue) for maior que a de saída (Pop/Dequeue), a memória 
+  Heap será exaurida em progressão aritmética.
+
+4. REQUISITOS DO SISTEMA
+- Implementação manual de 'Stack' (LIFO) e 'Queue' (FIFO).
+- Proteção de performance via referências constantes (Fantasma do CPU).
+- Gestão de memória rigorosa via destrutores iterativos.
+- Interface ANSI para visualização de logística de pátio.
+------------------------------------------------------------------------------

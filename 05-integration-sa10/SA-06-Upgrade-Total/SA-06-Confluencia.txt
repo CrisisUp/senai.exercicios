@@ -1,0 +1,39 @@
+# 🏆 SA-06: Desafio Integrador - A Confluência Industrial (SkyCargo OS v2.0)
+STATUS: Nível 60+ (System Architect) - O Ápice da Engenharia
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" assumiu o controle de toda a malha logística do continente. O sistema anterior (v1.0) era robusto, mas o novo volume de dados exige uma **Confluência Industrial**. O sistema deve agora processar telemetria de 1 milhão de pontos/segundo, garantir que nenhum dado seja alterado indevidamente (Cibersegurança) e permitir que os engenheiros identifiquem a causa raiz de qualquer atraso em milissegundos.
+
+## 🛠️ Necessidade Técnica (A Unificação)
+Você deve construir o **Nexus de Telemetria**, que unifica as 3 linguagens:
+
+1. **Camada de Performance (C++):** 
+   - Utilizar `ObjectPool` para gerenciar pacotes `Telemetria` sem fragmentar a Heap.
+   - Implementar um `Co-processador Atômico` para contagem de pacotes em tempo real.
+   - Usar `Coroutines` para simular o recebimento assíncrono de múltiplos satélites.
+
+2. **Camada de Orquestração e Segurança (Rust):**
+   - Criar a ponte via `cxx.rs` para capturar os dados do C++ sem `unsafe`.
+   - Utilizar `Zero-Copy Deserialization` para converter os pacotes em structs auditáveis.
+   - Aplicar a macro `#[derive(AuditLog)]` para garantir o rastro automático de cada movimento.
+
+3. **Camada de Inteligência e Persistência (SQL):**
+   - Implementar `Sharding` físico para armazenar os dados no shard do país correspondente.
+   - Utilizar `FTS5` para permitir buscas rápidas nos logs de ocorrência.
+   - Gerar relatórios de `Média Móvel` para detectar anomalias globais de consumo.
+
+4. **Camada de Observabilidade (SRE):**
+   - Todo o fluxo deve gerar `JSON Logs` com um `Correlation ID` único.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (MISSÃO CRÍTICA)
+- **CONTENÇÃO DE FRONTEIRA:** Se a ponte entre C++ e Rust for lenta, o Object Pool do C++ vai transbordar. O sistema deve usar sinalização atômica para pausar os satélites (Backpressure).
+- **INTEGRIDADE FEDERADA:** Se um banco de dados de um país (shard) ficar offline, o Rust deve capturar a exceção do SQL e marcar a transação como `DEGRADED` no log estruturado, sem derrubar os outros países.
+
+## 📋 Requisitos de Elite (Atividade 42)
+1. Integrar o motor C++ (Ativ 61-65) com o orquestrador Rust (Ativ 34-36).
+2. Persistir os resultados no cofre SQL Particionado (Ativ 37-40).
+3. Exibir um Dashboard de Observabilidade que mostre o sucesso da integração total.
+4. Documentar o **Mapa de Memória Final** (Stack vs Heap) do sistema unificado.
+
+------------------------------------------------------------------------------
+"Engenharia não é sobre usar a ferramenta mais nova, é sobre saber como unir todas elas para construir o inquebrável."

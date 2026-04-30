@@ -1,0 +1,38 @@
+# 🏆 SA-01: Desafio Integrador - SkyCargo Control Tower (Vanilla Edition)
+STATUS: Nível 10 (Mestre dos Fundamentos) - Pilar de Maestria Web
+
+## 🎯 Estudo de Caso
+A sede global da "LogiSpeed" em São Francisco precisa de uma interface que unifique todos os subsistemas que construímos. O **SkyCargo Control Tower** deve ser uma tela única onde o operador pode ver a posição tática da frota, monitorar logs de auditoria do Rust, verificar a saúde dos bancos de dados SQL e gerenciar a infraestrutura AWS, tudo com performance de milissegundos e sem recarregar a página.
+
+## 🛠️ Necessidade Técnica (A Unificação)
+Você deve construir a interface definitiva utilizando apenas tecnologias nativas (Vanilla):
+
+1. **Camada de Layout (CSS Grid & Flexbox):**
+   - Implementar o layout Matrix (Ativ 04) para organizar os módulos.
+   - Usar Flexbox para alinhar controles internos e badges de status (Ativ 03).
+   - Design System completo com suporte a Dark/Light Mode via CSS Variables (Ativ 02).
+
+2. **Camada Lógica (TypeScript Armored):**
+   - Manipulação de DOM segura com checagem de nulos (Ativ 06).
+   - Uso de Interfaces rigorosas para garantir a integridade dos dados (Ativ 05).
+
+3. **Camada de Performance (Event Loop):**
+   - Implementar Throttling no redimensionamento da janela e Throttling no radar de drones para economizar CPU (Ativ 07).
+
+4. **Camada de Dados (Assincronia):**
+   - Realizar o fetch de dados simulados do Nexus v2.0 com tratamento de erros (Ativ 08).
+   - Renderização dinâmica de componentes sem uso de bibliotecas externas.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (ENGINEERING RIGOR)
+- **UI DISCONNECT:** Se o fetch falhar, a tela deve mostrar um "Offline Mode" claro, preservando os últimos dados conhecidos.
+- **PERFORMANCE DEGRADATION:** Se muitos drones forem adicionados, o DOM não pode travar. O sistema deve usar fragmentos de documento para inserção em lote.
+- **SEMANTIC BREAK:** O documento deve ser 100% acessível (W3C), permitindo que um operador use apenas o teclado em caso de falha do mouse.
+
+## 📋 Requisitos de Elite
+1. Um dashboard funcional e responsivo (Mobile/Desktop).
+2. Sincronização automática de dados a cada 10 segundos (Throttled).
+3. Busca de drones inteligente (Debounced).
+4. Relatório final de performance visual (Lighthouse Score simulado).
+
+------------------------------------------------------------------------------
+"A interface é o ponto onde a complexidade do sistema encontra a clareza da decisão humana."

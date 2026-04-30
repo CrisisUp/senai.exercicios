@@ -1,0 +1,30 @@
+# 📘 Atividade 09: O Choque de Realidades (Resolução de Conflitos)
+STATUS: Nível 09 (Recruta/Explorador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Um conflito de versões ocorreu na "SkyCargo Nexus"! Você alterou o limite de velocidade do drone no arquivo `manifesto.txt` na branch `main`, enquanto outro engenheiro (ou você mesmo em outra branch) alterou a **mesma linha** para um valor diferente. O Git não sabe qual valor escolher e pede sua intervenção humana. Você aprenderá a arbitrar conflitos.
+
+## 🛠️ Necessidade Técnica
+Um conflito ocorre quando o Git tenta fazer um merge de mudanças que ocupam o mesmo espaço no mesmo arquivo. O Git marca o arquivo com símbolos especiais (`<<<<<<<`, `=======`, `>>>>>>>`) e para o processo até que você decida o resultado final.
+
+### Comandos Chave:
+1.  **`git merge <branch>`**: Inicia o processo que pode gerar o conflito.
+2.  **`git status`**: Identifica quais arquivos estão em conflito ("Both modified").
+3.  **`git add <arquivo>`**: Marca o conflito como resolvido após sua edição manual.
+
+## 🚀 Missão
+1.  Na branch `main`, altere o `manifesto.txt` para: "VELOCIDADE MÁXIMA: 100km/h". Commite: `git commit -am "feat: definir velocidade na main"`.
+2.  Crie e mude para uma nova branch: `git switch -c feature-speed`.
+3.  No `manifesto.txt`, altere a **mesma linha** para: "VELOCIDADE MÁXIMA: 150km/h". Commite: `git commit -am "feat: aumentar velocidade na branch"`.
+4.  Volte para a `main`: `git switch main`.
+5.  Tente o merge: `git merge feature-speed`. **O CONFLITO VAI APARECER!**
+6.  Abra o `manifesto.txt`. Veja as marcas de conflito. Escolha o valor de 150km/h e remova as marcas do Git.
+7.  Finalize: `git add manifesto.txt` e `git commit` (o Git já sugere a mensagem de merge).
+
+## 📋 Requisitos de Elite
+- Identificar as marcas de conflito (`HEAD` vs `branch`).
+- Resolver o conflito manualmente mantendo a integridade do arquivo.
+- Finalizar o merge commit com sucesso.
+
+------------------------------------------------------------------------------
+"Conflitos não são erros; são conversas que o Git força você a ter com seu código."

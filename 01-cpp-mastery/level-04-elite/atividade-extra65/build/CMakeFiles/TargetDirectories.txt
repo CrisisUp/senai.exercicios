@@ -1,0 +1,3 @@
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/01-cpp-mastery/level-04-elite/atividade-extra65/build/CMakeFiles/ativ65_coroutines.dir
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/01-cpp-mastery/level-04-elite/atividade-extra65/build/CMakeFiles/edit_cache.dir
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/01-cpp-mastery/level-04-elite/atividade-extra65/build/CMakeFiles/rebuild_cache.dir

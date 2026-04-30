@@ -1,1 +1,0 @@
-[ALERTA] Motivo: Valor Atípico (> 1 Milhão) | Valor: R$ 3e+06 | Pais: Brasil

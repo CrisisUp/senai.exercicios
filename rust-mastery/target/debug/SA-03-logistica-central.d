@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/SA-03-logistica-central: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/exercicios/SA-03-logistica-central/src/main.rs

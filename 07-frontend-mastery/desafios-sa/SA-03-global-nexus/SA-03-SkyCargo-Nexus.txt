@@ -1,0 +1,38 @@
+# 🏆 SA-03: Desafio Integrador Final - SkyCargo Global Nexus
+STATUS: Nível 30 (Arquiteto Full-Stack) - O Ápice da Confluência
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" completou a migração para o ecossistema Nexus v2.0. Agora, a central de comando em Dubai precisa de uma interface que seja o "Cérebro da Empresa". O **SkyCargo Global Nexus** deve processar a telemetria bruta de alta frequência vinda do hardware (C++), validar a integridade e auditoria em tempo real (Rust), persistir em shards mundiais (SQL) e exibir tudo em um dashboard reativo e ultra-performático (React).
+
+## 🛠️ Necessidade Técnica (A Grande Unificação)
+Você deve construir a interface definitiva integrando os pilares de todas as suas trilhas:
+
+1. **Camada de Dados (Full-Stack Sync):**
+   - Implementar o padrão **Stale-While-Revalidate** via TanStack Query para carregar a frota histórica do SQL Vault.
+   - Estabelecer um canal **WebSocket** persistente para o movimento dos drones em tempo real (Hardware C++ logic).
+
+2. **Camada de Orquestração (React Elite Hooks):**
+   - Utilizar `useContext` para gerenciar a sessão do operador e as preferências globais de segurança.
+   - Implementar `useMemo` para processar métricas analíticas (médias móveis) diretamente no frontend.
+
+3. **Camada Visual (Advanced CSS):**
+   - Layout **Grid Matrix Responsivo** que se ajusta de centrais de comando para tablets de campo.
+   - Micro-interações e feedback visual de integridade de rede (SRE Dashboard).
+
+4. **Camada de Segurança (TypeScript Rigid):**
+   - Interfaces que espelham exatamente os contratos de dados do backend Rust.
+   - Tratamento de exceções de rede com estados de "Failover" (Modo Offline inteligente).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (SYSTEM COHESION)
+- **DATA OVERLOAD:** Se o WebSocket enviar 1000 pacotes/s, o React pode travar. Implementaremos um buffer de estado que atualiza a UI em lotes (Throttled Updates).
+- **CONCURRENCY CONFLICTS:** Garantir que o dado do cache (Query) não sobrescreva um evento de tempo real (Socket) mais recente.
+- **NETWORK FRAGILITY:** O sistema deve detectar automaticamente se o Backend Rust cair e tentar re-handshake sem que o operador perca a visão tática atual.
+
+## 📋 Requisitos de Elite
+1. Um ecossistema React funcional integrando WebSockets e REST.
+2. Gerenciamento de estado global via Context API.
+3. Cache inteligente de logs industriais com TanStack Query.
+4. Documentação final do **Mapa de Fluxo de Dados** (C++ -> Rust -> SQL -> React).
+
+------------------------------------------------------------------------------
+"A engenharia atinge a perfeição não quando não há mais nada a adicionar, mas quando não há mais nada a esconder."

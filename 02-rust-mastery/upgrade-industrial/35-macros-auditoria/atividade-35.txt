@@ -1,0 +1,25 @@
+# 📘 Atividade 35: Macros Procedurais (Automação de Elite)
+STATUS: Nível 32 (Engenheiro de Elite) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+Na "LogiSpeed", cada nova struct de dados (Carga, Drone, Motorista) precisa de um método `gerar_log_auditoria()`. Escrever isso manualmente para 50 tipos diferentes é tedioso e propenso a erros (alguém pode esquecer de incluir um campo crítico). Precisamos que o Rust "escreva esse código por nós".
+
+## 🛠️ Necessidade Técnica
+Utilizaremos **Procedural Macros (Custom Derive)**. 
+1. **TokenStreams:** A macro recebe o código da Struct como um fluxo de tokens.
+2. **Parsing com Syn/Quote:** Usaremos as bibliotecas `syn` (para entender a estrutura da struct) e `quote` (para gerar o novo código Rust).
+3. **Metaprogramação:** Ao adicionar `#[derive(AuditLog)]`, o Rust automaticamente implementará a trait `Auditabile` para aquela struct, listando todos os seus campos no log.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (CONFORMIDADE INDUSTRIAL)
+- **ERRO HUMANO:** Um desenvolvedor adiciona o campo `valor_carga` mas esquece de atualizar o log de auditoria. A macro procedural detecta o novo campo automaticamente.
+- **TEMPO DE COMPILAÇÃO VS EXECUÇÃO:** Macros procedurais rodam no compilador. Não há custo de performance em tempo de execução (zero overhead), ao contrário da reflexão (reflection) usada em Java ou C#.
+- **MANUTENIBILIDADE:** Se o formato do log da empresa mudar, alteramos apenas a macro em um lugar, e centenas de structs em todo o sistema serão atualizadas instantaneamente na próxima compilação.
+
+## 📋 Requisitos de Elite
+1. Criar a crate `audit-log-derive` do tipo `proc-macro`.
+2. Implementar a lógica que percorre os campos de uma struct e gera um log formatado.
+3. Aplicar a macro em múltiplas structs no projeto principal.
+4. Interface ANSI para telemetria de auditoria automatizada.
+
+------------------------------------------------------------------------------
+"Em Rust Elite, se você precisa escrever o mesmo código duas vezes, você deve ensinar o compilador a escrevê-lo para você."

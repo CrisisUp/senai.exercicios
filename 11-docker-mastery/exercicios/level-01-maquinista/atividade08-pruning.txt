@@ -1,0 +1,30 @@
+# 📘 Atividade 08: Limpeza de Hangar (Pruning & Gestão de Recursos)
+STATUS: Nível 08 (Maquinista) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Após várias missões no SkyCargo Nexus, o disco rígido do terminal de comando está ficando cheio! Você rodou dezenas de containers de teste, baixou várias versões de imagens e criou volumes temporários que não estão mais em uso. Um Engenheiro de Elite mantém sua infraestrutura limpa e eficiente. Você aprenderá a identificar o desperdício e a usar os comandos de "faxina pesada" do Docker.
+
+## 🛠️ Necessidade Técnica
+Containers parados, imagens "penduradas" (dangling) e redes não utilizadas consomem espaço e memória. O Docker oferece comandos granulares para remover objetos específicos e um comando mestre para uma limpeza geral.
+
+### Comandos Chave:
+1.  **`docker container prune`**: Remove todos os containers parados.
+2.  **`docker image prune`**: Remove imagens sem nome e não utilizadas.
+3.  **`docker volume prune`**: Remove volumes que não estão conectados a nenhum container.
+4.  **`docker system prune`**: O "Lixeiro Atômico". Remove TUDO o que não está sendo usado no momento (exceto volumes, a menos que use a flag `-a --volumes`).
+
+## 🚀 Missão
+1.  Crie um cenário de bagunça: rode o `hello-world` três vezes.
+2.  Rode `docker ps -a`. Veja os 3 containers parados ocupando espaço.
+3.  Faça a limpeza de containers: `docker container prune`. Confirme com `y`.
+4.  Verifique novamente: `docker ps -a`. Os containers sumiram!
+5.  **O Desafio de Segurança:** Tente remover uma imagem que está sendo usada por um container ativo. O Docker deve te impedir! Segurança de integridade.
+6.  Execute a manutenção preventiva total: `docker system prune`. Observe quanto de espaço foi recuperado.
+
+## 📋 Requisitos de Elite
+- Manter o hangar local limpo após cada ciclo de desenvolvimento.
+- Compreender a diferença entre remover um container específico (`rm`) e limpar todos os inativos (`prune`).
+- Identificar que o `system prune` é uma operação poderosa e deve ser usada com consciência dos recursos que serão perdidos.
+
+------------------------------------------------------------------------------
+"Um sistema saturado é um sistema vulnerável. A limpeza é parte do design."

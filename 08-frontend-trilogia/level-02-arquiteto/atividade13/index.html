@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 13</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Search - Inteligência de Frota</h1>
+        <div class="search-box">
+            <input type="text" id="input-busca" placeholder="DIGITE O ID DO DRONE (Ex: 707)..." oninput="executarBusca()">
+        </div>
+    </header>
+
+    <!-- O DELEGADO: Este container terá 1 único ouvinte para N filhos -->
+    <main class="grid-tactical" id="fleet-delegate">
+        <!-- Cards serão injetados com Data Attributes -->
+    </main>
+
+    <!-- Overlay de Status para Feedback do Clique -->
+    <footer class="status-bar">
+        SISTEMA: <span id="status-display">AGUARDANDO SELEÇÃO</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# 📘 Atividade 02: Design System (CSS Custom Properties)
+STATUS: Nível 02 (Iniciado Frontend) - Pilar de Fundamentos
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" opera em centros de comando com luz controlada e também em tablets no campo sob sol forte. O dashboard precisa de um tema de alto contraste (Dark Mode) para a noite e um tema claro (Light Mode) para o dia. Se as cores estiverem espalhadas pelo código, mudar o tema seria um pesadelo de manutenção.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos **CSS Custom Properties (Variáveis Nativas)**.
+1. **Root Scope:** Definiremos as variáveis no `:root` para acesso global.
+2. **Naming Convention Semântico:** Em vez de `--blue`, usaremos `--brand-primary`. Em vez de `--dark-gray`, usaremos `--bg-surface`.
+3. **Theming:** Criaremos uma classe `.light-theme` que redefine as variáveis, permitindo a troca de pele do sistema sem alterar a lógica do layout.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (CONSISTÊNCIA VISUAL)
+- **COLOR DRIFT:** Diferentes desenvolvedores usam tons de azul ligeiramente diferentes (#007bff vs #0069d9), quebrando a identidade da marca. Variáveis forçam o uso de uma única fonte da verdade.
+- **MANUTENÇÃO CARA:** Sem variáveis, uma simples mudança na cor primária da empresa exige alteração em centenas de linhas de CSS.
+- **ACCESSIBILITY FAILURE:** Se as cores não forem gerenaciadas centralmente, é difícil garantir que a proporção de contraste entre texto e fundo atenda aos padrões WCAG.
+
+## 📋 Requisitos de Elite
+1. Criar um arquivo `theme.css` com a paleta Nexus v2.0.
+2. Implementar variáveis para: Background, Texto, Brand Primary e Status (Alert/Success).
+3. Demonstrar o uso de variáveis em elementos do Dashboard.
+4. Criar o switch visual para demonstração do Modo Claro.
+
+------------------------------------------------------------------------------
+"Um sistema de elite não tem 'cores'; ele tem 'tokens de design' que representam intenções."

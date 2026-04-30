@@ -1,0 +1,25 @@
+# 📘 Atividade Extra 64: Concepts C++20 (Contratos de Elite)
+STATUS: Nível 31 (Engenheiro de Elite) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+Na "LogiSpeed", o sistema de telemetria agora aceita diversos tipos de sensores (GPS, Temperatura, Rotação). No passado, usávamos Templates genéricos, mas se alguém passasse uma classe que não tinha o método `serializar()`, o compilador gerava 200 linhas de erro incompreensível. Precisamos "blindar" nossos templates.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos **Concepts (C++20)** para definir exatamente o que um tipo deve possuir para ser aceito pelo nosso sistema.
+1. **Definição de Interface:** Criaremos um concept `Telemetrica` que exige métodos específicos.
+2. **Restrição de Template:** O compilador impedirá o uso de qualquer classe que não cumpra o contrato ANTES de tentar instanciar o código.
+3. **Sobrecarga de Concepts:** Podemos ter funções diferentes para tipos que são "Apenas Leitura" vs tipos "Editáveis".
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (SEGURANÇA EM TEMPO DE COMPILAÇÃO)
+- **TEMPLATE BLOAT:** Sem concepts, o compilador tenta compilar tudo e falha no meio do caminho, gerando executáveis sujos e tempos de compilação lentos.
+- **ERROS CRÍPTICOS:** O famoso "Template Hell" onde um erro simples de digitação resulta em pilhas de chamadas internas da STL. Concepts dão erro na linha onde o contrato foi violado.
+- **DESIGN BY CONTRACT:** O código se torna auto-documentado. Ao ler `template <Telemetrica T>`, você sabe exatamente o que `T` precisa ser.
+
+## 📋 Requisitos de Elite
+1. Definir o concept `Processavel` (deve ter ID e método `processar()`).
+2. Criar um sistema de despacho que só aceita tipos que cumpram o concept.
+3. Demonstrar a falha de compilação (comentada) ao tentar usar um tipo inválido.
+4. Interface ANSI para telemetria de validação de tipos.
+
+------------------------------------------------------------------------------
+"Um bom código de elite não apenas funciona; ele impede que o código ruim seja compilado."

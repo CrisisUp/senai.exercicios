@@ -29,8 +29,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/usr/bin/"
@@ -45,9 +43,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     searched_directories:
       - "/Users/cristiano/Library/Application Support/Herd/bin/uname"
       - "/opt/homebrew/bin/uname"
@@ -58,8 +59,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/uname"
       - "/opt/homebrew/opt/openjdk/bin/uname"
       - "/Users/cristiano/bin/uname"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/uname"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/uname"
       - "/usr/local/bin/uname"
       - "/System/Cryptexes/App/usr/bin/uname"
     found: "/usr/bin/uname"
@@ -76,8 +75,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -106,6 +103,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "message-v1"
     backtrace:
@@ -143,8 +141,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/usr/bin/"
@@ -159,9 +155,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     searched_directories:
       - "/Users/cristiano/Library/Application Support/Herd/bin/gmake"
       - "/opt/homebrew/bin/gmake"
@@ -172,8 +171,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/gmake"
       - "/opt/homebrew/opt/openjdk/bin/gmake"
       - "/Users/cristiano/bin/gmake"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/gmake"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/gmake"
       - "/usr/local/bin/gmake"
       - "/System/Cryptexes/App/usr/bin/gmake"
       - "/usr/bin/gmake"
@@ -188,9 +185,12 @@ events:
       - "/Library/Apple/usr/bin/gmake"
       - "/usr/local/share/dotnet/gmake"
       - "/Users/cristiano/.dotnet/tools/gmake"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/gmake"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/gmake"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/gmake"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/gmake"
       - "/Users/cristiano/.cargo/bin/gmake"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/gmake"
       - "/Users/cristiano/Library/Application Support/Herd/bin/make"
       - "/opt/homebrew/bin/make"
       - "/Users/cristiano/.nvm/versions/node/v22.22.0/bin/make"
@@ -200,8 +200,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/make"
       - "/opt/homebrew/opt/openjdk/bin/make"
       - "/Users/cristiano/bin/make"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/make"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/make"
       - "/usr/local/bin/make"
       - "/System/Cryptexes/App/usr/bin/make"
     found: "/usr/bin/make"
@@ -218,8 +216,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -248,6 +244,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "find-v1"
     backtrace:
@@ -283,8 +280,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/usr/bin/"
@@ -299,9 +294,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     searched_directories:
       - "/Users/cristiano/Library/Application Support/Herd/bin/c++"
       - "/opt/homebrew/bin/c++"
@@ -312,8 +310,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/c++"
       - "/opt/homebrew/opt/openjdk/bin/c++"
       - "/Users/cristiano/bin/c++"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/c++"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/c++"
       - "/usr/local/bin/c++"
       - "/System/Cryptexes/App/usr/bin/c++"
     found: "/usr/bin/c++"
@@ -330,8 +326,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -360,6 +354,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "find-v1"
     backtrace:
@@ -398,8 +393,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -428,6 +421,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "message-v1"
     backtrace:
@@ -448,7 +442,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
       
       The CXX compiler identification is AppleClang, found in:
-        /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/4.3.1/CompilerIdCXX/a.out
+        /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/4.3.2/CompilerIdCXX/a.out
       
   -
     kind: "message-v1"
@@ -521,8 +515,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/bin/"
@@ -536,9 +528,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     found: "/usr/bin/ar"
     search_context:
       ENV{PATH}:
@@ -553,8 +548,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -583,6 +576,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "find-v1"
     backtrace:
@@ -613,8 +607,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/bin/"
@@ -628,9 +620,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     found: "/usr/bin/ranlib"
     search_context:
       ENV{PATH}:
@@ -645,8 +640,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -675,6 +668,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "find-v1"
     backtrace:
@@ -705,8 +699,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/bin/"
@@ -720,9 +712,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     found: "/usr/bin/strip"
     search_context:
       ENV{PATH}:
@@ -737,8 +732,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -767,6 +760,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "find-v1"
     backtrace:
@@ -797,8 +791,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/bin/"
@@ -812,9 +804,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     found: "/usr/bin/ld"
     search_context:
       ENV{PATH}:
@@ -829,8 +824,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -859,6 +852,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "find-v1"
     backtrace:
@@ -889,8 +883,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/bin/"
@@ -904,9 +896,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     found: "/usr/bin/nm"
     search_context:
       ENV{PATH}:
@@ -921,8 +916,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -951,6 +944,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "find-v1"
     backtrace:
@@ -981,8 +975,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/bin/"
@@ -996,9 +988,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     found: "/usr/bin/objdump"
     search_context:
       ENV{PATH}:
@@ -1013,8 +1008,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -1043,6 +1036,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "find-v1"
     backtrace:
@@ -1073,8 +1067,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/bin/"
@@ -1088,9 +1080,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     searched_directories:
       - "/usr/bin/objcopy"
       - "/Users/cristiano/Library/Application Support/Herd/bin/objcopy"
@@ -1102,8 +1097,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/objcopy"
       - "/opt/homebrew/opt/openjdk/bin/objcopy"
       - "/Users/cristiano/bin/objcopy"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/objcopy"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/objcopy"
       - "/usr/local/bin/objcopy"
       - "/System/Cryptexes/App/usr/bin/objcopy"
       - "/bin/objcopy"
@@ -1117,9 +1110,12 @@ events:
       - "/Library/Apple/usr/bin/objcopy"
       - "/usr/local/share/dotnet/objcopy"
       - "/Users/cristiano/.dotnet/tools/objcopy"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/objcopy"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/objcopy"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/objcopy"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/objcopy"
       - "/Users/cristiano/.cargo/bin/objcopy"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/objcopy"
     found: false
     search_context:
       ENV{PATH}:
@@ -1134,8 +1130,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -1164,6 +1158,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "find-v1"
     backtrace:
@@ -1194,8 +1189,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/bin/"
@@ -1209,9 +1202,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     searched_directories:
       - "/usr/bin/readelf"
       - "/Users/cristiano/Library/Application Support/Herd/bin/readelf"
@@ -1223,8 +1219,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/readelf"
       - "/opt/homebrew/opt/openjdk/bin/readelf"
       - "/Users/cristiano/bin/readelf"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/readelf"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/readelf"
       - "/usr/local/bin/readelf"
       - "/System/Cryptexes/App/usr/bin/readelf"
       - "/bin/readelf"
@@ -1238,9 +1232,12 @@ events:
       - "/Library/Apple/usr/bin/readelf"
       - "/usr/local/share/dotnet/readelf"
       - "/Users/cristiano/.dotnet/tools/readelf"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/readelf"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/readelf"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/readelf"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/readelf"
       - "/Users/cristiano/.cargo/bin/readelf"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/readelf"
     found: false
     search_context:
       ENV{PATH}:
@@ -1255,8 +1252,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -1285,6 +1280,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "find-v1"
     backtrace:
@@ -1315,8 +1311,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/bin/"
@@ -1330,9 +1324,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     searched_directories:
       - "/usr/bin/dlltool"
       - "/Users/cristiano/Library/Application Support/Herd/bin/dlltool"
@@ -1344,8 +1341,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/dlltool"
       - "/opt/homebrew/opt/openjdk/bin/dlltool"
       - "/Users/cristiano/bin/dlltool"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/dlltool"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/dlltool"
       - "/usr/local/bin/dlltool"
       - "/System/Cryptexes/App/usr/bin/dlltool"
       - "/bin/dlltool"
@@ -1359,9 +1354,12 @@ events:
       - "/Library/Apple/usr/bin/dlltool"
       - "/usr/local/share/dotnet/dlltool"
       - "/Users/cristiano/.dotnet/tools/dlltool"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/dlltool"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/dlltool"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/dlltool"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/dlltool"
       - "/Users/cristiano/.cargo/bin/dlltool"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/dlltool"
     found: false
     search_context:
       ENV{PATH}:
@@ -1376,8 +1374,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -1406,6 +1402,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "find-v1"
     backtrace:
@@ -1436,8 +1433,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/bin/"
@@ -1451,9 +1446,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     searched_directories:
       - "/usr/bin/addr2line"
       - "/Users/cristiano/Library/Application Support/Herd/bin/addr2line"
@@ -1465,8 +1463,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/addr2line"
       - "/opt/homebrew/opt/openjdk/bin/addr2line"
       - "/Users/cristiano/bin/addr2line"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/addr2line"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/addr2line"
       - "/usr/local/bin/addr2line"
       - "/System/Cryptexes/App/usr/bin/addr2line"
       - "/bin/addr2line"
@@ -1480,9 +1476,12 @@ events:
       - "/Library/Apple/usr/bin/addr2line"
       - "/usr/local/share/dotnet/addr2line"
       - "/Users/cristiano/.dotnet/tools/addr2line"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/addr2line"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/addr2line"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/addr2line"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/addr2line"
       - "/Users/cristiano/.cargo/bin/addr2line"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/addr2line"
     found: false
     search_context:
       ENV{PATH}:
@@ -1497,8 +1496,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -1527,6 +1524,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "find-v1"
     backtrace:
@@ -1557,8 +1555,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/bin/"
@@ -1572,9 +1568,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     searched_directories:
       - "/usr/bin/tapi"
       - "/Users/cristiano/Library/Application Support/Herd/bin/tapi"
@@ -1586,8 +1585,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/tapi"
       - "/opt/homebrew/opt/openjdk/bin/tapi"
       - "/Users/cristiano/bin/tapi"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/tapi"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/tapi"
       - "/usr/local/bin/tapi"
       - "/System/Cryptexes/App/usr/bin/tapi"
       - "/bin/tapi"
@@ -1601,9 +1598,12 @@ events:
       - "/Library/Apple/usr/bin/tapi"
       - "/usr/local/share/dotnet/tapi"
       - "/Users/cristiano/.dotnet/tools/tapi"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/tapi"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/tapi"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/tapi"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/tapi"
       - "/Users/cristiano/.cargo/bin/tapi"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/tapi"
     found: false
     search_context:
       ENV{PATH}:
@@ -1618,8 +1618,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -1648,6 +1646,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
   -
     kind: "find-v1"
     backtrace:
@@ -1677,8 +1676,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/"
       - "/opt/homebrew/opt/openjdk/bin/"
       - "/Users/cristiano/bin/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
       - "/usr/bin/"
@@ -1693,9 +1690,12 @@ events:
       - "/Library/Apple/usr/bin/"
       - "/usr/local/share/dotnet/"
       - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
       - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
       - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
     searched_directories:
       - "/Users/cristiano/Library/Application Support/Herd/bin/install_name_tool"
       - "/opt/homebrew/bin/install_name_tool"
@@ -1706,8 +1706,6 @@ events:
       - "/Users/cristiano/.composer/vendor/bin/install_name_tool"
       - "/opt/homebrew/opt/openjdk/bin/install_name_tool"
       - "/Users/cristiano/bin/install_name_tool"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/install_name_tool"
-      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/install_name_tool"
       - "/usr/local/bin/install_name_tool"
       - "/System/Cryptexes/App/usr/bin/install_name_tool"
     found: "/usr/bin/install_name_tool"
@@ -1724,8 +1722,6 @@ events:
         - "/Users/cristiano/.composer/vendor/bin"
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
         - "/usr/bin"
@@ -1754,6 +1750,7 @@ events:
         - "/opt/homebrew/opt/openjdk/bin"
         - "/Users/cristiano/bin"
         - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
       CMAKE_INSTALL_PREFIX: "/usr/local"
   -
     kind: "try_compile-v1"
@@ -1764,8 +1761,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-397j9E"
-      binary: "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-397j9E"
+      source: "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-AXFb3N"
+      binary: "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-AXFb3N"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -1779,19 +1776,19 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-397j9E'
+        Change Dir: '/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-AXFb3N'
         
-        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_6d013/fast
-        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_6d013.dir/build.make CMakeFiles/cmTC_6d013.dir/build
-        Building CXX object CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/c++   -arch arm64   -v -Wl,-v -MD -MT CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_c3c7c/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_c3c7c.dir/build.make CMakeFiles/cmTC_c3c7c.dir/build
+        Building CXX object CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -arch arm64   -v -Wl,-v -MD -MT CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         Apple clang version 21.0.0 (clang-2100.0.123.102)
         Target: arm64-apple-darwin25.4.0
         Thread model: posix
         InstalledDir: /Library/Developer/CommandLineTools/usr/bin
         clang++: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
         ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"
-         "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx26.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -fno-sized-deallocation -target-sdk-version=26.4 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -enable-tlsdesc -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +ccpp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +flagm -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-397j9E -target-linker-version 1266.8 -v -fcoverage-compilation-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-397j9E -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/21 -dependency-file CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/21/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -internal-iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -Wno-error=allocator-wrappers -fdwarf2-cfi-asm -o CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+         "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx26.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -fno-sized-deallocation -target-sdk-version=26.4 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -enable-tlsdesc -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +ccpp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +flagm -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-AXFb3N -target-linker-version 1266.8 -v -fcoverage-compilation-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-AXFb3N -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/21 -dependency-file CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/21/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -internal-iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -Wno-error=allocator-wrappers -fdwarf2-cfi-asm -o CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         clang -cc1 version 21.0.0 (clang-2100.0.123.102) default target arm64-apple-darwin25.4.0
         ignoring nonexistent directory "/usr/local/include"
         ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
@@ -1805,13 +1802,13 @@ events:
          /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
          /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/SubFrameworks (framework directory)
         End of search list.
-        Linking CXX executable cmTC_6d013
-        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6d013.dir/link.txt --verbose=1
+        Linking CXX executable cmTC_c3c7c
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c3c7c.dir/link.txt --verbose=1
         Apple clang version 21.0.0 (clang-2100.0.123.102)
         Target: arm64-apple-darwin25.4.0
         Thread model: posix
         InstalledDir: /Library/Developer/CommandLineTools/usr/bin
-         "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 26.0.0 26.4 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_6d013 -L/usr/local/lib -v CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/21/lib/darwin/libclang_rt.osx.a
+         "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 26.0.0 26.4 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_c3c7c -L/usr/local/lib -v CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/21/lib/darwin/libclang_rt.osx.a
         @(#)PROGRAM:ld PROJECT:ld-1266.8
         BUILD 01:30:17 Apr  9 2026
         configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em armv8m.main armv8.1m.main
@@ -1823,7 +1820,7 @@ events:
         	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/swift
         Framework search paths:
         	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks
-        /usr/bin/c++  -arch arm64  -v -Wl,-v CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_6d013
+        /usr/bin/c++  -arch arm64  -v -Wl,-v CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_c3c7c
         
       exitCode: 0
   -
@@ -1867,19 +1864,19 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-397j9E']
+        ignore line: [Change Dir: '/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-AXFb3N']
         ignore line: []
-        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_6d013/fast]
-        ignore line: [/Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_6d013.dir/build.make CMakeFiles/cmTC_6d013.dir/build]
-        ignore line: [Building CXX object CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/usr/bin/c++   -arch arm64   -v -Wl -v -MD -MT CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_c3c7c/fast]
+        ignore line: [/Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_c3c7c.dir/build.make CMakeFiles/cmTC_c3c7c.dir/build]
+        ignore line: [Building CXX object CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -arch arm64   -v -Wl -v -MD -MT CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Apple clang version 21.0.0 (clang-2100.0.123.102)]
         ignore line: [Target: arm64-apple-darwin25.4.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
         ignore line: [clang++: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
         ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"]
-        ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx26.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -fno-sized-deallocation -target-sdk-version=26.4 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -enable-tlsdesc -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +ccpp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +flagm -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-397j9E -target-linker-version 1266.8 -v -fcoverage-compilation-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-397j9E -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/21 -dependency-file CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/21/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -internal-iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -Wno-error=allocator-wrappers -fdwarf2-cfi-asm -o CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx26.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -fno-sized-deallocation -target-sdk-version=26.4 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -enable-tlsdesc -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +ccpp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +flagm -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-AXFb3N -target-linker-version 1266.8 -v -fcoverage-compilation-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/CMakeScratch/TryCompile-AXFb3N -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/21 -dependency-file CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/21/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -internal-iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -Wno-error=allocator-wrappers -fdwarf2-cfi-asm -o CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [clang -cc1 version 21.0.0 (clang-2100.0.123.102) default target arm64-apple-darwin25.4.0]
         ignore line: [ignoring nonexistent directory "/usr/local/include"]
         ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"]
@@ -1893,13 +1890,13 @@ events:
         ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
         ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/SubFrameworks (framework directory)]
         ignore line: [End of search list.]
-        ignore line: [Linking CXX executable cmTC_6d013]
-        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6d013.dir/link.txt --verbose=1]
+        ignore line: [Linking CXX executable cmTC_c3c7c]
+        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c3c7c.dir/link.txt --verbose=1]
         ignore line: [Apple clang version 21.0.0 (clang-2100.0.123.102)]
         ignore line: [Target: arm64-apple-darwin25.4.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
-        link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 26.0.0 26.4 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_6d013 -L/usr/local/lib -v CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/21/lib/darwin/libclang_rt.osx.a]
+        link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 26.0.0 26.4 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_c3c7c -L/usr/local/lib -v CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/21/lib/darwin/libclang_rt.osx.a]
           arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
           arg [-demangle] ==> ignore
           arg [-lto_library] ==> ignore, skip following value
@@ -1916,10 +1913,10 @@ events:
           arg [-mllvm] ==> ignore
           arg [-enable-linkonceodr-outlining] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_6d013] ==> ignore
+          arg [cmTC_c3c7c] ==> ignore
           arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_6d013.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_c3c7c.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lc++] ==> lib [c++]
           arg [-lSystem] ==> lib [System]
           arg [/Library/Developer/CommandLineTools/usr/lib/clang/21/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/21/lib/darwin/libclang_rt.osx.a]
@@ -1953,4 +1950,1466 @@ events:
       will use ld-classic for: armv6 armv7 armv7s i386 armv6m armv7k armv7m armv7em
       LTO support using: LLVM version 21.0.0 (static support for 30, runtime is 30)
       TAPI support using: Apple TAPI version 21.0.0 (tapi-2100.0.2.6)
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "CMakeLists.txt:23 (find_package)"
+    name: "GTest"
+    configs:
+      -
+        filename: "GTest.cps"
+        kind: "cps"
+      -
+        filename: "gtest.cps"
+        kind: "cps"
+      -
+        filename: "GTestConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "gtest-config.cmake"
+        kind: "cmake"
+    version_request:
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      names:
+        - "GTest"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/pkgRedirects/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/pkgRedirects/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/pkgRedirects/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/pkgRedirects/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/pkgRedirects/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/pkgRedirects/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/pkgRedirects/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/build/CMakeFiles/pkgRedirects/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Herd/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Herd/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Herd/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Herd/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Herd/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Herd/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Herd/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Herd/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.nvm/versions/node/v22.22.0/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.nvm/versions/node/v22.22.0/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.nvm/versions/node/v22.22.0/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.nvm/versions/node/v22.22.0/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.nvm/versions/node/v22.22.0/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.nvm/versions/node/v22.22.0/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.nvm/versions/node/v22.22.0/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.nvm/versions/node/v22.22.0/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.bun/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.bun/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.bun/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.bun/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.bun/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.bun/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.bun/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.bun/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/python/libexec/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/python/libexec/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/python/libexec/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/python/libexec/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/python/libexec/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/python/libexec/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/python/libexec/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/python/libexec/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.composer/vendor/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.composer/vendor/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.composer/vendor/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.composer/vendor/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.composer/vendor/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.composer/vendor/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.composer/vendor/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.composer/vendor/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/openjdk/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/openjdk/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/openjdk/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/openjdk/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/openjdk/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/openjdk/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/openjdk/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/opt/openjdk/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/System/Cryptexes/App/usr/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Cryptexes/App/usr/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Cryptexes/App/usr/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/System/Cryptexes/App/usr/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/System/Cryptexes/App/usr/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/System/Cryptexes/App/usr/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/System/Cryptexes/App/usr/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/System/Cryptexes/App/usr/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Apple/usr/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Apple/usr/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Apple/usr/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Apple/usr/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Apple/usr/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Apple/usr/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Apple/usr/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Apple/usr/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/dotnet/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/dotnet/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/dotnet/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/dotnet/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/dotnet/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/dotnet/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/dotnet/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/dotnet/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/maven/current/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/maven/current/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/maven/current/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/maven/current/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/maven/current/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/maven/current/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/maven/current/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/maven/current/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/java/current/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/java/current/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/java/current/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/java/current/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/java/current/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/java/current/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/java/current/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.sdkman/candidates/java/current/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.cargo/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.cargo/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.cargo/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.cargo/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.cargo/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.cargo/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.cargo/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.cargo/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/Library/Frameworks/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/Library/Frameworks/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/Library/Frameworks/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/Library/Frameworks/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/Library/Frameworks/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/Library/Frameworks/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/Library/Frameworks/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Developer/CommandLineTools/Library/Frameworks/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/System/Library/Frameworks/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Library/Frameworks/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Library/Frameworks/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/System/Library/Frameworks/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/System/Library/Frameworks/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/System/Library/Frameworks/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/System/Library/Frameworks/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/System/Library/Frameworks/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Applications/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Applications/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Applications/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Applications/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Applications/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Applications/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Applications/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/cristiano/Applications/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Applications/GTestConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/gtest-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/lib64/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Applications/lib64/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Applications/lib/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Applications/lib/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Applications/share/cps/GTest.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Applications/share/cps/gtest.cps"
+        mode: "cps"
+        reason: "no_exist"
+    found: null
+    search_context:
+      ENV{PATH}:
+        - "/Users/cristiano/Library/Application Support/Herd/bin/"
+        - "/opt/homebrew/bin"
+        - "/Users/cristiano/.nvm/versions/node/v22.22.0/bin"
+        - "/Users/cristiano/.bun/bin"
+        - "/opt/homebrew/sbin"
+        - "/opt/homebrew/sbin"
+        - "/opt/homebrew/opt/python/libexec/bin"
+        - "/opt/homebrew/bin"
+        - "/Users/cristiano/.composer/vendor/bin"
+        - "/opt/homebrew/opt/openjdk/bin"
+        - "/Users/cristiano/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pkg/env/active/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/opt/homebrew/bin"
+        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
+        - "/Users/cristiano/Library/Application Support/Herd/bin/"
+        - "/Users/cristiano/.nvm/versions/node/v22.22.0/bin"
+        - "/Users/cristiano/.bun/bin"
+        - "/Users/cristiano/.sdkman/candidates/maven/current/bin"
+        - "/Users/cristiano/.sdkman/candidates/java/current/bin"
+        - "/opt/homebrew/sbin"
+        - "/opt/homebrew/opt/python/libexec/bin"
+        - "/Users/cristiano/.composer/vendor/bin"
+        - "/opt/homebrew/opt/openjdk/bin"
+        - "/Users/cristiano/bin"
+        - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_FRAMEWORK_PATH:
+        - "~/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Network/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/Library/Frameworks"
+        - "/Library/Frameworks"
+        - "/Network/Library/Frameworks"
+        - "/System/Library/Frameworks"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/FindDoxygen.cmake:770 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/FindDoxygen.cmake:955 (_Doxygen_find_doxygen)"
+      - "CMakeLists.txt:31 (find_package)"
+    mode: "program"
+    variable: "DOXYGEN_EXECUTABLE"
+    description: "Doxygen documentation generation tool (https://www.doxygen.nl)"
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "doxygen"
+    candidate_directories:
+      - "/Users/cristiano/Library/Application Support/Herd/bin/"
+      - "/opt/homebrew/bin/"
+      - "/Users/cristiano/.nvm/versions/node/v22.22.0/bin/"
+      - "/Users/cristiano/.bun/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/opt/homebrew/opt/python/libexec/bin/"
+      - "/Users/cristiano/.composer/vendor/bin/"
+      - "/opt/homebrew/opt/openjdk/bin/"
+      - "/Users/cristiano/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pkg/env/active/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
+      - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
+      - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
+      - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
+      - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/bin/"
+      - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/sbin/"
+      - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/opt/homebrew/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/"
+      - "/usr/bin/"
+      - "/usr/sbin/"
+      - "/usr/"
+      - "/bin/"
+      - "/sbin/"
+      - "/usr/X11R6/bin/"
+      - "/usr/X11R6/sbin/"
+      - "/usr/X11R6/"
+      - "/usr/pkg/bin/"
+      - "/usr/pkg/sbin/"
+      - "/usr/pkg/"
+      - "/opt/bin/"
+      - "/opt/sbin/"
+      - "/opt/"
+      - "/sw/bin/"
+      - "/sw/sbin/"
+      - "/sw/"
+      - "/opt/local/bin/"
+      - "/opt/local/sbin/"
+      - "/opt/local/"
+      - "/Users/cristiano/Applications/"
+      - "/Applications/"
+      - "/Applications/Doxygen.app/Contents/Resources/"
+      - "/Applications/Doxygen.app/Contents/MacOS/"
+      - "/Applications/Utilities/Doxygen.app/Contents/Resources/"
+      - "/Applications/Utilities/Doxygen.app/Contents/MacOS/"
+    searched_directories:
+      - "/Users/cristiano/Library/Application Support/Herd/bin/doxygen"
+      - "/opt/homebrew/bin/doxygen"
+      - "/Users/cristiano/.nvm/versions/node/v22.22.0/bin/doxygen"
+      - "/Users/cristiano/.bun/bin/doxygen"
+      - "/opt/homebrew/sbin/doxygen"
+      - "/opt/homebrew/opt/python/libexec/bin/doxygen"
+      - "/Users/cristiano/.composer/vendor/bin/doxygen"
+      - "/opt/homebrew/opt/openjdk/bin/doxygen"
+      - "/Users/cristiano/bin/doxygen"
+      - "/usr/local/bin/doxygen"
+      - "/System/Cryptexes/App/usr/bin/doxygen"
+      - "/usr/bin/doxygen"
+      - "/bin/doxygen"
+      - "/usr/sbin/doxygen"
+      - "/sbin/doxygen"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/doxygen"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/doxygen"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/doxygen"
+      - "/opt/pkg/env/active/bin/doxygen"
+      - "/opt/pmk/env/global/bin/doxygen"
+      - "/Library/Apple/usr/bin/doxygen"
+      - "/usr/local/share/dotnet/doxygen"
+      - "/Users/cristiano/.dotnet/tools/doxygen"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/doxygen"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/doxygen"
+      - "/Users/cristiano/.sdkman/candidates/maven/current/bin/doxygen"
+      - "/Users/cristiano/.sdkman/candidates/java/current/bin/doxygen"
+      - "/Users/cristiano/.cargo/bin/doxygen"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/doxygen"
+      - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/bin/doxygen"
+      - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/sbin/doxygen"
+      - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/doxygen"
+      - "/opt/homebrew/bin/doxygen"
+      - "/opt/homebrew/sbin/doxygen"
+      - "/opt/homebrew/doxygen"
+      - "/usr/local/bin/doxygen"
+      - "/usr/local/sbin/doxygen"
+      - "/usr/local/doxygen"
+      - "/usr/bin/doxygen"
+      - "/usr/sbin/doxygen"
+      - "/usr/doxygen"
+      - "/bin/doxygen"
+      - "/sbin/doxygen"
+      - "/usr/X11R6/bin/doxygen"
+      - "/usr/X11R6/sbin/doxygen"
+      - "/usr/X11R6/doxygen"
+      - "/usr/pkg/bin/doxygen"
+      - "/usr/pkg/sbin/doxygen"
+      - "/usr/pkg/doxygen"
+      - "/opt/bin/doxygen"
+      - "/opt/sbin/doxygen"
+      - "/opt/doxygen"
+      - "/sw/bin/doxygen"
+      - "/sw/sbin/doxygen"
+      - "/sw/doxygen"
+      - "/opt/local/bin/doxygen"
+      - "/opt/local/sbin/doxygen"
+      - "/opt/local/doxygen"
+      - "/Users/cristiano/Applications/doxygen"
+      - "/Applications/doxygen"
+      - "/Applications/Doxygen.app/Contents/Resources/doxygen"
+      - "/Applications/Doxygen.app/Contents/MacOS/doxygen"
+      - "/Applications/Utilities/Doxygen.app/Contents/Resources/doxygen"
+      - "/Applications/Utilities/Doxygen.app/Contents/MacOS/doxygen"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/Users/cristiano/Library/Application Support/Herd/bin/"
+        - "/opt/homebrew/bin"
+        - "/Users/cristiano/.nvm/versions/node/v22.22.0/bin"
+        - "/Users/cristiano/.bun/bin"
+        - "/opt/homebrew/sbin"
+        - "/opt/homebrew/sbin"
+        - "/opt/homebrew/opt/python/libexec/bin"
+        - "/opt/homebrew/bin"
+        - "/Users/cristiano/.composer/vendor/bin"
+        - "/opt/homebrew/opt/openjdk/bin"
+        - "/Users/cristiano/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pkg/env/active/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/opt/homebrew/bin"
+        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
+        - "/Users/cristiano/Library/Application Support/Herd/bin/"
+        - "/Users/cristiano/.nvm/versions/node/v22.22.0/bin"
+        - "/Users/cristiano/.bun/bin"
+        - "/Users/cristiano/.sdkman/candidates/maven/current/bin"
+        - "/Users/cristiano/.sdkman/candidates/java/current/bin"
+        - "/opt/homebrew/sbin"
+        - "/opt/homebrew/opt/python/libexec/bin"
+        - "/Users/cristiano/.composer/vendor/bin"
+        - "/opt/homebrew/opt/openjdk/bin"
+        - "/Users/cristiano/bin"
+        - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_APPBUNDLE_PATH:
+        - "/Users/cristiano/Applications"
+        - "/Applications"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/FindDoxygen.cmake:858 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/FindDoxygen.cmake:959 (_Doxygen_find_dot)"
+      - "CMakeLists.txt:31 (find_package)"
+    mode: "program"
+    variable: "DOXYGEN_DOT_EXECUTABLE"
+    description: "Dot tool for use with Doxygen"
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "dot"
+    candidate_directories:
+      - "/Users/cristiano/Library/Application Support/Herd/bin/"
+      - "/opt/homebrew/bin/"
+      - "/Users/cristiano/.nvm/versions/node/v22.22.0/bin/"
+      - "/Users/cristiano/.bun/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/opt/homebrew/opt/python/libexec/bin/"
+      - "/Users/cristiano/.composer/vendor/bin/"
+      - "/opt/homebrew/opt/openjdk/bin/"
+      - "/Users/cristiano/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pkg/env/active/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/cristiano/.dotnet/tools/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/"
+      - "/Users/cristiano/.sdkman/candidates/maven/current/bin/"
+      - "/Users/cristiano/.sdkman/candidates/java/current/bin/"
+      - "/Users/cristiano/.cargo/bin/"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/"
+      - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/bin/"
+      - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/sbin/"
+      - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/opt/homebrew/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/"
+      - "/usr/bin/"
+      - "/usr/sbin/"
+      - "/usr/"
+      - "/bin/"
+      - "/sbin/"
+      - "/usr/X11R6/bin/"
+      - "/usr/X11R6/sbin/"
+      - "/usr/X11R6/"
+      - "/usr/pkg/bin/"
+      - "/usr/pkg/sbin/"
+      - "/usr/pkg/"
+      - "/opt/bin/"
+      - "/opt/sbin/"
+      - "/opt/"
+      - "/sw/bin/"
+      - "/sw/sbin/"
+      - "/sw/"
+      - "/opt/local/bin/"
+      - "/opt/local/sbin/"
+      - "/opt/local/"
+      - "/Users/cristiano/Applications/"
+      - "/Applications/"
+      - "/ATT/Graphviz/bin/"
+      - "C:/Program Files/ATT/Graphviz/bin/"
+      - "/Applications/Graphviz.app/Contents/MacOS/"
+      - "/Applications/Utilities/Graphviz.app/Contents/MacOS/"
+      - "/Applications/Doxygen.app/Contents/Resources/"
+      - "/Applications/Doxygen.app/Contents/MacOS/"
+      - "/Applications/Utilities/Doxygen.app/Contents/Resources/"
+      - "/Applications/Utilities/Doxygen.app/Contents/MacOS/"
+    searched_directories:
+      - "/Users/cristiano/Library/Application Support/Herd/bin/dot"
+      - "/opt/homebrew/bin/dot"
+      - "/Users/cristiano/.nvm/versions/node/v22.22.0/bin/dot"
+      - "/Users/cristiano/.bun/bin/dot"
+      - "/opt/homebrew/sbin/dot"
+      - "/opt/homebrew/opt/python/libexec/bin/dot"
+      - "/Users/cristiano/.composer/vendor/bin/dot"
+      - "/opt/homebrew/opt/openjdk/bin/dot"
+      - "/Users/cristiano/bin/dot"
+      - "/usr/local/bin/dot"
+      - "/System/Cryptexes/App/usr/bin/dot"
+      - "/usr/bin/dot"
+      - "/bin/dot"
+      - "/usr/sbin/dot"
+      - "/sbin/dot"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/dot"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/dot"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/dot"
+      - "/opt/pkg/env/active/bin/dot"
+      - "/opt/pmk/env/global/bin/dot"
+      - "/Library/Apple/usr/bin/dot"
+      - "/usr/local/share/dotnet/dot"
+      - "/Users/cristiano/.dotnet/tools/dot"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand/dot"
+      - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/dot"
+      - "/Users/cristiano/.sdkman/candidates/maven/current/bin/dot"
+      - "/Users/cristiano/.sdkman/candidates/java/current/bin/dot"
+      - "/Users/cristiano/.cargo/bin/dot"
+      - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts/dot"
+      - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/bin/dot"
+      - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/sbin/dot"
+      - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/dot"
+      - "/opt/homebrew/bin/dot"
+      - "/opt/homebrew/sbin/dot"
+      - "/opt/homebrew/dot"
+      - "/usr/local/bin/dot"
+      - "/usr/local/sbin/dot"
+      - "/usr/local/dot"
+      - "/usr/bin/dot"
+      - "/usr/sbin/dot"
+      - "/usr/dot"
+      - "/bin/dot"
+      - "/sbin/dot"
+      - "/usr/X11R6/bin/dot"
+      - "/usr/X11R6/sbin/dot"
+      - "/usr/X11R6/dot"
+      - "/usr/pkg/bin/dot"
+      - "/usr/pkg/sbin/dot"
+      - "/usr/pkg/dot"
+      - "/opt/bin/dot"
+      - "/opt/sbin/dot"
+      - "/opt/dot"
+      - "/sw/bin/dot"
+      - "/sw/sbin/dot"
+      - "/sw/dot"
+      - "/opt/local/bin/dot"
+      - "/opt/local/sbin/dot"
+      - "/opt/local/dot"
+      - "/Users/cristiano/Applications/dot"
+      - "/Applications/dot"
+      - "/ATT/Graphviz/bin/dot"
+      - "C:/Program Files/ATT/Graphviz/bin/dot"
+      - "/Applications/Graphviz.app/Contents/MacOS/dot"
+      - "/Applications/Utilities/Graphviz.app/Contents/MacOS/dot"
+      - "/Applications/Doxygen.app/Contents/Resources/dot"
+      - "/Applications/Doxygen.app/Contents/MacOS/dot"
+      - "/Applications/Utilities/Doxygen.app/Contents/Resources/dot"
+      - "/Applications/Utilities/Doxygen.app/Contents/MacOS/dot"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/Users/cristiano/Library/Application Support/Herd/bin/"
+        - "/opt/homebrew/bin"
+        - "/Users/cristiano/.nvm/versions/node/v22.22.0/bin"
+        - "/Users/cristiano/.bun/bin"
+        - "/opt/homebrew/sbin"
+        - "/opt/homebrew/sbin"
+        - "/opt/homebrew/opt/python/libexec/bin"
+        - "/opt/homebrew/bin"
+        - "/Users/cristiano/.composer/vendor/bin"
+        - "/opt/homebrew/opt/openjdk/bin"
+        - "/Users/cristiano/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pkg/env/active/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/opt/homebrew/bin"
+        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/Users/cristiano/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli"
+        - "/Users/cristiano/Library/Application Support/Herd/bin/"
+        - "/Users/cristiano/.nvm/versions/node/v22.22.0/bin"
+        - "/Users/cristiano/.bun/bin"
+        - "/Users/cristiano/.sdkman/candidates/maven/current/bin"
+        - "/Users/cristiano/.sdkman/candidates/java/current/bin"
+        - "/opt/homebrew/sbin"
+        - "/opt/homebrew/opt/python/libexec/bin"
+        - "/Users/cristiano/.composer/vendor/bin"
+        - "/opt/homebrew/opt/openjdk/bin"
+        - "/Users/cristiano/bin"
+        - "/Users/cristiano/.cargo/bin"
+        - "/Users/cristiano/.vscode/extensions/ms-python.debugpy-2025.18.0-darwin-arm64/bundled/scripts/noConfigScripts"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_APPBUNDLE_PATH:
+        - "/Users/cristiano/Applications"
+        - "/Applications"
 ...

@@ -1,0 +1,26 @@
+# 📘 Atividade 19: TanStack Query (Estado do Servidor e Cache)
+STATUS: Nível 23 (Engenheiro Full-Stack) - Pilar de Integração
+
+## 🎯 Estudo de Caso
+O SkyCargo Control Tower agora precisa carregar históricos massivos de rotas e telemetria. Se o operador trocar de aba no navegador e voltar, os dados devem estar lá instantaneamente (Cache), mas o sistema deve verificar em segundo plano se houve atualizações (Stale-While-Revalidate). Fazer isso na mão com `useEffect` exigiria centenas de linhas de código. Usaremos o **TanStack Query**.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos a biblioteca **@tanstack/react-query**.
+1. **Query Client:** O motor central que gerencia o cache e as requisições.
+2. **useQuery Hook:** Substituiremos o `useEffect` para buscar dados. Ele nos dá automaticamente `isLoading`, `isError`, e `data`.
+3. **Stale Time & Cache Time:** Configuraremos quanto tempo os dados da LogiSpeed podem ser considerados "frescos" na memória.
+4. **Automatic Refetch:** O sistema atualizará os dados automaticamente quando a janela ganhar foco ou quando a internet voltar.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (NETWORK OVERHEAD & DATA STALENESS)
+- **WATERFALL REQUESTS:** Disparar dezenas de requisições idênticas porque vários componentes precisam do mesmo dado. O React Query unifica essas chamadas em uma só.
+- **OUT OF SYNC UI:** Mostrar um drone em uma posição enquanto ele já mudou no servidor. O Query garante a sincronia inteligente sem sobrecarregar a rede.
+- **ERROR RESILIENCE:** Se uma chamada de rede falhar, o React Query tentará novamente (Retries) automaticamente antes de avisar o operador.
+
+## 📋 Requisitos de Elite
+1. Instalar e configurar o `QueryClientProvider` no `main.tsx`.
+2. Implementar o componente `HistoricalVault.tsx` que busca logs via `useQuery`.
+3. Demonstrar o uso de **Cache** (dados aparecem instantaneamente ao navegar).
+4. Interface ANSI (visual) com indicadores de "Fetching" em background.
+
+------------------------------------------------------------------------------
+"Em sistemas de elite, o dado não é apenas buscado; ele é gerenciado, cacheado e mantido vivo."

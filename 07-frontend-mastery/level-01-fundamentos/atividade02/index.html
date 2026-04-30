@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCargo OS - Design System</title>
+    <!-- Link para o Design System de Elite -->
+    <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+
+    <header>
+        <h1>SkyCargo Control Tower</h1>
+        <p>LogiSpeed Global Ops - Design System v2.0</p>
+        <button id="theme-toggle">Alternar Tema (Dia/Noite)</button>
+    </header>
+
+    <main>
+        <section id="telemetria">
+            <h2>Monitoramento de Drones</h2>
+            
+            <!-- Cards de telemetria estilizados via tokens -->
+            <article style="background-color: var(--bg-surface); padding: 20px; border-radius: var(--border-radius); border: 1px solid var(--border-color); margin-bottom: 20px;">
+                <h3>Drone ALPHA-707 <span class="status-badge status-success">ONLINE</span></h3>
+                <p style="color: var(--text-secondary);">Localização: São Paulo, BR</p>
+                <p>Altitude: <strong>150m</strong></p>
+            </article>
+
+            <article style="background-color: var(--bg-surface); padding: 20px; border-radius: var(--border-radius); border: 1px solid var(--border-color);">
+                <h3>Drone BETA-404 <span class="status-badge status-alert">CRÍTICO</span></h3>
+                <p style="color: var(--text-secondary);">Localização: Buenos Aires, AR</p>
+                <p>Status: <span style="color: var(--status-alert);">Baixa Bateria (5%)</span></p>
+            </article>
+        </section>
+    </main>
+
+    <script>
+        const btn = document.getElementById('theme-toggle');
+        btn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+        });
+    </script>
+
+</body>
+</html>

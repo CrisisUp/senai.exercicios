@@ -1,0 +1,9 @@
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/06-aws-mastery-elite/exercicios/02-serverless-rust/target/debug/deps/lambda_runtime-b65a0baf0f9001bf.d: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/lib.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/deserializer.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/requests.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/streaming.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/types.rs
+
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/06-aws-mastery-elite/exercicios/02-serverless-rust/target/debug/deps/liblambda_runtime-b65a0baf0f9001bf.rmeta: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/lib.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/deserializer.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/requests.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/streaming.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/types.rs
+
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/lib.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/deserializer.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/requests.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/streaming.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lambda_runtime-0.9.2/src/types.rs:

@@ -1,0 +1,85 @@
+/**
+ * @file style.css
+ * @brief Domínio de Camadas (Fixed, Absolute e Z-Index).
+ */
+
+body {
+    background-color: #0d1117;
+    color: white;
+    font-family: sans-serif;
+    margin: 0;
+    height: 200vh; /* Força scroll para testar o 'fixed' */
+}
+
+header {
+    background-color: #161b22;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #58a6ff;
+}
+
+.dashboard { padding: 40px; }
+
+/* CAMADA BASE */
+.base-layer {
+    background-color: #161b22;
+    height: 300px;
+    border: 1px dashed #30363d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+/* 1. POSITION FIXED: Fica preso na janela, ignora o scroll */
+.btn-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #58a6ff;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    z-index: 100; /* Garante que está acima de quase tudo */
+}
+
+/* 2. DIALOG STYLING (Nativo) */
+dialog {
+    border: none;
+    border-radius: 12px;
+    padding: 0;
+    background: transparent;
+    z-index: 1000; /* Camada Suprema */
+}
+
+/* Backdrop: O fundo escurecido automático do dialog */
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background-color: #21262d;
+    color: #f85149;
+    padding: 40px;
+    border: 2px solid #f85149;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 0 50px rgba(248, 81, 73, 0.3);
+}
+
+.btn-close {
+    margin-top: 20px;
+    padding: 10px 30px;
+    background-color: #f85149;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}

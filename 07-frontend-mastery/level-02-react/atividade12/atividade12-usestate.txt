@@ -1,0 +1,26 @@
+# 📘 Atividade 12: useState (O Coração da Reatividade)
+STATUS: Nível 14 (Arquiteto de Componentes) - Pilar de React
+
+## 🎯 Estudo de Caso
+No SkyCargo Control Tower, o operador precisa ajustar a altitude de cruzeiro de um drone manualmente em caso de emergência. No Vanilla, teríamos que buscar o elemento no DOM e mudar seu texto. No React, nós apenas mudamos o **Estado (State)**, e o React "percebe" a mudança, calculando a diferença e atualizando apenas o pedaço necessário da tela.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o Hook **`useState`**.
+1. **Estado Reativo:** Diferença entre uma variável local comum (que se perde a cada renderização) e o Estado (que persiste).
+2. **Set State:** Aprenderemos que o estado é imutável; você nunca o altera diretamente, mas sim usa a função de atualização.
+3. **Event Binding:** Conectar inputs de formulário e botões ao estado.
+4. **Re-render Cycle:** Entender o gatilho que faz o React redesenhar o componente.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (STATE INTEGRITY)
+- **DIRECT MUTATION:** Tentar fazer `state = novoValor`. Isso não avisa o React, e a tela não atualiza. Sempre usaremos o setter.
+- **ASYNCHRONOUS UPDATES:** O estado não muda instantaneamente. Aprenderemos a usar o padrão de função funcional `setCount(prev => prev + 1)` para evitar dados obsoletos.
+- **STALE CLOSURES:** Se não tivermos cuidado com funções assíncronas, podemos tentar atualizar a tela com um estado que não existe mais.
+
+## 📋 Requisitos de Elite
+1. Criar o componente `DroneCommander.tsx`.
+2. Implementar controle de altitude e velocidade usando `useState`.
+3. Adicionar um botão de "Emergência" que reseta múltiplos estados simultaneamente.
+4. Interface ANSI (visual) mostrando o estado interno do componente em tempo real.
+
+------------------------------------------------------------------------------
+"No React, você não manda a tela mudar; você muda o estado e a tela obedece."

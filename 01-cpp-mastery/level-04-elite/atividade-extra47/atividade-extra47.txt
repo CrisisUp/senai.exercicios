@@ -1,0 +1,43 @@
+## 🛠️ Necessidade Técnica
+Implementação de padrões de engenharia de elite para garantir escalabilidade e robustez.
+
+## 🎯 Estudo de Caso
+Análise técnica do cenário de negócio para o componente atividade-extra47.txt.
+
+DESAFIO ÉPICO: G-INVADERS - DEFESA ORBITAL v2.0
+------------------------------------------------------------------------------
+DOMÍNIO: Desenvolvimento de Jogos / Simulação de Combate
+ATIVIDADE: Extra 47 (GRANDE DESAFIO DE ENGINE)
+CONCEITO INTEGRADO: Game Loop, Delta Time, Raw Input, Render Buffer, POO, 
+                      Polimorfismo, STL (vector) e Smart Pointers (RAII).
+STATUS: Padrão de Engenharia de Elite Aplicado
+
+1. O CENÁRIO
+A Terra está sob ataque! Uma horda de invasores alienígenas desce em direção à 
+nossa base. Você deve pilotar a nave de defesa, disparar lasers e destruir a 
+ameaça antes que eles toquem o solo.
+
+2. A MISSÃO TÉCNICA (Arquitetura de Jogo de Elite)
+Este projeto é a síntese absoluta da engenharia de motores de jogo:
+- KERNEL TEMPORAL: Loop infinito com Delta Time via <chrono>.
+- ASYNC INPUT: Captura de teclado não-bloqueante via 'termios' (Raw Mode).
+- SCREEN BUFFER: Renderização matricial em grade para estabilidade visual.
+- SMART MEMORY (RAII): Substituição de 'new/delete' por `std::unique_ptr`, 
+  eliminando 100% dos riscos de vazamento de memória por design.
+
+3. 🧪 ## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ARQUITETURA DE JOGOS)
+- RISCO DE COLISÃO O(N*M): Comparar cada bala com cada alienígena em cada frame 
+  é custoso. Se houver milhares de objetos, o FPS cairá. Solução: Quad-trees 
+  ou Grids de Proximidade.
+- RISCO DE INVALIDAÇÃO DE PONTEIRO: Usar ponteiros crus (raw) para entidades 
+  que morrem em combate causaria Crashes por acesso a memória liberada. O uso 
+  de `std::unique_ptr` resolve isso via posse única estrita.
+- RISCO DE LAG DE RENDERIZAÇÃO: Imprimir 800 caracteres individualmente no 
+  terminal é ineficiente. O buffer deve ser concatenado em uma única string 
+  mestre antes do 'cout'.
+
+4. REQUISITOS DO SISTEMA
+- Motor polimórfico baseado em Smart Pointers.
+- Detecção de colisão via Coordenadas Inteiras.
+- Interface de Combate ANSI de Alta Fidelidade.
+------------------------------------------------------------------------------

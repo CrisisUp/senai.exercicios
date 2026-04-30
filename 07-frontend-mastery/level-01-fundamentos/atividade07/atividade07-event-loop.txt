@@ -1,0 +1,25 @@
+# 📘 Atividade 07: O Motor do Navegador (Event Loop & Throttling)
+STATUS: Nível 07 (Iniciado Frontend) - Pilar de Fundamentos
+
+## 🎯 Estudo de Caso
+O mapa tático do SkyCargo agora rastreia o movimento do mouse do operador para iluminar áreas de interesse. Se o mouse disparar 100 eventos por segundo e tentarmos atualizar o DOM em todos eles, a CPU do terminal industrial chegará a 100%. Precisamos de um filtro que limite essas atualizações sem perder a precisão do comando.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o controle de fluxo de eventos no **Event Loop**.
+1. **Throttling:** Garante que uma função seja executada apenas uma vez a cada X milissegundos (ideal para rastreamento de movimento contínuo).
+2. **Debouncing:** Aguarda um tempo de "silêncio" antes de executar (ideal para buscas ou redimensionamento de janelas).
+3. **Task Queue vs Microtask Queue:** Entenderemos a prioridade entre promessas e eventos de UI.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (UI FREEZE)
+- **LAYOUT THRASHING:** Atualizar o estilo de um elemento muitas vezes força o navegador a recalcular todo o layout da página repetidamente, causando engasgos (jank).
+- **EVENT FLOOD:** Milhares de eventos pendentes na fila de tarefas impedem que o botão de "Emergência" seja processado a tempo.
+- **RACE CONDITIONS (UI):** Se dois eventos de telemetria tentarem mudar o mesmo elemento sem controle de tempo, o estado final pode ser inconsistente.
+
+## 📋 Requisitos de Elite
+1. Implementar uma função `throttle` genérica em TypeScript.
+2. Aplicar throttling no rastreamento do mouse sobre o mapa tático.
+3. Implementar uma função `debounce` para a simulação de busca de drones.
+4. Interface ANSI (visual) mostrando a economia de processamento (Eventos Recebidos vs Processados).
+
+------------------------------------------------------------------------------
+"Um engenheiro de elite não corre atrás de cada evento; ele dita o ritmo em que o sistema responde."

@@ -1,0 +1,11 @@
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/05-integration-sa10/SA-07-Nexus-gRPC/rust_client/target/debug/deps/prost-7580c5147bf7ae08.d: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/lib.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/error.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/message.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/name.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/types.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/encoding.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/../README.md
+
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/05-integration-sa10/SA-07-Nexus-gRPC/rust_client/target/debug/deps/libprost-7580c5147bf7ae08.rmeta: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/lib.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/error.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/message.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/name.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/types.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/encoding.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/../README.md
+
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/lib.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/error.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/message.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/name.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/types.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/encoding.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prost-0.12.6/src/../README.md:

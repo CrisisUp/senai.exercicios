@@ -1,0 +1,164 @@
+.container {
+    background-color: #060608;
+    color: #c9d1d9;
+    min-height: 100vh;
+    padding: 3rem;
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.header h1 {
+    color: #58a6ff;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+/* Animação do LED (Heartbeat) */
+.heartbeatArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.7rem;
+    color: #39ff14;
+    margin-top: 10px;
+}
+
+.led {
+    width: 8px;
+    height: 8px;
+    background-color: #39ff14;
+    border-radius: 50%;
+    animation: pulseLed 1s infinite;
+}
+
+@keyframes pulseLed {
+    0% { opacity: 1; box-shadow: 0 0 0px #39ff14; }
+    50% { opacity: 0.5; box-shadow: 0 0 10px #39ff14; }
+    100% { opacity: 1; box-shadow: 0 0 0px #39ff14; }
+}
+
+/* Grid de Cards */
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    max-width: 1000px;
+}
+
+.droneCard {
+    background-color: #111;
+    border: 1px solid #333;
+    padding: 2rem;
+    border-radius: 4px;
+    display: flex;
+    gap: 2rem;
+    min-width: 450px;
+    transition: border-color 0.3s;
+}
+
+.droneCard:hover {
+    border-color: #58a6ff;
+}
+
+/* Animação do Radar */
+.radarContainer {
+    width: 120px;
+    height: 120px;
+}
+
+.radarCircle {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #222;
+    border-radius: 50%;
+    position: relative;
+    background: radial-gradient(circle, #0a110a 0%, #000 100%);
+    overflow: hidden;
+}
+
+.radarScan {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(from 0deg, rgba(57, 255, 20, 0.2), transparent 90deg);
+    animation: rotate 4s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.dronePoint {
+    position: absolute;
+    top: 30%;
+    left: 70%;
+    width: 6px;
+    height: 6px;
+    background-color: #39ff14;
+    border-radius: 50%;
+    animation: blinkPoint 2s infinite;
+}
+
+@keyframes blinkPoint {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+}
+
+/* Info e Bateria */
+.info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info h3 { margin: 0 0 1rem 0; font-size: 1rem; color: #fff; }
+.info small { color: #58a6ff; }
+
+.batteryArea { margin-bottom: 1rem; }
+.batteryLabel { font-size: 0.6rem; color: #666; margin-bottom: 5px; }
+
+.batteryBar {
+    height: 8px;
+    background: #000;
+    border-radius: 4px;
+    overflow: hidden;
+    flex: 1;
+}
+
+.batteryFill {
+    height: 100%;
+    transition: width 1s ease-in-out, background-color 1s;
+}
+
+.percentText { font-size: 1.2rem; font-weight: bold; margin-left: 10px; }
+
+.statusMsg {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #58a6ff;
+}
+
+.theoryBox {
+    margin-top: 5rem;
+    max-width: 800px;
+    font-size: 0.85rem;
+    color: #666;
+    border-top: 1px solid #222;
+    padding-top: 2rem;
+    line-height: 1.6;
+}
+
+.theoryBox h4 { color: #c9d1d9; margin-bottom: 0.5rem; }

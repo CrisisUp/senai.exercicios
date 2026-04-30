@@ -1,0 +1,18 @@
+/**
+ * @file theme.css
+ * @brief Definição Cromática Nexus v3.0.
+ */
+
+:root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --accent: #00f2ff;
+    --text: #e6edf3;
+    --danger: #f85149;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

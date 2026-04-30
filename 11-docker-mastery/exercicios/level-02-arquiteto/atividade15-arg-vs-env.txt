@@ -1,0 +1,38 @@
+# 📘 Atividade 15: Configurações de Construção (ARG vs ENV)
+STATUS: Nível 15 (Arquiteto) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+A "SkyCargo Nexus" precisa construir imagens diferentes para as equipes de "Desenvolvimento" e "Operações". A imagem de desenvolvimento deve conter ferramentas extras de depuração. Você aprenderá a usar **Argumentos de Build** (`ARG`) para customizar a imagem no momento em que ela está sendo montada, sem que esses argumentos precisem existir dentro do container final.
+
+## 🛠️ Necessidade Técnica
+- **`ARG`**: Variável disponível apenas durante o `docker build`. Ela não sobrevive à execução do container.
+- **`ENV`**: Variável que persiste durante a execução do container.
+
+### Instruções Chave:
+1.  **`ARG <nome>[=valor-padrão]`**: Declara o argumento no Dockerfile.
+2.  **`docker build --build-arg <nome>=<valor> .`**: Passa o valor no terminal.
+
+## 🚀 Missão
+1.  Crie um `Dockerfile` dinâmico:
+    ```dockerfile
+    FROM alpine
+    # Argumento de build
+    ARG MAINTAINER_NAME="Nexus Core"
+    # Variável de ambiente (usa o valor do ARG)
+    ENV APP_AUTHOR=$MAINTAINER_NAME
+
+    RUN echo "CONSTRUINDO IMAGEM POR: $MAINTAINER_NAME"
+    CMD ["sh", "-c", "echo Autor da Missão: $APP_AUTHOR"]
+    ```
+2.  Construa com o padrão: `docker build -t nexus-arg-std .`.
+3.  Construa customizado: `docker build --build-arg MAINTAINER_NAME="Comandante Cristiano" -t nexus-arg-custom .`.
+4.  Rode ambos e veja a diferença no output.
+5.  **O Teste de Visibilidade:** Tente rodar `docker run --rm nexus-arg-custom env`. Veja que `APP_AUTHOR` está lá, mas `MAINTAINER_NAME` desapareceu (pois era um ARG).
+
+## 📋 Requisitos de Elite
+- Diferenciar variáveis de compilação (ARG) de variáveis de execução (ENV).
+- Criar imagens parametrizáveis que atendam a múltiplos ambientes.
+- Utilizar valores padrão para argumentos de build para garantir a estabilidade do processo.
+
+------------------------------------------------------------------------------
+"Argumentos de build são as ferramentas que usamos para montar a máquina; variáveis de ambiente são as alavancas que usamos para pilotá-la."

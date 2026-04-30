@@ -1,0 +1,41 @@
+# 📘 Atividade 29: Limites de Voo (Resource Limits in Compose)
+STATUS: Nível 29 (Orquestrador) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Um drone Alpha-707 fora de controle começou a consumir 100% da CPU do terminal de Dubai, causando um "apagão" em outros sistemas vitais. No Docker, um container mal comportado pode derrubar todo o seu computador. Você aprenderá a definir **Cotas de Recursos**, garantindo que nenhum microserviço do Nexus OS consuma mais CPU ou Memória do que o permitido.
+
+## 🛠️ Necessidade Técnica
+Podemos limitar o hardware disponível para cada container diretamente no YAML. Isso garante a estabilidade do "Hangar Principal".
+
+### Estrutura YAML:
+- **`deploy.resources.limits:`**: Define o teto máximo de uso.
+- **`deploy.resources.reservations:`**: Garante que o container tenha no mínimo X recursos disponíveis.
+
+## 🚀 Missão
+1.  Atualize seu `docker-compose.yml` para blindar o hardware:
+    ```yaml
+    version: '3.8'
+    services:
+      nexus-sensor:
+        image: alpine
+        command: sleep 3600
+        deploy:
+          resources:
+            limits:
+              cpus: '0.50'     # Máximo 50% de um núcleo de CPU
+              memory: '128M'   # Máximo 128 Megabytes de RAM
+            reservations:
+              memory: '64M'    # Reserva garantida de 64M
+    ```
+2.  Sobe a orquestra blindada: `docker-compose up -d`.
+3.  **A Auditoria de Voo:** Rode `docker stats`.
+4.  Observe a coluna `MEM LIMIT`. O container agora está preso no casulo de 128M.
+5.  Mesmo que o código tente "explodir", o Docker o manterá sob controle.
+
+## 📋 Requisitos de Elite
+- Proteger o sistema host contra "memory leaks" ou processos infinitos.
+- Dimensionar containers conforme sua criticidade.
+- Utilizar o `docker stats` para monitorar a saúde do hardware em tempo real.
+
+------------------------------------------------------------------------------
+"Em sistemas de elite, o poder é controlado por design, não por sorte."

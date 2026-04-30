@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/desafio_drone_resgate: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/exercicios/SA-01-drone-resgate/src/main.rs

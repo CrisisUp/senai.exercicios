@@ -1,0 +1,59 @@
+## 🛠️ Necessidade Técnica
+Implementação de padrões de engenharia de elite para garantir escalabilidade e robustez.
+
+## 🎯 Estudo de Caso
+Análise técnica do cenário de negócio para o componente atividade-extra12.txt.
+
+===============================================================
+       DESAFIO 12: SISTEMA INTEGRADO DE GESTÃO BIBLIOTECÁRIA
+===============================================================
+
+ESTE É O SEU DESAFIO DE FIM DE FASE!
+Objetivo: Unir Queues, Stacks, Files, Time, Structs e Matrizes.
+
+CONTEXTO:
+O sistema deve gerenciar o fluxo de uma biblioteca desde a abertura 
+até o fechamento, salvando tudo o que aconteceu no dia.
+
+REQUISITOS DO SISTEMA:
+1.  CATÁLOGO (Vetor de Structs):
+    - O programa deve ler um arquivo `catalogo.txt` contendo os 
+      livros disponíveis (Título e Autor).
+
+2.  FILA DE ESPERA (Queue):
+    - Gerenciar a fila de leitores no balcão de atendimento.
+
+3.  REGISTRO DE EMPRÉSTIMO (Struct + Time):
+    - Ao atender um leitor, capturar a Data/Hora atual.
+    - Calcular a data de devolução (Data Atual + 7 dias).
+
+4.  HISTÓRICO DE SESSÃO (Stack):
+    - Cada empréstimo realizado deve ser "empilhado".
+    - O bibliotecário pode "cancelar" o último empréstimo (Pop).
+
+5.  PERSISTÊNCIA FINAL (Files):
+    - Ao encerrar o programa, salvar o arquivo `relatorio_dia.txt` 
+      contendo todos os empréstimos que restaram na Pilha.
+
+===============================================================
+DESAFIO TÉCNICO (O CÉREBRO):
+Como calcular "Data + 7 dias"?
+Dica: 
+time_t tempo = time(0);
+tempo += (7 * 24 * 60 * 60); // Soma os segundos de uma semana
+tm *dataDevolucao = localtime(&tempo);
+
+===============================================================
+## 🧪 ANÁLISE DE FALHA CRÍTICA (REFATORAÇÃO DE ELITE - FASE 3):
+===============================================================
+1. CORRUPÇÃO DE ARQUIVO: A falha no fechamento do 'relatorio_dia.txt' 
+   devido a uma exceção não capturada durante a escrita pode resultar 
+   em perda total dos dados da sessão.
+2. VAZAMENTO DE REFERÊNCIA: Ao retornar const vector<Livro>&, se a 
+   instância de GestorBiblioteca for destruída enquanto o chamador 
+   ainda segura a referência, teremos um comportamento indefinido.
+3. DEADLOCKS (TEÓRICO): Caso o sistema fosse multi-thread, a disputa 
+   pelo recurso compartilhado 'catalogo' entre a thread de empréstimo 
+   e a thread de salvamento de relatório exigiria Mutex para evitar 
+   condições de corrida.
+===============================================================

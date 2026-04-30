@@ -1,0 +1,10 @@
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/05-integration-sa10/SA-06-Upgrade-Total/rust_orchestrator/target/debug/deps/autocfg-57bee8aa11d87ef8.d: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/lib.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/error.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/rustc.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/version.rs
+
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/05-integration-sa10/SA-06-Upgrade-Total/rust_orchestrator/target/debug/deps/libautocfg-57bee8aa11d87ef8.rlib: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/lib.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/error.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/rustc.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/version.rs
+
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/05-integration-sa10/SA-06-Upgrade-Total/rust_orchestrator/target/debug/deps/libautocfg-57bee8aa11d87ef8.rmeta: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/lib.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/error.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/rustc.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/version.rs
+
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/lib.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/error.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/rustc.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.0/src/version.rs:

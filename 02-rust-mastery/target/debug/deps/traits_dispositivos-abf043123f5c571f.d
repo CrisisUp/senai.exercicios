@@ -1,0 +1,5 @@
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/deps/traits_dispositivos-abf043123f5c571f.d: exercicios/10-traits-dispositivos/src/main.rs
+
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/deps/libtraits_dispositivos-abf043123f5c571f.rmeta: exercicios/10-traits-dispositivos/src/main.rs
+
+exercicios/10-traits-dispositivos/src/main.rs:

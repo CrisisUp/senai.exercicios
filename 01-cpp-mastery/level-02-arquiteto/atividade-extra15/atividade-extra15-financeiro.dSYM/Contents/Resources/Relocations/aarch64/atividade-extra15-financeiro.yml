@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     './repositorio-extra/atividade-extra15/atividade-extra15-financeiro'
+relocations:     []
+...

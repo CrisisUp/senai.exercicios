@@ -1,0 +1,33 @@
+# 📘 Atividade 16: Recursos Compartilhados (Smart Pointers - shared_ptr)
+STATUS: Nível 16 (Guardião) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+Vários operadores da "SkyCargo Nexus" precisam acessar o mesmo **Banco de Dados de Coordenadas**. Se usarmos `unique_ptr`, apenas um operador poderia ter o controle. Você aprenderá a usar o **std::shared_ptr**, um ponteiro inteligente que permite múltiplos proprietários. O objeto só é deletado da memória quando o ÚLTIMO proprietário parar de usá-lo.
+
+## 🛠️ Necessidade Técnica
+- **`std::shared_ptr`**: Implementa a contagem de referências (Reference Counting).
+- **`std::weak_ptr`**: Um observador que não incrementa a contagem (evita ciclos de referência fatais).
+
+### Exemplo (C++):
+```cpp
+auto recurso = std::make_shared<Sensor>();
+{
+    auto operador1 = recurso; // Contagem = 2
+    auto operador2 = recurso; // Contagem = 3
+} // operador1 e 2 saem de escopo, Contagem volta a 1
+```
+
+## 🚀 Missão
+1.  Crie uma classe `CentroComando`.
+2.  Crie um recurso compartilhado (ex: um objeto `Sensor` na Heap) usando `shared_ptr`.
+3.  Simule dois operadores (objetos ou funções) recebendo cópias desse `shared_ptr`.
+4.  Use o método `.use_count()` para monitorar quantos proprietários o recurso tem em tempo real.
+5.  Observe a destruição automática apenas quando todos terminarem.
+
+## 📋 Requisitos de Elite
+- Dominar o gerenciamento de recursos compartilhados sem perigo de corrupção.
+- Uso de `make_shared` para eficiência de alocação.
+- Identificar cenários onde a posse é compartilhada vs exclusiva.
+
+------------------------------------------------------------------------------
+"Compartilhar responsabilidades exige um controle rigoroso de referências."

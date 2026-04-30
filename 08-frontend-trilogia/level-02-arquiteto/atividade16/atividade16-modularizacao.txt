@@ -1,0 +1,28 @@
+# 📘 Atividade 16: Arquitetura de Módulos (Export, Import e Clean Code)
+STATUS: Nível 16 (Arquiteto) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+O SkyCargo OS cresceu e agora possui milhares de linhas de código. Se mantivermos tudo em um único `script.js` e um único `style.css`, o risco de um desenvolvedor sobrescrever o trabalho de outro é de 100%. Precisamos fatiar o sistema em módulos independentes: um para lidar com a rede, outro para a interface e um maestro para orquestrar tudo.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** O atributo **`type="module"`** na tag script. Ele ativa o motor de módulos moderno do navegador.
+2. **CSS (Estética):** Organização via **Variables** e a importância do arquivo `base.css` (reset e fontes) separado do `layout.css`.
+3. **JS (Atitude):** 
+   - **`export`**: Torna funções ou variáveis disponíveis para outros arquivos.
+   - **`import`**: Traz funcionalidades de outros módulos.
+   - **Encapsulamento**: Variáveis que não são exportadas ficam "privadas" ao módulo, protegendo o sistema.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **GLOBAL SCOPE POLLUTION:** Criar dezenas de variáveis globais que podem entrar em conflito. Módulos criam um "escopo fechado", a base da segurança JS.
+- **SPAGHETTI CODE:** Um arquivo de 5.000 linhas onde ninguém sabe onde a lógica de rede termina e a de UI começa. Modularizar força a separação de preocupações (SoC).
+- **LOADING ERRORS:** Tentar usar uma função antes que ela seja carregada. O motor de módulos gerencia as dependências automaticamente para você.
+
+## 📋 Requisitos de Elite
+1. Dividir o JavaScript em 3 arquivos: `api.js` (Fetch), `ui.js` (Render) e `main.js` (Controle).
+2. Dividir o CSS em 2 arquivos: `theme.css` e `layout.css`.
+3. Usar `import/export` para conectar o sistema.
+4. Interface ANSI (no console) provando o carregamento sequencial dos módulos.
+
+------------------------------------------------------------------------------
+"Um código de elite não é um bloco de pedra; é um mecanismo de peças precisas que se encaixam."

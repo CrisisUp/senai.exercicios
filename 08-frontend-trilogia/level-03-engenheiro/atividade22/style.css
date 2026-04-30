@@ -1,0 +1,69 @@
+/**
+ * @file style.css
+ * @brief Estética de Radar Cinético (Atividade 22).
+ */
+
+body {
+    background-color: #020408;
+    color: #00f2ff;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    margin: 0;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Evita scroll durante animações */
+}
+
+header { text-align: center; margin-bottom: 20px; }
+h1 { letter-spacing: 10px; text-transform: uppercase; margin-bottom: 5px; }
+
+.system-meta {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #2ea043;
+    background: rgba(0,0,0,0.5);
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid #1a1a1a;
+}
+
+.radar-viewport {
+    background-color: #000;
+    border: 4px solid #161b22;
+    border-radius: 50%;
+    box-shadow: 0 0 100px rgba(0, 242, 255, 0.1), inset 0 0 50px rgba(0,0,0,1);
+    position: relative;
+    line-height: 0;
+}
+
+canvas {
+    border-radius: 50%;
+}
+
+.controls {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+button {
+    background: #0d1117;
+    color: #00f2ff;
+    border: 1px solid #00f2ff;
+    padding: 10px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: #00f2ff;
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+}
+
+#btn-toggle { border-color: #f85149; color: #f85149; }
+#btn-toggle:hover { background: #f85149; color: white; }

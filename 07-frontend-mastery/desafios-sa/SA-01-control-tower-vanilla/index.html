@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCargo OS | Control Tower v2.0</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/layout.css">
+</head>
+<body class="nexus-grid">
+
+    <!-- 1. Header de Comando -->
+    <header class="header module-card">
+        <div>
+            <h1 style="color: var(--brand-accent); letter-spacing: 1px;">SKYCARGO <span style="font-weight: 300;">CONTROL</span></h1>
+            <p style="font-size: 0.8rem; color: var(--text-secondary);">Unidade Nexus Industrial - San Francisco HQ</p>
+        </div>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <button id="btn-theme" class="status-badge" style="cursor: pointer; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color);">TEMA</button>
+            <button id="btn-sync" style="padding: 8px 15px; border-radius: var(--border-radius); background: var(--brand-primary); color: white; border: none; cursor: pointer;">SINCRONIZAR</button>
+            <span id="sync-status" class="status-badge status-online">LINK: OK</span>
+        </div>
+    </header>
+
+    <!-- 2. Radar de Frota (Aside/Navigation) -->
+    <aside class="radar module-card">
+        <h2 style="font-size: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Monitor de Radar</h2>
+        <div id="drone-list" class="drone-list">
+            <!-- Injetado dinamicamente via TS -->
+            <p style="color: var(--text-muted); font-style: italic;">Aguardando dados...</p>
+        </div>
+    </aside>
+
+    <!-- 3. Mapa Tático (Conteúdo Principal) -->
+    <main class="mapa module-card">
+        <div id="map-radar" style="width: 200px; height: 200px; border: 2px solid var(--brand-accent); border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative;">
+            <div style="position: absolute; width: 100%; height: 2px; background: rgba(0, 242, 255, 0.2); animation: sweep 4s linear infinite;"></div>
+            <span style="font-size: 2rem;">🛰️</span>
+        </div>
+        <p id="coords-display" style="position: absolute; bottom: 20px; font-family: monospace; color: var(--brand-accent); font-size: 0.9rem;">LAT: 0.000 | LON: 0.000</p>
+    </main>
+
+    <!-- 4. Stream de Logs (Auditoria) -->
+    <section class="logs module-card">
+        <h2 style="font-size: 1rem; color: var(--status-warning);">Vault Security Stream</h2>
+        <div id="logs-stream" class="logs-container"></div>
+    </section>
+
+    <!-- 5. Rodapé SRE -->
+    <footer class="footer module-card" style="padding: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; color: var(--text-muted);">
+        <div>&copy; 2026 LOGISPEED GLOBAL | <span id="clock">00:00:00</span></div>
+        <div>SRE ENGINE: <span style="color: var(--status-success);">HEALTHY</span></div>
+        <div>V-2.1.0-VANILLA</div>
+    </footer>
+
+    <style>
+        @keyframes sweep { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+
+    <script type="module" src="dist/app.js"></script>
+</body>
+</html>

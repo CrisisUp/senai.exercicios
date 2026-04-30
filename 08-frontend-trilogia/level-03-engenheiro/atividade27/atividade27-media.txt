@@ -1,0 +1,28 @@
+# 📘 Atividade 27: Visão Tática (Mastering MediaDevices API)
+STATUS: Nível 27 (Engenheiro) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A frota de drones da "LogiSpeed Global" precisa de um sistema de "First Person View" (FPV). O operador deve ser capaz de visualizar o sinal de vídeo da câmera do drone em tempo real. Usaremos a **MediaDevices API** para capturar o sinal da câmera e aplicaremos **Filtros de Visão Noturna** e **Modo Térmico** usando o motor de renderização do navegador, garantindo visibilidade mesmo em condições adversas.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** A tag `<video>` para exibição de fluxos contínuos e botões de comando de visor.
+2. **CSS (Estética):** A propriedade **`filter`** (`grayscale`, `sepia`, `invert`, `hue-rotate`). Aprenderemos a criar "Modos de Visão" táticos.
+3. **JS (Atitude):** 
+   - **`navigator.mediaDevices.getUserMedia()`**: Solicitação de acesso ao hardware de vídeo.
+   - **MediaStream**: Gerenciamento do fluxo de bits de vídeo.
+   - **Canvas Snapshot**: Como capturar um frame fixo (foto) do vídeo em tempo real.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **HARDWARE DENIED:** O operador recusa o acesso à câmera. Precisamos tratar a exceção e exibir um sinal de "CÂMERA OFFLINE" amigável.
+- **ASPECT RATIO DISTORTION:** O vídeo pode vir em 4:3 ou 16:9. O CSS de elite deve garantir que a imagem não fique esticada, mantendo a proporção tática.
+- **RESOURCE LEAK:** Deixar a câmera ligada ao sair da aplicação consome energia e viola a privacidade. Aprenderemos a interromper o stream corretamente.
+
+## 📋 Requisitos de Elite
+1. Solicitar permissão e exibir o vídeo da webcam em um container industrial.
+2. Criar 3 modos de visão: NORMAL, NOTURNA (Verde/Grayscale) e TÉRMICA (Invert/Hue).
+3. Implementar um botão de "Captura de Evidência" que gera um print do vídeo.
+4. Interface ANSI (visual) com sobreposição de dados (Overlay) sobre o vídeo.
+
+------------------------------------------------------------------------------
+"Na engenharia de elite, enxergar os dados é bom, mas enxergar a realidade é vital."

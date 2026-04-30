@@ -1,0 +1,95 @@
+/**
+ * @file style.css
+ * @brief Orquestração de Alinhamento via Flexbox (Atividade 05).
+ */
+
+body {
+    background-color: #0d1117;
+    color: #e6edf3;
+    font-family: system-ui, sans-serif;
+    padding: 0; margin: 0;
+}
+
+.app-header {
+    background-color: #161b22;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #30363d;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;       /* FLEXBOX PRINCIPAL */
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Painel de Configuração (Formulário) */
+.config-panel {
+    background-color: #161b22;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.form-group {
+    display: flex;       /* FLEXBOX EM LINHA */
+    align-items: center; /* Centraliza verticalmente */
+    gap: 15px;
+    margin-top: 15px;
+}
+
+input {
+    flex: 1;             /* Input cresce para ocupar o espaço disponível */
+    padding: 10px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    color: white;
+    border-radius: 4px;
+}
+
+/* Painel de Status (Card) */
+.status-card {
+    padding: 30px;
+    border-radius: 12px;
+    transition: background-color 0.5s ease;
+    border-left: 10px solid transparent;
+}
+
+/* Estados Dinâmicos */
+.normal {
+    background-color: #1c2531;
+    border-color: #2ea043;
+}
+
+.perigo {
+    background-color: #400000;
+    border-color: #f85149;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0;
+}
+
+.stat-item { text-align: center; }
+.stat-item span { font-size: 2rem; font-weight: bold; }
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-safe { background-color: #238636; color: white; }
+.btn-warn { background-color: #f85149; color: white; }

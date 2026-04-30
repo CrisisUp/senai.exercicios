@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport: Essencial para responsividade em dispositivos móveis industriais -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCargo OS - Control Tower</title>
+</head>
+<body>
+
+    <!-- 1. Header: Cabeçalho global do sistema -->
+    <header>
+        <h1>SkyCargo Control Tower</h1>
+        <p>LogiSpeed Global Ops - Unidade Nexus v2.0</p>
+    </header>
+
+    <!-- 2. Aside: Painel de navegação e filtros laterais -->
+    <aside>
+        <nav>
+            <ul>
+                <li><a href="#mapa">Monitoramento Global</a></li>
+                <li><a href="#drones">Status da Frota</a></li>
+                <li><a href="#relatorios">Relatórios Analytics</a></li>
+                <li><a href="#seguranca">Cofre de Auditoria</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- 3. Main: O conteúdo principal e dinâmico da tela -->
+    <main>
+        
+        <!-- Section: Segmentação lógica do conteúdo -->
+        <section id="telemetria">
+            <h2>Telemetria em Tempo Real</h2>
+            
+            <!-- Article: Conteúdo que faz sentido isoladamente (ex: um drone específico) -->
+            <article>
+                <h3>Drone ALPHA-707</h3>
+                <p>Status: <strong>OPERACIONAL</strong></p>
+                <ul>
+                    <li>Altitude: 150m</li>
+                    <li>Velocidade: 85 km/h</li>
+                    <li>Bateria: 85%</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3>Drone BETA-404</h3>
+                <p>Status: <span style="color: red;">ALERTA</span></p>
+                <p>Observação: Baixa bateria detectada às 19:30.</p>
+            </article>
+        </section>
+
+        <section id="logs">
+            <h2>Eventos Recentes</h2>
+            <p>Aguardando fluxo JSON do Nexus...</p>
+        </section>
+
+    </main>
+
+    <!-- 4. Footer: Rodapé com metadados e status de conexão -->
+    <footer>
+        <hr>
+        <p>&copy; 2026 LogiSpeed Global. Sistema Nexus validado. Integridade: 100%.</p>
+        <p>Status Cloud: <small>us-east-1 | Healthy</small></p>
+    </footer>
+
+</body>
+</html>

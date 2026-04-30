@@ -1,0 +1,30 @@
+# 📘 Atividade 14: Filtros de Elite (Busca Avançada no Log)
+STATUS: Nível 14 (Explorador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+O histórico do Alpha-707 agora tem dezenas de commits. O Comandante Nexus pergunta: "Quando foi que o Engenheiro X trabalhou no módulo de radar na semana passada?". Procurar manualmente no `git log` é ineficiente. Você aprenderá a usar filtros poderosos para interrogar o histórico do Git como um detetive de dados.
+
+## 🛠️ Necessidade Técnica
+O `git log` não serve apenas para listar commits; ele é um motor de busca robusto para o seu histórico.
+
+### Comandos Chave:
+1.  **`git log --author="Nome"`**: Filtra commits por autor.
+2.  **`git log --grep="radar"`**: Filtra commits cuja mensagem contenha a palavra-chave.
+3.  **`git log --since="2 days ago"`**: Filtra por período de tempo.
+4.  **`git log -S "velocidade"`**: (Pickaxe) Filtra commits que adicionaram ou removeram a palavra "velocidade" dentro do código (muito poderoso!).
+5.  **`git log -- <arquivo>`**: Mostra apenas o histórico de um arquivo específico.
+
+## 🚀 Missão
+1.  Na pasta `labs/nexus-drone-system`, garanta que você tenha vários commits com mensagens diferentes (ex: "feat: sensor", "fix: radar", "docs: manual").
+2.  Busque apenas commits que falem sobre "radar": `git log --grep="radar"`.
+3.  Busque commits feitos hoje: `git log --since="today"`.
+4.  O Desafio Pickaxe: Adicione a palavra "NEXUS-7" em um arquivo e commite. Depois, busque por essa string no histórico: `git log -S "NEXUS-7"`.
+5.  Combine filtros: `git log --author="Seu Nome" --grep="feat"`.
+
+## 📋 Requisitos de Elite
+- Dominar a filtragem por autor e mensagem.
+- Utilizar o filtro temporal para auditorias rápidas.
+- Entender o poder do comando Pickaxe (`-S`) para encontrar mudanças no conteúdo.
+
+------------------------------------------------------------------------------
+"O histórico do Git é um banco de dados; aprenda a fazer as queries certas."

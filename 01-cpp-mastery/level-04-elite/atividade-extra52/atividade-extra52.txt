@@ -1,0 +1,19 @@
+# 📘 Atividade Extra 52: Sobrecarga de Operadores (Comparação de Precisão)
+STATUS: Padrão de Engenharia de Elite Aplicado
+
+## 🎯 Estudo de Caso
+A "SmartMatrix" precisa agora comparar as leituras de diferentes sensores para identificar qual motor está operando com maior eficiência. Além disso, eles precisam somar leituras para calcular a carga total em uma tubulação. Em vez de usar métodos longos como `sensor1.compararCom(sensor2)`, eles querem usar a sintaxe natural do C++ (`sensor1 > sensor2`).
+
+## 🛠️ Necessidade Técnica
+A **Sobrecarga de Operadores (Operator Overloading)** permite que as classes que criamos respondam a operadores padrão.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL DESIGN DE LINGUAGEM)
+- RISCO DE SEMÂNTICA INCOERENTE: Sobregar o operador `+` para realizar uma subtração ou uma ação não intuitiva confunde outros desenvolvedores e gera bugs lógicos de difícil rastreio.
+- RISCO DE TEMPORARY BLOAT: Operadores como `+` que retornam objetos por valor (`return Medicao(...)`) criam objetos temporários na Stack. Em loops de alta frequência, isso pode causar pressão desnecessária na memória se não houver otimização do compilador (RVO).
+- RISCO DE INCOMPATIBILIDADE DE UNIDADES: Tentar somar grandezas físicas diferentes (ex: Pressão + Temperatura) via operador `+` deve ser bloqueado por exceções, ou o sistema gerará um valor fisicamente impossível ("Ghost Data").
+
+## 📋 Requisitos de Elite
+1. Implementar `operator+`, `operator<` e `operator==` com validação de tipo de unidade.
+2. Sobregar `operator<<` (Friend function) para renderização direta via `std::cout`.
+3. Garantir o uso de referências constantes nos parâmetros para performance (Fantasma do CPU).
+4. Interface ANSI para telemetria de precisão de sensores.

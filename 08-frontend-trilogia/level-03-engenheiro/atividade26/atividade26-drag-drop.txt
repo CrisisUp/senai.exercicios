@@ -1,0 +1,28 @@
+# 📘 Atividade 26: Logística Visual (Mastering Drag and Drop API)
+STATUS: Nível 26 (Engenheiro) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+Na central de distribuição da "LogiSpeed Global", o despacho de cargas é feito de forma visual. O operador deve arrastar os pacotes de telemetria pendentes para o hangar de destino correto. No Nível 25, localizamos o terminal; agora, manipularemos os ativos. Usaremos a **Drag and Drop API** nativa para criar uma experiência fluida de "arrastar e soltar", garantindo que a lógica de inventário seja atualizada automaticamente no momento do "Drop".
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** O atributo **`draggable="true"`**. Ele sinaliza ao navegador que um elemento pode ser movido fisicamente.
+2. **CSS (Estética):** Pseudo-classes de arraste e o seletor de alvo (`drag-over`). Aprenderemos a destacar visualmente o hangar quando uma carga estiver "pairando" sobre ele.
+3. **JS (Atitude):** 
+   - **`dragstart`**: O momento em que a carga é levantada (captura de dados).
+   - **`dragover`**: O controle do terreno (prevenir o comportamento padrão para permitir o drop).
+   - **`drop`**: A confluência final onde o dado é processado e o elemento é movido no DOM.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **EVENT BUBBLING:** Arrastar um item e o navegador tentar abrir o link ou imagem. Aprenderemos a usar `preventDefault()` de forma cirúrgica.
+- **DATA LOSS:** Perder qual item foi arrastado. Usaremos o objeto `dataTransfer` para "carimbar" o ID da carga no ponteiro do mouse.
+- **UI GHOSTING:** O item arrastado sumir ou ficar preso no meio da tela. O gerenciamento correto dos estados de drag garante a limpeza da interface.
+
+## 📋 Requisitos de Elite
+1. Criar 3 cargas (`DRONE-PACKAGE`) arrastáveis.
+2. Implementar 2 zonas de destino: "HANGR-01" e "HANGR-02".
+3. Utilizar o `dataTransfer` para passar o ID do elemento entre as fases do arraste.
+4. Interface ANSI (visual) com mudança de cor do hangar ao receber uma carga.
+
+------------------------------------------------------------------------------
+"Em logística digital, o movimento do mouse deve refletir o deslocamento da carga no mundo real."

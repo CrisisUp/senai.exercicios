@@ -1,0 +1,9 @@
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/05-integration-sa10/SA-06-Upgrade-Total/rust_orchestrator/target/debug/deps/iana_time_zone-668bf83f373ced9b.d: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iana-time-zone-0.1.65/src/lib.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iana-time-zone-0.1.65/src/ffi_utils.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iana-time-zone-0.1.65/src/tz_darwin.rs
+
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/05-integration-sa10/SA-06-Upgrade-Total/rust_orchestrator/target/debug/deps/libiana_time_zone-668bf83f373ced9b.rlib: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iana-time-zone-0.1.65/src/lib.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iana-time-zone-0.1.65/src/ffi_utils.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iana-time-zone-0.1.65/src/tz_darwin.rs
+
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/05-integration-sa10/SA-06-Upgrade-Total/rust_orchestrator/target/debug/deps/libiana_time_zone-668bf83f373ced9b.rmeta: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iana-time-zone-0.1.65/src/lib.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iana-time-zone-0.1.65/src/ffi_utils.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iana-time-zone-0.1.65/src/tz_darwin.rs
+
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iana-time-zone-0.1.65/src/lib.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iana-time-zone-0.1.65/src/ffi_utils.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/iana-time-zone-0.1.65/src/tz_darwin.rs:

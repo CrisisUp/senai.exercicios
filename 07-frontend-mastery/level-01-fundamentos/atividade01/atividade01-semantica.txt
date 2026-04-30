@@ -1,0 +1,25 @@
+# 📘 Atividade 01: A Anatomia da Página (HTML5 Semântico)
+STATUS: Nível 01 (Iniciado Frontend) - Pilar de Fundamentos
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" precisa que seu painel de controle seja acessível a partir de qualquer dispositivo, incluindo terminais industriais e leitores de tela para operadores com deficiência visual. Se usarmos apenas `<div>` para tudo, o navegador não entenderá o que é o menu, o que é o alerta e o que é o conteúdo principal.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos **HTML5 Semântico**.
+1. **Tags Estruturais:** `<header>`, `<nav>`, `<main>`, `<aside>`, `<footer>`.
+2. **Meta-Tags:** Configuração correta de caracteres (UTF-8) e Viewport (Responsividade Base).
+3. **Hierarchy Headings:** Uso correto de `<h1>` até `<h6>` para definir a importância da informação.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (SEMÂNTICA E ACESSIBILIDADE)
+- **DIV-ITIS:** O uso excessivo de `<div>` torna o código impossível de ler por robôs de busca (Google) e assistentes de voz. 
+- **SEO NEGATIVO:** Sem uma estrutura semântica, o sistema da LogiSpeed não seria indexado corretamente em redes internas ou públicas.
+- **POOR UX:** Sem a tag `<nav>`, um usuário navegando via teclado teria dificuldade em pular diretamente para os controles do drone.
+
+## 📋 Requisitos de Elite
+1. Criar um arquivo `index.html` com a estrutura mestre do Dashboard.
+2. Implementar uma área de telemetria usando `<section>` e `<article>`.
+3. Criar uma barra lateral de navegação usando `<aside>` e `<nav>`.
+4. Validar o documento quanto à semântica (títulos hierárquicos).
+
+------------------------------------------------------------------------------
+"Um código frontend de elite começa com um documento que faz sentido mesmo sem cores."

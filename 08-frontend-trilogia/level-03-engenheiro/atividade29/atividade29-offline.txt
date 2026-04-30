@@ -1,0 +1,28 @@
+# 📘 Atividade 29: Sobrevivência Digital (Service Workers e Modo Offline)
+STATUS: Nível 29 (Engenheiro) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+Drones da "LogiSpeed Global" frequentemente voam sobre desertos ou oceanos onde o sinal de satélite é intermitente. O operador no terminal de campo não pode ser impedido de trabalhar apenas porque o Wi-Fi caiu. Usaremos **Service Workers** para salvar os arquivos do dashboard no disco local e a **Cache API** para garantir que a interface abra instantaneamente, com ou sem internet.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Indicadores de status de rede (Online/Offline) e áreas de dados cacheados.
+2. **CSS (Estética):** Filtros de desaturação (Grayscale) para sinalizar visualmente quando o sistema está operando em modo offline.
+3. **JS (Atitude):** 
+   - **`navigator.serviceWorker`**: Registro do trabalhador de segundo plano.
+   - **`Cache API`**: Armazenamento de arquivos estáticos (HTML/CSS/JS).
+   - **Eventos `online` e `offline`**: Detecção automática de mudanças na conectividade do dispositivo.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **DINOSSAURO DO CHROME:** O operador tenta abrir o dashboard sem rede e vê a mensagem de erro do navegador. Service Workers eliminam essa falha, servindo o app do cache.
+- **OUT OF SYNC CACHE:** O desenvolvedor atualiza o código mas o operador continua vendo a versão antiga. Aprenderemos a gerenciar o ciclo de vida e a atualização do Worker.
+- **SILENT SYNC FAILURE:** Tentar enviar dados sem rede. Aprenderemos a detectar o estado `navigator.onLine` antes de disparar requisições.
+
+## 📋 Requisitos de Elite
+1. Registrar um Service Worker (`sw.js`) no boot da aplicação.
+2. Implementar a estratégia de "Cache First" para os ativos essenciais.
+3. Detectar a perda de internet e aplicar um filtro P&B (Grayscale) no dashboard automaticamente.
+4. Interface ANSI (visual) com barra de status "OFFLINE STORAGE: VALIDATED".
+
+------------------------------------------------------------------------------
+"Um engenheiro de elite constrói sistemas que não pedem desculpas pela rede; eles se adaptam a ela."

@@ -1,0 +1,171 @@
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #0b0e14;
+    border-radius: 12px;
+    border: 1px solid #1f2937;
+}
+
+.header h1 {
+    color: #3b82f6;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    color: #9ca3af;
+    margin-bottom: 2rem;
+}
+
+.dashboard {
+    background: #111827;
+    border: 1px solid #374151;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.connectionInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+}
+
+.statusChip, .latencyChip {
+    background: #0d1117;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #1f2937;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.open { color: #10b981; font-weight: bold; }
+.connecting { color: #fbbf24; font-weight: bold; }
+.closed { color: #ef4444; font-weight: bold; }
+
+.pulse {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse-anim 1.5s infinite;
+}
+
+@keyframes pulse-anim {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.streamConsole {
+    background: #000;
+    border: 1px solid #10b981;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.consoleHeader {
+    background: #10b981;
+    color: #000;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0.25rem 0.75rem;
+}
+
+.messageList {
+    height: 250px;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+.emptyMsg {
+    color: #374151;
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.messageRow {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.msgTime { color: #4b5563; }
+.msgType { font-weight: bold; }
+.msgIn { color: #10b981; }
+.msgOut { color: #60a5fa; }
+
+.commandLine {
+    display: flex;
+    gap: 1rem;
+}
+
+.commandLine input {
+    flex: 1;
+    background: #0d1117;
+    border: 1px solid #374151;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.commandLine input:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+.commandLine button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.commandLine button[type="submit"] {
+    background: #3b82f6;
+    color: white;
+}
+
+.commandLine button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btnReconnect {
+    background: #1f2937;
+    color: #9ca3af;
+}
+
+.theoryBox {
+    background: rgba(59, 130, 246, 0.05);
+    border: 1px dashed #3b82f6;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.theoryBox h4 {
+    color: #3b82f6;
+    margin-top: 0;
+}
+
+.theoryBox p {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}

@@ -1,0 +1,41 @@
+## 🛠️ Necessidade Técnica
+Implementação de padrões de engenharia de elite para garantir escalabilidade e robustez.
+
+## 🎯 Estudo de Caso
+Análise técnica do cenário de negócio para o componente atividade-extra29.txt.
+
+DESAFIO INTEGRADOR: PLATAFORMA DE TRADING "G-CRYPTO" v2.0
+------------------------------------------------------------------------------
+DOMÍNIO: Fintech / Blockchain / Criptoativos
+ATIVIDADE: Extra 29 (DESAFIO DE ELITE)
+CONCEITO NOVO: Class Templates, std::map, STL, Exceções e Precisão.
+STATUS: Padrão de Engenharia de Elite Aplicado
+
+1. O CENÁRIO
+A "G-Crypto" é uma corretora de ativos digitais que precisa processar milhares 
+de ordens de compra e venda por segundo. O sistema deve ser capaz de buscar 
+o preço atual de um par (ex: BTC/BRL) instantaneamente e gerenciar a carteira 
+dos usuários de forma genérica.
+
+2. A MISSÃO TÉCNICA
+Este projeto é a prova final do nível 31+. Você integrará:
+- TEMPLATE DE CLASSE: Abstração total do tipo de ativo operado.
+- STL MAP: Indexação logarítmica para Order Book e Balance Control.
+- TRATAMENTO DE ERROS: Proteção transacional completa (All-or-Nothing).
+
+3. 🧪 ## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ENGENHARIA FINANCEIRA)
+- RISCO DE IMPRECISÃO BINÁRIA: O uso de 'double' para saldos fiat (BRL) em 
+  corretoras causa imprecisões no fechamento do dia (ex: 0.1+0.1+0.1 != 0.3). 
+  Solução: Guardião Financeiro (Centavos Inteiros).
+- RISCO DE ITERATOR INVALIDATION: Se o mercado for atualizado (remoção de ativo) 
+  enquanto um dashboard de usuário está sendo impresso, o sistema sofrerá Crash.
+- RISCO DE "DUSTY CORNERS": Ativos com quantidades ínfimas (ex: 0.00000001 BTC) 
+  podem se perder em conversões de tipo se o template não suportar precisão 
+  arbitrária.
+
+4. REQUISITOS DO SISTEMA
+- Motor de Câmbio Genérico (Templates).
+- Indexação de Ativos via Árvores Binárias (std::map).
+- Guardião Financeiro para saldo BRL.
+- Interface de Telemetria Financeira ANSI.
+------------------------------------------------------------------------------

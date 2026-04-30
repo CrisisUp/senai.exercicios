@@ -1,0 +1,38 @@
+# 📘 Atividade 08: O Poder da Composição (Relacionamento "Tem-Um")
+STATUS: Nível 08 (Escultor) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+Um drone de elite não é um bloco único de metal; ele é um conjunto de sistemas especializados. Na "SkyCargo Nexus", decidimos que o código do **Sensor de GPS** deve ser isolado do código do **Corpo do Drone**. Você aprenderá a usar a **Composição**, onde uma classe "tem um" objeto de outra classe como seu atributo. Isso permite que você troque ou melhore peças do drone sem precisar reescrever o drone inteiro.
+
+## 🛠️ Necessidade Técnica
+A Composição estabelece uma relação de dependência forte entre objetos. Se o `Drone` for destruído, seus componentes (como o `Sensor`) também serão.
+
+### Exemplo (C++):
+```cpp
+class Sensor {
+public:
+    void lerDados() { cout << "Lendo coordenadas..." << endl; }
+};
+
+class Drone {
+private:
+    Sensor gps; // Drone TEM UM Sensor
+public:
+    void navegar() { gps.lerDados(); }
+};
+```
+
+## 🚀 Missão
+1.  Crie a classe `Sensor` com um método `obterTemperatura()`.
+2.  Na classe `Drone`, adicione um atributo privado do tipo `Sensor`.
+3.  No construtor do `Drone`, inicialize os dados básicos.
+4.  Crie um método no `Drone` chamado `checarSistemas()` que internamente chame o `obterTemperatura()` do seu objeto sensor.
+5.  No `main()`, instancie o drone e execute a checagem.
+
+## 📋 Requisitos de Elite
+- Provar a interação entre dois objetos distintos (Drone e Sensor).
+- Manter o sensor como um membro privado do drone (encapsulamento de componentes).
+- Compreender que a complexidade do sensor está escondida dentro do drone.
+
+------------------------------------------------------------------------------
+"Engenharia de elite é sobre montar o complexo a partir do simples e modular."

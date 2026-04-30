@@ -1,0 +1,26 @@
+# 📘 Atividade 05: Tipagem no Frontend (A Armadura TypeScript)
+STATUS: Nível 05 (Iniciado Frontend) - Pilar de Fundamentos
+
+## 🎯 Estudo de Caso
+No SkyCargo Control Tower, os dados de telemetria (altitude, velocidade, bateria) vêm de diferentes fontes (C++, Rust, SQL). Se tentarmos exibir a velocidade de um drone que o sistema ainda não carregou, o JavaScript comum causaria um erro silencioso ou exibiria "NaN". Precisamos garantir que cada bit de dado na tela seja tipado e validado.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o **TypeScript (TS)** como compilador.
+1. **tsconfig.json:** Definiremos as regras rigorosas (`strict: true`).
+2. **Interfaces e Types:** Criaremos contratos de dados para a Telemetria.
+3. **Static Analysis:** O compilador nos impedirá de cometer erros lógicos durante o desenvolvimento.
+4. **Targeting:** Configuraremos a saída para JavaScript moderno (ESNext).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (RUNTIME ERRORS)
+- **UNDEFINED IS NOT A FUNCTION:** O bug nº 1 da web. O TypeScript detecta se você está tentando acessar uma propriedade de um objeto que pode ser nulo.
+- **TYPE COERCION:** JavaScript tenta somar strings e números ("10" + 5 = "105"). No nível Elite, isso é inaceitável. O TS força a conversão explícita.
+- **REFACTORING RISK:** Mudar o nome de um campo no Rust (ex: `drone_id` para `id_veiculo`) sem TypeScript exigiria busca manual em todos os arquivos de tela. Com TS, o compilador aponta todos os erros instantaneamente.
+
+## 📋 Requisitos de Elite
+1. Configurar o arquivo `tsconfig.json` com o padrão de rigor máximo.
+2. Definir a `interface IDroneTelemetria` com campos obrigatórios e opcionais.
+3. Criar uma função de renderização tipada que simula a atualização do dashboard.
+4. Interface ANSI (no terminal de compilação) provando que o código foi "blindado".
+
+------------------------------------------------------------------------------
+"Em um sistema de elite, a interface é o espelho exato do contrato de dados."

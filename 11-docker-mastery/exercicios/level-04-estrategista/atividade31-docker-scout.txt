@@ -1,0 +1,29 @@
+# 📘 Atividade 31: Radar de Vulnerabilidades (Docker Scout)
+STATUS: Nível 31 (Estrategista) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+O Nexus OS foi publicado no Docker Hub (Atividade 20). No entanto, o Comandante Nexus está preocupado: "Como sabemos se as bibliotecas que usamos dentro da imagem não têm brechas de segurança?". Um Estrategista de Elite não confia cega nas imagens; ele as audita. Você aprenderá a usar o **Docker Scout**, o radar de defesa que identifica vulnerabilidades (CVEs) e sugere correções antes que um invasor as explore.
+
+## 🛠️ Necessidade Técnica
+O `docker scout` analisa o índice de pacotes (SBOM - Software Bill of Materials) de uma imagem e o compara com bases de dados de vulnerabilidades mundiais.
+
+### Comandos Chave:
+1.  **`docker scout quickview <imagem>`**: Resumo rápido da saúde da imagem.
+2.  **`docker scout cves <imagem>`**: Lista detalhada de vulnerabilidades encontradas.
+3.  **`docker scout recommendations <imagem>`**: Sugestões de imagens base mais seguras.
+
+## 🚀 Missão
+1.  Escolha uma imagem para auditoria (pode ser a sua ou uma oficial como `node:14` - que costuma ter muitas falhas antigas).
+2.  Rode a visão rápida: `docker scout quickview node:14`.
+3.  Observe o relatório: quantas vulnerabilidades "Critical" ou "High" foram encontradas?
+4.  Veja os detalhes das falhas: `docker scout cves node:14`.
+5.  **A Redenção:** Compare com uma imagem moderna e enxuta: `docker scout quickview node:alpine`. 
+6.  Note como a superfície de ataque diminui drasticamente ao mudar a imagem base.
+
+## 📋 Requisitos de Elite
+- Integrar a auditoria de segurança no fluxo de publicação de imagens.
+- Saber interpretar o nível de criticidade das vulnerabilidades.
+- Escolher imagens base com o menor número possível de vulnerabilidades conhecidas.
+
+------------------------------------------------------------------------------
+"O radar não impede o ataque; ele dá ao engenheiro o tempo necessário para reforçar a blindagem."

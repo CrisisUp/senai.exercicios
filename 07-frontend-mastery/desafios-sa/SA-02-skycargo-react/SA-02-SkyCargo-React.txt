@@ -1,0 +1,38 @@
+# 🏆 SA-02: Desafio Integrador - SkyCargo React Engine (O Ápice Visual)
+STATUS: Nível 20 (Arquiteto de Interfaces) - Pilar de Maestria React
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" exige que o Control Tower seja migrado para React para suportar a expansão da frota para 10.000 drones. O dashboard Vanilla (SA-01) cumpriu seu papel, mas a manutenção do DOM manual tornou-se um risco operacional. O novo **SkyCargo React Engine** deve ser modular, performante e possuir um estado global de comando blindado pelo TypeScript.
+
+## 🛠️ Necessidade Técnica (A Unificação de Hooks)
+Você deve construir a interface definitiva utilizando a arquitetura de componentes do React:
+
+1. **Gestão Global (Context API):**
+   - Implementar o `MissionContext` para gerenciar o estado global da missão (Drones Ativos, Alertas, Nível de Acesso).
+   - Prover o `ThemeContext` para suportar a troca de pele do sistema (Ativ 15).
+
+2. **Componentização e Reatividade (useState & Props):**
+   - Criar componentes moleculares como `DroneRadar`, `TelemetryCard` e `CommandPanel`.
+   - Utilizar Props rigorosas para o fluxo de dados (Ativ 10, 11, 12).
+
+3. **Automação e Efeitos (useEffect):**
+   - Implementar a sincronização automática com o "Nexus Vault" (simulado) assim que o painel for ligado.
+   - Gerenciar o cleanup de conexões e timers (Ativ 13).
+
+4. **Otimização de Elite (useMemo & useCallback):**
+   - Proteger cálculos de rota e renderização de listas massivas contra re-renders desnecessários.
+   - Garantir a fluidez de 60 FPS no dashboard (Ativ 14, 16).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (SCALABILITY & INTEGRITY)
+- **COMPONENT COUPLING:** Se os componentes dependerem uns dos outros via Props excessivas, a refatoração será impossível. Usaremos o Context para "atalhar" dados globais.
+- **STATE DESYNC:** Se o estado local do Card divergir do estado global da Missão, o operador tomará decisões erradas. O Context será a SSOT (Single Source of Truth).
+- **MEMORY LEAK:** Em missões de longa duração, timers não limpos travarão o navegador do terminal industrial. O rigor no `useEffect` é vital.
+
+## 📋 Requisitos de Elite
+1. Dashboard React completo, funcional e responsivo.
+2. Lista dinâmica de drones com reconciliação via chaves estáveis (IDs reais).
+3. Botão de "Troca de Tema" que afeta todos os sub-componentes via Context.
+4. Uso comprovado de memoização em ao menos um cálculo ou componente pesado.
+
+------------------------------------------------------------------------------
+"A verdadeira engenharia de software não é sobre fazer a tela aparecer; é sobre garantir que ela nunca desapareça."

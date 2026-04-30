@@ -1,0 +1,28 @@
+# 📘 Atividade 08: A Fusão de Mundos (Merging)
+STATUS: Nível 08 (Recruta/Explorador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+O módulo de radar que você desenvolveu na branch `feature-radar` foi aprovado nos simuladores. Agora, é hora de integrar essa tecnologia ao sistema principal do drone (`main`). Você aprenderá a fazer o **Merge**, trazendo as mudanças de uma branch para a outra.
+
+## 🛠️ Necessidade Técnica
+O merge combina o histórico de duas branches. O Git procura o ancestral comum e aplica as mudanças de forma inteligente.
+
+### Comandos Chave:
+1.  **`git merge <nome-da-branch>`**: Traz as mudanças da branch especificada para a branch onde você está **atualmente**.
+2.  **`git branch -d <nome>`**: Deleta a branch após o uso (limpeza de hangar).
+
+## 🚀 Missão
+1.  Garanta que você está na branch principal: `git switch main`.
+2.  Rode o comando de fusão: `git merge feature-radar`.
+3.  Rode `ls`. O arquivo `radar.txt` agora aparece na `main`!
+4.  Veja o histórico integrado: `git log --oneline --graph`.
+5.  Como a funcionalidade já foi integrada, delete a branch de trabalho: `git branch -d feature-radar`.
+6.  Tente listar as branches: `git branch`. A `feature-radar` não deve mais existir.
+
+## 📋 Requisitos de Elite
+- Realizar o merge sem conflitos (Fast-forward ou Recursive).
+- Limpar o ambiente após a integração.
+- Verificar o histórico com `--graph` para visualizar o ponto de união.
+
+------------------------------------------------------------------------------
+"Um merge bem-sucedido é a celebração de uma nova funcionalidade que se torna realidade."

@@ -1,0 +1,46 @@
+# 📘 Atividade 23: O Bunker de Dados (Compose Volumes)
+STATUS: Nível 23 (Orquestrador) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Sua orquestra Nexus está crescendo, mas falta a persistência. Se você derrubar o `docker-compose down`, o banco de dados `nexus-db` perde tudo. Você aprenderá a declarar **Volumes** diretamente no arquivo Compose, garantindo que a memória do sistema seja independente do ciclo de vida dos containers.
+
+## 🛠️ Necessidade Técnica
+No Docker Compose, declaramos volumes na raiz do arquivo e os associamos aos serviços. Isso cria volumes gerenciados que são resilientes a resets de infraestrutura.
+
+### Estrutura YAML:
+- **`volumes:`**: (Raiz) Declaração dos volumes globais.
+- **`services.<nome>.volumes:`**: Mapeamento `nome-volume:/caminho/no/container`.
+
+## 🚀 Missão
+1.  Atualize seu `docker-compose.yml` para incluir persistência:
+    ```yaml
+    version: '3.8'
+    services:
+      nexus-db:
+        image: mariadb:latest
+        environment:
+          MARIADB_ROOT_PASSWORD: nexus_secret
+        volumes:
+          - db-data:/var/lib/mysql
+        networks:
+          - backend
+
+    networks:
+      backend:
+
+    volumes:
+      db-data:
+    ```
+2.  Sobe o banco: `docker-compose up -d`.
+3.  Simule o uso: Entre no banco e crie um dado fictício ou apenas deixe-o iniciar.
+4.  **O Teste do Caos:** Rode `docker-compose down`. A rede sumiu, o container sumiu.
+5.  **A Redenção:** Rode `docker-compose up -d` novamente.
+6.  Verifique os logs: Você verá que o MariaDB reconhece que os arquivos de dados já existem e não precisa de uma nova instalação. Seus dados sobreviveram ao apocalipse.
+
+## 📋 Requisitos de Elite
+- Declarar volumes nomeados para serviços de estado (databases).
+- Compreender que `docker-compose down` remove containers mas preserva volumes (a menos que use a flag `-v`).
+- Centralizar a gestão de persistência em um único arquivo de configuração.
+
+------------------------------------------------------------------------------
+"No Compose, o software é volátil, mas o volume é a rocha sobre a qual o Nexus descansa."

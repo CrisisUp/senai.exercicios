@@ -1,0 +1,1 @@
+/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/SA-06-fabrica-automata: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/exercicios/SA-06-fabrica-automata/build.rs /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/exercicios/SA-06-fabrica-automata/src/main.rs

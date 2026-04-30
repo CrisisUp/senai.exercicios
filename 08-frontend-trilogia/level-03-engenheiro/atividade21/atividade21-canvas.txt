@@ -1,0 +1,28 @@
+# 📘 Atividade 21: Gráficos Táticos (Introdução ao HTML5 Canvas)
+STATUS: Nível 21 (Engenheiro) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A central de comando da "LogiSpeed Global" em Tóquio precisa de um monitor de radar que mostre a posição dos drones em um plano cartesiano real. Usar elementos HTML (`<div>`) para representar milhares de pontos causaria um gargalo de performance no DOM. Usaremos o **HTML5 Canvas**, um "quadro negro" de pixels onde desenharemos diretamente via GPU, garantindo fluidez total na visualização tática.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** A tag `<canvas>`. Diferente de outras tags, ela é apenas um container de pixels que exige o JavaScript para ganhar vida.
+2. **CSS (Estética):** Controle de **Aspect Ratio** (proporção) e bordas luminescentes para simular telas de radar CRT.
+3. **JS (Atitude):** 
+   - **`getContext('2d')`**: A "mira" que nos permite desenhar no canvas.
+   - **Sistema de Coordenadas**: Entender o plano (0,0) no canto superior esquerdo.
+   - **Drawing Shapes**: Desenhar retângulos (`fillRect`), arcos (`arc`) e caminhos (`stroke`).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **BLURRY GRAPHICS:** Desenhar em um canvas sem ajustar o `width/height` interno via JS (causando esticamento via CSS). Aprenderemos a sincronizar a resolução lógica com a visual.
+- **COORDINATE CONFUSION:** Inverter o eixo Y ou errar o cálculo de radianos em arcos. Engenharia exige precisão matemática no desenho.
+- **NON-REACTIVE CANVAS:** O canvas não limpa o desenho anterior antes de fazer o novo, gerando um rastro de "borrão". Aprenderemos o ciclo `clear -> draw`.
+
+## 📋 Requisitos de Elite
+1. Criar um `<canvas>` circular de 400px.
+2. Desenhar a grade do radar (Círculos concêntricos e eixos).
+3. Desenhar um "Ponto de Drone" em uma coordenada (X,Y) calculada.
+4. Interface ANSI (visual) simulando o monitor de radar de Tóquio.
+
+------------------------------------------------------------------------------
+"O DOM é para documentos; o Canvas é para a realidade em pixels."

@@ -1,0 +1,25 @@
+# 📘 Atividade 12: O Grande Reset (Git Reset --soft, --mixed, --hard)
+STATUS: Nível 12 (Explorador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Um erro grave foi cometido! O Comandante Nexus percebeu que os últimos três commits na branch `main` contêm coordenadas de voo erradas que podem derrubar os drones. Você precisa "desfazer" esses commits. Mas como? Você quer apenas mudar a mensagem? Quer manter o código mas tirar do histórico? Ou quer apagar tudo como se nunca tivesse existido? Você aprenderá os três níveis de força do comando **Reset**.
+
+## 🛠️ Necessidade Técnica
+O `git reset` move o ponteiro da branch atual para um commit anterior. A diferença crucial está em como ele trata seus arquivos atuais:
+1.  **`--soft`**: Move o histórico, mas mantém suas mudanças no **Stage** (prontas para novo commit).
+2.  **`--mixed` (Padrão)**: Move o histórico, mantém as mudanças no **Working Directory**, mas tira do Stage.
+3.  **`--hard`**: Apaga tudo. Seu código volta EXATAMENTE ao estado do commit alvo. **Cuidado: Destrutivo!**
+
+## 🚀 Missão
+1.  Na pasta `labs/nexus-drone-system`, crie um commit de teste: `echo "lixo" > erro.txt`, adicione e commite.
+2.  **Nível 1 (Soft):** Rode `git reset --soft HEAD~1`. Rode `git status`. O arquivo `erro.txt` ainda está lá, verdinho (no Stage).
+3.  **Nível 2 (Mixed):** Rode `git reset HEAD~1` (sem flags). Rode `git status`. O arquivo está lá, mas vermelho (Untracked).
+4.  **Nível 3 (Hard):** Rode `git reset --hard HEAD~1`. Rode `ls`. O arquivo sumiu! O histórico foi limpo e o arquivo apagado.
+
+## 📋 Requisitos de Elite
+- Entender a diferença entre os três modos de reset.
+- Usar `HEAD~1` para se referir ao commit anterior ao atual.
+- Compreender o perigo do `--hard` em ambientes colaborativos.
+
+------------------------------------------------------------------------------
+"O reset é a borracha do engenheiro; use com precisão, não com fúria."

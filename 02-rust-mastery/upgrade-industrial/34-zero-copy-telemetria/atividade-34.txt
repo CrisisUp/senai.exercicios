@@ -1,0 +1,25 @@
+# 📘 Atividade 34: Zero-Copy Deserialization (Rust Elite)
+STATUS: Nível 32 (Engenheiro de Elite) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+Os drones da "LogiSpeed" enviam pacotes JSON ou Binários de 1KB. Se o sistema recebe 10.000 pacotes por segundo e cada um for "deserializado" em uma nova `String` ou `Struct` com cópia, o GC (ou o gerenciador de memória) terá que limpar 10MB/s de lixo. Isso causa pausas no sistema.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o poder das **Lifetimes (`'a`)** do Rust para realizar **Zero-Copy Deserialization**.
+1. **Borrowing do Buffer:** A struct de telemetria não "possui" os dados; ela apenas "aponta" para o buffer original que veio da rede.
+2. **Serde com Borrowing:** Configuraremos o `serde` para preencher referências (`&str`) em vez de alocar novas `Strings`.
+3. **Performance:** O custo de processar o pacote se torna quase zero (apenas validação de ponteiros).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (SEGURANÇA DE MEMÓRIA)
+- **DANGLING REFERENCE:** Em C++, se o buffer original for deletado enquanto a struct aponta para ele, o sistema crasha. No Rust, o **Borrow Checker** impede a compilação se tentarmos liberar o buffer antes de terminar de usar a struct.
+- **UTF-8 VALIDATION:** O Rust garante que as referências de string no buffer sejam UTF-8 válidas durante a deserialização, evitando corrompimento de dados.
+- **OVERHEAD DE ALOCAÇÃO:** Eliminamos completamente as chamadas ao `alloc` e `free` durante o processamento de pacotes, garantindo latência constante.
+
+## 📋 Requisitos de Elite
+1. Implementar `Struct Telemetria<'a>` com referências.
+2. Usar `serde_json` com o atributo `#[serde(borrow)]`.
+3. Demonstrar que a telemetria aponta para o endereço de memória do buffer original.
+4. Interface ANSI para monitoramento de economia de memória.
+
+------------------------------------------------------------------------------
+"Em Rust, a memória é como uma biblioteca: você pode ler os livros, mas deve devolvê-los antes que o prédio feche."

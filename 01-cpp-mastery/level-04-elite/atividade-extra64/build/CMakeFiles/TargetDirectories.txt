@@ -1,0 +1,3 @@
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/01-cpp-mastery/level-04-elite/atividade-extra64/build/CMakeFiles/ativ64_concepts.dir
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/01-cpp-mastery/level-04-elite/atividade-extra64/build/CMakeFiles/edit_cache.dir
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/01-cpp-mastery/level-04-elite/atividade-extra64/build/CMakeFiles/rebuild_cache.dir

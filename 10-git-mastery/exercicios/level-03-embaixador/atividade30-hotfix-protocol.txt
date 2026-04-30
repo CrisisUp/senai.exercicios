@@ -1,0 +1,32 @@
+# 📘 Atividade 30: Protocolo de Emergência (Hotfixes)
+STATUS: Nível 30 (Mestre Embaixador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Um drone Alpha-707 caiu em pleno voo! A causa: um erro crítico no sistema de estabilização que só aparece na branch `main` (produção). Você não pode esperar pela próxima release nem usar o código instável da `develop`. Você aprenderá a usar o **Hotfix**, a única exceção onde criamos uma branch a partir da `main` para uma correção imediata e cirúrgica.
+
+## 🛠️ Necessidade Técnica
+As branches de hotfix (ex: `hotfix/v2.0.1`) nascem da `main`. Após a correção, elas são integradas na `main` (com nova Tag) e também na `develop`.
+
+### Comandos Chave:
+1.  **`git switch -c hotfix/v2.0.1 main`**: Criação da branch de emergência.
+
+## 🚀 Missão
+1.  Na branch `main`, simule um erro: `echo "ERRO_GRAVIDADE" >> manifesto.txt`. Commite (fingindo ser o bug).
+2.  Inicie o reparo: `git switch -c hotfix/v2.0.1 main`.
+3.  Corrija o erro: Edite `manifesto.txt`, remova a linha de erro e escreva "CORREÇÃO_CRÍTICA_ESTABILIDADE". Commite.
+4.  **Aplicando em Produção:**
+    - Vá para a `main`: `git switch main`.
+    - Faça o merge: `git merge hotfix/v2.0.1`.
+    - Nova versão: `git tag -a v2.0.1 -m "Hotfix: Correção de estabilidade Alpha-707"`.
+5.  **Sincronizando o Desenvolvimento (Crucial!):**
+    - Vá para a `develop`: `git switch develop`.
+    - Faça o merge: `git merge hotfix/v2.0.1`.
+6.  **Limpeza:** `git branch -d hotfix/v2.0.1`.
+
+## 📋 Requisitos de Elite
+- Dominar o protocolo de correção imediata em produção.
+- Garantir que a correção do hotfix seja portada de volta para a branch de desenvolvimento (`develop`).
+- Manter o histórico de tags atualizado com a versão de correção.
+
+------------------------------------------------------------------------------
+"Em tempos de crise, o Hotfix é a armadura do engenheiro."

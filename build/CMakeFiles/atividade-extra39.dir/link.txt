@@ -1,1 +1,0 @@
-/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra39.dir/repositorio-extra/atividade-extra39/atividade-extra39-bfs.cpp.o" -o atividade-extra39

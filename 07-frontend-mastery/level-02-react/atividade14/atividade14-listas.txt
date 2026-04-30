@@ -1,0 +1,26 @@
+# 📘 Atividade 14: Listas e Reconciliação (A Frota Dinâmica)
+STATUS: Nível 16 (Arquiteto de Componentes) - Pilar de React
+
+## 🎯 Estudo de Caso
+O SkyCargo Control Tower agora gerencia uma frota variável. Drones entram e saem de operação a cada minuto. Se usarmos a técnica de "copiar e colar" componentes no código, o sistema será estático e frágil. Precisamos de uma lógica que receba um Array de drones do Nexus Vault e gere a interface automaticamente, mantendo a performance mesmo com grandes volumes.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o motor de renderização de listas do React.
+1. **Array Mapping:** Uso do método `.map()` para transformar dados em componentes visuais.
+2. **Virtual DOM Reconciliation:** Entenderemos como o React compara a lista anterior com a nova.
+3. **The Key Prop:** A importância Vital da `key`. Aprenderemos por que NUNCA usar o índice do array (`index`) como chave em listas dinâmicas.
+4. **State-Driven Lists:** Adicionar e remover itens da lista via estado.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (RECONCILIATION ERRORS)
+- **UNNECESSARY RE-RENDERS:** Sem chaves estáveis, o React reconstrói o DOM de 100 drones mesmo que apenas 1 tenha mudado a altitude.
+- **LOST COMPONENT STATE:** Se a chave mudar incorretamente, o componente "perde a memória" (ex: um input sendo digitado reseta sozinho).
+- **DUPLICATE KEYS:** Usar IDs duplicados confunde o algoritmo de diff do React, causando renderizações fantasmas ou erros visuais bizarros.
+
+## 📋 Requisitos de Elite
+1. Implementar o componente `FleetManager.tsx`.
+2. Criar uma função para adicionar novos drones aleatórios à frota.
+3. Permitir a remoção (decolagem/pouso) de drones específicos da lista.
+4. Interface ANSI (visual) destacando o uso de IDs únicos como chaves de reconciliação.
+
+------------------------------------------------------------------------------
+"Em listas de elite, a Chave (Key) é o passaporte do componente: sem ela, o React não sabe quem ele é."

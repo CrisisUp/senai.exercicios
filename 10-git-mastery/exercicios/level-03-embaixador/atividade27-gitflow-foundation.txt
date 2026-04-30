@@ -1,0 +1,29 @@
+# 📘 Atividade 27: A Arquitetura Gitflow (Main e Develop)
+STATUS: Nível 27 (Embaixador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+A "SkyCargo Nexus" cresceu tanto que o fluxo simples de branches está causando confusão. Para garantir que a branch `main` tenha **apenas** código que está voando nos drones agora, adotaremos o **Gitflow**. Você aprenderá a criar a espinha dorsal deste fluxo: a branch `develop`.
+
+## 🛠️ Necessidade Técnica
+No Gitflow, temos duas branches de vida longa:
+1.  **`main`**: Reflete o estado de produção (código estável).
+2.  **`develop`**: Onde a integração de todas as novas funcionalidades acontece. É o "canteiro de obras".
+
+### Comandos Chave:
+1.  **`git switch -c develop`**: Cria a branch de integração a partir da `main`.
+2.  **`git push origin develop`**: Publica a estrutura no servidor para que todos a usem.
+
+## 🚀 Missão
+1.  Na pasta `nexus-drone-system`, garanta que você está na `main`.
+2.  Crie a branch de integração: `git switch -c develop`.
+3.  Publique-a no servidor central: `git push -u origin develop`.
+4.  Diga ao "Agente 02" (na outra pasta) para rodar `git fetch` e `git switch develop`.
+5.  A partir de agora, **ninguém** commita direto na `main`. Toda a ação começa na `develop`.
+
+## 📋 Requisitos de Elite
+- Estabelecer a branch `develop` como o novo padrão para desenvolvimento.
+- Garantir que a `main` permaneça intocada por commits de funcionalidades individuais.
+- Sincronizar a nova arquitetura com todos os membros da equipe.
+
+------------------------------------------------------------------------------
+"A Main é o altar da produção; a Develop é o laboratório do futuro."

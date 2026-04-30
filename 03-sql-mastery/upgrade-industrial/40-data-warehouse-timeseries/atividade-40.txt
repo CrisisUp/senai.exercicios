@@ -1,0 +1,29 @@
+# 📘 Atividade 40: Data Warehouse e Séries Temporais (BI de Elite)
+STATUS: Nível 60+ (Lead Data Architect) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+A diretoria da "LogiSpeed" precisa de um painel de controle que não mostre apenas a velocidade atual, mas a **Saúde da Frota**. Eles querem saber: 
+1. Qual é a média móvel de consumo de combustível por caminhão?
+2. Existem quedas bruscas de combustível que sugiram roubo (anomalias)?
+3. Qual é o ranking de eficiência dos motoristas nos últimos 7 dias?
+
+## 🛠️ Necessidade Técnica
+Utilizaremos **Window Functions** e **Common Table Expressions (CTEs)**.
+1. **Window Functions (`OVER`):** Realizaremos cálculos sobre um "conjunto deslizante" de linhas (ex: média dos últimos 5 registros) sem precisar de múltiplos `GROUP BY`.
+2. **Análise de Lag (`LAG`):** Compararemos o registro atual com o anterior para calcular a variação (delta) de combustível e distância.
+3. **Métricas de Agregação Temporal:** Consolidaremos milhões de pontos de telemetria em resumos diários de performance.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (INTELIGÊNCIA ANALÍTICA)
+- **RUÍDO NOS DADOS:** Sensores podem falhar e enviar picos irreais. Usaremos médias móveis (Moving Averages) para suavizar as curvas e focar na tendência real.
+- **DETECÇÃO DE ROUBO:** Se o combustível cai 20% em 1 minuto sem o caminhão estar em movimento, o sistema deve disparar um alerta analítico.
+- **PERFORMANCE ANALÍTICA:** Consultas de BI em tabelas gigantes podem travar o banco operacional. Demonstraremos como estruturar a consulta para que o motor SQL seja eficiente.
+
+## 📋 Requisitos de Elite
+1. Criar tabela de `telemetria_historica` com grande massa de dados temporais.
+2. Implementar cálculo de **Média Móvel de Velocidade**.
+3. Detectar **Anomalias de Combustível** comparando o estado atual com o anterior (`LAG`).
+4. Criar um **Ranking de Eficiência** usando a função `RANK()`.
+5. Interface ANSI para relatório gerencial de elite.
+
+------------------------------------------------------------------------------
+"Dados isolados são ruído; dados no tempo são conhecimento; dados com contexto são sabedoria."

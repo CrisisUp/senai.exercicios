@@ -1,0 +1,30 @@
+# 📘 Atividade 10: O Hangar Temporário (Stashing)
+STATUS: Nível 10 (Recruta/Explorador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Você está no meio de uma refatoração complexa no código de navegação do drone Alpha-707 quando o Comandante Nexus entra na sala: "Emergência! Um bug crítico na branch `main` precisa de correção imediata!". Suas mudanças atuais estão incompletas e você não quer commitá-las como "lixo". Você aprenderá a usar o **Stash** para guardar seu trabalho atual em um hangar temporário e limpar sua mesa para a emergência.
+
+## 🛠️ Necessidade Técnica
+O `git stash` tira suas mudanças sujas (modificadas mas não commitadas) e as guarda em uma pilha interna do Git, resetando seu diretório para o estado limpo do último commit.
+
+### Comandos Chave:
+1.  **`git stash`**: Guarda as mudanças e limpa a mesa.
+2.  **`git stash list`**: Mostra o que você tem guardado no hangar.
+3.  **`git stash pop`**: Traz de volta as mudanças e as remove da pilha.
+4.  **`git stash apply`**: Traz de volta mas mantém a cópia na pilha.
+
+## 🚀 Missão
+1.  Na branch `main`, faça uma alteração bagunçada no `radar.txt` (ex: escreva "BAGUNÇA TESTE"). **Não commite**.
+2.  Tente mudar de branch (se tiver outra). Às vezes o Git impede se houver conflito potencial.
+3.  Rode `git stash`. Rode `ls`. A bagunça sumiu! O arquivo voltou ao estado anterior.
+4.  Simule que você resolveu a emergência (ex: crie um commit rápido ou apenas espere).
+5.  Agora, traga sua bagunça de volta para continuar o trabalho: `git stash pop`.
+6.  O conteúdo "BAGUNÇA TESTE" reapareceu!
+
+## 📋 Requisitos de Elite
+- Usar o `git stash` para alternar contextos sem criar commits desnecessários.
+- Visualizar a lista de stashes.
+- Recuperar o trabalho usando `pop`.
+
+------------------------------------------------------------------------------
+"O Stash é o 'pause' do desenvolvimento; use-o para nunca perder o foco."

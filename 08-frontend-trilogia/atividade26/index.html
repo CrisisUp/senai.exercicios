@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 26</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Dispatch Center</h1>
+        <p>Arraste as cargas para os hangares de destino</p>
+    </header>
+
+    <main class="dispatch-area">
+        <!-- 1. ZONA DE CARGAS (Origem) -->
+        <section class="cargo-bay" id="pending-cargo">
+            <h2>Cargas Pendentes</h2>
+            <div class="package" id="pkg-101" draggable="true">PKG-101 (Têxtil)</div>
+            <div class="package" id="pkg-202" draggable="true">PKG-202 (Médico)</div>
+            <div class="package" id="pkg-303" draggable="true">PKG-303 (Chips)</div>
+        </section>
+
+        <!-- 2. ZONA DE HANGARES (Destino) -->
+        <div class="hangar-grid">
+            <section class="hangar" id="hangar-alpha">
+                <h3>HANGAR ALPHA</h3>
+                <div class="drop-zone" data-hangar="ALPHA"></div>
+            </section>
+
+            <section class="hangar" id="hangar-beta">
+                <h3>HANGAR BETA</h3>
+                <div class="drop-zone" data-hangar="BETA"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="audit-log">
+        LOGS: <span id="dispatch-log">AGUARDANDO MOVIMENTAÇÃO</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

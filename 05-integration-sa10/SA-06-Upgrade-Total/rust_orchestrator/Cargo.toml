@@ -1,0 +1,16 @@
+[package]
+name = "nexus-orchestrator"
+version = "0.2.0"
+edition = "2021"
+
+[dependencies]
+cxx = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = "0.4"
+uuid = { version = "1.0", features = ["v4"] }
+rusqlite = "0.31"
+audit-log-derive = { path = "../../../02-rust-mastery/upgrade-industrial/35-macros-auditoria/audit-log-derive" }
+
+[build-dependencies]
+cxx-build = "1.0"

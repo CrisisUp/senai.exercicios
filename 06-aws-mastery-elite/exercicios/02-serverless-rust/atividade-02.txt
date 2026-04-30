@@ -1,0 +1,25 @@
+# 📘 Atividade 02: Lambda Rust Core (Performance de Milissegundos)
+STATUS: Nível 71 (Mestre do Serverless) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" percebeu que manter servidores EC2 ligados 24/7 para processar telemetria de drones que voam apenas em horários comerciais é um desperdício financeiro. Migraremos o processamento para **AWS Lambda**. No entanto, usar Python causava atrasos de 200ms na inicialização (Cold Start). Precisamos de uma função que inicie instantaneamente.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o ecossistema **Rust Lambda**.
+1. **lambda_runtime:** Biblioteca oficial que gerencia o ciclo de vida da função na AWS.
+2. **Custom Runtime:** Como a AWS não tem Rust nativo no console, compilamos um binário estático e o rodamos como uma "Custom Runtime" (AL2), que é muito mais rápida.
+3. **Serialização Zero-Overhead:** Usaremos `serde` para processar o evento JSON de telemetria vindo do API Gateway.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (COLD STARTS E MEMÓRIA)
+- **COLD START:** Em funções Java/Python, a primeira chamada após um tempo de inatividade demora segundos para carregar a VM/Interpretador. O Rust é código de máquina puro; ele "acorda" em menos de 10ms.
+- **MEMORY BILLING:** A AWS cobra pelo tempo de execução arredondado e pela memória alocada. Uma função Rust roda em 128MB o que uma função Python exigiria 512MB para ter a mesma velocidade.
+- **TIGHT COUPLING:** Diferente de um servidor gigante, a Lambda foca em uma única tarefa: "Validar um pacote de Telemetria". Isso facilita o isolamento de bugs.
+
+## 📋 Requisitos de Elite
+1. Criar um projeto Rust preparado para AWS Lambda.
+2. Implementar o handler que recebe um JSON de `Telemetria` e devolve um status.
+3. Utilizar o `tokio` para processamento assíncrono dentro da Lambda.
+4. Interface ANSI (via logs estruturados) para monitoramento de latência na nuvem.
+
+------------------------------------------------------------------------------
+"Na nuvem, o código mais barato é aquele que termina de rodar antes que a AWS comece a contar os centavos."

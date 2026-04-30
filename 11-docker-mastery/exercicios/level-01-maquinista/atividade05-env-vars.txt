@@ -1,0 +1,31 @@
+# 📘 Atividade 05: Variáveis de Missão (Environment Variables)
+STATUS: Nível 05 (Maquinista) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+O sistema do SkyCargo Nexus precisa ser configurado para diferentes regiões. O drone que voa em Dubai tem um limite de velocidade diferente do drone que voa em São Paulo. Em vez de criar uma imagem diferente para cada cidade, você aprenderá a usar **Variáveis de Ambiente** (`ENV`) para passar parâmetros de configuração no momento em que o container "decola".
+
+## 🛠️ Necessidade Técnica
+Imagens devem ser genéricas; containers devem ser específicos. Variáveis de ambiente são a forma padrão industrial de configurar software conteinerizado (conforme a metodologia *12-Factor App*).
+
+### Comandos Chave:
+1.  **`docker run -e CHAVE=VALOR <imagem>`**: 
+    - `-e`: Define uma variável de ambiente dentro do container.
+2.  **`env`**: Comando Linux (rodado dentro do container) para listar todas as variáveis ativas.
+
+## 🚀 Missão
+1.  Vamos usar uma imagem utilitária (`alpine`) para espiar as variáveis:
+    `docker run --rm -e MISSION_NAME="Sideral-7" -e DRONE_LIMIT=500 alpine env`.
+2.  Observe a saída no terminal. Você verá `MISSION_NAME` e `DRONE_LIMIT` listadas entre as variáveis do sistema.
+3.  **Desafio Prático:** Muitos containers oficiais usam variáveis para configuração inicial. Tente rodar um banco de dados MariaDB definindo a senha de root (sem ela, o container falha):
+    `docker run -d --name nexus-db -e MARIADB_ROOT_PASSWORD=nexus123 mariadb`.
+4.  Verifique se o banco de dados subiu: `docker ps`.
+5.  Inspecione os logs para ver o banco iniciando com a sua senha: `docker logs nexus-db`.
+6.  Limpeza: `docker stop nexus-db` e `docker rm nexus-db`.
+
+## 📋 Requisitos de Elite
+- Entender que o `-e` permite customizar o comportamento do software sem alterar a imagem.
+- Reconhecer que senhas e chaves de API nunca devem estar "hardcoded" na imagem, mas sim passadas via variáveis (ou segredos).
+- Utilizar a flag `--rm` para containers efêmeros que devem se auto-destruir após a execução.
+
+------------------------------------------------------------------------------
+"Variáveis de ambiente são o DNA dinâmico que define a personalidade de um container."

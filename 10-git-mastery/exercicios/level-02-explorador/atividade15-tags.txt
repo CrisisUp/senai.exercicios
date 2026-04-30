@@ -1,0 +1,32 @@
+# 📘 Atividade 15: Marcando a História (Git Tags)
+STATUS: Nível 15 (Explorador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+O sistema do drone Alpha-707 atingiu um marco histórico: a primeira versão estável de voo foi aprovada! O Comandante Nexus exige que este momento seja "congelado" no tempo para que possamos voltar a ele facilmente se as futuras atualizações derem errado. Você aprenderá a usar **Tags** para criar pontos de referência permanentes (versões) no seu histórico.
+
+## 🛠️ Necessidade Técnica
+Uma Tag é como uma branch que não se move. Enquanto branches evoluem, uma Tag aponta para um commit específico para sempre. Elas são usadas para marcar lançamentos (v1.0, v2.0-beta, etc).
+
+### Comandos Chave:
+1.  **`git tag <nome>`**: Cria uma tag "leve" no commit atual.
+2.  **`git tag -a <nome> -m "mensagem"`**: Cria uma tag anotada (recomendado para releases, contém autor, data e mensagem).
+3.  **`git tag`**: Lista todas as tags.
+4.  **`git show <tag>`**: Mostra os detalhes do commit marcado.
+5.  **`git checkout <tag>`**: Viaja no tempo para o estado daquela versão.
+
+## 🚀 Missão
+1.  Na pasta `labs/nexus-drone-system`, garanta que seu sistema está estável.
+2.  Crie sua primeira versão oficial: `git tag -a v1.0.0 -m "Release: Primeira versão estável de voo SkyCargo"`.
+3.  Faça um novo commit alterando qualquer arquivo (simulando evolução para v1.1).
+4.  Agora, liste as tags: `git tag`.
+5.  O desafio da viagem: Volte para a v1.0.0 usando `git checkout v1.0.0`.
+6.  Rode `ls` e verifique se o código voltou ao estado da "foto" original.
+7.  Volte para a linha de frente: `git switch main`.
+
+## 📋 Requisitos de Elite
+- Diferenciar tags leves de tags anotadas.
+- Utilizar o padrão de versionamento semântico (v1.0.0).
+- Navegar entre versões usando as tags como âncoras.
+
+------------------------------------------------------------------------------
+"Tags são os monumentos que construímos no caminho da evolução do software."

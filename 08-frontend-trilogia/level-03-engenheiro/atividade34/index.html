@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCargo Black Box - IndexedDB v34</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="terminal-header">
+        <div class="header-top">
+            <span>ENGINEER_ELITE@BLACKBOX-NODE-01</span>
+            <span id="disk-usage">STORAGE: 0.00 MB used</span>
+        </div>
+        <h1>DRONE BLACK BOX - FORENSIC TERMINAL</h1>
+    </header>
+
+    <main class="dashboard-grid">
+        <section class="control-panel">
+            <h2><span class="icon">⚙️</span> RECORDER CONTROL</h2>
+            <div class="button-group">
+                <button id="btn-start" class="btn-on">START RECORDING</button>
+                <button id="btn-stop" class="btn-off">STOP RECORDING</button>
+                <button id="btn-clear" class="btn-danger">WIPE DATABASE</button>
+            </div>
+            
+            <div class="search-box">
+                <label for="filter-level">FILTER BY SEVERITY:</label>
+                <select id="filter-level">
+                    <option value="ALL">ALL LEVELS</option>
+                    <option value="INFO">INFO</option>
+                    <option value="WARNING">WARNING</option>
+                    <option value="CRITICAL">CRITICAL</option>
+                </select>
+                <button id="btn-query" class="btn-action">QUERY INDEX</button>
+            </div>
+        </section>
+
+        <section class="data-view">
+            <h2><span class="icon">📊</span> DATA STREAM</h2>
+            <div class="table-container">
+                <table id="log-table">
+                    <thead>
+                        <tr>
+                            <th>TIMESTAMP</th>
+                            <th>LEVEL</th>
+                            <th>EVENT</th>
+                            <th>VALUE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="log-body">
+                        <!-- Transações populadas via Cursor -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <span id="record-count">Records: 0</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="terminal-footer">
+        <p>[STATUS]: <span id="db-status">DATABASE DISCONNECTED</span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+# 📘 Atividade 02: O Terminal de Ferramentas (Interatividade)
+STATUS: Nível 02 (Maquinista) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Você precisa rodar um script de diagnóstico em uma versão específica do Linux (Ubuntu) para garantir a compatibilidade do sistema de drones. Em vez de criar uma Máquina Virtual pesada ou formatar seu computador, você usará o Docker para "teletransportar" seu terminal para dentro de um ambiente isolado em segundos.
+
+## 🛠️ Necessidade Técnica
+Muitas vezes precisamos interagir com o container, rodar comandos manuais ou inspecionar arquivos. Para isso, usamos o modo interativo.
+
+### Comandos Chave:
+1.  **`docker run -it <imagem> <comando>`**: 
+    - `-i`: Interativo (mantém o STDIN aberto).
+    - `-t`: TTY (aloca um terminal virtual).
+2.  **`exit`**: Sai do terminal do container (e geralmente encerra o container).
+
+## 🚀 Missão
+1.  Inicie um container Ubuntu em modo interativo: `docker run -it ubuntu bash`.
+2.  Observe o prompt: ele mudou para algo como `root@f1a2b3c4d5e6:/#`. Você agora é o comandante de um SO isolado.
+3.  Tente rodar comandos que você conhece: `ls`, `pwd`, `whoami`.
+4.  Veja a versão do sistema operacional: `cat /etc/os-release`.
+5.  Saia do container: `exit`.
+6.  Verifique se o container parou: `docker ps`.
+
+## 📋 Requisitos de Elite
+- Operar com confiança dentro de um SO conteinerizado.
+- Compreender que as mudanças feitas dentro deste container (ex: criar um arquivo) sumirão quando o container for deletado, a menos que usemos volumes (que aprenderemos no futuro).
+- Limpeza: Use `docker ps -a` para encontrar o ID e `docker rm` para deletar esse container de teste.
+
+------------------------------------------------------------------------------
+"O container é uma sala de espelhos: você vê o sistema operacional, mas ele não vê o seu host."

@@ -1,0 +1,31 @@
+# 📘 Atividade 07: Universos Paralelos (Branching)
+STATUS: Nível 07 (Recruta/Explorador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+A equipe da "SkyCargo Nexus" decidiu que não é seguro testar novas funcionalidades diretamente no código que os drones em voo estão usando (a branch `main`). Você precisa criar uma área de testes isolada para desenvolver o "Sistema de Evitação de Obstáculos". Bem-vindo ao mundo das **Branches**.
+
+## 🛠️ Necessidade Técnica
+Uma branch é como uma linha do tempo paralela. Você pode mudar o código em uma branch sem afetar a outra. Quando tudo estiver pronto e testado, você une as duas.
+
+### Comandos Chave:
+1.  **`git branch <nome>`**: Cria uma nova ramificação.
+2.  **`git switch <nome>`**: (Moderno) Muda para a branch especificada.
+3.  **`git checkout -b <nome>`**: (Antigo/Atalho) Cria e muda ao mesmo tempo.
+4.  **`git branch`**: Lista todas as branches disponíveis.
+
+## 🚀 Missão
+1.  Na pasta `labs/nexus-drone-system`, verifique em que branch você está: `git branch`.
+2.  Crie uma nova branch para a funcionalidade de radar: `git branch feature-radar`.
+3.  Mude para ela: `git switch feature-radar`.
+4.  Crie um arquivo novo: `radar.txt` com o conteúdo "Radar de Curto Alcance Ativado".
+5.  Adicione e commite: `git add radar.txt` e `git commit -m "feat: adicionar módulo de radar"`.
+6.  Volte para a linha do tempo principal: `git switch main`.
+7.  Rode `ls`. O arquivo `radar.txt` sumiu! Não entre em pânico, ele está seguro na outra linha do tempo.
+
+## 📋 Requisitos de Elite
+- Entender que arquivos novos em uma branch não existem em outra até o merge.
+- Praticar a alternância entre branches (`switch`).
+- O `git status` deve mostrar em qual "universo" (branch) você está operando.
+
+------------------------------------------------------------------------------
+"Branches permitem que você erre em segredo e brilhe em público."

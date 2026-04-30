@@ -1,0 +1,29 @@
+# 📘 Atividade 25: O Choque de Sincronia (Conflitos Remotos)
+STATUS: Nível 25 (Embaixador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Um conflito de alta prioridade na "SkyCargo Nexus"! Você tentou enviar uma atualização do `manifesto.txt` para o servidor, mas o Git rejeitou o seu `push`. O motivo? O "Agente 02" enviou uma alteração no mesmo arquivo momentos antes. O seu repositório está "atrás" do servidor. Você aprenderá a resolver conflitos de sincronia e a entender por que o Git exige que você esteja atualizado antes de publicar.
+
+## 🛠️ Necessidade Técnica
+O Git não permite que você sobrescreva o trabalho de outros no servidor por acidente. Se o histórico do servidor divergiu do seu, você deve primeiro trazer as mudanças (`pull`), resolver qualquer conflito localmente, e só então tentar o `push` novamente.
+
+### Comandos Chave:
+1.  **`git push` (Rejeitado)**: Ocorre quando o servidor tem commits que você não tem.
+2.  **`git pull`**: Integra as mudanças do servidor, podendo gerar conflitos manuais.
+
+## 🚀 Missão
+1.  **No Agente 02 (`nexus-operator-02`):** Altere a primeira linha do `manifesto.txt` para "SISTEMA ALPHA-707 - V3.0". Commite e dê o `push`.
+2.  **No seu original (`nexus-drone-system`):** Sem dar o `pull`, altere a **mesma linha** para "SISTEMA ALPHA-707 - ELITE". Commite localmente.
+3.  Tente dar o `push origin main`. **ERRO!** O Git dirá "failed to push some refs" (Non-fast-forward).
+4.  Rode `git pull origin main`. O Git avisará sobre o conflito.
+5.  Abra o `manifesto.txt`, resolva o conflito (escolha a versão ELITE), remova as marcas (`<<<<`, `====`).
+6.  Finalize: `git add manifesto.txt`, `git commit -m "fix: resolver conflito de sincronia com Agente 02"`.
+7.  Agora sim: `git push origin main`. Sucesso!
+
+## 📋 Requisitos de Elite
+- Compreender a mensagem de erro "Non-fast-forward".
+- Resolver conflitos remotos da mesma forma que conflitos locais.
+- Garantir que o servidor sempre receba uma linha do tempo integrada.
+
+------------------------------------------------------------------------------
+"O Push é um privilégio de quem está em dia com o servidor."

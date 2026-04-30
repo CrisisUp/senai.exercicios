@@ -1,0 +1,142 @@
+.container {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    min-height: 100vh;
+    padding: 3rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.header h1 {
+    color: #58a6ff;
+    letter-spacing: 2px;
+}
+
+.main {
+    max-width: 900px;
+    width: 100%;
+}
+
+.actionBar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.btnFetch {
+    background-color: transparent;
+    border: 2px solid #58a6ff;
+    color: #58a6ff;
+    padding: 1rem 2rem;
+    font-weight: 900;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+    font-family: monospace;
+}
+
+.btnFetch:hover:not(:disabled) {
+    background-color: #58a6ff;
+    color: #0d1117;
+    box-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
+}
+
+.btnFetch:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #30363d;
+}
+
+/* Gráfico de Dados e Fade-In */
+.dataArea {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 5rem;
+}
+
+.droneCard {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    padding: 1.5rem;
+    border-radius: 8px;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+    font-family: monospace;
+}
+
+.statusOn { color: #39ff14; font-weight: bold; }
+.droneId { color: #8b949e; }
+
+.droneCard h3 { color: #fff; margin: 0 0 1rem 0; font-size: 1.3rem; }
+
+.operator { font-size: 0.85rem; color: #8b949e; }
+.operator label { font-size: 0.65rem; display: block; color: #555; }
+.callsign { font-size: 0.75rem; color: #58a6ff; margin-top: 10px; font-family: monospace; }
+
+/* Skeleton Loader (Requisito de Elite) */
+.skeletonCard {
+    background-color: #161b22;
+    border: 1px solid #21262d;
+    padding: 1.5rem;
+    border-radius: 8px;
+    height: 120px;
+}
+
+.skeletonTitle, .skeletonText, .skeletonTextShort {
+    background: linear-gradient(90deg, #21262d 25%, #30363d 50%, #21262d 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+}
+
+@keyframes loading {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+}
+
+.skeletonTitle { height: 20px; width: 60%; margin-bottom: 15px; }
+.skeletonText { height: 12px; width: 100%; margin-bottom: 10px; }
+.skeletonTextShort { height: 12px; width: 40%; }
+
+/* Error Box */
+.errorBox {
+    background: rgba(248, 81, 73, 0.1);
+    border: 1px solid #f85149;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    color: #f85149;
+}
+
+.errorIcon { font-size: 2rem; display: block; margin-bottom: 1rem; }
+
+.empty { text-align: center; color: #444; padding: 4rem; font-style: italic; }
+
+.theoryBox {
+    border-top: 1px solid #30363d;
+    padding-top: 2rem;
+    color: #8b949e;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.theoryBox h4 { color: #f0f6fc; margin-bottom: 0.5rem; }

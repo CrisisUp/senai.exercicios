@@ -1,0 +1,82 @@
+/**
+ * @file style.css
+ * @brief Estética Industrial com Controle de Overflow (Atividade 10).
+ */
+
+body {
+    background-color: #0d1117;
+    color: #e6edf3;
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.form {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    color: white;
+    border-radius: 4px;
+}
+
+/* TERMINAL VIEW: Controle de Rolagem */
+.terminal-view {
+    background-color: #010409;
+    border: 1px solid #00f2ff;
+    height: 200px;
+    padding: 15px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    overflow-y: auto; /* Habilita rolagem vertical */
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* ESTILIZAÇÃO DA SCROLLBAR (WebKit) */
+.terminal-view::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-view::-webkit-scrollbar-track {
+    background: #0d1117;
+}
+
+.terminal-view::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 10px;
+}
+
+.terminal-view::-webkit-scrollbar-thumb:hover {
+    background: #00f2ff;
+}
+
+/* Botões */
+.btn-primary { background: #238636; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; }
+.btn-accent { background: #1f6feb; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; }
+.btn-danger { background: #f85149; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.7rem; }
+
+.status-msg { color: #58a6ff; font-size: 0.9rem; font-style: italic; }

@@ -1,0 +1,26 @@
+# 📘 Atividade 35: Engenharia do Som (Mastering Web Audio API)
+STATUS: Nível 35 (Engenheiro de Elite) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" opera drones em ambientes onde o operador não pode olhar para a tela o tempo todo. Para garantir a segurança, precisamos de um sistema de "Telemetria Acústica". Em vez de carregar arquivos MP3 pesados, usaremos a **Web Audio API** para sintetizar sons matematicamente (senoides, ondas quadradas) que mudam de frequência conforme a altitude ou o nível crítico de bateria, fornecendo um feedback sensorial contínuo.
+
+## 🛠️ Necessidade Técnica (O Maestro do Silício)
+Nesta atividade, aprenderemos:
+1. **JS (Audio Context):** Criação do `AudioContext`, a "placa de som" virtual do navegador.
+2. **JS (Oscillators):** Uso de `OscillatorNode` para gerar ondas sonoras puras via código.
+3. **JS (Audio Routing):** Encadear nós de áudio: `Oscillator` -> `GainNode` (Volume) -> `Destination` (Alto-falantes).
+4. **JS (Automation):** Uso de `linearRampToValueAtTime()` para criar efeitos de "Slide" (Sirenes ou bips pulsantes) sem estalos de áudio.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **AUTOPLAY POLICY:** Navegadores bloqueiam áudio que inicia sem interação do usuário. Aprenderemos a "acordar" o contexto após o primeiro clique do operador.
+- **AUDIO POPPING:** Mudar o volume de 0 para 1 instantaneamente causa um "clique" físico nos alto-falantes. Aprenderemos a usar rampas de suavização (Envelopes).
+- **MEMORY LEAK (ZOMBIE NODES):** Criar osciladores e não desconectá-los. Aprenderemos a gerenciar o ciclo de vida dos nós de áudio.
+
+## 📋 Requisitos de Elite
+1. Criar um sintetizador de "Bipe de Telemetria" cuja frequência (Hz) aumenta conforme a altitude simulada aumenta.
+2. Implementar um "Alarme de Bateria Crítica" pulsante (onda quadrada) com volume variável.
+3. Utilizar um `BiquadFilterNode` para aplicar um filtro "Low Pass" simulando o som do drone distante.
+4. Interface ANSI (visual) com osciloscópio básico mostrando a forma da onda em tempo real.
+
+------------------------------------------------------------------------------
+"Na engenharia de elite, o sistema não apenas mostra dados; ele pulsa e canta a saúde da máquina."

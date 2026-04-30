@@ -1,0 +1,29 @@
+# 📘 Atividade 16: O Cirurgião do Código (Git Cherry-pick)
+STATUS: Nível 16 (Explorador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Um bug crítico foi corrigido na branch de desenvolvimento experimental (`feature-radar`), mas você ainda não quer fazer o merge de toda a branch porque ela tem códigos instáveis. Você precisa apenas **daquela correção específica** e nada mais. Você aprenderá a fazer um "Cherry-pick" (escolher a cereja), trazendo um commit isolado de uma branch para outra.
+
+## 🛠️ Necessidade Técnica
+O `cherry-pick` permite que você aplique a mudança de um commit existente em sua branch atual. É uma ferramenta de precisão cirúrgica.
+
+### Comandos Chave:
+1.  **`git cherry-pick <hash-do-commit>`**: Aplica as mudanças daquele commit na sua branch atual e cria um novo commit.
+
+## 🚀 Missão
+1.  Crie uma branch `bugfix-temp`.
+2.  Nela, faça dois commits:
+    - Commit 1: Adicione "LINHA EXPERIMENTAL" ao `radar.txt`.
+    - Commit 2: Corrija um erro ortográfico no `manifesto.txt` (ex: de "Velocidate" para "Velocidade").
+3.  Volte para a branch `main`.
+4.  Identifique o ID (hash) **apenas** do Commit 2 (a correção).
+5.  Rode `git cherry-pick <hash-do-commit-2>`.
+6.  Rode `ls` e `git log`. Observe que você trouxe a correção da ortografia sem trazer a "LINHA EXPERIMENTAL".
+
+## 📋 Requisitos de Elite
+- Extrair um commit específico sem realizar um merge completo.
+- Entender que o cherry-pick cria um novo commit com um novo ID, mas com o mesmo conteúdo.
+- Saber lidar com conflitos se a linha alterada no commit escolhido também tiver mudado na branch de destino.
+
+------------------------------------------------------------------------------
+"O Cherry-pick é a prova de que, no Git, você é o mestre da sua própria linha do tempo."

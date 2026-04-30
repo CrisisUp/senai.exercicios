@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCargo OS - DOM Security</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/grid.css">
+</head>
+<body class="nexus-dashboard">
+
+    <header class="header module-box" style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>DOM <span style="font-weight: 300;">Security Lab</span></h1>
+        <button id="btn-toggle-theme">Alternar Visão</button>
+    </header>
+
+    <aside class="radar module-box">
+        <h2>Controles</h2>
+        <button id="btn-add-log" style="width: 100%; padding: 10px; margin-top: 10px; cursor: pointer;">Gerar Sinal de Teste</button>
+    </aside>
+
+    <main id="mapa-tatico" class="mapa module-box" style="cursor: crosshair;">
+        <div id="coordenadas-display" style="color: var(--brand-accent); font-family: monospace;">
+            AGUARDANDO CLIQUE NO MAPA...
+        </div>
+    </main>
+
+    <section class="logs module-box">
+        <h2>Live Stream</h2>
+        <div id="logs-container" style="font-family: monospace; font-size: 0.8rem;">
+            <!-- Logs serão inseridos aqui via TS -->
+        </div>
+    </section>
+
+    <footer class="footer module-box">
+        DOM Integrity: <span id="dom-status">VALIDATING...</span>
+    </footer>
+
+    <!-- No modo Vanilla, o script compilado do TS ficaria aqui -->
+    <script type="module" src="dist/main.js"></script>
+</body>
+</html>

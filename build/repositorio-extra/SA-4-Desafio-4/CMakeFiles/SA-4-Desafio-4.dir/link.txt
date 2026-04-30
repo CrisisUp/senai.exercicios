@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/SA-4-Desafio-4.dir/SA-4-Refinaria-Evolutiva.cpp.o" -o SA-4-Desafio-4

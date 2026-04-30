@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogiSpeed - Hypersonic Telemetry v33</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="performance-header">
+        <div class="top-bar">
+            <span>ENGINEER_ELITE@HYPERSONIC-DASH</span>
+            <span class="latency-indicator">BUS LATENCY: <b id="bus-latency">0.00ms</b></span>
+        </div>
+        <h1>HYPERSONIC TELEMETRY SYSTEM</h1>
+    </header>
+
+    <main class="performance-grid">
+        <section class="stat-module">
+            <header><h3>DRONE STATUS (SHARED RAM)</h3></header>
+            <div class="metrics">
+                <div class="metric">
+                    <label>ALTITUDE</label>
+                    <div class="display"><span id="val-altitude">0</span> <small>m</small></div>
+                </div>
+                <div class="metric">
+                    <label>BATTERY</label>
+                    <div class="display"><span id="val-battery">0</span> <small>%</small></div>
+                </div>
+                <div class="metric">
+                    <label>SIGNALS/SEC</label>
+                    <div class="display"><span id="val-signals">0</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="control-module">
+            <header><h3>SYSTEM CONTROL</h3></header>
+            <div class="controls">
+                <button id="btn-start" class="btn-primary">START TELEMETRY STREAM</button>
+                <button id="btn-stop" class="btn-secondary">ABORT STREAM</button>
+            </div>
+            <div class="info-box">
+                <p><strong>SECURITY NOTE:</strong> SharedArrayBuffer requires Cross-Origin Isolation.</p>
+                <p id="security-status" class="status-neutral">CHECKING HEADERS...</p>
+            </div>
+        </section>
+
+        <section class="log-module">
+            <header><h3>ATOMIC OPERATIONS LOG</h3></header>
+            <div id="atomic-logs" class="atomic-logs">
+                <!-- Atomics.wait/notify logs here -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="performance-footer">
+        <div class="memory-viz">
+            <label>RAM USAGE MODE:</label>
+            <span class="mode-tag">ZERO-COPY (SHARED_ARRAY_BUFFER)</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

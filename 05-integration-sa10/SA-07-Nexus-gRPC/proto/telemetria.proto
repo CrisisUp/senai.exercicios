@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package logispeed;
+
+// Definição do Serviço de Telemetria Global
+service TelemetriaService {
+    // RPC unário: Rust pede dados, C++ responde imediatamente
+    rpc ObterStatus (DroneRequest) returns (DroneResponse) {}
+
+    // Stream do Servidor: C++ empurra dados constantes para o Rust
+    rpc MonitorarFluxo (DroneRequest) returns (stream TelemetriaData) {}
+}
+
+// O que o Rust envia
+message DroneRequest {
+    string drone_id = 1;
+}
+
+// O que o C++ responde (Status Geral)
+message DroneResponse {
+    string msg = 1;
+    bool operacional = 2;
+}
+
+// Dados de telemetria binária (Alta performance)
+message TelemetriaData {
+    string id = 1;
+    double altitude = 2;
+    double velocidade = 3;
+    uint32 bateria = 4;
+}

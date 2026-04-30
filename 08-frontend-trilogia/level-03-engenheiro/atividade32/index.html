@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCargo Nexus v3.0 | Desafio Integrador</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="offline-ready">
+    <header class="nexus-header">
+        <div class="header-main">
+            <div class="logo-area">
+                <span class="nexus-logo">SKYCARGO NEXUS</span>
+                <span class="version-tag">v3.0 ELITE</span>
+            </div>
+            <div class="header-stats">
+                <div class="stat-box">
+                    <span class="label">NET STATUS:</span>
+                    <span id="net-status" class="value status-online">ONLINE</span>
+                </div>
+                <div class="stat-box">
+                    <span class="label">BATTERY:</span>
+                    <span id="drone-battery" class="value">--%</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-ticker">
+            <span id="ticker-msg">SYSTEM INITIALIZING... AUTHENTICATING COMMANDER...</span>
+        </div>
+    </header>
+
+    <main class="nexus-grid">
+        <!-- RADAR MODULE (Canvas Integration) -->
+        <section class="module radar-module">
+            <header class="module-header">
+                <h3><span class="icon">📡</span> TACTICAL RADAR</h3>
+                <span id="radar-coords" class="module-subtitle">POS: --, --</span>
+            </header>
+            <div class="radar-container">
+                <canvas id="radar-canvas"></canvas>
+                <div id="radar-overlay" class="radar-overlay"></div>
+            </div>
+        </section>
+
+        <!-- CARGO MODULE (Drag & Drop Integration) -->
+        <section class="module cargo-module">
+            <header class="module-header">
+                <h3><span class="icon">📦</span> CARGO MANAGEMENT</h3>
+            </header>
+            <div class="cargo-container">
+                <div id="inventory" class="inventory-bay">
+                    <div class="cargo-item" draggable="true" data-id="X-01" data-weight="45">
+                        <span class="tag">STD</span> 45kg
+                    </div>
+                    <div class="cargo-item fragile" draggable="true" data-id="X-02" data-weight="15">
+                        <span class="tag">FRG</span> 15kg
+                    </div>
+                    <div class="cargo-item heavy" draggable="true" data-id="X-03" data-weight="120">
+                        <span class="tag">HVY</span> 120kg
+                    </div>
+                </div>
+                <div id="drone-bay" class="drone-bay">
+                    <p class="placeholder">DROP CARGO HERE</p>
+                </div>
+            </div>
+            <div class="weight-telemetry">
+                <div class="progress-container">
+                    <div id="weight-progress" class="progress-bar"></div>
+                </div>
+                <div class="weight-labels">
+                    <span>CURRENT LOAD: <b id="current-weight">0</b>kg</span>
+                    <span>MAX: 300kg</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOG MODULE (WebSocket & Offline History) -->
+        <section class="module log-module">
+            <header class="module-header">
+                <h3><span class="icon">📜</span> MISSION LOGS</h3>
+                <button id="btn-notify" class="btn-minimal">ENABLE ALERTS</button>
+            </header>
+            <div id="terminal-output" class="terminal-output">
+                <!-- Logs via WebSocket and Events -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="nexus-footer">
+        <div class="footer-left">
+            COMMANDER: CRISTIANO | LOCATION: [DETECTING...]
+        </div>
+        <div class="footer-right">
+            OFFLINE STORAGE: <span id="storage-status">VALIDATED</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

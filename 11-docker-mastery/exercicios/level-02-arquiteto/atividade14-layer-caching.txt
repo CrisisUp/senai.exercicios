@@ -1,0 +1,38 @@
+# 📘 Atividade 14: A Estratégia de Camadas (Layer Caching)
+STATUS: Nível 14 (Arquiteto) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Cada vez que você muda uma única linha no seu script de telemetria, o Docker reconstrói a imagem inteira, instalando novamente todos os pacotes do sistema. Isso é um desperdício de tempo e recursos da "SkyCargo Nexus". Você aprenderá como o Docker usa o **Cache de Camadas** e como organizar seu `Dockerfile` para que os processos lentos (como instalar dependências) sejam feitos apenas uma vez.
+
+## 🛠️ Necessidade Técnica
+O Docker executa o `Dockerfile` de cima para baixo. Cada instrução gera uma nova camada. Se uma camada muda, todas as camadas abaixo dela são invalidadas e precisam ser reconstruídas.
+**A Regra de Ouro:** Coloque as instruções que mudam com menos frequência no topo e o seu código (que muda sempre) no final.
+
+## 🚀 Missão
+1.  Crie um `Dockerfile` ineficiente:
+    ```dockerfile
+    FROM alpine
+    COPY nexus_script.sh /app/
+    RUN apk add --no-cache curl  # Instalação lenta
+    CMD ["/app/nexus_script.sh"]
+    ```
+2.  Construa a imagem pela primeira vez e cronometre.
+3.  Mude o conteúdo do seu `nexus_script.sh`. Construa de novo. Note que o `apk add` rodou novamente (invalidação de cache).
+4.  Agora, otimize o `Dockerfile`:
+    ```dockerfile
+    FROM alpine
+    RUN apk add --no-cache curl  # No topo: muda raramente
+    WORKDIR /app
+    COPY nexus_script.sh .       # No final: muda sempre
+    CMD ["./nexus_script.sh"]
+    ```
+5.  Construa. Mude o script novamente. Construa de novo. 
+6.  **A Vitória:** Observe o Docker dizendo "CACHED" na linha do `apk add`. O build agora é instantâneo!
+
+## 📋 Requisitos de Elite
+- Identificar as causas de invalidação de cache.
+- Estruturar Dockerfiles para máxima reusabilidade de camadas.
+- Compreender que o `COPY` de dependências (ex: package.json, Cargo.toml) deve vir antes do `COPY` do código fonte.
+
+------------------------------------------------------------------------------
+"No Docker, a ordem dos fatores altera, e muito, o tempo de build."

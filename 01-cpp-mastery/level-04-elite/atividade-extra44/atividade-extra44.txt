@@ -1,0 +1,43 @@
+## 🛠️ Necessidade Técnica
+Implementação de padrões de engenharia de elite para garantir escalabilidade e robustez.
+
+## 🎯 Estudo de Caso
+Análise técnica do cenário de negócio para o componente atividade-extra44.txt.
+
+ESTUDO DE CASO: O NÚCLEO DO MOTOR (GAME LOOP KERNEL)
+------------------------------------------------------------------------------
+DOMÍNIO: Desenvolvimento de Jogos / Simulação em Tempo Real
+ATIVIDADE: Extra 44
+CONCEITO NOVO: Game Loop e Delta Time (Biblioteca <chrono>)
+STATUS: Padrão de Engenharia de Elite Aplicado
+
+1. O CENÁRIO
+Um jogo de Arcade não pode parar para esperar o usuário. Ele deve atualizar 
+a posição dos objetos (balas, inimigos, herói) dezenas de vezes por segundo, 
+independentemente se uma tecla foi pressionada ou não.
+
+2. A NECESSIDADE TÉCNICA (O fim do programa linear)
+Programas comuns seguem o fluxo: Entrada -> Processamento -> Saída -> Fim.
+Um JOGO segue o fluxo infinito:
+- Processar Input (Teclado/Mouse).
+- Atualizar Lógica (Física, Colisões, Pontos).
+- Renderizar (Desenhar na tela).
+- Calcular o DELTA TIME (dt): Diferença temporal entre quadros que garante 
+  que a física do jogo seja independente da potência do processador.
+
+3. 🧪 ## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ENGENHARIA DE SIMULAÇÃO)
+- RISCO DE CPU STARVATION: Um loop sem `sleep_for` consumirá 100% de um núcleo 
+  do processador, aquecendo o hardware e impedindo que outros processos do S.O. 
+  rodem suavemente.
+- RISCO DE FLOATING POINT DRIFT: Somar `velocidade * dt` durante horas em 
+  variáveis 'float' causa erros de precisão acumulados. O herói pode acabar 
+  "atravessando paredes" por erro de arredondamento. Solução: 'double'.
+- RISCO DE SPIRAL OF DEATH: Se o tempo de processamento da física for maior 
+  que o tempo disponível no quadro, o `dt` aumenta, o que exige mais física, 
+  criando um travamento progressivo.
+
+4. REQUISITOS DO SISTEMA
+- Implementação de 'Kernel Loop' baseado em <chrono>.
+- Física independente de Frame-rate (Time-Step Simulation).
+- Interface de Telemetria de FPS via ANSI Escape Codes.
+------------------------------------------------------------------------------

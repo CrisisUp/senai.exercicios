@@ -1,0 +1,46 @@
+# 📘 Atividade 24: A Ordem de Decolagem (Service Dependencies)
+STATUS: Nível 24 (Orquestrador) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+No SkyCargo Nexus, não adianta a API de telemetria subir se o Banco de Dados ainda está inicializando. Se a API tentar conectar e o banco estiver offline, ela vai crashar. Você aprenderá a definir a **Ordem de Decolagem** dos seus containers, garantindo que um serviço espere pelo outro para garantir a estabilidade do sistema desde o primeiro segundo.
+
+## 🛠️ Necessidade Técnica
+O Docker Compose sobe containers em paralelo por padrão. A instrução `depends_on` define uma ordem de dependência. Em níveis de elite, combinamos isso com o `HEALTHCHECK` (Atividade 17) para que o Docker espere o serviço estar "saudável" e não apenas "rodando".
+
+### Estrutura YAML:
+- **`depends_on:`**: Lista os serviços que devem iniciar antes.
+- **`condition: service_healthy`**: (Avançado) Espera o healthcheck do vizinho passar.
+
+## 🚀 Missão
+1.  Atualize seu `docker-compose.yml` para incluir dependência inteligente:
+    ```yaml
+    version: '3.8'
+    services:
+      nexus-db:
+        image: mariadb:latest
+        environment:
+          MARIADB_ROOT_PASSWORD: secret
+        healthcheck:
+          test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-psecret"]
+          interval: 5s
+          timeout: 5s
+          retries: 5
+      
+      nexus-api:
+        image: alpine
+        command: sh -c "echo 'API CONECTANDO AO BANCO...' && sleep 2"
+        depends_on:
+          nexus-db:
+            condition: service_healthy
+    ```
+2.  Sobe a orquestra: `docker-compose up`. (Não use -d para ver os logs).
+3.  Observe como o `nexus-api` aguarda pacientemente o `nexus-db` passar nos testes de saúde antes de iniciar.
+4.  **O Teste de Falha:** Se você mudar a senha no healthcheck para uma errada, a API nunca subirá. Isso é proteção de infraestrutura!
+
+## 📋 Requisitos de Elite
+- Garantir que serviços dependentes não iniciem prematuramente.
+- Integrar Healthchecks com dependências do Compose.
+- Visualizar o fluxo de inicialização sequencial no terminal.
+
+------------------------------------------------------------------------------
+"A pressa é inimiga da integridade. No Compose, a ordem é a base da resiliência."

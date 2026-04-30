@@ -1,0 +1,8 @@
+{
+  "name": "senai-exercicios",
+  "version-string": "1.0.0",
+  "description": "Ecossistema de exercícios SENAI - C++, Rust e SQL",
+  "dependencies": [
+    "gtest"
+  ]
+}

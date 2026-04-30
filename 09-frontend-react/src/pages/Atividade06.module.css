@@ -1,0 +1,148 @@
+.container {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.header h1 {
+    color: #58a6ff;
+    letter-spacing: 2px;
+}
+
+.main {
+    max-width: 900px;
+    width: 100%;
+}
+
+.actionBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+}
+
+.btnAdd {
+    background: #238636;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btnAdd:hover {
+    background: #2ea043;
+}
+
+.fleetCount {
+    font-family: monospace;
+    color: #8b949e;
+}
+
+/* Tabela Industrial */
+.tableContainer {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.fleetTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.fleetTable th {
+    background-color: #000;
+    color: #8b949e;
+    padding: 1rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.fleetTable td {
+    padding: 1rem;
+    border-bottom: 1px solid #30363d;
+}
+
+/* Zebra Striping */
+.droneRow:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.droneRow:hover {
+    background-color: rgba(88, 166, 255, 0.05);
+}
+
+.idCell {
+    font-family: monospace;
+    color: #58a6ff;
+    font-weight: bold;
+}
+
+/* Bateria Mini-Bar */
+.batteryCell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.batteryMinibar {
+    width: 60px;
+    height: 6px;
+    background: #000;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    transition: width 0.3s;
+}
+
+/* Status Badges */
+.statusCell {
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.READY { color: #3fb950; }
+.FLYING { color: #58a6ff; animation: pulse 2s infinite; }
+.MAINTENANCE { color: #d29922; }
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.theoryBox {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    border-left: 4px solid #30363d;
+    font-size: 0.85rem;
+    color: #8b949e;
+    line-height: 1.6;
+}
+
+.theoryBox h4 {
+    color: #e6edf3;
+    margin-bottom: 0.5rem;
+}

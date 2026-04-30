@@ -1,0 +1,49 @@
+## 🛠️ Necessidade Técnica
+Implementação de padrões de engenharia de elite para garantir escalabilidade e robustez.
+
+## 🎯 Estudo de Caso
+Análise técnica do cenário de negócio para o componente atividade-extra17.txt.
+
+ESTUDO DE CASO: SISTEMA DE MONITORAMENTO DE SINAIS VITAIS (UTI)
+------------------------------------------------------------------------------
+DOMÍNIO: Medicina / Engenharia Biomédica
+ATIVIDADE: Extra 17
+CONCEITO NOVO: Classes e Encapsulamento (private/public)
+STATUS: Padrão de Engenharia de Elite Aplicado
+
+1. O CENÁRIO
+Em uma Unidade de Terapia Intensiva (UTI), os monitores cardíacos coletam dados
+ininterruptamente. Um erro na entrada de dados ou uma alteração acidental em uma
+variável (ex: definir a frequência cardíaca como um valor negativo) pode levar
+a diagnósticos fatais e acionamento indevido de alarmes.
+
+2. A NECESSIDADE TÉCNICA
+Até agora, usamos 'structs'. Em uma struct, todos os dados são públicos; qualquer 
+parte do programa pode alterar o valor da temperatura de um paciente para 500°C 
+sem que o sistema perceba o erro.
+
+Para resolver isso, introduziremos as CLASSES. Diferente das structs, as classes 
+permitem o ENCAPSULAMENTO:
+- Membros Privados (private): Os dados (BPM, Temperatura) ficam escondidos.
+- Métodos Públicos (public): Funções especiais (Getters e Setters) que validam 
+  os dados antes de permitir a alteração.
+
+3. ## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ARQUITETURA)
+- RISCO DE INPUT FAILURE: Se o monitor receber um caractere alfabético no lugar 
+  de um valor numérico (BPM), o fluxo do C++ (std::cin) entrará em estado de erro 
+  (failbit). Sem validação, o sistema pode entrar em loop infinito de alarmes.
+- RISCO DE ESTOURO DE PILHA (STACK): Como instanciamos o objeto Paciente na 
+  Stack, se criarmos milhões de pacientes simultaneamente em uma função recursiva, 
+  o sistema sofrerá um Stack Overflow.
+- RISCO DE VIOLAÇÃO DE ENCAPSULAMENTO: Se o programador retornar um ponteiro 
+  direto para um membro privado, a segurança da classe é quebrada. Por isso, 
+  usamos referências constantes (const&).
+
+4. REQUISITOS DO SISTEMA
+- Criar uma classe 'PacienteMonitorado'.
+- Atributos privados: frequenciaCardiaca (bpm), temperatura e oxigenacao.
+- Métodos públicos:
+    * Setters: Validar faixas médicas seguras.
+    * Getters: Acesso somente-leitura otimizado (CPU Ghost prevention).
+    * Gerar Alerta: Interface visual colorida para triagem rápida.
+------------------------------------------------------------------------------

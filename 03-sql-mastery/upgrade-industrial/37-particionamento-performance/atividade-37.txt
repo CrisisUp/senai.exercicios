@@ -1,0 +1,25 @@
+# 📘 Atividade 37: Particionamento e Performance (SQL de Elite)
+STATUS: Nível 60+ (Lead Data Architect) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+A "LogiSpeed" gera 1 milhão de logs de telemetria por dia. Em um ano, teremos 365 milhões de linhas. Mesmo com índices, uma tabela única desse tamanho começa a sofrer com latência de I/O e manutenção lenta (backups gigantes). Precisamos separar os dados "quentes" (mês atual) dos dados "frios" (meses anteriores).
+
+## 🛠️ Necessidade Técnica
+Utilizaremos **Particionamento Físico via Federação (ATTACH)**.
+1. **Sharding por Tempo:** Em vez de uma tabela `Telemetria` gigante, teremos `telemetria_2026_04.db`, `telemetria_2026_05.db`, etc.
+2. **Consultas Federadas:** Usaremos o comando `ATTACH` para conectar múltiplos arquivos e realizar consultas UNIFICADAS como se fossem um único banco.
+3. **Índices Parciais:** Criaremos índices otimizados apenas para os dados que realmente importam no histórico.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (DATA ARCHITECTURE)
+- **INDEX BLOAT:** Índices em tabelas gigantes ocupam mais RAM que o cache disponível, forçando a CPU a ler do disco (muito lento). Particionar mantém os índices pequenos e rápidos.
+- **SINGLE POINT OF FAILURE:** Se o banco de dados corromper, você perde 100% dos dados. Com particionamento físico, se um arquivo de mês corromper, os outros permanecem intactos.
+- **MANUTENÇÃO CARA:** Fazer um `VACUUM` ou `REINDEX` em 300GB de dados pode levar horas. Em arquivos particionados, você faz manutenção apenas no pedaço necessário.
+
+## 📋 Requisitos de Elite
+1. Criar múltiplos bancos de dados (ex: `historico_abril.db` e `historico_maio.db`).
+2. Demonstrar o uso de `ATTACH DATABASE` para unir os dados.
+3. Criar uma `VIEW` unificada que encapsula a complexidade do particionamento para o usuário.
+4. Interface ANSI para telemetria de performance de busca federada.
+
+------------------------------------------------------------------------------
+"Dividir para conquistar não é apenas uma estratégia militar; é a lei fundamental dos Grandes Dados."

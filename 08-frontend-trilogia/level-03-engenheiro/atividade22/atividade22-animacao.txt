@@ -1,0 +1,28 @@
+# 📘 Atividade 22: Movimento de Precisão (Mastering RequestAnimationFrame)
+STATUS: Nível 22 (Engenheiro) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+O radar tático de Tóquio precisa de uma linha de varredura (Sweep) contínua. Usar `setInterval` para animar pixels causa "Jank" (engasgos visuais) porque o timer do JavaScript não é sincronizado com o monitor. Para o SkyCargo OS v3.0, utilizaremos o **RequestAnimationFrame**, garantindo que cada movimento do radar seja suave como a seda, essencial para rastrear drones em alta velocidade.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Expansão do terminal de comando com indicadores de frames (FPS).
+2. **CSS (Estética):** Efeitos de "Glow" dinâmicos e transparências cumulativas para criar o rastro (Trail) do radar.
+3. **JS (Atitude):** 
+   - **`requestAnimationFrame()`**: O loop de renderização nativo.
+   - **Delta Time**: Cálculo do tempo entre frames para animações independentes da velocidade do processador.
+   - **Trigonometria Dinâmica**: Usar `Math.sin()` e `Math.cos()` dentro do loop para rotacionar a linha de varredura.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **FRAME DROPPING:** Tentar fazer cálculos pesados dentro do loop de animação, fazendo o radar "pular". O Engenheiro de Elite otimiza a lógica para rodar em menos de 16ms.
+- **SCREEN TEARING:** Desenhar fora de sincronia com o V-Sync do monitor. O `requestAnimationFrame` elimina esse problema nativamente.
+- **ACCUMULATED STALE DRAWING:** Esquecer de limpar o frame anterior parcialmente. Aprenderemos a criar o efeito de rastro ("Ghosting") limpando com um retângulo semitransparente.
+
+## 📋 Requisitos de Elite
+1. Implementar o loop infinito de renderização via `requestAnimationFrame`.
+2. Criar uma linha de varredura que rotaciona 360° continuamente.
+3. Implementar o efeito de "Desbotamento Progressivo" (Rastro do Radar).
+4. Interface ANSI (visual) com contador de "Engine Uptime".
+
+------------------------------------------------------------------------------
+"Em alta performance, a suavidade não é um luxo; é a prova de um motor bem ajustado."

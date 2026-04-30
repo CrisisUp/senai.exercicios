@@ -1,0 +1,65 @@
+/**
+ * @file style.css
+ * @brief Interações Táteis e Layout de Cards (Atividade 12).
+ */
+
+body {
+    background-color: #0d1117;
+    color: #e6edf3;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    margin: 0;
+    padding: 40px;
+    text-align: center;
+}
+
+h1 { color: #58a6ff; letter-spacing: 3px; }
+
+/* CONTAINER DO DASHBOARD */
+.fleet-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+/* CARD DETALHADO */
+.drone-card {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 25px;
+    width: 280px;
+    text-align: left;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Curva industrial suave */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* EFEITO TÁTIL DE ELITE */
+.drone-card:hover {
+    border-color: #58a6ff;
+    background-color: #1c2531;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    
+    /* TRANSFORM: Ação geométrica sem afetar o layout vizinho */
+    transform: translateY(-10px) scale(1.05);
+}
+
+.drone-card h2 {
+    color: #58a6ff;
+    margin-top: 0;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 10px;
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 0.85rem;
+}
+
+.label { color: #7d8590; font-weight: bold; }
+.value { color: #ffffff; font-family: monospace; }
+.unit { color: #00f2ff; margin-left: 3px; }

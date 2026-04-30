@@ -1,0 +1,25 @@
+# 📘 Atividade Extra 62: Filas Lock-Free (Mensageria Industrial)
+STATUS: Nível 31 (Engenheiro de Elite) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+Na "LogiSpeed", a thread que recebe os dados do rádio (Hardware) não pode parar. Se ela tentar escrever em uma fila comum protegida por Mutex e a thread de processamento estiver segurando a trava, os pacotes do rádio serão perdidos (Buffer Overflow no hardware). Precisamos de uma fila onde o produtor e o consumidor nunca se bloqueiem.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos uma **Fila Circular Lock-Free (SPSC)**. Ela utiliza dois índices atômicos:
+1. **Tail (Cauda):** Onde o Produtor insere dados.
+2. **Head (Cabeça):** De onde o Consumidor retira dados.
+Como o Produtor só altera a Cauda e o Consumidor só altera a Cabeça, eles podem trabalhar simultaneamente sem travas.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (ALTA DISPONIBILIDADE)
+- **CASO DE FILA CHEIA:** Se o produtor for mais rápido que o consumidor, ele deve detectar a fila cheia via atômicos e descartar o pacote ou aguardar (busy-wait), mas NUNCA travar o sistema.
+- **MEMORY BARRIERS (C++ Memory Model):** Precisamos garantir que os dados sejam escritos na memória ANTES do índice atômico ser atualizado. Usaremos `std::memory_order_release` e `std::memory_order_acquire`.
+- **ABA PROBLEM:** Em filas mais complexas (MPMC), um ponteiro pode ser deletado e reutilizado, enganando o sistema. No SPSC simples, estamos protegidos, mas é um conceito de Elite a ser vigiado.
+
+## 📋 Requisitos de Elite
+1. Implementar `LockFreeQueue<T>` de tamanho fixo (circular).
+2. Usar `std::atomic<size_t>` para `head` e `tail`.
+3. Demonstrar o fluxo de telemetria entre uma thread Produtora e uma Consumidora.
+4. Interface ANSI para monitoramento de latência e ocupação da fila.
+
+------------------------------------------------------------------------------
+"Em sistemas de tempo real, o Mutex é o freio de mão que esquecemos de soltar."

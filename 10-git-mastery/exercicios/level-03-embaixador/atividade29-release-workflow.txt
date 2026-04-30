@@ -1,0 +1,33 @@
+# 📘 Atividade 29: O Ensaio Geral (Release Branches)
+STATUS: Nível 29 (Embaixador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Chegou a hora de lançar a versão `v2.0.0` do Nexus OS. O código na `develop` tem várias novas funcionalidades, mas você não pode simplesmente jogá-lo na `main`. Você aprenderá a criar uma branch de **Release**, um local seguro para realizar testes finais, ajustes de versão e correções de bugs de última hora sem interromper o trabalho de novas features na `develop`.
+
+## 🛠️ Necessidade Técnica
+Uma branch de Release (ex: `release/v2.0.0`) nasce da `develop`. Quando finalizada, ela é integrada tanto na `main` (com Tag) quanto na `develop` (para garantir que correções de última hora não se percam).
+
+### Comandos Chave:
+1.  **`git switch -c release/v2.0.0 develop`**: Cria a branch de lançamento.
+2.  **`git merge release/v2.0.0`**: Integração final.
+
+## 🚀 Missão
+1.  Na branch `develop`, garanta que você tem funcionalidades prontas.
+2.  Crie a release: `git switch -c release/v2.0.0`.
+3.  Simule um ajuste final: Altere `config.txt` para "APP_VERSION=2.0.0". Commite.
+4.  **Finalizando para Produção:**
+    - Vá para a `main`: `git switch main`.
+    - Faça o merge: `git merge release/v2.0.0`.
+    - Marque o marco: `git tag -a v2.0.0 -m "Release oficial Nexus v2.0"`.
+5.  **Sincronizando o Desenvolvimento:**
+    - Vá para a `develop`: `git switch develop`.
+    - Faça o merge: `git merge release/v2.0.0`.
+6.  **Limpeza:** `git branch -d release/v2.0.0`.
+
+## 📋 Requisitos de Elite
+- Entender que o merge da release é duplo (Main e Develop).
+- Garantir que a `main` receba a Tag de versão oficial.
+- Compreender o conceito de "congelamento de código" (code freeze).
+
+------------------------------------------------------------------------------
+"Uma release é o ensaio geral antes da grande estreia do software no mundo real."

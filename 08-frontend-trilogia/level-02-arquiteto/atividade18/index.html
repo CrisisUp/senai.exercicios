@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 18</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Link Monitor</h1>
+        <p>Sincronia de Alta Latência (Satellite Protocol)</p>
+    </header>
+
+    <main class="container">
+        <!-- Status de Conexão Central -->
+        <section class="link-card">
+            <div id="status-led" class="led idle"></div>
+            <h2 id="status-text">MODO STANDBY</h2>
+            <p id="timer-display">Aguardando comando...</p>
+        </section>
+
+        <!-- Skeleton Loader (Só aparece durante o carregamento) -->
+        <section id="skeleton" class="skeleton" style="display: none;">
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line short"></div>
+        </section>
+
+        <!-- Container de Dados Reais -->
+        <section id="data-view" class="data-view" style="display: none;">
+            <h3>DADOS DO HANGAR-01</h3>
+            <p>CONEXÃO: <mark id="link-type">---</mark></p>
+            <p>INTEGRIDADE: <mark id="integrity-val">---</mark></p>
+        </section>
+
+        <div class="actions">
+            <button onclick="iniciarHandshake()" id="btn-connect" class="btn">INICIAR CONEXÃO</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

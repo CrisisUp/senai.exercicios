@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/SA-3-Desafio-3.dir/SA-3-Refinaria.cpp.o" "CMakeFiles/SA-3-Desafio-3.dir/Tanque.cpp.o" "CMakeFiles/SA-3-Desafio-3.dir/__/atividade-extra52/Medicao.cpp.o" -o SA-3-Desafio-3

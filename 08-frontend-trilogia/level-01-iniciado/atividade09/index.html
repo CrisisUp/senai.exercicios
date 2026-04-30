@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 09</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Layers - Controle Avançado</h1>
+        <p>Aperte [A] para Alerta | [ESC] para Sair</p>
+    </header>
+
+    <main class="dashboard">
+        <section class="base-layer">
+            <h2>Mapa Principal (Camada 0)</h2>
+            <p>Aguardando detecção de objetos...</p>
+        </section>
+    </main>
+
+    <!-- 1. DIALOG: Janela Modal Nativa (Camada Superior) -->
+    <dialog id="emergency-modal">
+        <div class="modal-content">
+            <h2>🚨 ALERTA DE COLISÃO</h2>
+            <p>Drone aproximando-se de área restrita!</p>
+            <p style="font-size: 0.8rem; color: #7d8590;">Pressione [ESC] ou clique abaixo para confirmar.</p>
+            <button class="btn btn-close" onclick="fecharAlerta()">CIENTE / LIMPAR</button>
+        </div>
+    </dialog>
+
+    <!-- 2. POSITION FIXED: Botão Flutuante (Camada Independente) -->
+    <button id="btn-manual" class="btn-float" onclick="abrirAlerta()">?</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

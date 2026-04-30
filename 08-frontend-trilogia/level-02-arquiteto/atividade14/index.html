@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 14</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="control-header">
+        <h1>Dubai Mission Control</h1>
+        <div class="metrics">
+            RENDER TIME: <span id="render-timer">0ms</span> | 
+            SENSORS: <span id="sensor-count">0</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- A GRADE: Onde o CSS Grid fará o milagre visual -->
+        <section class="sensor-grid" id="main-grid">
+            <!-- Gerado via JS em lote -->
+        </section>
+    </main>
+
+    <div class="command-bar">
+        <button onclick="gerarSensores(100)" class="btn-launch">GERAR 100 SENSORES (BATCH)</button>
+        <button onclick="limparSensores()" class="btn-abort">RESET</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+.container {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.header h1 {
+    color: #58a6ff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Grade Modular com Flex-Wrap (Requisito de Elite) */
+.moduleGrid {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebra de linha industrial */
+    gap: 1.5rem;
+    justify-content: center;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.module {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 1.5rem;
+    flex: 1;
+    min-width: 230px; /* Garante tamanho mínimo antes de quebrar */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.module:hover {
+    border-color: #58a6ff;
+    transform: translateY(-5px);
+}
+
+/* Destaque Atômico */
+.selected {
+    border-color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+    background-color: #1c2128;
+}
+
+.moduleHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #30363d;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.icon {
+    font-size: 1.2rem;
+}
+
+.moduleHeader h3 {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: #8b949e;
+    margin: 0;
+}
+
+.moduleContent {
+    font-size: 0.9rem;
+}
+
+.stat {
+    font-weight: bold;
+    color: #39ff14;
+    margin-bottom: 5px;
+}
+
+.moduleContent p {
+    font-size: 0.75rem;
+    color: #666;
+    margin: 0;
+}
+
+/* Teoria */
+.theoryBox {
+    margin-top: 4rem;
+    max-width: 800px;
+    font-size: 0.85rem;
+    color: #8b949e;
+    border-top: 1px solid #30363d;
+    padding-top: 2rem;
+    line-height: 1.6;
+}
+
+.theoryBox h4 { color: #58a6ff; margin-bottom: 10px; }

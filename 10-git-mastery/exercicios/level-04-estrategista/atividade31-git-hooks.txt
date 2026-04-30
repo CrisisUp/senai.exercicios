@@ -1,0 +1,33 @@
+# 📘 Atividade 31: Sentinelas Automáticas (Git Hooks)
+STATUS: Nível 31 (Estrategista) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Na "SkyCargo Nexus", a qualidade é inegociável. O Comandante Nexus está cansado de ver engenheiros commitando arquivos de log (`*.log`) por engano, mesmo com o `.gitignore` configurado. Você aprenderá a criar um **Git Hook**, um script automático que roda localmente no seu computador e cancela o commit se encontrar algo proibido.
+
+## 🛠️ Necessidade Técnica
+Os Hooks ficam na pasta oculta `.git/hooks/`. Eles são scripts (Bash, Python, etc) que o Git executa em momentos específicos. O hook `pre-commit` roda logo após o comando `git commit` e antes da mensagem ser escrita. Se o script retornar um erro (exit 1), o Git aborta o commit.
+
+## 🚀 Missão
+1.  No terminal, entre na pasta `.git/hooks/` do seu repositório `nexus-drone-system`.
+2.  Crie um arquivo chamado `pre-commit` (sem extensão).
+3.  Escreva o seguinte script básico:
+    ```bash
+    #!/bin/bash
+    if ls *.log 1> /dev/null 2>&1; then
+        echo "🚨 [BLOQUEIO NEXUS] Arquivos .log detectados! Limpe o hangar antes de commitar."
+        exit 1
+    fi
+    ```
+4.  Dê permissão de execução ao arquivo: `chmod +x pre-commit`.
+5.  Volte para a pasta raiz do projeto.
+6.  Crie um arquivo proibido: `touch erro_critico.log`.
+7.  Tente commitar qualquer coisa: `git add .` e `git commit -m "tentativa falha"`.
+8.  O Git deve bloquear o commit com sua mensagem personalizada!
+
+## 📋 Requisitos de Elite
+- Entender que Hooks são locais e não são enviados com o `push`.
+- Customizar o script para proteger o repositório de erros comuns.
+- Dominar a automação básica de fluxo de trabalho.
+
+------------------------------------------------------------------------------
+"Um engenheiro de elite automatiza a própria disciplina."

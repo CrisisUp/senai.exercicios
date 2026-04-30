@@ -1,0 +1,26 @@
+# 📘 Atividade 04: Dashboard "Matrix" com CSS Grid
+STATUS: Nível 04 (Iniciado Frontend) - Pilar de Fundamentos
+
+## 🎯 Estudo de Caso
+O SkyCargo Control Tower evoluiu. Não basta mais ter cards soltos; agora precisamos de uma visualização unificada de "Mission Control". O mapa deve ocupar a área central, os radares de satélite devem ficar no topo, e os logs de auditoria devem ficar em uma coluna lateral fixa. Tentar fazer isso apenas com Flexbox exigiria muitas divs aninhadas (Wrapper Hell).
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o **CSS Grid Layout**.
+1. **Grid Template Areas:** Definiremos o layout nomeando as áreas (`header`, `mapa`, `radar`, `logs`).
+2. **Fr Units (frações):** Usaremos a unidade `fr` para criar colunas que se ajustam proporcionalmente ao espaço disponível.
+3. **Grid Gap:** Controlaremos o espaçamento industrial entre os módulos sem margens manuais.
+4. **Implicit vs Explicit Grid:** Aprenderemos a deixar o navegador criar novas linhas automaticamente para novos drones.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (LAYOUT RIGIDITY)
+- **WRAPPER HELL:** Sem Grid, para fazer uma lateral fixa e um centro fluido, você precisa de containers dentro de containers. O Grid achata essa hierarquia, tornando o HTML mais limpo.
+- **ALINHAMENTO ZUMBI:** Em layouts complexos, é comum um elemento "empurrar" o outro. O Grid trava as coordenadas, garantindo que o mapa nunca saia do lugar quando um novo log entra.
+- **FRAGILIDADE RESPONSIVA:** Com o Grid, podemos mudar toda a ordem dos elementos no mobile (ex: mover o mapa para o topo) apenas trocando uma propriedade no CSS, sem tocar no HTML.
+
+## 📋 Requisitos de Elite
+1. Implementar o `nexus-grid` principal com 3 colunas e 3 linhas.
+2. Usar `grid-template-areas` para organizar: Radar (topo), Mapa (centro), Logs (lateral) e Status (rodapé).
+3. Garantir que o Mapa seja fluido (`1fr`) enquanto os Logs sejam fixos (`300px`).
+4. Criar um layout responsivo que mude as áreas do Grid via Media Query.
+
+------------------------------------------------------------------------------
+"Um arquiteto de grid não desenha caixas; ele define as coordenadas onde a realidade acontece."

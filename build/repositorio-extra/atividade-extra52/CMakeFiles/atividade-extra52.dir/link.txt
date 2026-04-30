@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra52.dir/atividade-extra52-operadores.cpp.o" "CMakeFiles/atividade-extra52.dir/Medicao.cpp.o" -o atividade-extra52

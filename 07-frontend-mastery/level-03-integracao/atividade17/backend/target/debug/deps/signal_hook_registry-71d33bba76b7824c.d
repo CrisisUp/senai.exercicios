@@ -1,0 +1,9 @@
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/07-frontend-mastery/level-03-integracao/atividade17/backend/target/debug/deps/signal_hook_registry-71d33bba76b7824c.d: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/signal-hook-registry-1.4.8/src/lib.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/signal-hook-registry-1.4.8/src/half_lock.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/signal-hook-registry-1.4.8/src/vec_map.rs
+
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/07-frontend-mastery/level-03-integracao/atividade17/backend/target/debug/deps/libsignal_hook_registry-71d33bba76b7824c.rlib: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/signal-hook-registry-1.4.8/src/lib.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/signal-hook-registry-1.4.8/src/half_lock.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/signal-hook-registry-1.4.8/src/vec_map.rs
+
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/07-frontend-mastery/level-03-integracao/atividade17/backend/target/debug/deps/libsignal_hook_registry-71d33bba76b7824c.rmeta: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/signal-hook-registry-1.4.8/src/lib.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/signal-hook-registry-1.4.8/src/half_lock.rs /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/signal-hook-registry-1.4.8/src/vec_map.rs
+
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/signal-hook-registry-1.4.8/src/lib.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/signal-hook-registry-1.4.8/src/half_lock.rs:
+/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/signal-hook-registry-1.4.8/src/vec_map.rs:

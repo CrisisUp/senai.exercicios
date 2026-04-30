@@ -1,5 +1,0 @@
----
-triple:          'arm64-apple-darwin'
-binary-path:     './repositorio/atividade01/atividade1-vetores'
-relocations:     []
-...

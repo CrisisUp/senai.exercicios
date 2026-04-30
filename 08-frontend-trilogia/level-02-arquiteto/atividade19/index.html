@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 19</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="dynamic-bg">
+
+    <header>
+        <h1>Nexus Meteorological Link</h1>
+        <p>Monitoramento Global para Operação de Drones</p>
+    </header>
+
+    <main class="container">
+        <!-- Busca de Localidade -->
+        <section class="search-panel">
+            <input type="text" id="city-input" placeholder="CIDADE (Ex: London, Sao Paulo)...">
+            <button id="btn-sync" onclick="sincronizarClima()">BUSCAR DADOS REAIS</button>
+        </section>
+
+        <!-- Display de Clima -->
+        <section id="weather-card" class="weather-card">
+            <div id="loader" style="display: none;">SINCRONIZANDO COM SATÉLITE...</div>
+            <div id="display-area">
+                <h2 id="city-name">AGUARDANDO COMANDO</h2>
+                <div class="temp-box">
+                    <span id="temp-val">--</span>°C
+                </div>
+                <p id="weather-desc">Pronto para nova sincronia</p>
+                <div class="geo-info">
+                    LAT: <span id="lat-val">0.0</span> | LON: <span id="lon-val">0.0</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

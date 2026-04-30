@@ -1,0 +1,138 @@
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #0b0e14;
+    border-radius: 12px;
+    border: 1px solid #1f2937;
+    transition: filter 0.5s ease;
+}
+
+.offlineMode {
+    filter: grayscale(100%);
+    border-color: #4b5563;
+}
+
+.header h1 {
+    color: #10b981;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    color: #9ca3af;
+    margin-bottom: 2rem;
+}
+
+.statusPanel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    background: #111827;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid #374151;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+}
+
+.statusItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    color: #8b949e;
+}
+
+.onlineText { color: #10b981; font-weight: bold; }
+.offlineText { color: #ef4444; font-weight: bold; }
+.swText { color: #60a5fa; }
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background: #0d1117;
+    border: 1px solid #374151;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #60a5fa;
+    font-size: 1rem;
+}
+
+.card p {
+    font-size: 0.85rem;
+    color: #9ca3af;
+}
+
+.mockData {
+    margin-top: 1rem;
+    border-top: 1px solid #1f2937;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dataRow {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+}
+
+.dataRow span:last-child {
+    color: #10b981;
+}
+
+.warningBox {
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.alertMsg {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid #ef4444;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 0;
+}
+
+.successMsg {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid #10b981;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 0;
+}
+
+.theoryBox {
+    background: rgba(96, 165, 250, 0.05);
+    border: 1px dashed #60a5fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.theoryBox h4 {
+    color: #60a5fa;
+    margin-top: 0;
+}
+
+.theoryBox p {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}

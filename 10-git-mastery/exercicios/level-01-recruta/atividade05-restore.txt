@@ -1,0 +1,29 @@
+# 📘 Atividade 05: Viagem no Tempo I (Descartando Mudanças Locais)
+STATUS: Nível 05 (Recruta) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Um estagiário na "SkyCargo Nexus" acidentalmente apagou metade do código de estabilização do drone no arquivo `manifesto.txt` e salvou o arquivo. O pânico se instala! Felizmente, você está usando Git. Você aprenderá como descartar mudanças que ainda não foram commitadas e restaurar o arquivo ao seu estado perfeito de "último commit".
+
+## 🛠️ Necessidade Técnica
+O Git é uma rede de segurança. Se você estragou um arquivo mas ainda não tirou a "foto" (commit), você pode pedir ao Git para sobrescrever sua bagunça com a versão guardada no repositório.
+
+### Comandos Chave:
+1.  **`git restore <arquivo>`**: (Moderno) Descarta mudanças no diretório de trabalho.
+2.  **`git checkout -- <arquivo>`**: (Antigo/Tradicional) Faz a mesma coisa que o restore.
+
+## 🚀 Missão
+1.  No arquivo `manifesto.txt`, apague todo o conteúdo e escreva apenas: "ERRO CRÍTICO: SISTEMA CORROMPIDO". Salve o arquivo.
+2.  Rode `git status`. O Git avisará que o arquivo foi modificado.
+3.  Use o comando de salvação: `git restore manifesto.txt`.
+4.  Abra o arquivo. Mágica? Não, Engenharia. O conteúdo original voltou!
+5.  Tente agora remover o arquivo fisicamente: `rm manifesto.txt`.
+6.  Rode `git status`. O Git avisará que o arquivo foi deletado.
+7.  Restaure-o novamente: `git restore manifesto.txt`.
+
+## 📋 Requisitos de Elite
+- Experimentar a restauração de um arquivo modificado.
+- Experimentar a restauração de um arquivo deletado acidentalmente.
+- O repositório deve permanecer limpo após a restauração.
+
+------------------------------------------------------------------------------
+"No Git, o arrependimento é apenas um comando de distância."

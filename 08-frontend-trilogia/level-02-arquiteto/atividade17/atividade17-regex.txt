@@ -1,0 +1,28 @@
+# 📘 Atividade 17: Processamento de Dados (Regex, Date e Strings)
+STATUS: Nível 17 (Arquiteto) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" detectou que operadores estão digitando IDs de drones de forma errada (ex: "alpha-01" em vez de "ALPHA-01"). Precisamos de um validador rigoroso. Além disso, os timestamps dos logs precisam ser formatados no padrão industrial (DD/MM/AAAA - HH:mm:ss) para facilitar a auditoria forense.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Uso de `<time>` para semântica de datas e `<pre>` para logs de texto formatados.
+2. **CSS (Estética):** Estilização de marcas de texto (`::selection` e `<mark>`) para destacar termos encontrados em buscas.
+3. **JS (Atitude):** 
+   - **RegExp (Regex):** O padrão `/^[A-Z]{5}-\d{3}$/` para validar se o ID tem 5 letras, um traço e 3 números.
+   - **Date Object:** Manipulação de tempo, fusos horários e formatação customizada.
+   - **String Methods:** `.split()`, `.trim()`, `.replace()` para limpeza de dados brutos.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **DATA POISONING:** Aceitar qualquer texto no ID do drone pode causar quebras no banco SQL ou no motor Rust. Regex é o porteiro da integridade.
+- **TIME DRIFT:** Registrar logs com horários locais inconsistentes. Aprenderemos a base da padronização de tempo.
+- **INCONSISTÊNCIA TEXTUAL:** " Drone 707" (com espaço) é diferente de "Drone 707". Métodos de string garantem o saneamento dos dados.
+
+## 📋 Requisitos de Elite
+1. Implementar um campo de "Validação de ID" que usa Regex para dar feedback em tempo real.
+2. Criar uma função que formata a data atual no padrão brasileiro industrial.
+3. Simular um log que limpa espaços extras e normaliza o texto antes de exibir.
+4. Interface ANSI (visual) destacando erros de validação.
+
+------------------------------------------------------------------------------
+"Um engenheiro não confia no dado bruto; ele o limpa, o valida e o contextualiza."

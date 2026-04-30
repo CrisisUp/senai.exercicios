@@ -1,0 +1,28 @@
+# 📘 Atividade 01: O Primeiro Pouso (Nível 01)
+STATUS: Nível 01 (Maquinista) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+O código do SkyCargo Nexus está pronto e versionado no Git. Mas agora, o Comandante Nexus deu uma ordem clara: "Não quero instalar bibliotecas de C++, Rust ou Node.js no servidor de produção. Quero que o software venha pronto para rodar dentro de um casulo blindado." Você usará o Docker para criar seu primeiro container e verificar se o "motor" de conteinerização está operacional.
+
+## 🛠️ Necessidade Técnica
+O Docker permite rodar um processo isolado do resto do sistema operacional. Esse processo acredita que está em um computador novo e limpo. A primeira etapa para qualquer Maquinista é saber baixar uma imagem do registro e executá-la.
+
+### Comandos Chave:
+1.  **`docker run <imagem>`**: Baixa a imagem (se não existir localmente) e cria/inicia um container.
+2.  **`docker ps -a`**: Lista todos os containers (ativos e parados).
+3.  **`docker images`**: Lista as imagens armazenadas no seu computador.
+
+## 🚀 Missão
+1.  Abra seu terminal.
+2.  Execute o container de boas-vindas: `docker run hello-world`.
+3.  Observe o output. O Docker explicará passo a passo o que fez: buscou a imagem, criou o container e rodou o programa.
+4.  Rode `docker ps -a` para ver que o container do `hello-world` agora está no estado "Exited".
+5.  Rode `docker images` e veja que a imagem `hello-world` agora ocupa espaço no seu hangar local.
+
+## 📋 Requisitos de Elite
+- O container `hello-world` deve ser executado com sucesso.
+- Você deve identificar a diferença entre uma **Imagem** (o molde/disco) e um **Container** (a instância viva/processo).
+- Limpe o hangar: apague o container após o teste usando `docker rm <id-do-container>`.
+
+------------------------------------------------------------------------------
+"No Docker, a infraestrutura é um detalhe; o container é a unidade fundamental."

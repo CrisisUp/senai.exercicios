@@ -1,0 +1,46 @@
+# 📘 Atividade 12: O Mensageiro (Copy & Add)
+STATUS: Nível 12 (Arquiteto) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Sua imagem básica está pronta (Atividade 11), mas ela ainda não contém o código real do Nexus. Você precisa aprender a transferir arquivos do seu computador (Host) para dentro da imagem durante a construção. Você transformará um script local em uma ferramenta global conteinerizada.
+
+## 🛠️ Necessidade Técnica
+Para que um container execute seu código, os arquivos devem ser "queimados" dentro da imagem. Usamos a instrução `COPY` para mover arquivos locais de forma segura e explícita.
+
+### Instruções Chave:
+1.  **`WORKDIR <caminho>`**: Define a pasta de trabalho dentro do container (como um `cd`). Tudo o que vier depois rodará ali.
+2.  **`COPY <origem-host> <destino-container>`**: Copia arquivos ou pastas locais para a imagem.
+3.  **`ADD <origem> <destino>`**: Similar ao COPY, mas com "superpoderes" (consegue baixar arquivos de URLs e descompactar arquivos .tar.gz automaticamente). *Dica de Elite: Use COPY para arquivos locais por segurança.*
+
+## 🚀 Missão
+1.  Na pasta `labs/primeira-imagem`, crie um arquivo chamado `nexus_script.sh` com:
+    ```bash
+    #!/bin/sh
+    echo "-----------------------------------"
+    echo "INICIANDO TELEMETRIA NEXUS..."
+    echo "DATA: $(date)"
+    echo "STATUS: MOTOR OPERACIONAL"
+    echo "-----------------------------------"
+    ```
+2.  Atualize seu `Dockerfile`:
+    ```dockerfile
+    FROM alpine
+    # Define o diretório base
+    WORKDIR /app
+    # Copia o script para dentro da pasta /app
+    COPY nexus_script.sh .
+    # Dá permissão de execução
+    RUN chmod +x nexus_script.sh
+    # Comando para rodar o script
+    CMD ["./nexus_script.sh"]
+    ```
+3.  Construa a nova versão: `docker build -t nexus-script-v1 .`.
+4.  Rode e valide: `docker run --rm nexus-script-v1`.
+
+## 📋 Requisitos de Elite
+- Dominar o uso de `WORKDIR` para manter a imagem organizada.
+- Diferenciar `COPY` (simples e seguro) de `ADD` (complexo e automático).
+- Garantir que permissões de arquivos (`chmod`) sejam tratadas no build.
+
+------------------------------------------------------------------------------
+"Uma imagem sem código é um corpo sem alma. O COPY é o sopro de vida do container."

@@ -1,0 +1,1 @@
+/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/SA-09-hub-operacoes-globais: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/integracao-rust-sql/SA-09-hub-operacoes-globais/src/main.rs

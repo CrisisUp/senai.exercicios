@@ -1,2 +1,0 @@
-# Empty dependencies file for atividade-extra54.
-# This may be replaced when dependencies are built.

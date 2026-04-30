@@ -1,0 +1,26 @@
+# 🏆 Atividade 36: Desafio Integrador - SkyCargo Hypersonic Command v4.0
+STATUS: Nível 36 (Mestre Engenheiro de Elite) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+O SkyCargo OS evoluiu para a versão 4.0, o "Hypersonic Command". Este terminal unificado é a ferramenta definitiva para o controle de drones hipersônicos em missões transcontinentais. O desafio agora é a **Confluência Total**: processar dados em altíssima velocidade, persistir cada milissegundo em uma caixa preta inquebrável e fornecer consciência situacional auditiva ao operador, tudo isso mantendo a interface em perfeitos 60 FPS.
+
+## 🛠️ Necessidade Técnica (A Grande Unificação)
+Nesta atividade, você deve integrar harmonicamente os seguintes pilares de elite:
+1. **Módulo de Alta Frequência (Shared Memory):** Utilizar um Web Worker e `SharedArrayBuffer` para gerar e processar a telemetria do drone (Altitude, Velocidade, Bateria) a 1000Hz.
+2. **Módulo de Persistência Forense (IndexedDB):** Cada evento significativo ou delta de telemetria deve ser gravado automaticamente no banco de dados `SkyCargo_V4_BlackBox`.
+3. **Módulo de Consciência Acústica (Web Audio):** O sistema deve emitir um bipe pulsante cuja tonalidade reflete a altitude e um alarme sonoro em caso de bateria < 20% ou velocidade excessiva.
+4. **Módulo de Visualização (Osciloscópio & Radar):** Integrar a visualização de ondas sonoras e a posição do drone em tempo real.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **I/O BOTTLENECK:** Gravar 1000 logs/segundo no IndexedDB travaria o disco. Aprenderemos a técnica de "Batching" (Agrupamento), acumulando dados na RAM (SharedBuffer) e gravando no banco apenas a cada 1 segundo ou em eventos críticos.
+- **AUDIO JITTER:** O processamento pesado de dados pode causar cortes no som. O uso de automação de áudio (`RampToValue`) é obrigatório para suavizar o feedback.
+- **MEMORY OVERFLOW:** O banco de dados crescerá rapidamente. Implementaremos um sistema de "Circular Buffer" no IndexedDB, onde logs muito antigos são descartados para dar lugar aos novos.
+
+## 📋 Requisitos de Elite
+1. Interface "Elite Mission Control": Grid avançado com Radar, BlackBox Browser, Telemetry Gauges e Oscilloscope.
+2. Implementar Batching de gravação no IndexedDB (Buffer de 1s de telemetria).
+3. Feedback sonoro dinâmico baseado nos dados vindos da memória compartilhada.
+4. **Refatoração Obrigatória:** Modularizar a lógica de Atomics (Ativ 33) para gerenciar o estado global entre as threads de forma limpa.
+
+------------------------------------------------------------------------------
+"A maestria não reside na complexidade, mas na simplicidade com que se orquestra o impossível."

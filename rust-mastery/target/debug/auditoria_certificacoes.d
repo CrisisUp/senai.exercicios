@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/auditoria_certificacoes: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/integracao-rust-sql/33-auditoria-certificacoes/src/main.rs

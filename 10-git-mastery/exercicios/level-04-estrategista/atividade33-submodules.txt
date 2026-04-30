@@ -1,0 +1,29 @@
+# 📘 Atividade 33: Ecossistemas Conectados (Git Submodules)
+STATUS: Nível 33 (Estrategista) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+A "SkyCargo Nexus" decidiu que o código do servidor (`nexus-server.git`) deve ser incluído como uma dependência dentro do projeto do drone (`nexus-drone-system`). No entanto, eles são repositórios diferentes e evoluem em ritmos diferentes. Você aprenderá a usar **Submodules**, permitindo que um repositório Git contenha outro dentro dele, mantendo o controle de versão de ambos de forma independente.
+
+## 🛠️ Necessidade Técnica
+Um submódulo é um registro de um commit específico de outro repositório. O Git cria um arquivo `.gitmodules` para gerenciar esse link.
+
+### Comandos Chave:
+1.  **`git submodule add <url-ou-caminho>`**: Adiciona o repositório externo.
+2.  **`git submodule init`**: Inicializa as configurações.
+3.  **`git submodule update`**: Baixa o conteúdo do submódulo.
+
+## 🚀 Missão
+1.  Na pasta `nexus-drone-system`, adicione o servidor como submódulo:
+    `git submodule add ../nexus-server.git libs/nexus-server`.
+2.  Observe que uma nova pasta `libs/nexus-server` foi criada e um arquivo `.gitmodules` apareceu.
+3.  Commite as mudanças: `git commit -m "chore: adicionar nexus-server como submódulo"`.
+4.  Vá até a pasta `nexus-operator-02`. Rode `git pull`. Observe que a pasta do submódulo aparece vazia.
+5.  Nesta pasta do colega, rode `git submodule update --init --recursive`. O conteúdo aparecerá!
+
+## 📋 Requisitos de Elite
+- Entender a separação de responsabilidades entre projeto pai e submódulo.
+- Saber clonar/puxar projetos que contenham submódulos.
+- Compreender como o Git trava o submódulo em um commit específico.
+
+------------------------------------------------------------------------------
+"Submódulos são as peças de LEGO da engenharia de software distribuída."

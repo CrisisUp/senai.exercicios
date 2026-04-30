@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 05</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <h1>SkyCargo Command v2.5</h1>
+    </header>
+
+    <main class="container">
+        <!-- Configuração (Formulário) -->
+        <section class="config-panel">
+            <h2>Configuração de Missão</h2>
+            <div class="form-group">
+                <label for="callsign-input">NOME DO DRONE:</label>
+                <input type="text" id="callsign-input" placeholder="Ex: ALPHA-707">
+                <button class="btn" onclick="atualizarNome()">SALVAR</button>
+            </div>
+        </section>
+
+        <!-- Status (Visualização Flexível) -->
+        <section id="status-panel" class="status-card normal">
+            <h2 id="drone-name">ALPHA-01</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <p>BATERIA</p>
+                    <span id="bat-val">100</span>%
+                </div>
+                <div class="stat-item">
+                    <p>SITUAÇÃO</p>
+                    <span id="status-msg">OPERACIONAL</span>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-warn" onclick="simularGasto()">GASTAR 30% BATERIA</button>
+                <button class="btn btn-safe" onclick="simularCarga()">RECARREGAR TOTAL</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

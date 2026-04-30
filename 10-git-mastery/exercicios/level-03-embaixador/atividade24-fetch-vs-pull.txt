@@ -1,0 +1,33 @@
+# 📘 Atividade 24: Sincronia de Comando (Fetch vs Pull)
+STATUS: Nível 24 (Embaixador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+O "Agente 02" fez uma melhoria no sistema de rádio e enviou para o servidor. Você, no seu repositório original, ainda não sabe disso. Você aprenderá a diferença entre "espiar" o que há de novo no servidor e "trazer" as mudanças para o seu código.
+
+## 🛠️ Necessidade Técnica
+Existem duas formas de atualizar seu repositório local com o servidor:
+1.  **`git fetch`**: Baixa os dados do servidor mas **não** mexe nos seus arquivos. É uma operação segura para espiar o que os outros fizeram.
+2.  **`git pull`**: Faz o `fetch` e imediatamente tenta fazer o `merge` no seu código. É a forma rápida de sincronizar.
+
+### Comandos Chave:
+1.  **`git fetch origin`**: Atualiza suas branches remotas locais (ex: `origin/main`).
+2.  **`git pull origin main`**: Traz as mudanças e atualiza seu código.
+
+## 🚀 Missão
+1.  Entre na pasta `nexus-operator-02`.
+2.  Crie o arquivo `radio.txt` com "Sinal de Rádio: OK".
+3.  Adicione, commite e dê o `push`.
+4.  Agora, volte para a sua pasta original `nexus-drone-system`.
+5.  Rode `ls`. O arquivo `radio.txt` não está lá.
+6.  Rode `git fetch origin`. O Git dirá que há mudanças.
+7.  Rode `git log --oneline main..origin/main`. Você está vendo o commit do Agente 02 sem ter integrado ele ainda!
+8.  Agora sim, integre: `git pull origin main`.
+9.  Rode `ls`. O `radio.txt` apareceu.
+
+## 📋 Requisitos de Elite
+- Entender que o `fetch` é a operação mais segura e informativa.
+- Compreender que o `pull` pode gerar conflitos se você também tiver mexido nos mesmos arquivos.
+- Visualizar o estado do servidor antes de integrar.
+
+------------------------------------------------------------------------------
+"Um engenheiro de elite sempre espia (fetch) antes de integrar (pull)."

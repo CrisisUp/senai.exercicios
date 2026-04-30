@@ -1,0 +1,22 @@
+# 📘 Atividade Extra 61: Sistemas Lock-Free (A Era dos Atômicos)
+STATUS: Nível 31 (Engenheiro de Elite) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+A "LogiSpeed" agora processa milhões de pacotes de telemetria por segundo. No SA-05, usamos um `std::mutex` para proteger o console. No entanto, se tentarmos usar esse mesmo mutex para contar quantos pacotes cada caminhão enviou, o sistema ficará lento demais devido ao "Lock Contention" (disputa de trava).
+
+## 🛠️ Necessidade Técnica
+Em vez de "travar" o recurso, usaremos operações **Atômicas**. Uma operação atômica é executada diretamente pelo hardware (CPU) como uma instrução única e indivisível. Não há suspensão de thread, não há mudança de contexto do SO.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (PERFORMANCE EXTREMA)
+- **OVERHEAD DE MUTEX:** Um mutex consome centenas de ciclos de CPU mesmo que não haja disputa. Em um loop de milhões de iterações, isso pode significar a diferença entre microssegundos e milissegundos.
+- **LIVELOCK / DEADLOCK:** Sistemas baseados em travas são propensos a travamentos mútuos. Operações atômicas são intrinsecamente imunes a deadlocks (pois não há trava).
+- **FALSE SHARING:** Se dois atômicos estiverem na mesma linha de cache da CPU, uma thread pode invalidar o cache da outra, causando lentidão (Cache Miss). Solução: `alignas(64)`.
+
+## 📋 Requisitos de Elite
+1. Implementar um `ContadorGlobal` usando `std::atomic<long long>`.
+2. Substituir incrementos protegidos por Mutex por `fetch_add` ou `operator++`.
+3. Comparar o tempo de execução entre uma contagem com Mutex vs Atômica.
+4. Interface ANSI para telemetria de performance (Pacotes/segundo).
+
+------------------------------------------------------------------------------
+"No nível Elite, não esperamos o semáforo abrir; nós construímos um viaduto."

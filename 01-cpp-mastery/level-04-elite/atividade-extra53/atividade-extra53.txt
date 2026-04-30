@@ -1,0 +1,19 @@
+# 📘 Atividade Extra 53: Herança Simples (Gestão de Frota Logística)
+STATUS: Padrão de Engenharia de Elite Aplicado
+
+## 🎯 Estudo de Caso
+A transportadora "LogiSpeed" opera uma frota variada de veículos. Eles perceberam que todos os seus veículos (Caminhões, Vans, Carretas) compartilham características comuns (Placa, Marca, Modelo), mas cada um tem suas particularidades. Em vez de duplicar o código para cada tipo de veículo, eles querem uma estrutura onde as características comuns sejam herdadas de uma base.
+
+## 🛠️ Necessidade Técnica
+A **Herança (Inheritance)** é o pilar da Programação Orientada a Objetos que estabelece a relação "**É-Um**" (Is-A).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (NÍVEL ARQUITETURA POO)
+- RISCO DE FRAGILE BASE CLASS (BASE FRÁGIL): Se alterarmos um método na classe `Veiculo` (ex: mudar o cálculo do odômetro), podemos quebrar acidentalmente o comportamento de todos os tipos de caminhões e vans do sistema simultaneamente.
+- RISCO DE OBJECT SLICING (CORTE DE DADOS): Se passarmos um `Caminhao` por valor para uma função que espera um `Veiculo`, a parte "Caminhao" (capacidade de carga) é deletada da memória, restando apenas a "casca" do veículo base.
+- RISCO DE HERANÇA PROFUNDA: Hierarquias com muitos níveis (Bisavô -> Avô -> Pai -> Filho) tornam o código impossível de depurar e aumentam o acoplamento entre módulos distantes.
+
+## 📋 Requisitos de Elite
+1. Classe Base `Veiculo` com membros protegidos para acesso seguro às subclasses.
+2. Classe Derivada `Caminhao` com delegação obrigatória de construtor (Member Initializer List).
+3. Proteção de performance via referências constantes (Fantasma do CPU).
+4. Interface ANSI para telemetria de frota logística.

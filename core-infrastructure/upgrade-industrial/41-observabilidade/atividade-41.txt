@@ -1,0 +1,24 @@
+# 📘 Atividade 41: Observabilidade Industrial (O DNA do SRE)
+STATUS: Nível 31+ (Engenheiro de Elite) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+O ecossistema "SkyCargo OS" agora unifica C++, Rust e SQL. Se o banco de dados ficar lento ou o motor de rotas C++ travar, o administrador precisa de um único lugar para ver o que aconteceu. Logs como "Erro no sistema" não servem. Precisamos de logs que digam: `{"layer": "DB", "component": "Federation", "latency_ms": 450, "status": "WARN"}`.
+
+## 🛠️ Necessidade Técnica
+1. **Logs Estruturados (JSON):** Todos os eventos serão gerados em formato JSON, permitindo que máquinas processem os logs para criar gráficos de performance.
+2. **Health Check Probes:** Implementaremos verificações de saúde para cada camada (Hardware, Backend, Data).
+3. **Correlation ID:** Cada transação que atravessa as linguagens (C++ -> Rust -> SQL) carregará um ID único, permitindo rastrear o caminho completo de um erro.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (SISTEMA DE MONITORAMENTO)
+- **LOG OVERLOAD:** Gerar logs demais trava o sistema (I/O Bound). Usaremos níveis de log (INFO, DEBUG, ERROR) e buffers assíncronos.
+- **SILENT FAILURES:** Um banco de dados pode estar "vivo" mas respondendo tão lento que o sistema de drones cai. O Health Check deve medir LATÊNCIA, não apenas conectividade.
+- **LOST CONTEXT:** Sem um Correlation ID, é impossível saber qual linha de SQL causou o erro no motor C++. A observabilidade resolve a "colcha de retalhos" do sistema distribuído.
+
+## 📋 Requisitos de Elite
+1. Implementar um Logger Central em Rust que gera saída JSON.
+2. Criar uma simulação de verificação de saúde (Health Check) das 3 camadas.
+3. Gerar um log de transação unificado com Correlation ID.
+4. Interface ANSI para o Dashboard de Saúde do Sistema.
+
+------------------------------------------------------------------------------
+"Se você não pode medir, você não pode gerenciar; se você não pode observar, você está apenas torcendo para que funcione."

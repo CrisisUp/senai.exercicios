@@ -1,0 +1,25 @@
+# 📘 Atividade 20: O Selo do Guardião (Nexus System Review)
+STATUS: Nível 20 (Mestre Guardião) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+Chegou o momento de unificar as defesas do SkyCargo Nexus. Sua missão final para atingir o Nível 20 é construir um pequeno módulo de "Controle de Voo" que utilize as ferramentas avançadas que você aprendeu. Este sistema deve ser indestrutível: não pode vazar memória, deve tratar erros de forma profissional e ser organizado em territórios lógicos.
+
+## 🛠️ Necessidade Técnica
+Integrar Smart Pointers, Exceções, Namespaces e Templates em uma única arquitetura coesa.
+
+## 🚀 Missão Final
+Crie a estrutura definitiva na pasta `labs/nexus-guardian`:
+
+1.  **Organização:** Envolva todo o sistema no namespace `NexusGuard`.
+2.  **Segurança de Memória:** Gerencie a frota de drones usando `std::vector<std::shared_ptr<Drone>>`.
+3.  **Resiliência:** Implemente um sistema de lançamento que `throw` uma exceção se as coordenadas (template) estiverem fora do limite do satélite.
+4.  **Imutabilidade:** Garanta que os logs de auditoria recebam apenas referências `const`.
+5.  **A Entrega:** No `main`, simule um voo bem-sucedido e uma tentativa de voo que gere uma exceção, capturando o erro e limpando a frota automaticamente via Smart Pointers.
+
+## 📋 Requisitos de Elite
+- Zero uso de `delete` manual (gestão inteligente).
+- Uso obrigatório de namespaces para evitar conflitos de escopo.
+- Código 100% resiliente a entradas de dados catastróficas.
+
+------------------------------------------------------------------------------
+"A maestria não é apenas saber usar a ferramenta, mas saber como elas se tornam uma fortaleza sob o seu comando."

@@ -1,0 +1,29 @@
+# 📘 Atividade 06: Viagem no Tempo II (Retirando do Stage e Corrigindo Commits)
+STATUS: Nível 06 (Recruta) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Você adicionou um arquivo secreto (`senha.env`) ao Stage por engano e está prestes a commitá-lo. Ou pior: você acabou de fazer um commit mas esqueceu de adicionar um arquivo ou digitou a mensagem errada. Você aprenderá a "desfazer o palco" e a "consertar o último erro".
+
+## 🛠️ Necessidade Técnica
+Às vezes o erro acontece um passo à frente. O Git oferece ferramentas para retirar arquivos da "sala de espera" (Unstaging) e para editar o último commit realizado.
+
+### Comandos Chave:
+1.  **`git restore --staged <arquivo>`**: Tira o arquivo do Stage (volta para o Working Directory).
+2.  **`git commit --amend`**: Abre o último commit para que você possa mudar a mensagem ou adicionar arquivos esquecidos.
+
+## 🚀 Missão
+1.  Crie um arquivo `esquecido.txt`.
+2.  Adicione ao stage: `git add esquecido.txt`.
+3.  Percebeu que não era para estar lá? Retire do stage: `git restore --staged esquecido.txt`.
+4.  Rode `git status`. Ele deve estar "Untracked" novamente.
+5.  Agora, faça um commit qualquer: `git add manifesto.txt` e `git commit -m "feat: commit com erro de digitaçao"`.
+6.  Conserte a mensagem sem criar um novo commit: `git commit --amend -m "feat: corrigir erro de digitação no manifesto"`.
+7.  Rode `git log --oneline` e veja que o commit "errado" foi substituído pelo correto.
+
+## 📋 Requisitos de Elite
+- Demonstrar o "Unstaging" de um arquivo.
+- Usar o `--amend` para manter um histórico limpo e sem commits de "fix: typo".
+- Entender que o `--amend` muda o ID (hash) do commit (ele cria um novo commit por baixo dos panos).
+
+------------------------------------------------------------------------------
+"O histórico de commits de um engenheiro de elite deve parecer uma sucessão lógica de vitórias, não um rastro de erros ortográficos."

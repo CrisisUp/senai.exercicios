@@ -1,0 +1,36 @@
+# 📘 Atividade 17: Diagnóstico de Saúde (Docker Healthcheck)
+STATUS: Nível 17 (Arquiteto) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Um container do Nexus OS pode estar "vivo" (rodando) mas "morto por dentro" (o banco de dados travou ou a API parou de responder). O Docker, por padrão, só sabe se o processo principal ainda existe. Você aprenderá a implementar o **Healthcheck**, um exame médico automático que o Docker faz periodicamente para garantir que o serviço dentro do container está realmente pronto para operar.
+
+## 🛠️ Necessidade Técnica
+A instrução `HEALTHCHECK` diz ao Docker como verificar a saúde do container. Se a verificação falhar repetidamente, o status do container muda de `healthy` para `unhealthy`, permitindo que orquestradores (como Docker Compose ou Kubernetes) reiniciem o container automaticamente.
+
+### Instruções Chave:
+1.  **`HEALTHCHECK --interval=30s --timeout=5s CMD <comando>`**: Define o teste de saúde.
+
+## 🚀 Missão
+1.  Crie um `Dockerfile` com monitoramento:
+    ```dockerfile
+    FROM alpine
+    RUN apk add --no-cache curl
+    # Simula um servidor que demora 5 segundos para estar pronto
+    CMD ["sh", "-c", "sleep 5 && echo 'Servidor Pronto' > /tmp/ready && sleep 3600"]
+    # Verifica se o arquivo ready existe
+    HEALTHCHECK --interval=5s --timeout=2s --start-period=1s --retries=3 \
+      CMD ls /tmp/ready || exit 1
+    ```
+2.  Construa: `docker build -t nexus-health .`.
+3.  Inicie e monitore: `docker run -d --name nexus-check nexus-health`.
+4.  Rode `docker ps` repetidamente (ou use `watch docker ps`).
+5.  Observe a coluna `STATUS`. Ela passará de `starting` para `healthy`.
+6.  **Desafio de Falha:** Entre no container (`exec`) e apague o arquivo `/tmp/ready`. Observe o status mudar para `unhealthy`.
+
+## 📋 Requisitos de Elite
+- Implementar verificações de saúde baseadas na realidade do serviço (ex: `curl localhost:80`).
+- Configurar períodos de carência (`start-period`) para serviços que demoram a subir.
+- Utilizar o status de saúde para automação de infraestrutura.
+
+------------------------------------------------------------------------------
+"Em sistemas de missão crítica, estar vivo não é o suficiente; é preciso estar pronto."

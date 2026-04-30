@@ -1,0 +1,26 @@
+# 📘 Atividade 06: Manipulação de DOM Segura (TS + Web APIs)
+STATUS: Nível 06 (Iniciado Frontend) - Pilar de Fundamentos
+
+## 🎯 Estudo de Caso
+No SkyCargo Control Tower, os operadores precisam interagir com o "Mapa Tático" e o "Cofre de Logs". Se um desenvolvedor remover um ID de botão do HTML mas esquecer de atualizar o código, o sistema inteiro pode travar ao tentar carregar a página. Precisamos de um código que verifique a existência de cada elemento antes de agir.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos as **Web APIs** com a tipagem do TypeScript.
+1. **Type Casting (`as`):** Diremos ao TS que um elemento genérico é, na verdade, um `HTMLButtonElement` ou `HTMLDivElement`.
+2. **Null Guards:** Usaremos `if (element)` ou o operador de encadeamento opcional (`?.`) para evitar crashes.
+3. **Event Listeners:** Vincularemos interações de forma tipada (ex: o evento `click` em um botão).
+4. **DOM Fragment:** Aprenderemos a inserir múltiplos logs de uma vez sem causar múltiplos "reflows" (ganho de performance).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (DOM FRAGILITY)
+- **ID MISMATCH:** Se o HTML diz `id="mapa-central"` e o TS busca por `#mapa`, o sistema falha. O TS nos força a lidar com o `null` resultante.
+- **MEMORY LEAK:** Adicionar eventos em loops sem cuidado pode consumir RAM. Aprenderemos a gerenciar as referências.
+- **LAYOUT THRASHING:** Atualizar o DOM mil vezes por segundo trava a CPU. Usaremos boas práticas de escrita em lote.
+
+## 📋 Requisitos de Elite
+1. Selecionar o botão de "Mudar Visão" e o container de "Logs" de forma segura.
+2. Implementar uma função `adicionarLog(mensagem: string)` que valida o container.
+3. Criar um evento que, ao clicar no mapa, exiba as coordenadas no painel.
+4. Interface ANSI (no console) e visual (no DOM) confirmando a segurança do link.
+
+------------------------------------------------------------------------------
+"Um engenheiro de elite não confia que o HTML está lá; ele verifica, valida e então executa."

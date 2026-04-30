@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCargo Sonic Telemetry - Web Audio v35</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="sonic-header">
+        <div class="top-info">
+            <span>OPERATOR: CRISTIANO</span>
+            <span id="audio-status" class="status-off">AUDIO ENGINE: SUSPENDED</span>
+        </div>
+        <h1>SONIC TELEMETRY ENGINE v1.0</h1>
+    </header>
+
+    <main class="dashboard">
+        <section class="telemetry-simulator">
+            <h2><span class="icon">🚀</span> SIMULADOR DE ALTITUDE</h2>
+            <div class="sim-controls">
+                <input type="range" id="altitude-slider" min="0" max="5000" value="500">
+                <div class="value-display"><span id="altitude-val">500</span> <small>m</small></div>
+            </div>
+            <p class="hint">A frequência do bipe muda conforme a altitude.</p>
+        </section>
+
+        <section class="alert-system">
+            <h2><span class="icon">⚠️</span> ALARME DE SEGURANÇA</h2>
+            <div class="alert-controls">
+                <button id="btn-master-audio" class="btn-primary">INIT AUDIO CONTEXT</button>
+                <button id="btn-alarm" class="btn-danger">TRIGGER CRITICAL ALARM</button>
+            </div>
+            <div id="alarm-indicator" class="alarm-light">ALARM IDLE</div>
+        </section>
+
+        <section class="visualizer-module">
+            <h2><span class="icon">📈</span> OSCILOSCÓPIO EM TEMPO REAL</h2>
+            <div class="canvas-container">
+                <canvas id="oscillos-canvas"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <footer class="sonic-footer">
+        <p>[LOG]: <span id="terminal-log">Aguardando ativação do sistema de som...</span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

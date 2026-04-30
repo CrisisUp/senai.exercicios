@@ -1,0 +1,25 @@
+# 📘 Atividade Extra 63: Object Pool (O Fim da Alocação Dinâmica Lenta)
+STATUS: Nível 31 (Engenheiro de Elite) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+A "LogiSpeed" agora gerencia milhões de objetos `Telemetria` por minuto. Se usarmos `new` e `delete` para cada pacote, o gerenciador de memória do SO (Heap) ficará fragmentado, causando pausas imprevisíveis (Latência) no sistema. Precisamos de um sistema que "empreste" objetos prontos e os receba de volta para reuso.
+
+## 🛠️ Necessidade Técnica
+Implementaremos um **Object Pool** baseado em Templates. 
+1. **Pré-alocação:** Criamos um vetor de objetos na inicialização.
+2. **Reuso:** Em vez de deletar, marcamos o objeto como "livre".
+3. **RAII integration:** Usaremos `std::unique_ptr` com um **Deleter Customizado**. Quando o ponteiro sair de escopo, ele NÃO deletará o objeto, mas sim o devolverá automaticamente ao Pool.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (FRAGMENTAÇÃO E CACHE)
+- **FRAGMENTAÇÃO DA HEAP:** Milhares de alocações pequenas espalham dados pela RAM, impedindo o SO de alocar blocos grandes depois. O Pool mantém os dados contíguos.
+- **CACHE LOCALITY:** Como os objetos no Pool estão próximos na memória, a CPU consegue carregá-los no Cache L1/L2 muito mais rápido (Spatial Locality).
+- **POOL EXHAUSTION:** Se o pool acabar, o sistema deve decidir se aloca um novo bloco (lento) ou se falha (seguro). No nível Elite, preferimos o comportamento determinístico de falha ou expansão controlada.
+
+## 📋 Requisitos de Elite
+1. Implementar `ObjectPool<T>` genérico.
+2. Usar `std::unique_ptr` com Deleter customizado para reuso automático.
+3. Medir o tempo de criação de 1 milhão de objetos via `new` vs `ObjectPool`.
+4. Interface ANSI para monitoramento de uso do Pool (Objetos Ativos vs Livres).
+
+------------------------------------------------------------------------------
+"O melhor gerenciador de memória é aquele que você nunca precisa chamar durante a execução."

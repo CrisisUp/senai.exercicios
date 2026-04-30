@@ -1,0 +1,32 @@
+# 📘 Atividade 03: Visão de Raio-X (Histórico e Diferenças)
+STATUS: Nível 03 (Recruta) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+O sistema do drone Alpha-707 está evoluindo. Você adicionou o manifesto, mas agora precisa registrar as especificações de hardware. Mais importante do que adicionar arquivos é saber **o que mudou** e **quem mudou**. Um engenheiro de elite nunca commita sem revisar suas alterações.
+
+## 🛠️ Necessidade Técnica
+O Git permite que você compare versões do seu código em diferentes estados e visualize a linha do tempo com precisão.
+
+### Comandos Chave:
+1.  **`git log`**: Mostra a história.
+    - `--oneline`: Versão resumida (um commit por linha).
+    - `-p`: Mostra o "patch" (as linhas exatas que mudaram).
+2.  **`git diff`**: Compara o que você escreveu agora com o que está no último commit.
+3.  **`git diff --staged`**: Compara o que está na "sala de espera" (Stage) com o último commit.
+
+## 🚀 Missão
+1.  No arquivo `manifesto.txt`, adicione uma nova linha: "Versão do Hardware: v2.0.4".
+2.  Antes de adicionar ao stage, rode `git diff`. Observe as linhas com `+` (adicionadas).
+3.  Adicione ao stage: `git add manifesto.txt`.
+4.  Rode `git diff` novamente. Ele deve estar vazio (pois a mudança já saiu do "Working Directory").
+5.  Rode `git diff --staged` para ver a mudança preparada.
+6.  Commit: `git commit -m "docs: atualizar versão do hardware no manifesto"`.
+7.  Visualize a história rica: `git log --oneline --graph --all`.
+
+## 📋 Requisitos de Elite
+- Demonstrar o uso do `git diff` antes de cada commit.
+- Utilizar `git log --oneline` para uma visão panorâmica do projeto.
+- O histórico deve conter pelo menos 2 commits claros.
+
+------------------------------------------------------------------------------
+"Se você não sabe o que mudou, você não tem o controle; você tem apenas sorte."

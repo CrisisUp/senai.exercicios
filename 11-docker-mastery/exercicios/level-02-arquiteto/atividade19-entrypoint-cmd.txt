@@ -1,0 +1,37 @@
+# 📘 Atividade 19: O Comando Inquebrável (Entrypoint vs CMD)
+STATUS: Nível 19 (Arquiteto) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Você desenvolveu uma ferramenta de diagnóstico para o drone Alpha-707 chamada `nexus-cli`. Você quer que o container se comporte exatamente como um comando executável do sistema. Se o usuário rodar o container, ele deve executar o diagnóstico, mas também deve ser capaz de aceitar parâmetros extras (como `--verbose`). Você aprenderá a diferença entre **CMD** (sugestão de comando) e **ENTRYPOINT** (comando fixo) para criar ferramentas profissionais.
+
+## 🛠️ Necessidade Técnica
+- **`CMD`**: Define o comando padrão. Ele é FACILMENTE sobrescrito pelo usuário no `docker run`.
+- **`ENTRYPOINT`**: Define o comando que SEMPRE será executado. Ele transforma o container em um executável. Argumentos passados no `docker run` são anexados ao Entrypoint.
+
+### Instruções Chave:
+1.  **`ENTRYPOINT ["comando"]`**: Fixa o executável.
+2.  **`CMD ["argumento-padrão"]`**: Define o parâmetro padrão se o usuário não passar nenhum.
+
+## 🚀 Missão
+1.  Crie um `Dockerfile` para a ferramenta CLI:
+    ```dockerfile
+    FROM alpine
+    # Transforma o container no comando 'echo'
+    ENTRYPOINT ["echo", "NEXUS-CLI >>"]
+    # Define o argumento padrão
+    CMD ["EXECUTANDO DIAGNÓSTICO PADRÃO..."]
+    ```
+2.  Construa: `docker build -t nexus-cli .`.
+3.  **Teste 1 (Padrão):** `docker run --rm nexus-cli`.
+    - Resultado: `NEXUS-CLI >> EXECUTANDO DIAGNÓSTICO PADRÃO...`
+4.  **Teste 2 (Sobrescrevendo CMD):** `docker run --rm nexus-cli --verbose --set-speed=500`.
+    - Resultado: `NEXUS-CLI >> --verbose --set-speed=500`.
+    - Note que o `echo` (Entrypoint) continuou lá, mas o texto do CMD foi substituído pelos seus argumentos.
+
+## 📋 Requisitos de Elite
+- Transformar containers em ferramentas CLI especializadas.
+- Combinar Entrypoint e CMD para fornecer flexibilidade com segurança.
+- Entender que o Entrypoint é o "coração" da função do container.
+
+------------------------------------------------------------------------------
+"O CMD é um convite; o Entrypoint é uma ordem."

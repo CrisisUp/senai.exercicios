@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     './repositorio-extra/atividade-extra19/atividade-extra19-engenharia'
+relocations:     []
+...

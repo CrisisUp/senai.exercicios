@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 06</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Monitor Global de Frota</h1>
+        <p>LogiSpeed Systems - Base Operacional</p>
+    </header>
+
+    <main>
+        <section class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID DO DRONE</th>
+                        <th>MODELO</th>
+                        <th>BATERIA</th>
+                        <th>SITUAÇÃO</th>
+                    </tr>
+                </thead>
+                <!-- O JavaScript injetará as linhas aqui -->
+                <tbody id="fleet-body"></tbody>
+            </table>
+        </section>
+
+        <div class="actions">
+            <button class="btn" onclick="limparTabela()">LIMPAR MONITOR</button>
+            <button class="btn btn-primary" onclick="popularTabela()">SINCRONIZAR FROTA</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

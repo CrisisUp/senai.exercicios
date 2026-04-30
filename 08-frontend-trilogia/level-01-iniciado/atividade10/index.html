@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 10</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Persistent Storage</h1>
+    </header>
+
+    <main class="container">
+        <!-- 1. Configuração de Perfil -->
+        <section class="card">
+            <h2>Identificação do Operador</h2>
+            <div class="form">
+                <input type="text" id="input-operador" placeholder="Digite seu nome...">
+                <button onclick="salvarPerfil()" class="btn-primary">SALVAR PERFIL</button>
+            </div>
+            <p id="perfil-status" class="status-msg">Aguardando login...</p>
+        </section>
+
+        <!-- 2. Terminal de Logs -->
+        <section class="card">
+            <h2>Log de Missão (Persistente)</h2>
+            <div id="log-terminal" class="terminal-view">
+                <!-- Logs aparecerão aqui -->
+            </div>
+            <div class="form">
+                <input type="text" id="input-log" placeholder="Registrar ocorrência...">
+                <button onclick="adicionarLog()" class="btn-accent">ENVIAR</button>
+            </div>
+            <button onclick="limparTudo()" class="btn-danger">LIMPAR MEMÓRIA</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

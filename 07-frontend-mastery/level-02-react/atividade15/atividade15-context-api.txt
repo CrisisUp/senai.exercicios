@@ -1,0 +1,26 @@
+# 📘 Atividade 15: Context API (O Cérebro Global)
+STATUS: Nível 17 (Arquiteto de Componentes) - Pilar de React
+
+## 🎯 Estudo de Caso
+A sede da "LogiSpeed" em Londres usa o tema "Dark Blue" por padrão. No entanto, os gerentes regionais podem querer trocar para "High Contrast" instantaneamente. Sem a Context API, teríamos que passar a prop `tema` por cada botão e cada card de drone. Com o **Context**, criaremos um "campo de força" que envolve toda a aplicação, onde o tema está disponível para todos, sem intermediários.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o par **`createContext`** e **`useContext`**.
+1. **Context Provider:** O componente mestre que "provê" o dado para os descendentes.
+2. **Consumer Hook:** A forma simplificada de um componente filho "consumir" o dado central.
+3. **Dynamic Context:** Aprenderemos a passar não apenas dados, mas funções de alteração (ex: `toggleTheme`) dentro do contexto.
+4. **Provider Pattern:** Encapsular a lógica de estado global em um componente provedor dedicado.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (COUPLED STATE)
+- **PROP DRILLING:** Ter 10 níveis de componentes onde os 8 do meio apenas repassam a prop sem usá-la. Isso torna impossível mudar a estrutura da UI sem quebrar o fluxo de dados.
+- **GLOBAL STATE BLOAT:** Tentar colocar TUDO no contexto (como o estado de um input local). O Context deve ser reservado para dados globais; dados locais devem permanecer no `useState`.
+- **UNNECESSARY PROVIDERS:** Criar um contexto para cada pequena coisa. Aprenderemos a agrupar estados relacionados para manter a performance.
+
+## 📋 Requisitos de Elite
+1. Criar o `ThemeContext.tsx` em um diretório de contextos.
+2. Implementar o `ThemeProvider` que gerencia o estado do modo visual (Dark/Light).
+3. Desenvolver o componente `ThemeSwitcher.tsx` que altera o estado global.
+4. Envolver o `App.tsx` com o provedor e demonstrar a mudança de cor em componentes distantes.
+
+------------------------------------------------------------------------------
+"Um engenheiro de elite não transporta água em baldes (Props); ele constrói um sistema de encanamento (Context)."

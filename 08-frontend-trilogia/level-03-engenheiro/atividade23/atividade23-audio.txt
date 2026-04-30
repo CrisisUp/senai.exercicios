@@ -1,0 +1,29 @@
+# 📘 Atividade 23: Sinais Sonoros (Mastering Web Audio API)
+STATUS: Nível 23 (Engenheiro) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+No centro de comando da "LogiSpeed Global", o operador pode desviar o olhar do monitor por alguns segundos. Nesses momentos, a interface precisa de um canal auditivo para comunicar eventos: um "bipe" suave para detecções normais e uma "sirene" estridente para alertas críticos. Usaremos a **Web Audio API** para sintetizar esses sons em tempo real, garantindo máxima performance e total controle sobre a frequência e o volume.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Controles de volume (`<input type="range">`) e botões de teste sonoro.
+2. **CSS (Estética):** Estilização de controles deslizantes (Sliders) para um visual de mesa de som industrial.
+3. **JS (Atitude):** 
+   - **`AudioContext`**: O container mestre do sistema de áudio.
+   - **`OscillatorNode`**: O gerador de ondas sonoras (Senoidal, Quadrada, etc).
+   - **`GainNode`**: O controle de volume industrial.
+   - **`Destination`**: O roteamento final para as caixas de som/fones do operador.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **AUDIO LATENCY:** Carregar arquivos `.mp3` gera atraso de rede. A síntese via Web Audio é instantânea (Latência Zero).
+- **AUTOPLAY POLICY:** O navegador bloqueia sons automáticos sem interação do usuário. Aprenderemos a inicializar o contexto de áudio após o primeiro clique do operador.
+- **CLIPPING:** Volume alto demais distorce o sinal e pode danificar o equipamento. Usaremos o `GainNode` para limitar a amplitude com segurança.
+
+## 📋 Requisitos de Elite
+1. Inicializar o `AudioContext` após uma interação do usuário.
+2. Criar uma função `tocarBipe(frequencia, duracao)` para sinais genéricos.
+3. Implementar um Alerta de Emergência (Sirene) que varia a frequência entre 440Hz e 880Hz.
+4. Interface ANSI (visual) com medidor de volume e status do "Audio Engine".
+
+------------------------------------------------------------------------------
+"Em sistemas críticos, o que o olho não vê, o ouvido deve detectar."

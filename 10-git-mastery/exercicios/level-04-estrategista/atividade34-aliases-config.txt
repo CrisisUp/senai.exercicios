@@ -1,0 +1,31 @@
+# 📘 Atividade 34: Identidade de Elite (Aliases & Config)
+STATUS: Nível 34 (Mestre Estrategista) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Um Engenheiro de Elite da "SkyCargo Nexus" preza pela velocidade. Digitar `git status` centenas de vezes por dia é um desperdício de milissegundos. Você aprenderá a criar seus próprios comandos (Aliases) e a configurar um log visualmente impecável. Você transformará sua ferramenta de trabalho em uma extensão do seu pensamento.
+
+## 🛠️ Necessidade Técnica
+As configurações do Git ficam no arquivo `~/.gitconfig` (global) ou no `.git/config` (local). Podemos definir atalhos poderosos e cores personalizadas.
+
+### Comandos Chave:
+1.  **`git config --global alias.<atalho> <comando-completo>`**: Cria um alias.
+
+## 🚀 Missão
+1.  Crie atalhos básicos:
+    - `git config --global alias.st status`
+    - `git config --global alias.co checkout`
+    - `git config --global alias.br branch`
+2.  Agora o desafio: Crie o comando `git lg` (o log de elite decorado):
+    ```bash
+    git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+    ```
+3.  Teste seus novos poderes: Digite apenas `git st` e depois `git lg`.
+4.  Veja sua identidade: `git config --list`.
+
+## 📋 Requisitos de Elite
+- Configurar pelo menos 3 aliases de produtividade.
+- Implementar um log customizado e colorido para facilitar a leitura.
+- Entender onde as configurações são armazenadas no sistema operacional.
+
+------------------------------------------------------------------------------
+"O terminal de um mestre deve ser tão único quanto sua assinatura de código."

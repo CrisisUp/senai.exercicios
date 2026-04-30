@@ -1,0 +1,26 @@
+# 📘 Atividade 17: Comunicação REST e CORS (O Nexus Vivo)
+STATUS: Nível 21 (Engenheiro Full-Stack) - Pilar de Integração
+
+## 🎯 Estudo de Caso
+O SkyCargo Control Tower agora precisa ler o status real dos drones que estão sendo processados pelo nosso backend Rust. No entanto, ao tentar fazer uma requisição do React (porta 5173) para o servidor Rust (porta 8080), o navegador bloqueia a conexão por segurança (Same-Origin Policy). Precisamos configurar um "passaporte" de rede chamado **CORS**.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos a arquitetura cliente-servidor padrão.
+1. **Backend Rust (Axum):** Criaremos um endpoint `GET /api/telemetria` que devolve um JSON.
+2. **CORS Middleware:** Configuraremos o servidor para permitir requisições vindas especificamente da origem do nosso frontend.
+3. **Fetch API / Axios:** O React fará chamadas assíncronas para este endpoint.
+4. **Data Synchronization:** Aprenderemos a transformar os bytes que viajam pela rede em interfaces TypeScript válidas.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (NETWORK SECURITY & LATENCY)
+- **CORS ERRORS:** O erro mais comum na integração full-stack. Sem a configuração correta no backend, a interface ficaria "muda", sem conseguir carregar nenhum dado externo.
+- **ZOMBIE REQUESTS:** Fazer requisições em excesso se o componente for montado/desmontado rapidamente. Usaremos o `AbortController` para cancelar requisições pendentes.
+- **INSECURE ENDPOINTS:** Expor dados sensíveis sem validação de cabeçalhos. Aprenderemos as bases de segurança de cabeçalhos HTTP.
+
+## 📋 Requisitos de Elite
+1. Implementar um mini-servidor Rust (Axum) no diretório `/backend`.
+2. Configurar o middleware de CORS para permitir `http://localhost:5173`.
+3. No React, criar o componente `NexusVaultStatus.tsx` que consome a API real.
+4. Interface ANSI (no console do navegador) logando o tempo de resposta (RTT) da rede.
+
+------------------------------------------------------------------------------
+"Na web de elite, a rede não é um obstáculo; é o cabo condutor da inteligência do sistema."

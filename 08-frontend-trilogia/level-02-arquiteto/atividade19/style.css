@@ -1,0 +1,88 @@
+/**
+ * @file style.css
+ * @brief Estética Reativa com Gradientes (Atividade 19).
+ */
+
+:root {
+    --color-cold: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    --color-hot: linear-gradient(135deg, #ff9966, #ff5e62);
+    --color-neutral: #1a1a1a;
+}
+
+body {
+    margin: 0; padding: 0;
+    min-height: 100vh;
+    background: var(--color-neutral); /* Inicial */
+    color: white;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    transition: background 1s ease; /* Suaviza a troca de clima */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    text-align: center;
+    padding: 40px;
+    background: rgba(0,0,0,0.3);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.container { width: 100%; max-width: 600px; padding: 20px; }
+
+.search-panel {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+input {
+    flex: 1;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    outline: none;
+}
+
+button {
+    background-color: #00f2ff;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.weather-card {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.temp-box {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.geo-info {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 20px;
+}
+
+/* CLASSES DE ESTADO CLIMÁTICO */
+.bg-cold { background: var(--color-cold) !important; }
+.bg-hot { background: var(--color-hot) !important; }

@@ -1,0 +1,27 @@
+# 📘 Atividade 01: Identidade e Fundação (Nível 01)
+STATUS: Nível 01 (Recruta) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Imagine que você foi contratado pela "SkyCargo Nexus" para gerenciar o código dos novos drones de entrega. Antes de escrever qualquer linha de código, você precisa se identificar para o sistema de controle de versão. Sem uma identidade, o sistema não sabe quem é o autor das mudanças, o que é inaceitável em um ambiente de engenharia de elite.
+
+## 🛠️ Necessidade Técnica
+Nesta atividade, você aprenderá a configurar sua assinatura digital no Git e a transformar uma pasta comum em um **Repositório Git**.
+
+### Comandos Chave:
+1.  **`git config --global user.name "Seu Nome"`**: Define quem você é.
+2.  **`git config --global user.email "seu@email.com"`**: Define seu contato.
+3.  **`git init`**: Cria a pasta invisível `.git`, o "cérebro" do repositório.
+
+## 🚀 Missão
+1.  Abra seu terminal na pasta `10-git-mastery/labs/nexus-drone-system`. (Você precisará criar esta pasta).
+2.  Configure seu nome e email (se ainda não o fez globalmente).
+3.  Inicialize o repositório.
+4.  Use `ls -la` para ver a pasta `.git` criada.
+
+## 📋 Requisitos de Elite
+- Sua identidade deve estar configurada corretamente.
+- O repositório deve ser inicializado com sucesso.
+- Verifique o estado atual usando `git status`.
+
+------------------------------------------------------------------------------
+"No Git, nada é anônimo. Cada byte tem um autor e uma intenção."

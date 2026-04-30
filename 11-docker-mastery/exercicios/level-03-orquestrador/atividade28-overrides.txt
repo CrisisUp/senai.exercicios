@@ -1,0 +1,39 @@
+# 📘 Atividade 28: Camadas de Orquestração (Compose Overrides)
+STATUS: Nível 28 (Orquestrador) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+No SkyCargo Nexus, o ambiente de **Desenvolvimento** precisa de ferramentas de debug e volumes de código vivo (hot-reload), mas o ambiente de **Produção** precisa ser blindado e performático. Você não quer manter dois arquivos YAML gigantes e quase idênticos. Você aprenderá a usar o **Compose Overrides**, uma técnica onde você mantém uma base sólida e aplica "filtros" de configuração dependendo do ambiente.
+
+## 🛠️ Necessidade Técnica
+O Docker Compose procura por dois arquivos por padrão: `docker-compose.yml` (base) e `docker-compose.override.yml` (mudanças locais). Ele funde os dois em um único plano de infraestrutura.
+
+## 🚀 Missão
+1.  Crie a base em `docker-compose.yml`:
+    ```yaml
+    services:
+      nexus-app:
+        image: alpine
+        command: sleep 3600
+    ```
+2.  Crie o override para seu Mac (Desenvolvimento) em `docker-compose.override.yml`:
+    ```yaml
+    services:
+      nexus-app:
+        environment:
+          - MODE=DEVELOPMENT
+        volumes:
+          - .:/app
+    ```
+3.  Rode `docker-compose up -d`.
+4.  **A Auditoria de Fusão:** Rode `docker-compose config`.
+5.  Observe como o Docker fundiu as duas configurações! O container final terá o comando da base MAS também as variáveis e volumes do override.
+6.  Para simular Produção (ignorando o override):
+    `docker-compose -f docker-compose.yml up -d`.
+
+## 📋 Requisitos de Elite
+- Manter uma base de infraestrutura limpa e agnóstica a ambiente.
+- Customizar volumes e portas apenas no arquivo de override.
+- Utilizar a flag `-f` para alternar entre diferentes partituras (ex: `prod.yml`, `test.yml`).
+
+------------------------------------------------------------------------------
+"Um Arquiteto de Elite projeta para a flexibilidade; a fusão de YAMLs é a sua arma secreta."

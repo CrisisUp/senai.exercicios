@@ -1,0 +1,30 @@
+# 📘 Atividade 28: Ciclo de Feature (Desenvolvimento Isolado)
+STATUS: Nível 28 (Embaixador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Um novo sensor de altitude precisa ser adicionado ao drone. Seguindo o Gitflow, você não trabalhará na `develop`. Você criará uma branch de **Feature**, que é uma ramificação temporária para uma funcionalidade específica. Após o desenvolvimento, você a integrará na `develop` e a descartará.
+
+## 🛠️ Necessidade Técnica
+As branches de feature seguem o padrão `feature/<nome-curto>`. Elas nascem da `develop` e morrem na `develop`.
+
+### Comandos Chave:
+1.  **`git switch develop`**: Ponto de partida.
+2.  **`git switch -c feature/sensor-altitude`**: Criação da branch de funcionalidade.
+3.  **`git merge --no-ff feature/sensor-altitude`**: Integração na `develop`. O uso de `--no-ff` (no fast-forward) é opcional mas comum no Gitflow para manter o registro visual da branch no gráfico.
+
+## 🚀 Missão
+1.  Na pasta `nexus-drone-system`, garanta que você está na `develop`.
+2.  Crie a branch: `git switch -c feature/sensor-altitude`.
+3.  Crie o arquivo `sensor.txt` com "Altitude: 100m". Commite.
+4.  Terminou a funcionalidade? Volte para a `develop`: `git switch develop`.
+5.  Integre: `git merge feature/sensor-altitude`.
+6.  Limpeza: `git branch -d feature/sensor-altitude`.
+7.  Publique o progresso: `git push origin develop`.
+
+## 📋 Requisitos de Elite
+- Seguir o padrão de nomenclatura `feature/`.
+- Realizar a fusão exclusivamente na branch `develop`.
+- Manter o ambiente limpo após o merge.
+
+------------------------------------------------------------------------------
+"Funcionalidades são como missões especiais: você entra, resolve e retorna para a base."

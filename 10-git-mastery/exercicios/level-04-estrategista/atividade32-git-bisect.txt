@@ -1,0 +1,31 @@
+# 📘 Atividade 32: O Detetive Binário (Git Bisect)
+STATUS: Nível 32 (Estrategista) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Um bug misterioso apareceu na branch `main`. O sistema de GPS do drone parou de responder, mas ninguém sabe **quando** isso aconteceu. O histórico tem 50 commits recentes. Em vez de testar um por um, você usará o **Bisect**, um motor de busca binária que divide o histórico ao meio repetidamente até encontrar o commit exato que quebrou o sistema.
+
+## 🛠️ Necessidade Técnica
+O `git bisect` automatiza a caça aos bugs. Você marca um ponto "ruim" (agora) e um ponto "bom" (no passado onde funcionava). O Git te leva para o commit do meio para você testar.
+
+### Comandos Chave:
+1.  **`git bisect start`**: Inicia a investigação.
+2.  **`git bisect bad`**: Marca o commit atual como quebrado.
+3.  **`git bisect good <hash>`**: Marca um ponto seguro no passado.
+4.  **`git bisect reset`**: Encerra a investigação e volta ao presente.
+
+## 🚀 Missão
+1.  **Prepare o cenário:** Faça 5 commits rápidos. No terceiro commit, mude algo vital (ex: apague uma linha importante no `manifesto.txt`).
+2.  Inicie: `git bisect start`.
+3.  Marque o atual: `git bisect bad`.
+4.  Marque o primeiro commit (onde estava bom): `git bisect good <hash-do-primeiro-commit>`.
+5.  O Git vai te teletransportar para o commit do meio. Verifique o arquivo. Está bom? Digite `git bisect good`. Está ruim? Digite `git bisect bad`.
+6.  Repita até o Git dizer: `xxxxxxx is the first bad commit`.
+7.  Resolva o mistério e encerre: `git bisect reset`.
+
+## 📋 Requisitos de Elite
+- Dominar a técnica de busca binária no histórico.
+- Identificar commits culpados com precisão matemática.
+- Compreender como essa técnica economiza horas de depuração manual.
+
+------------------------------------------------------------------------------
+"O Bisect é o soro da verdade do Git."

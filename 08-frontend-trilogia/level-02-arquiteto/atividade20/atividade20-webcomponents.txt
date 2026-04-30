@@ -1,0 +1,28 @@
+# 📘 Atividade 20: Arquitetura de Componentes Nativos (Web Components e Shadow DOM)
+STATUS: Nível 20 (Mestre Arquiteto) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" decidiu que o dashboard do SkyCargo deve ser composto por módulos que podem ser vendidos individualmente para outras empresas. Para isso, os módulos (como o Radar ou o Card de Drone) não podem depender de nenhum estilo global da página. Usaremos **Web Components** para criar etiquetas HTML personalizadas que carregam seu próprio "universo" visual e funcional.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** A tag `<template>` e `<slot>`. Aprenderemos a criar moldes de HTML que não são renderizados até que o componente os chame.
+2. **CSS (Estética):** **Shadow DOM**. É uma "bolha" de isolamento onde o CSS de dentro não sai e o de fora não entra.
+3. **JS (Atitude):** 
+   - **`customElements.define()`**: Registra sua tag personalizada no navegador.
+   - **`observedAttributes()`**: Faz o componente reagir quando suas propriedades mudam (ex: mudar a bateria via atributo).
+   - **Life Cycle (ConnectedCallback)**: O momento exato em que o componente nasce na tela.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **STYLE LEAK:** Um estilo global `p { color: red }` estragar o visual interno do componente. O Shadow DOM bloqueia essa invasão.
+- **TAG COLLISIONS:** Criar uma tag com nome que já existe. Usaremos o padrão industrial de nomes compostos com traço (ex: `nexus-card`).
+- **PROPS REACTIVITY:** O HTML muda o atributo mas o visual não atualiza. Aprenderemos a sincronizar atributos com a renderização.
+
+## 📋 Requisitos de Elite
+1. Criar a tag customizada `<nexus-drone-card>`.
+2. Encapsular o CSS dentro do Shadow DOM.
+3. Permitir a passagem de dados via atributos (`name`, `status`).
+4. Interface ANSI (visual) provando o isolamento total de estilos.
+
+------------------------------------------------------------------------------
+"Um componente de elite é um ecossistema completo contido em uma única tag."

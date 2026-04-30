@@ -1,0 +1,1 @@
+error: workspace member `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/core-infrastructure/upgrade-industrial/41-observabilidade/Cargo.toml` is not hierarchically below the workspace root `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/Cargo.toml`

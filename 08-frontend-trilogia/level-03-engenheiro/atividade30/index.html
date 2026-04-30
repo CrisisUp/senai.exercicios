@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 30</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Full-Duplex Link</h1>
+        <div class="network-monitor">
+            LINK STATUS: <span id="link-status" class="status-badge connecting">INITIALIZING...</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 1. Stream de Dados (Real-time) -->
+        <section class="card stream-box">
+            <h2>Live Telemetry Stream</h2>
+            <div id="telemetry-feed" class="feed-view">
+                <!-- Mensagens do servidor aparecerão aqui -->
+            </div>
+        </section>
+
+        <!-- 2. Console de Comando -->
+        <section class="card command-box">
+            <h2>Transmissor de Comandos</h2>
+            <div class="input-group">
+                <input type="text" id="cmd-input" placeholder="DIGITE O COMANDO (Ex: ALIGN, RTB)...">
+                <button onclick="enviarComando()" id="btn-send">ENVIAR VIA WS</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-bar">
+        ENGENHARIA DE REDE: <span id="protocol-info">TCP/WS PERSISTENTE</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

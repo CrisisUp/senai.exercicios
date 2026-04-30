@@ -1,0 +1,33 @@
+# 📘 Atividade 18: O Escultor de Commits (Interactive Rebase)
+STATUS: Nível 18 (Explorador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Sua branch de desenvolvimento está uma bagunça. Você tem 5 commits como "fix typo", "mais um ajuste", "agora vai", "testando". Enviar isso para revisão seria uma vergonha para um Engenheiro de Elite. Você aprenderá a usar o **Rebase Interativo** para fundir commits (Squash), mudar mensagens e limpar sua sujeira antes que alguém veja.
+
+## 🛠️ Necessidade Técnica
+O `rebase -i` abre um editor de texto com a lista de commits, permitindo que você escolha o destino de cada um:
+- **pick**: Manter o commit.
+- **reword**: Mudar apenas a mensagem.
+- **edit**: Parar para editar o conteúdo do commit.
+- **squash**: Fundir o commit com o anterior.
+
+### Comandos Chave:
+1.  **`git rebase -i HEAD~<número>`**: Inicia a escultura dos últimos N commits.
+
+## 🚀 Missão
+1.  Na sua branch, faça 3 commits rápidos e pequenos (ex: adicione linhas ao `manifesto.txt`).
+2.  Rode `git log --oneline` e veja a poluição.
+3.  Inicie a limpeza: `git rebase -i HEAD~3`.
+4.  No editor que abrir:
+    - No primeiro commit, mantenha `pick`.
+    - Nos dois seguintes, mude de `pick` para `squash` (ou apenas `s`).
+5.  Salve e feche. Um novo editor abrirá para você definir a mensagem única para os 3 commits fundidos. Escreva algo profissional: `feat: implementar melhorias estruturais no manifesto`.
+6.  Rode `git log --oneline`. Três commits viraram um!
+
+## 📋 Requisitos de Elite
+- Dominar a técnica de Squash para agrupar mudanças lógicas.
+- Utilizar o Reword para corrigir mensagens mal escritas.
+- Entender que o Rebase Interativo é a ferramenta definitiva de "Saneamento de Histórico".
+
+------------------------------------------------------------------------------
+"Trabalhe de forma bagunçada, mas entregue de forma impecável."

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 24</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Multi-Thread Engine</h1>
+        <p>Processamento Paralelo em Tempo Real</p>
+    </header>
+
+    <main class="dashboard">
+        <!-- ÁREA 1: UI RESPONSIVA (RADAR) -->
+        <section class="viewport-box">
+            <h3>Visualização Tática (UI Thread)</h3>
+            <canvas id="ui-radar" width="300" height="300"></canvas>
+            <p id="fps-counter">Status: Smooth 60 FPS</p>
+        </section>
+
+        <!-- ÁREA 2: PROCESSAMENTO PESADO (WORKER) -->
+        <section class="processor-box">
+            <h3>Cálculo de Rota Massivo (Background Thread)</h3>
+            <div class="metrics">
+                <p>Status: <span id="worker-status">IDLE</span></p>
+                <p>Progresso: <span id="progress-val">0</span>%</p>
+                <progress id="worker-progress" value="0" max="100"></progress>
+            </div>
+            
+            <div id="result-log" class="log-area">
+                > Aguardando sinal para processamento...
+            </div>
+
+            <button id="btn-start" onclick="iniciarCalculo()">DISPARAR SIMULAÇÃO</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

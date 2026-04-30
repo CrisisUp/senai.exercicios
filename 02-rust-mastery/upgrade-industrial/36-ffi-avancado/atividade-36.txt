@@ -1,0 +1,25 @@
+# 📘 Atividade 36: FFI Avançado (A Ponte Segura entre Mundos)
+STATUS: Nível 32 (Engenheiro de Elite) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+A "LogiSpeed" possui um algoritmo de otimização de rotas legado escrito em C++ (ultra-rápido). No entanto, o sistema de controle principal é em Rust. O FFI tradicional via `extern "C"` é perigoso: um erro de ponteiro no C++ pode corromper a memória do Rust sem que o compilador perceba. Precisamos de uma ponte blindada.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o framework **cxx.rs**.
+1. **Bridge Declaration:** Definiremos uma interface no Rust que descreve exatamente quais funções e tipos o C++ possui.
+2. **C++ Opaque Types:** O Rust poderá segurar ponteiros para classes C++ sem precisar conhecer sua estrutura interna, mantendo o encapsulamento.
+3. **Safety:** O `cxx` gera o código de "cola" (glue code) que valida os dados em ambos os lados, impedindo que strings malformadas ou ponteiros nulos cruzem a fronteira.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (INTEROPERABILIDADE)
+- **UNDEFINED BEHAVIOR:** No FFI comum, passar um `std::string` para o Rust resulta em crash imediato. O `cxx` converte automaticamente entre `rust::String` e `std::string`.
+- **EXCEPTION LEAK:** Se o C++ lançar uma exceção e ela chegar no Rust, o programa sofrerá um aborto catastrófico. O `cxx` captura exceções C++ e as transforma em `Result` do Rust.
+- **OWNERSHIP CONFUSION:** Quem deleta o quê? O `cxx` gerencia o ciclo de vida dos objetos, garantindo que o destrutor do C++ seja chamado quando a referência no Rust sair de escopo.
+
+## 📋 Requisitos de Elite
+1. Criar um motor C++ que simula o cálculo de rota.
+2. Implementar a ponte `#[cxx::bridge]` no Rust.
+3. Chamar o código C++ a partir do Rust passando dados complexos.
+4. Interface ANSI para monitoramento da "fronteira" de linguagens.
+
+------------------------------------------------------------------------------
+"O FFI tradicional é um aperto de mãos no escuro; o cxx é um contrato assinado sob luz forte."

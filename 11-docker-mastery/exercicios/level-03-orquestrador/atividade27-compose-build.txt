@@ -1,0 +1,39 @@
+# 📘 Atividade 27: Construir e Orquestrar (Build in Compose)
+STATUS: Nível 27 (Orquestrador) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Até agora, você usou imagens prontas do Docker Hub no Compose. No entanto, no dia a dia da "SkyCargo Nexus", você está desenvolvendo seu próprio código. Rodar `docker build` manualmente para depois rodar o `compose up` é ineficiente. Você aprenderá a integrar a **Construção de Imagens** diretamente no seu arquivo YAML, automatizando o ciclo completo de "Código para Container".
+
+## 🛠️ Necessidade Técnica
+Podemos substituir a instrução `image:` pela instrução `build:`. Isso diz ao Compose: "não procure essa imagem fora; fabrique-a usando este Dockerfile".
+
+### Estrutura YAML:
+- **`build:`**: Caminho para a pasta que contém o Dockerfile.
+- **`context:`**: Pasta base para o build.
+- **`dockerfile:`**: Nome do arquivo (se não for o padrão).
+
+## 🚀 Missão
+1.  Na pasta `labs/nexus-orchestra`, crie uma subpasta `app-sensor/`.
+2.  Dentro de `app-sensor/`, crie um `Dockerfile` básico:
+    ```dockerfile
+    FROM alpine
+    CMD ["echo", "SENSOR DE TELEMETRIA ATIVO"]
+    ```
+3.  Atualize seu `docker-compose.yml`:
+    ```yaml
+    version: '3.8'
+    services:
+      nexus-sensor:
+        build: ./app-sensor
+    ```
+4.  Rode: `docker-compose up`.
+5.  Observe o Compose chamando o motor de build automaticamente antes de iniciar o container.
+6.  **O Poder da Mudança:** Mude o texto no `Dockerfile` e rode `up` novamente. O Compose detecta que o código mudou, reconstrói a imagem e sobe o novo container!
+
+## 📋 Requisitos de Elite
+- Automatizar o build de imagens customizadas via Compose.
+- Organizar a estrutura de pastas para múltiplos microserviços.
+- Compreender que o `docker-compose build` pode ser chamado isoladamente para atualizar imagens.
+
+------------------------------------------------------------------------------
+"Um Orquestrador não apenas toca a música; ele constrói os instrumentos."

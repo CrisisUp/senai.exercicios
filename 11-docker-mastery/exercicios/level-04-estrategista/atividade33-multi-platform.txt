@@ -1,0 +1,28 @@
+# 📘 Atividade 33: Fronteiras Cruzadas (Multi-platform Builds)
+STATUS: Nível 33 (Estrategista) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Você usa um Mac com Apple Silicon (ARM64), mas o servidor de produção da "SkyCargo Nexus" usa processadores Intel/AMD (x86_64). Se você construir sua imagem no Mac e tentar rodar no servidor, o sistema vai crashar! Um Estrategista de Elite projeta para a universalidade. Você aprenderá a usar o **Buildx** para construir imagens que rodam em qualquer arquitetura com um único comando.
+
+## 🛠️ Necessidade Técnica
+O Docker Buildx usa emulação (QEMU) para compilar seu código para arquiteturas diferentes da sua. O resultado é um manifesto único que entrega a versão certa para cada computador que baixar a imagem.
+
+### Comandos Chave:
+1.  **`docker buildx ls`**: Lista as instâncias de build múltiplo disponíveis.
+2.  **`docker buildx build --platform linux/amd64,linux/arm64 -t <tag> .`**: Constrói para ambas as arquiteturas simultaneamente.
+
+## 🚀 Missão
+1.  Verifique se o seu Docker suporta multi-platform: `docker buildx ls`.
+2.  Crie um `Dockerfile` simples na pasta `labs/primeira-imagem`.
+3.  **O Desafio de Build Universal:** (Nota: Esta operação exige que você esteja logado no Docker Hub, pois o resultado é enviado diretamente para lá).
+    `docker buildx build --platform linux/amd64,linux/arm64 -t <seu-usuario>/nexus-universal:v1.0 --push .`
+4.  Após o término, vá ao Docker Hub e veja a aba "Tags". Você verá dois tipos de arquitetura (amd64 e arm64) listados sob a mesma tag!
+5.  O Nexus agora é cidadão do mundo.
+
+## 📋 Requisitos de Elite
+- Entender que a arquitetura do hardware influencia a compatibilidade do container.
+- Utilizar o Buildx para automatizar builds para múltiplos processadores.
+- Compreender o conceito de manifestos de imagem.
+
+------------------------------------------------------------------------------
+"Engenharia de Elite é agnóstica a hardware; o software deve rodar onde for necessário."

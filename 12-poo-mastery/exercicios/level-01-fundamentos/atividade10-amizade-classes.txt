@@ -1,0 +1,41 @@
+# 📘 Atividade 10: O Auditor Nexus (Amizade entre Classes - friend)
+STATUS: Nível 10 (Mestre Escultor) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+A segurança do SkyCargo Nexus é rigorosa. O drone Alpha-707 mantém seus dados técnicos em segredo (`private`). No entanto, a Central de Auditoria da base precisa ter permissão para inspecionar o núcleo do drone sem que o operador comum possa fazer o mesmo. Você aprenderá a usar a palavra-chave **`friend`**, permitindo que uma classe específica abra os portões blindados de outra.
+
+## 🛠️ Necessidade Técnica
+- **`friend class`**: Permite que uma classe externa acesse membros `private` e `protected` de outra classe.
+- **Uso Crítico:** Deve ser usado com cautela extrema para não quebrar o princípio do encapsulamento. É uma "relação de confiança" explícita.
+
+### Exemplo (C++):
+```cpp
+class Drone {
+private:
+    int codSeguranca = 707;
+    friend class Auditor; // Auditor agora tem a chave do hangar
+};
+
+class Auditor {
+public:
+    void inspecionar(Drone& d) {
+        // Acesso direto ao privado permitido pela amizade!
+        cout << "Inspecionando código interno: " << d.codSeguranca << endl;
+    }
+};
+```
+
+## 🚀 Missão
+1.  Na classe `Drone`, crie um atributo privado `idSecreto` (um número inteiro).
+2.  Crie a classe `AuditoriaNexus`.
+3.  Declare a classe `AuditoriaNexus` como **friend** dentro da classe `Drone`.
+4.  Na classe `AuditoriaNexus`, implemente um método que receba uma referência de `Drone` e imprima o `idSecreto`.
+5.  No `main()`, tente acessar o `idSecreto` diretamente pelo `main` (deve falhar) e depois acesse via objeto de Auditoria (deve funcionar).
+
+## 📋 Requisitos de Elite
+- Provar que apenas a classe "amiga" consegue acessar os dados blindados.
+- Compreender a diferença entre amizade e herança (amizade não é herdada).
+- Manter o código limpo seguindo o padrão de modularização se possível.
+
+------------------------------------------------------------------------------
+"Amizade no código é uma concessão de privilégio; escolha seus amigos com sabedoria técnica."

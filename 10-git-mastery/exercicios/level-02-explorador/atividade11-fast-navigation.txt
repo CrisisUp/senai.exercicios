@@ -1,0 +1,29 @@
+# 📘 Atividade 11: O Salto no Tempo (Git Switch -c e Checkout)
+STATUS: Nível 11 (Explorador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+O sistema do drone Alpha-707 está ficando complexo. Você precisa criar múltiplas correções simultâneas e percebeu que o comando `git branch` seguido de `git switch` é lento para o seu ritmo de elite. Você aprenderá a criar ramificações e saltar para elas em um único movimento fluido, além de entender a fundo o conceito de **HEAD**.
+
+## 🛠️ Necessidade Técnica
+Como Explorador, você deve dominar a navegação rápida. O `HEAD` é o ponteiro que diz ao Git onde você está agora. Mover o `HEAD` com precisão é a base para as operações avançadas.
+
+### Comandos Chave:
+1.  **`git switch -c <nome>`**: Cria e muda para a branch instantaneamente (C = Create).
+2.  **`git checkout -b <nome>`**: O equivalente clássico do switch -c.
+3.  **`git checkout <hash-do-commit>`**: Entra no estado de "Detached HEAD" para inspecionar o passado sem criar branches.
+
+## 🚀 Missão
+1.  Na pasta `labs/nexus-drone-system`, crie e pule para uma branch de correção: `git switch -c fix/camera-calibration`.
+2.  Verifique o `git status`. Note como o Git confirma que você mudou para uma *nova* branch.
+3.  Agora, use o `git log --oneline` e escolha o ID (hash) do seu primeiro commit.
+4.  Viaje no tempo para esse commit: `git checkout <hash>`.
+5.  Rode `ls`. Seus arquivos sumiram? Não, você está no passado! O Git dirá que você está em "Detached HEAD".
+6.  Para voltar ao presente (segurança): `git switch main`.
+
+## 📋 Requisitos de Elite
+- Dominar o atalho de criação e troca de branch.
+- Compreender o estado "Detached HEAD" (inspeção do passado).
+- Retornar com segurança para a linha do tempo principal.
+
+------------------------------------------------------------------------------
+"O HEAD é o seu 'você está aqui' no mapa infinito do tempo."

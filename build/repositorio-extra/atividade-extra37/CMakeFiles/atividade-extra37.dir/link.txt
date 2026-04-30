@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra37.dir/atividade-extra37-hospital.cpp.o" -o atividade-extra37

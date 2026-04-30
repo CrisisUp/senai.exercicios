@@ -1,0 +1,24 @@
+# 📘 Atividade 02: O Inventário Digital (Listas, IDs e Variáveis)
+STATUS: Nível 02 (Iniciado) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" precisa listar quais drones estão ativos. No Nível 01, apenas demos um "olá". Agora, precisamos de uma estrutura que suporte múltiplos itens (HTML), uma forma de destacar o drone que está com falha (CSS) e um local na memória para guardar o nome do operador atual (JS).
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** A tag `<ul>` (Unordered List) e `<li>` (List Item).
+2. **CSS (Estética):** A diferença entre **Classes** (`.`) para estilos repetíveis e **IDs** (`#`) para elementos únicos.
+3. **JS (Atitude):** O uso de `const` para valores imutáveis e `let` para valores que mudam.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **CONFLITO DE ESTILOS:** Sem classes, se você mudar a cor de um texto, muda de todos. Classes permitem que drones operacionais sejam verdes e em alerta sejam vermelhos.
+- **DATA OVERWRITE:** Usar `var` (antigo) em vez de `const` pode permitir que o ID do sistema seja alterado acidentalmente, causando falhas de segurança.
+- **SEMÂNTICA DE LISTA:** Usar apenas parágrafos para uma lista dificulta a leitura por sistemas automáticos de inventário.
+
+## 📋 Requisitos de Elite
+1. Criar `index.html` com uma lista de 3 drones.
+2. Usar uma classe `.drone-active` para drones normais e um ID `#drone-warning` para o problemático.
+3. No `script.js`, declarar o nome do operador e a versão do sistema usando variáveis modernas.
+
+------------------------------------------------------------------------------
+"Um sistema que não guarda dados na memória é apenas uma tela; um sistema que gerencia variáveis é uma ferramenta."

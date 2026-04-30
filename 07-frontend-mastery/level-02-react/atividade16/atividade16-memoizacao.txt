@@ -1,0 +1,27 @@
+# 📘 Atividade 16: Performance de Elite (useMemo & useCallback)
+STATUS: Nível 18 (Arquiteto de Componentes) - Pilar de React
+
+## 🎯 Estudo de Caso
+O SkyCargo Control Tower agora realiza cálculos complexos de "Janela de Autonomia" para cada drone (baseado em peso, bateria, vento e distância). Se esse cálculo rodar a cada vez que o operador digita uma letra no chat, o sistema ficará lento. Precisamos "memorizar" os resultados e as funções para que o React só trabalhe quando for estritamente necessário.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos as ferramentas de **Memoização** do React.
+1. **useMemo:** Memoriza o valor resultante de um cálculo caro. Só recalcula se as dependências mudarem.
+2. **useCallback:** Memoriza a definição de uma função. Impede que componentes filhos sejam redesenhados apenas porque a função "pai" foi recriada na memória.
+3. **React.memo:** Um High-Order Component que pula a renderização de um componente se as suas Props não mudaram.
+4. **Referential Integrity:** Entenderemos como o JavaScript compara objetos e funções na memória.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (UNNECESSARY COMPUTATION)
+- **EXPENSIVE CALCULATION JANK:** Realizar filtragens em arrays de 10.000 itens dentro do corpo do componente sem `useMemo`.
+- **FUNCTION RECREATION:** Passar uma função inline para um componente filho pesado. O React achará que a prop mudou (pois o endereço de memória da função mudou) e redesenhará o filho inteiro.
+- **OVER-OPTIMIZATION:** Usar memoização em tudo. Aprenderemos que memoizar tem um custo e deve ser usado apenas em gargalos reais identificados.
+
+## 📋 Requisitos de Elite
+1. Implementar o componente `TacticalCalculator.tsx` que simula um cálculo pesado.
+2. Usar `useMemo` para estabilizar o resultado da autonomia de voo.
+3. Usar `useCallback` para estabilizar o handler de comando enviado aos drones.
+4. Aplicar `React.memo` em um componente de visualização de radar.
+5. Interface ANSI (no console) logando quando um "Cálculo Real" vs "Cálculo Memorizado" ocorre.
+
+------------------------------------------------------------------------------
+"Engenharia de performance não é sobre correr mais rápido; é sobre saber o que não precisa ser feito."

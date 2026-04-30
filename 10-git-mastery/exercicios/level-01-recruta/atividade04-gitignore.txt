@@ -1,0 +1,30 @@
+# 📘 Atividade 04: O Escudo Invisível (.gitignore) (Nível 01)
+STATUS: Nível 04 (Recruta) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Durante os testes de voo do Alpha-707, o sistema gera arquivos temporários de log (`voo.log`) e pastas de cache (`.cache/`). Esses arquivos mudam a cada segundo e não devem ser salvos no repositório, pois poluem o histórico e aumentam o tamanho do projeto desnecessariamente. Você precisa de um escudo que diga ao Git: "ignore estes arquivos".
+
+## 🛠️ Necessidade Técnica
+O arquivo `.gitignore` é um arquivo de texto especial que lista padrões de nomes de arquivos e pastas que o Git deve ignorar completamente.
+
+### Regras de Ouro do .gitignore:
+- Arquivos de log (`*.log`).
+- Pastas de dependências (`node_modules/`, `target/`).
+- Arquivos de configuração pessoal ou segredos (`.env`).
+- Pastas de build ou temporárias.
+
+## 🚀 Missão
+1.  Na pasta `labs/nexus-drone-system`, crie um arquivo chamado `voo.log` com qualquer conteúdo.
+2.  Rode `git status`. O Git dirá que existe um arquivo "Untracked".
+3.  Crie um arquivo chamado `.gitignore` (o ponto no início é obrigatório).
+4.  Dentro do `.gitignore`, escreva apenas: `*.log`.
+5.  Rode `git status` novamente. O `voo.log` desapareceu da lista! O Git agora o ignora.
+6.  Adicione e commite o arquivo `.gitignore`: `git add .gitignore` e `git commit -m "chore: configurar escudo de arquivos ignorados"`.
+
+## 📋 Requisitos de Elite
+- O arquivo `.gitignore` deve estar no repositório.
+- Arquivos `.log` não devem aparecer no `git status`.
+- O histórico deve refletir que a configuração de ignorados foi feita.
+
+------------------------------------------------------------------------------
+"Um repositório limpo é o reflexo de um engenheiro organizado."

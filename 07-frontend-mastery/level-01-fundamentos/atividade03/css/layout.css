@@ -1,0 +1,78 @@
+/**
+ * @file layout.css
+ * @brief Orquestração de Alinhamento via Flexbox (Nexus v2.0).
+ */
+
+/* 1. Reset e Box Sizing para cálculos precisos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Header: Alinhamento de extremidades */
+.nexus-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* 3. Container Principal: Layout em Coluna no Mobile, Linha no Desktop */
+.nexus-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 2rem 5%;
+}
+
+@media (min-width: 768px) {
+    .nexus-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+/* 4. Grid de Telemetria (Usando Flex para os Cards) */
+.telemetria-grid {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebra de linha industrial */
+    gap: 1.5rem;
+    flex: 3; /* Ocupa 75% do espaço no desktop */
+}
+
+.drone-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 280px;
+    flex: 1 1 300px; /* Cresce e encolhe, base de 300px */
+    padding: 1.5rem;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+/* 5. Sidebar de Logs */
+.logs-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1; /* Ocupa 25% do espaço */
+    background-color: var(--bg-surface);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.log-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border-left: 3px solid var(--brand-primary);
+    font-family: monospace;
+    font-size: 0.85rem;
+}

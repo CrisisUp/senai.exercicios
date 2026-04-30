@@ -1,0 +1,25 @@
+# 📘 Atividade 10: Componentização Isolada (O Lego de Interface)
+STATUS: Nível 12 (Arquiteto de Componentes) - Pilar de React
+
+## 🎯 Estudo de Caso
+A transportadora "LogiSpeed" precisa que o Dashboard seja modular. O time de Hardware cuida do `DroneCard`, o time de Segurança cuida do `AuditLogger` e o time de Cloud cuida do `StatusHeader`. Se usarmos um arquivo único (como no Vanilla), um erro em um módulo derruba a interface inteira. Precisamos de **Isolamento de Responsabilidade**.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos a filosofia de **Components (UI = f(State))**.
+1. **Atômicos e Moleculares:** Criaremos componentes pequenos (ex: `StatusBadge`) que são usados dentro de componentes maiores (ex: `DroneCard`).
+2. **Encapsulamento CSS:** Aprenderemos a associar estilos específicos a cada componente, evitando que o CSS de um "vaze" para o outro.
+3. **Reutilização:** O mesmo componente `DroneCard` será instanciado centenas de vezes, apenas mudando as informações passadas a ele.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (FRAGMENTAÇÃO E MANUTENÇÃO)
+- **CODE DUPLICATION:** No Vanilla, cada novo card de drone exigia copiar e colar HTML. No React, você escreve o molde UMA vez e o reutiliza infinitamente.
+- **SIDE EFFECTS LEAK:** Se um componente falhar ao renderizar, o React permite capturar esse erro (Error Boundaries) sem quebrar o resto do painel de controle.
+- **PROPS RIGIDITY:** Sem tipagem correta nas propriedades (Props), um componente pode receber um dado corrompido. Usaremos TypeScript para garantir que cada "Lego" se encaixe perfeitamente.
+
+## 📋 Requisitos de Elite
+1. Criar o componente atômico `StatusBadge.tsx`.
+2. Criar o componente molecular `DroneCard.tsx`.
+3. Organizar o `App.tsx` para orquestrar múltiplos drones.
+4. Garantir que cada componente tenha seu próprio arquivo e estilo modular.
+
+------------------------------------------------------------------------------
+"Na engenharia de elite, a interface não é uma página; é uma orquestra de componentes independentes."

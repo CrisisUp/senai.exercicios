@@ -1,0 +1,7 @@
+[package]
+name = "macros-auditoria"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+audit-log-derive = { path = "audit-log-derive" }

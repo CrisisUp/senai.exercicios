@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 20</title>
+    <style>
+        /* ESTILO GLOBAL (Para testar o isolamento do Shadow DOM) */
+        body { background: #000; color: white; font-family: sans-serif; padding: 50px; }
+        h3 { color: red; font-size: 50px; } /* Isso NÃO deve afetar o componente */
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Component Architecture</h1>
+        <p>Utilizando Web Components Nativos (Sem Frameworks)</p>
+    </header>
+
+    <main style="display: flex; gap: 20px; margin-top: 50px;">
+        
+        <!-- 1. NOSSAS TAGS CUSTOMIZADAS -->
+        <nexus-drone-card name="ALPHA-707" status="OPERACIONAL"></nexus-drone-card>
+        <nexus-drone-card name="BETA-404" status="ALERTA"></nexus-drone-card>
+        
+        <!-- Slot: Permite injetar conteúdo extra dentro do componente -->
+        <nexus-drone-card name="GAMMA-909" status="MISSAO">
+            <span slot="extra">URGENTE: Carga de Órgãos</span>
+        </nexus-drone-card>
+
+    </main>
+
+    <!-- Script Master que define os componentes -->
+    <script src="script.js" type="module"></script>
+</body>
+</html>

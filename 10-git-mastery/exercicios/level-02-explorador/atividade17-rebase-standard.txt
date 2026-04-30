@@ -1,0 +1,29 @@
+# 📘 Atividade 17: A Linha do Tempo Perfeita (Git Rebase Standard)
+STATUS: Nível 17 (Explorador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Na "SkyCargo Nexus", o Comandante exige um histórico de commits limpo e linear. Ele detesta "commits de merge" (aqueles que dizem apenas *Merge branch 'main' into...*). Você está trabalhando em uma branch e a `main` avançou. Em vez de fazer um merge e criar um nó no histórico, você usará o **Rebase** para "replantar" sua branch no topo da `main` atual, mantendo o histórico perfeitamente reto.
+
+## 🛠️ Necessidade Técnica
+O `rebase` reescreve o histórico, movendo a base da sua branch de um commit antigo para o commit mais recente da branch de destino. Isso cria uma linha do tempo sem bifurcações.
+
+### Comandos Chave:
+1.  **`git rebase <branch-destino>`**: Move os commits da sua branch atual para o topo da branch de destino.
+
+## 🚀 Missão
+1.  Na branch `main`, faça um commit qualquer (ex: mude o `manifesto.txt`).
+2.  Crie uma branch `feature-engine` e mude para ela.
+3.  Na `feature-engine`, faça dois commits (ex: crie `motor.txt` e adicione conteúdo).
+4.  Volte para a `main` e faça **mais um commit** (isso cria a bifurcação).
+5.  Volte para a `feature-engine`.
+6.  Rode `git log --oneline --graph --all`. Veja a bifurcação.
+7.  Execute a mágica: `git rebase main`.
+8.  Rode o log novamente. A bifurcação sumiu! Sua branch agora parece que começou a partir do último commit da `main`.
+
+## 📋 Requisitos de Elite
+- Entender que o rebase muda os hashes dos commits originais.
+- Visualizar a diferença entre um histórico com merge e um com rebase.
+- **Regra de Ouro:** NUNCA faça rebase em branches que já foram enviadas para o servidor (Remotes) e que outros estão usando.
+
+------------------------------------------------------------------------------
+"O Merge preserva o passado como ele foi; o Rebase reconstrói o passado como ele deveria ter sido."

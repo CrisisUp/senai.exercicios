@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCargo OS - Matrix Dashboard</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/grid.css">
+</head>
+<body class="nexus-dashboard">
+
+    <!-- 1. Header (Ocupa as 3 colunas no desktop) -->
+    <header class="header module-box" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <h1>SKYCARGO <span style="font-weight: 300;">MATRIX v2.0</span></h1>
+        </div>
+        <div style="display: flex; gap: 15px;">
+            <button id="theme-toggle" style="padding: 5px 15px; cursor: pointer;">Mudar Visão</button>
+            <span class="status-badge status-success">NEXUS LINK: ACTIVE</span>
+        </div>
+    </header>
+
+    <!-- 2. Radar (Lateral esquerda no desktop) -->
+    <aside class="radar module-box">
+        <h2>Radar de Frota</h2>
+        <div class="drone-item" style="border-bottom: 1px solid var(--border-color); padding: 10px 0;">
+            <strong>ALPHA-707</strong>
+            <p style="font-size: 0.8rem; color: var(--text-secondary);">Distância: 12.5km</p>
+        </div>
+        <div class="drone-item" style="border-bottom: 1px solid var(--border-color); padding: 10px 0;">
+            <strong>BETA-404</strong>
+            <p style="font-size: 0.8rem; color: var(--status-alert);">Perda de Sinal</p>
+        </div>
+        <div class="drone-item" style="padding: 10px 0;">
+            <strong>GAMMA-909</strong>
+            <p style="font-size: 0.8rem; color: var(--text-secondary);">Distância: 45.0km</p>
+        </div>
+    </aside>
+
+    <!-- 3. Mapa Central (Ocupa o maior espaço) -->
+    <main class="mapa module-box">
+        <div style="text-align: center;">
+            <div style="width: 100px; height: 100px; border: 2px solid var(--brand-accent); border-radius: 50%; margin: 0 auto 20px; display: flex; justify-content: center; align-items: center; animation: pulse 2s infinite;">
+                <span style="font-size: 2rem;">🛰️</span>
+            </div>
+            <p style="color: var(--brand-accent); letter-spacing: 2px;">MAPA TÁTICO GLOBAL</p>
+            <p style="font-family: monospace; font-size: 0.8rem; margin-top: 10px;">LAT: -23.55 | LON: -46.63</p>
+        </div>
+    </main>
+
+    <!-- 4. Logs (Lateral direita no desktop) -->
+    <section class="logs module-box">
+        <h2>Live Vault Stream</h2>
+        <div style="font-family: monospace; font-size: 0.8rem; color: var(--text-secondary);">
+            <p style="margin-bottom: 5px;">> [SQL] Shard BR connected</p>
+            <p style="margin-bottom: 5px;">> [RUST] Macro Audit Triggered</p>
+            <p style="margin-bottom: 5px; color: var(--status-warning);">> [C++] Pool at 85% capacity</p>
+            <p style="margin-bottom: 5px;">> [KMS] Key rotated successfully</p>
+            <p>> [SYSTEM] Waiting for event...</p>
+        </div>
+    </section>
+
+    <!-- 5. Footer (Ocupa a base total) -->
+    <footer class="footer module-box" style="padding: 10px; display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-muted);">
+        <span>SRE STATUS: 100/100</span>
+        <span>&copy; 2026 LOGISPEED GLOBAL SYSTEMS</span>
+        <span>V-2.0.1-ELITE</span>
+    </footer>
+
+    <style>
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+    </style>
+
+    <script>
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+# 📘 Atividade 20: Limpeza de Hangar (Git Clean e Garbage Collection)
+STATUS: Nível 20 (Explorador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Após semanas de desenvolvimento intensivo no SkyCargo Nexus, sua pasta de trabalho está cheia de arquivos temporários, testes falhos e lixo que o `.gitignore` não pegou (arquivos "Untracked" que você criou mas não quer). Além disso, o banco de dados interno do Git (`.git`) pode estar acumulando objetos órfãos. Você aprenderá a fazer uma limpeza profunda tanto na sua mesa de trabalho quanto nos bastidores do Git.
+
+## 🛠️ Necessidade Técnica
+Para manter a performance e a organização, usamos ferramentas de limpeza de arquivos não versionados e de otimização de banco de dados.
+
+### Comandos Chave:
+1.  **`git clean -n`**: O "Dry Run". Mostra o que seria apagado sem apagar nada (Segurança primeiro!).
+2.  **`git clean -f`**: Apaga arquivos não versionados (Untracked) permanentemente.
+3.  **`git clean -fd`**: Apaga arquivos e pastas vazias não versionadas.
+4.  **`git gc`**: Garbage Collection. Comprime o histórico e remove objetos inacessíveis para otimizar o repositório.
+
+## 🚀 Missão
+1.  Na pasta `labs/nexus-drone-system`, crie 3 arquivos de lixo: `lixo1.tmp`, `lixo2.log`, `temp.txt`.
+2.  Certifique-se de que eles não estão no stage.
+3.  Teste a limpeza: `git clean -n`. Ele deve listar os 3 arquivos.
+4.  Execute a limpeza real: `git clean -f`. Rode `ls`. Os arquivos sumiram!
+5.  Agora, execute a manutenção preventiva do motor do Git: `git gc`.
+6.  Observe o Git contando e comprimindo objetos. Seu hangar agora está otimizado.
+
+## 📋 Requisitos de Elite
+- Sempre usar `-n` antes de um `clean` real para evitar apagar arquivos importantes.
+- Diferenciar arquivos ignorados (pelo .gitignore) de arquivos não versionados (untracked).
+- Manter o repositório leve com o `gc` periódico.
+
+------------------------------------------------------------------------------
+"Um hangar limpo evita acidentes; um repositório otimizado evita lentidão."

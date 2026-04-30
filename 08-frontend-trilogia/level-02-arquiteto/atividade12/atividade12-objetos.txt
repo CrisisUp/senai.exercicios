@@ -1,0 +1,25 @@
+# 📘 Atividade 12: Dados Multidimensionais (Objetos e Transformações)
+STATUS: Nível 12 (Arquiteto) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A frota da "LogiSpeed Global" agora exige o monitoramento de múltiplos parâmetros por unidade: Capacidade de Carga, Autonomia Restante e Ano do Modelo. No nível anterior, usávamos variáveis soltas. Agora, agruparemos tudo em **Objetos JavaScript**. Além disso, o operador precisa de um feedback visual tátil: ao passar o mouse em um drone, o card deve "saltar" na tela para indicar foco.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Uso de listas de definição (`<dl>`, `<dt>`, `<dd>`) ou spans rotulados para exibir pares de chave/valor.
+2. **CSS (Estética):** A propriedade **`transform`** (`scale`, `translateY`). Aprenderemos a criar movimento físico sem alterar o layout da página.
+3. **JS (Atitude):** **Objetos Complexos** (`{ chave: valor }`). Aprenderemos a acessar propriedades aninhadas e a usar o `Template Literals` (crases) para injetar esses dados no HTML de forma limpa.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **PROPERTY UNDEFINED:** Tentar acessar `drone.carga` em um objeto que só tem `drone.peso`. O Arquiteto de Elite valida a estrutura do objeto antes de renderizar.
+- **LAYOUT JUMP:** Usar `margin-top` no hover faz os outros itens se mexerem. O `transform` é a solução de elite: ele altera o visual sem "empurrar" os vizinhos.
+- **DADOS DESORGANIZADOS:** Variáveis globais soltas (`drone1_id`, `drone1_bateria`) criam um "inferno de nomes". Objetos encapsulam o dado, mantendo a memória limpa.
+
+## 📋 Requisitos de Elite
+1. Criar um layout de 3 cards detalhados.
+2. Aplicar um efeito de hover que use `scale` e `translateY` simultaneamente.
+3. No JS, criar um array contendo 3 objetos drone com pelo menos 4 propriedades cada.
+4. Renderizar os dados usando Template Literals no loop.
+
+------------------------------------------------------------------------------
+"A complexidade de um sistema é domada pela forma como você agrupa a informação."

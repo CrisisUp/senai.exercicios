@@ -1,0 +1,37 @@
+# 📘 Atividade 11: A Planta Baixa (Anatomia do Dockerfile)
+STATUS: Nível 11 (Arquiteto) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+O código fonte do Nexus OS está pronto, mas ele é apenas um conjunto de arquivos inertes. Para que ele ganhe vida em qualquer lugar, você precisa criar a "Planta Baixa" do seu container: o **Dockerfile**. Você aprenderá a transformar um script simples em uma imagem auto-executável, definindo o sistema operacional base e as instruções de decolagem.
+
+## 🛠️ Necessidade Técnica
+Um `Dockerfile` é um documento de texto que contém todas as ordens que um usuário chamaria na linha de comando para montar uma imagem. É a automação da infraestrutura.
+
+### Instruções Chave:
+1.  **`FROM <imagem>`**: Define a imagem base (ex: alpine, ubuntu, node). É o alicerce.
+2.  **`RUN <comando>`**: Executa comandos durante a construção da imagem (ex: instalar pacotes).
+3.  **`CMD ["comando"]`**: Define o processo principal que rodará quando o container nascer.
+4.  **`docker build -t <nome-da-imagem> .`**: O comando que lê o Dockerfile e gera a imagem.
+
+## 🚀 Missão
+1.  Crie uma pasta de laboratório: `mkdir -p labs/primeira-imagem && cd labs/primeira-imagem`.
+2.  Crie um arquivo chamado `Dockerfile` (sem extensão e com D maiúsculo).
+3.  Escreva o seguinte conteúdo:
+    ```dockerfile
+    # 1. Base ultraleve (Alpine Linux)
+    FROM alpine
+
+    # 2. Comando de boas-vindas do Nexus
+    CMD ["echo", "NEXUS OS: SISTEMA OPERACIONAL CONTEINERIZADO PRONTO."]
+    ```
+4.  Construa a imagem: `docker build -t nexus-image-v1 .`.
+5.  Rode sua criação: `docker run --rm nexus-image-v1`.
+6.  Verifique se a imagem existe no seu hangar: `docker images | grep nexus`.
+
+## 📋 Requisitos de Elite
+- Compreender que cada instrução no Dockerfile cria uma "Camada" (layer).
+- Nomear e versionar imagens usando Tags (`-t nome:versão`).
+- Identificar a diferença entre `RUN` (build-time) e `CMD` (runtime).
+
+------------------------------------------------------------------------------
+"O Dockerfile é o contrato entre o código e a infraestrutura."

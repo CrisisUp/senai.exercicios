@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     './repositorio-extra/atividade-extra42/atividade-extra42-gresponse'
+relocations:     []
+...

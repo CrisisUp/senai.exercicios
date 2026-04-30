@@ -1,0 +1,104 @@
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #0b0e14;
+    border-radius: 12px;
+    border: 1px solid #1f2937;
+    text-align: center;
+}
+
+.header h1 {
+    color: #60a5fa;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    color: #9ca3af;
+    margin-bottom: 2rem;
+}
+
+.radarContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.statusPanel {
+    display: flex;
+    gap: 2rem;
+    background: #111827;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    border: 1px solid #374151;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+}
+
+.statusItem span:first-child { color: #9ca3af; }
+.statusItem span:last-child { color: #fbbf24; font-weight: bold; }
+
+.canvasWrapper {
+    background: #000;
+    padding: 10px;
+    border-radius: 50%;
+    border: 2px solid #374151;
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
+    position: relative;
+}
+
+.radarCanvas {
+    display: block;
+    border-radius: 50%;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.btnAction {
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+}
+
+.btnToggle {
+    background: #1e3a8a;
+    color: #60a5fa;
+}
+
+.btnToggleActive {
+    background: #7f1d1d;
+    color: #f87171;
+}
+
+.btnReset {
+    background: #1f2937;
+    color: #9ca3af;
+    border: 1px solid #374151;
+}
+
+.theoryBox {
+    background: rgba(16, 185, 129, 0.05);
+    border: 1px dashed #10b981;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: left;
+    margin-top: 2rem;
+}
+
+.theoryBox h4 {
+    color: #10b981;
+    margin-top: 0;
+}
+
+.theoryBox p {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}

@@ -1,0 +1,32 @@
+# 📘 Atividade 02: O Primeiro Checkpoint (Nível 01)
+STATUS: Nível 01 (Recruta) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+O repositório está pronto, mas está vazio. O drone Alpha-707 precisa do seu primeiro arquivo de manifesto: `manifesto.txt`. Você aprenderá que criar o arquivo não é o suficiente; você precisa "preparar" a mudança para a foto (Stage) e então bater a foto oficial (Commit).
+
+## 🛠️ Necessidade Técnica
+O Git trabalha com 3 estados principais para seus arquivos:
+1.  **Working Directory:** Onde você edita arquivos.
+2.  **Staging Area (Index):** A sala de espera para o próximo commit.
+3.  **Repository (.git):** Onde as fotos (snapshots) são guardadas para sempre.
+
+### Comandos Chave:
+1.  **`git status`**: O seu melhor amigo. Mostra em que estado estão seus arquivos.
+2.  **`git add <arquivo>`**: Move o arquivo da sua mesa para a "sala de espera" (Stage).
+3.  **`git commit -m "Mensagem"`**: Tira a foto oficial. O `-m` é o título da foto.
+
+## 🚀 Missão
+1.  Na pasta `labs/nexus-drone-system`, crie o arquivo `manifesto.txt` com o conteúdo: "SkyCargo Nexus - Drone Alpha-707 Online".
+2.  Rode `git status` e veja o arquivo em vermelho (Untracked).
+3.  Rode `git add manifesto.txt`.
+4.  Rode `git status` e veja o arquivo em verde (Staged).
+5.  Rode `git commit -m "feat: inicializar manifesto do drone alpha-707"`.
+6.  Rode `git log` para ver sua primeira conquista gravada na história.
+
+## 📋 Requisitos de Elite
+- O arquivo deve ser commitado com sucesso.
+- A mensagem de commit deve seguir o padrão prefixado (ex: `feat:`, `docs:`, `fix:`).
+- Verifique se o `git log` mostra seu nome e email configurados na Atividade 01.
+
+------------------------------------------------------------------------------
+"Um commit sem mensagem é um mistério; um commit com mensagem ruim é uma mentira."

@@ -1,0 +1,29 @@
+# 📘 Atividade 25: Consciência Espacial (Web Geolocation API)
+STATUS: Nível 25 (Engenheiro) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A central de comando móvel da "LogiSpeed Global" precisa se localizar automaticamente para calcular a distância até o drone mais próximo. No Nível 24, calculamos dados massivos; agora, daremos um "contexto geográfico" a esses dados. Usaremos a **Geolocation API** para obter as coordenadas GPS do terminal e visualizaremos essa posição em um mapa tático dinâmico.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Uso de `<figure>` e `<figcaption>` para exibir o mapa e suas coordenadas semânticas.
+2. **CSS (Estética):** Criação de um efeito de "Crosshair" (Mira) sobre o mapa e molduras de satélite.
+3. **JS (Atitude):** 
+   - **`navigator.geolocation`**: A porta de entrada para os sensores do dispositivo.
+   - **`getCurrentPosition()`**: Captura única de latitude/longitude.
+   - **`watchPosition()`**: Monitoramento contínuo do movimento do operador (Modo Móvel).
+   - **Permission Handling**: Como lidar com a autorização de privacidade do usuário.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **PERMISSION DENIED:** O operador recusa o acesso à localização. Precisamos de um plano de contingência (coordenada padrão) para que a interface não fique "vazia".
+- **ACCURACY ISSUES:** O sinal GPS pode estar fraco (ex: dentro de um galpão industrial). Aprenderemos a ler a margem de erro (`accuracy`) em metros.
+- **PRIVACY LEAK:** Expor as coordenadas em logs inseguros. Engenharia de elite exige que a localização seja tratada como dado sensível.
+
+## 📋 Requisitos de Elite
+1. Solicitar permissão de localização ao carregar o terminal.
+2. Exibir Latitude, Longitude e Precisão em tempo real.
+3. Integrar uma imagem de mapa estático (simulado ou via OpenStreetMap) centrada nas coordenadas do operador.
+4. Interface ANSI (visual) com sinalizador de "GPS LOCK" ou "NO SIGNAL".
+
+------------------------------------------------------------------------------
+"Sem coordenadas, os dados são apenas números; com localização, eles são inteligência."

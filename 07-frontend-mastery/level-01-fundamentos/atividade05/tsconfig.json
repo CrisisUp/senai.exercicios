@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        /* Configurações de Projeto */
+        "target": "ESNext",                          /* JavaScript Moderno */
+        "module": "ESNext",                          /* Suporte a Imports/Exports */
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],    /* Bibliotecas do Navegador */
+        "rootDir": "./src",                          /* Onde o código TS reside */
+        "outDir": "./dist",                          /* Onde o código JS compilado será salvo */
+        
+        /* Rigor de Engenharia (Strict Mode) */
+        "strict": true,                              /* Habilita TODAS as checagens rigorosas */
+        "noImplicitAny": true,                       /* Impede o uso de 'any' não declarado */
+        "strictNullChecks": true,                    /* Garante que nulos sejam tratados */
+        "strictFunctionTypes": true,
+        "noUnusedLocals": true,                      /* Limpeza de código morto */
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+
+        /* Interoperabilidade e Módulos */
+        "moduleResolution": "Bundler",               /* Padrão moderno para Web/Bundlers */
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,24 @@
+# 📘 Atividade 05: Inteligência e Flexibilidade (Forms, Flexbox e If/Else)
+STATUS: Nível 05 (Iniciado) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A transportadora "LogiSpeed Global" precisa de um sistema onde o operador possa configurar o nome do drone e monitorar riscos em tempo real. Se a bateria baixar de 20%, o sistema deve automaticamente mudar a cor da interface para vermelho. Além disso, o layout deve se ajustar a diferentes tamanhos de tela usando o motor Flexbox.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Elementos de formulário: `<label>` (rótulos) e `<input>` (entrada de dados).
+2. **CSS (Estética):** **Flexbox** (`display: flex`). O motor de alinhamento mais poderoso da web para criar layouts que se adaptam.
+3. **JS (Atitude):** **Estruturas Condicionais (`if`, `else if`, `else`)** para criar lógica de decisão baseada no estado do sistema.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **FALTA DE INPUT:** Sem formulários, o operador não consegue renomear unidades ou enviar comandos personalizados.
+- **LAYOUT QUEBRADO:** Elementos que se atropelam em telas pequenas. O Flexbox resolve isso distribuindo o espaço automaticamente.
+- **ALERTA INVISÍVEL:** Se a bateria acabar e o sistema não avisar visualmente, a missão é perdida. Condicionais garantem o feedback visual de emergência.
+
+## 📋 Requisitos de Elite
+1. Criar um formulário para alterar o "Callsign" (Nome) do drone.
+2. Organizar os botões e inputs em uma linha flexível usando `display: flex`.
+3. No `script.js`, implementar lógica: Se bateria < 20, aplicar classe `.perigo`. Se bateria >= 20, classe `.normal`.
+
+------------------------------------------------------------------------------
+"Um sistema inteligente não apenas mostra dados; ele reage à realidade deles."

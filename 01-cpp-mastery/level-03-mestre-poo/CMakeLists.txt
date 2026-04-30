@@ -1,0 +1,11 @@
+
+add_subdirectory(atividade-extra21)
+add_subdirectory(atividade-extra22)
+add_subdirectory(atividade-extra23)
+add_subdirectory(atividade-extra24)
+add_subdirectory(atividade-extra25)
+add_subdirectory(atividade-extra26)
+add_subdirectory(atividade-extra27)
+add_subdirectory(atividade-extra28)
+add_subdirectory(atividade-extra29)
+add_subdirectory(atividade-extra30)

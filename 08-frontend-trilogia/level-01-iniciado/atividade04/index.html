@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 04</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Painel de Controle Nexus</h1>
+
+    <section class="drone-card">
+        <h2>Unidade: ALPHA-707</h2>
+        <div class="display-main">
+            <p>BATERIA ATUAL: <span id="bat-display">50</span>%</p>
+            <p>AUTONOMIA: <span id="autonomia-display">75 km</span></p>
+        </div>
+
+        <div class="controles">
+            <!-- Eventos de clique vinculados a funções JS -->
+            <button class="btn btn-charge" onclick="alterarEnergia(10)">+ CARREGAR 10%</button>
+            <button class="btn btn-fly" onclick="alterarEnergia(-10)">- VOAR (GASTA 10%)</button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

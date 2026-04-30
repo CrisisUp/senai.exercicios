@@ -1,0 +1,140 @@
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #0b0e14;
+    border-radius: 12px;
+    border: 1px solid #1f2937;
+    text-align: center;
+}
+
+.header h1 {
+    color: #60a5fa;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    color: #9ca3af;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background: #111827;
+    border: 1px solid #374151;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.statusInfo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: #8b949e;
+    margin-bottom: 1.5rem;
+}
+
+.btnRequest {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btnRequest:hover {
+    background: #1d4ed8;
+}
+
+.alertsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 600px) {
+    .alertsGrid { grid-template-columns: 1fr; }
+}
+
+.alertTrigger {
+    background: #0d1117;
+    border: 1px solid #374151;
+    padding: 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.alertTrigger:hover {
+    border-color: #60a5fa;
+    background: #1f2937;
+}
+
+.alertTrigger h3 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #60a5fa;
+}
+
+.alertTrigger p {
+    margin: 0;
+    font-size: 0.7rem;
+    color: #9ca3af;
+}
+
+.warning h3 { color: #fbbf24; }
+.critical h3 { color: #ef4444; }
+
+.shake {
+    animation: shake-anim 0.2s ease-in-out 0s 3;
+    border-color: #ef4444;
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.2);
+}
+
+@keyframes shake-anim {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+    100% { transform: translateX(0); }
+}
+
+.logArea {
+    background: #000;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: #10b981;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 4px solid #10b981;
+    margin-bottom: 2rem;
+}
+
+.theoryBox {
+    background: rgba(16, 185, 129, 0.05);
+    border: 1px dashed #10b981;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.theoryBox h4 {
+    color: #10b981;
+    margin-top: 0;
+}
+
+.theoryBox p {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}

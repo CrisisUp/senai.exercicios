@@ -1,0 +1,25 @@
+# 📘 Atividade Extra 19: Gestão de Inventário de Alta Performance
+STATUS: Padrão de Engenharia de Elite Aplicado
+
+## 🏢 Estudo de Caso: "Eletrônica Tech-Flow"
+A Tech-Flow é uma distribuidora de componentes eletrônicos que lida com milhares de itens. O sistema antigo usava vetores de tamanho fixo (arrays), o que causava travamentos quando o estoque crescia ou desperdício de memória quando estava vazio.
+
+## 🛠️ Necessidade Técnica
+Para sistemas modernos, não podemos prever o número exato de itens. Precisamos de **Coleções Dinâmicas** que cresçam conforme a necessidade. Além disso, a busca manual em listas desordenadas é lenta; precisamos de **Algoritmos de Ordenação** eficientes.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (COMPLEXIDADE E MEMÓRIA)
+- RISCO DE FRAGMENTAÇÃO POR REALLOC: O `std::vector` dobra de tamanho quando atinge sua capacidade. Se o estoque crescer para milhões de itens, o sistema pode tentar alocar um bloco gigante na HEAP e falhar (std::bad_alloc).
+- RISCO DE EXPLOSÃO DE CUSTO O(n²): Embora o `std::sort` seja O(n log n), se usássemos um algoritmo ineficiente (como Bubble Sort), a ordenação de 100 mil itens demoraria minutos em vez de milissegundos.
+- RISCO DE "COPY OVERHEAD": Sem o uso de referências constantes nas funções Lambda, a ordenação de structs grandes causaria uma lentidão massiva devido à cópia incessante de dados na memória.
+
+## 🎯 Requisitos da Aplicação
+1.  **Classe Produto:** SKU, Nome, Quantidade e Preço (Uso de Encapsulamento).
+2.  **Uso de std::vector:** Armazenamento dinâmico e resiliente na HEAP.
+3.  **Algoritmos de Ordenação:** Uso de `std::sort` com critérios customizados via Lambdas.
+4.  **Interface de Elite:** Visualização tabular com cores ANSI para alertas de estoque baixo.
+
+## 🚀 Novos Conceitos C++
+-   `std::vector`: Gestão dinâmica de memória.
+-   `std::sort`: Algoritmos de ordenação de alta performance.
+-   **Funções Lambda:** Injeção de comportamento em tempo de execução.
+-   **Const References:** Proteção e performance do CPU (**Fantasma do CPU**).

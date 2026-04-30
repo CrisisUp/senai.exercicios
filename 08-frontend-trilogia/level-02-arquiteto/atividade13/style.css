@@ -1,0 +1,76 @@
+/**
+ * @file style.css
+ * @brief Seletores de Atributo e Design de Busca (Atividade 13).
+ */
+
+body {
+    background-color: #050505;
+    color: #e6edf3;
+    font-family: monospace;
+    padding: 0; margin: 0;
+}
+
+header {
+    background: #111;
+    padding: 30px;
+    border-bottom: 2px solid #00f2ff;
+    text-align: center;
+}
+
+.search-box input {
+    width: 80%;
+    padding: 15px;
+    background: #000;
+    border: 1px solid #333;
+    color: #00f2ff;
+    font-size: 1.2rem;
+    text-align: center;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-box input:focus { border-color: #00f2ff; }
+
+.grid-tactical {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 40px;
+}
+
+/* ESTILO VIA DATA ATTRIBUTES */
+.drone-unit {
+    background: #111;
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.drone-unit:hover { background: #222; }
+
+/* Seletor de Atributo: Estiliza baseado no valor do dado */
+.drone-unit[data-status="ALERTA"] {
+    border-color: #f85149;
+    background-color: rgba(248, 81, 73, 0.1);
+}
+
+.drone-unit[data-status="ALERTA"]:hover {
+    box-shadow: 0 0 15px #f85149;
+}
+
+.drone-unit[data-status="OPERACIONAL"] {
+    border-color: #3fb950;
+}
+
+.status-bar {
+    position: fixed;
+    bottom: 0; width: 100%;
+    background: #00f2ff;
+    color: #000;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+}

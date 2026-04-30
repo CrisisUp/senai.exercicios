@@ -1,0 +1,72 @@
+/**
+ * @file style.css
+ * @brief Estética Tática com RGBA e HSL (Atividade 07).
+ */
+
+:root {
+    /* HSL: Hue (Matiz), Saturation, Lightness */
+    --brand-hue: 190; /* Tom de Ciano */
+    --color-main: hsl(var(--brand-hue), 100%, 50%);
+    --color-bg: hsl(220, 20%, 8%);
+}
+
+body {
+    background-color: var(--color-bg);
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 0; margin: 0;
+}
+
+header {
+    background-color: hsla(var(--brand-hue), 100%, 10%, 0.8);
+    padding: 20px;
+    border-bottom: 1px solid var(--color-main);
+    text-align: center;
+}
+
+.container { padding: 40px; }
+
+/* Barra de Filtros (Glassmorphism) */
+.toolbar {
+    background-color: rgba(255, 255, 255, 0.05); /* RGBA: Transparência industrial */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+select {
+    background: #1c2531;
+    color: var(--color-main);
+    border: 1px solid var(--color-main);
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Tabela Tática */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    color: var(--color-main);
+    font-size: 0.8rem;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+td {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Cores Dinâmicas via HSL */
+.status-OPERACIONAL { color: hsl(140, 60%, 50%); }
+.status-ALERTA { color: hsl(0, 80%, 60%); font-weight: bold; }
+.status-MANUTENCAO { color: hsl(40, 80%, 60%); }

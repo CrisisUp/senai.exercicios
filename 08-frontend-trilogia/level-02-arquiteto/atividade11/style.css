@@ -1,0 +1,64 @@
+/**
+ * @file style.css
+ * @brief Layout Modular e Flexbox Avançado (Atividade 11).
+ */
+
+body {
+    background-color: #050505;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 40px;
+    margin: 0;
+}
+
+.main-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+h1 { color: #00f2ff; letter-spacing: 2px; }
+
+/* GRID DINÂMICO COM FLEX-WRAP */
+.dashboard-grid {
+    display: flex;
+    flex-wrap: wrap;        /* PERMITE QUEBRA DE LINHA */
+    gap: 25px;              /* ESPAÇO ENTRE ITENS */
+    justify-content: center;
+}
+
+.module {
+    background-color: #111111;
+    border: 1px solid #333333;
+    border-radius: 12px;
+    padding: 20px;
+    width: 250px;           /* Tamanho base */
+    flex-grow: 1;           /* Pode crescer para preencher espaço */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.module header {
+    border-bottom: 1px solid #333333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
+.module h3 {
+    margin: 0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #58a6ff;
+}
+
+.content {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* CLASSE DINÂMICA (Adicionada via JS) */
+.module-selected {
+    border-color: #00f2ff;
+    background-color: #1a2a2f;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+    transform: scale(1.05);
+}

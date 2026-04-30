@@ -1,0 +1,26 @@
+# 📘 Atividade 01: Terraform Nexus Base (O Código é a Infra)
+STATUS: Nível 61 (Arquiteto de Automação) - Upgrade Industrial
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" precisa replicar o seu ambiente de telemetria em três regiões diferentes (EUA, Europa e Ásia). Se fizermos isso manualmente pelo console ou via scripts shell, cada região terá pequenas diferenças de configuração (IPs, permissões, nomes), dificultando a manutenção. Precisamos de um "molde" digital perfeito da nossa rede.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o **Terraform (HCL - HashiCorp Configuration Language)**. 
+1. **Estado Declarativo:** Você não diz "crie uma VPC", você descreve "eu quero uma VPC com estas características", e o Terraform resolve como chegar lá.
+2. **State Management:** O Terraform mantém um arquivo `.tfstate` que funciona como a "memória" da sua nuvem, permitindo detectar alterações manuais indevidas (Drift).
+3. **Modularização:** Criaremos módulos para que a rede (VPC) seja um componente independente do banco de dados (RDS).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (DRIFT E REPRODUTIBILIDADE)
+- **INFRASTRUCTURE DRIFT:** Um engenheiro altera uma regra de firewall manualmente no console às 3 da manhã para corrigir um bug e esquece de documentar. Na próxima atualização automática, o sistema quebra. O Terraform detecta e reverte essa alteração.
+- **LOCK-IN DE AMBIENTE:** Sem IaC, mudar de uma conta AWS de "Desenvolvimento" para uma de "Produção" leva dias. Com Terraform, leva segundos (basta mudar as variáveis).
+- **ZOMBIE RESOURCES:** Recursos esquecidos (discos, IPs) geram custos de milhares de dólares. O comando `terraform destroy` garante que 100% da infraestrutura seja limpa.
+
+## 📋 Requisitos de Elite
+1. Configurar o `provider` AWS e definir a região.
+2. Criar uma **VPC** (Virtual Private Cloud) modularizada.
+3. Implementar **Subnets Públicas e Privadas** para isolar o banco de dados da internet.
+4. Definir `outputs` para exportar o ID da rede para os próximos módulos.
+5. Interface ANSI (via terraform plan) para auditoria de pré-deploy.
+
+------------------------------------------------------------------------------
+"Um engenheiro de elite não toca no console; ele orquestra o código que governa a nuvem."

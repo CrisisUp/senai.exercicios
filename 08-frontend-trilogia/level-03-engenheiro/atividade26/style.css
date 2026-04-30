@@ -1,0 +1,87 @@
+/**
+ * @file style.css
+ * @brief Estética Logística e Feedback de Drag & Drop (Atividade 26).
+ */
+
+body {
+    background-color: #0d1117;
+    color: #e6edf3;
+    font-family: system-ui, sans-serif;
+    padding: 30px;
+    margin: 0;
+}
+
+header { text-align: center; margin-bottom: 40px; }
+h1 { color: #58a6ff; }
+
+.dispatch-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+/* 1. ESTILO DAS CARGAS */
+.cargo-bay {
+    background: #161b22;
+    border: 1px solid #30363d;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+}
+
+.package {
+    background-color: #21262d;
+    border: 1px solid #58a6ff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 6px;
+    cursor: grab;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+/* Feedback visual quando o item é 'levantado' */
+.package:active { cursor: grabbing; }
+.dragging { opacity: 0.4; transform: scale(0.9); }
+
+/* 2. ESTILO DOS HANGARES */
+.hangar-grid { display: flex; gap: 20px; }
+
+.hangar {
+    background: #161b22;
+    border: 2px solid #30363d;
+    padding: 20px;
+    border-radius: 12px;
+    width: 250px;
+    text-align: center;
+}
+
+.drop-zone {
+    height: 150px;
+    margin-top: 15px;
+    border: 2px dashed #484f58;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+/* ESTADO: Item sobre a zona (Hover de Drag) */
+.drop-zone-active {
+    border-color: #2ea043;
+    background-color: rgba(46, 160, 67, 0.1);
+}
+
+.audit-log {
+    position: fixed;
+    bottom: 0; left: 0; width: 100%;
+    background: #00f2ff;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    font-family: monospace;
+    font-weight: bold;
+}

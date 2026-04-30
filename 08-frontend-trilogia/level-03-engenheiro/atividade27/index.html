@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 27</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus FPV - Optical Link</h1>
+        <p>Sinal de Vídeo de Alta Definição | <span id="stream-status">OFFLINE</span></p>
+    </header>
+
+    <main class="tactical-visor">
+        <!-- 1. VISOR DE VÍDEO (A realidade) -->
+        <div class="video-container">
+            <video id="fpv-stream" autoplay playsinline></video>
+            
+            <!-- OVERLAY (A telemetria sobre a imagem) -->
+            <div class="hud-overlay">
+                <div class="corner top-left">REC ●</div>
+                <div class="corner top-right">CAM-01</div>
+                <div class="crosshair"></div>
+                <div class="corner bottom-left">ALT: 120m</div>
+                <div class="corner bottom-right">SPD: 45km/h</div>
+            </div>
+        </div>
+
+        <!-- 2. CONTROLES ÓPTICOS (A modificação) -->
+        <section class="vision-controls">
+            <button onclick="mudarVisao('normal')">MODO NORMAL</button>
+            <button onclick="mudarVisao('noturna')" class="btn-night">VISÃO NOTURNA</button>
+            <button onclick="mudarVisao('termica')" class="btn-thermal">MODO TÉRMICO</button>
+            <button onclick="capturarFrame()" class="btn-snap">📷 SNAPSHOT</button>
+        </section>
+
+        <!-- 3. GALERIA DE EVIDÊNCIAS -->
+        <section id="evidence-gallery" class="gallery">
+            <h3>Cofre de Evidências (Snapshots)</h3>
+            <canvas id="snapshot-canvas" width="320" height="240" style="display:none;"></canvas>
+            <div id="snaps-container"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

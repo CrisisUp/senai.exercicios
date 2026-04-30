@@ -1,0 +1,26 @@
+# 📘 Atividade 03: Alinhamento Industrial com Flexbox
+STATUS: Nível 03 (Iniciado Frontend) - Pilar de Fundamentos
+
+## 🎯 Estudo de Caso
+O SkyCargo Control Tower agora precisa exibir múltiplos cards de drones simultaneamente. Sem um motor de alinhamento, os cards ficariam empilhados verticalmente, desperdiçando espaço lateral em telas grandes, ou "esmagados" em telas pequenas. Precisamos de um layout que "flua" como o tráfego aéreo.
+
+## 🛠️ Necessidade Técnica
+Utilizaremos o **CSS Flexible Box Layout (Flexbox)**.
+1. **Flex Container:** Definiremos o eixo principal (`row` ou `column`).
+2. **Justificação e Alinhamento:** Usaremos `justify-content` (eixo X) e `align-items` (eixo Y) para centralização perfeita.
+3. **Flex Wrap:** Permitiremos que os itens "quebrem" para a próxima linha automaticamente em telas menores.
+4. **Flex Grow/Shrink:** Definiremos como os componentes devem crescer para ocupar o espaço disponível ou encolher para evitar o overflow.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA (FLUIDEZ E OVERFLOW)
+- **FIXED WIDTH HELL:** Definir larguras fixas (ex: 300px) faz com que a interface quebre em celulares ou sobre espaço em monitores 4K. Flexbox usa porcentagens e frações dinâmicas.
+- **ALINHAMENTO QUEBRADO:** Tentar centralizar ícones e textos usando `margin` ou `padding` manual é instável. O Flexbox garante que a "mira" do design seja exata.
+- **CONTENT CLIPPING:** Se o texto de um log for muito grande, ele pode vazar do card. Usaremos propriedades de flex para conter o conteúdo.
+
+## 📋 Requisitos de Elite
+1. Refatorar o Header para alinhar Logotipo e Botão em extremidades opostas (`space-between`).
+2. Criar um Container de Telemetria que organize os cards lado a lado com `gap`.
+3. Implementar um layout "Mobile-First" que empilha os cards apenas quando necessário.
+4. Interface ANSI (visual) para demonstrar o comportamento elástico dos componentes.
+
+------------------------------------------------------------------------------
+"Um layout de elite é como um drone: ele se ajusta ao vento e ao terreno sem perder o equilíbrio."

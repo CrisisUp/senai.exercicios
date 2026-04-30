@@ -1,0 +1,44 @@
+/**
+ * @file style.css
+ * @brief Domínio do Box Model (Atividade 03).
+ */
+
+body {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    font-family: sans-serif;
+    padding: 40px;
+}
+
+/* O Box Model na prática */
+.drone-card {
+    background-color: #161b22;
+    border: 2px solid #30363d;      /* BORDER: A moldura */
+    border-radius: 12px;
+    
+    padding: 25px;                  /* PADDING: Espaço interno entre borda e conteúdo */
+    margin: 20px auto;              /* MARGIN: Espaço externo (Centraliza o card) */
+    
+    max-width: 450px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+img {
+    max-width: 100%;                /* Previne overflow da imagem */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #00f2ff;
+}
+
+.stats {
+    background-color: #0d1117;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+#autonomia-res {
+    color: #00f2ff;
+    font-weight: bold;
+}

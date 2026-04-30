@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/ativ64_concepts.dir/atividade-extra64-concepts.cpp.o" -o ativ64_concepts

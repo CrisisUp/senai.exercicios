@@ -1,0 +1,127 @@
+:root {
+    --nexus-bg: #0a0b10;
+    --nexus-panel: #141620;
+    --nexus-accent: #00d4ff;
+    --nexus-success: #39ff14;
+    --nexus-standby: #ffd166;
+    --nexus-text: #e0e6ed;
+    --nexus-border: #2a2e3a;
+}
+
+.container {
+    background-color: var(--nexus-bg);
+    color: var(--nexus-text);
+    min-height: 100vh;
+    padding: 3rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid var(--nexus-accent);
+    padding-bottom: 1.5rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+.header h1 {
+    color: var(--nexus-accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.main {
+    width: 100%;
+    max-width: 800px;
+}
+
+.controlArea {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+
+.btnAction {
+    background: transparent;
+    border: 2px solid var(--nexus-accent);
+    color: var(--nexus-accent);
+    padding: 0.8rem 2rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.btnAction:hover:not(:disabled) {
+    background: var(--nexus-accent);
+    color: #000;
+}
+
+.btnAction:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+/* Drone Card (Modular) */
+.card {
+    background-color: var(--nexus-panel);
+    border: 1px solid var(--nexus-border);
+    padding: 1.5rem;
+    border-radius: 4px;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateX(5px);
+    border-color: var(--nexus-accent);
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    font-family: monospace;
+    margin-bottom: 1rem;
+}
+
+.unitCode { color: #888; }
+
+.ONLINE .statusLabel { color: var(--nexus-success); font-weight: bold; }
+.STANDBY .statusLabel { color: var(--nexus-standby); font-weight: bold; }
+
+.modelName {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem 0;
+    color: #fff;
+}
+
+.operator {
+    font-size: 0.8rem;
+    color: #8b949e;
+}
+
+/* Feedback */
+.loading { color: var(--nexus-accent); text-align: center; font-family: monospace; }
+.error { color: #ff3131; text-align: center; padding: 2rem; border: 1px solid #ff3131; }
+
+.theoryBox {
+    margin-top: 4rem;
+    border-top: 1px solid var(--nexus-border);
+    padding-top: 2rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #8b949e;
+}
+
+.theoryBox h4 { color: var(--nexus-accent); margin-bottom: 0.5rem; }

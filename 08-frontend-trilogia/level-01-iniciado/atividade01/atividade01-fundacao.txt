@@ -1,0 +1,24 @@
+# 📘 Atividade 01: O Nascimento da Web (A Tríade Fundamental)
+STATUS: Nível 01 (Iniciado) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+Um sistema complexo como o SkyCargo OS começou com uma ideia simples: exibir uma mensagem na tela. Para isso, precisamos de um lugar para o texto (HTML), um estilo para que seja legível (CSS) e um sinal de que o sistema está operando (JavaScript).
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** A tag `<h1>` para títulos e `<p>` para parágrafos.
+2. **CSS (Estética):** As propriedades `background-color` e `color` para controle cromático.
+3. **JS (Atitude):** O comando `console.log()` para depuração industrial e `alert()` para interação básica.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **AUSÊNCIA DE ESTRUTURA:** Sem HTML, o navegador não sabe o que é texto e o que é código.
+- **LEGIBILIDADE ZERO:** Sem CSS, o texto pode ficar preto em fundo cinza escuro, tornando a interface inútil para o operador.
+- **SISTEMA MUDO:** Sem JavaScript, não temos como saber se o navegador carregou o script corretamente ou se houve um erro de lógica.
+
+## 📋 Requisitos de Elite
+1. Criar `index.html` com a estrutura básica (`doctype`, `html`, `head`, `body`).
+2. Criar `style.css` definindo um tema Dark Industrial.
+3. Criar `script.js` que envia uma saudação de sistema ao console.
+
+------------------------------------------------------------------------------
+"Toda grande interface começou com um único caractere dentro de uma tag."

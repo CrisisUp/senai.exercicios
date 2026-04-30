@@ -1,0 +1,24 @@
+# 📘 Atividade 08: Sistemas Vivos (Animações e Intervalos)
+STATUS: Nível 08 (Iniciado) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+Na central de Dubai da "LogiSpeed Global", os operadores precisam de um sinal visual claro de que a telemetria está chegando. Uma tela estática pode dar a falsa impressão de que o sistema travou. Criaremos um indicador de pulso (Sinal de Vida) e automatizaremos a atualização da bateria dos drones a cada poucos segundos, simulando o consumo real durante o voo.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Uso de `<div>` como recipientes flexíveis para Cards de Drone.
+2. **CSS (Estética):** **Keyframes** (`@keyframes`) e a propriedade `animation`. Criaremos um radar que gira e um LED que pulsa.
+3. **JS (Atitude):** A função **`setInterval()`**. Ela executa um bloco de código repetidamente em um intervalo de tempo definido, permitindo a automação do dashboard.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **INTERFACE "CONGELADA":** Se o operador não vê movimento, ele pode não perceber que um drone entrou em emergência. Animações de pulso garantem que o sistema pareça "vivo".
+- **OVERLOAD DE ATUALIZAÇÃO:** Rodar o intervalo rápido demais (ex: a cada 1ms) pode travar o navegador. Aprenderemos o equilíbrio industrial (ex: 2000ms para telemetria comum).
+- **ZOMBIE PROCESS:** Criar múltiplos intervalos sem controle pode duplicar o consumo de recursos. Aprenderemos a gerenciar o ciclo de vida do monitoramento.
+
+## 📋 Requisitos de Elite
+1. Criar um layout de cards lado a lado para 2 drones.
+2. Implementar uma animação de "SCAN" no radar e um "LED" pulsante de status.
+3. No JS, usar `setInterval` para diminuir a bateria dos drones em 1% a cada 3 segundos automaticamente.
+
+------------------------------------------------------------------------------
+"A diferença entre um desenho e um motor é o movimento constante."

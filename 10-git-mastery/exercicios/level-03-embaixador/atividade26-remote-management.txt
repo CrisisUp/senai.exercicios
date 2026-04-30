@@ -1,0 +1,31 @@
+# 📘 Atividade 26: Orquestração Remota (Branches e Tags no Servidor)
+STATUS: Nível 26 (Embaixador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+O desenvolvimento do Alpha-707 está a todo vapor. Você criou uma branch local para um novo "Sistema de Camuflagem", mas precisa que outros engenheiros também trabalhem nela. Além disso, a versão `v1.1.0` foi atingida e precisa ser publicada no servidor oficial. Você aprenderá a enviar e deletar branches e tags diretamente no servidor central.
+
+## 🛠️ Necessidade Técnica
+Por padrão, o `git push` envia apenas commits da sua branch atual. Branches novas e Tags permanecem apenas no seu computador até que você as envie explicitamente para o servidor.
+
+### Comandos Chave:
+1.  **`git push origin <branch>`**: Envia uma branch específica para o servidor.
+2.  **`git push origin --delete <branch>`**: Deleta a branch do servidor (cuidado!).
+3.  **`git push origin <tag>`**: Envia uma tag específica para o servidor.
+4.  **`git push origin --tags`**: Envia todas as suas tags locais de uma vez.
+
+## 🚀 Missão
+1.  Na pasta `nexus-drone-system`, crie a branch `feature-stealth` e faça um commit nela.
+2.  Publique a branch no servidor: `git push origin feature-stealth`.
+3.  Vá até a pasta do colega (`nexus-operator-02`) e rode `git fetch`.
+4.  O colega agora pode ver e entrar na sua branch: `git switch feature-stealth`.
+5.  Volte para a sua pasta original. Crie uma tag local: `git tag v1.1.0`.
+6.  Envie a tag para o servidor: `git push origin v1.1.0`.
+7.  Limpeza: Delete a branch stealth do servidor: `git push origin --delete feature-stealth`.
+
+## 📋 Requisitos de Elite
+- Entender que a existência de uma branch local não garante sua existência no servidor.
+- Dominar a publicação de tags de versão.
+- Saber limpar branches obsoletas no servidor para manter o hangar organizado.
+
+------------------------------------------------------------------------------
+"O servidor não adivinha suas intenções; você deve publicar suas conquistas."

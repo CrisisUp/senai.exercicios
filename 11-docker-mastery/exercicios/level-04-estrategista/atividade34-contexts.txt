@@ -1,0 +1,31 @@
+# 📘 Atividade 34: Teletransporte de Contexto (Docker Context)
+STATUS: Nível 34 (Estrategista) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+A "SkyCargo Nexus" tem vários hangares: o seu Mac local, um servidor de testes em Dubai e a produção na AWS. Digitar comandos de rede (`ssh`, `DOCKER_HOST`, etc) toda vez que você quer falar com um servidor diferente é lento e propenso a erros. Você aprenderá a usar **Contextos**, permitindo que sua CLI do Docker mude de alvo instantaneamente com um único comando.
+
+## 🛠️ Necessidade Técnica
+O Docker Context permite gerenciar perfis de conexão. Você pode ter um contexto para o seu Docker Desktop local e outro que aponta para um servidor remoto via SSH, usando a mesma interface de linha de comando.
+
+### Comandos Chave:
+1.  **`docker context ls`**: Lista todos os contextos configurados.
+2.  **`docker context use <nome>`**: Muda o alvo da sua CLI.
+3.  **`docker context create <nome> --docker "host=ssh://usuario@servidor"`**: Cria um novo alvo remoto.
+
+## 🚀 Missão
+1.  Verifique seu alvo atual: `docker context ls`. O asterisco (`*`) mostra onde seus comandos estão sendo executados.
+2.  Tente espiar o motor atual: `docker context inspect default`.
+3.  **O Desafio de Simulação:** (Mesmo sem um servidor real, aprenda a configurar). Imagine um servidor remoto:
+    `docker context create nexus-remote --description "Servidor de Dubai" --docker "host=ssh://nexus_ops@dubai-hangar.nexus"`.
+4.  Rode `docker context ls` novamente. Veja o novo alvo na lista.
+5.  Para mudar para o remoto: `docker context use nexus-remote`. 
+6.  A partir deste momento, se você digitar `docker ps`, o comando será enviado para Dubai, não para o seu Mac!
+7.  Volte para a segurança do local: `docker context use default`.
+
+## 📋 Requisitos de Elite
+- Gerenciar múltiplos servidores Docker a partir de uma única estação de trabalho.
+- Utilizar conexões seguras (SSH) para controle remoto de infraestrutura.
+- Evitar confusões operacionais usando descrições claras em cada contexto.
+
+------------------------------------------------------------------------------
+"O contexto é a alavanca que teletransporta o seu poder de comando."

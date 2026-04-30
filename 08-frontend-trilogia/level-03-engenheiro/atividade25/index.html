@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilogia Web - Atividade 25</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nexus Geolocation Link</h1>
+        <div class="gps-status">
+            <span id="gps-led" class="led idle"></span> GPS LOCK: <span id="gps-label">WAITING</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Visualização do Mapa -->
+        <section class="map-box">
+            <figure id="map-viewport">
+                <img id="static-map" src="https://placehold.co/600x400/0a0e14/30363d?text=SCANNING+COORDINATES..." alt="Mapa tático de satélite">
+                <div class="crosshair"></div>
+                <figcaption id="coords-log">COORDENADAS: ANALISANDO...</figcaption>
+            </figure>
+        </section>
+
+        <!-- Painel de Dados Geográficos -->
+        <section class="card geo-stats">
+            <div class="stat">
+                <label>LATITUDE</label>
+                <span id="lat-val">0.000000</span>
+            </div>
+            <div class="stat">
+                <label>LONGITUDE</label>
+                <span id="lon-val">0.000000</span>
+            </div>
+            <div class="stat">
+                <label>PRECISÃO (M)</label>
+                <span id="acc-val">---</span>
+            </div>
+        </section>
+
+        <button id="btn-sync" onclick="sincronizarLocalizacao()">RESCANEAR POSIÇÃO</button>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

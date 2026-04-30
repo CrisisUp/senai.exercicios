@@ -1,0 +1,24 @@
+.container {
+    background-color: #0a0e14; /* Azul Profundo (Dark) */
+    color: #00f2ff;           /* Ciano Neon */
+    font-family: 'Courier New', Courier, monospace;
+    padding: 50px;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container h1 {
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.container p {
+    font-size: 1.2rem;
+    border-top: 1px solid #30363d;
+    padding-top: 20px;
+}

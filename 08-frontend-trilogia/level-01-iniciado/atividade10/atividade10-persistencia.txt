@@ -1,0 +1,27 @@
+# 📘 Atividade 10: Memória de Longo Prazo (LocalStorage e JSON)
+STATUS: Nível 10 (Mestre dos Fundamentos) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+Um operador do SkyCargo OS configurou suas preferências de missão e registrou logs importantes, mas houve uma queda de energia no terminal. Sem persistência, todo o trabalho seria perdido. Usaremos o **LocalStorage** para criar um "HD Virtual" no navegador, salvando o estado do sistema em formato **JSON**.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Criação de um container de Log com rolagem automática.
+2. **CSS (Estética):** Controle de **Overflow** e customização de **Scrollbars** para um visual industrial refinado.
+3. **JS (Atitude):** 
+   - **JSON.stringify():** Transforma objetos em texto para salvar.
+   - **JSON.parse():** Transforma texto em objetos para ler.
+   - **localStorage:** O banco de dados persistente do navegador.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **VOLATILIDADE DE DADOS:** Perder o log de auditoria ao dar F5 na página. O LocalStorage garante a sobrevivência do dado.
+- **LIMITAÇÃO DE ESPAÇO:** O LocalStorage tem limite de ~5MB. Aprenderemos que ele deve ser usado para configurações e logs curtos, não para Big Data.
+- **DATA CORRUPTION:** Tentar ler um dado que não existe ou está malformado. Usaremos verificações de segurança ao carregar.
+
+## 📋 Requisitos de Elite
+1. Implementar um campo para salvar o "Nome do Operador" de forma persistente.
+2. Criar um sistema de log onde cada mensagem digitada é salva em um array JSON no LocalStorage.
+3. Estilizar a barra de rolagem dos logs com as cores do Design System.
+
+------------------------------------------------------------------------------
+"Um sistema sem persistência é um sistema sem história; um engenheiro de elite garante o registro dos fatos."

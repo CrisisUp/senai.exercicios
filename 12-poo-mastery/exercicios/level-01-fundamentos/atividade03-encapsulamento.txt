@@ -1,0 +1,40 @@
+# 📘 Atividade 03: Blindagem de Sistema (Encapsulamento I)
+STATUS: Nível 03 (Escultor) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+Até agora, qualquer um podia mudar a bateria do drone Alpha-707 para um valor impossível, como `-50%` ou `9999%`. Na "SkyCargo Nexus", isso é um risco de segurança catastrófico. Você aprenderá a fechar o acesso direto aos dados (tornando-os **private**) e a criar "portões de segurança" (**Getters** e **Setters**) para validar toda e qualquer mudança no estado do drone.
+
+## 🛠️ Necessidade Técnica
+- **`private:`**: Torna atributos invisíveis fora da classe.
+- **`public:`**: Torna métodos acessíveis para o mundo exterior.
+- **Setter:** Método que altera o valor, permitindo validar a entrada (ex: impedir bateria negativa).
+- **Getter:** Método que permite ler o valor protegido.
+
+### Exemplo (C++):
+```cpp
+class Drone {
+private:
+    int bateria; // Blindado!
+public:
+    void setBateria(int b) {
+        if (b >= 0 && b <= 100) this->bateria = b;
+        else cout << "ERRO: Carga inválida!" << endl;
+    }
+    int getBateria() { return this->bateria; }
+};
+```
+
+## 🚀 Missão
+1.  Mude os atributos `modelo` e `bateria` para a seção `private`.
+2.  Crie métodos `setModelo` e `getModelo`.
+3.  Crie o método `setBateria` com uma validação: se o valor for menor que 0, defina como 0; se maior que 100, defina como 100.
+4.  No `main()`, tente acessar `droneA.bateria` diretamente e veja o erro de compilação.
+5.  Corrija usando os novos Getters e Setters.
+
+## 📋 Requisitos de Elite
+- Nenhum atributo deve ser acessível diretamente (sempre `private`).
+- Validação lógica obrigatória no `setBateria`.
+- Uso consistente do prefixo `get` e `set`.
+
+------------------------------------------------------------------------------
+"Encapsular não é esconder; é proteger a integridade do sistema contra o caos externo."

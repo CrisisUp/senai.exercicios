@@ -1,0 +1,30 @@
+# 📘 Atividade 24: Processamento Paralelo (Mastering Web Workers)
+STATUS: Nível 24 (Engenheiro) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+O SkyCargo OS v3.0 precisa realizar uma "Simulação de Stress de Frota" calculando a trajetória de 5 milhões de pontos de dados. No passado, isso travava o navegador do operador (UI Freeze). Usaremos um **Web Worker** para delegar esse cálculo pesado para uma thread isolada do processador. O operador poderá continuar usando o radar e ouvindo os bipes enquanto a CPU trabalha "no fundo".
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Medidores de progresso (`<progress>`) e status de threads.
+2. **CSS (Estética):** Estilização industrial de barras de progresso e indicadores de carga de CPU.
+3. **JS (Main Thread):** 
+   - **`new Worker('worker.js')`**: Instanciação do processo paralelo.
+   - **`postMessage()`**: Envio de dados para a thread de fundo.
+   - **`onmessage`**: Recebimento dos resultados calculados.
+4. **JS (Worker Thread):** 
+   - Escuta de mensagens e execução de loops pesados sem acesso ao DOM (Segurança e Performance).
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **DOM ACCESS DENIED:** Tentar manipular o HTML de dentro do Worker. Aprenderemos que o Worker só "pensa", ele não "enxerga" a tela. Toda a comunicação deve ser via mensagens.
+- **UI BLOCKING:** Realizar o cálculo na thread principal por engano. Isso mata a experiência do usuário e pode fazer o navegador sugerir o encerramento da aba.
+- **DATA CLONING OVERHEAD:** Enviar objetos gigantescos via `postMessage`. Aprenderemos que os dados são clonados entre threads, consumindo memória se não forem gerenciados.
+
+## 📋 Requisitos de Elite
+1. Criar o arquivo `worker.js` com um loop de cálculo massivo (simulação).
+2. Implementar no `script.js` o gerenciamento do ciclo de vida do Worker.
+3. Exibir uma barra de progresso que atualiza conforme o Worker envia resultados parciais.
+4. Interface ANSI (visual) provando que o radar (Ativ 22) continua suave durante o cálculo.
+
+------------------------------------------------------------------------------
+"Um engenheiro de elite não pede para o usuário esperar; ele pede para o processador trabalhar em silêncio."

@@ -1,0 +1,30 @@
+# 📘 Atividade 04: Portões de Comunicação (Port Mapping)
+STATUS: Nível 04 (Maquinista) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+O dashboard do SkyCargo Nexus está rodando dentro de um container (Atividade 03), mas há um problema: o operador não consegue acessá-lo pelo navegador do computador host. O container é um bunker isolado. Você aprenderá a abrir um "túnel de comunicação", mapeando uma porta da sua máquina real para uma porta dentro do mundo virtual do Docker.
+
+## 🛠️ Necessidade Técnica
+Por padrão, portas de rede de um container não são expostas ao mundo exterior. Para acessar um servidor web (como Nginx ou sua API Rust) que roda na porta 80 do container, precisamos dizer ao Docker: "Tudo o que chegar na minha porta X, mande para a porta Y do container".
+
+### Comandos Chave:
+1.  **`docker run -p <porta-host>:<porta-container> <imagem>`**: 
+    - `-p`: Publica (mapeia) as portas.
+    - Ex: `-p 8080:80` (Acessar via localhost:8080 para chegar na porta 80 do container).
+
+## 🚀 Missão
+1.  Inicie o dashboard (Nginx) abrindo o portão de rádio:
+    `docker run -d --name nexus-web -p 8080:80 nginx`.
+2.  Verifique se o portão está aberto: `docker ps`. Veja a coluna `PORTS`.
+3.  **O Teste de Campo:** Abra seu navegador no host e acesse `http://localhost:8080`.
+4.  Você deve ver a mensagem "Welcome to nginx!". Parabéns, você cruzou a fronteira do container!
+5.  Verifique os logs de acesso: `docker logs nexus-web`. Você verá o registro da sua visita.
+6.  Finalize e limpe: `docker stop nexus-web` e `docker rm nexus-web`.
+
+## 📋 Requisitos de Elite
+- Acessar o serviço conteinerizado através do navegador host.
+- Compreender a sintaxe `host:container` (sempre da esquerda para a direita).
+- Entender que múltiplas portas podem ser mapeadas no mesmo comando.
+
+------------------------------------------------------------------------------
+"Portas mapeadas são as antenas que conectam o isolamento do container à imensidão da rede."

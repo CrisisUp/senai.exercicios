@@ -1,0 +1,25 @@
+# 📘 Atividade 14: A Grade de Comando (CSS Grid e Batch Rendering)
+STATUS: Nível 14 (Arquiteto) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A central de comando em Dubai da "LogiSpeed Global" precisa de um painel que exiba o status de 500 sensores de uma só vez em uma grade perfeita. Se inserirmos cada sensor um por um no HTML usando o JavaScript comum, a tela irá "piscar" e a CPU irá travar (Reflow Excessivo). Precisamos construir a grade de forma atômica e performática.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** O conceito de **`DocumentFragment`**. É um container invisível na memória onde montamos todo o conteúdo antes de jogá-lo na tela.
+2. **CSS (Estética):** **CSS Grid Layout** (`display: grid`). A ferramenta suprema para layouts 2D, permitindo criar colunas e linhas que se ajustam sozinhas.
+3. **JS (Atitude):** **Manipulação em Lote (Batch Rendering)**. Aprenderemos a criar centenas de elementos, anexá-los ao Fragment e realizar um único "tiro" de inserção no DOM.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **DOM THRASHING:** Inserir itens em um loop direto no `body` faz o navegador recalcular a posição de tudo na tela centenas de vezes por segundo. O Fragment reduz isso a 1 única vez.
+- **WRAPPER HELL:** Tentar alinhar elementos complexos usando apenas Flexbox pode exigir dezenas de "divs" aninhadas. O Grid limpa a estrutura HTML.
+- **ZOMBIE RE-RENDERS:** Se a renderização em lote não for controlada, o sistema pode tentar desenhar dados que o operador já nem está mais visualizando.
+
+## 📋 Requisitos de Elite
+1. Criar um layout de "Mission Control" usando CSS Grid (3 colunas dinâmicas).
+2. Gerar 100 "Células de Sensor" via JavaScript.
+3. Usar `document.createDocumentFragment()` para realizar a inserção em um único ciclo de renderização.
+4. Interface ANSI (visual) mostrando o tempo de renderização em milissegundos.
+
+------------------------------------------------------------------------------
+"Um engenheiro de elite não pede permissão ao navegador para cada pixel; ele entrega o projeto pronto."

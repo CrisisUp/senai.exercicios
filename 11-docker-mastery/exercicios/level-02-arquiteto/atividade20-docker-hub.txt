@@ -1,0 +1,30 @@
+# 📘 Atividade 20: Conexão Global (Docker Hub & Registries)
+STATUS: Nível 20 (Mestre Arquiteto) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Suas imagens do Nexus OS estão impecáveis, otimizadas e seguras. Mas agora o Comandante Nexus precisa que elas sejam instaladas na base de operações em Dubai. Você não pode enviar um pendrive pelo correio; você precisa publicar suas imagens em um **Registry Global**. Você aprenderá a subir suas conquistas para o **Docker Hub**, o grande hangar mundial de containers.
+
+## 🛠️ Necessidade Técnica
+Um Registry é um repositório remoto de imagens. O Docker Hub é o padrão, mas existem outros (AWS ECR, Azure ACR). Para enviar uma imagem, você deve primeiro "carimbar" ela com seu nome de usuário.
+
+### Comandos Chave:
+1.  **`docker login`**: Autentica seu terminal no servidor remoto.
+2.  **`docker tag <imagem-local> <seu-usuario>/<nome-da-imagem>:<versão>`**: Renomeia a imagem para o padrão de publicação.
+3.  **`docker push <seu-usuario>/<nome-da-imagem>:<versão>`**: Faz o upload da imagem para o mundo.
+
+## 🚀 Missão
+1.  **Prepare a Identidade:** Crie uma conta gratuita em [hub.docker.com](https://hub.docker.com) (se ainda não tiver).
+2.  **Login:** No terminal, rode `docker login` e entre com suas credenciais.
+3.  **Carimbagem (Tag):** Pegue sua imagem otimizada e prepare para envio:
+    `docker tag nexus-hardened <seu-usuario>/nexus-hardened:v1.0`.
+4.  **Lançamento (Push):** Envie para o servidor:
+    `docker push <seu-usuario>/nexus-hardened:v1.0`.
+5.  **Verificação:** Vá ao site do Docker Hub e veja sua imagem listada lá. Agora, qualquer pessoa (ou servidor na AWS) pode rodar seu código com um simples `docker run`.
+
+## 📋 Requisitos de Elite
+- Dominar o fluxo de publicação oficial de imagens.
+- Utilizar Tags de versão para gerenciar atualizações no servidor.
+- Entender que, após o Push, o software se torna agnóstico à localização física do desenvolvedor.
+
+------------------------------------------------------------------------------
+"O Docker Hub é a pista de decolagem de onde seu software ganha o mundo."

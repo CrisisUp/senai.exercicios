@@ -1,0 +1,32 @@
+# 📘 Atividade 06: Memória Permanente (Volumes & Bind Mounts)
+STATUS: Nível 06 (Maquinista) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Um incidente crítico ocorreu no SkyCargo Nexus: o container do banco de dados foi deletado para uma atualização e todos os registros de voo dos drones sumiram! Você aprendeu da forma difícil que **containers são efêmeros**: quando eles morrem, seus dados morrem com eles. Você aprenderá a usar **Volumes** para garantir que a memória do sistema sobreviva mesmo se o container for destruído.
+
+## 🛠️ Necessidade Técnica
+Volumes são mecanismos para persistir dados gerados e usados por containers Docker. Eles são mapeamentos entre o sistema de arquivos do seu computador (Host) e o interior do container.
+
+### Comandos Chave:
+1.  **`docker run -v <caminho-host>:<caminho-container> <imagem>`**: Cria um Bind Mount (mapeia uma pasta específica do seu Mac).
+2.  **`docker volume create <nome>`**: Cria um volume gerenciado pelo Docker.
+3.  **`docker run -v <nome-volume>:<caminho-container> <imagem>`**: Usa um volume gerenciado.
+
+## 🚀 Missão
+1.  Crie uma pasta no seu computador para os logs: `mkdir -p ~/nexus-logs`.
+2.  Inicie um container mapeando essa pasta:
+    `docker run -it --rm -v ~/nexus-logs:/logs alpine sh`.
+3.  Dentro do container, crie um arquivo: `echo "LOG DE VOO 001: OK" > /logs/voo.txt`.
+4.  Saia do container (`exit`). Como usamos `--rm`, o container foi destruído imediatamente.
+5.  **O Milagre da Persistência:** No seu Mac, verifique a pasta `~/nexus-logs`. O arquivo `voo.txt` está lá!
+6.  Rode um NOVO container mapeando a mesma pasta:
+    `docker run --rm -v ~/nexus-logs:/data alpine cat /data/voo.txt`.
+7.  Observe que o dado foi recuperado por um container totalmente diferente.
+
+## 📋 Requisitos de Elite
+- Persistir dados fora do ciclo de vida do container.
+- Compreender a sintaxe `host:container` para volumes.
+- Diferenciar armazenamento efêmero (dentro do container) de armazenamento persistente (volumes).
+
+------------------------------------------------------------------------------
+"O software é passageiro; o dado é o patrimônio permanente da engenharia."

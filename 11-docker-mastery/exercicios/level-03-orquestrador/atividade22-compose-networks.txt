@@ -1,0 +1,55 @@
+# 📘 Atividade 22: Redes de Comando (Compose Networks)
+STATUS: Nível 22 (Orquestrador) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+No SkyCargo Nexus, a segurança é prioridade. Você não quer que o banco de dados seja acessível diretamente pela internet; apenas o servidor web deve falar com ele. Você aprenderá a orquestrar **Redes Isoladas** dentro do Docker Compose, criando um perímetro de segurança onde os serviços se encontram em silos protegidos.
+
+## 🛠️ Necessidade Técnica
+O Docker Compose cria uma rede padrão automaticamente, mas um Orquestrador de Elite define suas próprias redes para isolar tráfegos sensíveis.
+
+### Estrutura YAML:
+- **`networks:`**: Define as malhas de comunicação.
+- **`services.<nome>.networks:`**: Associa um serviço a uma ou mais redes.
+
+## 🚀 Missão
+1.  Atualize seu `docker-compose.yml` para incluir isolamento:
+    ```yaml
+    version: '3.8'
+    services:
+      nexus-proxy:
+        image: nginx:alpine
+        ports:
+          - "8082:80"
+        networks:
+          - frontend
+      nexus-api:
+        image: alpine
+        command: sleep 3600
+        networks:
+          - frontend
+          - backend
+      nexus-db:
+        image: redis:alpine
+        networks:
+          - backend
+
+    networks:
+      frontend:
+      backend:
+    ```
+2.  Sobe a infraestrutura: `docker-compose up -d`.
+3.  **O Desafio de Isolamento:** 
+    - Entre no `nexus-api`: `docker exec -it nexus-orchestra_nexus-api_1 sh`. (O nome pode variar, use `docker ps` para ver).
+    - Tente dar ping no banco: `ping nexus-db`. (Deve funcionar).
+    - Tente dar ping no proxy: `ping nexus-proxy`. (Deve funcionar).
+4.  **A Prova de Fogo:**
+    - Tente entrar no `nexus-db` e dar ping no `nexus-proxy`.
+    - **Resultado Esperado:** Vai falhar! Eles não compartilham rede. O banco está isolado do proxy.
+
+## 📋 Requisitos de Elite
+- Implementar o isolamento de camadas (Frontend/Backend).
+- Entender que um container pode atuar como "Ponte" (Bridge) entre duas redes (como a `nexus-api` aqui).
+- Garantir que serviços de dados nunca fiquem expostos a redes públicas.
+
+------------------------------------------------------------------------------
+"Redes no Compose são os corredores blindados do seu bunker digital."

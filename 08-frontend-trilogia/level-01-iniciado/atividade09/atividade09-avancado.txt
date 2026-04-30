@@ -1,0 +1,24 @@
+# 📘 Atividade 09: Camadas e Atalhos (Dialog, Z-Index e Keyboard)
+STATUS: Nível 09 (Iniciado) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+O SkyCargo OS precisa de um sistema de "Alerta de Colisão". Quando um risco é detectado, uma janela deve sobrepor toda a interface (Overlay), travando os outros comandos até que o operador confirme a ciência. Além disso, o operador deve poder fechar qualquer alerta pressionando a tecla 'ESC' ou disparar um log rápido com 'L', simulando atalhos de produtividade de terminais industriais.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** A tag `<dialog>` para janelas modais nativas (sem necessidade de bibliotecas externas).
+2. **CSS (Estética):** Posicionamento **Absolute** e **Fixed**, e o controle de camadas via **Z-index**.
+3. **JS (Atitude):** **Event Listeners de Teclado** (`keydown`) e o uso do objeto **`event`** para identificar qual tecla foi pressionada.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **OVERLAY INVISÍVEL:** Colocar um alerta "atrás" de outro elemento. O Z-index garante que a mensagem de emergência esteja sempre no topo da pilha visual.
+- **LOCK-IN DE INTERFACE:** Abrir uma janela e não dar ao operador uma forma rápida (teclado) de fechá-la, gerando pânico em situações de estresse.
+- **CONFLITO DE ATALHOS:** Não tratar as teclas corretamente, fazendo com que o 'ESC' feche o sistema inteiro em vez de apenas a janela modal.
+
+## 📋 Requisitos de Elite
+1. Implementar uma janela `<dialog>` de alerta de emergência.
+2. Estilizar um "Botão Flutuante" no canto da tela usando `position: fixed`.
+3. No JS, capturar a tecla 'ESC' para fechar o alerta e a tecla 'A' para abrir o manual do sistema.
+
+------------------------------------------------------------------------------
+"Em interfaces críticas, a velocidade do dedo no teclado supera a precisão do mouse."

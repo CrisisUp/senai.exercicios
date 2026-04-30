@@ -1,1 +1,0 @@
-/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra15.dir/repositorio-extra/atividade-extra15/MotorFinanceiro.cpp.o" "CMakeFiles/atividade-extra15.dir/repositorio-extra/atividade-extra15/atividade-extra15-financeiro.cpp.o" -o atividade-extra15

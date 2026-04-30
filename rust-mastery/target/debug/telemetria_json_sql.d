@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/telemetria_json_sql: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/integracao-rust-sql/24-telemetria-json-sql/src/main.rs

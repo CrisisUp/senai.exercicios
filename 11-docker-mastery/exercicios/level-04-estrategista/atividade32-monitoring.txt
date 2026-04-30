@@ -1,0 +1,28 @@
+# 📘 Atividade 32: O Painel de Controle (Docker Stats & Top)
+STATUS: Nível 32 (Estrategista) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+O ecossistema Nexus está rodando, mas o terminal de Dubai relatou lentidão. Como Estrategista, você precisa descobrir se há um "vazamento" de CPU ou se a memória RAM está esgotada em algum microserviço específico. Você aprenderá a usar o monitoramento de baixo nível para visualizar o batimento cardíaco do hardware em tempo real.
+
+## 🛠️ Necessidade Técnica
+Containers compartilham o hardware do host. Um container sem limites pode canibalizar os recursos dos outros. Precisamos de ferramentas que mostrem o consumo real de cada processo.
+
+### Comandos Chave:
+1.  **`docker stats`**: Painel dinâmico (estilo `top` do Linux) com CPU, Memória, I/O de rede e disco de todos os containers ativos.
+2.  **`docker top <id-ou-nome>`**: Mostra os processos reais do sistema operacional que estão rodando dentro daquele container específico.
+
+## 🚀 Missão
+1.  Suba a orquestra completa (ou alguns containers de teste): `docker run -d --name monitor-lab-1 nginx` e `docker run -d --name monitor-lab-2 redis`.
+2.  Abra o painel de monitoramento: `docker stats`.
+3.  Observe as colunas: Qual container está usando mais memória em repouso?
+4.  **O Desafio de Processos:** Identifique o ID do processo (PID) principal do Nginx no seu Mac: `docker top monitor-lab-1`.
+5.  Compare o PID do `top` com o que você vê no Monitor de Atividade do macOS (se estiver em um sistema que mapeia PIDs diretamente).
+6.  Limpeza: `docker stop monitor-lab-1 monitor-lab-2` e `docker rm monitor-lab-1 monitor-lab-2`.
+
+## 📋 Requisitos de Elite
+- Monitorar o consumo de hardware sem ferramentas externas pesadas.
+- Identificar containers que ultrapassam os limites de segurança.
+- Compreender a relação entre o container e os processos reais do host.
+
+------------------------------------------------------------------------------
+"O que não é medido não pode ser otimizado."

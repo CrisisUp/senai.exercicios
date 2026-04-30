@@ -1,0 +1,46 @@
+# 📘 Atividade 25: O Arquivo de Segredos (Environment Files .env)
+STATUS: Nível 25 (Orquestrador) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+Você notou que seu `docker-compose.yml` está cheio de senhas e configurações expostas em texto puro. Se você subir esse arquivo para o Git, o SkyCargo Nexus estará vulnerável. Você aprenderá a usar o **Arquivo .env**, o cofre local onde guardamos variáveis sensíveis, mantendo o arquivo de orquestração limpo e seguro para compartilhamento.
+
+## 🛠️ Necessidade Técnica
+O Docker Compose lê automaticamente um arquivo chamado `.env` na mesma pasta. Podemos usar variáveis nesse arquivo e referenciá-las no YAML usando a sintaxe `${VAR_NAME}`.
+
+### Estrutura:
+- **`.env`**: (Arquivo de texto) Contém `CHAVE=VALOR`.
+- **`docker-compose.yml`**: Contém `environment: - DB_PASS=${DB_PASSWORD}`.
+
+## 🚀 Missão
+1.  Na pasta `labs/nexus-orchestra`, crie o arquivo `.env`:
+    ```text
+    DB_PASSWORD=nexus_ultra_secret_2026
+    DB_USER=admin_operator
+    APP_PORT=8083
+    ```
+2.  Atualize seu `docker-compose.yml` para ser um template:
+    ```yaml
+    version: '3.8'
+    services:
+      nexus-web:
+        image: nginx:alpine
+        ports:
+          - "${APP_PORT}:80"
+      nexus-db:
+        image: mariadb:latest
+        environment:
+          MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
+          MARIADB_USER: ${DB_USER}
+    ```
+3.  Sobe a orquestra: `docker-compose up -d`.
+4.  **A Auditoria de Segurança:** Rode `docker-compose config`.
+5.  Observe como o Docker Compose "resolveu" as variáveis, mostrando os valores reais apenas para você no terminal, enquanto o arquivo YAML permanece como um molde seguro.
+6.  Tente mudar a porta no `.env` e rode `up -d` novamente. O Compose detecta a mudança e recria apenas o necessário!
+
+## 📋 Requisitos de Elite
+- Separar segredos e configurações do manifesto de infraestrutura.
+- Utilizar a interpolação de variáveis `${}` com maestria.
+- Compreender que o arquivo `.env` NUNCA deve ser commitado no Git (adicione-o ao `.gitignore`).
+
+------------------------------------------------------------------------------
+"O manifesto diz o QUE fazer; o .env diz COM O QUE fazer."

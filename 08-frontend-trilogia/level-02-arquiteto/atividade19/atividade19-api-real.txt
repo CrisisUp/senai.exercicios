@@ -1,0 +1,28 @@
+# 📘 Atividade 19: O Nexus Vivo (Async/Await e APIs Reais)
+STATUS: Nível 19 (Arquiteto) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A frota de drones da "LogiSpeed Global" depende das condições climáticas para voar com segurança. Precisamos de um "Monitor de Clima Global" que busque dados meteorológicos reais de uma API pública. No nível 18, usamos `.then()`. Agora, utilizaremos o **`async/await`**, que torna o código muito mais limpo, e trataremos falhas com blocos **`try/catch`**.
+
+## 🛠️ Necessidade Técnica (Passinho por Passinho)
+Nesta atividade, aprenderemos:
+1. **HTML (Estrutura):** Uso de campos de entrada para busca de cidades e áreas de exibição dinâmica.
+2. **CSS (Estética):** **Gradientes Lineares** (`linear-gradient`) para criar fundos que mudam conforme o clima (Frio vs Calor).
+3. **JS (Atitude):** 
+   - **`async function`**: Declaração de funções assíncronas.
+   - **`await`**: Pausa a execução até que a promessa seja resolvida (sem travar o navegador).
+   - **`try...catch`**: A forma profissional de capturar e tratar erros de rede.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **ASYNC HELL:** Encadear muitos `.then()` torna o código confuso. O `async/await` lineariza a lógica, reduzindo bugs de leitura.
+- **API OVERLOAD:** Fazer requisições sem controle. Aprenderemos a importância de gerenciar o fluxo de dados externos.
+- **UNCAUGHT ERRORS:** Se a internet cair e não houver `catch`, a aplicação "morre" visualmente. O tratamento de erro garante o modo de segurança.
+
+## 📋 Requisitos de Elite
+1. Implementar uma busca de clima por cidade usando uma API real (Open-Meteo ou similar).
+2. Usar `async/await` para buscar as coordenadas e o clima da cidade.
+3. Criar um gradiente de fundo que muda entre azul (frio) e laranja (quente).
+4. Interface ANSI (visual) com feedback de "SINCRONIZANDO COM SATÉLITE...".
+
+------------------------------------------------------------------------------
+"Na engenharia de sistemas, a clareza do código assíncrono é a base da resiliência operacional."

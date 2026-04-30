@@ -1,0 +1,31 @@
+# 📘 Atividade 03: Sentinelas em Segundo Plano (Detached Mode & Logs)
+STATUS: Nível 03 (Maquinista) - Trilha Docker Mastery
+
+## 🎯 Estudo de Caso
+O dashboard de monitoramento do SkyCargo Nexus precisa rodar 24/7. Você não pode deixar um terminal aberto o tempo todo apenas para manter o processo vivo. Você aprenderá a lançar containers no modo "Detached" (desconectado), onde eles rodam silenciosamente em segundo plano, e a usar as ferramentas de auditoria para ler o que eles estão "falando".
+
+## 🛠️ Necessidade Técnica
+Em produção, quase todos os containers rodam em background. Como não estamos "dentro" do container, precisamos de comandos para gerenciar sua vida e ler sua telemetria (saída padrão).
+
+### Comandos Chave:
+1.  **`docker run -d <imagem>`**: Inicia o container no modo Detached (em segundo plano).
+2.  **`docker logs <id-ou-nome>`**: Lê tudo o que o container imprimiu no console.
+3.  **`docker logs -f <id-ou-nome>`**: (Follow) Acompanha os logs em tempo real (como um radar).
+4.  **`docker stop <id-ou-nome>`**: Encerra o serviço graciosamente.
+
+## 🚀 Missão
+1.  Inicie um servidor web Nginx (simulando o dashboard) em segundo plano:
+    `docker run -d --name nexus-dashboard nginx`.
+2.  Rode `docker ps`. Observe que o container está ativo, mas seu terminal está livre para outros comandos.
+3.  Verifique a "saída de rádio" do dashboard: `docker logs nexus-dashboard`.
+4.  Tente acompanhar em tempo real: `docker logs -f nexus-dashboard`. 
+    *(Abra outra aba do terminal ou use o navegador para acessar o container no futuro para gerar tráfego e ver as linhas aparecendo).*
+5.  Encerre a missão: `docker stop nexus-dashboard`.
+
+## 📋 Requisitos de Elite
+- Lançar e identificar containers rodando em background.
+- Utilizar os logs para diagnóstico sem precisar entrar no container (`exec`).
+- Nomear seus containers (`--name`) para facilitar a gestão industrial.
+
+------------------------------------------------------------------------------
+"O que os olhos não veem, o Docker Logs monitora."

@@ -1,0 +1,29 @@
+# 📘 Atividade 13: Quem mexeu no meu queijo? (Git Blame & Show)
+STATUS: Nível 13 (Explorador) - Trilha Git Mastery
+
+## 🎯 Estudo de Caso
+Um bug crítico foi detectado no sistema de pouso do Alpha-707. Alguém mudou o parâmetro `pouso_suave` de `true` para `false` no arquivo `config.txt`. Em uma equipe de engenharia de elite, não procuramos culpados, mas sim o **contexto** da mudança. Você aprenderá a usar o "Raio-X de Linha" para descobrir quem escreveu cada linha de um arquivo e por quê.
+
+## 🛠️ Necessidade Técnica
+Para auditar um arquivo com precisão, o Git oferece ferramentas que mostram a autoria linha por linha e os detalhes de commits específicos.
+
+### Comandos Chave:
+1.  **`git blame <arquivo>`**: Mostra o autor, a data e o hash do commit para cada linha do arquivo.
+2.  **`git show <hash>`**: Exibe os detalhes completos (autor, data, mensagem e diff) de um commit específico.
+3.  **`git show <hash>:<caminho/do/arquivo>`**: Mostra o conteúdo de um arquivo exatamente como ele era naquele commit.
+
+## 🚀 Missão
+1.  Na pasta `labs/nexus-drone-system`, crie o arquivo `config.txt` com várias linhas (ex: Versão, Autor, Pouso_Suave).
+2.  Faça um commit inicial.
+3.  Agora, mude apenas a linha do `Pouso_Suave` e faça um novo commit.
+4.  Rode `git blame config.txt`. Observe como o Git identifica commits diferentes para linhas diferentes.
+5.  Identifique o hash do commit que mudou o pouso.
+6.  Use `git show <hash>` para ver a "anatomia" dessa mudança.
+
+## 📋 Requisitos de Elite
+- Identificar o autor e o motivo de uma mudança específica usando `blame`.
+- Inspecionar os detalhes técnicos de um commit com `show`.
+- Compreender a rastreabilidade total que o Git oferece.
+
+------------------------------------------------------------------------------
+"O Blame não serve para apontar o dedo, mas para encontrar a pessoa que mais entende daquela linha de código."

@@ -1,0 +1,26 @@
+# 🏆 Atividade 32: Desafio Integrador - SkyCargo Nexus Terminal v3.0
+STATUS: Nível 32 (Mestre Engenheiro) - Trilha da Trilogia
+
+## 🎯 Estudo de Caso
+A "LogiSpeed Global" atingiu o ápice de sua maturidade tecnológica. O antigo sistema fragmentado foi substituído pelo **Nexus Terminal v3.0**, uma plataforma única que orquestra toda a operação global. Este desafio exige a integração harmônica das últimas fronteiras conquistadas: a persistência offline, a bi-direcionalidade em tempo real e a logística tátil.
+
+## 🛠️ Necessidade Técnica (A Confluência)
+Nesta atividade, você deve fundir os seguintes módulos em um único ecossistema:
+1. **Módulo de Conectividade (WebSockets):** O dashboard deve receber um stream constante de coordenadas simuladas e status de bateria dos drones.
+2. **Módulo de Logística (Drag & Drop):** O carregamento de containers deve afetar a telemetria do drone em tempo real via socket.
+3. **Módulo de Sobrevivência (Service Workers):** O terminal deve ser capaz de carregar e exibir o manifesto de voo mesmo se a conexão cair (Modo Offline).
+4. **Módulo de Alerta (Notification API):** Notificar o operador caso o peso do drone exceda o limite de segurança ou a bateria caia abaixo de 15%.
+
+## 🧪 ANÁLISE DE FALHA CRÍTICA
+- **RACE CONDITION:** O dado chega via WebSocket mas o operador está arrastando um item. O sistema deve garantir a integridade da UI sem "saltos" ou travamentos.
+- **OFFLINE DESYNC:** O operador carrega um drone offline. O sistema deve armazenar essa ação localmente (LocalStorage) e sincronizar quando o sinal voltar.
+- **RESOURCE STARVATION:** O uso excessivo de múltiplas APIs nativas pode degradar a performance. O código deve ser otimizado e modular.
+
+## 📋 Requisitos de Elite
+1. Interface Unificada: Um dashboard "Glass Cockpit" com Radar (Canvas), Inventário (Drag & Drop) e Console de Log (ANSI).
+2. Implementar a lógica de "Heartbeat" no WebSocket para detectar quedas e acionar o modo offline visual (Grayscale).
+3. O manifesto de carga deve ser persistido via `Cache API` ou `LocalStorage` para consulta offline.
+4. **Refatoração Obrigatória:** Reutilizar e modularizar a lógica de cálculo de peso da Ativ 31 e a gestão de mensagens da Ativ 30.
+
+------------------------------------------------------------------------------
+"O mestre não é aquele que domina ferramentas isoladas, mas aquele que as orquestra para criar harmonia no caos."
