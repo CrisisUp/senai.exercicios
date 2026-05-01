@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Atividade 12: Processamento de Dados de Voo (Closures e Iteradores).
@@ -134,4 +136,5 @@ mod tests {
     - Iteradores paralelos com a biblioteca Rayon.
     - Streaming Iterators e GATs (Generic Associated Types).
 */
+
 

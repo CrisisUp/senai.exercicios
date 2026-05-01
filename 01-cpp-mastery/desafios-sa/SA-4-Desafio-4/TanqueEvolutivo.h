@@ -76,3 +76,12 @@ namespace EngenhariaElite {
 }
 
 #endif // TANQUE_EVOLUTIVO_H
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

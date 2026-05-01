@@ -1,4 +1,8 @@
 /**
+ * @author Cristiano
+ * @date 2026
+ */
+/**
  * @file NexusVault.tsx
  * @brief Visualizador de Histórico com Cache Inteligente (TanStack Query).
  */
@@ -46,3 +50,12 @@ const NexusVault: React.FC = () => {
 };
 
 export default NexusVault;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

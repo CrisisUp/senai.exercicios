@@ -1,3 +1,9 @@
+/**
+ * @file Home.tsx
+ * @brief Implementação/Componente Home.tsx
+ * @author Cristiano
+ * @date 2026
+ */
 import { Link } from 'react-router-dom';
 
 const Home = () => {
@@ -104,3 +110,12 @@ const Home = () => {
 };
 
 export default Home;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

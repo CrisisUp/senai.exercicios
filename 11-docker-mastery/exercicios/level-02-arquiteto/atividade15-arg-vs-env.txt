@@ -36,3 +36,8 @@ A "SkyCargo Nexus" precisa construir imagens diferentes para as equipes de "Dese
 
 ------------------------------------------------------------------------------
 "Argumentos de build são as ferramentas que usamos para montar a máquina; variáveis de ambiente são as alavancas que usamos para pilotá-la."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

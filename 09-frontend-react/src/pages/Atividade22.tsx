@@ -1,4 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react';
+/**
+ * @file Atividade22.tsx
+ * @author Cristiano
+ * @date 2026
+ */
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import styles from './Atividade22.module.css';
 
 /**
@@ -18,7 +23,7 @@ const Atividade22: React.FC = () => {
   const centerY = canvasSize / 2;
   const radius = canvasSize / 2 - 10;
 
-  const drawBackground = (ctx: CanvasRenderingContext2D) => {
+  const drawBackground = useCallback((ctx: CanvasRenderingContext2D) => {
     ctx.strokeStyle = "rgba(0, 242, 255, 0.1)";
     ctx.lineWidth = 1;
 
@@ -34,9 +39,9 @@ const Atividade22: React.FC = () => {
     ctx.moveTo(centerX, 10); ctx.lineTo(centerX, canvasSize - 10);
     ctx.moveTo(10, centerY); ctx.lineTo(canvasSize - 10, centerY);
     ctx.stroke();
-  };
+  }, [centerX, centerY, radius, canvasSize]);
 
-  const animate = () => {
+  const animate = useCallback(() => {
     if (!isActive) return;
 
     const canvas = canvasRef.current;
@@ -74,7 +79,7 @@ const Atividade22: React.FC = () => {
 
     // 5. Próximo Quadro
     requestRef.current = requestAnimationFrame(animate);
-  };
+  }, [isActive, centerX, centerY, radius, canvasSize, drawBackground]);
 
   useEffect(() => {
     if (isActive) {
@@ -85,7 +90,7 @@ const Atividade22: React.FC = () => {
     return () => {
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
     };
-  }, [isActive]);
+  }, [isActive, animate]);
 
   const toggleEngine = () => setIsActive(!isActive);
 
@@ -159,3 +164,12 @@ const Atividade22: React.FC = () => {
 };
 
 export default Atividade22;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

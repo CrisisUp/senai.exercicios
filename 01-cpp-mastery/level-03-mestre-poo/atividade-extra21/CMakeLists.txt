@@ -1,4 +1,11 @@
-add_executable(atividade-extra21
-    atividade-extra21-agro.cpp
+# Configuração de Build - Atividade Extra 21 (Mestre POO)
+cmake_minimum_required(VERSION 3.10)
+project(AtividadeExtra21)
+
+set(CMAKE_CXX_STANDARD 17)
+
+add_executable(atividade-extra21-agro 
+    main.cpp 
+    MaquinaAgricola.cpp
+    MaquinaAgricola.h
 )
-set_target_properties(atividade-extra21 PROPERTIES FOLDER "01-cpp-mastery/level-03-mestre-poo/atividade-extra21")

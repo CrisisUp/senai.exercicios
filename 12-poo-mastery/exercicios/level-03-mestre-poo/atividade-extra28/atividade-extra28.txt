@@ -1,0 +1,27 @@
+# 📘 Atividade 28: Interfaces Magras (ISP - Interface Segregation Principle)
+STATUS: Nível 28 (Arquiteto de Linhagens) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+A interface `IDrone` da SkyCargo Nexus tem 50 métodos: `decolar()`, `pousar()`, `tirarFoto()`, `carregarCarga()`, `emitirSinalRadio()`, etc. Um drone de carga simples é obrigado a implementar `tirarFoto()`, mesmo que não tenha câmera. Isso viola o **Princípio da Segregação de Interfaces (ISP)**: clientes não devem ser forçados a depender de métodos que não usam.
+
+## 🛠️ Necessidade Técnica
+Dividir interfaces grandes e genéricas em interfaces menores e específicas (Composition of Interfaces).
+
+## 🚀 Missão
+1.  Crie as interfaces `IVoador`, `ICamera` e `ICargueiro`.
+2.  Implemente o `DroneEntregador` herdando de `IVoador` e `ICargueiro`.
+3.  Implemente o `DroneEspiao` herdando de `IVoador` e `ICamera`.
+4.  No `main`, demonstre que o `DroneEntregador` não tem acesso a métodos de câmera, mantendo o código limpo e seguro.
+
+## 📋 Requisitos de Elite
+- Interfaces Granulares: Cada interface foca em apenas uma capacidade.
+- Herança Múltipla de Interfaces: Uso correto de herança de classes puramente abstratas.
+- Redução de acoplamento desnecessário.
+
+------------------------------------------------------------------------------
+"Interfaces grandes são como contratos de 100 páginas onde você só precisa de uma assinatura."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

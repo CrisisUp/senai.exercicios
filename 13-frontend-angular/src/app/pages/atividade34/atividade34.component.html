@@ -1,0 +1,50 @@
+<div class="ssr-container">
+    <header class="ssr-header">
+        <h1>🥈 O ESPELHO DE PRATA</h1>
+        <p>SEO e Performance Enterprise via <b>SSR & Hydration</b></p>
+    </header>
+
+    <main class="ssr-layout">
+        <!-- Dashboard Isomórfico -->
+        <section class="platform-card">
+            <h3>ANÁLISE DE AMBIENTE DE EXECUÇÃO</h3>
+            <div class="env-display">
+                <span class="label">PLATAFORMA ATUAL:</span>
+                <span class="value">{{ currentPlatform() }}</span>
+            </div>
+            
+            <div class="hydration-status" [class.done]="isHydrated()">
+                <span class="h-dot"></span>
+                <span>STATUS DA HIDRATAÇÃO: {{ isHydrated() ? 'PROTOCOLO CONCLUÍDO' : 'PENDENTE / SSR STAGE' }}</span>
+            </div>
+        </section>
+
+        <!-- Simulação de SEO -->
+        <section class="seo-card">
+            <h3>METADADOS DE SEO (SSR CAPABILITY)</h3>
+            <div class="meta-preview">
+                <div class="meta-row">
+                    <span class="m-tag">Title:</span>
+                    <span class="m-val">Nexus Industrial | Telemetria Global</span>
+                </div>
+                <div class="meta-row">
+                    <span class="m-tag">Render Time:</span>
+                    <span class="m-val">{{ serverTimestamp() }}</span>
+                </div>
+            </div>
+            <p class="desc">
+                Em SSR, estes dados são injetados no HTML antes do JavaScript ser baixado, 
+                permitindo que robôs de busca indexem o conteúdo instantaneamente.
+            </p>
+        </section>
+    </main>
+
+    <footer class="ssr-audit">
+        <h4>ESPECIFICAÇÃO DE ENGENHARIA (ANGULAR UNIVERSAL)</h4>
+        <ul>
+            <li><b>Isomorphic Code:</b> Uso de <code>isPlatformBrowser</code> para prevenir quebras de API.</li>
+            <li><b>Client Hydration:</b> Reutilização do DOM do servidor sem redimensionamento ou repintura (v17+).</li>
+            <li><b>Performance:</b> Melhoria no TTFB (Time to First Byte) e FCP (First Contentful Paint).</li>
+        </ul>
+    </footer>
+</div>

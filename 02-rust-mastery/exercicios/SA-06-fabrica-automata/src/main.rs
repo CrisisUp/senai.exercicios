@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief SA-06: Simulador de Fábrica Automata (Refatoração de Elite).
@@ -282,3 +284,4 @@ mod tests {
          mas sobre mudar a forma como pensamos em memória e concorrência.
     ===============================================================
 */
+

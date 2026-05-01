@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Auditoria de Logs de Voo (Atividade 06 - Refatoração de Elite).
@@ -86,3 +88,4 @@ mod tests {
     - Structs com Lifetimes.
     ===============================================================
 */
+

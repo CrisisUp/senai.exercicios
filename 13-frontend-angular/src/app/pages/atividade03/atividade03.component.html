@@ -1,0 +1,45 @@
+<div class="container">
+  <header class="header">
+    <h1>Monitor de Autonomia - Nexus Angular</h1>
+    <p>Análise de Performance Energética via Signals</p>
+  </header>
+
+  <main class="main-content">
+    <section class="drone-card">
+      <div class="image-container">
+        <img 
+          src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=600&q=80" 
+          alt="Drone de Carga Industrial" 
+          class="drone-image"
+        />
+      </div>
+      
+      <div class="info-area">
+        <h3>Drone SkyCargo Stealth</h3>
+        <div class="stat-row">
+          <label for="battery-slider">Bateria Atual:</label>
+          <input 
+            id="battery-slider"
+            type="range" 
+            min="0" 
+            max="100" 
+            [value]="battery()" 
+            (input)="onBatteryChange($event)"
+            class="slider"
+          />
+          <span class="stat-value">{{ battery() }}%</span>
+        </div>
+        
+        <div class="result-box">
+          <p>Autonomia Estimada:</p>
+          <span class="range-value">{{ range() }} km</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="theory-note">
+      <h4>Nota Técnica: Box Model & Computação Reativa</h4>
+      <p>O card acima utiliza o <strong>CSS Box Model</strong> (Padding, Border, Margin) para estruturação visual. A autonomia é calculada via <code>computed()</code>, uma primitiva de elite do Angular v21 que deriva novos estados com performance otimizada.</p>
+    </section>
+  </main>
+</div>

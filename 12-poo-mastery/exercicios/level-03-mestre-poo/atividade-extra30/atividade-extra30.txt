@@ -1,0 +1,44 @@
+# 📘 Atividade 30: O Único Soberano (Design Pattern: Singleton)
+STATUS: Nível 30 (Mestre POO) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+Na "SkyCargo Nexus", não podemos ter duas classes gerenciando a frota ao mesmo tempo, ou haveria colisões no ar. Precisamos de um **Gerenciador de Frota** que tenha apenas UMA instância em todo o sistema. Você aprenderá o padrão **Singleton**, garantindo um ponto de acesso global e único para um recurso crítico.
+
+## 🛠️ Necessidade Técnica
+- Construtor privado (impede `new` externo).
+- Método estático `getInstance()` que controla a criação da instância única.
+- Membro estático privado para armazenar a instância.
+
+### Exemplo (C++):
+```cpp
+class FleetManager {
+private:
+    static FleetManager* instance;
+    FleetManager() {} // Privado!
+public:
+    static FleetManager* getInstance() {
+        if (!instance) instance = new FleetManager();
+        return instance;
+    }
+};
+```
+
+## 🚀 Missão
+1.  Implemente a classe `FleetManager` usando o padrão Singleton.
+2.  Adicione um método `registrarDrone(string modelo)` que salve os nomes em um `std::vector` interno.
+3.  No `main`, tente instanciar `FleetManager manager;` e veja o erro de compilação.
+4.  Obtenha a instância em dois lugares diferentes do código e verifique que os dados são os mesmos (compartilhados).
+5.  **Desafio Elite:** Torne o Singleton "Thread-Safe" (apenas conceitualmente ou use `static` local se souber como).
+
+## 📋 Requisitos de Elite
+- Controle rigoroso de instância única.
+- Acesso global controlado.
+- Compreensão dos prós e contras do Singleton (Global State).
+
+------------------------------------------------------------------------------
+"Um sistema, uma verdade, uma única instância."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

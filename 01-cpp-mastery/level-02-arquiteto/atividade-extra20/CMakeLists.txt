@@ -1,4 +1,11 @@
-add_executable(atividade-extra20
-    atividade-extra20-banco.cpp
+# Configuração de Build - Atividade Extra 20 (Elite)
+cmake_minimum_required(VERSION 3.10)
+project(AtividadeExtra20)
+
+set(CMAKE_CXX_STANDARD 17)
+
+add_executable(atividade-extra20-banco 
+    main.cpp 
+    ContaBancaria.cpp
+    ContaBancaria.h
 )
-set_target_properties(atividade-extra20 PROPERTIES FOLDER "01-cpp-mastery/level-02-arquiteto/atividade-extra20")

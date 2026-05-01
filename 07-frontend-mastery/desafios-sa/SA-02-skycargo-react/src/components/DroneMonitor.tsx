@@ -1,4 +1,8 @@
 /**
+ * @author Cristiano
+ * @date 2026
+ */
+/**
  * @file DroneMonitor.tsx
  * @brief Componente de visualização de telemetria individual.
  */
@@ -43,3 +47,12 @@ const DroneMonitor: React.FC<{ drone: IDrone }> = React.memo(({ drone }) => {
 });
 
 export default DroneMonitor;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

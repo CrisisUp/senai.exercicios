@@ -44,3 +44,8 @@ O Docker Compose sobe containers em paralelo por padrão. A instrução `depends
 
 ------------------------------------------------------------------------------
 "A pressa é inimiga da integridade. No Compose, a ordem é a base da resiliência."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

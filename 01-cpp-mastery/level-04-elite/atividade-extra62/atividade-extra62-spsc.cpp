@@ -82,3 +82,12 @@ int main() {
  *    CPU não reordenem as instruções, protegendo a integridade dos dados.
  * 3. ALIGNAS(64): Evita o 'False Sharing' protegendo a performance do cache L1.
  */
+
+/* @section MemoryMap
+ * Stack: Variáveis locais e de escopo.
+ * Heap: Alocações dinâmicas.
+ */
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

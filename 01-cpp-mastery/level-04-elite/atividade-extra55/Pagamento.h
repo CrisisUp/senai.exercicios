@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file Pagamento.h
  * @brief Interface Abstrata para Motores de Pagamento.
@@ -66,3 +68,8 @@ namespace Financeiro {
 } // namespace Financeiro
 
 #endif // PAGAMENTO_H
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

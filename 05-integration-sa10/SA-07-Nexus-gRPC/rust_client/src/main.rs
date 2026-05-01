@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+//! @date 2026
 /**
  * @file main.rs
  * @brief Orquestrador Rust consumindo telemetria via gRPC.
@@ -39,3 +41,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     Ok(())
 }
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

@@ -1,0 +1,35 @@
+<div class="alert-center">
+    <header class="page-header">
+        <h1>🛠️ CENTRAL DE ALERTAS NEXUS</h1>
+        <p>Projeção de Componentes e Design System Industrial</p>
+    </header>
+
+    <div class="alert-grid">
+        @for (alert of alerts(); track alert.id) {
+            <app-nexus-card [sector]="alert.sector" [isPriority]="alert.priority">
+                <!-- Slot Nomeado: Icon -->
+                <span card-icon class="icon">
+                    {{ alert.priority ? '⚠️' : 'ℹ️' }}
+                </span>
+
+                <!-- Slot Padrão: Body -->
+                <div class="alert-body">
+                    <h3>{{ alert.title }}</h3>
+                    <p>{{ alert.desc }}</p>
+                </div>
+
+                <!-- Slot Nomeado: Actions -->
+                <div card-actions>
+                    <button class="btn-ack" (click)="acknowledge(alert.id)">
+                        RECONHECER
+                    </button>
+                </div>
+            </app-nexus-card>
+        } @empty {
+            <div class="all-clear">
+                <span>✅</span>
+                <p>SISTEMA ESTÁVEL. NENHUM ALERTA PENDENTE.</p>
+            </div>
+        }
+    </div>
+</div>

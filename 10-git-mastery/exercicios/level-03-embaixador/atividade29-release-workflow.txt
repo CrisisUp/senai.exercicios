@@ -31,3 +31,8 @@ Uma branch de Release (ex: `release/v2.0.0`) nasce da `develop`. Quando finaliza
 
 ------------------------------------------------------------------------------
 "Uma release é o ensaio geral antes da grande estreia do software no mundo real."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

@@ -34,3 +34,8 @@ O Docker Compose permite escalar serviços que não dependem de portas fixas no 
 
 ------------------------------------------------------------------------------
 "Um drone é uma ferramenta; uma enxame é um sistema de elite."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

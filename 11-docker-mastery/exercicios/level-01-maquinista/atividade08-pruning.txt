@@ -28,3 +28,8 @@ Containers parados, imagens "penduradas" (dangling) e redes não utilizadas cons
 
 ------------------------------------------------------------------------------
 "Um sistema saturado é um sistema vulnerável. A limpeza é parte do design."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

@@ -23,3 +23,8 @@ O `git reset` move o ponteiro da branch atual para um commit anterior. A diferen
 
 ------------------------------------------------------------------------------
 "O reset é a borracha do engenheiro; use com precisão, não com fúria."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

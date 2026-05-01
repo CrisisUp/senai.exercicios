@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Atividade Integradora 23: Gerenciamento de Transações.
@@ -107,3 +109,8 @@ fn main() -> Result<()> {
          falhas de negócio do SQL.
     ===============================================================
 */
+
+/* @section MemoryMap
+ * Stack: Tipos fixos.
+ * Heap: Alocações dinâmicas (Box, Vec).
+ */

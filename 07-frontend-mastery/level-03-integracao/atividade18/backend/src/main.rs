@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+//! @date 2026
 /**
  * @file main.rs
  * @brief Servidor de Telemetria Industrial via WebSocket.
@@ -61,3 +63,12 @@ async fn handle_connection(stream: TcpStream, addr: SocketAddr) {
         tokio::time::sleep(Duration::from_secs(1)).await;
     }
 }
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

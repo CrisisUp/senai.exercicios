@@ -27,3 +27,8 @@ Para auditar um arquivo com precisão, o Git oferece ferramentas que mostram a a
 
 ------------------------------------------------------------------------------
 "O Blame não serve para apontar o dedo, mas para encontrar a pessoa que mais entende daquela linha de código."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

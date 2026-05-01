@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/atividade19.dir/main.cpp.o CMakeFiles/atividade19.dir/Drone.cpp.o -o atividade19

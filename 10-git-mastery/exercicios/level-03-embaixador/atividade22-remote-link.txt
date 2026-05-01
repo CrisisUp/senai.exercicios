@@ -27,3 +27,8 @@ Um "Remote" é uma URL ou caminho de pasta que aponta para outra cópia do repos
 
 ------------------------------------------------------------------------------
 "Sem um remoto, seu código está em uma ilha; com ele, você faz parte de um arquipélago."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

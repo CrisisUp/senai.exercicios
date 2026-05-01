@@ -54,3 +54,8 @@ public:
 };
 
 #endif // SMART_BUFFER_H
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

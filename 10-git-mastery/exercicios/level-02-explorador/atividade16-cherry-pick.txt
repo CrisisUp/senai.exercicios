@@ -27,3 +27,8 @@ O `cherry-pick` permite que você aplique a mudança de um commit existente em s
 
 ------------------------------------------------------------------------------
 "O Cherry-pick é a prova de que, no Git, você é o mestre da sua própria linha do tempo."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

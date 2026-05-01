@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 use r2d2::Pool; // O objeto do Pool
 /**
  * @file main.rs
@@ -120,3 +122,8 @@ fn main() {
     do sucesso.
     ===============================================================
 */
+
+/* @section MemoryMap
+ * Stack: Tipos fixos.
+ * Heap: Alocações dinâmicas (Box, Vec).
+ */

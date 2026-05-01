@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file DroneCommander.tsx
  * @brief Painel de Controle de Telemetria Reativo com useState.
  * @author Engenheiro de Elite
@@ -86,3 +89,12 @@ const DroneCommander: React.FC = () => {
 };
 
 export default DroneCommander;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

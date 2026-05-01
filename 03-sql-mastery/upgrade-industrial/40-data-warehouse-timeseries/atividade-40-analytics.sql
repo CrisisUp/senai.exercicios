@@ -1,3 +1,9 @@
+/**
+ * @file atividade-40-analytics.sql
+ * @brief Implementação/Componente atividade-40-analytics.sql
+ * @author Cristiano
+ * @date 2026
+ */
 -- ##############################################################################
 -- # ATIVIDADE 40: DATA WAREHOUSE E ANÁLISE DE SÉRIES TEMPORAIS
 -- ##############################################################################
@@ -84,3 +90,12 @@ GROUP BY caminhao_id;
 .print "O uso de Window Functions transformou o SQLite em um motor de BI."
 .print "Detectamos uma anomalia às 08:50 onde o combustível caiu 38L em 13km."
 .print "Este rastro analítico é a base para o SRE (Site Reliability Engineering) de dados."
+
+/* @section ExecutionPlan
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

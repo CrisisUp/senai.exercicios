@@ -37,3 +37,8 @@ O Docker Compose procura por dois arquivos por padrão: `docker-compose.yml` (ba
 
 ------------------------------------------------------------------------------
 "Um Arquiteto de Elite projeta para a flexibilidade; a fusão de YAMLs é a sua arma secreta."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

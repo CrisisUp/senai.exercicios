@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file main.ts
  * @brief Controle de Fluxo de Eventos (Throttle & Debounce) para o SkyCargo OS.
  * @author Engenheiro de Elite
@@ -99,4 +102,13 @@ console.log("\x1b[1;32m[SYSTEM]\x1b[0m Event Loop Performance Engine Ativo.");
  * 2. THROTTLE: Essencial para sensores e telemetria contínua. Reduz a pressão no DOM.
  * 3. DEBOUNCE: Essencial para chamadas de rede (API) e busca, evitando disparos 
  *    desnecessários a cada tecla digitada.
+ */
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
  */

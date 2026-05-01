@@ -39,3 +39,8 @@ Podemos limitar o hardware disponível para cada container diretamente no YAML. 
 
 ------------------------------------------------------------------------------
 "Em sistemas de elite, o poder é controlado por design, não por sorte."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

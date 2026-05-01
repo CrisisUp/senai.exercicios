@@ -28,3 +28,8 @@ Por padrão, portas de rede de um container não são expostas ao mundo exterior
 
 ------------------------------------------------------------------------------
 "Portas mapeadas são as antenas que conectam o isolamento do container à imensidão da rede."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

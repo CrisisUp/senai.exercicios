@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file motor_rota.h
  * @brief Header do motor de rotas em C++.
  * @author Engenheiro de Elite
@@ -29,3 +32,12 @@ private:
 std::unique_ptr<MotorRota> novo_motor(rust::String config);
 
 } // namespace logispeed
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

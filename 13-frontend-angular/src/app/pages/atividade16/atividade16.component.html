@@ -1,0 +1,39 @@
+<div class="intercept-terminal">
+    <header class="terminal-header">
+        <h1>🛠️ TERMINAL DE ESCOLTA HTTP</h1>
+        <p>Injeção de Segurança e Auditoria de Latência</p>
+    </header>
+
+    <main class="control-panel">
+        <div class="action-zone">
+            <button 
+                class="btn-secure" 
+                (click)="executeSecureRequest()" 
+                [disabled]="requestStatus() === 'LOADING'">
+                {{ requestStatus() === 'LOADING' ? 'REQUISITANDO...' : 'DISPARAR REQUISIÇÃO PROTEGIDA' }}
+            </button>
+
+            <div class="status-indicator" [class]="requestStatus().toLowerCase()">
+                STATUS: {{ requestStatus() }}
+            </div>
+        </div>
+
+        <div class="audit-viewer">
+            <h3>LOG DE AUDITORIA (INTERCEPTOR)</h3>
+            <div class="log-screen">
+                @for (log of auditLogs(); track $index) {
+                    <div class="log-line">{{ log }}</div>
+                } @empty {
+                    <div class="log-line muted">[AGUARDANDO TRÁFEGO DE REDE]</div>
+                }
+            </div>
+        </div>
+    </main>
+
+    @if (responseData()) {
+        <section class="response-data">
+            <h3>PAYLOAD RECUPERADO (MOCK)</h3>
+            <pre>{{ responseData() | json }}</pre>
+        </section>
+    }
+</div>

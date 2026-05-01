@@ -45,9 +45,6 @@ members = [
     "upgrade-industrial/35-macros-auditoria",
     "upgrade-industrial/35-macros-auditoria/audit-log-derive",
     "upgrade-industrial/36-ffi-avancado",
-    "../core-infrastructure/upgrade-industrial/41-observabilidade",
-    "../05-integration-sa10/SA-06-Upgrade-Total/rust_orchestrator",
-    "../05-integration-sa10/SA-07-Nexus-gRPC/rust_client",
     "tests/sql-integration-tests",
 ]
 resolver = "2"

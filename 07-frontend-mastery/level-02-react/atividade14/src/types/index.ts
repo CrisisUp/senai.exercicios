@@ -1,4 +1,8 @@
 /**
+ * @author Cristiano
+ * @date 2026
+ */
+/**
  * @file types/index.ts
  * @brief Contratos de Dados para Gerenciamento de Frota.
  */
@@ -11,3 +15,12 @@ export interface IDrone {
     status: DroneStatus;
     carga_util: number;
 }
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

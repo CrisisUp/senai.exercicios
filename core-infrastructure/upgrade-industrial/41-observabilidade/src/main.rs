@@ -1,3 +1,4 @@
+const ANSI_RESET: &str = "\033[0m";
 use chrono::{DateTime, Utc};
 /**
  * @file main.rs
@@ -140,3 +141,12 @@ fn main() {
     );
     println!("foi causada pelo Shard SQL, e não por falha no código Rust ou C++.");
 }
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

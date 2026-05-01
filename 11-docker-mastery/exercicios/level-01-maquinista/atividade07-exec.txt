@@ -32,3 +32,8 @@ O comando `run` cria um container NOVO. O comando `exec` entra em um container q
 
 ------------------------------------------------------------------------------
 "Um bom maquinista não para o trem para trocar uma lâmpada; ele entra no vagão em movimento."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

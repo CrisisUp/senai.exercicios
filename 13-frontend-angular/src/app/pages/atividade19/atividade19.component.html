@@ -1,0 +1,43 @@
+<div class="perf-container">
+    <header class="perf-header">
+        <h1>⚡ NÚCLEO DE PERFORMANCE NEXUS</h1>
+        <p>Estratégias de Renderização e Carregamento Diferido</p>
+    </header>
+
+    <main class="dashboard">
+        <section class="control-card">
+            <h3>PAINEL DE INICIALIZAÇÃO</h3>
+            <p>O monitor de hardware abaixo é um componente "pesado" que não faz parte do bundle inicial.</p>
+            <button class="btn-boot" (click)="bootSystem()" [disabled]="isSystemReady()">
+                {{ isSystemReady() ? 'SISTEMA INICIALIZADO' : 'INICIAR MONITOR DE HARDWARE' }}
+            </button>
+        </section>
+
+        <!-- IMPLEMENTAÇÃO DO @defer -->
+        @defer (when isSystemReady()) {
+            <app-heavy-monitor></app-heavy-monitor>
+        } @loading (minimum 1s) {
+            <div class="loading-state">
+                <div class="spinner"></div>
+                <span>BAIXANDO MÓDULO DE TELEMETRIA...</span>
+            </div>
+        } @placeholder {
+            <div class="placeholder-state">
+                <p>MÓDULO DE HARDWARE OFFLINE. DISPARE O BOOT PARA CARREGAR.</p>
+            </div>
+        } @error {
+            <div class="error-state">
+                <p>ERRO CRÍTICO AO CARREGAR MÓDULO DE PERFORMANCE.</p>
+            </div>
+        }
+    </main>
+
+    <footer class="perf-audit">
+        <h4>ESPECIFICAÇÃO TÉCNICA</h4>
+        <ul>
+            <li><b>&#64;defer (when):</b> Carregamento assíncrono disparado por estado reativo.</li>
+            <li><b>OnPush Strategy:</b> Componente filho ignora ciclos de change detection globais.</li>
+            <li><b>Bundle Splitting:</b> O componente pesado é separado em um chunk JS distinto.</li>
+        </ul>
+    </footer>
+</div>

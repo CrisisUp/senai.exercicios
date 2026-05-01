@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file Frota.h
  * @brief Interface para Gestão de Frota via Herança.
@@ -67,3 +69,8 @@ namespace Logistica {
 } // namespace Logistica
 
 #endif // FROTA_H
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

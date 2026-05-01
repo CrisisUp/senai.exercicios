@@ -40,3 +40,8 @@ Executar processos como `root` dentro de um container é uma falha de segurança
 
 ------------------------------------------------------------------------------
 "Um container seguro é aquele onde até o próprio processo tem o mínimo de poder necessário."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

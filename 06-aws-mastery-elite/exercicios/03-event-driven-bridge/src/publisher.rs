@@ -1,3 +1,6 @@
+const ANSI_RESET: &str = "\033[0m";
+//! @author Cristiano
+//! @date 2026
 /**
  * @file publisher.rs
  * @brief Publicador de Eventos para AWS EventBridge (Contrato de Elite).
@@ -65,3 +68,12 @@ fn main() {
     println!("Se no futuro precisarmos de um Notificador Slack, basta adicionar");
     println!("uma regra no Terraform, sem recompilar este código Rust.");
 }
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

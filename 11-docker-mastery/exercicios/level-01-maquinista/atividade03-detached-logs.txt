@@ -29,3 +29,8 @@ Em produção, quase todos os containers rodam em background. Como não estamos 
 
 ------------------------------------------------------------------------------
 "O que os olhos não veem, o Docker Logs monitora."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

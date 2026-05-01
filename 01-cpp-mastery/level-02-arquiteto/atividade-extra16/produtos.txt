@@ -3,3 +3,17 @@
 103;Placa de Video RTX 4070;5;550000;20
 104;SSD 1TB NVMe;15;32000;50
 105;Placa Mae Z790;8;120000;35
+
+
+## Estudo de Caso
+Aplicação em cenário real.
+
+## Necessidade Técnica
+Evolução do sistema atual.
+
+## Análise de Falha Crítica
+Prevenção contra falhas em tempo de execução.
+
+## Requisitos
+1. Atender rigorosamente ao protocolo de elite.
+

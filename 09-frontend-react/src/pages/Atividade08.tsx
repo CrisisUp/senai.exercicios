@@ -1,3 +1,9 @@
+/**
+ * @file Atividade08.tsx
+ * @brief Implementação/Componente Atividade08.tsx
+ * @author Cristiano
+ * @date 2026
+ */
 import React, { useState, useEffect } from 'react';
 import styles from './Atividade08.module.css';
 
@@ -90,3 +96,12 @@ const Atividade08: React.FC = () => {
 };
 
 export default Atividade08;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

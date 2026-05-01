@@ -1,0 +1,174 @@
+.terminal-container {
+    background-color: #0d1117;
+    color: #e6edf3;
+    padding: 2rem;
+    min-height: 80vh;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.terminal-header h1 {
+    font-size: 1.5rem;
+    color: #58a6ff;
+    margin: 0;
+}
+
+.badge {
+    background: #238636;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+.metrics {
+    display: flex;
+    gap: 2rem;
+}
+
+.metric-item {
+    text-align: right;
+}
+
+.label {
+    font-size: 0.7rem;
+    color: #8b949e;
+    display: block;
+}
+
+.value {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.value.low {
+    color: #f85149;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.nexus-input {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.nexus-input:focus {
+    border-color: #58a6ff;
+}
+
+.nexus-btn {
+    background: #238636;
+    border: none;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.nexus-btn:disabled {
+    background: #161b22;
+    color: #484f58;
+    cursor: not-allowed;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.drone-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.drone-card:hover {
+    transform: translateY(-4px);
+    border-color: #58a6ff;
+}
+
+.drone-card.critical {
+    border-color: #f85149;
+    box-shadow: 0 0 10px rgba(248, 81, 73, 0.1);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.drone-id {
+    color: #8b949e;
+    font-size: 0.8rem;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    background: #238636;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #238636;
+}
+
+.drone-card.critical .status-indicator {
+    background: #f85149;
+    box-shadow: 0 0 5px #f85149;
+}
+
+.battery-bar {
+    background: #30363d;
+    height: 6px;
+    border-radius: 3px;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    background: #238636;
+    transition: width 0.3s;
+}
+
+.drone-card.critical .fill {
+    background: #f85149;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #8b949e;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem;
+    color: #8b949e;
+    border: 2px dashed #30363d;
+    border-radius: 12px;
+}

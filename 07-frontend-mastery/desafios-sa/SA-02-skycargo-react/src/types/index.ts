@@ -1,4 +1,8 @@
 /**
+ * @author Cristiano
+ * @date 2026
+ */
+/**
  * @file types/index.ts
  * @brief Contratos de Dados para o SkyCargo React Engine.
  */
@@ -19,3 +23,12 @@ export interface IMissionState {
     systemIntegrity: number;
     lastSync: Date;
 }
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

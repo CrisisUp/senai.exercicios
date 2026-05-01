@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file NexusContext.tsx
  * @brief Orquestrador de Estado Global Full-Stack.
  * @author Engenheiro de Elite
@@ -71,3 +74,12 @@ export const useNexus = () => {
     if (!context) throw new Error("useNexus deve ser usado dentro de NexusProvider");
     return context;
 };
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

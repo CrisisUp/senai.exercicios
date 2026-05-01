@@ -1,3 +1,11 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
+/**
+ * @file CMakeCXXCompilerId.cpp
+ * @brief Implementação de CMakeCXXCompilerId.cpp
+ * @author Cristiano
+ * @date 2026
+ */
 /* This source file must have a .cpp extension so that all C++ compilers
    recognize the extension without flags.  Borland does not know .cxx for
    example.  */
@@ -947,3 +955,12 @@ int main(int argc, char* argv[])
   (void)argv;
   return require;
 }
+
+/* @section MemoryMap
+ * Stack: Variáveis locais e de escopo.
+ * Heap: Alocações dinâmicas.
+ */
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

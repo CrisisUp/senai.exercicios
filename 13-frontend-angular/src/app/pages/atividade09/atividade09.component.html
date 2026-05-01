@@ -1,0 +1,58 @@
+<div class="container">
+  <header class="header">
+    <h1>Console de Missão - Camadas e Atalhos</h1>
+    <div class="shortcut-legend">
+      <span>[A] Novo Alerta</span>
+      <span>[L] Log Rápido</span>
+      <span>[ESC] Confirmar</span>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <!-- Camada Base: Mapa Tático -->
+    <section class="base-layer">
+      <h3>MAPA TÁTICO (CAMADA Z: 0)</h3>
+      <div class="map-placeholder">
+        <div class="drone-marker">DR-09</div>
+        <div class="grid-line"></div>
+        <div class="grid-line horizontal"></div>
+      </div>
+    </section>
+
+    <!-- Camada de Registro: Painel Lateral -->
+    <section class="log-panel">
+      <h3>LOG DE OPERAÇÕES</h3>
+      <ul class="log-list">
+        @for (log of logs(); track $index) {
+          <li>{{ log }}</li>
+        }
+      </ul>
+    </section>
+
+    <!-- Botão Flutuante (Requisito de Elite: position: fixed) -->
+    <button 
+      class="floating-btn"
+      (click)="toggleAlert(true)"
+      title="Disparar Alerta Manual [A]"
+    >
+      🚨
+    </button>
+  </main>
+
+  <!-- Componente Modal (Camada Z: Topo) -->
+  <app-alert-modal 
+    [isOpen]="isAlertOpen()"
+    [message]="'Risco de colisão iminente no Setor 7G! Execute manobra evasiva agora.'"
+    (close)="toggleAlert(false)"
+  />
+
+  <footer class="theory-box">
+    <h4>Reflexão Técnica: Camadas, Atalhos e Comunicação</h4>
+    <p>
+      Nesta atividade, exploramos o <strong>Z-index</strong> e o posicionamento <strong>fixed/absolute</strong> para organizar a hierarquia visual. 
+      A comunicação entre o Console e a Modal ocorre via <code>[isOpen]</code> (Input) e <code>(close)</code> (Output). 
+      O uso do <code>&#64;HostListener</code> permite que o sistema reaja a comandos de hardware (teclado), 
+      uma característica essencial de interfaces industriais de alto desempenho.
+    </p>
+  </footer>
+</div>

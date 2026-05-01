@@ -1,3 +1,6 @@
+const ANSI_RESET: &str = "\033[0m";
+//! @author Cristiano
+//! @date 2026
 /**
  * @file main.rs
  * @brief Orquestrador Central do Nexus de Telemetria (SkyCargo OS v2.0).
@@ -94,3 +97,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     Ok(())
 }
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

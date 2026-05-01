@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file atividade-extra18-logistica.cpp
  * @brief Rastreio de Logística: Sobrecarga de Construtores e Inicialização Elite.
@@ -90,3 +92,4 @@ int main()
  * @section MemoryMap
  * Stack: variáveis locais e ponteiros. Heap: alocações via Smart Pointers/RAII.
  */
+

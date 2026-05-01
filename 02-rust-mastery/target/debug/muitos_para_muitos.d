@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/muitos_para_muitos: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/integracao-rust-sql/32-relacionamento-muitos-para-muitos/src/main.rs

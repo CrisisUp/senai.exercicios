@@ -44,3 +44,8 @@ Para que um container execute seu código, os arquivos devem ser "queimados" den
 
 ------------------------------------------------------------------------------
 "Uma imagem sem código é um corpo sem alma. O COPY é o sopro de vida do container."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

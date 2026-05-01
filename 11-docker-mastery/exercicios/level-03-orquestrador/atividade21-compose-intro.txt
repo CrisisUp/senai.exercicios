@@ -39,3 +39,8 @@ O Docker Compose é uma ferramenta para definir e rodar aplicações multi-conta
 
 ------------------------------------------------------------------------------
 "O Docker Compose transforma comandos individuais em uma sinfonia sincronizada."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

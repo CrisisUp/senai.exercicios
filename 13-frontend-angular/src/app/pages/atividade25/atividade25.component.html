@@ -1,0 +1,65 @@
+<div class="ws-container">
+    <header class="ws-header">
+        <h1>🛰️ O ELO DE TEMPO REAL</h1>
+        <p>Comunicação Full-Duplex via Protocolo WebSocket</p>
+    </header>
+
+    <main class="ws-layout">
+        <!-- Painel de Status do Link -->
+        <section class="link-status">
+            <div class="status-card" [class]="connectionStatus().toLowerCase()">
+                <div class="status-header">
+                    <span class="dot"></span>
+                    <h3>SATELLITE LINK: {{ connectionStatus() }}</h3>
+                </div>
+                <div class="link-meta">
+                    <span>LAST SYNC: {{ lastUpdate() }}</span>
+                </div>
+                
+                <div class="controls">
+                    @if (connectionStatus() === 'DISCONNECTED') {
+                        <button class="btn-connect" (click)="connectToNexus()">ESTABELECER LINK</button>
+                    } @else {
+                        <button class="btn-disconnect" (click)="disconnect()">ENCERRAR LINK</button>
+                        <button class="btn-ping" (click)="pingSatellite()" [disabled]="connectionStatus() !== 'CONNECTED'">
+                            PING SATELLITE
+                        </button>
+                    }
+                </div>
+            </div>
+
+            <div class="tech-box">
+                <h4>PROTOCOLO WS://</h4>
+                <p>O fluxo de dados abaixo é assíncrono e bidirecional. O servidor "empurra" dados para o cliente sem requisição prévia.</p>
+            </div>
+        </section>
+
+        <!-- Monitor de Pacotes -->
+        <section class="packet-monitor">
+            <h3>DOWNLINK DATA STREAM</h3>
+            <div class="packet-list">
+                @for (pkt of packets(); track pkt.id) {
+                    <div class="packet-item" [class.ack]="pkt.source === 'GROUND_CONTROL'">
+                        <span class="pkt-id">{{ pkt.id }}</span>
+                        <div class="pkt-body">
+                            <span class="source">{{ pkt.source }}</span>
+                            <span class="payload">VALUE: {{ pkt.payload }}</span>
+                        </div>
+                        <span class="pkt-time">{{ pkt.timestamp }}</span>
+                    </div>
+                } @empty {
+                    <div class="empty-stream">AGUARDANDO HANDSHAKE DE REDE...</div>
+                }
+            </div>
+        </section>
+    </main>
+
+    <footer class="ws-audit">
+        <h4>ESPECIFICAÇÃO DE ENGENHARIA (NÍVEL 25)</h4>
+        <ul>
+            <li><b>Bidirecionalidade:</b> Capacidade de envio (Uplink) e recebimento (Downlink) simultâneos.</li>
+            <li><b>State Management:</b> Uso de <code>Readonly Signals</code> para expor o status do serviço.</li>
+            <li><b>Subscription Lifecycle:</b> Encerramento automático de conexões no <code>OnDestroy</code>.</li>
+        </ul>
+    </footer>
+</div>

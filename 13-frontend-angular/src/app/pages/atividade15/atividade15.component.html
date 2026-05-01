@@ -1,0 +1,28 @@
+<div class="telemetry-hub">
+    <header class="hub-header">
+        <h1>📊 HUB DE TELEMETRIA INDUSTRIAL</h1>
+        <p>Transformação de Dados em Tempo Real via Pipes Customizados</p>
+    </header>
+
+    <main class="telemetry-grid">
+        @for (sensor of sensors(); track sensor.name) {
+            <div class="sensor-card">
+                <div class="sensor-label">{{ sensor.name }}</div>
+                <div class="sensor-value">
+                    {{ sensor.value | telemetria:sensor.unit:sensor.precision }}
+                </div>
+                <div class="raw-data">
+                    RAW: {{ sensor.value }}
+                </div>
+            </div>
+        }
+    </main>
+
+    <footer class="pipe-docs">
+        <h3>ESPECIFICAÇÃO TÉCNICA: TelemetriaPipe</h3>
+        <p>
+            O pipe <code>| telemetria</code> aplica arredondamento de precisão,
+            formatação de milhar e sufixo de unidade industrial em uma única operação atômica no template.
+        </p>
+    </footer>
+</div>

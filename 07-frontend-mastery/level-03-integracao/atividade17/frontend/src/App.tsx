@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file App.tsx
  * @brief Orquestrador Full-Stack: Consumo de API Rust com CORS.
  * @author Engenheiro de Elite
@@ -107,3 +110,12 @@ function App() {
 }
 
 export default App;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

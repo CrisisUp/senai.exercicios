@@ -28,3 +28,8 @@ Muitas vezes precisamos interagir com o container, rodar comandos manuais ou ins
 
 ------------------------------------------------------------------------------
 "O container é uma sala de espelhos: você vê o sistema operacional, mas ele não vê o seu host."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

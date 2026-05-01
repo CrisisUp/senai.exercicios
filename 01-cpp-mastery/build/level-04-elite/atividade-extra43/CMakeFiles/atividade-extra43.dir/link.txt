@@ -1,0 +1,15 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra43.dir/atividade-extra43-debugging.cpp.o" -o atividade-extra43
+
+
+## Estudo de Caso
+Aplicação em cenário real.
+
+## Necessidade Técnica
+Evolução do sistema atual.
+
+## Análise de Falha Crítica
+Prevenção contra falhas em tempo de execução.
+
+## Requisitos
+1. Atender rigorosamente ao protocolo de elite.
+

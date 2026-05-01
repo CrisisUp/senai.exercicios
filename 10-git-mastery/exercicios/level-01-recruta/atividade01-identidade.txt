@@ -8,7 +8,7 @@ Imagine que você foi contratado pela "SkyCargo Nexus" para gerenciar o código 
 Nesta atividade, você aprenderá a configurar sua assinatura digital no Git e a transformar uma pasta comum em um **Repositório Git**.
 
 ### Comandos Chave:
-1.  **`git config --global user.name "Seu Nome"`**: Define quem você é.
+1.  **`git config --global user.name "seu nome"`**: Define quem você é.
 2.  **`git config --global user.email "seu@email.com"`**: Define seu contato.
 3.  **`git init`**: Cria a pasta invisível `.git`, o "cérebro" do repositório.
 
@@ -25,3 +25,8 @@ Nesta atividade, você aprenderá a configurar sua assinatura digital no Git e a
 
 ------------------------------------------------------------------------------
 "No Git, nada é anônimo. Cada byte tem um autor e uma intenção."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

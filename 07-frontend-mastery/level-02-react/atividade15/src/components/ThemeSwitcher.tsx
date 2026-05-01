@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file ThemeSwitcher.tsx
  * @brief Consumidor Distante do Estado Global.
  * @author Engenheiro de Elite
@@ -43,3 +46,12 @@ const ThemeSwitcher: React.FC = () => {
 };
 
 export default ThemeSwitcher;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

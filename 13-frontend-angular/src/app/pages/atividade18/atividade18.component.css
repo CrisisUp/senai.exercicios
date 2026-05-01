@@ -1,0 +1,177 @@
+.forge-container {
+    padding: 2rem;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.forge-header {
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+}
+
+.forge-header h1 {
+    color: #58a6ff;
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.forge-header p {
+    color: #8b949e;
+    font-size: 0.9rem;
+}
+
+.mission-form {
+    max-width: 600px;
+}
+
+.form-section {
+    background: #161b22;
+    border: 1px solid #30363d;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.form-section h3 {
+    margin-top: 0;
+    font-size: 0.85rem;
+    color: #8b949e;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 0.75rem;
+    color: #6e7681;
+    margin-bottom: 0.5rem;
+}
+
+.nexus-input, .nexus-select {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    color: white;
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    outline: none;
+}
+
+.nexus-input:focus, .nexus-select:focus {
+    border-color: #58a6ff;
+}
+
+.error-msg {
+    color: #f85149;
+    font-size: 0.7rem;
+    margin-top: 0.4rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.btn-add {
+    background: transparent;
+    border: 1px dashed #30363d;
+    color: #58a6ff;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.checkpoint-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.checkpoint-item {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background: #0d1117;
+    padding: 0.8rem;
+    border-radius: 6px;
+}
+
+.cp-fields {
+    display: flex;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.nexus-input.sm, .nexus-select.sm {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+}
+
+.btn-remove {
+    background: #f8514933;
+    color: #f85149;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-submit {
+    width: 100%;
+    background: #238636;
+    color: white;
+    border: none;
+    padding: 1.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.btn-submit:disabled {
+    background: #161b22;
+    color: #484f58;
+    cursor: not-allowed;
+}
+
+.form-audit {
+    margin-top: 4rem;
+    padding: 1.5rem;
+    background: #000;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+}
+
+.form-audit h4 {
+    margin-top: 0;
+    font-size: 0.75rem;
+    color: #6e7681;
+}
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 0.8rem;
+    font-family: monospace;
+}
+
+.status-item b {
+    color: #58a6ff;
+}
+
+.status-item b.valid {
+    color: #3fb950;
+}

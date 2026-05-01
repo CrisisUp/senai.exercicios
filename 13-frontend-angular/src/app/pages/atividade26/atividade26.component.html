@@ -1,0 +1,74 @@
+<div class="sync-container">
+    <header class="sync-header">
+        <h1>🛰️ O SINCRONIZADOR DE ÓRBITA</h1>
+        <p>Reatividade Avançada com <code>linkedSignal</code> e <code>resource</code></p>
+    </header>
+
+    <main class="sync-layout">
+        <!-- Seletor de Satélite -->
+        <section class="selector-card">
+            <h3>SELECIONAR UNIDADE ORBITAL</h3>
+            <div class="sat-grid">
+                @for (sat of satellites(); track sat.id) {
+                    <button 
+                        class="sat-btn" 
+                        [class.active]="selectedSatelliteId() === sat.id"
+                        (click)="selectedSatelliteId.set(sat.id)">
+                        {{ sat.id }} - {{ sat.name }}
+                    </button>
+                }
+            </div>
+        </section>
+
+        <!-- Controle de Potência (linkedSignal) -->
+        <section class="control-card">
+            <h3>CONTROLE DE TRANSMISSÃO (linkedSignal)</h3>
+            <div class="power-display">
+                <span class="label">NÍVEL DE POTÊNCIA:</span>
+                <span class="value">{{ powerLevel() }}kW</span>
+            </div>
+            <div class="btn-group">
+                <button (click)="adjustPower(-5)" class="btn-adj">-5</button>
+                <button (click)="adjustPower(5)" class="btn-adj">+5</button>
+            </div>
+            <p class="hint">Nota: Mudar o satélite reseta este valor para o padrão da unidade.</p>
+        </section>
+
+        <!-- Metadados Técnicos (resource) -->
+        <section class="metadata-card">
+            <h3>METADADOS TÉCNICOS (resource)</h3>
+            
+            @if (satelliteMetadata.isLoading()) {
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <span>SINCRONIZANDO COM {{ currentSatName() }}...</span>
+                </div>
+            } @else if (satelliteMetadata.value(); as meta) {
+                <div class="data-grid">
+                    <div class="data-item">
+                        <span class="d-label">ÓRBITA:</span>
+                        <span class="d-val">{{ meta.orbit }}</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="d-label">UPTIME:</span>
+                        <span class="d-val">{{ meta.uptime }}</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="d-label">COMBUSTÍVEL:</span>
+                        <span class="d-val">{{ meta.fuel }}</span>
+                    </div>
+                </div>
+            } @else {
+                <div class="error-state">FALHA NA TELEMETRIA DE DADOS.</div>
+            }
+        </section>
+    </main>
+
+    <footer class="sync-audit">
+        <h4>ESPECIFICAÇÃO TÉCNICA (NÍVEL 26)</h4>
+        <ul>
+            <li><b>linkedSignal:</b> Mantém o estado dependente (Power) sincronizado com a fonte (ID) sem código imperativo.</li>
+            <li><b>resource:</b> API reativa para carregamento assíncrono que reage a mudanças em sinais de requisição.</li>
+        </ul>
+    </footer>
+</div>

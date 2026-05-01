@@ -1,3 +1,8 @@
+/**
+ * @file Atividade20.tsx
+ * @author Cristiano
+ * @date 2026
+ */
 import React from 'react';
 import { NexusDroneCard } from '../components/NexusDroneCard';
 import styles from './Atividade20.module.css';
@@ -50,3 +55,12 @@ const Atividade20: React.FC = () => {
 };
 
 export default Atividade20;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

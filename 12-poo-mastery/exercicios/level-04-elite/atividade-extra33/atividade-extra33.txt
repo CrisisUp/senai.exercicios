@@ -1,0 +1,33 @@
+# 📘 Atividade 33: Inteligência Intercambiável (Design Pattern: Strategy)
+STATUS: Nível 33 (Engenheiro de Elite) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+Um drone da "SkyCargo Nexus" enfrenta climas variados. Em dias ensolarados, ele usa o **Algoritmo de Velocidade**. Em dias de vento forte, ele deve mudar para o **Algoritmo de Estabilidade**. Se usarmos `if/else` gigantes dentro do Drone, o código ficará impossível de manter. Usaremos o **Strategy**, encapsulando cada algoritmo em uma classe separada que pode ser trocada "a quente" durante o voo.
+
+## 🛠️ Necessidade Técnica
+- Interface `IFlightStrategy`: método `executarManobra()`.
+- Estratégias Concretas: `FastMode`, `StableMode`, `EcoMode`.
+- Classe Contexto: O `Drone` que armazena um ponteiro para a estratégia atual.
+
+## 🚀 Missão
+1.  Crie a interface `IFlightStrategy`.
+2.  Implemente três estratégias:
+    - `ModoEconomico`: Imprime que está economizando 30% de energia.
+    - `ModoEsportivo`: Imprime que está operando em rotação máxima.
+    - `ModoFurtivo`: Imprime que desligou luzes e reduziu ruído.
+3.  Crie a classe `Drone` com um método `setEstrategia(IFlightStrategy*)`.
+4.  No `main`, faça o drone decolar com uma estratégia e mude-a no meio da simulação.
+5.  **Prova de Elite:** Demonstre que o drone executa comportamentos diferentes chamando o MESMO método `voar()`.
+
+## 📋 Requisitos de Elite
+- Composição sobre Herança: O comportamento é injetado, não herdado.
+- Troca em Runtime: A estratégia deve poder mudar sem destruir o objeto Drone.
+- Uso de `std::unique_ptr` ou `std::shared_ptr` para gerenciar as estratégias com segurança.
+
+------------------------------------------------------------------------------
+"Não mude quem você é; mude apenas como você resolve o problema."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

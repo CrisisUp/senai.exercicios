@@ -1,3 +1,9 @@
+/**
+ * @file atividade-39-fts5.sql
+ * @brief Implementação/Componente atividade-39-fts5.sql
+ * @author Cristiano
+ * @date 2026
+ */
 -- ##############################################################################
 -- # ATIVIDADE 39: SQL FULL TEXT SEARCH (FTS5) - BUSCA INTELIGENTE (REVISADO)
 -- ##############################################################################
@@ -59,3 +65,12 @@ SELECT
 FROM relatos_fts 
 WHERE relatos_fts MATCH 'desgaste' 
 ORDER BY score;
+
+/* @section ExecutionPlan
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

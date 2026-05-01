@@ -13,7 +13,7 @@ O Git trabalha com 3 estados principais para seus arquivos:
 ### Comandos Chave:
 1.  **`git status`**: O seu melhor amigo. Mostra em que estado estão seus arquivos.
 2.  **`git add <arquivo>`**: Move o arquivo da sua mesa para a "sala de espera" (Stage).
-3.  **`git commit -m "Mensagem"`**: Tira a foto oficial. O `-m` é o título da foto.
+3.  **`git commit -m "mensagem"`**: Tira a foto oficial. O `-m` é o título da foto.
 
 ## 🚀 Missão
 1.  Na pasta `labs/nexus-drone-system`, crie o arquivo `manifesto.txt` com o conteúdo: "SkyCargo Nexus - Drone Alpha-707 Online".
@@ -30,3 +30,8 @@ O Git trabalha com 3 estados principais para seus arquivos:
 
 ------------------------------------------------------------------------------
 "Um commit sem mensagem é um mistério; um commit com mensagem ruim é uma mentira."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

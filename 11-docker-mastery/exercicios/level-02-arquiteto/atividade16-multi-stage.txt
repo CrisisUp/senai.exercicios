@@ -40,3 +40,8 @@ Um único `Dockerfile` pode ter múltiplas instruções `FROM`. Cada uma inicia 
 
 ------------------------------------------------------------------------------
 "Um arquiteto de elite não constrói um hangar dentro do drone; ele constrói o drone no hangar e o lança sozinho."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

@@ -36,3 +36,8 @@ O Docker executa o `Dockerfile` de cima para baixo. Cada instrução gera uma no
 
 ------------------------------------------------------------------------------
 "No Docker, a ordem dos fatores altera, e muito, o tempo de build."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

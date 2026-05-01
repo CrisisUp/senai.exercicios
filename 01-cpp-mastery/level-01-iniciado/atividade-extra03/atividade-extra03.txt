@@ -49,3 +49,8 @@ variáveis podem conter lixo ou zero.
 SOLUÇÃO: Usar 'cin.fail()' para detectar e 'cin.clear()' + 
 'cin.ignore()' para resetar o fluxo de entrada.
 ===============================================================
+
+
+## Requisitos
+1. Atender rigorosamente ao protocolo de elite.
+

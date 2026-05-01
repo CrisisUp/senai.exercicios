@@ -1,0 +1,57 @@
+<div class="audit-container">
+    <header class="audit-header">
+        <h1>🔍 O AUDITOR DE MÉTODOS</h1>
+        <p>Meta-programação e Interceptação via Decorators Customizados</p>
+    </header>
+
+    <main class="audit-layout">
+        <!-- Painel de Comandos -->
+        <section class="command-card">
+            <h3>TERMINAL DE COMANDO TÁTICO</h3>
+            <div class="btn-grid">
+                <button 
+                    class="btn-cmd danger" 
+                    (click)="fireTacticalMissile('OBJ-X', {x: 120, y: 340})">
+                    🚀 DISPARAR MÍSSIL
+                </button>
+                
+                <button 
+                    class="btn-cmd success" 
+                    (click)="authorizePersonnel('Cristiano', 5)">
+                    🛡️ AUTORIZAR PESSOAL
+                </button>
+
+                <button 
+                    class="btn-cmd warning" 
+                    (click)="generateEncryptionKey(256)">
+                    🔐 GERAR CHAVE KMS
+                </button>
+            </div>
+            
+            <div class="info-note">
+                <p>Observe o console do navegador (F12) para ver os metadados capturados pelo Decorator <code>@Audit()</code>.</p>
+            </div>
+        </section>
+
+        <!-- Log do Sistema -->
+        <section class="log-card">
+            <h3>LOG DE EVENTOS DO NÚCLEO</h3>
+            <div class="system-logs">
+                @for (log of logHistory(); track $index) {
+                    <div class="log-entry">{{ log }}</div>
+                } @empty {
+                    <div class="empty-logs">NENHUM EVENTO REGISTRADO.</div>
+                }
+            </div>
+        </section>
+    </main>
+
+    <footer class="tech-audit">
+        <h4>ESPECIFICAÇÃO DE ENGENHARIA (NÍVEL 27)</h4>
+        <ul>
+            <li><b>Custom Decorators:</b> Encapsulamento de lógica transversal (AOP).</li>
+            <li><b>Method Proxying:</b> Interceptação de chamadas sem alteração de contrato.</li>
+            <li><b>Performance Profiling:</b> Cálculo de latência integrado diretamente no metadado do método.</li>
+        </ul>
+    </footer>
+</div>

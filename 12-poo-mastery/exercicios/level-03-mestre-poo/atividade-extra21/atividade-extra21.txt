@@ -1,0 +1,43 @@
+# 📘 Atividade 21: A Linhagem Nexus (Herança Básica)
+STATUS: Nível 21 (Arquiteto de Linhagens) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+Até agora, o SkyCargo Nexus tinha apenas drones genéricos. Mas o mercado exige drones especializados: drones de **Carga** pesada e drones de **Vigilância** velozes. Em vez de reescrever todo o código de bateria e motor, você aprenderá a usar a **Herança (Inheritance)**, criando uma classe base comum e especializando novas classes a partir dela.
+
+## 🛠️ Necessidade Técnica
+- **Classe Base (Pai):** Contém os atributos e métodos genéricos.
+- **Classe Derivada (Filha):** Herda tudo da base e adiciona suas próprias características.
+- **Modificador `protected`:** Permite que as classes filhas acessem membros da classe pai, mas mantém o bloqueio para o mundo exterior.
+
+### Exemplo (C++):
+```cpp
+class Drone { // Base
+protected:
+    int bateria;
+};
+
+class DroneCarga : public Drone { // Herança Pública
+private:
+    float capacidadePeso;
+};
+```
+
+## 🚀 Missão
+1.  Transforme o atributo `bateria` da classe `Drone` para `protected`.
+2.  Crie a classe `DroneCarga` que herda de `Drone`.
+3.  Adicione um atributo específico `cargaMaxima` à classe `DroneCarga`.
+4.  Crie um método `carregarSuprimento()` exclusivo da classe de carga.
+5.  No `main()`, instancie um `DroneCarga` e verifique que ele possui tanto os métodos do pai (`decolar`) quanto os seus próprios.
+
+## 📋 Requisitos de Elite
+- Uso correto da sintaxe de herança (`class Filha : public Pai`).
+- Aplicação do modificador `protected` para compartilhamento seguro de estado.
+- Demonstração de especialização de comportamento.
+
+------------------------------------------------------------------------------
+"Herança não é apenas sobre copiar; é sobre evoluir uma base sólida."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

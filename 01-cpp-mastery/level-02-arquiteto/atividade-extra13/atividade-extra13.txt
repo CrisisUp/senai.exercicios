@@ -53,3 +53,8 @@ Um mestre escreve código que não quebra."
    fossem realizados em threads separadas acessando o mesmo arquivo 
    físico, ocorreria uma falha de acesso compartilhado.
 ===============================================================
+
+
+## Requisitos
+1. Atender rigorosamente ao protocolo de elite.
+

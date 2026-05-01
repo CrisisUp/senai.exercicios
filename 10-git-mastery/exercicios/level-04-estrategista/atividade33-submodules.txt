@@ -27,3 +27,8 @@ Um submódulo é um registro de um commit específico de outro repositório. O G
 
 ------------------------------------------------------------------------------
 "Submódulos são as peças de LEGO da engenharia de software distribuída."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

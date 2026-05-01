@@ -31,3 +31,8 @@ Por padrão, containers rodam na rede `bridge`. Mas para ter um "DNS Interno" (o
 
 ------------------------------------------------------------------------------
 "Em sistemas de elite, o nome é o endereço. Redes Docker são a tradução dessa identidade."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

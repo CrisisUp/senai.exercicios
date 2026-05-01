@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file GestorBiblioteca.cpp
  * @brief Implementação da lógica de gestão da biblioteca.
@@ -143,4 +145,9 @@ void GestorBiblioteca::exibirBanner() {
 /**
  * @section MemoryMap
  * Stack: variáveis locais e ponteiros. Heap: alocações via Smart Pointers/RAII.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
  */

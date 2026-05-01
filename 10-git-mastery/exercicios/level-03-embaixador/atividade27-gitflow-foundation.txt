@@ -27,3 +27,8 @@ No Gitflow, temos duas branches de vida longa:
 
 ------------------------------------------------------------------------------
 "A Main é o altar da produção; a Develop é o laboratório do futuro."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

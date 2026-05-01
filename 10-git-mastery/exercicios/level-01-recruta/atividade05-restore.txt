@@ -27,3 +27,8 @@ O Git é uma rede de segurança. Se você estragou um arquivo mas ainda não tir
 
 ------------------------------------------------------------------------------
 "No Git, o arrependimento é apenas um comando de distância."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

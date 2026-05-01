@@ -1,0 +1,49 @@
+<div class="elements-container">
+    <header class="elements-header">
+        <h1>🌍 O COMPONENTE UNIVERSAL</h1>
+        <p>Interoperabilidade Industrial: Angular + Web Components Nativo</p>
+    </header>
+
+    <main class="elements-layout">
+        <!-- Dashboard de Integração -->
+        <section class="integration-card">
+            <h3>NEXUS HOST (ANGULAR)</h3>
+            <p>
+                Este painel está gerenciando o estado global do sistema. 
+                Ao clicar no botão abaixo, um Signal do Angular é alterado.
+            </p>
+            
+            <button class="btn-toggle" (click)="toggleSystem()">
+                SIMULAR ALTERAÇÃO DE STATUS
+            </button>
+        </section>
+
+        <!-- Uso do Custom Element -->
+        <section class="web-component-card">
+            <h3>REMOTE INDICATOR (WEB COMPONENT)</h3>
+            <p>
+                O componente abaixo <b>não é do Angular</b>. Ele é um Custom Element nativo 
+                com Shadow DOM, recebendo dados do Angular via atributos.
+            </p>
+
+            <div class="component-host">
+                <!-- Tag customizada registrada no customElements.define -->
+                <nexus-status-indicator [attr.status]="systemStatus()"></nexus-status-indicator>
+            </div>
+
+            <div class="tech-note">
+                <span class="badge">CUSTOM_ELEMENTS_SCHEMA</span>
+                <p>O Angular está configurado para permitir tags desconhecidas.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="elements-audit">
+        <h4>ESPECIFICAÇÃO DE ENGENHARIA (NÍVEL 33)</h4>
+        <ul>
+            <li><b>Interoperabilidade:</b> Comunicação fluida entre o framework e o padrão W3C.</li>
+            <li><b>Encapsulamento:</b> O Web Component isola CSS e estrutura via Shadow DOM.</li>
+            <li><b>Enterprise Scaling:</b> Base técnica para portabilidade de bibliotecas de componentes.</li>
+        </ul>
+    </footer>
+</div>

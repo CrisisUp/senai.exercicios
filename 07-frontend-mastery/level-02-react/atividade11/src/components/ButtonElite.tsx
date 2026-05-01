@@ -1,4 +1,8 @@
 /**
+ * @author Cristiano
+ * @date 2026
+ */
+/**
  * @file ButtonElite.tsx
  * @brief Botão Reutilizável com Tipagem de Callbacks.
  */
@@ -39,3 +43,12 @@ const ButtonElite: React.FC<ButtonEliteProps> = ({ label, onClick, variant = 'pr
 };
 
 export default ButtonElite;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

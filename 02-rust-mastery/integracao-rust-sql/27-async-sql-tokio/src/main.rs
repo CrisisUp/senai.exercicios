@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Atividade Integradora 27: SQL Assíncrono com Tokio (Standard Method).
@@ -96,3 +98,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     é o que define um Especialista de Performance.
     ===============================================================
 */
+
+/* @section MemoryMap
+ * Stack: Tipos fixos.
+ * Heap: Alocações dinâmicas (Box, Vec).
+ */

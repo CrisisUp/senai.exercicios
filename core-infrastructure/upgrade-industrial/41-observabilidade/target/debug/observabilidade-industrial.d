@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/core-infrastructure/upgrade-industrial/41-observabilidade/target/debug/observabilidade-industrial: /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/core-infrastructure/upgrade-industrial/41-observabilidade/src/main.rs

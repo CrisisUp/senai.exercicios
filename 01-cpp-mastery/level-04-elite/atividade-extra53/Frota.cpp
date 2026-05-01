@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file Frota.cpp
  * @brief Implementação da Lógica de Frota (Herança e Cadeia de Construtores).
@@ -53,4 +55,9 @@ namespace Logistica {
 /**
  * @section MemoryMap
  * Stack: variáveis locais e ponteiros. Heap: alocações via Smart Pointers/RAII.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
  */

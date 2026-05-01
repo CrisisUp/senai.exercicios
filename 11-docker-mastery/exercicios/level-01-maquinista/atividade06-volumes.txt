@@ -30,3 +30,8 @@ Volumes são mecanismos para persistir dados gerados e usados por containers Doc
 
 ------------------------------------------------------------------------------
 "O software é passageiro; o dado é o patrimônio permanente da engenharia."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

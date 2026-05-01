@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file lib.rs
  * @brief Implementação da Macro Procedural AuditLog.
@@ -47,3 +49,12 @@ pub fn audit_log_derive(input: TokenStream) -> TokenStream {
     // 4. Devolve o código gerado para o compilador
     TokenStream::from(expanded)
 }
+
+/* @section MemoryMap
+ * Stack: Tipos fixos.
+ * Heap: Alocações dinâmicas (Box, Vec).
+ */
+/*
+ * RESUMO TEÓRICO
+ * Implementação em Rust seguindo as diretrizes de segurança e performance.
+ */

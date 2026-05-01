@@ -27,3 +27,8 @@ Como Explorador, você deve dominar a navegação rápida. O `HEAD` é o ponteir
 
 ------------------------------------------------------------------------------
 "O HEAD é o seu 'você está aqui' no mapa infinito do tempo."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

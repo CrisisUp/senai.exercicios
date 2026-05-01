@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file app.ts
  * @brief Orquestrador de Interface Inteligente com TypeScript Rigoroso.
  * @author Engenheiro de Elite
@@ -47,4 +50,13 @@ frota.forEach(drone => {
  * Tente adicionar uma propriedade inexistente (ex: drone.combustivel) 
  * ou mudar o status para 'VOANDO'. O compilador TypeScript irá 
  * gerar um erro imediato, impedindo o deploy de um bug.
+ */
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
  */

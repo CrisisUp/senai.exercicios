@@ -1,0 +1,28 @@
+# 📘 Atividade 25: O Especialista (SRP - Single Responsibility Principle)
+STATUS: Nível 25 (Arquiteto de Linhagens) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+A classe `DroneMestre` na SkyCargo Nexus cresceu demais: ela gerencia a bateria, calcula a rota, salva no banco de dados e até formata o log para o console. Se o formato do log mudar, corremos o risco de quebrar o cálculo da rota. Você aprenderá o **Princípio da Responsabilidade Única (SRP)**: uma classe deve ter apenas UM motivo para mudar.
+
+## 🛠️ Necessidade Técnica
+Dividir uma "Classe Deus" em classes menores e especializadas que colaboram entre si.
+
+## 🚀 Missão
+1.  Crie uma classe `Drone` que contenha apenas dados e lógica de estado (id, bateria).
+2.  Crie uma classe `Navegador` responsável apenas pelo cálculo de coordenadas.
+3.  Crie uma classe `Logger` responsável apenas pela saída visual (cores ANSI).
+4.  No `main`, faça o `Drone` utilizar o `Navegador` e o `Logger`.
+5.  **Reflexão:** Se amanhã precisarmos salvar em arquivo em vez do console, qual classe você alteraria? (Dica: Apenas a `Logger`).
+
+## 📋 Requisitos de Elite
+- Coesão Alta: Cada classe faz apenas uma coisa e faz bem.
+- Acoplamento Fraco: As classes se comunicam via interfaces simples.
+- Organização modular (separação de responsabilidades).
+
+------------------------------------------------------------------------------
+"Uma classe deve ser como uma ferramenta suíça: uma peça para cada função, não uma peça que tenta ser tudo."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

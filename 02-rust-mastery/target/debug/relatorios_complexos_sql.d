@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/relatorios_complexos_sql: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/integracao-rust-sql/22-relatorios-complexos-sql/src/main.rs

@@ -1,0 +1,58 @@
+<div class="store-container">
+    <header class="store-header">
+        <h1>🧠 A CONSCIÊNCIA COLETIVA</h1>
+        <p>State Management Enterprise: Centralização via <b>Signal Store Pattern</b></p>
+    </header>
+
+    <main class="store-layout">
+        <!-- Dashboard de Estado -->
+        <section class="state-display">
+            <div class="alert-banner" [class.danger]="alert()" [class.safe]="!alert()">
+                {{ alert() || 'SISTEMA OPERANDO EM CONDIÇÕES NORMAIS' }}
+            </div>
+
+            <div class="metrics-row">
+                <div class="metric-card">
+                    <span class="m-label">NODES ATIVOS</span>
+                    <span class="m-value">{{ nodes() }}</span>
+                </div>
+                <div class="metric-card">
+                    <span class="m-label">PROTOCOLO ATUAL</span>
+                    <span class="m-value protocol" [attr.data-p]="protocol()">{{ protocol() }}</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Painel de Comandos (Ações) -->
+        <aside class="actions-panel">
+            <h3>DISPATCHER DE AÇÕES</h3>
+            
+            <div class="action-group">
+                <button class="btn-action alert" (click)="triggerAlert()">DISPARAR ALERTA GLOBAL</button>
+                <button class="btn-action clear" (click)="resolveAlert()" [disabled]="!alert()">NORMALIZAR SISTEMA</button>
+            </div>
+
+            <div class="action-group">
+                <button class="btn-action" (click)="addNode()">EXPANDIR MALHA (ADD NODE)</button>
+            </div>
+
+            <div class="protocol-selector">
+                <label>ALTERAR PROTOCOLO DE SEGURANÇA:</label>
+                <div class="p-btns">
+                    <button (click)="changeProtocol('ALPHA')" [class.active]="protocol() === 'ALPHA'">ALPHA</button>
+                    <button (click)="changeProtocol('BETA')" [class.active]="protocol() === 'BETA'">BETA</button>
+                    <button (click)="changeProtocol('DELTA')" [class.active]="protocol() === 'DELTA'">DELTA</button>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="store-audit">
+        <h4>ESPECIFICAÇÃO DE ENGENHARIA (SSoT)</h4>
+        <p>
+            O estado global é mantido na <code>NexusStore</code>. 
+            Os componentes não alteram dados diretamente; eles disparam métodos que realizam
+            o <code>update()</code> atômico do estado imutável.
+        </p>
+    </footer>
+</div>

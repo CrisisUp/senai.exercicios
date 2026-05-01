@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file Monitoramento.h
  * @brief Interface para o Módulo de Telemetria IoT Industrial.
@@ -56,3 +58,8 @@ namespace IoT {
 } // namespace IoT
 
 #endif // MONITORAMENTO_H
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

@@ -28,3 +28,8 @@ Enquanto o `git log` mostra o histórico da branch (o que você quer que os outr
 
 ------------------------------------------------------------------------------
 "No Git, você só perde um commit se deletar a pasta .git ou formatar o HD."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file FleetManager.tsx
  * @brief Gerenciador de Frota Dinâmica com Reconciliação de Elite.
  * @author Engenheiro de Elite
@@ -93,3 +96,12 @@ const FleetManager: React.FC = () => {
 };
 
 export default FleetManager;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

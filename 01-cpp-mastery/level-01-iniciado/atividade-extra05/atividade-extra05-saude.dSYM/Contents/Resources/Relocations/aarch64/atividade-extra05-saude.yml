@@ -1,5 +1,0 @@
----
-triple:          'arm64-apple-darwin'
-binary-path:     './repositorio-extra/atividade-extra05/atividade-extra05-saude'
-relocations:     []
-...

@@ -1,0 +1,42 @@
+# 📘 Atividade 09: Comandando a Frota (Arrays e Coleções de Objetos)
+STATUS: Nível 09 (Escultor) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+A frota da "SkyCargo Nexus" não para de crescer. Gerenciar `drone1`, `drone2`, `drone3` manualmente é impossível para um Engenheiro de Elite. Você aprenderá a agrupar seus objetos em coleções dinâmicas, permitindo que você envie um comando de "status" para mil drones com um único loop. Prepare-se para a gestão de escala.
+
+## 🛠️ Necessidade Técnica
+- **Array de Objetos:** Útil para frotas de tamanho fixo.
+- **`std::vector<Drone*>`:** A ferramenta de elite. Um array dinâmico que cresce conforme a necessidade e armazena ponteiros para drones na Heap.
+- **Iteração:** Uso de loops (`for`) para percorrer a coleção.
+
+### Exemplo (C++):
+```cpp
+#include <vector>
+vector<Drone*> hangar;
+hangar.push_back(new Drone("Alpha", 80));
+hangar.push_back(new Drone("Beta", 45));
+
+for(Drone* d : hangar) {
+    d->verStatus();
+}
+```
+
+## 🚀 Missão
+1.  Inclua a biblioteca `<vector>` no seu projeto.
+2.  Crie um `std::vector` de ponteiros para a classe `Drone`.
+3.  Use um loop para instanciar 3 drones diferentes (ex: Alpha, Beta, Gamma) e adicioná-los ao vetor.
+4.  Percorra o vetor e chame o método `verStatus()` de cada um.
+5.  **O Desafio de Elite (Memória):** Percorra o vetor uma última vez para dar `delete` em cada ponteiro e limpe o vetor com `.clear()`.
+
+## 📋 Requisitos de Elite
+- Uso de `std::vector` em vez de arrays estáticos.
+- Gestão manual de memória dentro de coleções (limpeza obrigatória).
+- Saída organizada mostrando a telemetria de toda a frota sequencialmente.
+
+------------------------------------------------------------------------------
+"A força de um engenheiro não está no objeto que ele cria, mas na frota que ele consegue orquestrar."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

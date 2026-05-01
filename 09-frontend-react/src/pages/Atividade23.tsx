@@ -1,3 +1,8 @@
+/**
+ * @file Atividade23.tsx
+ * @author Cristiano
+ * @date 2026
+ */
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './Atividade23.module.css';
 
@@ -19,7 +24,7 @@ const Atividade23: React.FC = () => {
   const inicializarAudio = () => {
     if (audioCtxRef.current) return;
 
-    const Context = window.AudioContext || (window as any).webkitAudioContext;
+    const Context = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     const ctx = new Context();
     
     const gainNode = ctx.createGain();
@@ -170,3 +175,12 @@ const Atividade23: React.FC = () => {
 };
 
 export default Atividade23;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

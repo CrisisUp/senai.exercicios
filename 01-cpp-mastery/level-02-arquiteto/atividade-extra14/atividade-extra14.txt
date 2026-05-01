@@ -54,3 +54,8 @@ ficará colorido para sempre, mesmo após o programa fechar!
 "Uma interface limpa é boa. Uma interface intuitiva 
 é excelente."
 =====================================================
+
+
+## Requisitos
+1. Atender rigorosamente ao protocolo de elite.
+

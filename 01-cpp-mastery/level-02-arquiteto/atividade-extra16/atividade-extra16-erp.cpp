@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file atividade-extra16-erp.cpp
  * @brief PROJETO FINAL: Sistema de Gestão Comercial (ERP) v4.0.
@@ -65,3 +67,4 @@ int main() {
  * @section MemoryMap
  * Stack: variáveis locais e ponteiros. Heap: alocações via Smart Pointers/RAII.
  */
+

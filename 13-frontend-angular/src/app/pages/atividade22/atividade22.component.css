@@ -1,0 +1,158 @@
+.tactical-container {
+    padding: 2rem;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.tactical-header {
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+}
+
+.tactical-header h1 {
+    color: #f85149;
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.tactical-header p {
+    color: #8b949e;
+    font-size: 0.9rem;
+}
+
+.tactical-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    align-items: start;
+}
+
+.canvas-wrapper {
+    position: relative;
+    background: #000;
+    border: 2px solid #30363d;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+canvas {
+    display: block;
+    cursor: crosshair;
+}
+
+.cursor-telemetry {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #58a6ff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    border: 1px solid #30363d;
+    pointer-events: none;
+}
+
+.targets-panel {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.panel-header h3 {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #8b949e;
+    letter-spacing: 1px;
+}
+
+.btn-clear {
+    background: transparent;
+    border: 1px solid #f85149;
+    color: #f85149;
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.target-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.target-entry {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    padding: 0.8rem;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.tgt-label {
+    color: #f85149;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.tgt-coords {
+    color: #58a6ff;
+    font-family: monospace;
+    font-size: 0.75rem;
+}
+
+.tgt-time {
+    color: #484f58;
+    font-size: 0.65rem;
+    text-align: right;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 2rem 0;
+    color: #484f58;
+    font-size: 0.8rem;
+    border: 1px dashed #30363d;
+    border-radius: 6px;
+}
+
+.interaction-audit {
+    margin-top: 4rem;
+    padding: 1.5rem;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+}
+
+.interaction-audit h4 {
+    margin-top: 0;
+    color: #8b949e;
+}
+
+.interaction-audit p {
+    font-size: 0.9rem;
+    color: #8b949e;
+    line-height: 1.6;
+}
+
+code {
+    color: #f1e05a;
+}

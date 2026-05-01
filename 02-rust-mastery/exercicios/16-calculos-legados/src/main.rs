@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Atividade 16: Cálculos Legados (Unsafe e FFI).
@@ -84,3 +86,4 @@ fn main() {
     - Pânico através da fronteira FFI (comportamento indefinido).
     ===============================================================
 */
+

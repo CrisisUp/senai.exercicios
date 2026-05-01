@@ -52,3 +52,8 @@ Integramos absolutamente tudo o que aprendemos:
 "Programar é criar ferramentas que resolvem problemas
 reais e geram valor."
 =====================================================
+
+
+## Requisitos
+1. Atender rigorosamente ao protocolo de elite.
+

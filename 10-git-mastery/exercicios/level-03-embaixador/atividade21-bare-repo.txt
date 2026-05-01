@@ -25,3 +25,8 @@ Um repositório comum tem uma "Working Tree" (os arquivos que você edita). Um r
 
 ------------------------------------------------------------------------------
 "O servidor é a fonte da verdade; ele não cria, ele apenas preserva."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

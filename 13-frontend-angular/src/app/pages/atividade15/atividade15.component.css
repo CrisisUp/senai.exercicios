@@ -1,0 +1,88 @@
+.telemetry-hub {
+    padding: 2rem;
+    background: #050505;
+    color: #e6edf3;
+    min-height: 100vh;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.hub-header {
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 1rem;
+}
+
+.hub-header h1 {
+    color: #00ff9d;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.hub-header p {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.telemetry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.sensor-card {
+    background: #111;
+    border: 1px solid #222;
+    padding: 1.5rem;
+    border-radius: 4px;
+    position: relative;
+}
+
+.sensor-card:hover {
+    border-color: #00ff9d;
+}
+
+.sensor-label {
+    font-size: 0.7rem;
+    color: #8b949e;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.sensor-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #e6edf3;
+}
+
+.raw-data {
+    margin-top: 1rem;
+    font-size: 0.65rem;
+    color: #444;
+}
+
+.pipe-docs {
+    margin-top: 4rem;
+    padding: 1.5rem;
+    background: rgba(0, 255, 157, 0.02);
+    border: 1px dashed #222;
+    border-radius: 8px;
+}
+
+.pipe-docs h3 {
+    color: #00ff9d;
+    font-size: 0.8rem;
+    margin-top: 0;
+}
+
+.pipe-docs p {
+    font-size: 0.85rem;
+    color: #8b949e;
+    line-height: 1.6;
+}
+
+code {
+    color: #f1e05a;
+    background: #161b22;
+    padding: 2px 4px;
+    border-radius: 3px;
+}

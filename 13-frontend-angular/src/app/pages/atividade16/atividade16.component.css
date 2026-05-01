@@ -1,0 +1,115 @@
+.intercept-terminal {
+    background: #0d1117;
+    color: #e6edf3;
+    padding: 2rem;
+    min-height: 80vh;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.terminal-header {
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.terminal-header h1 {
+    color: #f1e05a;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.control-panel {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.action-zone {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.btn-secure {
+    background: #238636;
+    border: none;
+    color: white;
+    padding: 1rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-secure:hover:not(:disabled) {
+    background: #2ea043;
+}
+
+.btn-secure:disabled {
+    background: #161b22;
+    color: #484f58;
+    cursor: wait;
+}
+
+.status-indicator {
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    border-radius: 4px;
+    background: #161b22;
+    text-align: center;
+    border: 1px solid #30363d;
+}
+
+.status-indicator.success { color: #3fb950; border-color: #3fb950; }
+.status-indicator.loading { color: #58a6ff; border-color: #58a6ff; }
+.status-indicator.error { color: #f85149; border-color: #f85149; }
+
+.audit-viewer {
+    background: #050505;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.audit-viewer h3 {
+    margin-top: 0;
+    font-size: 0.8rem;
+    color: #8b949e;
+    text-transform: uppercase;
+}
+
+.log-screen {
+    height: 200px;
+    overflow-y: auto;
+    font-size: 0.85rem;
+    color: #58a6ff;
+}
+
+.log-line {
+    margin-bottom: 0.3rem;
+}
+
+.log-line.muted {
+    color: #444;
+}
+
+.response-data {
+    background: #161b22;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #30363d;
+}
+
+.response-data h3 {
+    margin-top: 0;
+    font-size: 0.8rem;
+    color: #8b949e;
+}
+
+pre {
+    font-size: 0.8rem;
+    color: #d29922;
+    overflow-x: auto;
+}

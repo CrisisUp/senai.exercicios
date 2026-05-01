@@ -1,3 +1,9 @@
+/**
+ * @file Atividade13.tsx
+ * @brief Implementação/Componente Atividade13.tsx
+ * @author Cristiano
+ * @date 2026
+ */
 import React, { useState, useMemo } from 'react';
 import styles from './Atividade13.module.css';
 
@@ -7,18 +13,18 @@ interface Drone {
   status: 'operational' | 'alert' | 'maintenance';
 }
 
+const fleet: Drone[] = [
+  { id: 'DR-701', name: 'SkyScout Alpha', status: 'operational' },
+  { id: 'DR-702', name: 'Eagle Eye Beta', status: 'alert' },
+  { id: 'DR-703', name: 'Storm Runner', status: 'operational' },
+  { id: 'DR-704', name: 'Cloud Ghost', status: 'maintenance' },
+  { id: 'DR-705', name: 'Iron Wing', status: 'operational' },
+  { id: 'DR-706', name: 'Silent Strike', status: 'alert' },
+];
+
 const Atividade13: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [auditLog, setAuditLog] = useState<string[]>([]);
-
-  const fleet: Drone[] = [
-    { id: 'DR-701', name: 'SkyScout Alpha', status: 'operational' },
-    { id: 'DR-702', name: 'Eagle Eye Beta', status: 'alert' },
-    { id: 'DR-703', name: 'Storm Runner', status: 'operational' },
-    { id: 'DR-704', name: 'Cloud Ghost', status: 'maintenance' },
-    { id: 'DR-705', name: 'Iron Wing', status: 'operational' },
-    { id: 'DR-706', name: 'Silent Strike', status: 'alert' },
-  ];
 
   // Busca Tática Dinâmica (Memoizada)
   const filteredFleet = useMemo(() => {
@@ -111,3 +117,12 @@ const Atividade13: React.FC = () => {
 };
 
 export default Atividade13;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

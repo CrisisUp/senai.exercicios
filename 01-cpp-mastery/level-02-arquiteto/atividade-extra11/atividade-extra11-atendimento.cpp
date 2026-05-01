@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file atividade-extra11-atendimento.cpp
  * @brief Sistema de Atendimento Clínico (Filas e Leitura de Arquivo).
@@ -102,3 +104,4 @@ int main()
  * @section MemoryMap
  * Stack: variáveis locais e ponteiros. Heap: alocações via Smart Pointers/RAII.
  */
+

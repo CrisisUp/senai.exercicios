@@ -1,0 +1,36 @@
+<div class="di-terminal">
+    <header class="terminal-header">
+        <h1>🔐 DESCRIPTOR DE INJEÇÃO (ADVANCED DI)</h1>
+        <span class="v-badge">BUILD: {{ version }}</span>
+    </header>
+
+    <main class="config-panel">
+        <div class="node-info">
+            <h3>PROTOCOLOS DE REDE</h3>
+            <div class="info-row">
+                <span class="label">API ENDPOINT:</span>
+                <span class="value">{{ config.apiUrl }}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">RETRY POLICY:</span>
+                <span class="value">{{ config.retryAttempts }} TENTATIVAS</span>
+            </div>
+            <div class="info-row">
+                <span class="label">SECURE_LINK (KMS):</span>
+                <span class="value status" [class.enabled]="config.enableEncryption">
+                    {{ config.enableEncryption ? 'ATIVADO' : 'DISABLED' }}
+                </span>
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h4>ARQUITETURA DE INVERSÃO</h4>
+            <p>
+                Este componente não sabe <i>como</i> os dados foram criados. 
+                Ele apenas solicita as dependências através de <b>InjectionTokens</b>.
+                Esta técnica permite trocar toda a infraestrutura de comunicação 
+                sem alterar uma única linha de lógica do componente.
+            </p>
+        </div>
+    </main>
+</div>

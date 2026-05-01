@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief SA-05: Sistema de Controle de Tráfego Aéreo (Refatoração de Elite).
@@ -147,3 +149,4 @@ fn main() {
     - RwLock (Como permitir múltiplas leituras simultâneas, mas escrita única).
     ===============================================================
 */
+

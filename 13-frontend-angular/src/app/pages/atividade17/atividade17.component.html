@@ -1,0 +1,42 @@
+<div class="sentinel-hub">
+    <header class="hub-header">
+        <h1>🛡️ HUB DE ACESSO SENTINELA</h1>
+        <p>Segurança de Rotas via CanActivate & Signals</p>
+    </header>
+
+    <main class="sentinel-controls">
+        <div class="auth-status-card" [class.authenticated]="authService.isAuthenticated()">
+            <div class="status-indicator">
+                {{ authService.isAuthenticated() ? 'PROTOCOLO DE ACESSO: ATIVO' : 'PROTOCOLO DE ACESSO: BLOQUEADO' }}
+            </div>
+            
+            <button class="btn-auth" (click)="toggleLogin()">
+                {{ authService.isAuthenticated() ? 'REVOGAR CREDENCIAIS' : 'VALIDAR CREDENCIAIS' }}
+            </button>
+        </div>
+
+        <nav class="navigation-panel">
+            <h3>SUB-ROTAS PROTEGIDAS</h3>
+            <div class="links">
+                <a routerLink="/atividade17" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    PAINEL PRINCIPAL (PÚBLICO)
+                </a>
+                <a routerLink="restricted" class="nav-link" routerLinkActive="active">
+                    ZONA DE DADOS NÚCLEO (PROTEGIDO)
+                </a>
+            </div>
+        </nav>
+
+        <section class="router-outlet-container">
+            <router-outlet></router-outlet>
+        </section>
+    </main>
+
+    <footer class="guard-audit">
+        <h4>ESPECIFICAÇÃO TÉCNICA: securityGuard</h4>
+        <p>
+            O guard funcional monitora a navegação. Caso o estado de autenticação seja <code>false</code>,
+            o Router cancela o carregamento da sub-rota <code>restricted</code> e dispara um redirecionamento tático.
+        </p>
+    </footer>
+</div>

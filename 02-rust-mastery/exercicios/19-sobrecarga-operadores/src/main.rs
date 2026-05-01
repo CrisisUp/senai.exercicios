@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Atividade 19: Gestão de Energia (Sobrecarga de Operadores).
@@ -198,4 +200,5 @@ mod tests {
          operação matemática é intuitiva para o domínio de negócio.
     ===============================================================
 */
+
 

@@ -1,1 +1,15 @@
 /usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/ativ62_spsc.dir/atividade-extra62-spsc.cpp.o" -o ativ62_spsc
+
+
+## Estudo de Caso
+Aplicação em cenário real.
+
+## Necessidade Técnica
+Evolução do sistema atual.
+
+## Análise de Falha Crítica
+Prevenção contra falhas em tempo de execução.
+
+## Requisitos
+1. Atender rigorosamente ao protocolo de elite.
+

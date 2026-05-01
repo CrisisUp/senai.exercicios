@@ -1,0 +1,62 @@
+<div class="container">
+  <header class="header">
+    <h1>Console de Missão - Nexus Angular</h1>
+    <p>Gestão de Ativos e Comandos de Voo</p>
+  </header>
+
+  <main class="console-box">
+    <div class="monitor-panel">
+      <div class="progress-container">
+        <div 
+          class="progress-bar" 
+          [style.width.%]="battery()"
+          [class.low-power]="isLowBattery()"
+        ></div>
+      </div>
+      
+      <div class="data-grid">
+        <div class="data-item">
+          <span class="label">BATERIA:</span>
+          <span class="value" [class.text-alert]="isLowBattery()">{{ battery() }}%</span>
+        </div>
+        <div class="data-item">
+          <span class="label">AUTONOMIA:</span>
+          <span class="value">{{ autonomy() }} km</span>
+        </div>
+      </div>
+
+      @if (isLowBattery()) {
+        <div class="system-alert">
+          ⚠ ALERTA: Nível de energia crítico. Proceder para recarga.
+        </div>
+      }
+    </div>
+
+    <section class="action-grid">
+      <button 
+        class="btn btn-primary" 
+        (click)="handleEnergyChange(10)"
+        aria-label="Aumentar carga em 10%"
+      >
+        RECARREGAR (+)
+      </button>
+
+      <button 
+        class="btn btn-danger" 
+        (click)="handleEnergyChange(-15)"
+        aria-label="Simular consumo de voo de 15%"
+      >
+        INICIAR VOO (-)
+      </button>
+    </section>
+
+    <footer class="theory-note">
+      <h4>Reflexão Técnica: Reatividade Industrial</h4>
+      <p>
+        No Angular v21, substituímos o <code>onclick</code> manual pela vinculação de evento <code>(click)</code>. 
+        O uso de <strong>Signals</strong> garante que o framework redesenhe apenas os nós do DOM que dependem da bateria, 
+        eliminando ciclos de detecção de mudanças globais e pesados.
+      </p>
+    </footer>
+  </main>
+</div>

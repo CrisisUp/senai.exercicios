@@ -1,3 +1,9 @@
+/**
+ * @file App.tsx
+ * @brief Implementação/Componente App.tsx
+ * @author Cristiano
+ * @date 2026
+ */
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Atividade01 from './pages/Atividade01';
@@ -82,3 +88,12 @@ function App() {
 }
 
 export default App;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

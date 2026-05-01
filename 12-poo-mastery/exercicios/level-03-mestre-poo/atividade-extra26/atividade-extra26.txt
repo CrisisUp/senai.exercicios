@@ -1,0 +1,27 @@
+# 📘 Atividade 26: Aberto para Evolução (OCP - Open/Closed Principle)
+STATUS: Nível 26 (Arquiteto de Linhagens) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+Sempre que a SkyCargo Nexus lança um novo tipo de sensor (Laser, Ultrassom, Câmera), você precisa abrir a classe `Drone` e adicionar um novo `if/else`. Isso é perigoso e viola o **Princípio Aberto/Fechado (OCP)**. Uma classe deve estar **aberta para extensão, mas fechada para modificação**. Você aprenderá a usar polimorfismo para adicionar novos sensores sem tocar no código do Drone.
+
+## 🛠️ Necessidade Técnica
+Uso de interfaces (classes abstratas) para permitir que novas implementações sejam "plugadas" no sistema existente.
+
+## 🚀 Missão
+1.  Crie a classe abstrata `Sensor`.
+2.  Crie as implementações `SensorLaser` e `SensorCamera`.
+3.  A classe `Drone` deve ter um método `adicionarSensor(Sensor* s)`.
+4.  No `main`, demonstre que você pode adicionar um novo `SensorUltrassom` (que você criará agora) sem alterar uma única linha da classe `Drone`.
+
+## 📋 Requisitos de Elite
+- Extensibilidade: O sistema aceita novos componentes sem recompilar o núcleo.
+- Polimorfismo: Uso correto de ponteiros para a classe base.
+- Proteção do código legado.
+
+------------------------------------------------------------------------------
+"O código perfeito é aquele que você não precisa mudar para que ele faça mais."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

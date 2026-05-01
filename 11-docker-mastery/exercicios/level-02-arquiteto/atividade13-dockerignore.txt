@@ -32,3 +32,8 @@ O arquivo `.dockerignore` funciona exatamente como o `.gitignore`. Ele diz ao CL
 
 ------------------------------------------------------------------------------
 "Um bom arquiteto não carrega o que não vai usar. O Dockerignore é sua lista de desapego."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file Calculadora.h
  * @brief Interface do Motor de Cálculos Geométricos para Engenharia.
@@ -42,3 +44,8 @@ namespace CalculadoraEngenharia {
 }
 
 #endif // CALCULADORA_H
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file atividade-extra17-saude.cpp
  * @brief Monitoramento de UTI: Introdução a Classes e Encapsulamento Profissional.
@@ -94,3 +96,4 @@ int main()
  * @section MemoryMap
  * Stack: variáveis locais e ponteiros. Heap: alocações via Smart Pointers/RAII.
  */
+

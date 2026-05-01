@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file RadarDisplay.tsx
  * @brief Componente Otimizado via React.memo.
  * @author Engenheiro de Elite
@@ -43,3 +46,12 @@ const RadarDisplay: React.FC<RadarProps> = React.memo(({ droneId, onReset }) => 
 });
 
 export default RadarDisplay;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

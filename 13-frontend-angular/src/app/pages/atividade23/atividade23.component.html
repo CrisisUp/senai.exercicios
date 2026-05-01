@@ -1,0 +1,47 @@
+<div class="analysis-container">
+    <header class="analysis-header">
+        <h1>📊 ANALISADOR DE CARGA NEXUS</h1>
+        <p>Monitoramento Tático via Engenharia de Gráficos SVG</p>
+    </header>
+
+    <main class="analysis-layout">
+        <section class="chart-section">
+            <div class="chart-header">
+                <h3>TELEMETRIA DE FLUXO (ENERGIA)</h3>
+                <span class="status-live">LIVE FEED</span>
+            </div>
+            
+            <!-- Componente de Gráfico Customizado -->
+            <app-load-chart [data]="telemetryData()"></app-load-chart>
+
+            <div class="chart-footer">
+                <span>0ms</span>
+                <span>TIME SERIES (REAL-TIME)</span>
+                <span>20s</span>
+            </div>
+        </section>
+
+        <section class="data-stats">
+            <h3>MÉTRICAS DO NÚCLEO</h3>
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <span class="label">ÚLTIMA AMOSTRA:</span>
+                    <span class="value">{{ telemetryData()[telemetryData().length - 1] }}%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">PONTOS EM BUFFER:</span>
+                    <span class="value">{{ telemetryData().length }}</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="audit-log">
+        <h4>ESPECIFICAÇÃO DE ENGENHARIA (SVG NATIVO)</h4>
+        <p>
+            Diferente de bibliotecas pesadas, esta implementação utiliza <b>SVG puro</b> 
+            integrado ao sistema de <b>Signals</b>. Cada ponto no gráfico é uma representação 
+            matemática direta do estado reativo, garantindo o menor overhead de memória possível.
+        </p>
+    </footer>
+</div>

@@ -1,0 +1,144 @@
+.container {
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #0d1117;
+  color: #c9d1d9;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.header {
+  border-bottom: 1px solid #30363d;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+h1 {
+  color: #dd0031;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.btn-add {
+  background-color: #3fb950;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s, filter 0.2s;
+}
+
+.btn-add:hover {
+  filter: brightness(1.1);
+}
+
+.btn-add:active {
+  transform: scale(0.98);
+}
+
+.table-container {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.nexus-table {
+  width: 100%;
+  border-collapse: collapse; /* CSS (Estética): Bordas colapsadas */
+  text-align: left;
+}
+
+.nexus-table th {
+  background-color: #21262d;
+  padding: 1rem;
+  font-size: 0.75rem;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nexus-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #30363d;
+}
+
+/* CSS (Estética): Zebra Striping */
+.nexus-table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.nexus-table tbody tr:hover {
+  background-color: rgba(88, 166, 255, 0.05);
+}
+
+.id-cell {
+  font-family: 'Courier New', Courier, monospace;
+  color: #58a6ff;
+  font-weight: bold;
+}
+
+.battery-display {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.battery-track {
+  width: 100px;
+  height: 8px;
+  background-color: #0d1117;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.battery-fill {
+  height: 100%;
+  background-color: #3fb950;
+  transition: width 0.5s;
+}
+
+.battery-fill.critical {
+  background-color: #f85149;
+}
+
+.status-badge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  background-color: #30363d;
+}
+
+.status-badge[data-status="READY"] { color: #3fb950; border: 1px solid rgba(63, 185, 80, 0.3); }
+.status-badge[data-status="FLYING"] { color: #58a6ff; border: 1px solid rgba(88, 166, 255, 0.3); }
+.status-badge[data-status="MAINTENANCE"] { color: #f0883e; border: 1px solid rgba(240, 136, 62, 0.3); }
+
+.empty-msg {
+  text-align: center;
+  color: #8b949e;
+  padding: 3rem !important;
+}
+
+.theory-box {
+  background-color: #0d1117;
+  padding: 1.5rem;
+  border-radius: 6px;
+  border-left: 4px solid #58a6ff;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.theory-box h3 {
+  margin-top: 0;
+  color: #fff;
+}

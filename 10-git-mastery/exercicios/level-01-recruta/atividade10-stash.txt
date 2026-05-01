@@ -28,3 +28,8 @@ O `git stash` tira suas mudanças sujas (modificadas mas não commitadas) e as g
 
 ------------------------------------------------------------------------------
 "O Stash é o 'pause' do desenvolvimento; use-o para nunca perder o foco."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

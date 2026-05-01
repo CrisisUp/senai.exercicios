@@ -30,3 +30,8 @@ Uma Tag é como uma branch que não se move. Enquanto branches evoluem, uma Tag 
 
 ------------------------------------------------------------------------------
 "Tags são os monumentos que construímos no caminho da evolução do software."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

@@ -31,3 +31,8 @@ Os Hooks ficam na pasta oculta `.git/hooks/`. Eles são scripts (Bash, Python, e
 
 ------------------------------------------------------------------------------
 "Um engenheiro de elite automatiza a própria disciplina."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

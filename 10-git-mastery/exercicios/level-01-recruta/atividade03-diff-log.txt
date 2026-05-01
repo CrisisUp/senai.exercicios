@@ -30,3 +30,8 @@ O Git permite que você compare versões do seu código em diferentes estados e 
 
 ------------------------------------------------------------------------------
 "Se você não sabe o que mudou, você não tem o controle; você tem apenas sorte."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

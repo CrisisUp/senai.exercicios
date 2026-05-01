@@ -1,1 +1,2482 @@
-error: workspace member `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/core-infrastructure/upgrade-industrial/41-observabilidade/Cargo.toml` is not hierarchically below the workspace root `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/Cargo.toml`
+   0.068787459s  INFO prepare_target{force=false package_id=SA-02-hub-diagnostico v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-02-hub-diagnostico) target="SA-02-hub-diagnostico"}: cargo::core::compiler::fingerprint: fingerprint error for SA-02-hub-diagnostico v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-02-hub-diagnostico)/Check { test: false }/TargetInner { name: "SA-02-hub-diagnostico", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-02-hub-diagnostico/src/main.rs", Edition2024) }
+   0.068917959s  INFO prepare_target{force=false package_id=SA-02-hub-diagnostico v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-02-hub-diagnostico) target="SA-02-hub-diagnostico"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/SA-02-hub-diagnostico-c37b526294e4f1ef/bin-SA-02-hub-diagnostico`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.089822500s  INFO prepare_target{force=false package_id=SA-02-hub-diagnostico v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-02-hub-diagnostico) target="SA-02-hub-diagnostico"}: cargo::core::compiler::fingerprint: fingerprint error for SA-02-hub-diagnostico v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-02-hub-diagnostico)/Check { test: true }/TargetInner { name: "SA-02-hub-diagnostico", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-02-hub-diagnostico/src/main.rs", Edition2024) }
+   0.089830917s  INFO prepare_target{force=false package_id=SA-02-hub-diagnostico v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-02-hub-diagnostico) target="SA-02-hub-diagnostico"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/SA-02-hub-diagnostico-10af58ded7b216de/test-bin-SA-02-hub-diagnostico`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.089995667s  INFO prepare_target{force=false package_id=SA-03-logistica-central v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-03-logistica-central) target="SA-03-logistica-central"}: cargo::core::compiler::fingerprint: fingerprint error for SA-03-logistica-central v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-03-logistica-central)/Check { test: false }/TargetInner { name: "SA-03-logistica-central", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-03-logistica-central/src/main.rs", Edition2024) }
+   0.089999625s  INFO prepare_target{force=false package_id=SA-03-logistica-central v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-03-logistica-central) target="SA-03-logistica-central"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/SA-03-logistica-central-2ce9ffd77d10da81/bin-SA-03-logistica-central`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.090144875s  INFO prepare_target{force=false package_id=SA-03-logistica-central v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-03-logistica-central) target="SA-03-logistica-central"}: cargo::core::compiler::fingerprint: fingerprint error for SA-03-logistica-central v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-03-logistica-central)/Check { test: true }/TargetInner { name: "SA-03-logistica-central", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-03-logistica-central/src/main.rs", Edition2024) }
+   0.090148375s  INFO prepare_target{force=false package_id=SA-03-logistica-central v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-03-logistica-central) target="SA-03-logistica-central"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/SA-03-logistica-central-7362523eccb385b7/test-bin-SA-03-logistica-central`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.090293125s  INFO prepare_target{force=false package_id=SA-04-comando-central v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-04-comando-central) target="SA-04-comando-central"}: cargo::core::compiler::fingerprint: fingerprint error for SA-04-comando-central v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-04-comando-central)/Check { test: false }/TargetInner { name: "SA-04-comando-central", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-04-comando-central/src/main.rs", Edition2024) }
+   0.090296417s  INFO prepare_target{force=false package_id=SA-04-comando-central v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-04-comando-central) target="SA-04-comando-central"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/SA-04-comando-central-f0f90644972c2ddd/bin-SA-04-comando-central`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.090454709s  INFO prepare_target{force=false package_id=SA-04-comando-central v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-04-comando-central) target="SA-04-comando-central"}: cargo::core::compiler::fingerprint: fingerprint error for SA-04-comando-central v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-04-comando-central)/Check { test: true }/TargetInner { name: "SA-04-comando-central", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-04-comando-central/src/main.rs", Edition2024) }
+   0.090457834s  INFO prepare_target{force=false package_id=SA-04-comando-central v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-04-comando-central) target="SA-04-comando-central"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/SA-04-comando-central-09102c6b42eb2906/test-bin-SA-04-comando-central`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.090588667s  INFO prepare_target{force=false package_id=SA-05-trafego-aereo v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-05-trafego-aereo) target="SA-05-trafego-aereo"}: cargo::core::compiler::fingerprint: fingerprint error for SA-05-trafego-aereo v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-05-trafego-aereo)/Check { test: false }/TargetInner { name: "SA-05-trafego-aereo", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-05-trafego-aereo/src/main.rs", Edition2024) }
+   0.090591959s  INFO prepare_target{force=false package_id=SA-05-trafego-aereo v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-05-trafego-aereo) target="SA-05-trafego-aereo"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/SA-05-trafego-aereo-a45936e110c34be9/bin-SA-05-trafego-aereo`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.090742125s  INFO prepare_target{force=false package_id=SA-05-trafego-aereo v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-05-trafego-aereo) target="SA-05-trafego-aereo"}: cargo::core::compiler::fingerprint: fingerprint error for SA-05-trafego-aereo v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-05-trafego-aereo)/Check { test: true }/TargetInner { name: "SA-05-trafego-aereo", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-05-trafego-aereo/src/main.rs", Edition2024) }
+   0.090745250s  INFO prepare_target{force=false package_id=SA-05-trafego-aereo v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-05-trafego-aereo) target="SA-05-trafego-aereo"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/SA-05-trafego-aereo-3ec4eb75487d7afb/test-bin-SA-05-trafego-aereo`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.091117500s  INFO prepare_target{force=false package_id=SA-06-fabrica-automata v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-06-fabrica-automata) target="SA-06-fabrica-automata"}: cargo::core::compiler::fingerprint: fingerprint error for SA-06-fabrica-automata v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-06-fabrica-automata)/Check { test: false }/TargetInner { name: "SA-06-fabrica-automata", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-06-fabrica-automata/src/main.rs", Edition2024) }
+   0.091120792s  INFO prepare_target{force=false package_id=SA-06-fabrica-automata v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-06-fabrica-automata) target="SA-06-fabrica-automata"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/SA-06-fabrica-automata-2d40b0d7871c0181/bin-SA-06-fabrica-automata`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.091607084s  INFO prepare_target{force=false package_id=SA-06-fabrica-automata v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-06-fabrica-automata) target="SA-06-fabrica-automata"}: cargo::core::compiler::fingerprint: fingerprint error for SA-06-fabrica-automata v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-06-fabrica-automata)/Check { test: true }/TargetInner { name: "SA-06-fabrica-automata", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-06-fabrica-automata/src/main.rs", Edition2024) }
+   0.091610709s  INFO prepare_target{force=false package_id=SA-06-fabrica-automata v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-06-fabrica-automata) target="SA-06-fabrica-automata"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/SA-06-fabrica-automata-80da464f4d8dd40a/test-bin-SA-06-fabrica-automata`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.096208500s  INFO prepare_target{force=false package_id=SA-09-hub-operacoes-globais v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-09-hub-operacoes-globais) target="SA-09-hub-operacoes-globais"}: cargo::core::compiler::fingerprint: fingerprint error for SA-09-hub-operacoes-globais v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-09-hub-operacoes-globais)/Check { test: false }/TargetInner { name: "SA-09-hub-operacoes-globais", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-09-hub-operacoes-globais/src/main.rs", Edition2024) }
+   0.096213209s  INFO prepare_target{force=false package_id=SA-09-hub-operacoes-globais v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-09-hub-operacoes-globais) target="SA-09-hub-operacoes-globais"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/SA-09-hub-operacoes-globais-1f8c1427f29e3684/bin-SA-09-hub-operacoes-globais`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.097288334s  INFO prepare_target{force=false package_id=r2d2_sqlite v0.25.0 target="r2d2_sqlite"}: cargo::core::compiler::fingerprint: fingerprint error for r2d2_sqlite v0.25.0/Check { test: false }/TargetInner { tested: false, ..: lib_target("r2d2_sqlite", ["lib"], "/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/r2d2_sqlite-0.25.0/src/lib.rs", Edition2018) }
+   0.097292959s  INFO prepare_target{force=false package_id=r2d2_sqlite v0.25.0 target="r2d2_sqlite"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/r2d2_sqlite-170c52697cf04570/lib-r2d2_sqlite`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: cargo::core::compiler::compile
+   7: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   8: cargo::ops::cargo_compile::compile_ws
+   9: cargo::ops::cargo_compile::compile_with_exec
+  10: cargo::ops::cargo_compile::compile
+  11: cargo::commands::check::exec
+  12: <cargo::cli::Exec>::exec
+  13: cargo::cli::main
+  14: cargo::main
+  15: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  16: std::rt::lang_start::<()>::{closure#0}
+  17: std::rt::lang_start_internal
+  18: _main
+   0.100274584s  INFO prepare_target{force=false package_id=SA-09-hub-operacoes-globais v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-09-hub-operacoes-globais) target="SA-09-hub-operacoes-globais"}: cargo::core::compiler::fingerprint: fingerprint error for SA-09-hub-operacoes-globais v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-09-hub-operacoes-globais)/Check { test: true }/TargetInner { name: "SA-09-hub-operacoes-globais", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-09-hub-operacoes-globais/src/main.rs", Edition2024) }
+   0.100279084s  INFO prepare_target{force=false package_id=SA-09-hub-operacoes-globais v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-09-hub-operacoes-globais) target="SA-09-hub-operacoes-globais"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/SA-09-hub-operacoes-globais-0fd0dc6363bdae04/test-bin-SA-09-hub-operacoes-globais`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.102868917s  INFO prepare_target{force=false package_id=SA-10-monumento-total v1.0.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-10-monumento-total) target="SA-10-monumento-total"}: cargo::core::compiler::fingerprint: fingerprint error for SA-10-monumento-total v1.0.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-10-monumento-total)/Check { test: false }/TargetInner { name: "SA-10-monumento-total", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-10-monumento-total/src/main.rs", Edition2024) }
+   0.102876500s  INFO prepare_target{force=false package_id=SA-10-monumento-total v1.0.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-10-monumento-total) target="SA-10-monumento-total"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/SA-10-monumento-total-c17ee739b7ae6ffc/bin-SA-10-monumento-total`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.103434917s  INFO prepare_target{force=false package_id=rand v0.8.6 target="rand"}: cargo::core::compiler::fingerprint: fingerprint error for rand v0.8.6/Check { test: false }/TargetInner { ..: lib_target("rand", ["lib"], "/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand-0.8.6/src/lib.rs", Edition2018) }
+   0.103439334s  INFO prepare_target{force=false package_id=rand v0.8.6 target="rand"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/rand-b463f7595e64ed34/lib-rand`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: cargo::core::compiler::compile
+   7: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   8: cargo::ops::cargo_compile::compile_ws
+   9: cargo::ops::cargo_compile::compile_with_exec
+  10: cargo::ops::cargo_compile::compile
+  11: cargo::commands::check::exec
+  12: <cargo::cli::Exec>::exec
+  13: cargo::cli::main
+  14: cargo::main
+  15: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  16: std::rt::lang_start::<()>::{closure#0}
+  17: std::rt::lang_start_internal
+  18: _main
+   0.103757417s  INFO prepare_target{force=false package_id=serde v1.0.228 target="serde"}: cargo::core::compiler::fingerprint: fingerprint error for serde v1.0.228/Check { test: false }/TargetInner { ..: lib_target("serde", ["lib"], "/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs", Edition2021) }
+   0.103760792s  INFO prepare_target{force=false package_id=serde v1.0.228 target="serde"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/serde-6edb5c24f61971ba/lib-serde`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: cargo::core::compiler::compile
+   7: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   8: cargo::ops::cargo_compile::compile_ws
+   9: cargo::ops::cargo_compile::compile_with_exec
+  10: cargo::ops::cargo_compile::compile
+  11: cargo::commands::check::exec
+  12: <cargo::cli::Exec>::exec
+  13: cargo::cli::main
+  14: cargo::main
+  15: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  16: std::rt::lang_start::<()>::{closure#0}
+  17: std::rt::lang_start_internal
+  18: _main
+   0.104604584s  INFO prepare_target{force=false package_id=SA-10-monumento-total v1.0.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-10-monumento-total) target="SA-10-monumento-total"}: cargo::core::compiler::fingerprint: fingerprint error for SA-10-monumento-total v1.0.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-10-monumento-total)/Check { test: true }/TargetInner { name: "SA-10-monumento-total", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-10-monumento-total/src/main.rs", Edition2024) }
+   0.104608959s  INFO prepare_target{force=false package_id=SA-10-monumento-total v1.0.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-10-monumento-total) target="SA-10-monumento-total"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/SA-10-monumento-total-d1a407b7d9d1d73c/test-bin-SA-10-monumento-total`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.104889417s  INFO prepare_target{force=false package_id=async_sql_tokio v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/27-async-sql-tokio) target="async_sql_tokio"}: cargo::core::compiler::fingerprint: fingerprint error for async_sql_tokio v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/27-async-sql-tokio)/Check { test: false }/TargetInner { name: "async_sql_tokio", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/27-async-sql-tokio/src/main.rs", Edition2024) }
+   0.104893292s  INFO prepare_target{force=false package_id=async_sql_tokio v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/27-async-sql-tokio) target="async_sql_tokio"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/async_sql_tokio-8ac1513ded525886/bin-async_sql_tokio`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.105068625s  INFO prepare_target{force=false package_id=async_sql_tokio v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/27-async-sql-tokio) target="async_sql_tokio"}: cargo::core::compiler::fingerprint: fingerprint error for async_sql_tokio v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/27-async-sql-tokio)/Check { test: true }/TargetInner { name: "async_sql_tokio", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/27-async-sql-tokio/src/main.rs", Edition2024) }
+   0.105072292s  INFO prepare_target{force=false package_id=async_sql_tokio v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/27-async-sql-tokio) target="async_sql_tokio"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/async_sql_tokio-86bd1de69c9d7dde/test-bin-async_sql_tokio`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.105495459s  INFO prepare_target{force=false package_id=audit-log-derive v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria/audit-log-derive) target="audit_log_derive"}: cargo::core::compiler::fingerprint: fingerprint error for audit-log-derive v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria/audit-log-derive)/Check { test: false }/TargetInner { name_inferred: true, for_host: true, proc_macro: true, ..: lib_target("audit_log_derive", ["proc-macro"], "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria/audit-log-derive/src/lib.rs", Edition2021) }
+   0.105500250s  INFO prepare_target{force=false package_id=audit-log-derive v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria/audit-log-derive) target="audit_log_derive"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/audit-log-derive-ee34bad4c3b456de/lib-audit_log_derive`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.105960375s  INFO prepare_target{force=false package_id=audit-log-derive v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria/audit-log-derive) target="audit_log_derive"}: cargo::core::compiler::fingerprint: fingerprint error for audit-log-derive v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria/audit-log-derive)/Check { test: true }/TargetInner { name_inferred: true, for_host: true, proc_macro: true, ..: lib_target("audit_log_derive", ["proc-macro"], "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria/audit-log-derive/src/lib.rs", Edition2021) }
+   0.105964584s  INFO prepare_target{force=false package_id=audit-log-derive v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria/audit-log-derive) target="audit_log_derive"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/audit-log-derive-b0b9391d3850d724/test-lib-audit_log_derive`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.106145709s  INFO prepare_target{force=false package_id=auditoria_certificacoes v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/33-auditoria-certificacoes) target="auditoria_certificacoes"}: cargo::core::compiler::fingerprint: fingerprint error for auditoria_certificacoes v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/33-auditoria-certificacoes)/Check { test: false }/TargetInner { name: "auditoria_certificacoes", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/33-auditoria-certificacoes/src/main.rs", Edition2024) }
+   0.106149542s  INFO prepare_target{force=false package_id=auditoria_certificacoes v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/33-auditoria-certificacoes) target="auditoria_certificacoes"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/auditoria_certificacoes-04812f62eb182815/bin-auditoria_certificacoes`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.106299667s  INFO prepare_target{force=false package_id=auditoria_certificacoes v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/33-auditoria-certificacoes) target="auditoria_certificacoes"}: cargo::core::compiler::fingerprint: fingerprint error for auditoria_certificacoes v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/33-auditoria-certificacoes)/Check { test: true }/TargetInner { name: "auditoria_certificacoes", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/33-auditoria-certificacoes/src/main.rs", Edition2024) }
+   0.106303417s  INFO prepare_target{force=false package_id=auditoria_certificacoes v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/33-auditoria-certificacoes) target="auditoria_certificacoes"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/auditoria_certificacoes-70e6cce3c1d0e3f6/test-bin-auditoria_certificacoes`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.106440709s  INFO prepare_target{force=false package_id=auditoria_forense v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/30-auditoria-forense) target="auditoria_forense"}: cargo::core::compiler::fingerprint: fingerprint error for auditoria_forense v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/30-auditoria-forense)/Check { test: false }/TargetInner { name: "auditoria_forense", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/30-auditoria-forense/src/main.rs", Edition2024) }
+   0.106444292s  INFO prepare_target{force=false package_id=auditoria_forense v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/30-auditoria-forense) target="auditoria_forense"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/auditoria_forense-ac1e9cf31ca9d013/bin-auditoria_forense`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.106585667s  INFO prepare_target{force=false package_id=auditoria_forense v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/30-auditoria-forense) target="auditoria_forense"}: cargo::core::compiler::fingerprint: fingerprint error for auditoria_forense v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/30-auditoria-forense)/Check { test: true }/TargetInner { name: "auditoria_forense", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/30-auditoria-forense/src/main.rs", Edition2024) }
+   0.106589375s  INFO prepare_target{force=false package_id=auditoria_forense v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/30-auditoria-forense) target="auditoria_forense"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/auditoria_forense-a1ea8f77552b748e/test-bin-auditoria_forense`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.106733084s  INFO prepare_target{force=false package_id=auditoria_logs v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/06-auditoria-logs) target="auditoria_logs"}: cargo::core::compiler::fingerprint: fingerprint error for auditoria_logs v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/06-auditoria-logs)/Check { test: false }/TargetInner { name: "auditoria_logs", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/06-auditoria-logs/src/main.rs", Edition2024) }
+   0.106736542s  INFO prepare_target{force=false package_id=auditoria_logs v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/06-auditoria-logs) target="auditoria_logs"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/auditoria_logs-100e58afbd5122e8/bin-auditoria_logs`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.106851459s  INFO prepare_target{force=false package_id=auditoria_logs v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/06-auditoria-logs) target="auditoria_logs"}: cargo::core::compiler::fingerprint: fingerprint error for auditoria_logs v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/06-auditoria-logs)/Check { test: true }/TargetInner { name: "auditoria_logs", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/06-auditoria-logs/src/main.rs", Edition2024) }
+   0.106855042s  INFO prepare_target{force=false package_id=auditoria_logs v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/06-auditoria-logs) target="auditoria_logs"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/auditoria_logs-5ce581dd833f2372/test-bin-auditoria_logs`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.106968917s  INFO prepare_target{force=false package_id=banco_dados_entregas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/09-banco-dados-entregas) target="banco_dados_entregas"}: cargo::core::compiler::fingerprint: fingerprint error for banco_dados_entregas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/09-banco-dados-entregas)/Check { test: false }/TargetInner { name: "banco_dados_entregas", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/09-banco-dados-entregas/src/main.rs", Edition2024) }
+   0.106972500s  INFO prepare_target{force=false package_id=banco_dados_entregas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/09-banco-dados-entregas) target="banco_dados_entregas"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/banco_dados_entregas-1cccad7e0e001021/bin-banco_dados_entregas`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.107085709s  INFO prepare_target{force=false package_id=banco_dados_entregas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/09-banco-dados-entregas) target="banco_dados_entregas"}: cargo::core::compiler::fingerprint: fingerprint error for banco_dados_entregas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/09-banco-dados-entregas)/Check { test: true }/TargetInner { name: "banco_dados_entregas", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/09-banco-dados-entregas/src/main.rs", Edition2024) }
+   0.107089209s  INFO prepare_target{force=false package_id=banco_dados_entregas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/09-banco-dados-entregas) target="banco_dados_entregas"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/banco_dados_entregas-c79315ecc6a12be6/test-bin-banco_dados_entregas`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.107254167s  INFO prepare_target{force=false package_id=buffer_compartilhado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/17-buffer-compartilhado) target="buffer_compartilhado"}: cargo::core::compiler::fingerprint: fingerprint error for buffer_compartilhado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/17-buffer-compartilhado)/Check { test: false }/TargetInner { name: "buffer_compartilhado", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/17-buffer-compartilhado/src/main.rs", Edition2024) }
+   0.107257625s  INFO prepare_target{force=false package_id=buffer_compartilhado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/17-buffer-compartilhado) target="buffer_compartilhado"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/buffer_compartilhado-fa561e1f94a4f082/bin-buffer_compartilhado`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.107494834s  INFO prepare_target{force=false package_id=buffer_compartilhado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/17-buffer-compartilhado) target="buffer_compartilhado"}: cargo::core::compiler::fingerprint: fingerprint error for buffer_compartilhado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/17-buffer-compartilhado)/Check { test: true }/TargetInner { name: "buffer_compartilhado", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/17-buffer-compartilhado/src/main.rs", Edition2024) }
+   0.107498375s  INFO prepare_target{force=false package_id=buffer_compartilhado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/17-buffer-compartilhado) target="buffer_compartilhado"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/buffer_compartilhado-1a7dc200fb4ef1ff/test-bin-buffer_compartilhado`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.107672209s  INFO prepare_target{force=false package_id=calculos_legados v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/16-calculos-legados) target="calculos_legados"}: cargo::core::compiler::fingerprint: fingerprint error for calculos_legados v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/16-calculos-legados)/Check { test: false }/TargetInner { name: "calculos_legados", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/16-calculos-legados/src/main.rs", Edition2024) }
+   0.107675875s  INFO prepare_target{force=false package_id=calculos_legados v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/16-calculos-legados) target="calculos_legados"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/calculos_legados-c163999195626bd5/bin-calculos_legados`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.107920792s  INFO prepare_target{force=false package_id=calculos_legados v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/16-calculos-legados) target="calculos_legados"}: cargo::core::compiler::fingerprint: fingerprint error for calculos_legados v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/16-calculos-legados)/Check { test: true }/TargetInner { name: "calculos_legados", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/16-calculos-legados/src/main.rs", Edition2024) }
+   0.107924417s  INFO prepare_target{force=false package_id=calculos_legados v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/16-calculos-legados) target="calculos_legados"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/calculos_legados-9ff5f5c80f089439/test-bin-calculos_legados`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.108039709s  INFO prepare_target{force=false package_id=calibracao_dinamica v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/14-calibracao-dinamica) target="calibracao_dinamica"}: cargo::core::compiler::fingerprint: fingerprint error for calibracao_dinamica v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/14-calibracao-dinamica)/Check { test: false }/TargetInner { name: "calibracao_dinamica", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/14-calibracao-dinamica/src/main.rs", Edition2024) }
+   0.108043375s  INFO prepare_target{force=false package_id=calibracao_dinamica v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/14-calibracao-dinamica) target="calibracao_dinamica"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/calibracao_dinamica-253b4b6a205ec9a5/bin-calibracao_dinamica`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.108156167s  INFO prepare_target{force=false package_id=calibracao_dinamica v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/14-calibracao-dinamica) target="calibracao_dinamica"}: cargo::core::compiler::fingerprint: fingerprint error for calibracao_dinamica v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/14-calibracao-dinamica)/Check { test: true }/TargetInner { name: "calibracao_dinamica", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/14-calibracao-dinamica/src/main.rs", Edition2024) }
+   0.108159792s  INFO prepare_target{force=false package_id=calibracao_dinamica v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/14-calibracao-dinamica) target="calibracao_dinamica"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/calibracao_dinamica-50f4159763c3386d/test-bin-calibracao_dinamica`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.108278625s  INFO prepare_target{force=false package_id=concorrencia_segura v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/15-concorrencia-segura) target="concorrencia_segura"}: cargo::core::compiler::fingerprint: fingerprint error for concorrencia_segura v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/15-concorrencia-segura)/Check { test: false }/TargetInner { name: "concorrencia_segura", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/15-concorrencia-segura/src/main.rs", Edition2024) }
+   0.108282167s  INFO prepare_target{force=false package_id=concorrencia_segura v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/15-concorrencia-segura) target="concorrencia_segura"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/concorrencia_segura-5245125a37a398fd/bin-concorrencia_segura`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.108405125s  INFO prepare_target{force=false package_id=concorrencia_segura v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/15-concorrencia-segura) target="concorrencia_segura"}: cargo::core::compiler::fingerprint: fingerprint error for concorrencia_segura v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/15-concorrencia-segura)/Check { test: true }/TargetInner { name: "concorrencia_segura", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/15-concorrencia-segura/src/main.rs", Edition2024) }
+   0.108408875s  INFO prepare_target{force=false package_id=concorrencia_segura v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/15-concorrencia-segura) target="concorrencia_segura"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/concorrencia_segura-259a6f97a9ce5902/test-bin-concorrencia_segura`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.108536167s  INFO prepare_target{force=false package_id=crud_completo v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/28-crud-completo-frota) target="crud_completo"}: cargo::core::compiler::fingerprint: fingerprint error for crud_completo v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/28-crud-completo-frota)/Check { test: false }/TargetInner { name: "crud_completo", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/28-crud-completo-frota/src/main.rs", Edition2024) }
+   0.108539917s  INFO prepare_target{force=false package_id=crud_completo v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/28-crud-completo-frota) target="crud_completo"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/crud_completo-4629ba8e0ea90316/bin-crud_completo`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.108687875s  INFO prepare_target{force=false package_id=crud_completo v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/28-crud-completo-frota) target="crud_completo"}: cargo::core::compiler::fingerprint: fingerprint error for crud_completo v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/28-crud-completo-frota)/Check { test: true }/TargetInner { name: "crud_completo", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/28-crud-completo-frota/src/main.rs", Edition2024) }
+   0.108691459s  INFO prepare_target{force=false package_id=crud_completo v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/28-crud-completo-frota) target="crud_completo"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/crud_completo-173ed439378eb511/test-bin-crud_completo`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.108835875s  INFO prepare_target{force=false package_id=dashboard_compartilhado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/13-dashboard-compartilhado) target="dashboard_compartilhado"}: cargo::core::compiler::fingerprint: fingerprint error for dashboard_compartilhado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/13-dashboard-compartilhado)/Check { test: false }/TargetInner { name: "dashboard_compartilhado", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/13-dashboard-compartilhado/src/main.rs", Edition2024) }
+   0.108839625s  INFO prepare_target{force=false package_id=dashboard_compartilhado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/13-dashboard-compartilhado) target="dashboard_compartilhado"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/dashboard_compartilhado-608e30f9d4f5d56b/bin-dashboard_compartilhado`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.108952084s  INFO prepare_target{force=false package_id=dashboard_compartilhado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/13-dashboard-compartilhado) target="dashboard_compartilhado"}: cargo::core::compiler::fingerprint: fingerprint error for dashboard_compartilhado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/13-dashboard-compartilhado)/Check { test: true }/TargetInner { name: "dashboard_compartilhado", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/13-dashboard-compartilhado/src/main.rs", Edition2024) }
+   0.108955959s  INFO prepare_target{force=false package_id=dashboard_compartilhado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/13-dashboard-compartilhado) target="dashboard_compartilhado"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/dashboard_compartilhado-0347549aebb85e96/test-bin-dashboard_compartilhado`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.109068542s  INFO prepare_target{force=false package_id=desafio_drone_resgate v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-01-drone-resgate) target="desafio_drone_resgate"}: cargo::core::compiler::fingerprint: fingerprint error for desafio_drone_resgate v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-01-drone-resgate)/Check { test: false }/TargetInner { name: "desafio_drone_resgate", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-01-drone-resgate/src/main.rs", Edition2024) }
+   0.109072000s  INFO prepare_target{force=false package_id=desafio_drone_resgate v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-01-drone-resgate) target="desafio_drone_resgate"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/desafio_drone_resgate-79336d42800bc8c0/bin-desafio_drone_resgate`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.109185250s  INFO prepare_target{force=false package_id=desafio_drone_resgate v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-01-drone-resgate) target="desafio_drone_resgate"}: cargo::core::compiler::fingerprint: fingerprint error for desafio_drone_resgate v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-01-drone-resgate)/Check { test: true }/TargetInner { name: "desafio_drone_resgate", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-01-drone-resgate/src/main.rs", Edition2024) }
+   0.109189084s  INFO prepare_target{force=false package_id=desafio_drone_resgate v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-01-drone-resgate) target="desafio_drone_resgate"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/desafio_drone_resgate-32fcf647f9f54c6d/test-bin-desafio_drone_resgate`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.109347459s  INFO prepare_target{force=false package_id=diagnostico_sensores v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/05-diagnostico-sensores) target="diagnostico_sensores"}: cargo::core::compiler::fingerprint: fingerprint error for diagnostico_sensores v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/05-diagnostico-sensores)/Check { test: false }/TargetInner { name: "diagnostico_sensores", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/05-diagnostico-sensores/src/main.rs", Edition2024) }
+   0.109351209s  INFO prepare_target{force=false package_id=diagnostico_sensores v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/05-diagnostico-sensores) target="diagnostico_sensores"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/diagnostico_sensores-4be1b7b55a3018f8/bin-diagnostico_sensores`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.109490042s  INFO prepare_target{force=false package_id=diagnostico_sensores v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/05-diagnostico-sensores) target="diagnostico_sensores"}: cargo::core::compiler::fingerprint: fingerprint error for diagnostico_sensores v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/05-diagnostico-sensores)/Check { test: true }/TargetInner { name: "diagnostico_sensores", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/05-diagnostico-sensores/src/main.rs", Edition2024) }
+   0.109493917s  INFO prepare_target{force=false package_id=diagnostico_sensores v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/05-diagnostico-sensores) target="diagnostico_sensores"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/diagnostico_sensores-260b8d99e500648d/test-bin-diagnostico_sensores`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.109616042s  INFO prepare_target{force=false package_id=emprestimo_telemetria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/04-emprestimo-telemetria) target="emprestimo_telemetria"}: cargo::core::compiler::fingerprint: fingerprint error for emprestimo_telemetria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/04-emprestimo-telemetria)/Check { test: false }/TargetInner { name: "emprestimo_telemetria", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/04-emprestimo-telemetria/src/main.rs", Edition2024) }
+   0.109619834s  INFO prepare_target{force=false package_id=emprestimo_telemetria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/04-emprestimo-telemetria) target="emprestimo_telemetria"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/emprestimo_telemetria-2be499a83ea28102/bin-emprestimo_telemetria`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.109737750s  INFO prepare_target{force=false package_id=emprestimo_telemetria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/04-emprestimo-telemetria) target="emprestimo_telemetria"}: cargo::core::compiler::fingerprint: fingerprint error for emprestimo_telemetria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/04-emprestimo-telemetria)/Check { test: true }/TargetInner { name: "emprestimo_telemetria", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/04-emprestimo-telemetria/src/main.rs", Edition2024) }
+   0.109741459s  INFO prepare_target{force=false package_id=emprestimo_telemetria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/04-emprestimo-telemetria) target="emprestimo_telemetria"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/emprestimo_telemetria-93c6d05490663b80/test-bin-emprestimo_telemetria`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.110501417s  INFO prepare_target{force=false package_id=ffi-avancado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/36-ffi-avancado) target="ffi-avancado"}: cargo::core::compiler::fingerprint: fingerprint error for ffi-avancado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/36-ffi-avancado)/Check { test: false }/TargetInner { name: "ffi-avancado", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/36-ffi-avancado/src/main.rs", Edition2021) }
+   0.110505125s  INFO prepare_target{force=false package_id=ffi-avancado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/36-ffi-avancado) target="ffi-avancado"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/ffi-avancado-6066457511d3c83a/bin-ffi-avancado`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.110613959s  INFO prepare_target{force=false package_id=cxx v1.0.194 target="cxx"}: cargo::core::compiler::fingerprint: fingerprint error for cxx v1.0.194/Check { test: false }/TargetInner { ..: lib_target("cxx", ["lib"], "/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cxx-1.0.194/src/lib.rs", Edition2021) }
+   0.110617417s  INFO prepare_target{force=false package_id=cxx v1.0.194 target="cxx"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/cxx-f353ac51d020378e/lib-cxx`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: cargo::core::compiler::compile
+   7: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   8: cargo::ops::cargo_compile::compile_ws
+   9: cargo::ops::cargo_compile::compile_with_exec
+  10: cargo::ops::cargo_compile::compile
+  11: cargo::commands::check::exec
+  12: <cargo::cli::Exec>::exec
+  13: cargo::cli::main
+  14: cargo::main
+  15: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  16: std::rt::lang_start::<()>::{closure#0}
+  17: std::rt::lang_start_internal
+  18: _main
+   0.111668209s  INFO prepare_target{force=false package_id=ffi-avancado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/36-ffi-avancado) target="ffi-avancado"}: cargo::core::compiler::fingerprint: fingerprint error for ffi-avancado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/36-ffi-avancado)/Check { test: true }/TargetInner { name: "ffi-avancado", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/36-ffi-avancado/src/main.rs", Edition2021) }
+   0.111671709s  INFO prepare_target{force=false package_id=ffi-avancado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/36-ffi-avancado) target="ffi-avancado"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/ffi-avancado-10c830ac86d1e935/test-bin-ffi-avancado`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.111827709s  INFO prepare_target{force=false package_id=fts_log_manager v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/29-fts-log-manager) target="fts_log_manager"}: cargo::core::compiler::fingerprint: fingerprint error for fts_log_manager v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/29-fts-log-manager)/Check { test: false }/TargetInner { name: "fts_log_manager", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/29-fts-log-manager/src/main.rs", Edition2024) }
+   0.111831459s  INFO prepare_target{force=false package_id=fts_log_manager v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/29-fts-log-manager) target="fts_log_manager"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/fts_log_manager-15c195afa53fd2b8/bin-fts_log_manager`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.111977375s  INFO prepare_target{force=false package_id=fts_log_manager v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/29-fts-log-manager) target="fts_log_manager"}: cargo::core::compiler::fingerprint: fingerprint error for fts_log_manager v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/29-fts-log-manager)/Check { test: true }/TargetInner { name: "fts_log_manager", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/29-fts-log-manager/src/main.rs", Edition2024) }
+   0.111981042s  INFO prepare_target{force=false package_id=fts_log_manager v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/29-fts-log-manager) target="fts_log_manager"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/fts_log_manager-f60020daef3e8012/test-bin-fts_log_manager`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.112121084s  INFO prepare_target{force=false package_id=gerenciador_payload v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/08-gerenciador-payload) target="gerenciador_payload"}: cargo::core::compiler::fingerprint: fingerprint error for gerenciador_payload v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/08-gerenciador-payload)/Check { test: false }/TargetInner { name: "gerenciador_payload", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/08-gerenciador-payload/src/main.rs", Edition2024) }
+   0.112126000s  INFO prepare_target{force=false package_id=gerenciador_payload v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/08-gerenciador-payload) target="gerenciador_payload"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/gerenciador_payload-4163809ab22f4116/bin-gerenciador_payload`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.112242334s  INFO prepare_target{force=false package_id=gerenciador_payload v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/08-gerenciador-payload) target="gerenciador_payload"}: cargo::core::compiler::fingerprint: fingerprint error for gerenciador_payload v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/08-gerenciador-payload)/Check { test: true }/TargetInner { name: "gerenciador_payload", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/08-gerenciador-payload/src/main.rs", Edition2024) }
+   0.112245792s  INFO prepare_target{force=false package_id=gerenciador_payload v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/08-gerenciador-payload) target="gerenciador_payload"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/gerenciador_payload-51e81f3d0cc7bcf7/test-bin-gerenciador_payload`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.112361417s  INFO prepare_target{force=false package_id=gestao_mensagens v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/03-gestao-mensagens) target="gestao_mensagens"}: cargo::core::compiler::fingerprint: fingerprint error for gestao_mensagens v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/03-gestao-mensagens)/Check { test: false }/TargetInner { name: "gestao_mensagens", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/03-gestao-mensagens/src/main.rs", Edition2024) }
+   0.112365042s  INFO prepare_target{force=false package_id=gestao_mensagens v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/03-gestao-mensagens) target="gestao_mensagens"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/gestao_mensagens-1ce8b8f0806ad856/bin-gestao_mensagens`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.112489625s  INFO prepare_target{force=false package_id=gestao_mensagens v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/03-gestao-mensagens) target="gestao_mensagens"}: cargo::core::compiler::fingerprint: fingerprint error for gestao_mensagens v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/03-gestao-mensagens)/Check { test: true }/TargetInner { name: "gestao_mensagens", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/03-gestao-mensagens/src/main.rs", Edition2024) }
+   0.112493375s  INFO prepare_target{force=false package_id=gestao_mensagens v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/03-gestao-mensagens) target="gestao_mensagens"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/gestao_mensagens-ad19ecc499cc3cfd/test-bin-gestao_mensagens`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.112815292s  INFO prepare_target{force=false package_id=gestor_frota_pro v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/31-gestor-frota-async-repo) target="gestor_frota_pro"}: cargo::core::compiler::fingerprint: fingerprint error for gestor_frota_pro v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/31-gestor-frota-async-repo)/Check { test: false }/TargetInner { name: "gestor_frota_pro", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/31-gestor-frota-async-repo/src/main.rs", Edition2024) }
+   0.112819084s  INFO prepare_target{force=false package_id=gestor_frota_pro v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/31-gestor-frota-async-repo) target="gestor_frota_pro"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/gestor_frota_pro-f51cfeb1fc2a514e/bin-gestor_frota_pro`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.112993459s  INFO prepare_target{force=false package_id=tokio-rusqlite v0.6.0 target="tokio_rusqlite"}: cargo::core::compiler::fingerprint: fingerprint error for tokio-rusqlite v0.6.0/Check { test: false }/TargetInner { ..: lib_target("tokio_rusqlite", ["lib"], "/Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-rusqlite-0.6.0/src/lib.rs", Edition2021) }
+   0.112996709s  INFO prepare_target{force=false package_id=tokio-rusqlite v0.6.0 target="tokio_rusqlite"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/tokio-rusqlite-f3f3ee8b70b01ac9/lib-tokio_rusqlite`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: cargo::core::compiler::compile
+   7: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   8: cargo::ops::cargo_compile::compile_ws
+   9: cargo::ops::cargo_compile::compile_with_exec
+  10: cargo::ops::cargo_compile::compile
+  11: cargo::commands::check::exec
+  12: <cargo::cli::Exec>::exec
+  13: cargo::cli::main
+  14: cargo::main
+  15: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  16: std::rt::lang_start::<()>::{closure#0}
+  17: std::rt::lang_start_internal
+  18: _main
+   0.113426209s  INFO prepare_target{force=false package_id=gestor_frota_pro v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/31-gestor-frota-async-repo) target="gestor_frota_pro"}: cargo::core::compiler::fingerprint: fingerprint error for gestor_frota_pro v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/31-gestor-frota-async-repo)/Check { test: true }/TargetInner { name: "gestor_frota_pro", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/31-gestor-frota-async-repo/src/main.rs", Edition2024) }
+   0.113430167s  INFO prepare_target{force=false package_id=gestor_frota_pro v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/31-gestor-frota-async-repo) target="gestor_frota_pro"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/gestor_frota_pro-ab9037f502ca0902/test-bin-gestor_frota_pro`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.113612459s  INFO prepare_target{force=false package_id=integracao_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/21-integracao-sql) target="integracao_sql"}: cargo::core::compiler::fingerprint: fingerprint error for integracao_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/21-integracao-sql)/Check { test: false }/TargetInner { name: "integracao_sql", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/21-integracao-sql/src/main.rs", Edition2024) }
+   0.113616167s  INFO prepare_target{force=false package_id=integracao_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/21-integracao-sql) target="integracao_sql"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/integracao_sql-b6f3d3e562f2e3ee/bin-integracao_sql`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.113756667s  INFO prepare_target{force=false package_id=integracao_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/21-integracao-sql) target="integracao_sql"}: cargo::core::compiler::fingerprint: fingerprint error for integracao_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/21-integracao-sql)/Check { test: true }/TargetInner { name: "integracao_sql", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/21-integracao-sql/src/main.rs", Edition2024) }
+   0.113760250s  INFO prepare_target{force=false package_id=integracao_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/21-integracao-sql) target="integracao_sql"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/integracao_sql-24bdbeebf1460721/test-bin-integracao_sql`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.113906459s  INFO prepare_target{force=false package_id=lista_ligada v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/18-lista-ligada) target="lista_ligada"}: cargo::core::compiler::fingerprint: fingerprint error for lista_ligada v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/18-lista-ligada)/Check { test: false }/TargetInner { name: "lista_ligada", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/18-lista-ligada/src/main.rs", Edition2024) }
+   0.113909917s  INFO prepare_target{force=false package_id=lista_ligada v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/18-lista-ligada) target="lista_ligada"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/lista_ligada-d76d1dc4cb52175b/bin-lista_ligada`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.114027209s  INFO prepare_target{force=false package_id=lista_ligada v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/18-lista-ligada) target="lista_ligada"}: cargo::core::compiler::fingerprint: fingerprint error for lista_ligada v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/18-lista-ligada)/Check { test: true }/TargetInner { name: "lista_ligada", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/18-lista-ligada/src/main.rs", Edition2024) }
+   0.114030542s  INFO prepare_target{force=false package_id=lista_ligada v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/18-lista-ligada) target="lista_ligada"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/lista_ligada-04aea4849b0dd086/test-bin-lista_ligada`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.114156125s  INFO prepare_target{force=false package_id=logistica_drone v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/01-logistica-drone) target="logistica_drone"}: cargo::core::compiler::fingerprint: fingerprint error for logistica_drone v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/01-logistica-drone)/Check { test: false }/TargetInner { name: "logistica_drone", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/01-logistica-drone/src/main.rs", Edition2024) }
+   0.114159667s  INFO prepare_target{force=false package_id=logistica_drone v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/01-logistica-drone) target="logistica_drone"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/logistica_drone-abca7a37bcec287c/bin-logistica_drone`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.114274292s  INFO prepare_target{force=false package_id=logistica_drone v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/01-logistica-drone) target="logistica_drone"}: cargo::core::compiler::fingerprint: fingerprint error for logistica_drone v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/01-logistica-drone)/Check { test: true }/TargetInner { name: "logistica_drone", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/01-logistica-drone/src/main.rs", Edition2024) }
+   0.114277667s  INFO prepare_target{force=false package_id=logistica_drone v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/01-logistica-drone) target="logistica_drone"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/logistica_drone-df417b22fb5df12c/test-bin-logistica_drone`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.114430709s  INFO prepare_target{force=false package_id=macros-auditoria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria) target="macros-auditoria"}: cargo::core::compiler::fingerprint: fingerprint error for macros-auditoria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria)/Check { test: false }/TargetInner { name: "macros-auditoria", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria/src/main.rs", Edition2021) }
+   0.114434500s  INFO prepare_target{force=false package_id=macros-auditoria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria) target="macros-auditoria"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/macros-auditoria-1520bea61df472cb/bin-macros-auditoria`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.114593292s  INFO prepare_target{force=false package_id=macros-auditoria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria) target="macros-auditoria"}: cargo::core::compiler::fingerprint: fingerprint error for macros-auditoria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria)/Check { test: true }/TargetInner { name: "macros-auditoria", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria/src/main.rs", Edition2021) }
+   0.114596792s  INFO prepare_target{force=false package_id=macros-auditoria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria) target="macros-auditoria"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/macros-auditoria-928eb334931efb6b/test-bin-macros-auditoria`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.114728000s  INFO prepare_target{force=false package_id=migracoes_automaticas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/26-migracoes-automaticas) target="migracoes_automaticas"}: cargo::core::compiler::fingerprint: fingerprint error for migracoes_automaticas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/26-migracoes-automaticas)/Check { test: false }/TargetInner { name: "migracoes_automaticas", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/26-migracoes-automaticas/src/main.rs", Edition2024) }
+   0.114731584s  INFO prepare_target{force=false package_id=migracoes_automaticas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/26-migracoes-automaticas) target="migracoes_automaticas"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/migracoes_automaticas-9bd395681f56af8c/bin-migracoes_automaticas`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.114883834s  INFO prepare_target{force=false package_id=migracoes_automaticas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/26-migracoes-automaticas) target="migracoes_automaticas"}: cargo::core::compiler::fingerprint: fingerprint error for migracoes_automaticas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/26-migracoes-automaticas)/Check { test: true }/TargetInner { name: "migracoes_automaticas", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/26-migracoes-automaticas/src/main.rs", Edition2024) }
+   0.114887667s  INFO prepare_target{force=false package_id=migracoes_automaticas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/26-migracoes-automaticas) target="migracoes_automaticas"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/migracoes_automaticas-5015d71ec86177e0/test-bin-migracoes_automaticas`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.115036459s  INFO prepare_target{force=false package_id=motor_hidraulico v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/07-motor-hidraulico) target="motor_hidraulico"}: cargo::core::compiler::fingerprint: fingerprint error for motor_hidraulico v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/07-motor-hidraulico)/Check { test: false }/TargetInner { name: "motor_hidraulico", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/07-motor-hidraulico/src/main.rs", Edition2024) }
+   0.115040167s  INFO prepare_target{force=false package_id=motor_hidraulico v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/07-motor-hidraulico) target="motor_hidraulico"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/motor_hidraulico-d155f81ddd718a1f/bin-motor_hidraulico`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.115205667s  INFO prepare_target{force=false package_id=motor_hidraulico v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/07-motor-hidraulico) target="motor_hidraulico"}: cargo::core::compiler::fingerprint: fingerprint error for motor_hidraulico v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/07-motor-hidraulico)/Check { test: true }/TargetInner { name: "motor_hidraulico", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/07-motor-hidraulico/src/main.rs", Edition2024) }
+   0.115209209s  INFO prepare_target{force=false package_id=motor_hidraulico v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/07-motor-hidraulico) target="motor_hidraulico"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/motor_hidraulico-ed9196146398eb56/test-bin-motor_hidraulico`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.115329625s  INFO prepare_target{force=false package_id=muitos_para_muitos v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/32-relacionamento-muitos-para-muitos) target="muitos_para_muitos"}: cargo::core::compiler::fingerprint: fingerprint error for muitos_para_muitos v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/32-relacionamento-muitos-para-muitos)/Check { test: false }/TargetInner { name: "muitos_para_muitos", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/32-relacionamento-muitos-para-muitos/src/main.rs", Edition2024) }
+   0.115333667s  INFO prepare_target{force=false package_id=muitos_para_muitos v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/32-relacionamento-muitos-para-muitos) target="muitos_para_muitos"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/muitos_para_muitos-614f785d355c17b2/bin-muitos_para_muitos`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.115478709s  INFO prepare_target{force=false package_id=muitos_para_muitos v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/32-relacionamento-muitos-para-muitos) target="muitos_para_muitos"}: cargo::core::compiler::fingerprint: fingerprint error for muitos_para_muitos v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/32-relacionamento-muitos-para-muitos)/Check { test: true }/TargetInner { name: "muitos_para_muitos", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/32-relacionamento-muitos-para-muitos/src/main.rs", Edition2024) }
+   0.115482459s  INFO prepare_target{force=false package_id=muitos_para_muitos v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/32-relacionamento-muitos-para-muitos) target="muitos_para_muitos"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/muitos_para_muitos-9126a8e46c8feeb4/test-bin-muitos_para_muitos`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.115621459s  INFO prepare_target{force=false package_id=pool_conexoes v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/25-pool-conexoes-multithread) target="pool_conexoes"}: cargo::core::compiler::fingerprint: fingerprint error for pool_conexoes v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/25-pool-conexoes-multithread)/Check { test: false }/TargetInner { name: "pool_conexoes", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/25-pool-conexoes-multithread/src/main.rs", Edition2024) }
+   0.115625417s  INFO prepare_target{force=false package_id=pool_conexoes v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/25-pool-conexoes-multithread) target="pool_conexoes"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/pool_conexoes-26aee1e2179dc587/bin-pool_conexoes`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.115805209s  INFO prepare_target{force=false package_id=pool_conexoes v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/25-pool-conexoes-multithread) target="pool_conexoes"}: cargo::core::compiler::fingerprint: fingerprint error for pool_conexoes v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/25-pool-conexoes-multithread)/Check { test: true }/TargetInner { name: "pool_conexoes", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/25-pool-conexoes-multithread/src/main.rs", Edition2024) }
+   0.115809042s  INFO prepare_target{force=false package_id=pool_conexoes v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/25-pool-conexoes-multithread) target="pool_conexoes"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/pool_conexoes-d12abdb02b13d46e/test-bin-pool_conexoes`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.115992125s  INFO prepare_target{force=false package_id=processamento_dados v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/12-processamento-dados) target="processamento_dados"}: cargo::core::compiler::fingerprint: fingerprint error for processamento_dados v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/12-processamento-dados)/Check { test: false }/TargetInner { name: "processamento_dados", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/12-processamento-dados/src/main.rs", Edition2024) }
+   0.115995792s  INFO prepare_target{force=false package_id=processamento_dados v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/12-processamento-dados) target="processamento_dados"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/processamento_dados-5d88a2a7e15c7b69/bin-processamento_dados`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.116109375s  INFO prepare_target{force=false package_id=processamento_dados v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/12-processamento-dados) target="processamento_dados"}: cargo::core::compiler::fingerprint: fingerprint error for processamento_dados v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/12-processamento-dados)/Check { test: true }/TargetInner { name: "processamento_dados", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/12-processamento-dados/src/main.rs", Edition2024) }
+   0.116112917s  INFO prepare_target{force=false package_id=processamento_dados v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/12-processamento-dados) target="processamento_dados"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/processamento_dados-d5163f3111b719a0/test-bin-processamento_dados`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.116249542s  INFO prepare_target{force=false package_id=relatorios_complexos_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/22-relatorios-complexos-sql) target="relatorios_complexos_sql"}: cargo::core::compiler::fingerprint: fingerprint error for relatorios_complexos_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/22-relatorios-complexos-sql)/Check { test: false }/TargetInner { name: "relatorios_complexos_sql", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/22-relatorios-complexos-sql/src/main.rs", Edition2024) }
+   0.116253292s  INFO prepare_target{force=false package_id=relatorios_complexos_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/22-relatorios-complexos-sql) target="relatorios_complexos_sql"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/relatorios_complexos_sql-fe20e015cb92c5e9/bin-relatorios_complexos_sql`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.116393167s  INFO prepare_target{force=false package_id=relatorios_complexos_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/22-relatorios-complexos-sql) target="relatorios_complexos_sql"}: cargo::core::compiler::fingerprint: fingerprint error for relatorios_complexos_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/22-relatorios-complexos-sql)/Check { test: true }/TargetInner { name: "relatorios_complexos_sql", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/22-relatorios-complexos-sql/src/main.rs", Edition2024) }
+   0.116396875s  INFO prepare_target{force=false package_id=relatorios_complexos_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/22-relatorios-complexos-sql) target="relatorios_complexos_sql"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/relatorios_complexos_sql-818afcc507c7e59a/test-bin-relatorios_complexos_sql`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.116538792s  INFO prepare_target{force=false package_id=sobrecarga_operadores v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/19-sobrecarga-operadores) target="sobrecarga_operadores"}: cargo::core::compiler::fingerprint: fingerprint error for sobrecarga_operadores v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/19-sobrecarga-operadores)/Check { test: false }/TargetInner { name: "sobrecarga_operadores", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/19-sobrecarga-operadores/src/main.rs", Edition2024) }
+   0.116542250s  INFO prepare_target{force=false package_id=sobrecarga_operadores v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/19-sobrecarga-operadores) target="sobrecarga_operadores"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/sobrecarga_operadores-2088996521b5079f/bin-sobrecarga_operadores`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.116657917s  INFO prepare_target{force=false package_id=sobrecarga_operadores v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/19-sobrecarga-operadores) target="sobrecarga_operadores"}: cargo::core::compiler::fingerprint: fingerprint error for sobrecarga_operadores v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/19-sobrecarga-operadores)/Check { test: true }/TargetInner { name: "sobrecarga_operadores", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/19-sobrecarga-operadores/src/main.rs", Edition2024) }
+   0.116661375s  INFO prepare_target{force=false package_id=sobrecarga_operadores v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/19-sobrecarga-operadores) target="sobrecarga_operadores"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/sobrecarga_operadores-f0fc0c1908468c49/test-bin-sobrecarga_operadores`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.116776667s  INFO prepare_target{force=false package_id=sql-integration-tests v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/tests/sql-integration-tests) target="sql_integration_tests"}: cargo::core::compiler::fingerprint: fingerprint error for sql-integration-tests v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/tests/sql-integration-tests)/Check { test: false }/TargetInner { name_inferred: true, ..: lib_target("sql_integration_tests", ["lib"], "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/tests/sql-integration-tests/src/lib.rs", Edition2021) }
+   0.116780750s  INFO prepare_target{force=false package_id=sql-integration-tests v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/tests/sql-integration-tests) target="sql_integration_tests"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/sql-integration-tests-3f9823144dc94842/lib-sql_integration_tests`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.116925750s  INFO prepare_target{force=false package_id=sql-integration-tests v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/tests/sql-integration-tests) target="sql_integration_tests"}: cargo::core::compiler::fingerprint: fingerprint error for sql-integration-tests v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/tests/sql-integration-tests)/Check { test: true }/TargetInner { name_inferred: true, ..: lib_target("sql_integration_tests", ["lib"], "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/tests/sql-integration-tests/src/lib.rs", Edition2021) }
+   0.116930042s  INFO prepare_target{force=false package_id=sql-integration-tests v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/tests/sql-integration-tests) target="sql_integration_tests"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/sql-integration-tests-d29d1f1d5bd16fe9/test-lib-sql_integration_tests`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.117125834s  INFO prepare_target{force=false package_id=telemetria_json_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/24-telemetria-json-sql) target="telemetria_json_sql"}: cargo::core::compiler::fingerprint: fingerprint error for telemetria_json_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/24-telemetria-json-sql)/Check { test: false }/TargetInner { name: "telemetria_json_sql", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/24-telemetria-json-sql/src/main.rs", Edition2024) }
+   0.117129584s  INFO prepare_target{force=false package_id=telemetria_json_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/24-telemetria-json-sql) target="telemetria_json_sql"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/telemetria_json_sql-5b220134ee8626df/bin-telemetria_json_sql`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.117402917s  INFO prepare_target{force=false package_id=telemetria_json_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/24-telemetria-json-sql) target="telemetria_json_sql"}: cargo::core::compiler::fingerprint: fingerprint error for telemetria_json_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/24-telemetria-json-sql)/Check { test: true }/TargetInner { name: "telemetria_json_sql", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/24-telemetria-json-sql/src/main.rs", Edition2024) }
+   0.117410292s  INFO prepare_target{force=false package_id=telemetria_json_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/24-telemetria-json-sql) target="telemetria_json_sql"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/telemetria_json_sql-764f653661d6aa39/test-bin-telemetria_json_sql`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.117654959s  INFO prepare_target{force=false package_id=traits_dispositivos v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/10-traits-dispositivos) target="traits_dispositivos"}: cargo::core::compiler::fingerprint: fingerprint error for traits_dispositivos v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/10-traits-dispositivos)/Check { test: false }/TargetInner { name: "traits_dispositivos", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/10-traits-dispositivos/src/main.rs", Edition2024) }
+   0.117659625s  INFO prepare_target{force=false package_id=traits_dispositivos v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/10-traits-dispositivos) target="traits_dispositivos"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/traits_dispositivos-abf043123f5c571f/bin-traits_dispositivos`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.117810334s  INFO prepare_target{force=false package_id=traits_dispositivos v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/10-traits-dispositivos) target="traits_dispositivos"}: cargo::core::compiler::fingerprint: fingerprint error for traits_dispositivos v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/10-traits-dispositivos)/Check { test: true }/TargetInner { name: "traits_dispositivos", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/10-traits-dispositivos/src/main.rs", Edition2024) }
+   0.117814250s  INFO prepare_target{force=false package_id=traits_dispositivos v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/10-traits-dispositivos) target="traits_dispositivos"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/traits_dispositivos-7f57424457618e6d/test-bin-traits_dispositivos`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.117940125s  INFO prepare_target{force=false package_id=transacoes_blindadas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/23-transacoes-blindadas) target="transacoes_blindadas"}: cargo::core::compiler::fingerprint: fingerprint error for transacoes_blindadas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/23-transacoes-blindadas)/Check { test: false }/TargetInner { name: "transacoes_blindadas", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/23-transacoes-blindadas/src/main.rs", Edition2024) }
+   0.117944042s  INFO prepare_target{force=false package_id=transacoes_blindadas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/23-transacoes-blindadas) target="transacoes_blindadas"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/transacoes_blindadas-a6f3a4901385967e/bin-transacoes_blindadas`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.118089834s  INFO prepare_target{force=false package_id=transacoes_blindadas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/23-transacoes-blindadas) target="transacoes_blindadas"}: cargo::core::compiler::fingerprint: fingerprint error for transacoes_blindadas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/23-transacoes-blindadas)/Check { test: true }/TargetInner { name: "transacoes_blindadas", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/23-transacoes-blindadas/src/main.rs", Edition2024) }
+   0.118093542s  INFO prepare_target{force=false package_id=transacoes_blindadas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/23-transacoes-blindadas) target="transacoes_blindadas"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/transacoes_blindadas-49c0329aa6565ac6/test-bin-transacoes_blindadas`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.118238125s  INFO prepare_target{force=false package_id=transmissao_generica v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/11-transmissao-generica) target="transmissao_generica"}: cargo::core::compiler::fingerprint: fingerprint error for transmissao_generica v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/11-transmissao-generica)/Check { test: false }/TargetInner { name: "transmissao_generica", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/11-transmissao-generica/src/main.rs", Edition2024) }
+   0.118241959s  INFO prepare_target{force=false package_id=transmissao_generica v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/11-transmissao-generica) target="transmissao_generica"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/transmissao_generica-dabbe28fcfcdeca8/bin-transmissao_generica`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.118362959s  INFO prepare_target{force=false package_id=transmissao_generica v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/11-transmissao-generica) target="transmissao_generica"}: cargo::core::compiler::fingerprint: fingerprint error for transmissao_generica v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/11-transmissao-generica)/Check { test: true }/TargetInner { name: "transmissao_generica", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/11-transmissao-generica/src/main.rs", Edition2024) }
+   0.118366667s  INFO prepare_target{force=false package_id=transmissao_generica v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/11-transmissao-generica) target="transmissao_generica"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/transmissao_generica-5d83331549aefdd8/test-bin-transmissao_generica`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.118487250s  INFO prepare_target{force=false package_id=triagem_encomendas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/02-triagem-encomendas) target="triagem_encomendas"}: cargo::core::compiler::fingerprint: fingerprint error for triagem_encomendas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/02-triagem-encomendas)/Check { test: false }/TargetInner { name: "triagem_encomendas", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/02-triagem-encomendas/src/main.rs", Edition2024) }
+   0.118491000s  INFO prepare_target{force=false package_id=triagem_encomendas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/02-triagem-encomendas) target="triagem_encomendas"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/triagem_encomendas-cb84a51ac5a02573/bin-triagem_encomendas`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.118606042s  INFO prepare_target{force=false package_id=triagem_encomendas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/02-triagem-encomendas) target="triagem_encomendas"}: cargo::core::compiler::fingerprint: fingerprint error for triagem_encomendas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/02-triagem-encomendas)/Check { test: true }/TargetInner { name: "triagem_encomendas", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/02-triagem-encomendas/src/main.rs", Edition2024) }
+   0.118609500s  INFO prepare_target{force=false package_id=triagem_encomendas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/02-triagem-encomendas) target="triagem_encomendas"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/triagem_encomendas-e7572b5fa6b06016/test-bin-triagem_encomendas`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.118724500s  INFO prepare_target{force=false package_id=type_states_drone v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/20-type-states-drone) target="type_states_drone"}: cargo::core::compiler::fingerprint: fingerprint error for type_states_drone v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/20-type-states-drone)/Check { test: false }/TargetInner { name: "type_states_drone", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/20-type-states-drone/src/main.rs", Edition2024) }
+   0.118727917s  INFO prepare_target{force=false package_id=type_states_drone v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/20-type-states-drone) target="type_states_drone"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/type_states_drone-4497f893235a84de/bin-type_states_drone`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.118847375s  INFO prepare_target{force=false package_id=type_states_drone v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/20-type-states-drone) target="type_states_drone"}: cargo::core::compiler::fingerprint: fingerprint error for type_states_drone v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/20-type-states-drone)/Check { test: true }/TargetInner { name: "type_states_drone", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/20-type-states-drone/src/main.rs", Edition2024) }
+   0.118850834s  INFO prepare_target{force=false package_id=type_states_drone v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/20-type-states-drone) target="type_states_drone"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/type_states_drone-b5a2045c3310f04c/test-bin-type_states_drone`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.118966584s  INFO prepare_target{force=false package_id=zero-copy-telemetria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/34-zero-copy-telemetria) target="zero-copy-telemetria"}: cargo::core::compiler::fingerprint: fingerprint error for zero-copy-telemetria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/34-zero-copy-telemetria)/Check { test: false }/TargetInner { name: "zero-copy-telemetria", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/34-zero-copy-telemetria/src/main.rs", Edition2021) }
+   0.118970167s  INFO prepare_target{force=false package_id=zero-copy-telemetria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/34-zero-copy-telemetria) target="zero-copy-telemetria"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/zero-copy-telemetria-31059ca04b3b4efc/bin-zero-copy-telemetria`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.119125459s  INFO prepare_target{force=false package_id=zero-copy-telemetria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/34-zero-copy-telemetria) target="zero-copy-telemetria"}: cargo::core::compiler::fingerprint: fingerprint error for zero-copy-telemetria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/34-zero-copy-telemetria)/Check { test: true }/TargetInner { name: "zero-copy-telemetria", doc: true, ..: with_path("/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/34-zero-copy-telemetria/src/main.rs", Edition2021) }
+   0.119128959s  INFO prepare_target{force=false package_id=zero-copy-telemetria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/34-zero-copy-telemetria) target="zero-copy-telemetria"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/.fingerprint/zero-copy-telemetria-fe0bdb55b2402ae3/test-bin-zero-copy-telemetria`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::cli::main
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+    Checking r2d2_sqlite v0.25.0
+    Checking serde v1.0.228
+    Checking tokio-rusqlite v0.6.0
+    Checking cxx v1.0.194
+    Checking rand v0.8.6
+    Checking buffer_compartilhado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/17-buffer-compartilhado)
+    Checking calculos_legados v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/16-calculos-legados)
+    Checking macros-auditoria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria)
+    Checking SA-06-fabrica-automata v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-06-fabrica-automata)
+    Checking audit-log-derive v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/35-macros-auditoria/audit-log-derive)
+    Checking pool_conexoes v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/25-pool-conexoes-multithread)
+    Checking gestor_frota_pro v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/31-gestor-frota-async-repo)
+    Checking SA-09-hub-operacoes-globais v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-09-hub-operacoes-globais)
+    Checking integracao_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/21-integracao-sql)
+    Checking relatorios_complexos_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/22-relatorios-complexos-sql)
+    Checking sql-integration-tests v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/tests/sql-integration-tests)
+    Checking muitos_para_muitos v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/32-relacionamento-muitos-para-muitos)
+    Checking transacoes_blindadas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/23-transacoes-blindadas)
+    Checking fts_log_manager v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/29-fts-log-manager)
+    Checking migracoes_automaticas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/26-migracoes-automaticas)
+    Checking auditoria_certificacoes v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/33-auditoria-certificacoes)
+    Checking crud_completo v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/28-crud-completo-frota)
+    Checking auditoria_forense v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/30-auditoria-forense)
+    Checking async_sql_tokio v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/27-async-sql-tokio)
+    Checking concorrencia_segura v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/15-concorrencia-segura)
+    Checking emprestimo_telemetria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/04-emprestimo-telemetria)
+    Checking lista_ligada v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/18-lista-ligada)
+    Checking gerenciador_payload v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/08-gerenciador-payload)
+    Checking processamento_dados v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/12-processamento-dados)
+    Checking SA-03-logistica-central v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-03-logistica-central)
+    Checking desafio_drone_resgate v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-01-drone-resgate)
+    Checking traits_dispositivos v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/10-traits-dispositivos)
+    Checking logistica_drone v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/01-logistica-drone)
+    Checking sobrecarga_operadores v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/19-sobrecarga-operadores)
+    Checking triagem_encomendas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/02-triagem-encomendas)
+    Checking ffi-avancado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/36-ffi-avancado)
+    Checking type_states_drone v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/20-type-states-drone)
+    Checking diagnostico_sensores v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/05-diagnostico-sensores)
+    Checking dashboard_compartilhado v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/13-dashboard-compartilhado)
+    Checking gestao_mensagens v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/03-gestao-mensagens)
+    Checking transmissao_generica v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/11-transmissao-generica)
+    Checking SA-05-trafego-aereo v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-05-trafego-aereo)
+    Checking SA-04-comando-central v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-04-comando-central)
+    Checking motor_hidraulico v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/07-motor-hidraulico)
+    Checking banco_dados_entregas v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/09-banco-dados-entregas)
+    Checking SA-02-hub-diagnostico v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/SA-02-hub-diagnostico)
+    Checking auditoria_logs v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/06-auditoria-logs)
+    Checking calibracao_dinamica v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/exercicios/14-calibracao-dinamica)
+    Checking telemetria_json_sql v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/24-telemetria-json-sql)
+    Checking zero-copy-telemetria v0.1.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/34-zero-copy-telemetria)
+    Checking SA-10-monumento-total v1.0.0 (/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/integracao-rust-sql/SA-10-monumento-total)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.12s

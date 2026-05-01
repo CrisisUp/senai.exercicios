@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 use std::io::{self, Write};
 /**
  * @file main.rs
@@ -127,3 +129,4 @@ fn main() {
     - Cow (Copy-on-Write) para otimização de referências e clones.
     - Interior Mutability com RefCell<T>.
 */
+

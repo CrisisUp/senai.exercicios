@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief SA-01: Sistema de Rastreamento de Drones de Resgate (Refatoração de Elite).
@@ -149,3 +151,4 @@ mod tests {
        - Smart Pointers (Box, Rc).
     ===============================================================
 */
+

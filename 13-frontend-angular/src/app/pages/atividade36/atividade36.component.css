@@ -1,0 +1,207 @@
+.prime-container {
+    padding: 2rem;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.prime-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    transition: all 0.5s ease;
+}
+
+.prime-header.alert-active {
+    border-color: #f85149;
+    box-shadow: 0 5px 20px rgba(248, 81, 73, 0.1);
+}
+
+.brand h1 {
+    color: #f1e05a;
+    margin: 0;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.v-tag {
+    font-size: 0.65rem;
+    background: #238636;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.global-telemetry {
+    display: flex;
+    gap: 2rem;
+    font-family: monospace;
+    font-size: 0.8rem;
+}
+
+.t-label { color: #8b949e; }
+.t-val { color: #58a6ff; font-weight: bold; }
+.t-val.on { color: #3fb950; animation: blink 1.5s infinite; }
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.global-alert-banner {
+    background: #f85149;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.btn-dismiss {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid white;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.7rem;
+}
+
+.prime-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 2rem;
+}
+
+.control-deck {
+    background: #161b22;
+    border: 1px solid #30363d;
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+h3 {
+    margin-top: 0;
+    font-size: 0.8rem;
+    color: #8b949e;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.guide { font-size: 0.85rem; color: #6e7681; margin-bottom: 2rem; }
+
+.btn-voice-link {
+    width: 100%;
+    padding: 1.5rem;
+    background: #21262d;
+    border: 2px solid #30363d;
+    color: #58a6ff;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-voice-link:hover {
+    border-color: #58a6ff;
+    background: rgba(88, 166, 255, 0.05);
+}
+
+.hints-box {
+    margin-top: 3rem;
+    background: #0d1117;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #21262d;
+}
+
+.hints-box h4 { font-size: 0.7rem; color: #8b949e; margin-top: 0; }
+.hints-box ul { font-size: 0.8rem; color: #58a6ff; font-family: monospace; padding-left: 1.2rem; }
+
+.kernel-viewport {
+    background: #050505;
+    border: 2px solid #161b22;
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.viewport-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.m-id {
+    font-size: 0.7rem;
+    color: #f1e05a;
+    font-family: monospace;
+    background: rgba(241, 224, 90, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.viewport-stage {
+    min-height: 400px;
+    border: 1px dashed #30363d;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-state {
+    text-align: center;
+    color: #484f58;
+}
+
+.nexus-pulse {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.5; }
+}
+
+.prime-audit {
+    margin-top: 4rem;
+    background: #161b22;
+    border: 1px solid #30363d;
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.audit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.audit-item {
+    font-size: 0.85rem;
+    color: #8b949e;
+    line-height: 1.4;
+}
+
+b { color: #f1e05a; }
+code { color: #58a6ff; background: #21262d; padding: 2px 4px; border-radius: 4px; }

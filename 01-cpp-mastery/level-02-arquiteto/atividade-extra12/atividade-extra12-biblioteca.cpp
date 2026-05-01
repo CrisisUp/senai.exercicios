@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file atividade-extra12-biblioteca.cpp
  * @brief DESAFIO DE FASE: Sistema Integrado de Gestão Bibliotecária.
@@ -142,3 +144,4 @@ int main()
  * @section MemoryMap
  * Stack: variáveis locais e ponteiros. Heap: alocações via Smart Pointers/RAII.
  */
+

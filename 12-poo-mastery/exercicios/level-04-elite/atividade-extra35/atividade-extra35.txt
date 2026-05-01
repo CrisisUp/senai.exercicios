@@ -1,0 +1,31 @@
+# 📘 Atividade 35: Velocidade de Escape (C++ Moderno: Move Semantics)
+STATUS: Nível 35 (Engenheiro de Elite) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+A "SkyCargo Nexus" agora processa imagens 4K em tempo real para navegação. Cada imagem ocupa 50MB de RAM. Se usarmos o Construtor de Cópia tradicional, cada vez que passarmos uma imagem para uma função, o CPU perderá tempo precioso duplicando 50MB. Você aprenderá a **Semântica de Movimento (Move Semantics)**, que permite "roubar" os dados de um objeto temporário, movendo apenas o ponteiro. É performance de hardware com a segurança da POO.
+
+## 🛠️ Necessidade Técnica
+- **R-value Reference (`&&`)**: Identifica objetos temporários que podem ser movidos.
+- **Construtor de Movimento**: `Objeto(Objeto&& outro)`.
+- **Operador de Atribuição de Movimento**: `operator=(Objeto&& outro)`.
+- **std::move**: Converte um objeto em um candidato para movimento.
+
+## 🚀 Missão
+1.  Crie a classe `DataBuffer` que aloca um array dinâmico (`int* data`).
+2.  Implemente o "Big Three": Destrutor, Construtor de Cópia e Operador de Atribuição.
+3.  Implemente a "Regra dos Cinco": Adicione o **Move Constructor** e o **Move Assignment**.
+4.  No `main`, crie uma função `gerarDadosPesados()` que retorne um `DataBuffer`.
+5.  **Prova de Elite:** Use logs para mostrar que, ao usar `std::move`, o destrutor do objeto original não apaga os dados que foram "roubados" pelo novo objeto.
+
+## 📋 Requisitos de Elite
+- Zero Cópias Desnecessárias: Provar via console que o movimento ocorreu.
+- Segurança de Ponteiros: Garantir que o objeto "movido" fique em um estado válido (nulo).
+- Domínio da Regra dos Cinco: Gerenciamento manual de recursos com eficiência máxima.
+
+------------------------------------------------------------------------------
+"Não copie o que você pode simplesmente transferir."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

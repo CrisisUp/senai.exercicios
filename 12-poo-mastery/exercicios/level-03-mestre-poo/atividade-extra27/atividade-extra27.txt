@@ -1,0 +1,28 @@
+# 📘 Atividade 27: Substituição Segura (LSP - Liskov Substitution Principle)
+STATUS: Nível 27 (Arquiteto de Linhagens) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+Você criou a classe `Drone` e a classe filha `DroneTerrestre` (um Rover). Mas o Rover não sabe `voar()`. Se o seu sistema tratar o Rover como um Drone e tentar decolar, o sistema vai quebrar ou lançar um erro inesperado. Isso viola o **Princípio de Substituição de Liskov (LSP)**: as subclasses devem ser substituíveis por suas classes base sem alterar a correção do programa.
+
+## 🛠️ Necessidade Técnica
+Garantir que a herança represente uma relação real de "É-UM" (is-a) e que as filhas respeitem o comportamento esperado do pai.
+
+## 🚀 Missão
+1.  Identifique o erro: Por que um `Pinguim` não deveria herdar de `Passaro` se o método base for `voar()`?
+2.  Refatore a hierarquia do Nexus: Crie a base `VeiculoAutonomo`.
+3.  Crie as sub-interfaces `VeiculoVoador` e `VeiculoTerrestre`.
+4.  Implemente o `Drone` (voador) e o `Rover` (terrestre).
+5.  No `main`, demonstre que o seu sistema de "Controle de Tráfego Aéreo" agora só aceita `VeiculosVoadores`, impedindo erros lógicos com Rovers.
+
+## 📋 Requisitos de Elite
+- Integridade de Tipo: As classes filhas não devem "mentir" sobre suas capacidades.
+- Design por Contrato: Respeitar as pré-condições e pós-condições da classe base.
+- Prevenção de exceções de "Not Implemented".
+
+------------------------------------------------------------------------------
+"Se parece um pato e faz quack, mas precisa de baterias para nadar, você provavelmente tem a abstração errada."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

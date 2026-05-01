@@ -29,3 +29,8 @@ Imagens devem ser genéricas; containers devem ser específicos. Variáveis de a
 
 ------------------------------------------------------------------------------
 "Variáveis de ambiente são o DNA dinâmico que define a personalidade de um container."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

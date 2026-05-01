@@ -1,0 +1,30 @@
+# 📘 Atividade 31: A Fábrica de Unidades (Design Pattern: Factory Method)
+STATUS: Nível 31 (Engenheiro de Elite) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+A "SkyCargo Nexus" está crescendo. Hoje fabricamos Drones, amanhã fabricaremos Satélites e Rovers. Se o código da Central de Comando tiver que dar um `new Drone()` ou `new Rover()`, ele ficará "sujo" com detalhes de cada modelo. Você aprenderá o **Factory Method**, delegando a responsabilidade de criação para uma classe especialista, permitindo que o sistema peça um "veículo" sem saber qual modelo exato está sendo construído.
+
+## 🛠️ Necessidade Técnica
+- Classe abstrata `Veiculo`.
+- Classe abstrata `FabricaVeiculos` com o método virtual `criarVeiculo()`.
+- Implementações concretas (Ex: `FabricaDrones` cria `Drone`).
+
+## 🚀 Missão
+1.  Crie a interface `Veiculo` com o método `operar()`.
+2.  Crie a classe abstrata `Fabrica` com o método `fabricar()`.
+3.  Implemente `FabricaDrones` e `FabricaRovers`.
+4.  No `main`, crie uma função `processarEntrega(Fabrica* f)` que receba a fábrica, peça o veículo e o coloque para operar.
+5.  **Prova de Elite:** Adicione uma `FabricaSatélites` sem alterar a função `processarEntrega`.
+
+## 📋 Requisitos de Elite
+- Desacoplamento Total de Criação: O cliente não conhece a classe concreta do produto.
+- Respeito ao OCP: Novos produtos = novas fábricas, zero mudanças no código existente.
+- Uso profissional de Smart Pointers no retorno da fábrica.
+
+------------------------------------------------------------------------------
+"Não me diga como construir; apenas me entregue algo que funcione."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

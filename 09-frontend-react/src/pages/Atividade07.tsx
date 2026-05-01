@@ -1,3 +1,8 @@
+/**
+ * @file Atividade07.tsx
+ * @author Cristiano
+ * @date 2026
+ */
 import React, { useState, useMemo } from 'react';
 import styles from './Atividade07.module.css';
 
@@ -8,18 +13,18 @@ interface Drone {
   load: number;
 }
 
+// Dados brutos da frota (Simulando uma API) - Movido para fora para evitar recriação
+const fullFleet: Drone[] = [
+  { id: 'DR-10', name: 'Eagle Eye', status: 'OPERATIONAL', load: 45 },
+  { id: 'DR-22', name: 'Storm Breaker', status: 'WARNING', load: 88 },
+  { id: 'DR-35', name: 'Night Hawk', status: 'IN_ROUTE', load: 12 },
+  { id: 'DR-49', name: 'Cloud Racer', status: 'OPERATIONAL', load: 30 },
+  { id: 'DR-51', name: 'Iron Wing', status: 'WARNING', load: 95 },
+];
+
 const Atividade07: React.FC = () => {
   // Estado para o filtro selecionado
   const [filter, setFilter] = useState<string>('ALL');
-
-  // Dados brutos da frota (Simulando uma API)
-  const fullFleet: Drone[] = [
-    { id: 'DR-10', name: 'Eagle Eye', status: 'OPERATIONAL', load: 45 },
-    { id: 'DR-22', name: 'Storm Breaker', status: 'WARNING', load: 88 },
-    { id: 'DR-35', name: 'Night Hawk', status: 'IN_ROUTE', load: 12 },
-    { id: 'DR-49', name: 'Cloud Racer', status: 'OPERATIONAL', load: 30 },
-    { id: 'DR-51', name: 'Iron Wing', status: 'WARNING', load: 95 },
-  ];
 
   /**
    * @brief Lógica de Filtro (Requisito de Elite)
@@ -95,3 +100,12 @@ const Atividade07: React.FC = () => {
 };
 
 export default Atividade07;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

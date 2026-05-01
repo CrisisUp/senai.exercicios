@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/zero-copy-telemetria: /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/upgrade-industrial/34-zero-copy-telemetria/src/main.rs

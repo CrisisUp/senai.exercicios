@@ -1,0 +1,56 @@
+<div class="anim-container">
+    <header class="anim-header">
+        <h1>🎞️ COREOGRAFIA DE SILÍCIO</h1>
+        <p>Orquestração Programática via Web Animations API (WAAPI)</p>
+    </header>
+
+    <main class="anim-layout">
+        <!-- Unidade de Implantação -->
+        <div class="stage">
+            <div #deployUnit class="deploy-unit">
+                <div class="unit-core">
+                    <span class="nexus-logo">N</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Painel de Controle -->
+        <aside class="control-panel">
+            <h3>PROTOCOLOS DE ANIMAÇÃO</h3>
+            
+            <div class="action-group">
+                <button 
+                    class="btn-anim" 
+                    [class.active]="isDeployed()"
+                    (click)="toggleDeployment()">
+                    {{ isDeployed() ? 'RECOLHER UNIDADE' : 'IMPLANTAR UNIDADE' }}
+                </button>
+
+                <button 
+                    class="btn-anim warning" 
+                    [class.active]="isPulsing()"
+                    (click)="togglePulse()">
+                    {{ isPulsing() ? 'DESATIVAR ALERTA' : 'ATIVAR ALERTA (PULSE)' }}
+                </button>
+            </div>
+
+            <div class="telemetry-box">
+                <div class="stat">STATUS: <span [style.color]="isDeployed() ? '#3fb950' : '#8b949e'">
+                    {{ isDeployed() ? 'ONLINE' : 'STOWED' }}
+                </span></div>
+                <div class="stat">ALERTA: <span [style.color]="isPulsing() ? '#f85149' : '#8b949e'">
+                    {{ isPulsing() ? 'ATIVO' : 'STANDBY' }}
+                </span></div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="tech-audit">
+        <h4>ESPECIFICAÇÃO DE ENGENHARIA (NÍVEL 29)</h4>
+        <p>
+            Diferente de animações CSS puras, o uso de <b>WAAPI</b> permite capturar o fim da animação 
+            via Promises ou Callbacks (<code>onfinish</code>), permitindo sequenciamento complexo 
+            e sincronização com o estado reativo (Signals).
+        </p>
+    </footer>
+</div>

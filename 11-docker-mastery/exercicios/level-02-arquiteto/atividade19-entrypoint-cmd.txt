@@ -35,3 +35,8 @@ Você desenvolveu uma ferramenta de diagnóstico para o drone Alpha-707 chamada 
 
 ------------------------------------------------------------------------------
 "O CMD é um convite; o Entrypoint é uma ordem."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

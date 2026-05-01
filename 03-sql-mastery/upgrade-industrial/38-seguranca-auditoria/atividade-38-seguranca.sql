@@ -1,3 +1,9 @@
+/**
+ * @file atividade-38-seguranca.sql
+ * @brief Implementação/Componente atividade-38-seguranca.sql
+ * @author Cristiano
+ * @date 2026
+ */
 -- ##############################################################################
 -- # ATIVIDADE 38: SEGURANÇA E AUDITORIA FORENSE (VERSÃO FINAL BLINDADA)
 -- ##############################################################################
@@ -44,3 +50,12 @@ SELECT * FROM telemetria_global;
 
 .print "\n\x1b[1;32m[COFRE]\x1b[0m Verificando o rastro de auditoria:"
 SELECT * FROM cofre_auditoria;
+
+/* @section ExecutionPlan
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

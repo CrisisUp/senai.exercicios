@@ -1,0 +1,81 @@
+Anexo Atividade 2 - Lógica de Programação e Algoritmos
+FOLHA DE ATIVIDADE
+Lógica de Programação e Algoritmos
+SA 1 – Desafio 1
+ORGANIZAÇÃO DE DADOS: VETORES
+Objetivo desta atividade:
+Desenvolver a capacidade de declarar e utilizar variáveis, aplicar operadores aritméticos e exibir resultados no console utilizando a linguagem C++. Nota: 12
+
+Contexto:
+Você trabalha como estagiário na SmartSolutions, empresa que desenvolve soluções digitais para pequenas empresas. Um cliente solicitou um programa simples que ajude a analisar o estoque de produtos em sua loja. Agora você deve criar um pequeno trecho de programa C++ que analise o estoque de um produto, verificando se é necessário fazer um pedido de reposição com base em dados informados.
+Caso o estoque esteja abaixo do ideal, o programa deve calcular quantas unidades devem ser compradas e o custo total da reposição.
+
+Orientações:
+Implemente um programa em C++ que simule a análise de estoque de um produto, considerando os seguintes passos:
+
+1. Defina ou solicite ao usuário que informe:
+• A quantidade atual em estoque (estoqueAtual)
+• A quantidade mínima ideal (quantidadeMinima)
+• O preço unitário do produto (precoUnitario)
+
+2. Verifique se o estoque está abaixo do mínimo ideal.
+
+3. Caso esteja, calcule:
+• A quantidade a ser reposta
+• O valor total necessário para a reposição (quantidade
+que precisa ser reposta * precoUnitario)
+
+4. Exiba no console:
+• Se é necessário ou não fazer a reposição
+• E, se for necessário, quantas unidades devem ser compradas e qual será o custo total.
+
+Pontos de atenção:
+
+• Envie o arquivo .cpp criado, lembre-se de testar o arquivo .exe criado antes de enviar a atividade!
+• Utilize variáveis adequadas para os dados informados (inteiros e float ou double para valores monetários).
+• Use operadores aritméticos para calcular a quantidade a ser reposta e o custo total.
+• Utilize operadores lógicos e estruturas de decisão (if) para verificar a necessidade de reposição.
+• Exiba mensagens claras no console com cout.
+• Comente seu código para explicar cada etapa.
+• Utilize o modelo abaixo como ponto de partida:
+
+#include <iostream>
+using namespace std;
+int main() {
+// Declaração de variáveis
+// Entrada de dados
+// Verificação do estoque
+// Cálculos e exibição dos resultados
+// A linha abaixo garante que o código pause ao ser executado para permitir que verifique as respostas 
+    system("pause")
+return 0;
+}
+
+Capacidades que você vai desenvolver:
+• Utilizar variáveis para armazenar valores durante a execução de um programa;
+• Utilizar operadores aritméticos para realizar cálculos em
+expressões numéricas;
+• Aplicar operadores lógicos para avaliar e combinar condições booleanas.
+
+Você será avaliado(a) por:
+• Enviar o arquivo .cpp criado, e lembrou-se de testar o arquivo .exe criado antes de enviar a atividade;
+• Utilizar variáveis adequadas para os dados informados (inteiros e float ou double para valores monetários);
+• Usar operadores aritméticos para calcular a quantidade a ser reposta e o custo total;
+• Utilizar operadores lógicos e estruturas de decisão (if) para verificar a necessidade de reposição;
+• Exibir mensagens claras no console com cout;
+• Comentar seu código para explicar cada etapa;
+• Utilizar o modelo de código como ponto de partida.
+
+Análise de Falha Crítica:
+Risco de Input Failure: O sistema atual utiliza cin diretamente para capturar dados numéricos (int e double). Caso o usuário digite letras em um campo numérico, o cin entra em estado de erro (failbit), para de ler dados e entra em um loop infinito ou pula as próximas entradas, travando a lógica de negócio. Em sistemas reais, isso pode causar corrupção de memória ou negação de serviço.
+
+
+## Estudo de Caso
+Aplicação em cenário real.
+
+## Necessidade Técnica
+Evolução do sistema atual.
+
+## Requisitos
+1. Atender rigorosamente ao protocolo de elite.
+

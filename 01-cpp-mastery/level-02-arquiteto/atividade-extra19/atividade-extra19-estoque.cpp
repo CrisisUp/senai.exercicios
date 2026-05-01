@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file atividade-extra19-estoque.cpp
  * @brief Gestão de Inventário Dinâmico com STL, Sort e Lambdas.
@@ -128,3 +130,4 @@ int main() {
  * @section MemoryMap
  * Stack: variáveis locais e ponteiros. Heap: alocações via Smart Pointers/RAII.
  */
+

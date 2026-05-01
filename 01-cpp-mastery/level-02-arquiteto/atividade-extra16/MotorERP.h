@@ -95,3 +95,8 @@ public:
 };
 
 #endif // MOTOR_ERP_H
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

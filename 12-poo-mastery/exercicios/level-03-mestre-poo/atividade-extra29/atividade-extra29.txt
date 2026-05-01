@@ -1,0 +1,28 @@
+# 📘 Atividade 29: Inversão de Comando (DIP - Dependency Inversion Principle)
+STATUS: Nível 29 (Arquiteto de Linhagens) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+A classe `CentralComando` cria diretamente um objeto `DroneFalcon9` dentro do seu construtor. Se quisermos usar o `DroneMQ9`, teremos que mudar a classe `CentralComando`. Isso viola o **Princípio da Inversão de Dependência (DIP)**: módulos de alto nível não devem depender de módulos de baixo nível; ambos devem depender de abstrações.
+
+## 🛠️ Necessidade Técnica
+Injeção de Dependência (Dependency Injection): Passar a implementação para o construtor em vez de criá-la internamente.
+
+## 🚀 Missão
+1.  Crie a interface `IDrone`.
+2.  Faça `CentralComando` depender de `IDrone*` em seu construtor.
+3.  No `main`, instancie um `DroneFalcon9` e um `DroneMQ9`.
+4.  Injete o Falcon na Central, execute um comando, e depois injete o MQ9 (ou crie outra central com ele).
+5.  Observe como a `CentralComando` agora é agnóstica ao modelo do drone.
+
+## 📋 Requisitos de Elite
+- Desacoplamento Total: A classe de alto nível nunca conhece a classe concreta de baixo nível.
+- Flexibilidade: Facilidade de trocar implementações para testes ou novos requisitos.
+- Uso profissional de Injeção via Construtor.
+
+------------------------------------------------------------------------------
+"Não nos ligue, nós ligamos para você. Deixe que o sistema decida qual peça encaixar."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

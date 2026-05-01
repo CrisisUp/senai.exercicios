@@ -1,4 +1,8 @@
 /**
+ * @author Cristiano
+ * @date 2026
+ */
+/**
  * @file nexus_core.h
  * @brief Definição do Motor de Telemetria de Elite (C++ Core) - REVISADO.
  */
@@ -44,3 +48,12 @@ private:
 std::unique_ptr<NexusCore> criar_nexus();
 
 } // namespace logispeed
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

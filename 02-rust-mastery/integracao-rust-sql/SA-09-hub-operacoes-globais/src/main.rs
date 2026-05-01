@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief SA-09: Hub Assíncrono de Operações Globais.
@@ -114,3 +116,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     backends robustos, rápidos e inquebráveis.
     ===============================================================
 */
+
+/* @section MemoryMap
+ * Stack: Tipos fixos.
+ * Heap: Alocações dinâmicas (Box, Vec).
+ */

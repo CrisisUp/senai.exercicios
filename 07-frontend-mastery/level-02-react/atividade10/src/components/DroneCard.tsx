@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file DroneCard.tsx
  * @brief Componente Molecular para representação de telemetria de drone.
  * @author Engenheiro de Elite
@@ -52,3 +55,12 @@ const DroneCard: React.FC<DroneCardProps> = ({ id, altitude, velocidade, status 
 };
 
 export default DroneCard;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

@@ -1,0 +1,26 @@
+<div class="container">
+  <header class="header">
+    <h1>Inventário de Frota - Nexus Angular</h1>
+    <p>Operador: <strong>{{ operatorName() }}</strong> | Versão: {{ systemVersion }}</p>
+  </header>
+
+  <section class="inventory">
+    <h2>Status dos Drones em Tempo Real</h2>
+    <ul class="drone-list">
+      @for (drone of drones(); track drone.id) {
+        <li 
+          [class.active]="drone.status === 'active'"
+          [class.warning]="drone.status === 'warning'"
+          [id]="drone.status === 'warning' ? 'drone-warning' : ''"
+          class="drone-item"
+        >
+          <span class="drone-id">[{{ drone.id }}]</span>
+          <span class="drone-name">{{ drone.name }}</span>
+          <span class="status-badge">
+            {{ drone.status === 'active' ? '● OPERACIONAL' : '▲ FALHA DE SISTEMA' }}
+          </span>
+        </li>
+      }
+    </ul>
+  </section>
+</div>

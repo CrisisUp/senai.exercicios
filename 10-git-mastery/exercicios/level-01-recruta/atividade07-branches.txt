@@ -29,3 +29,8 @@ Uma branch é como uma linha do tempo paralela. Você pode mudar o código em um
 
 ------------------------------------------------------------------------------
 "Branches permitem que você erre em segredo e brilhe em público."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

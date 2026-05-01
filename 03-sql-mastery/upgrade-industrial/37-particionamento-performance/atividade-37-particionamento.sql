@@ -1,3 +1,9 @@
+/**
+ * @file atividade-37-particionamento.sql
+ * @brief Implementação/Componente atividade-37-particionamento.sql
+ * @author Cristiano
+ * @date 2026
+ */
 -- ##############################################################################
 -- # ATIVIDADE 37: UPGRADE INDUSTRIAL - PARTICIONAMENTO E PERFORMANCE (CORRIGIDO)
 -- ##############################################################################
@@ -43,3 +49,12 @@ EXPLAIN QUERY PLAN
 SELECT veiculo_id FROM abr.telemetria WHERE veiculo_id = 101
 UNION ALL
 SELECT veiculo_id FROM mai.telemetria WHERE veiculo_id = 101;
+
+/* @section ExecutionPlan
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

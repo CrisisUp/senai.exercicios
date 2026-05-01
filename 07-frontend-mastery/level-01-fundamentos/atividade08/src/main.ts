@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file main.ts
  * @brief Orquestração Assíncrona e Fetch API para o SkyCargo OS.
  * @author Engenheiro de Elite
@@ -121,4 +124,13 @@ console.log("\x1b[1;32m[SYSTEM]\x1b[0m Nexus Link Engine Ativo.");
  *    buscá-los simultaneamente, ganhando performance massiva.
  * 3. TRY/CATCH/FINALLY: A estrutura de elite para garantir que a UI sempre 
  *    volte para um estado estável (ex: esconder o loader), mesmo se houver erro.
+ */
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
  */

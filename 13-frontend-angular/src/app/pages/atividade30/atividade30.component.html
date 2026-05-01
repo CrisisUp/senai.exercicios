@@ -1,0 +1,52 @@
+<div class="sim-container">
+    <header class="sim-header">
+        <h1>🚀 SIMULADOR DE VOO NEXUS</h1>
+        <p>Desafio Integrador Nível Engenheiro: Fusão de Protocolos Táticos</p>
+    </header>
+
+    <main class="sim-layout">
+        <!-- Visualizador de Voo (Canvas) -->
+        <section class="stage">
+            <div class="status-overlay">
+                <span class="status-badge" [class.active]="isSimulating()">
+                    {{ statusMessage() }}
+                </span>
+            </div>
+            
+            <canvas #flightCanvas width="600" height="400"></canvas>
+
+            <div class="voice-controls">
+                <button class="btn-voice" (click)="startVoice()" [disabled]="isSimulating()">
+                    🎙️ ATIVAR ESCUTA
+                </button>
+                <p class="hint">Diga: <b>"Iniciar Simulação"</b> ou <b>"Abortar"</b></p>
+            </div>
+        </section>
+
+        <!-- Log de Missão -->
+        <aside class="mission-log">
+            <h3>LOG DE TELEMETRIA</h3>
+            <div class="log-screen">
+                @for (p of flightPath(); track $index) {
+                    <div class="log-item">
+                        <span class="pt">WAYPOINT {{ $index + 1 }}</span>
+                        <span class="coords">X:{{ p.x }} Y:{{ p.y }}</span>
+                        <span class="alt">{{ p.altitude }} FT</span>
+                    </div>
+                } @empty {
+                    <div class="idle-msg">AGUARDANDO SEQUÊNCIA DE BOOT...</div>
+                }
+            </div>
+        </aside>
+    </main>
+
+    <footer class="tech-audit">
+        <h4>ESPECIFICAÇÃO DE ENGENHARIA (NÍVEL 30)</h4>
+        <div class="audit-grid">
+            <div class="audit-item"><b>Multithread:</b> Rota calculada via Web Worker (Background Thread).</div>
+            <div class="audit-item"><b>Graphics:</b> Renderização 2D acelerada via HTML5 Canvas.</div>
+            <div class="audit-item"><b>Sensors:</b> Comando e Controle via Web Speech Recognition.</div>
+            <div class="audit-item"><b>Meta-data:</b> Auditoria de métodos via Custom Decorators (@Audit).</div>
+        </div>
+    </footer>
+</div>

@@ -1,0 +1,178 @@
+.vault-container {
+    padding: 2rem;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.vault-header {
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+}
+
+.vault-header h1 {
+    color: #f1e05a;
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.vault-header p {
+    color: #8b949e;
+    font-size: 0.9rem;
+}
+
+.vault-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    max-width: 1200px;
+}
+
+.forge-card, .display-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.forge-card h3, .display-card h3 {
+    margin-top: 0;
+    font-size: 0.8rem;
+    color: #8b949e;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.nexus-input {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    color: white;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+textarea.nexus-input {
+    height: 100px;
+    resize: vertical;
+}
+
+.btn-save {
+    width: 100%;
+    background: #238636;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-save:disabled {
+    background: #161b22;
+    color: #484f58;
+    cursor: not-allowed;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.btn-clear {
+    background: transparent;
+    border: 1px solid #f85149;
+    color: #f85149;
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.key-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.key-item {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    padding: 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.key-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.key-id {
+    font-size: 0.6rem;
+    color: #58a6ff;
+    font-family: monospace;
+}
+
+.key-label {
+    font-weight: bold;
+    color: #e6edf3;
+}
+
+.key-value {
+    color: #f1e05a;
+    font-size: 0.9rem;
+    background: rgba(241, 224, 90, 0.05);
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.key-date {
+    font-size: 0.65rem;
+    color: #484f58;
+}
+
+.btn-delete {
+    background: #f8514933;
+    color: #f85149;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.empty-vault {
+    text-align: center;
+    padding: 5rem 0;
+    color: #484f58;
+    border: 2px dashed #21262d;
+    border-radius: 12px;
+}
+
+.state-audit {
+    margin-top: 4rem;
+    padding: 1.5rem;
+    background: #000;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #8b949e;
+}
+
+code {
+    color: #58a6ff;
+}

@@ -379,3 +379,17 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 
+
+
+## Estudo de Caso
+Aplicação em cenário real.
+
+## Necessidade Técnica
+Evolução do sistema atual.
+
+## Análise de Falha Crítica
+Prevenção contra falhas em tempo de execução.
+
+## Requisitos
+1. Atender rigorosamente ao protocolo de elite.
+

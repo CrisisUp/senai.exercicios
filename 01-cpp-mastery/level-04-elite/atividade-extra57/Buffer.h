@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file Buffer.h
  * @brief Interface para o Gerenciador de Memória Manual (Buffer).
@@ -57,3 +59,8 @@ namespace Logistica {
 } // namespace Logistica
 
 #endif // BUFFER_H
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

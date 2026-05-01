@@ -1,0 +1,115 @@
+.sentinel-hub {
+    padding: 2rem;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.hub-header {
+    margin-bottom: 3rem;
+    border-left: 4px solid #f85149;
+    padding-left: 1.5rem;
+}
+
+.hub-header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.sentinel-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.auth-status-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    padding: 2rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.3s;
+}
+
+.auth-status-card.authenticated {
+    border-color: #3fb950;
+}
+
+.status-indicator {
+    font-weight: bold;
+    font-family: monospace;
+    letter-spacing: 1px;
+}
+
+.btn-auth {
+    background: #238636;
+    border: none;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.navigation-panel {
+    border-top: 1px solid #30363d;
+    padding-top: 1.5rem;
+}
+
+.navigation-panel h3 {
+    font-size: 0.8rem;
+    color: #8b949e;
+    margin-bottom: 1rem;
+}
+
+.links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #8b949e;
+    background: #161b22;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    border: 1px solid #30363d;
+    transition: all 0.2s;
+}
+
+.nav-link:hover {
+    color: #58a6ff;
+}
+
+.nav-link.active {
+    background: #21262d;
+    color: #58a6ff;
+    border-color: #58a6ff;
+}
+
+.router-outlet-container {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+}
+
+.guard-audit {
+    margin-top: 4rem;
+    padding: 1.5rem;
+    border: 1px dashed #30363d;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #8b949e;
+}
+
+code {
+    background: #21262d;
+    color: #f1e05a;
+    padding: 2px 4px;
+    border-radius: 3px;
+}

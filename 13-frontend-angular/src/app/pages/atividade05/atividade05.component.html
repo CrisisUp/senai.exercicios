@@ -1,0 +1,53 @@
+<div class="container" [class.perigo]="isCritical()" [class.normal]="!isCritical()">
+  <header class="header">
+    <h1>Nexus Control v5.0 - {{ callsign() }}</h1>
+    <div class="status-badge">
+      @if (isCritical()) {
+        ⚠️ STATUS: ALERTA CRÍTICO
+      } @else {
+        ✅ STATUS: OPERAÇÃO NORMAL
+      }
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <!-- Seção de Configuração (Formulários) -->
+    <section class="config-panel">
+      <h2><span class="icon">⚙️</span> Configuração de Unidade</h2>
+      <form (submit)="updateCallsign(); $event.preventDefault()" class="form">
+        <div class="input-group">
+          <label for="callsign-input">Novo Callsign:</label>
+          <input 
+            id="callsign-input"
+            type="text" 
+            placeholder="Ex: ALPHA-01"
+            [value]="tempCallsign()"
+            (input)="onInputChange($event)"
+          />
+        </div>
+        <button type="submit" class="btn-action">ATUALIZAR REGISTRO</button>
+      </form>
+    </section>
+
+    <!-- Seção de Telemetria (Flexbox) -->
+    <section class="telemetry-panel">
+      <h2><span class="icon">🔋</span> Gestão de Energia</h2>
+      <div class="energy-control">
+        <button (click)="modifyBattery(-10)">REDUZIR CARGA</button>
+        <div class="battery-value">{{ battery() }}%</div>
+        <button (click)="modifyBattery(10)">REABASTECER</button>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="battery()"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="theory-box">
+    <h3>Resumo Técnico: Inteligência & Layout Flexível</h3>
+    <p>
+      Este componente demonstra a integração de <strong>Flexbox</strong> para layouts adaptáveis e 
+      <strong>Signals</strong> para lógica condicional. Através do <code>computed()</code>, detectamos estados críticos e injetamos classes CSS dinamicamente, permitindo que a interface reaja em tempo real à realidade dos dados.
+    </p>
+  </footer>
+</div>

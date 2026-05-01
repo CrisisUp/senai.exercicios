@@ -1,3 +1,7 @@
+#define ANSI_RESET "\033[0m"
+/**
+ * @date 2026
+ */
 /**
  * @file main.cpp
  * @brief Servidor gRPC de Telemetria (C++ Motor).
@@ -51,3 +55,12 @@ int main() {
     RunServer();
     return 0;
 }
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

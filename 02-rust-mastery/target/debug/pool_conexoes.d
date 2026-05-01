@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/pool_conexoes: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/exercicios/25-pool-conexoes-multithread/src/main.rs

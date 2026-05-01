@@ -1,4 +1,8 @@
 /**
+ * @author Cristiano
+ * @date 2026
+ */
+/**
  * @file NexusRadar.tsx
  * @brief Radar Tático de Tempo Real (Simulação C++ Signals).
  */
@@ -57,3 +61,12 @@ const NexusRadar: React.FC = () => {
 };
 
 export default NexusRadar;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

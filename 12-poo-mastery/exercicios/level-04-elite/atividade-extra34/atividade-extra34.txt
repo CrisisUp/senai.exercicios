@@ -1,0 +1,33 @@
+# 📘 Atividade 34: Unidades Customizáveis (Design Pattern: Decorator)
+STATUS: Nível 34 (Engenheiro de Elite) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+Na "SkyCargo Nexus", um drone básico pode receber diversos upgrades: **Blindagem**, **Sensores de Longo Alcance**, ou **Motores Turbo**. Se criarmos uma subclasse para cada combinação (DroneComBlindagem, DroneComBlindagemETurbo, etc.), teremos um pesadelo de herança. Usaremos o **Decorator**, permitindo que o operador "monte" as capacidades do drone em tempo de execução, envolvendo o objeto original em camadas de melhorias.
+
+## 🛠️ Necessidade Técnica
+- Interface `IDrone`: método `getDescricao()` e `getPreco()`.
+- Componente Concreto: `DroneBasico`.
+- Base Decorator: Armazena um ponteiro para `IDrone` e delega as chamadas.
+- Decoradores Concretos: Adicionam sua funcionalidade e chamam o objeto interno.
+
+## 🚀 Missão
+1.  Crie a interface `IDrone`.
+2.  Implemente o `DroneBasico` (Custo: 1000, Descrição: "Drone Alpha").
+3.  Crie os decoradores:
+    - `Blindagem`: Adiciona "+ Blindagem Reforçada" e custa +500.
+    - `ModuloIA`: Adiciona "+ Processador Neural" e custa +800.
+4.  No `main`, crie um drone básico e envolva-o em ambos os upgrades.
+5.  **Prova de Elite:** Imprima a descrição final e o custo total, demonstrando que o objeto se comporta como um único drone turbinado.
+
+## 📋 Requisitos de Elite
+- Composição Dinâmica: Adição de funções sem herança estática.
+- Transparência: O objeto decorado deve ser usado como se fosse o original (mesma interface).
+- Gestão de Memória: Uso cuidadoso de ponteiros para evitar vazamentos durante a "decoração".
+
+------------------------------------------------------------------------------
+"A herança é o que você é; o decorador é o que você veste."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

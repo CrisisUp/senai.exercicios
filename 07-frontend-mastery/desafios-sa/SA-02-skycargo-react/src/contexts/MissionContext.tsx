@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file MissionContext.tsx
  * @brief Gerenciador de Estado Global da Missão SkyCargo.
  * @author Engenheiro de Elite
@@ -67,3 +70,12 @@ export const useMission = () => {
     if (!context) throw new Error("useMission deve ser usado dentro de MissionProvider");
     return context;
 };
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

@@ -1,3 +1,8 @@
+/**
+ * @file useDroneNetwork.ts
+ * @author Cristiano
+ * @date 2026
+ */
 import { useState, useCallback } from 'react';
 
 export interface DroneUnit {
@@ -50,3 +55,12 @@ export const useDroneNetwork = () => {
 
   return { data, loading, error, connectToNexus };
 };
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

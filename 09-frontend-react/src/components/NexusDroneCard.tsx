@@ -1,3 +1,8 @@
+/**
+ * @file NexusDroneCard.tsx
+ * @author Cristiano
+ * @date 2026
+ */
 import React from 'react';
 import styles from './NexusDroneCard.module.css';
 
@@ -50,3 +55,12 @@ export const NexusDroneCard: React.FC<NexusDroneCardProps> = ({ name, status, ba
     </div>
   );
 };
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

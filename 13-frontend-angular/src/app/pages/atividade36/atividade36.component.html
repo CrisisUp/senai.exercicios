@@ -1,0 +1,79 @@
+<div class="prime-container">
+    <header class="prime-header" [class.alert-active]="alert()">
+        <div class="brand">
+            <h1>💎 NEXUS_PRIME_CORE</h1>
+            <span class="v-tag">v2026.ELITE</span>
+        </div>
+
+        <div class="global-telemetry">
+            <div class="t-item">
+                <span class="t-label">SECURITY_PROTOCOL:</span>
+                <span class="t-val">{{ protocol() }}</span>
+            </div>
+            <div class="t-item">
+                <span class="t-label">VOICE_LINK:</span>
+                <span class="t-val" [class.on]="isListening()">{{ isListening() ? 'ONLINE' : 'STANDBY' }}</span>
+            </div>
+        </div>
+    </header>
+
+    @if (alert()) {
+        <div class="global-alert-banner">
+            <span class="a-icon">⚠️</span>
+            <span class="a-text">ALERTA CRÍTICO: {{ alert() }}</span>
+            <button class="btn-dismiss" (click)="store.updateAlert(null)">RECONHECER</button>
+        </div>
+    }
+
+    <main class="prime-layout">
+        <!-- Control Deck -->
+        <section class="control-deck">
+            <h3>ORDENS DE COMANDO</h3>
+            <p class="guide">Use o comando de voz ou o painel manual para injetar módulos táticos.</p>
+            
+            <div class="manual-controls">
+                <button class="btn-voice-link" (click)="startVoiceLink()">
+                    {{ isListening() ? 'ESCUTANDO COMANDOS...' : 'ATIVAR COMANDO DE VOZ' }}
+                </button>
+            </div>
+
+            <div class="hints-box">
+                <h4>HINTS OPERACIONAIS:</h4>
+                <ul>
+                    <li>"Carregar Scanner"</li>
+                    <li>"Carregar Exterminador"</li>
+                    <li>"Ativar Alerta"</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Kernel Viewport -->
+        <section class="kernel-viewport">
+            <div class="viewport-header">
+                <h3>DYNAMIC_MODULE_INJECTION_POINT</h3>
+                <span class="m-id" *ngIf="currentModuleId()">ACTIVE_MOD: {{ currentModuleId() }}</span>
+            </div>
+
+            <div class="viewport-stage">
+                <ng-container #primeHost></ng-container>
+                
+                @if (!currentModuleId()) {
+                    <div class="empty-state">
+                        <span class="nexus-pulse">◈</span>
+                        <p>NÚCLEO CENTRAL AGUARDANDO INJEÇÃO DE BINÁRIO.</p>
+                    </div>
+                }
+            </div>
+        </section>
+    </main>
+
+    <footer class="prime-audit">
+        <h4>ESPECIFICAÇÃO DE ENGENHARIA FINAL (ELITE CORE)</h4>
+        <div class="audit-grid">
+            <div class="audit-item"><b>Orchestration:</b> Shell Enterprise com Injeção de Plugins via <code>ViewContainerRef</code>.</div>
+            <div class="audit-item"><b>Global State:</b> Signal Store centralizada provendo SSoT para toda a malha Nexus.</div>
+            <div class="audit-item"><b>Natural Interface:</b> Orquestração de rotas e alertas via Speech Recognition nativo.</div>
+            <div class="audit-item"><b>AOP & Perf:</b> Auditoria de latência via Decorators e Change Detection <code>OnPush</code>.</div>
+        </div>
+    </footer>
+</div>

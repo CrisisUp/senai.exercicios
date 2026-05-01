@@ -1,3 +1,7 @@
+#define ANSI_RESET "\033[0m"
+/**
+ * @date 2026
+ */
 /**
  * @file motor_rota.cpp
  * @brief Implementação do motor de rotas C++.
@@ -33,3 +37,12 @@ std::unique_ptr<MotorRota> novo_motor(rust::String config) {
 }
 
 } // namespace logispeed
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

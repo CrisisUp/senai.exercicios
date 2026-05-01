@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Demonstração de Automação Industrial com Macros Procedurais.
@@ -55,3 +57,12 @@ fn main() {
     println!("Se você adicionar um novo campo na struct 'Carga', o log de auditoria");
     println!("será atualizado automaticamente sem você precisar mudar uma linha de código.");
 }
+
+/* @section MemoryMap
+ * Stack: Tipos fixos.
+ * Heap: Alocações dinâmicas (Box, Vec).
+ */
+/*
+ * RESUMO TEÓRICO
+ * Implementação em Rust seguindo as diretrizes de segurança e performance.
+ */

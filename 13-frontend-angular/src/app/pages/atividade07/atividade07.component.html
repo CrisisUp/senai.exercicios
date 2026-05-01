@@ -1,0 +1,48 @@
+<div class="container">
+  <header class="header">
+    <h1>Terminal Tático - Visão de Frota</h1>
+    <p>Ajuste os filtros para focar em unidades críticas.</p>
+  </header>
+
+  <main class="main">
+    <!-- Painel de Controle (Filtros) -->
+    <section class="filter-bar">
+      <label for="status-filter">FILTRAR POR STATUS:</label>
+      <select 
+        id="status-filter" 
+        [value]="filter()" 
+        (change)="onFilterChange($event)"
+        class="select"
+      >
+        <option value="ALL">EXIBIR TODOS</option>
+        <option value="OPERATIONAL">OPERACIONAIS</option>
+        <option value="WARNING">ALERTAS CRÍTICOS</option>
+        <option value="IN_ROUTE">EM ROTA</option>
+      </select>
+    </section>
+
+    <!-- Grade de Drones (Component Composition) -->
+    <section class="grid">
+      @for (drone of filteredFleet(); track drone.id) {
+        <app-drone-card 
+          [id]="drone.id"
+          [name]="drone.name"
+          [status]="drone.status"
+          [load]="drone.load"
+        />
+      } @empty {
+        <p class="empty-msg">Nenhuma unidade encontrada com este filtro.</p>
+      }
+    </section>
+
+    <footer class="theory-box">
+      <h4>Nota Técnica: Signals & Component Composition</h4>
+      <p>
+        No Angular v21, a filtragem é otimizada via <code>computed()</code>. 
+        Diferente do React, o Angular rastreia as dependências automaticamente. 
+        O uso de <strong>Standalone Subcomponents</strong> permite isolar a lógica de 
+        estilização (Glassmorphism) e reutilizar a interface do card em qualquer parte do sistema.
+      </p>
+    </footer>
+  </main>
+</div>

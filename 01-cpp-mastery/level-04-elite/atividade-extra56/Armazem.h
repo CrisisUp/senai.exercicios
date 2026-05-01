@@ -75,3 +75,8 @@ namespace Logistica {
 } // namespace Logistica
 
 #endif // ARMAZEM_H
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

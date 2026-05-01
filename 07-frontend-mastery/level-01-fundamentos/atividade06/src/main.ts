@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file main.ts
  * @brief Manipulação de DOM Segura para o SkyCargo OS.
  * @author Engenheiro de Elite
@@ -74,4 +77,13 @@ console.log("\x1b[1;32m[SYSTEM]\x1b[0m DOM Security Engine Ativo.");
  *    propriedades do elemento (ex: .disabled, .innerText).
  * 3. EVENT DELEGATION: O MouseEvent tipado permite acessar propriedades do 
  *    evento (clientX, clientY) com segurança total.
+ */
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
  */

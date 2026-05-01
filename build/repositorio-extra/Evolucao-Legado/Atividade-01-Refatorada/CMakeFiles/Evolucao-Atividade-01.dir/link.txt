@@ -1,1 +1,0 @@
-/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/Evolucao-Atividade-01.dir/main_refatorado.cpp.o" "CMakeFiles/Evolucao-Atividade-01.dir/Produto.cpp.o" "CMakeFiles/Evolucao-Atividade-01.dir/GestorEstoque.cpp.o" -o Evolucao-Atividade-01

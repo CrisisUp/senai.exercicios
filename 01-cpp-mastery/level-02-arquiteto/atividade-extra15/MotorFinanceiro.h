@@ -97,3 +97,8 @@ public:
 };
 
 #endif // MOTOR_FINANCEIRO_H
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

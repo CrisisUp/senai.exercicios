@@ -28,3 +28,8 @@ Um conflito ocorre quando o Git tenta fazer um merge de mudanças que ocupam o m
 
 ------------------------------------------------------------------------------
 "Conflitos não são erros; são conversas que o Git força você a ter com seu código."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

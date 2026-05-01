@@ -1,3 +1,8 @@
+/**
+ * @file Atividade04.tsx
+ * @author Cristiano
+ * @date 2026
+ */
 import React, { useState } from 'react';
 import styles from './Atividade04.module.css';
 
@@ -78,3 +83,12 @@ const Atividade04: React.FC = () => {
 };
 
 export default Atividade04;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

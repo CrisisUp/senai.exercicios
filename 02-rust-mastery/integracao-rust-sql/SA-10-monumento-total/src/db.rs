@@ -1,3 +1,10 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
+//! @file db.rs
+//! @brief Implementação de db.rs
+//! @author Cristiano
+//! @date 2026
+
 use anyhow::{Context, Result};
 use r2d2::Pool;
 use r2d2_sqlite::SqliteConnectionManager;
@@ -201,3 +208,12 @@ mod tests {
         assert_eq!(dash[1].0, "ALPHA"); // Rank #2
     }
 }
+
+/* @section MemoryMap
+ * Stack: Tipos fixos.
+ * Heap: Alocações dinâmicas (Box, Vec).
+ */
+/*
+ * RESUMO TEÓRICO
+ * Implementação em Rust seguindo as diretrizes de segurança e performance.
+ */

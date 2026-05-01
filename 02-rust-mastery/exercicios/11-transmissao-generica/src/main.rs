@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Atividade 11: Transmissão Genérica (Generics e Trait Bounds).
@@ -156,3 +158,4 @@ mod tests {
     - Blanked Implementations (implementar trait para qualquer tipo que siga outro trait).
     - PhantomData para marcação de tipos em generics complexos.
 */
+

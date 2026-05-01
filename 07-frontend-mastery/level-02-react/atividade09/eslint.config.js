@@ -1,3 +1,9 @@
+/**
+ * @file eslint.config.js
+ * @brief Implementação/Componente eslint.config.js
+ * @author Cristiano
+ * @date 2026
+ */
 import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
@@ -20,3 +26,12 @@ export default defineConfig([
     },
   },
 ])
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file TacticalDashboard.tsx
  * @brief Dashboard com Cálculos Pesados Otimizados via useMemo e useCallback.
  * @author Engenheiro de Elite
@@ -84,3 +87,12 @@ const TacticalDashboard: React.FC = () => {
 };
 
 export default TacticalDashboard;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

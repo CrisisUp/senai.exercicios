@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Atividade Integradora 22: Relatórios com JOIN Rust-SQL.
@@ -90,3 +92,8 @@ fn main() -> Result<()> {
     relacional do SQL.
     ===============================================================
 */
+
+/* @section MemoryMap
+ * Stack: Tipos fixos.
+ * Heap: Alocações dinâmicas (Box, Vec).
+ */

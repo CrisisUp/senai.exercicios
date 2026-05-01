@@ -1,0 +1,30 @@
+<div class="radar-container">
+    <header class="radar-header">
+        <h1>📡 RADAR DE VARREDURA NEXUS</h1>
+        <p>Integração de Baixo Nível: Angular + HTML5 Canvas</p>
+    </header>
+
+    <main class="radar-display">
+        <canvas #radarCanvas width="500" height="500"></canvas>
+        
+        <div class="telemetry-overlay">
+            <div class="metric">
+                <span class="label">ÂNGULO SCAN:</span>
+                <span class="value">{{ angle() }}°</span>
+            </div>
+            <div class="metric">
+                <span class="label">DETECÇÕES:</span>
+                <span class="value">{{ detectedObjects().length }}</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="tech-audit">
+        <h4>ESPECIFICAÇÃO DE ENGENHARIA (NÍVEL 21)</h4>
+        <ul>
+            <li><b>ViewChild:</b> Acesso imperativo ao elemento canvas nativo.</li>
+            <li><b>RequestAnimationFrame:</b> Loop de animação sincronizado com o refresh rate do monitor.</li>
+            <li><b>Fading Alpha:</b> Técnica de persistência visual via preenchimento semi-transparente.</li>
+        </ul>
+    </footer>
+</div>

@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Demonstração de Zero-Copy Deserialization em Rust.
@@ -56,3 +58,12 @@ fn main() {
     println!("A Lifetime 'a' protege o sistema: se o buffer for destruído, o compilador");
     println!("impedirá o acesso a esta telemetria, evitando Crashes.");
 }
+
+/* @section MemoryMap
+ * Stack: Tipos fixos.
+ * Heap: Alocações dinâmicas (Box, Vec).
+ */
+/*
+ * RESUMO TEÓRICO
+ * Implementação em Rust seguindo as diretrizes de segurança e performance.
+ */

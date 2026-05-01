@@ -1,3 +1,6 @@
+const ANSI_RESET: &str = "\033[0m";
+//! @author Cristiano
+//! @date 2026
 /**
  * @file vault_client.rs
  * @brief Cliente de Segurança para recuperação de segredos da AWS.
@@ -46,3 +49,12 @@ fn main() {
     println!("A aplicação Rust segurou a senha na memória apenas pelo tempo necessário");
     println!("para abrir a conexão com o banco de dados.");
 }
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

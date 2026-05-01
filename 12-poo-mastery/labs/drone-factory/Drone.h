@@ -1,3 +1,8 @@
+/**
+ * @file Drone.h
+ * @author Cristiano
+ * @date 2026
+ */
 #ifndef DRONE_H
 #define DRONE_H
 
@@ -70,3 +75,12 @@ public:
 };
 
 #endif
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

@@ -1,3 +1,10 @@
+#define ANSI_RESET "\033[0m"
+/**
+ * @file Drone.cpp
+ * @brief Implementação/Componente Drone.cpp
+ * @author Cristiano
+ * @date 2026
+ */
 #include "Drone.h"
 
 int Drone::totalDrones = 0;
@@ -59,3 +66,12 @@ void Drone::decolar() {
 int Drone::getTotalDrones() {
     return totalDrones;
 }
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

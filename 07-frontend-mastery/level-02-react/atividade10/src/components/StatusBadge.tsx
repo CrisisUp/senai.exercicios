@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file StatusBadge.tsx
  * @brief Componente Atômico para exibição de status industrial.
  * @author Engenheiro de Elite
@@ -40,3 +43,12 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
 };
 
 export default StatusBadge;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

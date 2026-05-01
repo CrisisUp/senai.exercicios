@@ -26,3 +26,8 @@ Containers compartilham o hardware do host. Um container sem limites pode caniba
 
 ------------------------------------------------------------------------------
 "O que não é medido não pode ser otimizado."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

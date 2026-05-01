@@ -1,3 +1,7 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
+//! @date 2026
+
 /**
  * @file main.rs
  * @brief Orquestrador Rust com integração segura C++ via cxx.rs.
@@ -44,3 +48,12 @@ fn main() {
     println!("A classe C++ foi encapsulada em um UniquePtr do Rust.");
     println!("Strings foram convertidas sem risco de vazamento ou corrompimento.");
 }
+
+/* @section MemoryMap
+ * Stack: Tipos fixos.
+ * Heap: Alocações dinâmicas (Box, Vec).
+ */
+/*
+ * RESUMO TEÓRICO
+ * Implementação em Rust seguindo as diretrizes de segurança e performance.
+ */

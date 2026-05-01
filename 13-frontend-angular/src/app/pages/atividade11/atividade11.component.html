@@ -1,0 +1,43 @@
+<div class="network-monitor">
+    <header class="monitor-header">
+        <h2>📡 MONITOR DE PULSO GLOBAL (V2)</h2>
+        <div class="status-badge" [class.active]="pulse().status === 'ONLINE'">
+            {{ pulse().status }}
+        </div>
+    </header>
+
+    <main class="pulse-display">
+        <div class="large-display">
+            <div class="metric">
+                <span class="label">ÚLTIMO BEAT (FILTRADO)</span>
+                <span class="value">{{ pulse().timestamp }}</span>
+            </div>
+            <div class="metric">
+                <span class="label">LATÊNCIA (RTT)</span>
+                <span class="value">{{ pulse().latency }}ms</span>
+            </div>
+        </div>
+
+        <div class="radar-visual">
+            <div class="wave" [style.animation-duration]="pulse().latency + 'ms'"></div>
+            <div class="core"></div>
+        </div>
+    </main>
+
+    <footer class="terminal-footer">
+        <h3>HISTÓRICO TÁTICO (LAST 5 BEATS)</h3>
+        <div class="log-container">
+            @for (beat of history(); track $index) {
+                <div class="log-entry">
+                    <span class="time">[{{ beat.timestamp }}]</span>
+                    <span class="lat" [style.color]="beat.latency > 40 ? '#ffae00' : '#00ff9d'">
+                        LATENCY: {{ beat.latency }}ms
+                    </span>
+                    <span class="tag">SECURE_LINK</span>
+                </div>
+            } @empty {
+                <div class="log-entry">[SYSTEM] Aguardando pulso estável...</div>
+            }
+        </div>
+    </footer>
+</div>

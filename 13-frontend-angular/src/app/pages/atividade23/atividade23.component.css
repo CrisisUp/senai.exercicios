@@ -1,0 +1,137 @@
+.analysis-container {
+    padding: 2rem;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.analysis-header {
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+}
+
+.analysis-header h1 {
+    color: #00ff9d;
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.analysis-header p {
+    color: #8b949e;
+    font-size: 0.9rem;
+}
+
+.analysis-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.chart-section {
+    background: #161b22;
+    border: 1px solid #30363d;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.chart-header h3 {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #8b949e;
+    letter-spacing: 1px;
+}
+
+.status-live {
+    background: rgba(0, 255, 157, 0.1);
+    color: #00ff9d;
+    font-size: 0.65rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+.chart-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    color: #484f58;
+    font-size: 0.7rem;
+    font-family: monospace;
+}
+
+.data-stats {
+    background: #161b22;
+    border: 1px solid #30363d;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.data-stats h3 {
+    margin-top: 0;
+    font-size: 0.85rem;
+    color: #8b949e;
+}
+
+.stat-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.label {
+    font-size: 0.7rem;
+    color: #6e7681;
+}
+
+.value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #00ff9d;
+}
+
+.audit-log {
+    margin-top: 4rem;
+    padding: 1.5rem;
+    background: #000;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+}
+
+.audit-log h4 {
+    margin-top: 0;
+    color: #8b949e;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.audit-log p {
+    font-size: 0.85rem;
+    color: #8b949e;
+    line-height: 1.6;
+}
+
+b {
+    color: #00ff9d;
+}

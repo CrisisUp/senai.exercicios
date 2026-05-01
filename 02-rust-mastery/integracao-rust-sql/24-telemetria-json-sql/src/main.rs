@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Atividade Integradora 24: JSON e Serialização Rust-SQL.
@@ -99,3 +101,8 @@ fn main() -> Result<()> {
     sem perder a rigidez da tipagem do Rust.
     ===============================================================
 */
+
+/* @section MemoryMap
+ * Stack: Tipos fixos.
+ * Heap: Alocações dinâmicas (Box, Vec).
+ */

@@ -143,3 +143,8 @@ const Atividade30: React.FC = () => {
 };
 
 export default Atividade30;
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/migracoes_automaticas: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/exercicios/26-migracoes-automaticas/src/main.rs

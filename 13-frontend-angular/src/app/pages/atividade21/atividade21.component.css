@@ -1,0 +1,97 @@
+.radar-container {
+    padding: 2rem;
+    background: #050505;
+    color: #00ff00;
+    min-height: 100vh;
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.radar-header {
+    width: 100%;
+    max-width: 800px;
+    border-bottom: 1px solid #003300;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.radar-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px #00ff00;
+}
+
+.radar-header p {
+    color: #008800;
+    font-size: 0.85rem;
+}
+
+.radar-display {
+    position: relative;
+    background: #000;
+    border: 2px solid #003300;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: inset 0 0 50px #002200;
+}
+
+canvas {
+    display: block;
+    cursor: crosshair;
+}
+
+.telemetry-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 20, 0, 0.7);
+    padding: 10px;
+    border: 1px solid #00ff00;
+    border-radius: 4px;
+    pointer-events: none;
+}
+
+.metric {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.7rem;
+    margin-bottom: 4px;
+}
+
+.label { color: #008800; }
+.value { color: #00ff00; font-weight: bold; }
+
+.tech-audit {
+    margin-top: 3rem;
+    width: 100%;
+    max-width: 600px;
+    background: #080808;
+    border: 1px solid #111;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.tech-audit h4 {
+    margin-top: 0;
+    color: #008800;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.tech-audit ul {
+    list-style: none;
+    padding: 0;
+    font-size: 0.85rem;
+    color: #006600;
+}
+
+.tech-audit li {
+    margin: 0.5rem 0;
+}
+
+.tech-audit b {
+    color: #00ff00;
+}

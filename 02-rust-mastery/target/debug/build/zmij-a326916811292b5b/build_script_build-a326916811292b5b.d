@@ -1,5 +1,5 @@
-/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/build/zmij-a326916811292b5b/build_script_build-a326916811292b5b.d: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zmij-1.0.21/build.rs
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/build/zmij-a326916811292b5b/build_script_build-a326916811292b5b.d: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zmij-1.0.21/build.rs
 
-/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/build/zmij-a326916811292b5b/build_script_build-a326916811292b5b: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zmij-1.0.21/build.rs
+/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/02-rust-mastery/target/debug/build/zmij-a326916811292b5b/build_script_build-a326916811292b5b: /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zmij-1.0.21/build.rs
 
 /Users/cristiano/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zmij-1.0.21/build.rs:

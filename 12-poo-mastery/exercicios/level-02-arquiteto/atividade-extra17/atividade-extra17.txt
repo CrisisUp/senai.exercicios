@@ -1,0 +1,43 @@
+# 📘 Atividade 17: O Sinal de Socorro (Exceções Orientadas a Objetos)
+STATUS: Nível 17 (Guardião) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+Um drone do SkyCargo Nexus tentou decolar com 0% de bateria. Em vez de simplesmente imprimir uma mensagem e continuar rodando (o que causaria um crash físico), o sistema deve emitir um sinal de interrupção imediata. Você aprenderá a usar **Exceções**, tratando erros como objetos que interrompem o fluxo normal e exigem um "resgate" (catch).
+
+## 🛠️ Necessidade Técnica
+- **`throw`**: Lança o objeto de erro.
+- **`try`**: Bloco de código onde o erro pode ocorrer.
+- **`catch`**: Bloco que captura e trata o erro.
+- **`std::exception`**: A classe base para todos os erros padrão.
+
+### Exemplo (C++):
+```cpp
+class BateriaVaziaException : public std::exception {
+public:
+    const char* what() const noexcept override {
+        return "ALERTA: Bateria insuficiente para decolagem!";
+    }
+};
+
+// No método de decolar:
+if (bateria < 10) throw BateriaVaziaException();
+```
+
+## 🚀 Missão
+1.  Crie sua própria classe de exceção herdando de `std::exception`.
+2.  No método `setBateria`, em vez de apenas imprimir erro, lance a exceção se o valor for inválido.
+3.  No `main()`, envolva a criação e uso do drone em um bloco `try-catch`.
+4.  Capture a exceção e imprima a mensagem amigável para o operador.
+
+## 📋 Requisitos de Elite
+- Substituir retornos de erro manuais (if/else no main) por um fluxo de exceções.
+- Garantir que o sistema não "morra" (segfault), mas sim "pouse com segurança" (tratamento de erro).
+- Customizar o método `what()` da exceção.
+
+------------------------------------------------------------------------------
+"Erros são inevitáveis; o crash é opcional. Engenheiros de elite tratam falhas com elegância."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

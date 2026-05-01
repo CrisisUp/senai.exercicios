@@ -1,0 +1,45 @@
+<div class="voice-container">
+    <header class="voice-header">
+        <h1>🎙️ COMANDO DE VOZ NEXUS</h1>
+        <p>Interface Homem-Máquina via Web Speech API</p>
+    </header>
+
+    <main class="voice-interface">
+        <!-- Status de Escuta -->
+        <div class="mic-status" [class.listening]="isListening()">
+            <div class="mic-circle" (click)="startListening()">
+                <span class="mic-icon">🎤</span>
+                <div class="waves" *ngIf="isListening()">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                </div>
+            </div>
+            <span class="status-text">
+                {{ isListening() ? 'SISTEMA ESCUTANDO...' : 'CLIQUE NO MICROFONE PARA FALAR' }}
+            </span>
+        </div>
+
+        <!-- Log de Transcrição -->
+        <section class="transcript-card">
+            <h3>ÚLTIMA TRANSCRIÇÃO</h3>
+            <div class="transcript-display">
+                <span class="text">"{{ lastTranscript() || 'Aguardando comando...' }}"</span>
+            </div>
+            <p class="hint">Tente: <b>"Ativar Protocolo Delta"</b> ou <b>"Emergência"</b></p>
+        </section>
+
+        <!-- Alertas de Sistema -->
+        <div class="system-alert" *ngIf="alertMessage()">
+            {{ alertMessage() }}
+        </div>
+    </main>
+
+    <footer class="voice-audit">
+        <h4>ESPECIFICAÇÃO DE ENGENHARIA (NATIVE API)</h4>
+        <ul>
+            <li><b>Recognition:</b> Captura de áudio local e processamento de linguagem natural.</li>
+            <li><b>Synthesis:</b> Feedback auditivo do sistema via SpeechSynthesisUtterance.</li>
+            <li><b>Reactive Core:</b> Integração total entre eventos nativos e Angular Signals.</li>
+        </ul>
+    </footer>
+</div>

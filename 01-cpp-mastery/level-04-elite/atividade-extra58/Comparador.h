@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file Comparador.h
  * @brief Interface Genérica com Especialização para Análise de Sensores.
@@ -54,3 +56,8 @@ namespace IoT {
 } // namespace IoT
 
 #endif // COMPARADOR_H
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

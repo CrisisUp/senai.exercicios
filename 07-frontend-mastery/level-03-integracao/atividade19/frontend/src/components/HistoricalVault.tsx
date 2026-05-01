@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file HistoricalVault.tsx
  * @brief Monitor de Logs Históricos usando useQuery (TanStack).
  * @author Engenheiro de Elite
@@ -72,3 +75,12 @@ const HistoricalVault: React.FC = () => {
 };
 
 export default HistoricalVault;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

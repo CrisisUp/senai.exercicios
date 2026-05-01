@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file PacoteLogistico.cpp
  * @brief Implementação dos métodos da classe PacoteLogistico.
@@ -88,4 +90,9 @@ void PacoteLogistico::exibirEtiqueta() const {
 /**
  * @section MemoryMap
  * Stack: variáveis locais e ponteiros. Heap: alocações via Smart Pointers/RAII.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
  */

@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Atividade 10: Protocolos de Hardware (Traits e Interfaces).
@@ -152,3 +154,4 @@ mod tests {
          que já implemente outra trait.
     ===============================================================
 */
+

@@ -1,0 +1,90 @@
+.di-terminal {
+    background: #0d1117;
+    color: #e6edf3;
+    padding: 2rem;
+    min-height: 80vh;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.terminal-header h1 {
+    font-size: 1.4rem;
+    color: #f1e05a;
+    margin: 0;
+}
+
+.v-badge {
+    background: #238636;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.config-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.node-info {
+    background: #161b22;
+    border: 1px solid #30363d;
+    padding: 1.5rem;
+    border-radius: 8px;
+    position: relative;
+}
+
+.node-info h3 {
+    margin-top: 0;
+    font-size: 0.9rem;
+    color: #8b949e;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 0.5rem;
+}
+
+.info-row {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+}
+
+.label {
+    color: #6e7681;
+}
+
+.value {
+    color: #58a6ff;
+}
+
+.status.enabled {
+    color: #3fb950;
+    font-weight: bold;
+}
+
+.theory-box {
+    border: 1px dashed #30363d;
+    padding: 1.5rem;
+    background: rgba(88, 166, 255, 0.03);
+    border-radius: 8px;
+}
+
+.theory-box h4 {
+    color: #58a6ff;
+    margin-top: 0;
+}
+
+.theory-box p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #8b949e;
+}

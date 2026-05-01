@@ -1,0 +1,69 @@
+<div class="vault-container">
+    <header class="vault-header">
+        <h1>🔐 COFRE DE DADOS NEXUS</h1>
+        <p>Gestão de Estado Persistente via Signals e LocalStorage</p>
+    </header>
+
+    <main class="vault-layout">
+        <!-- Painel de Cadastro -->
+        <section class="forge-card">
+            <h3>FORJAR NOVA CREDENCIAL</h3>
+            <div class="form-group">
+                <input 
+                    type="text" 
+                    [(ngModel)]="keyLabel" 
+                    placeholder="Nome da Credencial (ex: API_HUB)"
+                    class="nexus-input">
+            </div>
+            <div class="form-group">
+                <textarea 
+                    [(ngModel)]="keyValue" 
+                    placeholder="Valor Secreto (Criptografado em repouso)"
+                    class="nexus-input"></textarea>
+            </div>
+            <button 
+                class="btn-save" 
+                (click)="saveToVault()" 
+                [disabled]="!keyLabel() || !keyValue()">
+                SINCRONIZAR COM O COFRE
+            </button>
+        </section>
+
+        <!-- Lista de Credenciais -->
+        <section class="display-card">
+            <div class="section-header">
+                <h3>CREDENCIAIS ATIVAS ({{ vault.keys().length }})</h3>
+                <button class="btn-clear" (click)="vault.clearVault()" [disabled]="vault.keys().length === 0">
+                    LIMPAR TUDO
+                </button>
+            </div>
+
+            <div class="key-list">
+                @for (key of vault.keys(); track key.id) {
+                    <div class="key-item">
+                        <div class="key-info">
+                            <span class="key-id">{{ key.id }}</span>
+                            <span class="key-label">{{ key.label }}</span>
+                            <code class="key-value">{{ key.value }}</code>
+                            <span class="key-date">FORJADA EM: {{ key.createdAt }}</span>
+                        </div>
+                        <button class="btn-delete" (click)="deleteFromVault(key.id)">×</button>
+                    </div>
+                } @empty {
+                    <div class="empty-vault">
+                        <p>O COFRE ESTÁ VAZIO. NENHUMA CHAVE DETECTADA NO DISCO.</p>
+                    </div>
+                }
+            </div>
+        </section>
+    </main>
+
+    <footer class="state-audit">
+        <h4>ESPECIFICAÇÃO DE MAESTRIA: ARQUITETO</h4>
+        <p>
+            O <code>VaultService</code> utiliza o sistema de <b>Signals</b> para reatividade fina 
+            e o hook de <code>effect()</code> para garantir que o estado em memória nunca 
+            se desvie do estado persistido (localStorage).
+        </p>
+    </footer>
+</div>

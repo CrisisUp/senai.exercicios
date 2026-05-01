@@ -28,3 +28,8 @@ Um Registry é um repositório remoto de imagens. O Docker Hub é o padrão, mas
 
 ------------------------------------------------------------------------------
 "O Docker Hub é a pista de decolagem de onde seu software ganha o mundo."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

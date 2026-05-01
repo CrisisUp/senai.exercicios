@@ -29,3 +29,8 @@ O Docker Context permite gerenciar perfis de conexão. Você pode ter um context
 
 ------------------------------------------------------------------------------
 "O contexto é a alavanca que teletransporta o seu poder de comando."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

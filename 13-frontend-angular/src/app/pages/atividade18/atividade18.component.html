@@ -1,0 +1,81 @@
+<div class="forge-container">
+    <header class="forge-header">
+        <h1>🔨 FORJA DE MISSÕES NEXUS</h1>
+        <p>Configuração Tática de Voo e Protocolos de Reconhecimento</p>
+    </header>
+
+    <form [formGroup]="missionForm" (ngSubmit)="submitMission()" class="mission-form">
+        <!-- Campos Base -->
+        <div class="form-section">
+            <h3>PROTOCOLO BASE</h3>
+            <div class="input-group">
+                <label for="missionCode">CÓDIGO DA MISSÃO (NEXUS-XXXX):</label>
+                <input 
+                    id="missionCode" 
+                    formControlName="missionCode" 
+                    placeholder="Ex: NEXUS-1024"
+                    class="nexus-input">
+                @if (missionForm.get('missionCode')?.invalid && missionForm.get('missionCode')?.touched) {
+                    <span class="error-msg">Código inválido ou fora do padrão industrial.</span>
+                }
+            </div>
+
+            <div class="input-group">
+                <label for="commander">COMANDANTE RESPONSÁVEL:</label>
+                <input 
+                    id="commander" 
+                    formControlName="commander" 
+                    placeholder="Nome do Operador"
+                    class="nexus-input">
+            </div>
+
+            <div class="input-group">
+                <label for="priority">PRIORIDADE TÁTICA:</label>
+                <select id="priority" formControlName="priority" class="nexus-select">
+                    <option value="LOW">BAIXA (LOGÍSTICA)</option>
+                    <option value="MID">MÉDIA (RECONHECIMENTO)</option>
+                    <option value="HIGH">ALTA (CRÍTICA)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- FormArray: Checkpoints -->
+        <div class="form-section" formArrayName="checkpoints">
+            <div class="section-header">
+                <h3>VETOR DE NAVEGAÇÃO (CHECKPOINTS)</h3>
+                <button type="button" class="btn-add" (click)="addCheckpoint()">+ NOVO PONTO</button>
+            </div>
+
+            <div class="checkpoint-list">
+                @for (cp of checkpoints.controls; track $index) {
+                    <div [formGroupName]="$index" class="checkpoint-item">
+                        <div class="cp-fields">
+                            <input formControlName="location" placeholder="Localização (X,Y)" class="nexus-input sm">
+                            <select formControlName="action" class="nexus-select sm">
+                                <option value="RECON">RECON</option>
+                                <option value="DROP">SOLTAR</option>
+                                <option value="PICK">COLETAR</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn-remove" (click)="removeCheckpoint($index)">×</button>
+                    </div>
+                } @empty {
+                    <p class="empty-msg">Nenhum ponto de navegação definido.</p>
+                }
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit" [disabled]="missionForm.invalid">
+            SINCRONIZAR MISSÃO
+        </button>
+    </form>
+
+    <footer class="form-audit">
+        <h4>AUDITORIA DE ESTADO</h4>
+        <div class="status-grid">
+            <div class="status-item">STATUS: <b [class.valid]="missionForm.valid">{{ missionForm.status }}</b></div>
+            <div class="status-item">TOUCHED: <b>{{ missionForm.touched }}</b></div>
+            <div class="status-item">CHECKPOINTS: <b>{{ checkpoints.length }}</b></div>
+        </div>
+    </footer>
+</div>

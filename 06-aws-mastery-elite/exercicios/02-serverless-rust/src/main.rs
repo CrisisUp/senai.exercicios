@@ -1,3 +1,4 @@
+const ANSI_RESET: &str = "\033[0m";
 /**
  * @file main.rs
  * @brief Processador Serverless de Telemetria (AWS Lambda em Rust) - v0.9 Moderno.
@@ -80,4 +81,13 @@ async fn main() -> Result<(), Error> {
  * 1. SERVICE_FN: O novo padrão da AWS para Rust que utiliza a trait Service da Tower.
  * 2. ZERO-COPY LOGS: O tracing gera o JSON sem alocações extras, mantendo a performance.
  * 3. REQUEST_ID: Usar o ID da AWS como TraceID permite debugar o sistema inteiro.
+ */
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
  */

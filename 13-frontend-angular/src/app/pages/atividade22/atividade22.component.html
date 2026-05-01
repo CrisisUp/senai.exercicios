@@ -1,0 +1,52 @@
+<div class="tactical-container">
+    <header class="tactical-header">
+        <h1>🎯 ALVO TÁTICO NEXUS</h1>
+        <p>Captura de Coordenadas e Interação Gráfica em Tempo Real</p>
+    </header>
+
+    <main class="tactical-layout">
+        <!-- Canvas Interativo -->
+        <div class="canvas-wrapper">
+            <canvas 
+                #mapCanvas 
+                width="600" 
+                height="400"
+                (click)="handleMapClick($event)"
+                (mousemove)="handleMouseMove($event)">
+            </canvas>
+            
+            <div class="cursor-telemetry">
+                X: {{ cursorCoord().x }} | Y: {{ cursorCoord().y }}
+            </div>
+        </div>
+
+        <!-- Painel Lateral: Log de Alvos -->
+        <aside class="targets-panel">
+            <div class="panel-header">
+                <h3>ALVOS TRAVADOS ({{ targets().length }})</h3>
+                <button class="btn-clear" (click)='clearMap()'>RESET</button>
+            </div>
+
+            <div class="target-list">
+                @for (tgt of targets(); track tgt.label) {
+                    <div class="target-entry">
+                        <span class="tgt-label">{{ tgt.label }}</span>
+                        <span class="tgt-coords">[{{ tgt.x }}, {{ tgt.y }}]</span>
+                        <span class="tgt-time">{{ tgt.timestamp }}</span>
+                    </div>
+                } @empty {
+                    <div class="empty-state">AGUARDANDO COORDENADAS...</div>
+                }
+            </div>
+        </aside>
+    </main>
+
+    <footer class="interaction-audit">
+        <h4>AUDITORIA DE INTERAÇÃO (NÍVEL 22)</h4>
+        <p>
+            Clique no mapa para registrar coordenadas geográficas. 
+            A mira é renderizada via API imperativa <code>stroke()</code> e <code>arc()</code>,
+            enquanto o log é gerenciado reativamente por <b>Signals</b>.
+        </p>
+    </footer>
+</div>

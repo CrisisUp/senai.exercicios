@@ -1,0 +1,39 @@
+# 📘 Atividade 23: O Camaleão Dinâmico (Polimorfismo de Tempo de Execução)
+STATUS: Nível 23 (Arquiteto de Linhagens) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+A Central de Comando Nexus recebeu uma frota mista: 10 drones de Carga e 10 drones de Vigilância. O operador quer enviar o comando `decolar()` para **todos** eles de uma vez. Ele não quer saber se o drone é de carga ou vigilância; ele quer tratar todos como apenas "Drones". Você aprenderá o **Polimorfismo Dinâmico**, a habilidade de um ponteiro da classe base executar o comportamento correto da classe filha em tempo de execução.
+
+## 🛠️ Necessidade Técnica
+O Polimorfismo acontece quando usamos um ponteiro da classe pai (`Drone*`) para apontar para um objeto da classe filha (`DroneCarga`). O C++ usa a **VTable** para decidir, no momento da execução, qual função chamar.
+
+### Exemplo (C++):
+```cpp
+Drone* frota[2];
+frota[0] = new DroneCarga();
+frota[1] = new DroneVigilancia();
+
+for(int i=0; i<2; i++) {
+    frota[i]->decolar(); // Chama a versão CORRETA de cada um automaticamente!
+}
+```
+
+## 🚀 Missão
+1.  Crie um `std::vector<std::shared_ptr<Drone>>` (misturando os conceitos do nível anterior).
+2.  Adicione objetos do tipo `DroneCarga` e `DroneVigilancia` ao mesmo vetor.
+3.  Percorra o vetor e chame o método virtual `decolar()` para cada elemento.
+4.  Observe como, apesar do vetor ser de "Drones", cada um decola de sua própria forma.
+5.  **O Destrutor Virtual:** Muito importante! Marque o destrutor do pai como `virtual` para garantir a limpeza correta das filhas.
+
+## 📋 Requisitos de Elite
+- Implementação de polimorfismo via ponteiros ou referências da classe base.
+- Uso obrigatório de destrutor virtual (`virtual ~Drone()`).
+- Compreender que o polimorfismo é a chave para a extensibilidade do sistema.
+
+------------------------------------------------------------------------------
+"Tratar o diferente de forma igual, respeitando sua essência: isso é polimorfismo."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

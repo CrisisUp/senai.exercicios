@@ -30,3 +30,8 @@ Tudo no Docker (containers, imagens, volumes, redes) é um objeto JSON gigante n
 
 ------------------------------------------------------------------------------
 "O Inspect é o microscópio do engenheiro; ele revela o que está invisível a olho nu."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

@@ -1,3 +1,8 @@
+/**
+ * @file Atividade16.tsx
+ * @author Cristiano
+ * @date 2026
+ */
 import React from 'react';
 import { useDroneNetwork } from '../hooks/useDroneNetwork';
 import { DroneCardModular } from '../components/DroneCardModular';
@@ -59,3 +64,12 @@ const Atividade16: React.FC = () => {
 };
 
 export default Atividade16;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

@@ -1,0 +1,32 @@
+<div class="security-scanner">
+    <header class="page-header">
+        <h1>🔍 SCANNER DE SEGURANÇA NEXUS</h1>
+        <p>Extensão de Comportamento via Diretivas de Atributo</p>
+    </header>
+
+    <main class="scanner-interface">
+        <!-- Aplicação da Diretiva appScannerStatus -->
+        <div class="status-box" appScannerStatus [level]="currentLevel()">
+            <span class="indicator">NÍVEL: {{ currentLevel() }}</span>
+            <p class="description">
+                Passe o mouse sobre este painel para ativar o foco do scanner. 
+                Os estilos industriais são injetados dinamicamente pela diretiva.
+            </p>
+        </div>
+
+        <div class="action-panel">
+            <button class="btn-cycle" (click)="cycleSecurity()">
+                ALTERAR PROTOCOLO
+            </button>
+        </div>
+    </main>
+
+    <footer class="directive-audit">
+        <h4>AUDITORIA DE DIRETIVA</h4>
+        <ul>
+            <li><b>HostListener:</b> Captura MouseEnter/MouseLeave para Escala.</li>
+            <li><b>HostBinding:</b> Gerencia classe .scanner-active automaticamente.</li>
+            <li><b>Signals:</b> Input reativo integra com o sistema de efeitos do Angular.</li>
+        </ul>
+    </footer>
+</div>

@@ -1,0 +1,31 @@
+# 📘 Atividade 32: Radar Reativo (Design Pattern: Observer)
+STATUS: Nível 32 (Engenheiro de Elite) - Trilha POO Mastery
+
+## 🎯 Estudo de Caso
+Na "SkyCargo Nexus", um drone em voo gera telemetria constante. Vários sistemas precisam desses dados: o **Painel do Operador** quer a posição, o **Monitor de Energia** quer a bateria e a **Central de Logística** quer o status da entrega. Em vez do Drone conhecer todos esses sistemas (acoplamento alto), usaremos o **Observer**, permitindo que qualquer sistema se "inscreva" para receber atualizações automaticamente.
+
+## 🛠️ Necessidade Técnica
+- Interface `IObserver`: método `update(dados)`.
+- Classe `Subject`: métodos `adicionarObservador()`, `removerObservador()` e `notificar()`.
+
+## 🚀 Missão
+1.  Crie a interface `IObserver` com o método `notificar(int bateria, string status)`.
+2.  Crie a classe `Drone` que atua como o Sujeito (Subject).
+3.  Implemente dois observadores:
+    - `MonitorBateria`: Emite um alerta se a bateria cair abaixo de 20%.
+    - `EstacaoSolo`: Apenas loga o status atual no console com cores ANSI.
+4.  No `main`, registre ambos os observadores no drone, mude o estado do drone e veja a reação em cadeia.
+5.  **Prova de Elite:** Remova um observador no meio da execução e verifique que ele para de receber notificações.
+
+## 📋 Requisitos de Elite
+- Desacoplamento Reativo: O drone não sabe quem são seus observadores, apenas que eles seguem o contrato.
+- Gestão Dinâmica: Capacidade de adicionar/remover interessados em tempo de execução.
+- Uso de `std::list` ou `std::vector` para gerenciar os inscritos.
+
+------------------------------------------------------------------------------
+"Não me chame, eu te aviso quando algo mudar."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

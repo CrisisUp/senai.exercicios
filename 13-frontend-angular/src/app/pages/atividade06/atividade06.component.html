@@ -1,0 +1,62 @@
+<div class="container">
+  <header class="header">
+    <h1>Frota Global - Nexus Angular</h1>
+    <p>Monitoramento de Unidades em Massa (Nível 06)</p>
+  </header>
+
+  <main class="main-content">
+    <div class="action-bar">
+      <button (click)="addUnit()" class="btn-add">ADICIONAR UNIDADE (+)</button>
+      <span class="fleet-info">Total de Ativos: <strong>{{ fleet().length }}</strong></span>
+    </div>
+
+    <section class="table-container">
+      <table class="nexus-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>MODELO</th>
+            <th>BATERIA</th>
+            <th>STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (drone of fleet(); track drone.id) {
+            <tr class="drone-row">
+              <td class="id-cell">{{ drone.id }}</td>
+              <td>{{ drone.model }}</td>
+              <td>
+                <div class="battery-display">
+                  <div class="battery-track">
+                    <div 
+                      class="battery-fill" 
+                      [style.width.%]="drone.battery"
+                      [class.critical]="drone.battery < 20"
+                    ></div>
+                  </div>
+                  <span class="percentage">{{ drone.battery }}%</span>
+                </div>
+              </td>
+              <td>
+                <span class="status-badge" [attr.data-status]="drone.status">
+                  {{ drone.status }}
+                </span>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="4" class="empty-msg">Nenhuma unidade detectada no radar.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="theory-box">
+      <h3>Diferencial Técnico: &#64;for vs *ngFor</h3>
+      <p>
+        No Angular v21, abandonamos a diretiva <code>*ngFor</code>. O novo bloco <code>&#64;for</code> é integrado ao compilador, não exige NgModules e possui uma performance de rastreamento (<code>track</code>) nativa muito superior, além de permitir o bloco <code>&#64;empty</code> para estados vazios sem lógica extra.
+      </p>
+    </footer>
+  </main>
+</div>

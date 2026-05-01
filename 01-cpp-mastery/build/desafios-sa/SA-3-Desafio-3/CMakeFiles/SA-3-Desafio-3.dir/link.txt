@@ -1,0 +1,15 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/SA-3-Desafio-3.dir/SA-3-Refinaria.cpp.o" "CMakeFiles/SA-3-Desafio-3.dir/Tanque.cpp.o" "CMakeFiles/SA-3-Desafio-3.dir/__/__/level-04-elite/atividade-extra52/Medicao.cpp.o" -o SA-3-Desafio-3
+
+
+## Estudo de Caso
+Aplicação em cenário real.
+
+## Necessidade Técnica
+Evolução do sistema atual.
+
+## Análise de Falha Crítica
+Prevenção contra falhas em tempo de execução.
+
+## Requisitos
+1. Atender rigorosamente ao protocolo de elite.
+

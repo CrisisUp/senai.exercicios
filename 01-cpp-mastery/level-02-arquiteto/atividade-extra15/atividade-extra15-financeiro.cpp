@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file atividade-extra15-financeiro.cpp
  * @brief ATIVIDADE 15: Financeiro, Conversões e Segurança de Dados.
@@ -114,3 +116,4 @@ int main()
  * @section MemoryMap
  * Stack: variáveis locais e ponteiros. Heap: alocações via Smart Pointers/RAII.
  */
+

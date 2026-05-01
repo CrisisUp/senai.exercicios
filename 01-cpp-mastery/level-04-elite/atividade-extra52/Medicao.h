@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file Medicao.h
  * @brief Interface para a classe Medicao com Sobrecarga de Operadores.
@@ -64,3 +66,8 @@ namespace IoT {
 } // namespace IoT
 
 #endif // MEDICAO_H
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

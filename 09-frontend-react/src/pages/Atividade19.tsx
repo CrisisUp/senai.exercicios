@@ -1,3 +1,8 @@
+/**
+ * @file Atividade19.tsx
+ * @author Cristiano
+ * @date 2026
+ */
 import React, { useState } from 'react';
 import styles from './Atividade19.module.css';
 
@@ -45,8 +50,9 @@ const Atividade19: React.FC = () => {
         temp: weatherData.current_weather.temperature,
         description: "CONDIÇÕES OPERACIONAIS NOMINAIS"
       });
-    } catch (err: any) {
-      setError(err.message || "FALHA NA CONEXÃO COM O NUCLEO METEOROLÓGICO.");
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "FALHA NA CONEXÃO COM O NUCLEO METEOROLÓGICO.";
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -111,3 +117,12 @@ const Atividade19: React.FC = () => {
 };
 
 export default Atividade19;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

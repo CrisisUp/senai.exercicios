@@ -44,3 +44,8 @@ O Docker Compose lê automaticamente um arquivo chamado `.env` na mesma pasta. P
 
 ------------------------------------------------------------------------------
 "O manifesto diz o QUE fazer; o .env diz COM O QUE fazer."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

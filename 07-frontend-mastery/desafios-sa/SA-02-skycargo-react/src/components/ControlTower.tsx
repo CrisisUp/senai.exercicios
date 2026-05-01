@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file ControlTower.tsx
  * @brief Dashboard Principal orquestrado por Contextos e Hooks.
  * @author Engenheiro de Elite
@@ -45,3 +48,12 @@ const ControlTower: React.FC = () => {
 };
 
 export default ControlTower;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

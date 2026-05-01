@@ -94,3 +94,12 @@ int main() {
  * 3. TEMPLATES: O SmartBuffer agora pode armazenar Telemetria, Logs crus ou
  *    qualquer outro tipo, aumentando a reusabilidade do código.
  */
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

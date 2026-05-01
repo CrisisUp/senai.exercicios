@@ -34,3 +34,8 @@ A instrução `HEALTHCHECK` diz ao Docker como verificar a saúde do container. 
 
 ------------------------------------------------------------------------------
 "Em sistemas de missão crítica, estar vivo não é o suficiente; é preciso estar pronto."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

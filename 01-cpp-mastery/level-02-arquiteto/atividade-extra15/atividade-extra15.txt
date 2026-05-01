@@ -54,3 +54,8 @@ bilionários possam usar o sistema sem erros!
 
 "No código de um banco, um centavo perdido é um erro fatal."
 =====================================================
+
+
+## Requisitos
+1. Atender rigorosamente ao protocolo de elite.
+

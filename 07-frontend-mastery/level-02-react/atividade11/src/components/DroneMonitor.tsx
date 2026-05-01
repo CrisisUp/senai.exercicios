@@ -1,4 +1,8 @@
 /**
+ * @author Cristiano
+ * @date 2026
+ */
+/**
  * @file DroneMonitor.tsx
  * @brief Monitor de Telemetria com Injeção de Objetos e Callbacks.
  */
@@ -50,3 +54,12 @@ const DroneMonitor: React.FC<DroneMonitorProps> = ({ drone, onCommand }) => {
 };
 
 export default DroneMonitor;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

@@ -1,0 +1,61 @@
+<div class="plugin-container">
+    <header class="plugin-header">
+        <h1>⚙️ MOTOR DE PLUGINS NEXUS</h1>
+        <p>Inversão de Controle e Carregamento de Código em Runtime</p>
+    </header>
+
+    <main class="plugin-layout">
+        <!-- Lista de Plugins -->
+        <section class="registry-card">
+            <h3>PLUGINS REGISTRADOS</h3>
+            <div class="plugin-list">
+                @for (plugin of plugins(); track plugin.id) {
+                    <div 
+                        class="plugin-item" 
+                        [class.active]="activePluginId() === plugin.id"
+                        (click)="activatePlugin(plugin)">
+                        <div class="p-info">
+                            <span class="p-name">{{ plugin.name }}</span>
+                            <span class="p-version">v{{ plugin.version }}</span>
+                        </div>
+                        <p class="p-desc">{{ plugin.description }}</p>
+                    </div>
+                }
+            </div>
+            
+            <button class="btn-clear" (click)="clearHost()" [disabled]="!activePluginId()">
+                REMOVER TODOS OS PLUGINS
+            </button>
+        </section>
+
+        <!-- Host de Injeção -->
+        <section class="injection-card">
+            <div class="host-header">
+                <h3>DYNAMIC_EXECUTION_STDOUT</h3>
+                @if (isLoading()) {
+                    <div class="loading-tag">DOWNLOADING_SOURCE...</div>
+                }
+            </div>
+
+            <div class="host-viewport">
+                <ng-container #pluginHost></ng-container>
+                
+                @if (!activePluginId() && !isLoading()) {
+                    <div class="empty-msg">
+                        <span class="pulse">_</span>
+                        AGUARDANDO ATIVAÇÃO DE BINÁRIO...
+                    </div>
+                }
+            </div>
+        </section>
+    </main>
+
+    <footer class="tech-audit">
+        <h4>ESPECIFICAÇÃO DE ENGENHARIA (NÍVEL 35)</h4>
+        <ul>
+            <li><b>Inversion of Control:</b> Shell agnóstico aos binários dos plugins.</li>
+            <li><b>Dynamic Import:</b> Separação física de chunks JS para economia de banda.</li>
+            <li><b>Runtime Instantiation:</b> Ciclo de vida do componente gerenciado via <code>ViewContainerRef</code>.</li>
+        </ul>
+    </footer>
+</div>

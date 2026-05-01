@@ -81,3 +81,12 @@ int main() {
  * 3. TRAILING RETURN TYPE CHECK: '{ t.id } -> std::convertible_to<int>' verifica 
  *    não apenas a existência, mas se o tipo de retorno é compatível.
  */
+
+/* @section MemoryMap
+ * Stack: Variáveis locais e de escopo.
+ * Heap: Alocações dinâmicas.
+ */
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

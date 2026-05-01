@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file app.ts
  * @brief Orquestrador Master do SkyCargo Control Tower (Vanilla Edition).
  * @author Engenheiro de Elite
@@ -133,3 +136,12 @@ setInterval(() => {
 handleSync();
 
 console.log("\x1b[1;36m[SYSTEM]\x1b[0m SkyCargo Control Tower v2.0 Initialized.");
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

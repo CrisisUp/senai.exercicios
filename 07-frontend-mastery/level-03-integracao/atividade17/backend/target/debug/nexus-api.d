@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/07-frontend-mastery/level-03-integracao/atividade17/backend/target/debug/nexus-api: /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/07-frontend-mastery/level-03-integracao/atividade17/backend/src/main.rs

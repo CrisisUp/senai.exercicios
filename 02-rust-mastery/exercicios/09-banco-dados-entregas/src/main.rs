@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Atividade 09: Banco de Dados de Clientes (HashMap).
@@ -133,3 +135,4 @@ mod tests {
        - Capacity & Rehash: Como pré-alocar memória para evitar realocações.
     ===============================================================
 */
+

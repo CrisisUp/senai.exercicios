@@ -73,3 +73,12 @@ private:
 };
 
 #endif // OBJECT_POOL_H
+
+/* @section MemoryMap
+ * Stack: Variáveis locais e de escopo.
+ * Heap: Alocações dinâmicas.
+ */
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

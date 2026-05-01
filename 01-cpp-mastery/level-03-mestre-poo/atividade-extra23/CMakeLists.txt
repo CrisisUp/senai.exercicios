@@ -1,4 +1,10 @@
+cmake_minimum_required(VERSION 3.10)
+project(AtividadeExtra23)
+
+set(CMAKE_CXX_STANDARD 17)
+
 add_executable(atividade-extra23
-    atividade-extra23-pagamentos.cpp
+    main.cpp
+    MetodoPagamento.cpp
+    MetodoPagamento.h
 )
-set_target_properties(atividade-extra23 PROPERTIES FOLDER "01-cpp-mastery/level-03-mestre-poo/atividade-extra23")

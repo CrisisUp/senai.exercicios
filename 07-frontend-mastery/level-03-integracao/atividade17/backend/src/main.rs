@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+//! @date 2026
 /**
  * @file main.rs
  * @brief Servidor Industrial de Telemetria (Axum + CORS).
@@ -69,3 +71,12 @@ async fn obter_telemetria() -> Json<Vec<Telemetria>> {
 
     Json(dados)
 }
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

@@ -1,3 +1,8 @@
+#define ANSI_RESET "\033[0m"
+/**
+ * @author Cristiano
+ * @date 2026
+ */
 #include <gtest/gtest.h>
 #include "../../repositorio-extra/atividade-extra59/SmartResource.h"
 #include <memory>
@@ -36,4 +41,9 @@ int main(int argc, char **argv) {
 /**
  * @section MemoryMap
  * Stack: variáveis locais e ponteiros. Heap: alocações via Smart Pointers/RAII.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
  */

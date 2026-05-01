@@ -21,3 +21,8 @@ Este desafio integra os conceitos das Atividades 56 a 59:
 ## 🏗️ Estrutura de Arquivos Obrigatória
 - `TanqueEvolutivo.h`: Classe template (interface e implementação).
 - `SA-4-Refinaria-Evolutiva.cpp`: O simulador de nova geração.
+
+
+## Análise de Falha Crítica
+Prevenção contra falhas em tempo de execução.
+

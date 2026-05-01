@@ -1,0 +1,57 @@
+<div class="container">
+  <header class="header">
+    <h1>Nexus Dashboard - Live Feed (Angular v21)</h1>
+    <div class="heartbeat-area">
+      <div class="led-heartbeat"></div>
+      <span>SISTEMA ATIVO - MONITORANDO...</span>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    @for (drone of drones(); track drone.id) {
+      <section class="drone-card">
+        <div class="radar-container">
+          <div class="radar-circle">
+            <div class="radar-scan"></div>
+            <div class="drone-point"></div>
+          </div>
+        </div>
+
+        <div class="info">
+          <h3>{{ drone.name }} <small>[{{ drone.id }}]</small></h3>
+          
+          <div class="battery-area">
+            <div class="battery-label">NÍVEL DE ENERGIA:</div>
+            <div class="battery-bar">
+              <div 
+                class="battery-fill" 
+                [style.width.%]="drone.battery"
+                [class.critical]="drone.battery <= 20"
+              ></div>
+            </div>
+            <span class="percent-text">{{ drone.battery }}%</span>
+          </div>
+
+          <div class="status-msg" [class.alert]="drone.battery === 0">
+            @if (drone.battery > 0) {
+              EM OPERAÇÃO
+            } @else {
+              UNIDADE DESLIGADA - RESGATE NECESSÁRIO
+            }
+          </div>
+        </div>
+      </section>
+    }
+  </main>
+
+  <footer class="theory-box">
+    <h4>Nota Técnica: Services e Injeção de Dependência</h4>
+    <p>
+      Nesta atividade, elevamos a arquitetura para o nível <strong>Arquiteto</strong>. 
+      Em vez de manter o intervalo e os dados no componente, usamos um <strong>Service Singleton</strong> 
+      (<code>FleetService</code>). O componente utiliza a função <code>inject()</code> para obter os dados. 
+      O Angular garante que se você navegar para outra página, o componente será destruído, mas o serviço 
+      continuará mantendo o estado global se desejado, ou pode ser limpo via <code>OnDestroy</code>.
+    </p>
+  </footer>
+</div>

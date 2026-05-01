@@ -1,0 +1,71 @@
+<div class="parallel-container">
+    <header class="parallel-header">
+        <h1>🧵 O PROCESSADOR PARALELO</h1>
+        <p>Arquitetura Multithread: Offloading de Cálculos de Rota</p>
+    </header>
+
+    <main class="parallel-layout">
+        <!-- Painel de Controle -->
+        <section class="control-panel">
+            <h3>MONITOR DE THREAD PRINCIPAL (UI)</h3>
+            <div class="ui-heartbeat">
+                <span class="label">UI UPDATES:</span>
+                <span class="value">{{ uiCounter() }}</span>
+            </div>
+            <p class="desc">
+                Este contador acima é atualizado a cada 100ms pelo thread principal. 
+                Observe que ele <b>não para</b>, mesmo durante o processamento pesado no Worker.
+            </p>
+
+            <button 
+                class="btn-trigger" 
+                (click)="startHeavyTask()" 
+                [disabled]="isProcessing()">
+                {{ isProcessing() ? 'PROCESSANDO EM BACKGROUND...' : 'EXECUTAR CÁLCULO DE 200M NODES' }}
+            </button>
+        </section>
+
+        <!-- Status do Worker -->
+        <section class="worker-status">
+            <h3>LOG DO WEB WORKER</h3>
+            
+            @if (isProcessing()) {
+                <div class="progress-zone">
+                    <div class="progress-bar">
+                        <div class="fill" [style.width.%]="progress()"></div>
+                    </div>
+                    <span class="progress-text">CALCULANDO TRAJETÓRIA: {{ progress() }}%</span>
+                </div>
+            } @else if (result()) {
+                <div class="result-zone">
+                    <div class="stat-row">
+                        <span class="stat-label">NODES PROCESSADOS:</span>
+                        <span class="stat-val">{{ result().nodesProcessed }}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">TEMPO DE EXECUÇÃO:</span>
+                        <span class="stat-val highlight">{{ result().duration }}ms</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">CHECKSUM FINAL:</span>
+                        <span class="stat-val">{{ result().checksum }}</span>
+                    </div>
+                    <p class="success-msg">✓ PROTOCOLO CONCLUÍDO SEM IMPACTO NA UI.</p>
+                </div>
+            } @else {
+                <div class="idle-zone">
+                    SISTEMA DE BACKGROUND EM STANDBY.
+                </div>
+            }
+        </section>
+    </main>
+
+    <footer class="worker-audit">
+        <h4>ESPECIFICAÇÃO DE ENGENHARIA (WEB WORKERS)</h4>
+        <p>
+            Diferente do <code>async/await</code> (que ainda roda no thread principal), o <b>Web Worker</b> 
+            aloca uma fatia de processamento real do SO (Thread). É a única forma de garantir 
+            que algoritmos pesados não causem <i>Jank</i> na interface do operador.
+        </p>
+    </footer>
+</div>

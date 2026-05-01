@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/target/debug/gestor_frota_pro: /Users/cristiano/Desktop/teste/senai.exercicios/rust-mastery/integracao-rust-sql/31-gestor-frota-async-repo/src/main.rs

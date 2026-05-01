@@ -25,3 +25,8 @@ Como este é o Desafio Integrador do **Nível 11 (Arquiteto)**, o projeto deve a
 - `Tanque.h`: Declarações do namespace e classe.
 - `Tanque.cpp`: Lógica de transferência e validação.
 - `SA-3-Refinaria.cpp`: Função `main` com a simulação completa.
+
+
+## Análise de Falha Crítica
+Prevenção contra falhas em tempo de execução.
+

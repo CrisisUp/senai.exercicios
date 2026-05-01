@@ -30,3 +30,5 @@ As branches de hotfix (ex: `hotfix/v2.0.1`) nascem da `main`. Após a correção
 
 ------------------------------------------------------------------------------
 "Em tempos de crise, o Hotfix é a armadura do engenheiro."
+## Análise de Falha Crítica
+Falha na sincronização de hotfixes pode causar regressões em produção.

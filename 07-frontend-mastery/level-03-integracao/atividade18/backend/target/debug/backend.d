@@ -1,1 +1,0 @@
-/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/07-frontend-mastery/level-03-integracao/atividade18/backend/target/debug/backend: /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/07-frontend-mastery/level-03-integracao/atividade18/backend/src/main.rs

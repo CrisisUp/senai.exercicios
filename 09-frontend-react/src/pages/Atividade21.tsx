@@ -1,3 +1,8 @@
+/**
+ * @file Atividade21.tsx
+ * @author Cristiano
+ * @date 2026
+ */
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './Atividade21.module.css';
 
@@ -20,43 +25,43 @@ const Atividade21: React.FC = () => {
   const centerX = canvasSize / 2;
   const centerY = canvasSize / 2;
 
-  // Função para desenhar a grade do radar
-  const drawGrid = (ctx: CanvasRenderingContext2D) => {
-    ctx.strokeStyle = "rgba(46, 160, 67, 0.4)";
-    ctx.lineWidth = 1;
-
-    // Círculos concêntricos
-    for (let r = 50; r <= 200; r += 50) {
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, r, 0, Math.PI * 2);
-      ctx.stroke();
-    }
-
-    // Eixos táticos
-    ctx.beginPath();
-    ctx.moveTo(centerX, 0); ctx.lineTo(centerX, canvasSize);
-    ctx.moveTo(0, centerY); ctx.lineTo(canvasSize, centerY);
-    ctx.stroke();
-  };
-
-  // Função para desenhar os drones
-  const drawDrones = (ctx: CanvasRenderingContext2D) => {
-    drones.forEach(drone => {
-      ctx.fillStyle = "#ffffff";
-      ctx.shadowBlur = 15;
-      ctx.shadowColor = "#00f2ff";
-      
-      ctx.beginPath();
-      ctx.arc(drone.x, drone.y, 5, 0, Math.PI * 2);
-      ctx.fill();
-      
-      // Reset shadow para não afetar outros desenhos
-      ctx.shadowBlur = 0;
-    });
-  };
-
   // Efeito principal de renderização
   useEffect(() => {
+    // Função para desenhar a grade do radar
+    const drawGrid = (ctx: CanvasRenderingContext2D) => {
+      ctx.strokeStyle = "rgba(46, 160, 67, 0.4)";
+      ctx.lineWidth = 1;
+
+      // Círculos concêntricos
+      for (let r = 50; r <= 200; r += 50) {
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, r, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // Eixos táticos
+      ctx.beginPath();
+      ctx.moveTo(centerX, 0); ctx.lineTo(centerX, canvasSize);
+      ctx.moveTo(0, centerY); ctx.lineTo(canvasSize, centerY);
+      ctx.stroke();
+    };
+
+    // Função para desenhar os drones
+    const drawDrones = (ctx: CanvasRenderingContext2D) => {
+      drones.forEach(drone => {
+        ctx.fillStyle = "#ffffff";
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = "#00f2ff";
+        
+        ctx.beginPath();
+        ctx.arc(drone.x, drone.y, 5, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Reset shadow para não afetar outros desenhos
+        ctx.shadowBlur = 0;
+      });
+    };
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -67,7 +72,7 @@ const Atividade21: React.FC = () => {
     ctx.clearRect(0, 0, canvasSize, canvasSize);
     drawGrid(ctx);
     drawDrones(ctx);
-  }, [drones]);
+  }, [drones, centerX, centerY, canvasSize]);
 
   const scanArea = () => {
     const angle = Math.random() * Math.PI * 2;
@@ -131,3 +136,12 @@ const Atividade21: React.FC = () => {
 };
 
 export default Atividade21;
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

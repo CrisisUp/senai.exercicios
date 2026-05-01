@@ -1,0 +1,4 @@
+add_subdirectory(level-01-iniciado)
+add_subdirectory(level-02-arquiteto)
+add_subdirectory(level-03-mestre-poo)
+add_subdirectory(level-04-elite)

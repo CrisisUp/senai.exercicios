@@ -1,4 +1,7 @@
 /**
+ * @date 2026
+ */
+/**
  * @file ThemeContext.tsx
  * @brief Cérebro Global de Estilização do SkyCargo OS.
  * @author Engenheiro de Elite
@@ -47,3 +50,12 @@ export const useTheme = () => {
     }
     return context;
 };
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

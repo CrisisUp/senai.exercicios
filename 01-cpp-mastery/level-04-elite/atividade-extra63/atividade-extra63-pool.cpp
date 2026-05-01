@@ -55,3 +55,12 @@ int main() {
 
     return 0;
 }
+
+/* @section MemoryMap
+ * Stack: Variáveis locais e de escopo.
+ * Heap: Alocações dinâmicas.
+ */
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

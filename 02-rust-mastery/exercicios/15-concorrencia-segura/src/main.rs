@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Atividade 15: Concorrência Segura (Threads, Arc e Mutex).
@@ -146,3 +148,4 @@ mod tests {
     - Send and Sync traits.
     ===============================================================
 */
+

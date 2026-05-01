@@ -1,3 +1,10 @@
+#define ANSI_RESET "\033[0m"
+/**
+ * @file main.cpp
+ * @brief Implementação/Componente main.cpp
+ * @author Cristiano
+ * @date 2026
+ */
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -45,3 +52,12 @@ int main() {
 
     return 0;
 }
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

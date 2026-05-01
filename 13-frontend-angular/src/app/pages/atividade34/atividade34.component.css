@@ -1,0 +1,122 @@
+.ssr-container {
+    padding: 2rem;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.ssr-header {
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+}
+
+.ssr-header h1 {
+    color: #c0c0c2; /* Prata */
+    margin: 0;
+    font-size: 1.6rem;
+    text-shadow: 0 0 15px rgba(192, 192, 194, 0.2);
+}
+
+.ssr-header p {
+    color: #8b949e;
+    font-size: 0.9rem;
+}
+
+.ssr-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 1000px;
+}
+
+.platform-card, .seo-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    padding: 2.5rem;
+    border-radius: 12px;
+}
+
+h3 {
+    margin-top: 0;
+    font-size: 0.8rem;
+    color: #8b949e;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.env-display {
+    background: #0d1117;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #21262d;
+}
+
+.label {
+    font-size: 0.7rem;
+    color: #6e7681;
+    display: block;
+}
+
+.value {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #58a6ff;
+}
+
+.hydration-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    color: #f85149;
+}
+
+.hydration-status.done {
+    color: #3fb950;
+}
+
+.h-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.meta-preview {
+    background: #000;
+    padding: 1rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.meta-row {
+    margin-bottom: 0.5rem;
+}
+
+.m-tag { color: #f1e05a; }
+.m-val { color: #8b949e; }
+
+.desc {
+    font-size: 0.85rem;
+    color: #6e7681;
+    line-height: 1.5;
+}
+
+.ssr-audit {
+    margin-top: 4rem;
+    background: #161b22;
+    border: 1px solid #30363d;
+    padding: 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #8b949e;
+}
+
+b { color: #c0c0c2; }
+code { background: #21262d; color: #58a6ff; padding: 2px 4px; border-radius: 4px; }

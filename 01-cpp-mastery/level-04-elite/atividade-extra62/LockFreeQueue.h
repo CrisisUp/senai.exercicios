@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file LockFreeQueue.h
  * @brief Implementação de Fila Circular SPSC (Single Producer Single Consumer).
@@ -66,3 +68,12 @@ public:
 };
 
 #endif // LOCK_FREE_QUEUE_H
+
+/* @section MemoryMap
+ * Stack: Variáveis locais e de escopo.
+ * Heap: Alocações dinâmicas.
+ */
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

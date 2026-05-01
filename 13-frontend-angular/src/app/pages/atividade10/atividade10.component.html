@@ -1,0 +1,61 @@
+<div class="terminal-container">
+    <header class="terminal-header">
+        <h1>NEXUS CONTROL CENTER <span class="badge">v1.0</span></h1>
+        <div class="metrics">
+            <div class="metric-item">
+                <span class="label">UNIDADES ATIVAS:</span>
+                <span class="value">{{ drones().length }}</span>
+            </div>
+            <div class="metric-item">
+                <span class="label">MÉDIA ENERGIA:</span>
+                <span class="value" [class.low]="totalBatteryAverage() < 30">
+                    {{ totalBatteryAverage().toFixed(1) }}%
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <section class="controls">
+        <div class="search-box">
+            <input 
+                type="text" 
+                [(ngModel)]="filterText" 
+                placeholder="Filtrar por nome ou ID..."
+                class="nexus-input">
+        </div>
+
+        <div class="action-box">
+            <input 
+                type="text" 
+                [(ngModel)]="newDroneName" 
+                placeholder="Novo Drone..."
+                class="nexus-input">
+            <button (click)="registerUnit()" class="nexus-btn" [disabled]="newDroneName().length < 3">
+                REGISTRAR
+            </button>
+        </div>
+    </section>
+
+    <main class="grid-container">
+        @for (drone of filteredDrones(); track drone.id) {
+            <div class="drone-card" [class.critical]="drone.battery < 20">
+                <div class="card-header">
+                    <span class="drone-id">{{ drone.id }}</span>
+                    <span class="status-indicator"></span>
+                </div>
+                <h3>{{ drone.name }}</h3>
+                <div class="battery-bar">
+                    <div class="fill" [style.width.%]="drone.battery"></div>
+                </div>
+                <div class="card-footer">
+                    <span>TELEMETRIA OK</span>
+                    <span class="battery-text">{{ drone.battery }}%</span>
+                </div>
+            </div>
+        } @empty {
+            <div class="empty-state">
+                <p>NENHUMA UNIDADE ENCONTRADA COM O FILTRO ATUAL.</p>
+            </div>
+        }
+    </main>
+</div>

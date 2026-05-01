@@ -37,3 +37,8 @@ Podemos substituir a instrução `image:` pela instrução `build:`. Isso diz ao
 
 ------------------------------------------------------------------------------
 "Um Orquestrador não apenas toca a música; ele constrói os instrumentos."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

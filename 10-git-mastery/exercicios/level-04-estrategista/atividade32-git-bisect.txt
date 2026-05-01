@@ -29,3 +29,8 @@ O `git bisect` automatiza a caça aos bugs. Você marca um ponto "ruim" (agora) 
 
 ------------------------------------------------------------------------------
 "O Bisect é o soro da verdade do Git."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

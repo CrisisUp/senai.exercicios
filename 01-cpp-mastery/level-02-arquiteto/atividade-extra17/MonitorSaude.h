@@ -69,3 +69,8 @@ public:
 };
 
 #endif // MONITOR_SAUDE_H
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

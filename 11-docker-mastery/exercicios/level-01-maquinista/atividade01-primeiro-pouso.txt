@@ -26,3 +26,8 @@ O Docker permite rodar um processo isolado do resto do sistema operacional. Esse
 
 ------------------------------------------------------------------------------
 "No Docker, a infraestrutura é um detalhe; o container é a unidade fundamental."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

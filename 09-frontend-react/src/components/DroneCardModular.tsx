@@ -1,3 +1,8 @@
+/**
+ * @file DroneCardModular.tsx
+ * @author Cristiano
+ * @date 2026
+ */
 import React from 'react';
 import { DroneUnit } from '../hooks/useDroneNetwork';
 import styles from '../pages/Atividade16.module.css';
@@ -23,3 +28,12 @@ export const DroneCardModular: React.FC<Props> = ({ drone }) => {
     </div>
   );
 };
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

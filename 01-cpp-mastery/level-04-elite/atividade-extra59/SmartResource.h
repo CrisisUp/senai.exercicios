@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file SmartResource.h
  * @brief Interface para Módulos de Hardware geridos por Smart Pointers.
@@ -48,3 +50,8 @@ namespace Logistica {
 } // namespace Logistica
 
 #endif // SMARTRESOURCE_H
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

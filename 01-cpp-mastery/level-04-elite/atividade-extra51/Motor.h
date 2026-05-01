@@ -1,3 +1,5 @@
+#define ANSI_RESET "\033[0m"
+#define ANSI_GREEN "\033[32m"
 /**
  * @file Motor.h
  * @brief Interface para o Módulo de Motores Industriais (Composição).
@@ -64,3 +66,8 @@ namespace IoT {
 } // namespace IoT
 
 #endif // MOTOR_H
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

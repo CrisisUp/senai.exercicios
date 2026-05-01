@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Atividade 08: Gerenciador de Payload (Vetores e Iteradores).
@@ -184,3 +186,4 @@ mod tests {
     - O crate 'itertools' para operações complexas.
     ===============================================================
 */
+

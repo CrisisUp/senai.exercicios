@@ -93,3 +93,12 @@ int main() {
  * 3. STACKLESS: Coroutines C++20 não salvam toda a pilha (stack), apenas o estado 
  *    mínimo necessário na Heap, o que as torna extremamente leves.
  */
+
+/* @section MemoryMap
+ * Stack: Variáveis locais e de escopo.
+ * Heap: Alocações dinâmicas.
+ */
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Atividade 20: Estados por Tipo (Type States).
@@ -205,3 +207,4 @@ mod tests {
          manter essa segurança; é pura semântica de tipos do Rust.
     ===============================================================
 */
+

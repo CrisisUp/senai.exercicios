@@ -88,3 +88,8 @@ int main() {
  * O Atômico usa a instrução CPU 'LOCK INC' (ou similar), que resolve o conflito 
  * no nível do barramento de memória, sem suspender a execução.
  */
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

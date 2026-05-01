@@ -1,3 +1,6 @@
+const ANSI_RESET: &str = "\033[0m";
+//! @author Cristiano
+//! @date 2026
 /**
  * @file build.rs
  * @brief Script de build para a integração final SA-06 (Caminhos de Elite).
@@ -16,3 +19,12 @@ fn main() {
     println!("cargo:rerun-if-changed=../cpp_core/src/nexus_core.cpp");
     println!("cargo:rerun-if-changed=../cpp_core/include/nexus_core.h");
 }
+
+/* @section MemoryMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

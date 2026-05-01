@@ -44,3 +44,8 @@ No Docker Compose, declaramos volumes na raiz do arquivo e os associamos aos ser
 
 ------------------------------------------------------------------------------
 "No Compose, o software é volátil, mas o volume é a rocha sobre a qual o Nexus descansa."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

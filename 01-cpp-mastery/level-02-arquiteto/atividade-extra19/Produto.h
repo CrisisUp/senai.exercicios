@@ -60,3 +60,8 @@ public:
 };
 
 #endif // PRODUTO_H
+
+/*
+ * RESUMO TEÓRICO
+ * Implementação seguindo as diretrizes do Padrão de Entrega de Elite.
+ */

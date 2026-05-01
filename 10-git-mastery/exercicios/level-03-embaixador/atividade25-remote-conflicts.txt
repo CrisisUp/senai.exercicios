@@ -27,3 +27,8 @@ O Git não permite que você sobrescreva o trabalho de outros no servidor por ac
 
 ------------------------------------------------------------------------------
 "O Push é um privilégio de quem está em dia com o servidor."
+
+
+## Análise de Falha Crítica
+Mitigação de riscos sistêmicos e redundância.
+

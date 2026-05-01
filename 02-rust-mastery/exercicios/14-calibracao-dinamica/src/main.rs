@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief Atividade 14: Calibração Dinâmica (RefCell e Interatividade).
@@ -150,3 +152,4 @@ mod tests {
     - Cow (Copy on Write) para otimização de memória.
     ===============================================================
 */
+

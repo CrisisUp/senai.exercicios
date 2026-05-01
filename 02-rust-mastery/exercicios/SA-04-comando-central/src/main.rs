@@ -1,3 +1,5 @@
+const ANSI_RESET: &str = "\033[0m";
+const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
  * @brief SA-04: Central de Comando e Controle Inteligente (Refatoração de Elite).
@@ -186,3 +188,4 @@ mod tests {
     - Monomorfização (O processo de geração de código para generics).
     ===============================================================
 */
+
