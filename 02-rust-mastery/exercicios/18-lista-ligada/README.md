@@ -23,6 +23,7 @@ Estruturas recursivas (onde um nó aponta para outro nó do mesmo tipo) apresent
 3. Criar um menu interativo para o usuário adicionar e remover logs de eventos.
 
 ## ⚠️ Análise de Falha Crítica
-- **Deadlocks:** Não se aplica a estruturas de dados de thread única como esta, a menos que envolvidas em `Arc<Mutex<T>>`. O risco principal aqui é o **Stack Overflow** em listas extremamente longas devido à recursão profunda durante a destruição automática (Drop).
-- **Send/Sync Violations:** `Box<T>` implementa `Send` e `Sync` se `T` implementar `Send` e `Sync`. Nossa lista de `String` é segura para ser movida entre threads (`Send`), mas não compartilhada simultaneamente sem sincronização.
-- **Stack vs Heap:** O Enum `ListaEventos` reside na **Stack**, mas sua variante `No` contém um `Box` que aponta para o próximo nó no **Heap**. Cada nó adicionado aloca um novo bloco de memória no Heap, garantindo persistência fora do escopo da função de inserção.
+
+* **Deadlocks:** Não se aplica a estruturas de dados de thread única como esta, a menos que envolvidas em `Arc<Mutex<T>>`. O risco principal aqui é o **Stack Overflow** em listas extremamente longas devido à recursão profunda durante a destruição automática (Drop).
+* **Send/Sync Violations:** `Box<T>` implementa `Send` e `Sync` se `T` implementar `Send` e `Sync`. Nossa lista de `String` é segura para ser movida entre threads (`Send`), mas não compartilhada simultaneamente sem sincronização.
+* **Stack vs Heap:** O Enum `ListaEventos` reside na **Stack**, mas sua variante `No` contém um `Box` que aponta para o próximo nó no **Heap**. Cada nó adicionado aloca um novo bloco de memória no Heap, garantindo persistência fora do escopo da função de inserção.

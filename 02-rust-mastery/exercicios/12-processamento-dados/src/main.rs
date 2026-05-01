@@ -1,4 +1,6 @@
+#[allow(dead_code)]
 const ANSI_RESET: &str = "\033[0m";
+#[allow(dead_code)]
 const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
@@ -17,6 +19,7 @@ const ANSI_GREEN: &str = "\033[32m";
 struct LeituraVoo {
     id: u32,
     altitude_m: f64,
+    #[allow(dead_code)]
     velocidade_kmh: f64,
 }
 

@@ -13,6 +13,16 @@
 #include <iostream>
 #include "../../level-04-elite/atividade-extra52/Medicao.h" // Reutilização da Atividade 52
 
+// --- NAMESPACE DE INTERFACE (PADRÃO ELITE) ---
+namespace UI {
+    const std::string RESET    = "\033[0m";
+    const std::string NEGRITO  = "\033[1m";
+    const std::string VERDE    = "\033[32m";
+    const std::string AMARELO  = "\033[33m";
+    const std::string CIANO    = "\033[36m";
+    const std::string VERMELHO = "\033[31m";
+}
+
 namespace Refinaria {
 
     /**

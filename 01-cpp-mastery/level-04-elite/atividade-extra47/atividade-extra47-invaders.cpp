@@ -187,7 +187,7 @@ public:
         // Despejo no stdout (Otimização: sem limpar tela, apenas move cursor)
         UI::moverCursor(1, 1);
         cout << UI::CIANO << UI::NEGRITO << "SCORE: " << score << " | G-INVADERS: DEFESA ORBITAL v2.0" << UI::RESET << endl;
-        cout << UI::RESET << "┌" << string(L, '─') << "┐" << UI::RESET << endl;
+        cout << UI::RESET << "┌" << string(L, '-') << "┐" << UI::RESET << endl;
         
         for (int y = 0; y < A; y++) {
             cout << UI::RESET << "│" << UI::RESET;
@@ -200,7 +200,7 @@ public:
             }
             cout << UI::RESET << "│" << UI::RESET << endl;
         }
-        cout << UI::RESET << "└" << string(L, '─') << "┘" << UI::RESET << endl;
+        cout << UI::RESET << "└" << string(L, '-') << "┘" << UI::RESET << endl;
     }
 };
 

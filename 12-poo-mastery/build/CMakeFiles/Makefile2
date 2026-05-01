@@ -834,34 +834,18 @@ exercicios/level-03-mestre-poo/atividade-extra30/clean: exercicios/level-03-mest
 
 # Recursive "all" directory target.
 exercicios/level-04-elite/all: exercicios/level-04-elite/atividade-extra31/all
-exercicios/level-04-elite/all: exercicios/level-04-elite/atividade-extra32/all
-exercicios/level-04-elite/all: exercicios/level-04-elite/atividade-extra33/all
-exercicios/level-04-elite/all: exercicios/level-04-elite/atividade-extra34/all
-exercicios/level-04-elite/all: exercicios/level-04-elite/atividade-extra35/all
 .PHONY : exercicios/level-04-elite/all
 
 # Recursive "codegen" directory target.
 exercicios/level-04-elite/codegen: exercicios/level-04-elite/atividade-extra31/codegen
-exercicios/level-04-elite/codegen: exercicios/level-04-elite/atividade-extra32/codegen
-exercicios/level-04-elite/codegen: exercicios/level-04-elite/atividade-extra33/codegen
-exercicios/level-04-elite/codegen: exercicios/level-04-elite/atividade-extra34/codegen
-exercicios/level-04-elite/codegen: exercicios/level-04-elite/atividade-extra35/codegen
 .PHONY : exercicios/level-04-elite/codegen
 
 # Recursive "preinstall" directory target.
 exercicios/level-04-elite/preinstall: exercicios/level-04-elite/atividade-extra31/preinstall
-exercicios/level-04-elite/preinstall: exercicios/level-04-elite/atividade-extra32/preinstall
-exercicios/level-04-elite/preinstall: exercicios/level-04-elite/atividade-extra33/preinstall
-exercicios/level-04-elite/preinstall: exercicios/level-04-elite/atividade-extra34/preinstall
-exercicios/level-04-elite/preinstall: exercicios/level-04-elite/atividade-extra35/preinstall
 .PHONY : exercicios/level-04-elite/preinstall
 
 # Recursive "clean" directory target.
 exercicios/level-04-elite/clean: exercicios/level-04-elite/atividade-extra31/clean
-exercicios/level-04-elite/clean: exercicios/level-04-elite/atividade-extra32/clean
-exercicios/level-04-elite/clean: exercicios/level-04-elite/atividade-extra33/clean
-exercicios/level-04-elite/clean: exercicios/level-04-elite/atividade-extra34/clean
-exercicios/level-04-elite/clean: exercicios/level-04-elite/atividade-extra35/clean
 .PHONY : exercicios/level-04-elite/clean
 
 #=============================================================================
@@ -882,82 +866,6 @@ exercicios/level-04-elite/atividade-extra31/preinstall:
 # Recursive "clean" directory target.
 exercicios/level-04-elite/atividade-extra31/clean: exercicios/level-04-elite/atividade-extra31/CMakeFiles/atividade-extra31.dir/clean
 .PHONY : exercicios/level-04-elite/atividade-extra31/clean
-
-#=============================================================================
-# Directory level rules for directory exercicios/level-04-elite/atividade-extra32
-
-# Recursive "all" directory target.
-exercicios/level-04-elite/atividade-extra32/all: exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/all
-.PHONY : exercicios/level-04-elite/atividade-extra32/all
-
-# Recursive "codegen" directory target.
-exercicios/level-04-elite/atividade-extra32/codegen: exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/codegen
-.PHONY : exercicios/level-04-elite/atividade-extra32/codegen
-
-# Recursive "preinstall" directory target.
-exercicios/level-04-elite/atividade-extra32/preinstall:
-.PHONY : exercicios/level-04-elite/atividade-extra32/preinstall
-
-# Recursive "clean" directory target.
-exercicios/level-04-elite/atividade-extra32/clean: exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/clean
-.PHONY : exercicios/level-04-elite/atividade-extra32/clean
-
-#=============================================================================
-# Directory level rules for directory exercicios/level-04-elite/atividade-extra33
-
-# Recursive "all" directory target.
-exercicios/level-04-elite/atividade-extra33/all: exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/all
-.PHONY : exercicios/level-04-elite/atividade-extra33/all
-
-# Recursive "codegen" directory target.
-exercicios/level-04-elite/atividade-extra33/codegen: exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/codegen
-.PHONY : exercicios/level-04-elite/atividade-extra33/codegen
-
-# Recursive "preinstall" directory target.
-exercicios/level-04-elite/atividade-extra33/preinstall:
-.PHONY : exercicios/level-04-elite/atividade-extra33/preinstall
-
-# Recursive "clean" directory target.
-exercicios/level-04-elite/atividade-extra33/clean: exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/clean
-.PHONY : exercicios/level-04-elite/atividade-extra33/clean
-
-#=============================================================================
-# Directory level rules for directory exercicios/level-04-elite/atividade-extra34
-
-# Recursive "all" directory target.
-exercicios/level-04-elite/atividade-extra34/all: exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/all
-.PHONY : exercicios/level-04-elite/atividade-extra34/all
-
-# Recursive "codegen" directory target.
-exercicios/level-04-elite/atividade-extra34/codegen: exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/codegen
-.PHONY : exercicios/level-04-elite/atividade-extra34/codegen
-
-# Recursive "preinstall" directory target.
-exercicios/level-04-elite/atividade-extra34/preinstall:
-.PHONY : exercicios/level-04-elite/atividade-extra34/preinstall
-
-# Recursive "clean" directory target.
-exercicios/level-04-elite/atividade-extra34/clean: exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/clean
-.PHONY : exercicios/level-04-elite/atividade-extra34/clean
-
-#=============================================================================
-# Directory level rules for directory exercicios/level-04-elite/atividade-extra35
-
-# Recursive "all" directory target.
-exercicios/level-04-elite/atividade-extra35/all: exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/all
-.PHONY : exercicios/level-04-elite/atividade-extra35/all
-
-# Recursive "codegen" directory target.
-exercicios/level-04-elite/atividade-extra35/codegen: exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/codegen
-.PHONY : exercicios/level-04-elite/atividade-extra35/codegen
-
-# Recursive "preinstall" directory target.
-exercicios/level-04-elite/atividade-extra35/preinstall:
-.PHONY : exercicios/level-04-elite/atividade-extra35/preinstall
-
-# Recursive "clean" directory target.
-exercicios/level-04-elite/atividade-extra35/clean: exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/clean
-.PHONY : exercicios/level-04-elite/atividade-extra35/clean
 
 #=============================================================================
 # Directory level rules for directory labs/drone-factory
@@ -1305,7 +1213,7 @@ exercicios/level-01-iniciado/atividade-extra10/CMakeFiles/atividade-extra10.dir/
 exercicios/level-02-arquiteto/atividade-extra11/CMakeFiles/atividade11.dir/all:
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra11/CMakeFiles/atividade11.dir/build.make exercicios/level-02-arquiteto/atividade-extra11/CMakeFiles/atividade11.dir/depend
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra11/CMakeFiles/atividade11.dir/build.make exercicios/level-02-arquiteto/atividade-extra11/CMakeFiles/atividade11.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=62,63,64 "Built target atividade11"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=54,55,56 "Built target atividade11"
 .PHONY : exercicios/level-02-arquiteto/atividade-extra11/CMakeFiles/atividade11.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1322,7 +1230,7 @@ atividade11: exercicios/level-02-arquiteto/atividade-extra11/CMakeFiles/atividad
 # codegen rule for target.
 exercicios/level-02-arquiteto/atividade-extra11/CMakeFiles/atividade11.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra11/CMakeFiles/atividade11.dir/build.make exercicios/level-02-arquiteto/atividade-extra11/CMakeFiles/atividade11.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=62,63,64 "Finished codegen for target atividade11"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=54,55,56 "Finished codegen for target atividade11"
 .PHONY : exercicios/level-02-arquiteto/atividade-extra11/CMakeFiles/atividade11.dir/codegen
 
 # clean rule for target.
@@ -1337,7 +1245,7 @@ exercicios/level-02-arquiteto/atividade-extra11/CMakeFiles/atividade11.dir/clean
 exercicios/level-02-arquiteto/atividade-extra12/CMakeFiles/atividade12.dir/all:
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra12/CMakeFiles/atividade12.dir/build.make exercicios/level-02-arquiteto/atividade-extra12/CMakeFiles/atividade12.dir/depend
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra12/CMakeFiles/atividade12.dir/build.make exercicios/level-02-arquiteto/atividade-extra12/CMakeFiles/atividade12.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=65,66,67 "Built target atividade12"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=57,58,59 "Built target atividade12"
 .PHONY : exercicios/level-02-arquiteto/atividade-extra12/CMakeFiles/atividade12.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1354,7 +1262,7 @@ atividade12: exercicios/level-02-arquiteto/atividade-extra12/CMakeFiles/atividad
 # codegen rule for target.
 exercicios/level-02-arquiteto/atividade-extra12/CMakeFiles/atividade12.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra12/CMakeFiles/atividade12.dir/build.make exercicios/level-02-arquiteto/atividade-extra12/CMakeFiles/atividade12.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=65,66,67 "Finished codegen for target atividade12"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=57,58,59 "Finished codegen for target atividade12"
 .PHONY : exercicios/level-02-arquiteto/atividade-extra12/CMakeFiles/atividade12.dir/codegen
 
 # clean rule for target.
@@ -1369,7 +1277,7 @@ exercicios/level-02-arquiteto/atividade-extra12/CMakeFiles/atividade12.dir/clean
 exercicios/level-02-arquiteto/atividade-extra13/CMakeFiles/atividade13.dir/all:
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra13/CMakeFiles/atividade13.dir/build.make exercicios/level-02-arquiteto/atividade-extra13/CMakeFiles/atividade13.dir/depend
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra13/CMakeFiles/atividade13.dir/build.make exercicios/level-02-arquiteto/atividade-extra13/CMakeFiles/atividade13.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=68,69,70 "Built target atividade13"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=60,61,62 "Built target atividade13"
 .PHONY : exercicios/level-02-arquiteto/atividade-extra13/CMakeFiles/atividade13.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1386,7 +1294,7 @@ atividade13: exercicios/level-02-arquiteto/atividade-extra13/CMakeFiles/atividad
 # codegen rule for target.
 exercicios/level-02-arquiteto/atividade-extra13/CMakeFiles/atividade13.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra13/CMakeFiles/atividade13.dir/build.make exercicios/level-02-arquiteto/atividade-extra13/CMakeFiles/atividade13.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=68,69,70 "Finished codegen for target atividade13"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=60,61,62 "Finished codegen for target atividade13"
 .PHONY : exercicios/level-02-arquiteto/atividade-extra13/CMakeFiles/atividade13.dir/codegen
 
 # clean rule for target.
@@ -1529,7 +1437,7 @@ exercicios/level-02-arquiteto/atividade-extra17/CMakeFiles/atividade-extra17.dir
 exercicios/level-02-arquiteto/atividade-extra18/CMakeFiles/atividade18.dir/all:
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra18/CMakeFiles/atividade18.dir/build.make exercicios/level-02-arquiteto/atividade-extra18/CMakeFiles/atividade18.dir/depend
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra18/CMakeFiles/atividade18.dir/build.make exercicios/level-02-arquiteto/atividade-extra18/CMakeFiles/atividade18.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=71,72,73,74 "Built target atividade18"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=63,64,65,66 "Built target atividade18"
 .PHONY : exercicios/level-02-arquiteto/atividade-extra18/CMakeFiles/atividade18.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1546,7 +1454,7 @@ atividade18: exercicios/level-02-arquiteto/atividade-extra18/CMakeFiles/atividad
 # codegen rule for target.
 exercicios/level-02-arquiteto/atividade-extra18/CMakeFiles/atividade18.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra18/CMakeFiles/atividade18.dir/build.make exercicios/level-02-arquiteto/atividade-extra18/CMakeFiles/atividade18.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=71,72,73,74 "Finished codegen for target atividade18"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=63,64,65,66 "Finished codegen for target atividade18"
 .PHONY : exercicios/level-02-arquiteto/atividade-extra18/CMakeFiles/atividade18.dir/codegen
 
 # clean rule for target.
@@ -1561,7 +1469,7 @@ exercicios/level-02-arquiteto/atividade-extra18/CMakeFiles/atividade18.dir/clean
 exercicios/level-02-arquiteto/atividade-extra19/CMakeFiles/atividade19.dir/all:
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra19/CMakeFiles/atividade19.dir/build.make exercicios/level-02-arquiteto/atividade-extra19/CMakeFiles/atividade19.dir/depend
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra19/CMakeFiles/atividade19.dir/build.make exercicios/level-02-arquiteto/atividade-extra19/CMakeFiles/atividade19.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=75,76,77 "Built target atividade19"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=67,68,69 "Built target atividade19"
 .PHONY : exercicios/level-02-arquiteto/atividade-extra19/CMakeFiles/atividade19.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1578,7 +1486,7 @@ atividade19: exercicios/level-02-arquiteto/atividade-extra19/CMakeFiles/atividad
 # codegen rule for target.
 exercicios/level-02-arquiteto/atividade-extra19/CMakeFiles/atividade19.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f exercicios/level-02-arquiteto/atividade-extra19/CMakeFiles/atividade19.dir/build.make exercicios/level-02-arquiteto/atividade-extra19/CMakeFiles/atividade19.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=75,76,77 "Finished codegen for target atividade19"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=67,68,69 "Finished codegen for target atividade19"
 .PHONY : exercicios/level-02-arquiteto/atividade-extra19/CMakeFiles/atividade19.dir/codegen
 
 # clean rule for target.
@@ -1971,141 +1879,13 @@ exercicios/level-04-elite/atividade-extra31/CMakeFiles/atividade-extra31.dir/cle
 .PHONY : exercicios/level-04-elite/atividade-extra31/CMakeFiles/atividade-extra31.dir/clean
 
 #=============================================================================
-# Target rules for target exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir
-
-# All Build rule for target.
-exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/all:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/build.make exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/depend
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/build.make exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=54,55 "Built target atividade-extra32"
-.PHONY : exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/all
-
-# Build rule for subdir invocation for target.
-exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles 0
-.PHONY : exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/rule
-
-# Convenience name for target.
-atividade-extra32: exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/rule
-.PHONY : atividade-extra32
-
-# codegen rule for target.
-exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/build.make exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=54,55 "Finished codegen for target atividade-extra32"
-.PHONY : exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/codegen
-
-# clean rule for target.
-exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/clean:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/build.make exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/clean
-.PHONY : exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/clean
-
-#=============================================================================
-# Target rules for target exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir
-
-# All Build rule for target.
-exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/all:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/build.make exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/depend
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/build.make exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=56,57 "Built target atividade-extra33"
-.PHONY : exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/all
-
-# Build rule for subdir invocation for target.
-exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles 0
-.PHONY : exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/rule
-
-# Convenience name for target.
-atividade-extra33: exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/rule
-.PHONY : atividade-extra33
-
-# codegen rule for target.
-exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/build.make exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=56,57 "Finished codegen for target atividade-extra33"
-.PHONY : exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/codegen
-
-# clean rule for target.
-exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/clean:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/build.make exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/clean
-.PHONY : exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/clean
-
-#=============================================================================
-# Target rules for target exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir
-
-# All Build rule for target.
-exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/all:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/build.make exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/depend
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/build.make exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=58,59 "Built target atividade-extra34"
-.PHONY : exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/all
-
-# Build rule for subdir invocation for target.
-exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles 0
-.PHONY : exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/rule
-
-# Convenience name for target.
-atividade-extra34: exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/rule
-.PHONY : atividade-extra34
-
-# codegen rule for target.
-exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/build.make exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=58,59 "Finished codegen for target atividade-extra34"
-.PHONY : exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/codegen
-
-# clean rule for target.
-exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/clean:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/build.make exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/clean
-.PHONY : exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/clean
-
-#=============================================================================
-# Target rules for target exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir
-
-# All Build rule for target.
-exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/all:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/build.make exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/depend
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/build.make exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=60,61 "Built target atividade-extra35"
-.PHONY : exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/all
-
-# Build rule for subdir invocation for target.
-exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles 0
-.PHONY : exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/rule
-
-# Convenience name for target.
-atividade-extra35: exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/rule
-.PHONY : atividade-extra35
-
-# codegen rule for target.
-exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/build.make exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=60,61 "Finished codegen for target atividade-extra35"
-.PHONY : exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/codegen
-
-# clean rule for target.
-exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/clean:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/build.make exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/clean
-.PHONY : exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/clean
-
-#=============================================================================
 # Target rules for target labs/drone-factory/CMakeFiles/drone-factory.dir
 
 # All Build rule for target.
 labs/drone-factory/CMakeFiles/drone-factory.dir/all:
 	$(MAKE) $(MAKESILENT) -f labs/drone-factory/CMakeFiles/drone-factory.dir/build.make labs/drone-factory/CMakeFiles/drone-factory.dir/depend
 	$(MAKE) $(MAKESILENT) -f labs/drone-factory/CMakeFiles/drone-factory.dir/build.make labs/drone-factory/CMakeFiles/drone-factory.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=78,79,80 "Built target drone-factory"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=70,71,72 "Built target drone-factory"
 .PHONY : labs/drone-factory/CMakeFiles/drone-factory.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2122,7 +1902,7 @@ drone-factory: labs/drone-factory/CMakeFiles/drone-factory.dir/rule
 # codegen rule for target.
 labs/drone-factory/CMakeFiles/drone-factory.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f labs/drone-factory/CMakeFiles/drone-factory.dir/build.make labs/drone-factory/CMakeFiles/drone-factory.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=78,79,80 "Finished codegen for target drone-factory"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/build/CMakeFiles --progress-num=70,71,72 "Finished codegen for target drone-factory"
 .PHONY : labs/drone-factory/CMakeFiles/drone-factory.dir/codegen
 
 # clean rule for target.

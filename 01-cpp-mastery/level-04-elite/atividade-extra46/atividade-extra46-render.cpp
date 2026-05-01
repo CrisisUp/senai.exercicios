@@ -81,7 +81,7 @@ public:
      */
     void desenhar() const {
         // Moldura Superior
-        cout << UI::CIANO << "┌" << string(largura * 2, '─') << "┐" << UI::RESET << endl;
+        cout << UI::CIANO << "┌" << string(largura * 2, '-') << "┐" << UI::RESET << endl;
 
         for (int y = 0; y < altura; y++) {
             cout << UI::CIANO << "│" << UI::RESET; // Moldura Lateral
@@ -98,7 +98,7 @@ public:
         }
 
         // Moldura Inferior
-        cout << UI::CIANO << "└" << string(largura * 2, '─') << "┘" << UI::RESET << endl;
+        cout << UI::CIANO << "└" << string(largura * 2, '-') << "┘" << UI::RESET << endl;
     }
 };
 

@@ -1,4 +1,6 @@
+#[allow(dead_code)]
 const ANSI_RESET: &str = "\033[0m";
+#[allow(dead_code)]
 const ANSI_GREEN: &str = "\033[32m";
 use std::io::{self, Write};
 /**
@@ -18,6 +20,7 @@ use std::rc::Rc; // Smart pointer para contagem de referências // Módulo de I/
 #[derive(Debug)]
 struct Telemetria {
     drone_id: String,
+    #[allow(dead_code)]
     altitude: f64,
 }
 

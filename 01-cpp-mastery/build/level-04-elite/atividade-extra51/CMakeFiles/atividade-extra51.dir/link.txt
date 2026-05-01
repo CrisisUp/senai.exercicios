@@ -1,15 +1,1 @@
 /usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra51.dir/atividade-extra51-motor.cpp.o" "CMakeFiles/atividade-extra51.dir/Motor.cpp.o" "CMakeFiles/atividade-extra51.dir/__/atividade-extra50/Monitoramento.cpp.o" -o atividade-extra51
-
-
-## Estudo de Caso
-Aplicação em cenário real.
-
-## Necessidade Técnica
-Evolução do sistema atual.
-
-## Análise de Falha Crítica
-Prevenção contra falhas em tempo de execução.
-
-## Requisitos
-1. Atender rigorosamente ao protocolo de elite.
-

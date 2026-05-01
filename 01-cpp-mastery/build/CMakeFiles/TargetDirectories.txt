@@ -196,17 +196,3 @@
 /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/01-cpp-mastery/build/desafios-sa/SA-4-Desafio-4/CMakeFiles/SA-4-Desafio-4.dir
 /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/01-cpp-mastery/build/desafios-sa/SA-4-Desafio-4/CMakeFiles/edit_cache.dir
 /Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/01-cpp-mastery/build/desafios-sa/SA-4-Desafio-4/CMakeFiles/rebuild_cache.dir
-
-
-## Estudo de Caso
-Aplicação em cenário real.
-
-## Necessidade Técnica
-Evolução do sistema atual.
-
-## Análise de Falha Crítica
-Prevenção contra falhas em tempo de execução.
-
-## Requisitos
-1. Atender rigorosamente ao protocolo de elite.
-

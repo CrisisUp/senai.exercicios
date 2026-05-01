@@ -520,58 +520,6 @@ atividade-extra31/fast:
 .PHONY : atividade-extra31/fast
 
 #=============================================================================
-# Target rules for targets named atividade-extra32
-
-# Build rule for target.
-atividade-extra32: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 atividade-extra32
-.PHONY : atividade-extra32
-
-# fast build rule for target.
-atividade-extra32/fast:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/build.make exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/build
-.PHONY : atividade-extra32/fast
-
-#=============================================================================
-# Target rules for targets named atividade-extra33
-
-# Build rule for target.
-atividade-extra33: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 atividade-extra33
-.PHONY : atividade-extra33
-
-# fast build rule for target.
-atividade-extra33/fast:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/build.make exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/build
-.PHONY : atividade-extra33/fast
-
-#=============================================================================
-# Target rules for targets named atividade-extra34
-
-# Build rule for target.
-atividade-extra34: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 atividade-extra34
-.PHONY : atividade-extra34
-
-# fast build rule for target.
-atividade-extra34/fast:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/build.make exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/build
-.PHONY : atividade-extra34/fast
-
-#=============================================================================
-# Target rules for targets named atividade-extra35
-
-# Build rule for target.
-atividade-extra35: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 atividade-extra35
-.PHONY : atividade-extra35
-
-# fast build rule for target.
-atividade-extra35/fast:
-	$(MAKE) $(MAKESILENT) -f exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/build.make exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/build
-.PHONY : atividade-extra35/fast
-
-#=============================================================================
 # Target rules for targets named drone-factory
 
 # Build rule for target.
@@ -618,10 +566,6 @@ help:
 	@echo "... atividade-extra29"
 	@echo "... atividade-extra30"
 	@echo "... atividade-extra31"
-	@echo "... atividade-extra32"
-	@echo "... atividade-extra33"
-	@echo "... atividade-extra34"
-	@echo "... atividade-extra35"
 	@echo "... atividade11"
 	@echo "... atividade12"
 	@echo "... atividade13"

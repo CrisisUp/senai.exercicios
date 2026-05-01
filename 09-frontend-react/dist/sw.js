@@ -1,3 +1,10 @@
+/**
+ * @file sw.js
+ * @brief Service Worker do Nexus OS - Sobrevivência Digital.
+ * @author Gemini CLI
+ * @date 2026-04-29
+ */
+
 const CACHE_NAME = 'skycargo-nexus-v1';
 const ASSETS_TO_CACHE = [
   '/',
@@ -40,3 +47,12 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
+
+/* @section ArchitectureMap
+ * Descrição técnica da estrutura e fluxo de dados.
+ */
+
+/*
+ * RESUMO TEÓRICO
+ * Alinhado com o Padrão de Entrega de Elite (Protocolo GEMINI).
+ */

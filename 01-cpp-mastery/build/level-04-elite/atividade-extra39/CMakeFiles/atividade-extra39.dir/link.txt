@@ -1,15 +1,1 @@
 /usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/atividade-extra39.dir/atividade-extra39-bfs.cpp.o" -o atividade-extra39
-
-
-## Estudo de Caso
-Aplicação em cenário real.
-
-## Necessidade Técnica
-Evolução do sistema atual.
-
-## Análise de Falha Crítica
-Prevenção contra falhas em tempo de execução.
-
-## Requisitos
-1. Atender rigorosamente ao protocolo de elite.
-

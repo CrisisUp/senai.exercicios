@@ -1,9 +1,11 @@
-const ANSI_RESET: &str = "\033[0m";
-const ANSI_GREEN: &str = "\033[32m";
 //! @file db.rs
 //! @brief Implementação de db.rs
 //! @author Cristiano
 //! @date 2026
+#[allow(dead_code)]
+const ANSI_RESET: &str = "\033[0m";
+#[allow(dead_code)]
+const ANSI_GREEN: &str = "\033[32m";
 
 use anyhow::{Context, Result};
 use r2d2::Pool;

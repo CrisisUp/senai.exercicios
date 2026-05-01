@@ -20,7 +20,7 @@ Este desafio integra os conhecimentos avançados do Nível 32 (Atividades 17 a 2
 2. Implementar a transição segura entre esses estados usando Ownership.
 3. Criar a struct `Peca` com massa e implementar o trait `Add`.
 4. Utilizar uma `ListaLigada` manual (baseada em `Box`) para o estoque de saída.
-4. Criar uma interface onde o usuário possa:
+5. Criar uma interface onde o usuário possa:
     - Comandar o robô para pegar uma peça (Ocioso -> Carregado).
     - Comandar a montagem (Carregado -> Montando -> Ocioso).
     - Ver a pilha de produção.
@@ -32,7 +32,6 @@ Este desafio integra os conhecimentos avançados do Nível 32 (Atividades 17 a 2
 
 Em uma fábrica automatizada, a integração entre software de alto nível e hardware legado (C) exige vigilância:
 
-1.  **Riscos de Race Conditions:** Se múltiplos robôs compartilhassem a mesma `LinhaProducao` sem proteção de exclusão mútua (`Arc<Mutex<T>>`), a estrutura da lista ligada (ponteiros `Box`) poderia ser corrompida durante um `empilhar` simultâneo, resultando em "Dangling Pointers" ou segfaults no momento da leitura.
-2.  **Transactional Inconsistency:** A transição de estado do robô (`Carregado -> Montando`) deve ser atômica com o consumo da peça. No Rust, o uso de `Type States` garante que, se a função `iniciar_montagem` falhar ou o programa crashar, a peça não "desaparece" nem "duplica", pois a posse (Ownership) é transferida de forma unívoca.
-3.  **Buffer Overflows em Sockets:** Na comunicação entre o controlador Rust e os sensores da fábrica via rede, pacotes malformados poderiam tentar injetar dados além da capacidade do buffer de recepção. O Rust previne isso nativamente, mas o perigo aumenta na fronteira FFI com o C. O desenvolvedor deve garantir que os dados passados para o `stress_test_c` estejam sanitizados para evitar estouros de pilha no módulo legado.
-
+1. **Riscos de Race Conditions:** Se múltiplos robôs compartilhassem a mesma `LinhaProducao` sem proteção de exclusão mútua (`Arc<Mutex<T>>`), a estrutura da lista ligada (ponteiros `Box`) poderia ser corrompida durante um `empilhar` simultâneo, resultando em "Dangling Pointers" ou segfaults no momento da leitura.
+2. **Transactional Inconsistency:** A transição de estado do robô (`Carregado -> Montando`) deve ser atômica com o consumo da peça. No Rust, o uso de `Type States` garante que, se a função `iniciar_montagem` falhar ou o programa crashar, a peça não "desaparece" nem "duplica", pois a posse (Ownership) é transferida de forma unívoca.
+3. **Buffer Overflows em Sockets:** Na comunicação entre o controlador Rust e os sensores da fábrica via rede, pacotes malformados poderiam tentar injetar dados além da capacidade do buffer de recepção. O Rust previne isso nativamente, mas o perigo aumenta na fronteira FFI com o C. O desenvolvedor deve garantir que os dados passados para o `stress_test_c` estejam sanitizados para evitar estouros de pilha no módulo legado.

@@ -1,4 +1,6 @@
+#[allow(dead_code)]
 const ANSI_RESET: &str = "\033[0m";
+#[allow(dead_code)]
 const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
@@ -43,7 +45,7 @@ fn main() {
 
     let aceleracao: f64 = input.trim().parse().unwrap_or(0.0);
 
-    /**
+    /*
      * BLOCO UNSAFE:
      * O Rust não pode olhar dentro do código C para saber se ele é seguro.
      * Ao entrar no bloco unsafe, o programador assume a responsabilidade
@@ -86,4 +88,3 @@ fn main() {
     - Pânico através da fronteira FFI (comportamento indefinido).
     ===============================================================
 */
-

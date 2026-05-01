@@ -75,7 +75,7 @@
 ---
 ### 🏆 Conclusão da Trilha Git Mastery Elite
 
-Parabéns, Engenheiro de Elite. Você concluiu a jornada completa pelo universo do controle de versão distribuído. 
+Parabéns, Engenheiro de Elite. Você concluiu a jornada completa pelo universo do controle de versão distribuído.
 
 Desde a fundação da sua identidade local até a orquestração de fluxos industriais complexos (Gitflow), passando por operações de resgate cirúrgico e automação avançada, você agora possui a maestria necessária para liderar equipes e garantir a integridade do código em qualquer escala.
 

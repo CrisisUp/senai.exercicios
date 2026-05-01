@@ -1,4 +1,6 @@
+#[allow(dead_code)]
 const ANSI_RESET: &str = "\033[0m";
+#[allow(dead_code)]
 const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
@@ -10,7 +12,6 @@ const ANSI_GREEN: &str = "\033[32m";
  * @date 21/04/2026
  */
 use rusqlite::{Connection, Result, params};
-use std::io::{self, Write};
 
 fn exibir_estado_atual(conn: &Connection) -> Result<()> {
     let estoque: i32 = conn.query_row(

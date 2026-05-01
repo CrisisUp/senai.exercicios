@@ -1,11 +1,13 @@
+#[allow(dead_code)]
 const ANSI_RESET: &str = "\033[0m";
+#[allow(dead_code)]
 const ANSI_GREEN: &str = "\033[32m";
-//! @author Cristiano
-//! @date 2026
 
 /**
  * @file build.rs
  * @brief Script de build para integrar C++ e Rust.
+ * @author Cristiano
+ * @date 2026
  */
 
 fn main() {

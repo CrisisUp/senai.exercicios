@@ -33,7 +33,7 @@ void Aeronave::decolar() {
 
 AviaoComercial::AviaoComercial(const string& _pref) : Aeronave(_pref) {}
 
-void AviaoComercial::decolar() override {
+void AviaoComercial::decolar() {
     cout << UI::VERDE << UI::NEGRITO << "[ASA FIXA " << prefixo << "]: " << UI::RESET 
          << UI::VERDE << "V1... VR... Decolagem de pista concluída!" << UI::RESET << endl;
 }
@@ -42,7 +42,7 @@ void AviaoComercial::decolar() override {
 
 Helicoptero::Helicoptero(const string& _pref) : Aeronave(_pref) {}
 
-void Helicoptero::decolar() override {
+void Helicoptero::decolar() {
     cout << UI::AZUL << UI::NEGRITO << "[ASA ROTATIVA " << prefixo << "]: " << UI::RESET 
          << UI::AZUL << "Passo coletivo aumentado... Decolagem Vertical concluída!" << UI::RESET << endl;
 }

@@ -1,4 +1,6 @@
+#[allow(dead_code)]
 const ANSI_RESET: &str = "\033[0m";
+#[allow(dead_code)]
 const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
@@ -22,13 +24,16 @@ const ANSI_GREEN: &str = "\033[32m";
 enum StatusDrone {
     Disponivel,
     EmMissao,
+    #[allow(dead_code)]
     Manutencao,
 }
 
 /// Níveis de prioridade de suprimentos médicos.
 #[derive(Debug, Clone, Copy)]
 enum PrioridadeCarga {
+    #[allow(dead_code)]
     Baixa,
+    #[allow(dead_code)]
     Media,
     Alta,
 }

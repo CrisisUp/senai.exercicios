@@ -46,10 +46,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/exercicios/level-03-mestre-poo/atividade-extra30/CMakeLists.txt"
   "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/exercicios/level-04-elite/CMakeLists.txt"
   "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/exercicios/level-04-elite/atividade-extra31/CMakeLists.txt"
-  "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/exercicios/level-04-elite/atividade-extra32/CMakeLists.txt"
-  "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/exercicios/level-04-elite/atividade-extra33/CMakeLists.txt"
-  "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/exercicios/level-04-elite/atividade-extra34/CMakeLists.txt"
-  "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/exercicios/level-04-elite/atividade-extra35/CMakeLists.txt"
   "/Users/cristiano/Desktop/ESTUDOS_2026/senai.exercicios/12-poo-mastery/labs/drone-factory/CMakeLists.txt"
   "/opt/homebrew/share/cmake/Modules/CMakeCInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeCXXInformation.cmake"
@@ -127,10 +123,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "exercicios/level-03-mestre-poo/atividade-extra30/CMakeFiles/CMakeDirectoryInformation.cmake"
   "exercicios/level-04-elite/CMakeFiles/CMakeDirectoryInformation.cmake"
   "exercicios/level-04-elite/atividade-extra31/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "exercicios/level-04-elite/atividade-extra32/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "exercicios/level-04-elite/atividade-extra33/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "exercicios/level-04-elite/atividade-extra34/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "exercicios/level-04-elite/atividade-extra35/CMakeFiles/CMakeDirectoryInformation.cmake"
   "labs/drone-factory/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
@@ -167,9 +159,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "exercicios/level-03-mestre-poo/atividade-extra29/CMakeFiles/atividade-extra29.dir/DependInfo.cmake"
   "exercicios/level-03-mestre-poo/atividade-extra30/CMakeFiles/atividade-extra30.dir/DependInfo.cmake"
   "exercicios/level-04-elite/atividade-extra31/CMakeFiles/atividade-extra31.dir/DependInfo.cmake"
-  "exercicios/level-04-elite/atividade-extra32/CMakeFiles/atividade-extra32.dir/DependInfo.cmake"
-  "exercicios/level-04-elite/atividade-extra33/CMakeFiles/atividade-extra33.dir/DependInfo.cmake"
-  "exercicios/level-04-elite/atividade-extra34/CMakeFiles/atividade-extra34.dir/DependInfo.cmake"
-  "exercicios/level-04-elite/atividade-extra35/CMakeFiles/atividade-extra35.dir/DependInfo.cmake"
   "labs/drone-factory/CMakeFiles/drone-factory.dir/DependInfo.cmake"
   )

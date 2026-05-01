@@ -12,6 +12,14 @@
 #include <memory>
 #include "rust/cxx.h"
 
+// --- NAMESPACE DE INTERFACE (PADRÃO ELITE) ---
+namespace UI {
+    const std::string RESET    = "\033[0m";
+    const std::string NEGRITO  = "\033[1m";
+    const std::string VERDE    = "\033[32m";
+    const std::string AZUL     = "\033[34m";
+}
+
 namespace logispeed {
 
 /**

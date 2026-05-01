@@ -1,4 +1,6 @@
+#[allow(dead_code)]
 const ANSI_RESET: &str = "\033[0m";
+#[allow(dead_code)]
 const ANSI_GREEN: &str = "\033[32m";
 /**
  * @file main.rs
@@ -16,11 +18,13 @@ use serde::Deserialize;
  */
 #[derive(Debug, Deserialize)]
 struct Telemetria<'a> {
+    #[allow(dead_code)]
     id: i32,
     #[serde(borrow)] // Indica ao Serde para emprestar do buffer em vez de copiar
     status: &'a str,
     #[serde(borrow)]
     drone_model: &'a str,
+    #[allow(dead_code)]
     velocidade: f64,
 }
 
